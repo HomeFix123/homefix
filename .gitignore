@@ -34,5 +34,3 @@ build/
 mvnw
 *.jar
 .mvn/wrapper/maven-wrapper.properties
-mvnw.cmd
-src/main/resources/application.properties
