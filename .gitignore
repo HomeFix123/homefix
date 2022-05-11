@@ -32,3 +32,9 @@ build/
 ### VS Code ###
 .vscode/
 *.jar
+<<<<<<< HEAD
+=======
+.mvn/wrapper/maven-wrapper.properties
+mvnw.cmd
+src/main/resources/application.properties
+>>>>>>> parent of 77ce35a (d)
