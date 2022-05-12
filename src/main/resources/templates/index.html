@@ -45,17 +45,37 @@
         	
         	.entry-meta{
         		left:auto;
-        		right: 20px;
-        		bottom: 10px;
+        		right: 5%;
+        		bottom: 5%;
+        		background-color:  transparent;
         	}
         	
         	.entry-meta i{
         		font-size: 20px;
+        		
         	}
         	
         	.text-right{
         		text-align: right;
         	}
+        	
+        	.user-img {
+        		border-radius: 100%;
+        		height: 40px;
+        		width: 40px;
+        		display: inline;
+        	}
+        	.user-img-sm {
+        		border-radius: 100%;
+        		height: 20px;
+        		width: 20px;
+        		
+        		
+        	}
+        	.slick-slide .user-img-sm{
+        		display: inline;
+        	}
+        	
         </style>
     </head>
     <body> 
@@ -64,8 +84,6 @@
         </div><!-- preloader -->
         
         <header class="sa-header">
-            
-
             <div class="sa-menu">
                 <nav class="navbar navbar-expand-lg">
                     <div class="container">
@@ -79,20 +97,12 @@
                         
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                             <ul class="navbar-nav">
-                                <li><a href="#">카테고리1</a></li>
-                                <li><a href="about.html">카테고리2</a></li>
-                                <li><a href="about.html">카테고리2</a></li>
+                                <li><a href="#">내방어때</a></li>
                                 
-                                <li class="sa-dropdown">
-                                    <a href="#">카테고리3</a>
-                                    <ul class="sa-dropdown-menu">
-                                        <li><a href="course-grid.html">Course Grid View</a></li>
-                                        <li><a href="course-list.html">Course List View</a></li>
-                                        <li><a href="course-details.html">Course Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="tutor.html">카테고리4</a></li>
-                                <li><a href="#">견적 상담 신청</a></li>
+                                <li><a href="about.html">꾸미기팁</a></li>
+                                <li><a href="about.html">시공업체</a></li>
+                                
+                                <li><a href="#">견적 신청</a></li>
                             </ul>       
                         </div>
                         <div class="right-content">
@@ -105,7 +115,44 @@
                                     <li>
                                     	<i class="far fa-question-circle"></i>
                                     </li>
-                                    <li><i class="far fa-bell"></i></li>
+                                    <li class="sa-dropdown">
+                                        <span class="cart-number">3</span>
+                                        <i class="far fa-bell"></i>
+                                        <div class="sa-dropdown-menu">
+                                            <ul class="global-list">
+                                                <li class="remove-item">
+                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
+                                                    <div class="sa-course">
+                                                        <div class="course-info">
+                                                            <div class="info">
+                                                                <h2 class="title"><a href="course-details.html" >Visual Basic Web Course With Live Project</a></h2>
+                                                            </div>
+                                                        </div><!-- /.course-info -->
+                                                    </div><!-- /.sa-course -->                                                
+                                                </li>
+                                                <li class="remove-item">
+                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
+                                                    <div class="sa-course">
+                                                        <div class="course-info">
+                                                            <div class="info">
+                                                                <h2 class="title"><a href="course-details.html">Computer Technologies Course With Live Project</a></h2>
+                                                            </div>
+                                                        </div><!-- /.course-info -->
+                                                    </div><!-- /.sa-course -->                                                
+                                                </li>
+                                                <li class="remove-item">
+                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
+                                                    <div class="sa-course">
+                                                        <div class="course-info">
+                                                            <div class="info">
+                                                                <h2 class="title"><a href="course-details.html" >Visual Basic Web Course With Live Project</a></h2>
+                                                            </div>
+                                                        </div><!-- /.course-info -->
+                                                    </div><!-- /.sa-course -->                                                
+                                                </li>
+                                            </ul>                                  
+                                        </div>
+                                    </li>
                                     <li>
                                         <div class="sa-search-form">
                                             <div class="search-icon">
@@ -129,7 +176,7 @@
                 </nav><!-- /.navbar -->                                
             </div><!-- /.sa-menu -->
         </header><!-- /.sa-header -->        
-
+                                        
         <div id="hero-slider" class="carousel slide hero-content" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -192,14 +239,85 @@
             </button>            
         </div><!-- /#hero-slider -->
         
-        
-        
         <div class="sa-section">
             <div class="section-content section-padding">
                 <div class="container">
+
+                    <div class="sg-category-content">
+                        <div class="row">
+                            <div class="col-6 col-sm-4 col-lg-2">
+                                <div class="sg-category style-1">
+                                    <a href="catagory.html">
+                                        <span class="icon">
+                                            <i class="fas fa-house-user"></i>
+                                        </span>
+                                        <span>내방어때</span>
+                                    </a>
+                                </div><!-- /.sg-category -->
+                            </div>
+                            <div class="col-6 col-sm-4 col-lg-2">
+                                <div class="sg-category style-1">
+                                    <a href="catagory.html">
+                                        <span class="icon">
+                                            <i class="fas fa-lightbulb"></i>
+                                        </span>
+                                        <span>나만의팁</span>
+                                    </a>
+                                </div><!-- /.sg-category -->
+                            </div>
+                            <div class="col-6 col-sm-4 col-lg-2">
+                                <div class="sg-category style-1">
+                                    <a href="catagory.html">
+                                        <span class="icon">
+                                            <i class="fas fa-hard-hat"></i>
+                                        </span>
+                                        <span>시공전문가</span>
+                                    </a>
+                                </div><!-- /.sg-category -->
+                            </div>
+                            <div class="col-6 col-sm-4 col-lg-2">
+                                <div class="sg-category style-1">
+                                    <a href="catagory.html">
+                                        <span class="icon">
+                                            <i class="fas fa-user-alt"></i>
+                                        </span>
+                                        <span>마이페이지</span>
+                                    </a>
+                                </div><!-- /.sg-category -->
+                            </div>
+                            <div class="col-6 col-sm-4 col-lg-2">
+                                <div class="sg-category style-1">
+                                    <a href="catagory.html">
+                                        <span class="icon">
+                                            <i class="fas fa-question"></i>
+                                        </span>
+                                        <span>QnA</span>
+                                    </a>
+                                </div><!-- /.sg-category -->
+                            </div>
+                            <div class="col-6 col-sm-4 col-lg-2">
+                                <div class="sg-category style-1">
+                                    <a href="catagory.html">
+                                        <span class="icon">
+                                            <i class="fas fa-ruler"></i>
+                                        </span>
+                                        <span>견적 작성</span>
+                                    </a>
+                                </div><!-- /.sg-category -->
+                            </div>
+
+                        </div><!-- /.row -->
+                    </div><!-- /.sg-category-content -->
+                </div><!-- /.container -->
+            </div><!-- /.section-content -->
+        </div><!-- /.sa-section -->
+        
+        <div class="sa-section">
+            <div class="section-content section-padding padding-top-0">
+                <div class="container">
                     <div class="section-header d-flex justify-content-between">
                         <div class="title align-self-center">
-                            <h1>추천</h1>
+                            <h1>인테리어 자랑</h1>
                         </div>  
                         <div class="view-all align-self-center">
                             <a href="blog.html" class="btn btn-primary">View All</a>
@@ -207,103 +325,62 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                        <div class="col-6 col-lg-3">
                             <div class="sa-post">
                                 <div class="entry-header">
                                     <div class="entry-thumbnail">
                                         <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
                                     </div>
-                                    <div class="entry-meta">
-                                        <a href="#"><i class="my-2 far fa-heart"></i></a>
-                                    </div>   
-                                    
                                 </div>                               
-                                <div class="course-info">
+                                <div class="course-info ">
                                     <div class="info">
                                         <h2 class="title"><a href="course-details.html">집 한번 꾸며봤어요^^</a></h2>
-                                        <p class="text-right">집돌이</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-heart"></i></span>50</a></li>
-                                            <li><a href="#"><span><i class="far fa-eye"></i></span>2000</a></li>
-                                        </ul>
+                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg">집돌이</p>
                                     </div>
                                 </div><!-- /.course-info -->
                             </div><!-- /.sa-post -->                            
                         </div>
                         
-                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                        <div class="col-6 col-lg-3">
                             <div class="sa-post">
                                 <div class="entry-header">
                                     <div class="entry-thumbnail">
                                         <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
                                     </div>
-                                    <div class="entry-meta">
-                                        <a href="#"><i class="my-2 far fa-heart"></i></a>
-                                    </div>   
-                                    
                                 </div>                               
-                                <div class="course-info">
+                                <div class="course-info ">
                                     <div class="info">
                                         <h2 class="title"><a href="course-details.html">집 한번 꾸며봤어요^^</a></h2>
-                                        <p class="text-right">집돌이</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-heart"></i></span>50</a></li>
-                                            <li><a href="#"><span><i class="far fa-eye"></i></span>2000</a></li>
-                                        </ul>
+                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg">집돌이</p>
                                     </div>
                                 </div><!-- /.course-info -->
                             </div><!-- /.sa-post -->                            
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                        <div class="col-6 col-lg-3">
                             <div class="sa-post">
                                 <div class="entry-header">
                                     <div class="entry-thumbnail">
                                         <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
                                     </div>
-                                    <div class="entry-meta">
-                                        <a href="#"><i class="my-2 far fa-heart"></i></a>
-                                    </div>   
-                                    
                                 </div>                               
-                                <div class="course-info">
+                                <div class="course-info ">
                                     <div class="info">
                                         <h2 class="title"><a href="course-details.html">집 한번 꾸며봤어요^^</a></h2>
-                                        <p class="text-right">집돌이</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-heart"></i></span>50</a></li>
-                                            <li><a href="#"><span><i class="far fa-eye"></i></span>2000</a></li>
-                                        </ul>
+                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg">집돌이</p>
                                     </div>
                                 </div><!-- /.course-info -->
                             </div><!-- /.sa-post -->                            
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                        </div><div class="col-6 col-lg-3">
                             <div class="sa-post">
                                 <div class="entry-header">
                                     <div class="entry-thumbnail">
                                         <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
                                     </div>
-                                    <div class="entry-meta">
-                                        <a href="#"><i class="my-2 far fa-heart"></i></a>
-                                    </div>   
-                                    
                                 </div>                               
-                                <div class="course-info">
+                                <div class="course-info ">
                                     <div class="info">
                                         <h2 class="title"><a href="course-details.html">집 한번 꾸며봤어요^^</a></h2>
-                                        <p class="text-right">집돌이</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-heart"></i></span>50</a></li>
-                                            <li><a href="#"><span><i class="far fa-eye"></i></span>2000</a></li>
-                                        </ul>
+                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg">집돌이</p>
                                     </div>
                                 </div><!-- /.course-info -->
                             </div><!-- /.sa-post -->                            
@@ -313,17 +390,13 @@
                 </div><!-- /.container -->
             </div><!-- /.section-content -->
         </div><!-- /.sa-section -->
-        
-
-       
-
 
         <div class="sa-section">
-            <div class="section-content section-padding">
+            <div class="section-content section-padding padding-top-0">
                 <div class="container">
                     <div class="section-header justify-content-between">
                         <div class="title align-self-center">
-                            <h1>베스트 후기</h1>
+                            <h1>후기</h1>
                         </div>
                         <div class="view-all align-self-center">
                             <a href="course-grid.html" class="btn btn-primary">더보기</a>
@@ -335,268 +408,119 @@
                             <div class="sa-course">
                                 <div class="course-thumb">
                                     <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                    
-                                    <div class="rating-date align-self-end">
-                                        
-                                        <div class="date">
-                                            <span><i class="far fa-clock"></i>20 May 2021</span>
-                                        </div>                                                      
-                                    </div><!-- /.rating-price -->
                                 </div><!-- /.course-thumb -->
-
                                 <div class="course-info">
                                     <div class="info">
-                                        <h2 class="title"><a href="course-details.html">Visual Basic Web Course With Live Project</a></h2>
-                                        <p>web development</p>
+                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
+                                        <p class=''>아파트/33평</p>
                                     </div>
                                     <div class="sa-meta">
                                         <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-user"></i></span>5000 Students</a></li>
-                                            <li><a href="#"><span><i class="far fa-comments"></i></span>350</a></li>
+                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
                                         </ul>
                                     </div>
                                 </div><!-- /.course-info -->
                             </div><!-- /.sg-course -->
 
                             <div class="sa-course">
-                                <span class="badges">$110.0</span>
                                 <div class="course-thumb">
-                                    <img src="images/course/2.jpg" alt="Image" class="img-fluid">
-                                    <div class="overlay">
-                                        <div class="icons">
-                                            <ul class="global-list">
-                                                <li><a href="course-details.html"><i class="fas fa-link"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                        
-                                    </div>
-                                    <div class="rating-date align-self-end">
-                                        <ul class="global-list d-flex star-rating align-self-center">
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                        </ul> 
-                                        <div class="date">
-                                            <span><i class="far fa-clock"></i>18 May 2021</span>
-                                        </div>                                                      
-                                    </div><!-- /.rating-price -->
+                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
                                 </div><!-- /.course-thumb -->
-
                                 <div class="course-info">
                                     <div class="info">
-                                        <h2 class="title"><a href="course-details.html">Computer Technologies Course With Live Project</a></h2>
-                                        <p>Computer Technologies</p>
+                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
+                                        <p class=''>아파트/33평</p>
                                     </div>
                                     <div class="sa-meta">
                                         <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-user"></i></span>3000 Students</a></li>
-                                            <li><a href="#"><span><i class="far fa-comments"></i></span>2550</a></li>
+                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- /.course-info -->
+                            </div><!-- /.sg-course -->
+                            <div class="sa-course">
+                                <div class="course-thumb">
+                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
+                                </div><!-- /.course-thumb -->
+                                <div class="course-info">
+                                    <div class="info">
+                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
+                                        <p class=''>아파트/33평</p>
+                                    </div>
+                                    <div class="sa-meta">
+                                        <ul class="global-list">
+                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- /.course-info -->
+                            </div><!-- /.sg-course -->
+                            <div class="sa-course">
+                                <div class="course-thumb">
+                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
+                                </div><!-- /.course-thumb -->
+                                <div class="course-info">
+                                    <div class="info">
+                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
+                                        <p class=''>아파트/33평</p>
+                                    </div>
+                                    <div class="sa-meta">
+                                        <ul class="global-list">
+                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- /.course-info -->
+                            </div><!-- /.sg-course -->
+                            <div class="sa-course">
+                                <div class="course-thumb">
+                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
+                                </div><!-- /.course-thumb -->
+                                <div class="course-info">
+                                    <div class="info">
+                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
+                                        <p class=''>아파트/33평</p>
+                                    </div>
+                                    <div class="sa-meta">
+                                        <ul class="global-list">
+                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- /.course-info -->
+                            </div><!-- /.sg-course -->
+                            <div class="sa-course">
+                                <div class="course-thumb">
+                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
+                                </div><!-- /.course-thumb -->
+                                <div class="course-info">
+                                    <div class="info">
+                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
+                                        <p class=''>아파트/33평</p>
+                                    </div>
+                                    <div class="sa-meta">
+                                        <ul class="global-list">
+                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- /.course-info -->
+                            </div><!-- /.sg-course -->
+                            <div class="sa-course">
+                                <div class="course-thumb">
+                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
+                                </div><!-- /.course-thumb -->
+                                <div class="course-info">
+                                    <div class="info">
+                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
+                                        <p class=''>아파트/33평</p>
+                                    </div>
+                                    <div class="sa-meta">
+                                        <ul class="global-list">
+                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
                                         </ul>
                                     </div>
                                 </div><!-- /.course-info -->
                             </div><!-- /.sg-course -->
 
-                            <div class="sa-course">
-                                <span class="badges"><del>$120.0</del> $60.0</span>
-                                <div class="course-thumb">
-                                    <img src="images/course/3.jpg" alt="Image" class="img-fluid">
-                                    <div class="overlay">
-                                        <div class="icons">
-                                            <ul class="global-list">
-                                                <li><a href="course-details.html"><i class="fas fa-link"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                        
-                                    </div>
-                                    <div class="rating-date align-self-end">
-                                        <ul class="global-list d-flex star-rating align-self-center">
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                        </ul> 
-                                        <div class="date">
-                                            <span><i class="far fa-clock"></i>19 May 2021</span>
-                                        </div>                                                      
-                                    </div><!-- /.rating-price -->
-                                </div><!-- /.course-thumb -->
-
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">Electrical & Electronic Course With Live Project</a></h2>
-                                        <p>Electronic</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-user"></i></span>1000 Students</a></li>
-                                            <li><a href="#"><span><i class="far fa-comments"></i></span>630</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-
-                            <div class="sa-course">
-                                <span class="badges">$25.0</span>
-                                <div class="course-thumb">
-                                    <img src="images/course/4.jpg" alt="Image" class="img-fluid">
-                                    <div class="overlay">
-                                        <div class="icons">
-                                            <ul class="global-list">
-                                                <li><a href="course-details.html"><i class="fas fa-link"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                        
-                                    </div>
-                                    <div class="rating-date align-self-end">
-                                        <ul class="global-list d-flex star-rating align-self-center">
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                        </ul> 
-                                        <div class="date">
-                                            <span><i class="far fa-clock"></i>21 May 2021</span>
-                                        </div>                                                      
-                                    </div><!-- /.rating-price -->
-                                </div><!-- /.course-thumb -->
-
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">Visual Basic Web Course With Live Project</a></h2>
-                                        <p>Web Design</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-user"></i></span>4000 Students</a></li>
-                                            <li><a href="#"><span><i class="far fa-comments"></i></span>400</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-
-                            <div class="sa-course">
-                                <span class="badges">$25.0</span>
-                                <div class="course-thumb">
-                                    <img src="images/course/5.jpg" alt="Image" class="img-fluid">
-                                    <div class="overlay">
-                                        <div class="icons">
-                                            <ul class="global-list">
-                                                <li><a href="course-details.html"><i class="fas fa-link"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                        
-                                    </div>
-                                    <div class="rating-date align-self-end">
-                                        <ul class="global-list d-flex star-rating align-self-center">
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                        </ul> 
-                                        <div class="date">
-                                            <span><i class="far fa-clock"></i>20 May 2021</span>
-                                        </div>                                                      
-                                    </div><!-- /.rating-price -->
-                                </div><!-- /.course-thumb -->
-
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">Build a Business Plan With Live</a></h2>
-                                        <p>Business</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-user"></i></span>7000 Students</a></li>
-                                            <li><a href="#"><span><i class="far fa-comments"></i></span>800</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-
-                            <div class="sa-course">
-                                <span class="badges">$25.0</span>
-                                <div class="course-thumb">
-                                    <img src="images/course/6.jpg" alt="Image" class="img-fluid">
-                                    <div class="overlay">
-                                        <div class="icons">
-                                            <ul class="global-list">
-                                                <li><a href="course-details.html"><i class="fas fa-link"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                        
-                                    </div>
-                                    <div class="rating-date align-self-end">
-                                        <ul class="global-list d-flex star-rating align-self-center">
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                        </ul> 
-                                        <div class="date">
-                                            <span><i class="far fa-clock"></i>22 May 2021</span>
-                                        </div>                                                      
-                                    </div><!-- /.rating-price -->
-                                </div><!-- /.course-thumb -->
-
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">Fox nymphs grab quick-jived waltz.</a></h2>
-                                        <p>Art and Design</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-user"></i></span>4500 Students</a></li>
-                                            <li><a href="#"><span><i class="far fa-comments"></i></span>510</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->   
                             
-                            <div class="sa-course">
-                                <span class="badges">$35.0</span>
-                                <div class="course-thumb">
-                                    <img src="images/course/7.jpg" alt="Image" class="img-fluid">
-                                    <div class="overlay">
-                                        <div class="icons">
-                                            <ul class="global-list">
-                                                <li><a href="course-details.html"><i class="fas fa-link"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                        
-                                    </div>
-                                    <div class="rating-date align-self-end">
-                                        <ul class="global-list d-flex star-rating align-self-center">
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                        </ul> 
-                                        <div class="date">
-                                            <span><i class="far fa-clock"></i>19 May 2021</span>
-                                        </div>                                                      
-                                    </div><!-- /.rating-price -->
-                                </div><!-- /.course-thumb -->
-
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">Duis rhoncus dui venenatis consequat porttito</a></h2>
-                                        <p>Art and Design</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-user"></i></span>4500 Students</a></li>
-                                            <li><a href="#"><span><i class="far fa-comments"></i></span>510</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->                                                      
+                                                                            
                         </div><!-- /.sg-course-slider -->
                     </div><!-- /sg-course-content -->
 
@@ -604,559 +528,7 @@
             </div><!-- /.section-content -->
         </div><!-- /.sa-section -->     
 
-        <div class="sa-section">
-            <div class="section-content tutor-content text-center">
-                <div class="container">
-                    <div class="section-header justify-content-between">
-                        <div class="title align-self-center">
-                            <h1>Most popular tutor</h1>
-                            <span>Tutor</span>
-                        </div> 
-                        <div class="view-all align-self-center">
-                            <a href="tutor.html" class="btn btn-primary">View All</a>
-                        </div>                     
-                    </div>
-
-                    <div class="tutor-slider">
-                        <div class="sa-tutor">
-                            <div class="tutor-thumb">
-                                <a href="tutor-details.html"><img src="images/tutor/1.jpg" alt="Image" class="img-fluid"></a>
-                            </div><!-- /.tutor-thumb -->
-                            <div class="tutor-info">
-                                <h2><a href="tutor-details.html">Ahmed Kamal</a></h2>
-                                <span>Published 177 Courses</span>
-                                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
-                            </div>
-                            <div class="tutor-social">
-                                <ul class="global-list">
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="far fa-envelope"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>                            
-                        </div><!-- /.sg-tutor --> 
-
-                        <div class="sa-tutor">
-                            <div class="tutor-thumb">
-                                <a href="tutor-details.html"><img src="images/tutor/2.jpg" alt="Image" class="img-fluid"></a>
-                            </div><!-- /.tutor-thumb -->
-                            <div class="tutor-info">
-                                <h2><a href="tutor-details.html">Field Supervisor</a></h2>
-                                <span>Published 310 Courses</span>
-                                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
-                            </div>
-                            <div class="tutor-social">
-                                <ul class="global-list">
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="far fa-envelope"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>                            
-                        </div><!-- /.sg-tutor --> 
-
-                        <div class="sa-tutor">
-                            <div class="tutor-thumb">
-                                <a href="tutor-details.html"><img src="images/tutor/3.jpg" alt="Image" class="img-fluid"></a>
-                            </div><!-- /.tutor-thumb -->
-                            <div class="tutor-info">
-                                <h2><a href="tutor-details.html">Kate Howston</a></h2>
-                                <span>Published 241 Courses</span>
-                                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
-                            </div>
-                            <div class="tutor-social">
-                                <ul class="global-list">
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="far fa-envelope"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>                            
-                        </div><!-- /.sg-tutor --> 
-
-                        <div class="sa-tutor">
-                            <div class="tutor-thumb">
-                                <a href="tutor-details.html"><img src="images/tutor/4.jpg" alt="Image" class="img-fluid"></a>
-                            </div><!-- /.tutor-thumb -->
-                            <div class="tutor-info">
-                                <h2><a href="tutor-details.html">Michael Brown</a></h2>
-                                <span>Published 520 Courses</span>
-                                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
-                            </div>
-                            <div class="tutor-social">
-                                <ul class="global-list">
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="far fa-envelope"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>                            
-                        </div><!-- /.sg-tutor -->  
-
-                        <div class="sa-tutor">
-                            <div class="tutor-thumb">
-                                <a href="tutor-details.html"><img src="images/tutor/5.jpg" alt="Image" class="img-fluid"></a>
-                            </div><!-- /.tutor-thumb -->
-                            <div class="tutor-info">
-                                <h2><a href="tutor-details.html">Jenifar Tulip</a></h2>
-                                <span>Published 810 Courses</span>
-                                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
-                            </div>
-                            <div class="tutor-social">
-                                <ul class="global-list">
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="far fa-envelope"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>                            
-                        </div><!-- /.sg-tutor --> 
-
-                    </div><!-- /.tutor-slider -->
-                </div><!-- /.container -->
-            </div><!-- /.section-content -->
-        </div><!-- /.sa-section -->
-
-        <div class="sa-section">
-            <div class="section-content section-padding padding-bottom-0">
-                <div class="container">
-                    <div class="section-header justify-content-between">
-                        <div class="title align-self-center">
-                            <h1>Our Courses</h1>
-                            <span>Courses</span>
-                        </div>
-                        <div class="view-all align-self-center">
-                            <a href="course-grid.html" class="btn btn-primary">View All</a>
-                        </div>                         
-                    </div><!-- /.section-header -->
-
-                    <div class="sa-course-content">
-                        <div class="sa-course-slider">
-                            <div class="sa-course">
-                                <span class="badges">$35.0</span>
-                                <div class="course-thumb">
-                                    <img src="images/course/7.jpg" alt="Image" class="img-fluid">
-                                    <div class="overlay">
-                                        <div class="icons">
-                                            <ul class="global-list">
-                                                <li><a href="course-details.html"><i class="fas fa-link"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                        
-                                    </div>
-                                    <div class="rating-date align-self-end">
-                                        <ul class="global-list d-flex star-rating align-self-center">
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                        </ul> 
-                                        <div class="date">
-                                            <span><i class="far fa-clock"></i>19 May 2021</span>
-                                        </div>                                                      
-                                    </div><!-- /.rating-price -->
-                                </div><!-- /.course-thumb -->
-
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">Duis rhoncus dui venenatis consequat porttito</a></h2>
-                                        <p>Art and Design</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-user"></i></span>4500 Students</a></li>
-                                            <li><a href="#"><span><i class="far fa-comments"></i></span>510</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->  
-
-                            <div class="sa-course">
-                                <span class="badges"><del>$488.0</del> $80.0</span>
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                    <div class="overlay">
-                                        <div class="icons">
-                                            <ul class="global-list">
-                                                <li><a href="course-details.html"><i class="fas fa-link"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                        
-                                    </div>
-                                    <div class="rating-date align-self-end">
-                                        <ul class="global-list d-flex star-rating align-self-center">
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                        </ul> 
-                                        <div class="date">
-                                            <span><i class="far fa-clock"></i>20 May 2021</span>
-                                        </div>                                                      
-                                    </div><!-- /.rating-price -->
-                                </div><!-- /.course-thumb -->
-
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">Visual Basic Web Course With Live Project</a></h2>
-                                        <p>web development</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-user"></i></span>5000 Students</a></li>
-                                            <li><a href="#"><span><i class="far fa-comments"></i></span>350</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-
-                            <div class="sa-course">
-                                <span class="badges">$110.0</span>
-                                <div class="course-thumb">
-                                    <img src="images/course/2.jpg" alt="Image" class="img-fluid">
-                                    <div class="overlay">
-                                        <div class="icons">
-                                            <ul class="global-list">
-                                                <li><a href="course-details.html"><i class="fas fa-link"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                        
-                                    </div>
-                                    <div class="rating-date align-self-end">
-                                        <ul class="global-list d-flex star-rating align-self-center">
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                        </ul> 
-                                        <div class="date">
-                                            <span><i class="far fa-clock"></i>18 May 2021</span>
-                                        </div>                                                      
-                                    </div><!-- /.rating-price -->
-                                </div><!-- /.course-thumb -->
-
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">Computer Technologies Course With Live Project</a></h2>
-                                        <p>Computer Technologies</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-user"></i></span>3000 Students</a></li>
-                                            <li><a href="#"><span><i class="far fa-comments"></i></span>2550</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-
-                            <div class="sa-course">
-                                <span class="badges"><del>$120.0</del> $60.0</span>
-                                <div class="course-thumb">
-                                    <img src="images/course/3.jpg" alt="Image" class="img-fluid">
-                                    <div class="overlay">
-                                        <div class="icons">
-                                            <ul class="global-list">
-                                                <li><a href="course-details.html"><i class="fas fa-link"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                        
-                                    </div>
-                                    <div class="rating-date align-self-end">
-                                        <ul class="global-list d-flex star-rating align-self-center">
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                        </ul> 
-                                        <div class="date">
-                                            <span><i class="far fa-clock"></i>19 May 2021</span>
-                                        </div>                                                      
-                                    </div><!-- /.rating-price -->
-                                </div><!-- /.course-thumb -->
-
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">Electrical & Electronic Course With Live Project</a></h2>
-                                        <p>Electronic</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-user"></i></span>1000 Students</a></li>
-                                            <li><a href="#"><span><i class="far fa-comments"></i></span>630</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-
-                            <div class="sa-course">
-                                <span class="badges">$25.0</span>
-                                <div class="course-thumb">
-                                    <img src="images/course/4.jpg" alt="Image" class="img-fluid">
-                                    <div class="overlay">
-                                        <div class="icons">
-                                            <ul class="global-list">
-                                                <li><a href="course-details.html"><i class="fas fa-link"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                        
-                                    </div>
-                                    <div class="rating-date align-self-end">
-                                        <ul class="global-list d-flex star-rating align-self-center">
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                        </ul> 
-                                        <div class="date">
-                                            <span><i class="far fa-clock"></i>21 May 2021</span>
-                                        </div>                                                      
-                                    </div><!-- /.rating-price -->
-                                </div><!-- /.course-thumb -->
-
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">Visual Basic Web Course With Live Project</a></h2>
-                                        <p>Web Design</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-user"></i></span>4000 Students</a></li>
-                                            <li><a href="#"><span><i class="far fa-comments"></i></span>400</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-
-                            <div class="sa-course">
-                                <span class="badges">$25.0</span>
-                                <div class="course-thumb">
-                                    <img src="images/course/5.jpg" alt="Image" class="img-fluid">
-                                    <div class="overlay">
-                                        <div class="icons">
-                                            <ul class="global-list">
-                                                <li><a href="course-details.html"><i class="fas fa-link"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>                                        
-                                    </div>
-                                    <div class="rating-date align-self-end">
-                                        <ul class="global-list d-flex star-rating align-self-center">
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li class="checked"><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                        </ul> 
-                                        <div class="date">
-                                            <span><i class="far fa-clock"></i>20 May 2021</span>
-                                        </div>                                                      
-                                    </div><!-- /.rating-price -->
-                                </div><!-- /.course-thumb -->
-
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">Build a Business Plan With Live</a></h2>
-                                        <p>Business</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><a href="#"><span><i class="far fa-user"></i></span>7000 Students</a></li>
-                                            <li><a href="#"><span><i class="far fa-comments"></i></span>800</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->                                                 
-                        </div><!-- /.sg-course-slider -->
-                    </div><!-- /sg-course-content -->
-                </div><!-- /.container -->
-            </div><!-- /.section-content -->
-        </div><!-- /.sa-section -->   
-
-        <div class="sa-section">
-            <div class="section-content section-padding text-center">
-                <div class="container">
-                    <div class="section-header">
-                        <div class="title align-self-center">
-                            <h1>Our Sponsors</h1>
-                            <span>Sponsors</span>
-                        </div>                    
-                    </div>
-
-                    <div class="brand-slider">
-                        <div class="brand">
-                            <img src="images/brand/1.png" alt="Image" class="img-fluid">
-                        </div>
-                        <div class="brand">
-                            <img src="images/brand/2.png" alt="Image" class="img-fluid">
-                        </div>
-                        <div class="brand">
-                            <img src="images/brand/3.png" alt="Image" class="img-fluid">
-                        </div>
-                        <div class="brand">
-                            <img src="images/brand/4.png" alt="Image" class="img-fluid">
-                        </div>
-                        <div class="brand">
-                            <img src="images/brand/5.png" alt="Image" class="img-fluid">
-                        </div>
-                        <div class="brand">
-                            <img src="images/brand/6.png" alt="Image" class="img-fluid">
-                        </div>
-                    </div><!-- /.tutor-slider -->
-                </div><!-- /.container -->
-            </div><!-- /.section-content -->
-        </div><!-- /.sa-section -->
-
-        <div class="sa-section">
-            <div class="section-content section-padding text-center jarallax section-before" style="background-image: url(images/bg/s1.jpg);">
-                <div class="container">
-                    <div class="testimonial-slider">
-                        <div class="testimonial">
-                            <div class="testimonial-info">
-                                <div class="icon">
-                                    <span><i class="fas fa-quote-left"></i></span>
-                                </div>
-                                <h2>Allowing for field strengths are and ceramic magnets, but these are also amongweakesttypes the ferrite magnets are mainly.</h2>
-                                <div class="testimonial-footer">
-                                    <div class="author">
-                                        <img src="images/others/0.png" alt="Image" class="img-fluid img-circle">
-                                    </div> 
-                                    <div class="testimonial-text">
-                                        <div class="testimonial-ratings">
-                                            <ul class="global-list">
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>                                
-                                        <div class="testimonial-title">
-                                            <h3>Jeff Sanders</h3>
-                                            <span>Founder, Sonvaocas</span>
-                                        </div>                                        
-                                    </div>                                                                       
-                                </div>
-                            </div>
-                        </div><!-- /.testimonial -->
-                        <div class="testimonial">
-                            <div class="testimonial-info">
-                                <div class="icon">
-                                    <span><i class="fas fa-quote-left"></i></span>
-                                </div>
-                                <h2>Allowing for field strengths are and ceramic magnets, but these are also amongweakesttypes the ferrite magnets are mainly.</h2>
-                                <div class="testimonial-footer">
-                                    <div class="author">
-                                        <img src="images/others/1.png" alt="Image" class="img-fluid img-circle">
-                                    </div> 
-                                    <div class="testimonial-text">
-                                        <div class="testimonial-ratings">
-                                            <ul class="global-list">
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>                                
-                                        <div class="testimonial-title">
-                                            <h3>Nancy Doll</h3>
-                                            <span>Director</span>
-                                        </div>                                        
-                                    </div>                                                                       
-                                </div>
-                            </div>
-                        </div><!-- /.testimonial -->
-                        <div class="testimonial">
-                            <div class="testimonial-info">
-                                <div class="icon">
-                                    <span><i class="fas fa-quote-left"></i></span>
-                                </div>
-                                <h2>Allowing for field strengths are and ceramic magnets, but these are also amongweakesttypes the ferrite magnets are mainly.</h2>
-                                <div class="testimonial-footer">
-                                    <div class="author">
-                                        <img src="images/others/0.png" alt="Image" class="img-fluid img-circle">
-                                    </div> 
-                                    <div class="testimonial-text">
-                                        <div class="testimonial-ratings">
-                                            <ul class="global-list">
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>                                
-                                        <div class="testimonial-title">
-                                            <h3>David Rasky</h3>
-                                            <span>Manager</span>
-                                        </div>                                        
-                                    </div>                                                                       
-                                </div>
-                            </div>
-                        </div><!-- /.testimonial -->
-                    </div><!-- /.tutor-slider -->
-                </div><!-- /.container -->
-            </div><!-- /.section-content -->
-        </div><!-- /.sa-section -->        
-
         
-
-        <div class="sa-section">
-            <div class="section-content download-content section-padding section-before jarallax" style="background-image: url(images/bg/bg2.jpg);">
-                <div class="container">
-                    <div class="section-header d-flex justify-content-center">
-                        <div class="title align-self-center">
-                            <h1>Download on Store</h1>
-                            <span>Download</span>
-                        </div>              
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a href="#" class="download-app">
-                                <span class="icon">
-                                    <i class="fab fa-youtube"></i>
-                                </span>
-                                <span class="text">
-                                    <span>available on</span>
-                                    <strong>youtube.com</strong>
-                                </span>
-                            </a>                            
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#" class="download-app">
-                                <span class="icon">
-                                    <i class="fab fa-vimeo-v"></i>
-                                </span>
-                                <span class="text">
-                                    <span>available on</span>
-                                    <strong>vimeo.com</strong>
-                                </span>
-                            </a>                            
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#" class="download-app">
-                                <span class="icon">
-                                    <i class="fab fa-google-drive"></i>
-                                </span>
-                                <span class="text">
-                                    <span>available on</span>
-                                    <strong>Google Drive</strong>
-                                </span>
-                            </a>                            
-                        </div>
-                    </div><!-- /.row -->
-                    
-                </div><!-- /.container -->
-            </div><!-- /.section-content -->
-        </div><!-- /.sa-section -->
-
         <div class="footer">
             <div class="footer-top">
                 <div class="container">
