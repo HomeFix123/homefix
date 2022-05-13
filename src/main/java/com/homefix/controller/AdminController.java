@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 	
 	@GetMapping(path = "/dashboard")
-	public String moveAdminPage() {
-		System.out.println("s");
+	public String moveDashBoardPage() {
+		
 		return "/admin/dashboard";
+	}
+	
+	@GetMapping(path = "/member")
+	public String moveMemberPage() {
+		
+		return "/admin/member";
 	}
 }
