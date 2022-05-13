@@ -1,0 +1,17 @@
+package com.homefix.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/admin")
+public class AdminController {
+	
+	@GetMapping(path = "/dashboard")
+	public String moveAdminPage() {
+		System.out.println("s");
+		return "/admin/dashboard";
+	}
+}
