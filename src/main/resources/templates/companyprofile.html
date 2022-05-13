@@ -69,23 +69,24 @@
             -ms-flex: 0 0 80.333333%;
             flex: 0 0 100%;
             max-width: 100%;
-            
+
         }
-    #pills-home-tab{
-        color: #fff;
-        background-color: #1abc9c;
-        margin: 1px;
-        width:80px;
-        font-size: 14px;
-    }  
-        
-    #pills-profile-tab{
-        color: #fff;
-        background-color: #1abc9c;
-        margin: 1px;
-        width:90px;
-        font-size: 14px;
-    }
+
+        #pills-home-tab {
+            color: #fff;
+            background-color: #1abc9c;
+            margin: 1px;
+            width: 80px;
+            font-size: 14px;
+        }
+
+        #pills-profile-tab {
+            color: #fff;
+            background-color: #1abc9c;
+            margin: 1px;
+            width: 90px;
+            font-size: 14px;
+        }
     </style>
     <!--개인 스타일끝-->
     <!-- CSS -->
@@ -310,7 +311,7 @@
                                             <div class="profile-picture">
                                                 <img src="images/tutor/4.jpg" alt="Profile Picture">
                                             </div>
-                                            <span class="user-name">이용자 닉네임</span>
+                                            <span class="user-name">업체명</span>
                                         </div>
                                     </li>
                                     <li class="nav-item">
@@ -320,7 +321,10 @@
                                         <a class="nav-link" id="user-two-tab" data-bs-toggle="tab" data-bs-target="#user-two" role="tab" aria-controls="user-two" aria-selected="false">회원정보 수정</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="user-three-tab" data-bs-toggle="tab" data-bs-target="#user-three" role="tab" aria-controls="user-three" aria-selected="false">
+                                        <a class="nav-link" id="user-three-tab" data-bs-toggle="tab" data-bs-target="#user-three" role="tab" aria-controls="user-three" aria-selected="false">구독 관리</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="user-four-tab" data-bs-toggle="tab" data-bs-target="#user-four" role="tab" aria-controls="user-four" aria-selected="false">
                                             <i class="fa-regular fa-heart"></i>
                                         </a>
                                     </li>
@@ -338,12 +342,87 @@
                                                 <p>내가 쓴 글 목록을 보여줍니다.</p>
                                             </div>
                                             <!-- header -->
-                                            <!-- 후기 테이블 -->
                                             <div class="tab-body">
+                                                <!-- 고객 후기 테이블 -->
                                                 <div class="shopping-cart">
                                                     <div class="container">
-                                                        <h4>나의 후기</h4>
-                                                        <div class="row">
+                                                        <h4>고객 후기</h4>
+                                                        <div class="row" style="border:none;">
+                                                            <form class="woocommerce-cart-form" action="#">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">제목</th>
+                                                                            <th scope="col">답글</th>
+                                                                            <th scope="col">좋아요</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th>
+                                                                                <div class="product">
+                                                                                    <a href="details.html">
+                                                                                        <span>이곳에 간단제목이 들어갑니다. 옆에는 썸넬</span>
+                                                                                    </a>
+                                                                                </div><!-- /.product -->
+                                                                            </th>
+                                                                            <td><span class="price">답글개수</span></td>
+                                                                            <td>
+                                                                                <span class="subtotal">좋아요수</span>
+                                                                                <!--
+                                                                                    <div class="icons">
+                                                                                        <a href="#"><i class="fas fa-pen"></i></a>
+                                                                                        <a href="#"><i class="far fa-trash-alt"></i></a>
+                                                                                    </div>
+-->
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>
+                                                                                <div class="product">
+                                                                                    <a href="details.html">
+                                                                                        <span>간단제목들어감옆은썸넬</span>
+                                                                                    </a>
+                                                                                </div><!-- /.product -->
+                                                                            </th>
+                                                                            <td><span class="price">답글개수</span></td>
+                                                                            <td>
+                                                                                <span class="subtotal">좋아요수</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>
+                                                                                <div class="product">
+                                                                                    <a href="details.html">
+                                                                                        <span>간단제목제목옆은썸넬</span>
+                                                                                    </a>
+                                                                                </div><!-- /.product -->
+                                                                            </th>
+                                                                            <td><span class="price">답글개수</span></td>
+                                                                            <td>
+                                                                                <span class="subtotal">좋아요수</span>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </form>
+                                                        </div><!-- /.row -->
+                                                        <div class="text-center">
+                                                            <ul class="pagination justify-content-center mb-0">
+                                                                <li><a class="page-numbers current" href="#">1</a></li>
+                                                                <li><a class="page-numbers" href="#">2</a></li>
+                                                                <li class="float-right"><a class="page-numbers" href="#"><i class="fas fa-chevron-right"></i></a></li>
+                                                            </ul>
+                                                        </div><!-- /.sg-pagination -->
+                                                    </div>
+                                                </div><!-- /.cart-section -->
+                                                <!-- End 고객 후기 테이블 -->
+                                                <!-- 견적 테이블 -->
+                                                <div class="shopping-cart">
+                                                    <div class="container">
+                                                        <h4>견적중인 글</h4>
+                                                        <div class="row" style="border:none;">
                                                             <form class="woocommerce-cart-form" action="#">
                                                                 <table class="table">
                                                                     <thead>
@@ -425,88 +504,13 @@
                                                         </div><!-- /.sg-pagination -->
                                                     </div>
                                                 </div><!-- /.cart-section -->
-                                                <!-- End 후기 테이블 -->
-
-                                                <!-- 후기 테이블 -->
-                                                <div class="shopping-cart">
-                                                    <div class="container">
-                                                        <h4>나의 인테리어 Tip</h4>
-                                                        <div class="row">
-                                                            <form class="woocommerce-cart-form" action="#">
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col">제목</th>
-                                                                            <th scope="col">답글</th>
-                                                                            <th scope="col">좋아요</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <th>
-                                                                                <div class="product">
-                                                                                    <a href="details.html">
-                                                                                        <span>이곳에 간단제목이 들어갑니다. 옆에는 썸넬</span>
-                                                                                    </a>
-                                                                                </div><!-- /.product -->
-                                                                            </th>
-                                                                            <td><span class="price">답글개수</span></td>
-                                                                            <td>
-                                                                                <span class="subtotal">좋아요수</span>
-                                                                                <!--
-                                                                                    <div class="icons">
-                                                                                        <a href="#"><i class="fas fa-pen"></i></a>
-                                                                                        <a href="#"><i class="far fa-trash-alt"></i></a>
-                                                                                    </div>
--->
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>
-                                                                                <div class="product">
-                                                                                    <a href="details.html">
-                                                                                        <span>간단제목들어감옆은썸넬</span>
-                                                                                    </a>
-                                                                                </div><!-- /.product -->
-                                                                            </th>
-                                                                            <td><span class="price">답글개수</span></td>
-                                                                            <td>
-                                                                                <span class="subtotal">좋아요수</span>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>
-                                                                                <div class="product">
-                                                                                    <a href="details.html">
-                                                                                        <span>간단제목제목옆은썸넬</span>
-                                                                                    </a>
-                                                                                </div><!-- /.product -->
-                                                                            </th>
-                                                                            <td><span class="price">답글개수</span></td>
-                                                                            <td>
-                                                                                <span class="subtotal">좋아요수</span>
-                                                                            </td>
-                                                                        </tr>
-
-                                                                    </tbody>
-                                                                </table>
-                                                            </form>
-                                                        </div><!-- /.row -->
-                                                        <div class="text-center">
-                                                            <ul class="pagination justify-content-center mb-0">
-                                                                <li><a class="page-numbers current" href="#">1</a></li>
-                                                                <li><a class="page-numbers" href="#">2</a></li>
-                                                                <li class="float-right"><a class="page-numbers" href="#"><i class="fas fa-chevron-right"></i></a></li>
-                                                            </ul>
-                                                        </div><!-- /.sg-pagination -->
-                                                    </div>
-                                                </div><!-- /.cart-section -->
-                                                <!-- End 후기 테이블 -->
+                                                <!-- End 견적 테이블 -->
                                             </div>
                                             <!-- tab-footer -->
                                         </div>
                                     </div>
                                     <!-- *********************************************************************************************************  /내가 쓴글 리스트 끝 ****************************************************************************** -->
+
                                     <!-- *********************************************************************************************************  회원정보 수정 ****************************************************************************** -->
                                     <div class="tab-pane fade" id="user-two" role="tabpanel" aria-labelledby="user-two-tab">
                                         <div class="profile-section">
@@ -573,9 +577,100 @@
                                             <!--좋아요 삭제된 메뉴 내용물 끝-->
                                         </div>
                                     </div>
-<!-- *********************************************************************************************************  /회원정보 수정끝 ****************************************************************************** -->
-<!-- *********************************************************************************************************  좋아요 리스트 ****************************************************************************** -->
+                                    <!-- *********************************************************************************************************  /회원정보 수정끝 ****************************************************************************** -->
+
                                     <div class="tab-pane fade" id="user-three" role="tabpanel" aria-labelledby="user-three-tab">
+                                        <div class="profile-section">
+                                            <div class="tab-header">
+                                                <h2>구독 관리</h2>
+                                                <p>구독내역 및 결제를 관리합니다.</p>
+                                            </div><!-- header -->
+                                            <div class="tab-body">
+                                                <!-- 결제 정보창 시작!-->
+
+                                                <div class="container">
+                                                    <form class="contact-form" name="contact-form" method="post" action="#">
+                                                        <div class="payment-category">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6">
+                                                                            <input type="radio" name="sellType1" value="paypal" id="paypal">
+                                                                            <label for="paypal">Paypal</label>
+                                                                            <p>Alternatives to traditional paper methods like checks and money orders.</p>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="payment-card">
+                                                                                <img src="images/others/payment3.png" alt="Logo" class="img-fluid">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6">
+                                                                            <input type="radio" name="sellType1" value="credit-card" id="credit-card">
+                                                                            <label for="credit-card">Credit Card</label>
+                                                                            <p>Alternatives to traditional paper methods like checks and money orders.</p>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="payment-card pull-right">
+                                                                                <span><img src="images/others/payment2.png" alt="Logo" class="img-fluid"></span>
+                                                                                <span><img src="images/others/payment1.png" alt="Logo" class="img-fluid"></span>
+                                                                                <span><img src="images/others/payment4.png" alt="Logo" class="img-fluid"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div><!-- /.row -->
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="card-number">Card Number</label>
+                                                                    <input type="text" class="form-control" required="required" id="card-number" placeholder="4276 7898 4565 1232">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="card-name">Your Name on board Card</label>
+                                                                    <input type="text" class="form-control" required="required" id="card-name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group expire-date">
+                                                                    <label>Expire Date</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <input type="date" class="form-control" value="2021-10-25">
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <input type="date" class="form-control" value="2021-11-20">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group cvv-code">
+                                                                    <label for="cvv-code">CVV Code</label>
+                                                                    <input type="number" class="form-control" required="required" id="cvv-code">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="buttons justify-content-end">
+                                                            <a href="cart.html" class="btn btn-primary button-back pull-left">Back</a>
+                                                            <a href="congrats.html" class="btn btn-primary pull-right">Proceed To Checkout</a>
+                                                        </div>
+                                                    </form><!-- contact-form -->
+                                                </div>
+                                                <!-- 결제 정보창 끝!!!-->
+                                            </div><!-- tab-body -->
+                                            </div>
+                                    </div>
+                                    <!-- *********************************************************************************************************  /회원정보 수정끝 ****************************************************************************** -->
+
+                                    <!-- *********************************************************************************************************  좋아요 리스트 ****************************************************************************** -->
+                                    <div class="tab-pane fade" id="user-four" role="tabpanel" aria-labelledby="user-four-tab">
                                         <div class="profile-section">
                                             <div class="tab-header">
                                                 <i class="fa-regular fa-heart"></i>
@@ -592,9 +687,9 @@
                                                     </li>
                                                 </ul>
                                                 <div class="tab-content" id="pills-tabContent" style="border: none;">
-<!--******************************************************************************후기 내용물******************************************************************************-->
+                                                    <!--******************************************************************************후기 내용물******************************************************************************-->
                                                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                                    <h4>후기 좋아요</h4>
+                                                        <h4>후기 좋아요</h4>
                                                         <div class="row" id="fav_row">
                                                             <!--게시물 시작-->
                                                             <div class="col-lg-4">
@@ -698,8 +793,9 @@
                                                                 </div><!-- /.sa-post -->
                                                             </div>
                                                             <!--게시물 끝-->
-                                                        </div><!--/.row-->
-<!--****************************************************************************** 페이징 버튼 ******************************************************************************-->
+                                                        </div>
+                                                        <!--/.row-->
+                                                        <!--****************************************************************************** 페이징 버튼 ******************************************************************************-->
                                                         <div class="text-center" style="margin-bottom: 50px;">
                                                             <ul class="pagination justify-content-center mb-0">
                                                                 <li><a class="page-numbers current" href="#">1</a></li>
@@ -708,8 +804,8 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-<!--******************************************************/후기 내용물 끝******************************************************-->
-<!--******************************************************업체후기 내용물******************************************************-->
+                                                    <!--******************************************************/후기 내용물 끝******************************************************-->
+                                                    <!--******************************************************업체후기 내용물******************************************************-->
                                                     <div class="tab-pane fade mr-0" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                                                         <h4>시공사례 좋아요</h4>
                                                         <div class="row mr" id="fav_row">
@@ -816,7 +912,7 @@
                                                             </div>
                                                             <!--게시물 끝-->
                                                         </div><!-- /.row -->
-<!--****************************************************************************** 페이징 버튼 ******************************************************************************-->
+                                                        <!--****************************************************************************** 페이징 버튼 ******************************************************************************-->
                                                         <div class="text-center" style="margin-bottom: 50px;">
                                                             <ul class="pagination justify-content-center mb-0">
                                                                 <li><a class="page-numbers current" href="#">1</a></li>
@@ -824,16 +920,16 @@
                                                                 <li class="float-right"><a class="page-numbers" href="#"><i class="fas fa-chevron-right"></i></a></li>
                                                             </ul>
                                                         </div>
-<!--****************************************************************************** /페이징 버튼 끝 ******************************************************************************-->
+                                                        <!--****************************************************************************** /페이징 버튼 끝 ******************************************************************************-->
                                                         <!-- /.sg-pagination -->
                                                     </div>
-<!--******************************************************************************/업체후기 내용물 끝 ******************************************************************************-->
+                                                    <!--******************************************************************************/업체후기 내용물 끝 ******************************************************************************-->
                                                 </div>
                                             </div>
                                             <!--/.tab-body-->
                                         </div><!-- /.row -->
                                     </div><!-- /.container -->
-<!-- *********************************************************************************************************  /좋아요 리스트 끝 ****************************************************************************** -->
+                                    <!-- *********************************************************************************************************  /좋아요 리스트 끝 ****************************************************************************** -->
                                     <!-- End 썸넬형식 -->
                                 </div>
                             </div>
