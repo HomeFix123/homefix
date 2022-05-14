@@ -5,3 +5,8 @@
 		display: block;
 	}
 }
+
+
+a.bg-danger.border-danger.btn-primary:hover {
+	color : black;
+}

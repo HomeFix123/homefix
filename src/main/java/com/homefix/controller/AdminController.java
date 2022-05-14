@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminController {
 	
-	@GetMapping(path = "/")
+	@GetMapping(path = "")
 	public String moveAdminPage() {
 		
-		return "/admin/member";
+		return "redirect:/admin/dashboard";
 	}
 	
 	@GetMapping(path = "/dashboard")
@@ -26,10 +26,30 @@ public class AdminController {
 		return "/admin/member";
 	}
 	
+	@GetMapping(path = "/member/form")
+	public String moveMemberUpdatePage() {
+		
+		return "/admin/member/form";
+	}
+	
+	
+	
 	@GetMapping(path = "/company")
 	public String moveCompanyPage() {
 		
 		return "/admin/company";
+	}
+	
+	@GetMapping(path = "/company/form")
+	public String moveCompanyUpdatePage() {
+		return "/admin/company/form";
+	}
+	
+	
+	@GetMapping(path = "/board")
+	public String moveBoardPage() {
+		
+		return "/admin/board";
 	}
 	
 	@GetMapping(path = "/chart")

@@ -147,21 +147,14 @@
                                             <li class="nav-item" role="presentation">
                                             	<button class="nav-link" data-bs-toggle="tab" data-bs-target="#alertList" type="button" role="tab" aria-controls="alertList" aria-selected="false">신고목록</button>
                                             </li>
-                                            <li class="nav-item" role="presentation">
-                                            	<button class="nav-link" data-bs-toggle="tab" data-bs-target="#blacklist" type="button" role="tab" aria-controls="blacklist" aria-selected="false">블랙리스트</button>
-                                            </li>
                                         </ul>      
 
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="memberList" role="tabpanel" aria-labelledby="memberList-tab">
 			                        			<table id="example" class="display" style="width:100%"></table>	
 			                        		</div>
-			                        	
                                             <div class="tab-pane fade" id="alertList" role="tabpanel" aria-labelledby="alertList-tab">
-			                        			신고목록
-			                        		</div>
-                                            <div class="tab-pane fade" id="blacklist" role="tabpanel" aria-labelledby="blacklist-tab">
-			                        			블랙리스트
+			                        			<table id="alert" class="display" style="width:100%"></table>	
 			                        		</div>
 			                        	</div><!-- / 탭내용 -->
 			                        </div><!-- / .tab -->
@@ -173,7 +166,177 @@
 			</div>
         </div>
 
-     
+     	<!-- 업체정보 모달 -->
+		<div id="info-modal" class="modal fade" tabindex="-1" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">고객정보</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div><!-- /모달 header -->
+		      <div class="modal-body">
+		      	<div class="container-fluid">
+						<div class="row">
+							<div class="description-tab">
+								<ul class="nav nav-tabs mt-0" id="company-info" role="tablist">
+									<li class="nav-item" role="presentation">
+										<button class="nav-link active" data-bs-toggle="tab"
+											data-bs-target="#default-info" type="button" role="tab"
+											aria-controls="description" aria-selected="true">고객정보</button>
+									</li>
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" data-bs-toggle="tab"
+											data-bs-target="#discount-info" type="button" role="tab"
+											aria-controls="blacklist" aria-selected="false">견적내역</button>
+									</li>
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" data-bs-toggle="tab"
+											data-bs-target="#declare-info" type="button" role="tab"
+											aria-controls="blacklist" aria-selected="false">신고내역</button>
+									</li>
+								</ul>
+
+								<div class="tab-content" id="company-info-Content">
+									<div class="tab-pane fade show active" id="default-info"
+										role="tabpanel" aria-labelledby="memberList-tab">
+										<div class="row justify-content-center">
+											<div class="col-md-6">
+												<!-- 프로필 이미지 -->
+												<img src="../images/course/1.jpg" alt="Image"
+													class="img-fluid">
+											</div>
+										</div>
+										<div class="pt-2">
+											<!-- 기본 정보 -->
+											<table
+												class="table table-bordered table-sm caption-top table-responsive">
+												<tr>
+													<td>아이디</td>
+													<td colspan="3">이용자아아디</td>
+												</tr>
+												<tr>
+													<td>닉네임</td>
+													<td>홍홍혼</td>
+													<td>가입일</td>
+													<td>99/12/31</td>
+												</tr>
+												<tr>
+													<td>이름</td>
+													<td>홍길동</td>
+													<td>전화번호</td>
+													<td>02-3456-7890</td>
+												</tr>
+												<tr>
+													<td>이메일</td>
+													<td colspan="3">test@test.com</td>
+												</tr>
+												<tr>
+													<td>생년월일</td>
+													<td>97/09/23</td>
+													<td>나이</td>
+													<td>30</td>
+												</tr>
+												<tr>
+													<td>주소</td>
+													<td colspan="3">서울시 금천구 어떠한로 몇번</td>
+												</tr>
+												<tr>
+													<td>상세주소</td>
+													<td colspan="3">서울시 금천구 어떠한로 몇번</td>
+												</tr>
+												<tr>
+													<td>최근접속일</td>
+													<td colspan="3">21/09/23</td>
+												</tr>
+											</table>
+										</div>
+										<!-- / .row -->
+									</div>
+									<div class="tab-pane fade" id="discount-info" role="tabpanel"
+										aria-labelledby="alertList-tab">
+										
+										<div class="">
+											<!-- 견적 내역 -->
+											<table class="table table-sm caption-top table-responsive">
+												<thead>
+													<tr class="text-center">
+														<td>유형/평수</td>
+														<td>작성일</td>
+													</tr>
+												</thead>
+												<tbody class="text-center">
+													<tr>
+														<td><a href="#">아파트/주거/33평</a></td>
+														<td>22/02/03</td>
+													</tr>
+													<tr>
+														<td><a href="#">아파트/주거/33평</a></td>
+														<td>22/02/03</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<!-- / .row -->
+
+									</div>
+									<div class="tab-pane fade" id="declare-info" role="tabpanel"
+										aria-labelledby="alertList-tab">
+										<div class="justify-content-center">
+											<div class="col">
+												<!--  그래프 이미지 -->
+												<img src="../images/course/1.jpg" alt="Image"
+													class="img-fluid">
+											</div>
+										</div>
+										<div class="pt-2">
+											<!-- 신고 내역 -->
+											<table class="table table-sm caption-top table-responsive">
+												<thead>
+													<tr class="text-center">
+														<td>닉네임</td>
+														<td>사유</td>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>홍홍홍</td>
+														<td>저작권침해</td>
+													</tr>
+													<tr>
+														<td>22/02/03</td>
+														<td>purchase-31</td>
+													</tr>
+													<tr>
+														<td>22/02/03</td>
+														<td>purchase-31</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td>총합</td>
+														<td class="text-center">3회</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+										<!-- / .row -->
+
+									</div>
+								</div>
+								<!-- / 탭내용 -->
+							</div>
+							<!-- / .tab -->
+						</div>
+					</div><!-- / .container-fluid -->
+		      </div>
+		      <div class="modal-footer">
+		        <a href="#" class="btn btn-primary">정보 수정</a>
+		        <a href="#" class="btn btn-white">블랙리스트</a>
+		        <a href="#" class="btn btn-primary bg-danger border-danger" data-animation="animated fadeInLeft">계정 삭제</a>
+		      </div>
+		    </div><!-- /모달 내용 -->
+		  </div>
+		</div><!-- / 유저 모달 -->
 
         
 

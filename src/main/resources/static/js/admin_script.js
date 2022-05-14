@@ -83,7 +83,7 @@ $(function(){
 		keyboard: false
 	});
 	
-	$(document).on('click', '#example tr', function(){
+	$(document).on('click', '#example tbody tr', function(){
 		
 		myModal.show();
 	});
