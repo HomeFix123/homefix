@@ -41,8 +41,8 @@
         <!-- 데이터 테이블 -->
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.0/datatables.min.css"/>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css"/>
-        
-        
+        <!-- 관리자 CSS -->
+        <link rel="stylesheet" th:href="@{/css/admin_css.css}">
         
     </head>
     <body> 
@@ -89,8 +89,8 @@
 		                        	
 		                            <ul class="navbar-nav flex-column w-100 m-0" id="admin-nav">
 		                                <li><a class="w-100" th:href="@{/admin/dashboard}"><i class="fas fa-chart-line"></i> <span>대시보드</span></a></li>
-		                                <li class="active"><a class="w-100" th:href="@{/admin/member}"><i class="fas fa-user"></i> <span>회원관리</span></a></li>
-		                                <li><a class="w-100" th:href="@{/admin/company}"><i class="fas fa-building"></i> <span>업체관리</span></a></li>
+		                                <li><a class="w-100" th:href="@{/admin/member}"><i class="fas fa-user"></i> <span>회원관리</span></a></li>
+		                                <li class="active"><a class="w-100" th:href="@{/admin/company}"><i class="fas fa-building"></i> <span>업체관리</span></a></li>
 		                                <li><a class="w-100" th:href="@{/admin/board}"><i class="fas fa-book"></i> <span>게시글</span></a></li>
 		                                <li><a class="w-100" th:href="@{/admin/chart}"><i class="fas fa-chart-line"></i> <span>차트</span></a></li>
 		                            </ul>       
@@ -153,6 +153,7 @@
                                             <div class="tab-pane fade show active" id="memberList" role="tabpanel" aria-labelledby="memberList-tab">
 			                        			<table id="example" class="display" style="width:100%"></table>	
 			                        		</div>
+			                        	
                                             <div class="tab-pane fade" id="alertList" role="tabpanel" aria-labelledby="alertList-tab">
 			                        			<table id="alert" class="display" style="width:100%"></table>	
 			                        		</div>
@@ -171,7 +172,7 @@
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title">고객정보</h5>
+		        <h5 class="modal-title">업체명</h5>
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div><!-- /모달 header -->
 		      <div class="modal-body">
@@ -182,12 +183,17 @@
 									<li class="nav-item" role="presentation">
 										<button class="nav-link active" data-bs-toggle="tab"
 											data-bs-target="#default-info" type="button" role="tab"
-											aria-controls="description" aria-selected="true">고객정보</button>
+											aria-controls="description" aria-selected="true">기본정보</button>
+									</li>
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" data-bs-toggle="tab"
+											data-bs-target="#detail-info" type="button" role="tab"
+											aria-controls="alertList" aria-selected="false">상세정보</button>
 									</li>
 									<li class="nav-item" role="presentation">
 										<button class="nav-link" data-bs-toggle="tab"
 											data-bs-target="#discount-info" type="button" role="tab"
-											aria-controls="blacklist" aria-selected="false">견적내역</button>
+											aria-controls="blacklist" aria-selected="false">결제내역</button>
 									</li>
 									<li class="nav-item" role="presentation">
 										<button class="nav-link" data-bs-toggle="tab"
@@ -201,7 +207,7 @@
 										role="tabpanel" aria-labelledby="memberList-tab">
 										<div class="row justify-content-center">
 											<div class="col-md-6">
-												<!-- 프로필 이미지 -->
+												<!-- 로고 이미지 -->
 												<img src="../images/course/1.jpg" alt="Image"
 													class="img-fluid">
 											</div>
@@ -212,41 +218,61 @@
 												class="table table-bordered table-sm caption-top table-responsive">
 												<tr>
 													<td>아이디</td>
-													<td colspan="3">이용자아아디</td>
+													<td colspan="3">회사아아디</td>
 												</tr>
 												<tr>
-													<td>닉네임</td>
-													<td>홍홍혼</td>
-													<td>가입일</td>
-													<td>99/12/31</td>
-												</tr>
-												<tr>
-													<td>이름</td>
+													<td>사업자번호</td>
+													<td>1234567890</td>
+													<td>대표자</td>
 													<td>홍길동</td>
+												</tr>
+												<tr>
 													<td>전화번호</td>
-													<td>02-3456-7890</td>
+													<td colspan="3">02-3456-7890</td>
 												</tr>
 												<tr>
-													<td>이메일</td>
-													<td colspan="3">test@test.com</td>
+													<td>업체메일</td>
+													<td colspan="3">company@company.com</td>
 												</tr>
 												<tr>
-													<td>생년월일</td>
-													<td>97/09/23</td>
-													<td>나이</td>
-													<td>30</td>
-												</tr>
-												<tr>
-													<td>주소</td>
+													<td>업체주소</td>
 													<td colspan="3">서울시 금천구 어떠한로 몇번</td>
 												</tr>
 												<tr>
-													<td>상세주소</td>
-													<td colspan="3">서울시 금천구 어떠한로 몇번</td>
+													<td>시공횟수</td>
+													<td>3</td>
+													<td>좋아요 수</td>
+													<td>4</td>
+												</tr>
+											</table>
+										</div>
+										<!-- / .row -->
+									</div>
+									
+									<div class="tab-pane fade" id="detail-info" role="tabpanel"
+										aria-labelledby="blacklist-tab">
+										<div class="justify-content-center">
+											<div class="col">
+												<!-- 대표 이미지 -->
+												<img src="../images/course/1.jpg" alt="Image"
+													class="img-fluid">
+											</div>
+										</div>
+										<div class="pt-2">
+											<!-- 상세정보 -->
+											<table
+												class="table table-bordered table-sm caption-top table-responsive">
+												<tr>
+													<td>경력</td>
+													<td>13년</td>
 												</tr>
 												<tr>
-													<td>최근접속일</td>
-													<td colspan="3">21/09/23</td>
+													<td>전문분야</td>
+													<td>주거, 상가</td>
+												</tr>
+												<tr>
+													<td>지역</td>
+													<td>서울, 경남</td>
 												</tr>
 											</table>
 										</div>
@@ -254,26 +280,50 @@
 									</div>
 									<div class="tab-pane fade" id="discount-info" role="tabpanel"
 										aria-labelledby="alertList-tab">
-										
-										<div class="">
-											<!-- 견적 내역 -->
+										<div class="justify-content-center">
+											<div class="col">
+												<!--  그래프 이미지 -->
+												<img src="../images/course/1.jpg" alt="Image"
+													class="img-fluid">
+											</div>
+										</div>
+										<div class="pt-2">
+											<!-- 결제 그래프 -->
 											<table class="table table-sm caption-top table-responsive">
 												<thead>
 													<tr class="text-center">
-														<td>유형/평수</td>
-														<td>작성일</td>
+														<td>날짜</td>
+														<td>결제번호</td>
+														<td>수단</td>
+														<td>금액</td>
 													</tr>
 												</thead>
-												<tbody class="text-center">
+												<tbody>
 													<tr>
-														<td><a href="#">아파트/주거/33평</a></td>
 														<td>22/02/03</td>
+														<td>purchase-31</td>
+														<td class="text-center">카드</td>
+														<td class="text-end">30,000원</td>
 													</tr>
 													<tr>
-														<td><a href="#">아파트/주거/33평</a></td>
 														<td>22/02/03</td>
+														<td>purchase-31</td>
+														<td class="text-center">카드</td>
+														<td class="text-end">30,000원</td>
+													</tr>
+													<tr>
+														<td>22/02/03</td>
+														<td>purchase-31</td>
+														<td class="text-center">카드</td>
+														<td class="text-end">30,000원</td>
 													</tr>
 												</tbody>
+												<tfoot>
+													<tr>
+														<td>총 금액</td>
+														<td class="text-end" colspan="3">350000원</td>
+													</tr>
+												</tfoot>
 											</table>
 										</div>
 										<!-- / .row -->
@@ -336,10 +386,9 @@
 		      </div>
 		    </div><!-- /모달 내용 -->
 		  </div>
-		</div><!-- / 유저 모달 -->
-
-        
-
+		</div><!-- / 업체 모달 -->
+		
+		
 
 
         <!-- JS -->
@@ -364,53 +413,53 @@
         
         
         <script>
-        	// 테스트용
-        	var dataSet = [
-        [ "Tiger Nixon", "System Architect", "Edinburgh", "5421", "2011/04/25", "$320,800" ],
-        [ "Garrett Winters", "Accountant", "Tokyo", "8422", "2011/07/25", "$170,750" ],
-        [ "Ashton Cox", "Junior Technical Author", "San Francisco", "1562", "2009/01/12", "$86,000" ],
-        [ "Cedric Kelly", "Senior Javascript Developer", "Edinburgh", "6224", "2012/03/29", "$433,060" ],
-        [ "Airi Satou", "Accountant", "Tokyo", "5407", "2008/11/28", "$162,700" ],
-        [ "Brielle Williamson", "Integration Specialist", "New York", "4804", "2012/12/02", "$372,000" ],
-        [ "Herrod Chandler", "Sales Assistant", "San Francisco", "9608", "2012/08/06", "$137,500" ],
-        [ "Rhona Davidson", "Integration Specialist", "Tokyo", "6200", "2010/10/14", "$327,900" ],
-        [ "Colleen Hurst", "Javascript Developer", "San Francisco", "2360", "2009/09/15", "$205,500" ],
-        [ "Sonya Frost", "Software Engineer", "Edinburgh", "1667", "2008/12/13", "$103,600" ],
-        [ "Jena Gaines", "Office Manager", "London", "3814", "2008/12/19", "$90,560" ],
-        [ "Quinn Flynn", "Support Lead", "Edinburgh", "9497", "2013/03/03", "$342,000" ],
-        [ "Charde Marshall", "Regional Director", "San Francisco", "6741", "2008/10/16", "$470,600" ],
-        [ "Haley Kennedy", "Senior Marketing Designer", "London", "3597", "2012/12/18", "$313,500" ],
-        [ "Tatyana Fitzpatrick", "Regional Director", "London", "1965", "2010/03/17", "$385,750" ],
-        [ "Michael Silva", "Marketing Designer", "London", "1581", "2012/11/27", "$198,500" ],
-        [ "Paul Byrd", "Chief Financial Officer (CFO)", "New York", "3059", "2010/06/09", "$725,000" ],
-        [ "Gloria Little", "Systems Administrator", "New York", "1721", "2009/04/10", "$237,500" ],
-        [ "Bradley Greer", "Software Engineer", "London", "2558", "2012/10/13", "$132,000" ],
-        [ "Dai Rios", "Personnel Lead", "Edinburgh", "2290", "2012/09/26", "$217,500" ],
-        [ "Jenette Caldwell", "Development Lead", "New York", "1937", "2011/09/03", "$345,000" ],
-        [ "Yuri Berry", "Chief Marketing Officer (CMO)", "New York", "6154", "2009/06/25", "$675,000" ],
-        [ "Caesar Vance", "Pre-Sales Support", "New York", "8330", "2011/12/12", "$106,450" ],
-        [ "Doris Wilder", "Sales Assistant", "Sidney", "3023", "2010/09/20", "$85,600" ],
-        [ "Angelica Ramos", "Chief Executive Officer (CEO)", "London", "5797", "2009/10/09", "$1,200,000" ],
-        [ "Gavin Joyce", "Developer", "Edinburgh", "8822", "2010/12/22", "$92,575" ],
-        [ "Jennifer Chang", "Regional Director", "Singapore", "9239", "2010/11/14", "$357,650" ],
-        [ "Brenden Wagner", "Software Engineer", "San Francisco", "1314", "2011/06/07", "$206,850" ],
-        [ "Fiona Green", "Chief Operating Officer (COO)", "San Francisco", "2947", "2010/03/11", "$850,000" ],
-        [ "Shou Itou", "Regional Marketing", "Tokyo", "8899", "2011/08/14", "$163,000" ],
-        [ "Michelle House", "Integration Specialist", "Sidney", "2769", "2011/06/02", "$95,400" ],
-        [ "Suki Burks", "Developer", "London", "6832", "2009/10/22", "$114,500" ],
-        [ "Prescott Bartlett", "Technical Author", "London", "3606", "2011/05/07", "$145,000" ],
-        [ "Gavin Cortez", "Team Leader", "San Francisco", "2860", "2008/10/26", "$235,500" ],
-        [ "Martena Mccray", "Post-Sales support", "Edinburgh", "8240", "2011/03/09", "$324,050" ],
-        [ "Unity Butler", "Marketing Designer", "San Francisco", "5384", "2009/12/09", "$85,675" ]
-    ];
-        	var col_kor = [
-                { title: "아이디" },
-                { title: "닉네임" },
-                { title: "이름" },
-                { title: "가입일" },
-                { title: "최근 로그인" },
-                { title: "신고수" }
-            ];
+        // 테스트용
+       	var dataSet = [
+	        [ "Tiger Nixon", "System Architect", "Edinburgh", "5421", "2011/04/25", "$320,800" ],
+	        [ "Garrett Winters", "Accountant", "Tokyo", "8422", "2011/07/25", "$170,750" ],
+	        [ "Ashton Cox", "Junior Technical Author", "San Francisco", "1562", "2009/01/12", "$86,000" ],
+	        [ "Cedric Kelly", "Senior Javascript Developer", "Edinburgh", "6224", "2012/03/29", "$433,060" ],
+	        [ "Airi Satou", "Accountant", "Tokyo", "5407", "2008/11/28", "$162,700" ],
+	        [ "Brielle Williamson", "Integration Specialist", "New York", "4804", "2012/12/02", "$372,000" ],
+	        [ "Herrod Chandler", "Sales Assistant", "San Francisco", "9608", "2012/08/06", "$137,500" ],
+	        [ "Rhona Davidson", "Integration Specialist", "Tokyo", "6200", "2010/10/14", "$327,900" ],
+	        [ "Colleen Hurst", "Javascript Developer", "San Francisco", "2360", "2009/09/15", "$205,500" ],
+	        [ "Sonya Frost", "Software Engineer", "Edinburgh", "1667", "2008/12/13", "$103,600" ],
+	        [ "Jena Gaines", "Office Manager", "London", "3814", "2008/12/19", "$90,560" ],
+	        [ "Quinn Flynn", "Support Lead", "Edinburgh", "9497", "2013/03/03", "$342,000" ],
+	        [ "Charde Marshall", "Regional Director", "San Francisco", "6741", "2008/10/16", "$470,600" ],
+	        [ "Haley Kennedy", "Senior Marketing Designer", "London", "3597", "2012/12/18", "$313,500" ],
+	        [ "Tatyana Fitzpatrick", "Regional Director", "London", "1965", "2010/03/17", "$385,750" ],
+	        [ "Michael Silva", "Marketing Designer", "London", "1581", "2012/11/27", "$198,500" ],
+	        [ "Paul Byrd", "Chief Financial Officer (CFO)", "New York", "3059", "2010/06/09", "$725,000" ],
+	        [ "Gloria Little", "Systems Administrator", "New York", "1721", "2009/04/10", "$237,500" ],
+	        [ "Bradley Greer", "Software Engineer", "London", "2558", "2012/10/13", "$132,000" ],
+	        [ "Dai Rios", "Personnel Lead", "Edinburgh", "2290", "2012/09/26", "$217,500" ],
+	        [ "Jenette Caldwell", "Development Lead", "New York", "1937", "2011/09/03", "$345,000" ],
+	        [ "Yuri Berry", "Chief Marketing Officer (CMO)", "New York", "6154", "2009/06/25", "$675,000" ],
+	        [ "Caesar Vance", "Pre-Sales Support", "New York", "8330", "2011/12/12", "$106,450" ],
+	        [ "Doris Wilder", "Sales Assistant", "Sidney", "3023", "2010/09/20", "$85,600" ],
+	        [ "Angelica Ramos", "Chief Executive Officer (CEO)", "London", "5797", "2009/10/09", "$1,200,000" ],
+	        [ "Gavin Joyce", "Developer", "Edinburgh", "8822", "2010/12/22", "$92,575" ],
+	        [ "Jennifer Chang", "Regional Director", "Singapore", "9239", "2010/11/14", "$357,650" ],
+	        [ "Brenden Wagner", "Software Engineer", "San Francisco", "1314", "2011/06/07", "$206,850" ],
+	        [ "Fiona Green", "Chief Operating Officer (COO)", "San Francisco", "2947", "2010/03/11", "$850,000" ],
+	        [ "Shou Itou", "Regional Marketing", "Tokyo", "8899", "2011/08/14", "$163,000" ],
+	        [ "Michelle House", "Integration Specialist", "Sidney", "2769", "2011/06/02", "$95,400" ],
+	        [ "Suki Burks", "Developer", "London", "6832", "2009/10/22", "$114,500" ],
+	        [ "Prescott Bartlett", "Technical Author", "London", "3606", "2011/05/07", "$145,000" ],
+	        [ "Gavin Cortez", "Team Leader", "San Francisco", "2860", "2008/10/26", "$235,500" ],
+	        [ "Martena Mccray", "Post-Sales support", "Edinburgh", "8240", "2011/03/09", "$324,050" ],
+	        [ "Unity Butler", "Marketing Designer", "San Francisco", "5384", "2009/12/09", "$85,675" ]
+   		];
+       	var col_kor = [
+            { title: "아이디" },
+            { title: "업체명" },
+            { title: "상담수" },
+            { title: "계약수" },
+            { title: "월정액 잔여일" },
+            { title: "신고수" }
+        ];
 
 
 
