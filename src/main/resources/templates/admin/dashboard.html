@@ -252,43 +252,10 @@
         <script th:src="@{/js/jquery-ui-min.js}"></script>
         <script th:src="@{/js/validate.js}"></script>
         <script th:src="@{/js/main.js}"></script> 
-        <script>
-        $(function(){
-        	const navbar = $('ul#admin-nav');
-        	const nav_text = $('#admin-nav > li > a > span')
-        	const info_text = $('#admin-info .text > p')
-        	const info_icon = $('#admin-info .icon')
-        	$(window).resize(function(){
-	        	let width = window.innerWidth;
-	        	if(width < 992){
-	        		navbar.removeClass('flex-column');
-	        	} else {
-	        		navbar.addClass('flex-column');
-	        	}
-	        	
-	        	if(width < 768){
-	        		nav_text.hide();
-	        	} else {
-	        		nav_text.show();
-	        	}
-	        	
-	        	if(width < 576){
-	        		info_text.hide();
-	        		info_icon.width('40px');
-	        		info_icon.height('40px');
-	        		info_icon.css('line-height', '40px')
-	        	} else {
-	        		info_text.show();
-	        		info_icon.width('80px');
-	        		info_icon.height('80px');
-	        		info_icon.css('line-height', '80px')
-	        	}
-	        	
-	        	}).resize();
-        	});
-        	
         
-        	
-        </script>
+        
+        <!-- 관리자 스크립트 -->
+        <script th:src="@{/js/admin_script.js}"></script> 
+        
     </body>
 </html>         

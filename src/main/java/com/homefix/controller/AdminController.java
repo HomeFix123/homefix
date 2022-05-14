@@ -25,4 +25,16 @@ public class AdminController {
 		
 		return "/admin/member";
 	}
+	
+	@GetMapping(path = "/company")
+	public String moveCompanyPage() {
+		
+		return "/admin/company";
+	}
+	
+	@GetMapping(path = "/chart")
+	public String moveChartPage() {
+		
+		return "/admin/chart";
+	}
 }
