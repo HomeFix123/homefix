@@ -44,14 +44,36 @@
 			
 			.thumnail {
 				width: 100vw;
-	    		height: 100vh;
+	    		height:500px;
 	    		
 				background-repeat: no-repeat;
 	    		background-position: center center;
 	    		backgorund-size: 50% 50%;
 	    		top: 0;
 	    		left: 0;
+	    	}
+			
+			.reviewBar{
+				list-style: none;
+				
 			}
+			.reviewBar li{
+				float: left;
+				font-size: 30px;
+				padding-right: 20px;
+			}
+			
+			.reBar{
+				padding-top: 15px;
+			}
+			
+			#love{
+				color: red;
+				padding-right: 10px;
+				font-size: 30px;
+			}
+			
+			
         </style>
         
     </head>
@@ -225,7 +247,7 @@
 
         <section class="breadcrumb-section">
             <div class="thumnail" th:style="'background-image: url('+@{/images/course/cute.jpg}+');'">
-            </div><!-- /.container -->
+            </div>
         </section><!-- /.breadcrumb-section -->  
 
         <div class="sg-section">
@@ -236,17 +258,56 @@
                             <div class="sa-course">
                                 <div class="course-info">
                                     <h2 class="title">Visual Basic Web Course With Live Project</h2>
-                                    <p>Lorem ipsum dolor, sit amet</p>
-                                    <p>Lorem ipsum dolor, sit amet</p>
-                                    <p>Lorem ipsum dolor, sit amet</p>
-                                    <p>Lorem ipsum dolor, sit amet</p>
+                                    <div>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	<p>Lorem ipsum dolor, sit amet</p>
+                                    	
+                                	</div>
+                                	
+                                	
+                                	
                                 </div>
                             </div><!-- /.sa-course -->                           
                         </div>
 					</div>
 				</div>
 			</div>
-		</div>   
+		</div>
+		<nav class="navbar fixed-bottom bg-light">
+		  <div class="reBar container-fluid  justify-content-center">		    
+		  	<ul class="reviewBar">
+              	<li><a  href="#"><span><i id="love" class="fas fa-heart"></i></span>50</a></li>
+                <li><a href="#"><span><i class="far fa-eye"></i></span>2000</a></li>
+           	</ul>
+		  </div>
+		</nav>		
+		   
 
         <!-- JS -->
         <script th:src="@{/js/jquery.min.js}"></script>
@@ -262,5 +323,18 @@
         <script th:src="@{/js/jquery-ui-min.js}"></script>
         <script th:src="@{/js/validate.js}"></script>
         <script th:src="@{/js/main.js}"></script> 
+        
+        <script type="text/javascript">
+        $(document).ready(function(){ 
+        	var currentPosition = parseInt($(".quickmenu").css("top")); 
+        	
+        	$(window).scroll(function() { 
+        		var position = $(window).scrollTop(); 
+        		$(".quickmenu").css("top",position+currentPosition+"px"); 
+        		}); 
+        	});
+        
+        </script>
+        
     </body>
 </html>        
