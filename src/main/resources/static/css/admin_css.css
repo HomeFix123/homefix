@@ -1,0 +1,12 @@
+/* 관리자 페이지의 CSS */
+
+@media ( max-width : 575px) {
+	.sa-topbar {
+		display: block;
+	}
+}
+
+
+a.bg-danger.border-danger.btn-primary:hover {
+	color : black;
+}
