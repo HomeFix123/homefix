@@ -151,7 +151,18 @@
 
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="memberList" role="tabpanel" aria-labelledby="memberList-tab">
-			                        			<table id="example" class="display" style="width:100%"></table>	
+			                        			<table id="example" class="display" style="width:100%">
+			                        				<tbody>
+			                        					<tr th:each="c : ${companyList}">
+			                        						<td class="companyId" th:text="${c.cid}"></td>
+			                        						<td th:text="${c.co_name}"></td>
+			                        						<td th:text="${c.chatting}"></td>
+			                        						<td th:text="${c.contract}"></td>
+			                        						<td th:text="${#dates.format(c.pm_day, 'MM-dd')}"></td>
+			                        						<td th:text="${c.report}"></td>
+			                        					</tr>
+			                        				</tbody>
+			                        			</table>	
 			                        		</div>
 			                        	
                                             <div class="tab-pane fade" id="alertList" role="tabpanel" aria-labelledby="alertList-tab">
@@ -172,7 +183,7 @@
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title">업체명</h5>
+		        <h5 class="modal-title co_name">업체명</h5>
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div><!-- /모달 header -->
 		      <div class="modal-body">
@@ -209,7 +220,7 @@
 											<div class="col-md-6">
 												<!-- 로고 이미지 -->
 												<img src="../images/course/1.jpg" alt="Image"
-													class="img-fluid">
+													class="img-fluid co_logo">
 											</div>
 										</div>
 										<div class="pt-2">
@@ -218,31 +229,31 @@
 												class="table table-bordered table-sm caption-top table-responsive">
 												<tr>
 													<td>아이디</td>
-													<td colspan="3">회사아아디</td>
+													<td colspan="3" class="company_id">회사아아디</td>
 												</tr>
 												<tr>
 													<td>사업자번호</td>
-													<td>1234567890</td>
+													<td class="co_num">1234567890</td>
 													<td>대표자</td>
-													<td>홍길동</td>
+													<td class="co_ceo">홍길동</td>
 												</tr>
 												<tr>
 													<td>전화번호</td>
-													<td colspan="3">02-3456-7890</td>
+													<td colspan="3" class="co_tel">02-3456-7890</td>
 												</tr>
 												<tr>
 													<td>업체메일</td>
-													<td colspan="3">company@company.com</td>
+													<td colspan="3" class="co_email">company@company.com</td>
 												</tr>
 												<tr>
 													<td>업체주소</td>
-													<td colspan="3">서울시 금천구 어떠한로 몇번</td>
+													<td colspan="3" class="co_addr">서울시 금천구 어떠한로 몇번</td>
 												</tr>
 												<tr>
 													<td>시공횟수</td>
-													<td>3</td>
+													<td class="contract">3</td>
 													<td>좋아요 수</td>
-													<td>4</td>
+													<td class="prefer">4</td>
 												</tr>
 											</table>
 										</div>
@@ -255,7 +266,7 @@
 											<div class="col">
 												<!-- 대표 이미지 -->
 												<img src="../images/course/1.jpg" alt="Image"
-													class="img-fluid">
+													class="img-fluid company-img">
 											</div>
 										</div>
 										<div class="pt-2">
@@ -264,15 +275,15 @@
 												class="table table-bordered table-sm caption-top table-responsive">
 												<tr>
 													<td>경력</td>
-													<td>13년</td>
+													<td class="career"></td>
 												</tr>
 												<tr>
 													<td>전문분야</td>
-													<td>주거, 상가</td>
+													<td class="specialty"></td>
 												</tr>
 												<tr>
 													<td>지역</td>
-													<td>서울, 경남</td>
+													<td class="area"></td>
 												</tr>
 											</table>
 										</div>
@@ -380,8 +391,8 @@
 					</div><!-- / .container-fluid -->
 		      </div>
 		      <div class="modal-footer">
-		        <a href="#" class="btn btn-primary">정보 수정</a>
-		        <a href="#" class="btn btn-white">블랙리스트</a>
+		        <a href="/admin/company/form" class="btn btn-primary">정보 수정</a>
+		        <a href="#" class="btn btn-white" data-animation="animated fadeInLeft">블랙리스트</a>
 		        <a href="#" class="btn btn-primary bg-danger border-danger" data-animation="animated fadeInLeft">계정 삭제</a>
 		      </div>
 		    </div><!-- /모달 내용 -->
