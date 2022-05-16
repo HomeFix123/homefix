@@ -1368,7 +1368,7 @@ input.btn.btn-primary:hover {
 }
 
 .course-info .title a:hover {
-    color: var(--primary-color);
+    color: var(---color);
 }
 
 .course-info .sa-meta {
