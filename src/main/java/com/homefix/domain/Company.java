@@ -24,6 +24,8 @@ public class Company {
 	private String co_ceo;
 	private String co_logo;
 	private Integer co_cnt;
+	
+	private Integer enabled;
 
 	@Transient
 	private int chatting;

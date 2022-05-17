@@ -90,7 +90,7 @@ $(function(){
 	
 	
 	function detailInfo(id){
-		detail = $('#detail-info')
+		
 		companyDetail = null;
 		$.ajax({
 			type: "GET",
@@ -103,7 +103,12 @@ $(function(){
 		})
 		
 		function success(result){
+			
 			coInfo = result.company;
+			buttons = $('#modal-buttons')
+			buttons.find('.company-update').attr('href', '/admin/company/form/' + coInfo.cid)
+			
+			
 			$('.co_name').text(coInfo.co_name);
 			default_info = $('#default-info')
 			default_info.find('.company_id').text(coInfo.cid);
@@ -119,7 +124,7 @@ $(function(){
 			
 			
 			
-			
+			detail = $('#detail-info')
 			detail.find('.career').text(result.career + '년');
 			spe = detail.find('.specialty')
 			sp_cont = [];
