@@ -1,0 +1,103 @@
+/********************sign-in*********************/
+/*카카오 아이콘 배경색*/
+.ragister-form .buttons .facebook span {
+	background-color: yellow;
+}
+/*카카오 말풍선 색상*/
+.fa-comment {
+	color: saddlebrown;
+}
+/*회원가입 버튼 폰트색상*/
+.middle-content>.btn-primary>a {
+	color: white;
+}
+/* 아이디찾기 폰트색상 */
+#id_find {
+	color: darkblue;
+}
+
+.nav-link {
+	width: 100%;
+	color: gray;
+}
+
+.nav-item {
+	width: 50%;
+}
+/***********************필수사항 동의체크 ************** */
+#agreeForm {
+	height: 300px;
+	/*  display:none; */
+	padding: 0 20px 20px 20px;
+	overflow-y: auto;
+	width: 50%;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	margin: 20px;
+	line-height: 20px;
+	font-size: 15px;
+}
+
+#agreeTermBtn {
+	position: relative;
+	left: 19%;
+	padding: 25px;
+}
+
+#agreeTermForm {
+	position: relative;
+	left: 25%;
+	padding-top: 100px;
+}
+
+#agreeChoiceForm {
+	height: 300px;
+	/*  display:none; */
+	padding: 0 20px 20px 20px;
+	overflow-y: auto;
+	width: 50%;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	margin: 20px;
+	line-height: 20px;
+	font-size: 15px;
+}
+
+body {
+	background-color: #F2F4F6
+}
+
+/***************sign-up-m*************************/
+
+
+.filter_summary__option_box {
+	margin-bottom: 20px;
+}
+
+
+
+.field--not-empty {
+	position: relative;
+}
+
+.email_check {
+	display: inline-block;
+}
+
+#btn_emailCheak {
+	padding: 0;
+}
+
+#btn_idCheak, #btn_postCheak {
+	padding: 12px 9px;
+}
+
+
+.prefer{border-color:#E2DFDF}
+
+/***************sign-up-b*************************/
+#bs_btn_businessNum,#bs_btn_idCheak,#bs_btn_emailCheak{
+	padding: 5px 5px;
+	
+}
+
