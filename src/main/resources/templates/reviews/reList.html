@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,24 +10,24 @@
         <title>리뷰리스트</title>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/all.min.css">
-        <link rel="stylesheet" href="css/animate.min.css">
-        <link rel="stylesheet" href="css/YTPlayer.min.css">
-        <link rel="stylesheet" href="css/slick.css">
-        <link rel="stylesheet" href="css/structure.css">
-        <link rel="stylesheet" href="css/main.css"> 
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/css/all.min.css}">
+        <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+        <link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+        <link rel="stylesheet" th:href="@{/css/slick.css}">
+        <link rel="stylesheet" th:href="@{/css/structure.css}">
+        <link rel="stylesheet" th:href="@{/css/main.css}"> 
+        <link rel="stylesheet" th:href="@{/css/responsive.css}">
         
         <!-- font -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
 
         <!-- icons -->
-        <link rel="icon" href="images/ico/favicon.ico"> 
-        <link rel="apple-touch-icon" sizes="144x144" href="../images/ico/apple-touch-icon-precomposed.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="../images/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="../images/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon" sizes="57x57" href="../images/ico/apple-touch-icon-57-precomposed.png">  
+        <link rel="icon" th:href="@{/images/ico/favicon.ico}"> 
+        <link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">  
         <!-- icons -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -58,50 +58,7 @@
         	.text-right{
         		text-align: right;
         	}
-        	.selectBox {
-  position: relative;
-  width: 170px;
-  height: 35px;
-  border-radius: 4px;
-  border: 2px solid lightcoral;
-}
-.selectBox .select {
-  width: inherit;
-  height: inherit;
-  background: transparent;
-  border: 0 none;
-  outline: 0 none;
-  padding: 0 5px;
-  position: relative;
-  z-index: 3; 
-}
-.selectBox .select option {
-  background: lightcoral;
-  color: #fff;
-  padding: 3px 0;
-  font-size: 16px;
-}
-.selectBox .icoArrow {
-  position: absolute; 
-  top: 0; 
-  right: 0; 
-  z-index: 1; 
-  width: 35px; 
-  height: inherit;
-  border-left: 2px solid lightcoral;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.selectBox .icoArrow img {
-  width: 50%;
-  transition: .3s; 
-}
-
-.selectBox .select:focus + .icoArrow img {
-  transform: rotate(180deg);
-}
 
 ul {
 	padding: 0px;
@@ -134,7 +91,7 @@ ul li {
     </head>
     <body> 
         <div id="preloader">
-            <img src="images/preloader.gif" alt="Image" class="tr-preloader img-fluid">
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
         <header class="sa-header">
@@ -358,7 +315,7 @@ ul li {
                             <div class="sa-post">
                                 <div class="entry-header">
                                     <div class="entry-thumbnail">
-                                        <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
+                                        <a href="blog-details.html"><img th:src="@{/images/course/1.jpg}" alt="Image" class="img-fluid"></a>
                                     </div>
                                     <div class="entry-meta">
                                         <a href="#"><i class="my-2 fas fa-heart"></i></a>
@@ -383,7 +340,7 @@ ul li {
                             <div class="sa-post">
                                 <div class="entry-header">
                                     <div class="entry-thumbnail">
-                                        <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
+                                        <a href="blog-details.html"><img th:src="@{/images/course/1.jpg}" alt="Image" class="img-fluid"></a>
                                     </div>
                                     <div class="entry-meta">
                                         <a href="#"><i class="my-2 far fa-heart"></i></a>
@@ -408,7 +365,7 @@ ul li {
                             <div class="sa-post">
                                 <div class="entry-header">
                                     <div class="entry-thumbnail">
-                                        <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
+                                        <a href="blog-details.html"><img th:src="@{/images/course/1.jpg}" alt="Image" class="img-fluid"></a>
                                     </div>
                                     <div class="entry-meta">
                                         <a href="#"><i class="my-2 far fa-heart"></i></a>
@@ -433,7 +390,7 @@ ul li {
                             <div class="sa-post">
                                 <div class="entry-header">
                                     <div class="entry-thumbnail">
-                                        <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
+                                        <a href="blog-details.html"><img th:src="@{/images/course/1.jpg}" alt="Image" class="img-fluid"></a>
                                     </div>
                                     <div class="entry-meta">
                                         <a href="#"><i class="my-2 far fa-heart"></i></a>
@@ -466,150 +423,11 @@ ul li {
 
 
 
-        <div class="sa-section">
-            <div class="section-content section-padding text-center jarallax section-before" style="background-image: url(images/bg/s1.jpg);">
-                <div class="container">
-                    <div class="testimonial-slider">
-                        <div class="testimonial">
-                            <div class="testimonial-info">
-                                <div class="icon">
-                                    <span><i class="fas fa-quote-left"></i></span>
-                                </div>
-                                <h2>Allowing for field strengths are and ceramic magnets, but these are also amongweakesttypes the ferrite magnets are mainly.</h2>
-                                <div class="testimonial-footer">
-                                    <div class="author">
-                                        <img src="images/others/0.png" alt="Image" class="img-fluid img-circle">
-                                    </div> 
-                                    <div class="testimonial-text">
-                                        <div class="testimonial-ratings">
-                                            <ul class="global-list">
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>                                
-                                        <div class="testimonial-title">
-                                            <h3>Jeff Sanders</h3>
-                                            <span>Founder, Sonvaocas</span>
-                                        </div>                                        
-                                    </div>                                                                       
-                                </div>
-                            </div>
-                        </div><!-- /.testimonial -->
-                        <div class="testimonial">
-                            <div class="testimonial-info">
-                                <div class="icon">
-                                    <span><i class="fas fa-quote-left"></i></span>
-                                </div>
-                                <h2>Allowing for field strengths are and ceramic magnets, but these are also amongweakesttypes the ferrite magnets are mainly.</h2>
-                                <div class="testimonial-footer">
-                                    <div class="author">
-                                        <img src="images/others/1.png" alt="Image" class="img-fluid img-circle">
-                                    </div> 
-                                    <div class="testimonial-text">
-                                        <div class="testimonial-ratings">
-                                            <ul class="global-list">
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>                                
-                                        <div class="testimonial-title">
-                                            <h3>Nancy Doll</h3>
-                                            <span>Director</span>
-                                        </div>                                        
-                                    </div>                                                                       
-                                </div>
-                            </div>
-                        </div><!-- /.testimonial -->
-                        <div class="testimonial">
-                            <div class="testimonial-info">
-                                <div class="icon">
-                                    <span><i class="fas fa-quote-left"></i></span>
-                                </div>
-                                <h2>Allowing for field strengths are and ceramic magnets, but these are also amongweakesttypes the ferrite magnets are mainly.</h2>
-                                <div class="testimonial-footer">
-                                    <div class="author">
-                                        <img src="images/others/0.png" alt="Image" class="img-fluid img-circle">
-                                    </div> 
-                                    <div class="testimonial-text">
-                                        <div class="testimonial-ratings">
-                                            <ul class="global-list">
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li class="checked"><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>                                
-                                        <div class="testimonial-title">
-                                            <h3>David Rasky</h3>
-                                            <span>Manager</span>
-                                        </div>                                        
-                                    </div>                                                                       
-                                </div>
-                            </div>
-                        </div><!-- /.testimonial -->
-                    </div><!-- /.tutor-slider -->
-                </div><!-- /.container -->
-            </div><!-- /.section-content -->
-        </div><!-- /.sa-section -->        
+        
 
         
 
-        <div class="sa-section">
-            <div class="section-content download-content section-padding section-before jarallax" style="background-image: url(images/bg/bg2.jpg);">
-                <div class="container">
-                    <div class="section-header d-flex justify-content-center">
-                        <div class="title align-self-center">
-                            <h1>Download on Store</h1>
-                            <span>Download</span>
-                        </div>              
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a href="#" class="download-app">
-                                <span class="icon">
-                                    <i class="fab fa-youtube"></i>
-                                </span>
-                                <span class="text">
-                                    <span>available on</span>
-                                    <strong>youtube.com</strong>
-                                </span>
-                            </a>                            
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#" class="download-app">
-                                <span class="icon">
-                                    <i class="fab fa-vimeo-v"></i>
-                                </span>
-                                <span class="text">
-                                    <span>available on</span>
-                                    <strong>vimeo.com</strong>
-                                </span>
-                            </a>                            
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#" class="download-app">
-                                <span class="icon">
-                                    <i class="fab fa-google-drive"></i>
-                                </span>
-                                <span class="text">
-                                    <span>available on</span>
-                                    <strong>Google Drive</strong>
-                                </span>
-                            </a>                            
-                        </div>
-                    </div><!-- /.row -->
-                    
-                </div><!-- /.container -->
-            </div><!-- /.section-content -->
-        </div><!-- /.sa-section -->
         
         <!-- filter modal -->
 
@@ -624,7 +442,7 @@ ul li {
                             <div class="col-md-6 col-lg-3">
                                 <div class="footer-widget">
                                     <div class="footer-logo">
-                                        <a href="#"><img src="images/logo.png" alt="Logo" class="img-fluid"></a>
+                                        <a href="#"><img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid"></a>
                                     </div>
                                     <p>Holisticly aggregate compelling ROI before out-of-the-box benefits. Efficiently create cross functional paradigms without an expanded array of testing procedures.</p>
                                     <div class="footer-social">
@@ -658,7 +476,7 @@ ul li {
                                     <div class="sa-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img src="images/blog/4.jpg" alt="Image" class="img-fluid"></a>
+                                                <a href="blog-details.html"><img th:src="@{/images/blog/4.jpg}" alt="Image" class="img-fluid"></a>
                                             </div> 
                                         </div>                               
                                         <div class="entry-content">     
@@ -668,7 +486,7 @@ ul li {
                                     <div class="sa-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img src="images/blog/5.jpg" alt="Image" class="img-fluid"></a>
+                                                <a href="blog-details.html"><img th:src="@{/images/blog/5.jpg}" alt="Image" class="img-fluid"></a>
                                             </div> 
                                         </div>                               
                                         <div class="entry-content">     
@@ -678,7 +496,7 @@ ul li {
                                     <div class="sa-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img src="images/blog/2.jpg" alt="Image" class="img-fluid"></a>
+                                                <a href="blog-details.html"><img th:src="@{/images/blog/2.jpg}" alt="Image" class="img-fluid"></a>
                                             </div> 
                                         </div>                               
                                         <div class="entry-content">     
@@ -697,10 +515,10 @@ ul li {
                                     <div class="payment-gateway">
                                         <h4>Payment Gateway</h4> 
                                         <ul class="global-list d-flex">
-                                            <li><img src="images/others/payment1.png" alt="Image" class="img-fluid"></li>
-                                            <li><img src="images/others/payment2.png" alt="Image" class="img-fluid"></li>
-                                            <li><img src="images/others/payment3.png" alt="Image" class="img-fluid"></li>
-                                            <li><img src="images/others/payment4.png" alt="Image" class="img-fluid"></li>
+                                            <li><img th:src="@{/images/others/payment1.png}" alt="Image" class="img-fluid"></li>
+                                            <li><img th:src="@{/images/others/payment2.png}" alt="Image" class="img-fluid"></li>
+                                            <li><img th:src="@{/images/others/payment3.png}" alt="Image" class="img-fluid"></li>
+                                            <li><img th:src="@{/images/others/payment4.png}" alt="Image" class="img-fluid"></li>
                                         </ul>
                                     </div>                      
                                 </div>
@@ -717,18 +535,19 @@ ul li {
         </div><!-- /.footer -->
 
         <!-- JS -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>  
-        <script src="js/inview.min.js"></script> 
-        <script src="js/slick.min.js"></script>
-        <script src="js/jquery-ui-min.js"></script>  
-        <script src="js/jarallax.min.js"></script>  
-        <script src="js/counterup.min.js"></script> 
-        <script src="js/waypoints.min.js"></script> 
-        <script src="js/YTPlayer.min.js"></script> 
-        <script src="js/validate.js"></script>
-        <script src="js/main.js"></script>
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>  
+        <script th:src="@{/js/inview.min.js}"></script> 
+        <script th:src="@{/js/slick.min.js}"></script>
+        <script th:src="@{/js/jquery-ui-min.js}"></script>  
+        <script th:src="@{/js/jarallax.min.js}"></script>  
+        <script th:src="@{/js/counterup.min.js}"></script> 
+        <script th:src="@{/js/waypoints.min.js}"></script> 
+        <script th:src="@{/js/YTPlayer.min.js}"></script> 
+        <script th:src="@{/js/jquery-ui-min.js}"></script>
+        <script th:src="@{/js/validate.js}"></script>
+        <script th:src="@{/js/main.js}"></script> 
         
         <script type="text/javascript">
 
