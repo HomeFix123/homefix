@@ -17,7 +17,8 @@
 <link rel="stylesheet" href="css/structure.css">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/responsive.css">
-<link rel="stylesheet" href="css/eh/signIn_eh.css">
+<!--eunhye css  -->
+<link rel="stylesheet" href="css/eh/sign-eh.css">
 
 <!-- font -->
 <link
@@ -250,110 +251,108 @@
 						<div class="row">
 							<div class="col-lg-6 offset-lg-3">
 								<div class="account-content">
-									<h1>회원가입</h1>
+									<h1>사업자 회원가입</h1>
 									<form class="ragister-form" name="ragister-form" method="post"
 										action="#">
 
 										<div class="form-group text-left mb-0">
-											<label for='memberId'>아이디<span class="error_box"></span></label>
+											<label for='bs_memberId'>아이디<span class="error_box"></span></label>
 											<div class="row">
 												<div class="id_check col-md-9">
-													<input type="text" class="form-control" required="required"
-														id='memberId' name='memberId'
-														placeholder="영문자 또는 숫자 6~20자" autofocus>
+													<input type="text" class="form-control" id='bs_memberId'
+														name='bs_memberId' placeholder="영문자로 시작 영문자 또는 숫자 6~20자">
 												</div>
 												<div class='id_check col-md-3'>
-													<button type="button" id="btn_idCheak"
+													<button type="button" id="bs_btn_idCheak"
 														class="btn btn-primary">중복확인</button>
 												</div>
 											</div>
 										</div>
+
+										<!--***************사업자 회원가입 추가영역 Start ***************** -->
 										<div class="form-group text-left mb-0">
-											<label for='memberName'>이름<span class="error_box"></span></label> <input type="text"
-												class="form-control" required="required" id='memberName'
-												name='memberName' placeholder="이름">
+											<label for='bs_Name'>업체명<span class="error_box"></span></label>
+											<input type="text" class="form-control" id='bs_Name'
+												name='bs_memberName' placeholder="업체명">
+										</div>
+
+
+										<div class="form-group text-left mb-0">
+											<label for='bs_memberName'>대표자명<span class="error_box"></span></label>
+											<input type="text" class="form-control" id='bs_memberName'
+												name='bs_memberName' placeholder="대표자명">
+										</div>
+
+										<div class="form-group first field--not-empty">
+											<label for="bs_businessNum">사업자번호<span class="error_box"></span></label>
+											<div class="row">
+												<div class=" col-md-9">
+													<input type="text" class="form-control" id="bs_businessNum"
+														name="bs_businessNum" placeholder="숫자 10자">
+												</div>
+
+												<div class=' col-md-3'>
+													<button type="button" id="bs_btn_businessNum"
+														class="btn btn-primary">중복확인</button>
+
+												</div>
+											</div>
+										</div>
+										<!--**********사업자 회원가입 추가영역 End*************  -->
+
+										<div class="form-group first field--not-empty">
+											<label for='bs_memberPassword'>비밀번호<span
+												class="error_box"></span>
+											</label><input type="password" class="form-control"
+												id='bs_memberPassword' name='bs_memberPassword'
+												placeholder="영문, 숫자, 특수문자를 최소 한가지씩 조합하여 8~16자">
 										</div>
 										<div class="form-group first field--not-empty">
-											<label for="memberNickname">닉네임<span
-												class="error_box"></span></label> <input type="text"
-												class="form-control form_nick" id="memberNickname"
-												name="memberNickname" placeholder="닉네임">
-										</div>
-										<div class="form-group first field--not-empty">
-											<label for='memberPassword'>비밀번호<span
-												class="error_box"></span> </label><input type="password"
-												class="form-control" required="required" id='memberPassword'
-												name='memberPassword' placeholder="영문, 숫자, 특수문자를 최소 한가지씩 조합하여 8~16자">
-										</div>
-										<div class="form-group first field--not-empty">
-											<label for='passwordCheck'>비밀번호 확인<span
+											<label for='bs_passwordCheck'>비밀번호 확인<span
 												class="error_box"></span></label> <input type="password"
-												class="form-control" required="required" id="passwordCheck"
-												name='passwordCheck' placeholder="비밀번호 확인">
+												class="form-control" id="bs_passwordCheck" name='bs_passwordCheck'
+												placeholder="비밀번호 확인">
 										</div>
 										<div class="form-group">
-											<label for="postNum">우편번호<span class="error_box"></span></label>
+											<label for="bs_postNum">우편번호<span class="error_box"></span></label>
 											<div class='row'>
 												<div class="email_check col-md-8">
-													<input type="text" id="postNum" name="postNum" placeholder="우편번호"
-														class="form-control" readonly>
+													<input type="text" id="bs_postNum" name="bs_postNum"
+														placeholder="우편번호" class="form-control" readonly>
 												</div>
 												<div class='email_check col-md-4'>
-													<button type="button" id="btn_postCheak"
-														class="btn btn-primary" >주소찾기</button>
+													<button type="button" id="bs_btn_postCheak"
+														class="btn btn-primary">주소찾기</button>
 												</div>
 											</div>
-											<input type="text" id="firstAddress" name="firstAddress" placeholder="주소"
-												class="form-control" readonly> <input type="text"
-												id="secondAddress" name="secondAddress"placeholder="상세주소"
-												class="form-control">
+											<input type="text" id="bs_firstAddress" name="bs_firstAddress"
+												placeholder="주소" class="form-control" readonly> <input
+												type="text" id="bs_secondAddress" name="bs_secondAddress"
+												placeholder="상세주소" class="form-control">
 										</div>
 
 										<div class="form-group first field--not-empty">
-											<label for="memberEmail">이메일<span class="error_box"></span></label>
+											<label for="bs_memberEmail">이메일<span class="error_box"></span></label>
 											<div class="row">
 												<div class="email_check col-md-9">
-													<input type="email" class="form-control" id="memberEmail"
-														name="memberEmail" required="required">
+													<input type="email" class="form-control" id="bs_memberEmail"
+														name="bs_memberEmail">
 												</div>
 												<div class='email_check col-md-3'>
-													<button type="button" id="btn_emailCheak"
+													<button type="button" id="bs_btn_emailCheak"
 														class="btn btn-primary">중복확인</button>
 												</div>
 											</div>
 										</div>
+
 										<div class="form-group first field--not-empty">
-											<label for="memberBirth">생년월일</label> <input type="date"
-												class="form-control" id="memberBirth" name="memberBirth" required>
-										</div>
-										<div class="form-group first field--not-empty">
-											<label for="memberTel">휴대전화<span class="error_box"></span></label> <input type="tel"
-												class="form-control" id="memberTel" name="memberTel">
+											<label for="bs_memberTel">전화번호<span class="error_box"></span></label>
+											<input type="tel" class="form-control" id="bs_memberTel"
+												name="bs_memberTel">
 										</div>
 
-										<!--Start 스타일 선택 영역-->
 
-
-										<div class="filter_summary__option_box">
-											<div class="filter_options_title">
-												<h6 class="filter_options_tilte__title">선호 스타일</h6>
-
-											</div>
-											<div class=row>
-
-												<div class="btn-toolbar" role="toolbar"
-													aria-label="Toolbar with button groups">
-													<div class="btn-group col-md-12" role="group">
-														<button type="button" class="btn btn-secondary btn-outline-primary">모던</button>
-														<button type="button" class="btn btn-secondary">러블리</button>
-														<button type="button" class="btn btn-secondary">북유럽</button>
-														<button type="button" class="btn btn-secondary">내추럴</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!--End 스타일 선택 영역-->
-										<button class="btn btn-primary" id='btn_signUp' type="submit">가입하기</button>
+										<button class="btn btn-primary" id='bs_btn_signUp' type="submit">가입하기</button>
 
 
 
@@ -564,8 +563,8 @@
 	<script src="js/jquery-ui-min.js"></script>
 	<script src="js/validate.js"></script>
 	<script src="js/main.js"></script>
-	<!--eunhye jquery add  -->
-	<script src="js/eh/sign_eh.js"></script>
+	<!--eunhye jquery  -->
+	<script src="js/eh/sign-up-b.js"></script>
 	<!--kakao address api  -->
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
