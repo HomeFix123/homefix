@@ -45,7 +45,6 @@ $(function(){
 $(function(){
         $(document).ready(function () {
             $('#example').DataTable({
-            	data: dataSet,
             	columns: col_kor,
                 language: kor_setting
             });
@@ -84,8 +83,63 @@ $(function(){
 	});
 	
 	$(document).on('click', '#example tbody tr', function(){
-		
+		const cid = $(this).find('.companyId').text();
+		detailInfo(cid)
 		myModal.show();
 	});
+	
+	
+	function detailInfo(id){
+		detail = $('#detail-info')
+		companyDetail = null;
+		$.ajax({
+			type: "GET",
+			url : "/admin/company/"+id,
+			contentType: 'application/json;charset=utf-8',
+			success : success,
+			error : function(err){
+				console.log(err)
+			}			
+		})
+		
+		function success(result){
+			coInfo = result.company;
+			$('.co_name').text(coInfo.co_name);
+			default_info = $('#default-info')
+			default_info.find('.company_id').text(coInfo.cid);
+			default_info.find('.co_logo').attr('src', 'http://140.238.11.118:5000/upload/'+coInfo.co_logo)
+			default_info.find('.co_addr').text(coInfo.co_addr);
+			default_info.find('.co_num').text(coInfo.co_num);
+			default_info.find('.co_ceo').text(coInfo.co_ceo);
+			default_info.find('.co_tel').text(coInfo.co_tel);
+			default_info.find('.co_email').text(coInfo.co_email);
+			default_info.find('.contract').text(coInfo.contract);
+			default_info.find('.prefer').text(coInfo.prefer);
+			
+			
+			
+			
+			
+			detail.find('.career').text(result.career + '년');
+			spe = detail.find('.specialty')
+			sp_cont = [];
+			for(let i = 0; i < result.specialty.length; i++){
+				sp_cont.push(result.specialty[i].sp_cont);
+			}
+			spe.text(sp_cont.join(", "));
+			are = detail.find('.area')
+			areas = [];
+			for(let i = 0; i < result.area.length; i++){
+				areas.push(result.area[i].dname);
+			}
+			are.text(areas.join(", "));
+			detail.find('.area').text(result.area);
+			detail.find('.company-img').attr('src','http://140.238.11.118:5000/upload/'+result.cinfo_img);				
+		}
+		
+		
+	}
+	
+	
 });
 
