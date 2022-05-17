@@ -1,0 +1,28 @@
+/********* 견적 신청 페이지 [estimation.html] CSS 설정 ***********/
+
+	/* 화면글자 전체 가운데 정렬*/    
+	.row{text-align: center;}
+	.about-info { text-align:  center; }
+	    
+	/* li 체크표시 가운데 정렬*/
+	li {display: inline-block;
+	    margin: 0px;
+	    padding: 0px; 
+	    } 
+	
+	.area-form-text{
+	    position: relative;
+	    display : inline-flex;
+	    /*border-bottom : 1px solid #ccc;*/ 
+	    }
+	        
+	#underline, sample6_address{
+	   margin-bottom: 0px
+	   }
+	
+	#addr_t{
+	   text-align: center;
+	   }    
+	   
+/***********************************************************/
+
