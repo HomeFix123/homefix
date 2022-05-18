@@ -1,6 +1,6 @@
 $(function() {
 
-/*********[ 회원가입 페이지 ]*************************************************************/
+	/*********[ 회원가입 페이지 ]*************************************************************/
 	/*유효성 검사 정규식*/
 
 	var RegexId = /^[a-zA-z0-9]{4,12}$/; //아이디는 영문 대소문자와 숫자 4~12자리
@@ -143,11 +143,11 @@ $(function() {
 		var memberTel = $.trim($("#memberTel").val());
 		var postNum = $.trim($("#postNum").val());
 		var memberId = $.trim($("#memberId").val());
-		var secondAddress =  $.trim($("#secondAddress").val());
-		
+		var secondAddress = $.trim($("#secondAddress").val());
+
 		//선호 스타일 선택값 배열로 받아오기
-		var preferenceStyle=[];  
-		$(".prefer.active").each(function(){preferenceStyle.push($(this).val())}
+		var preferenceStyle = [];
+		$(".prefer.active").each(function() { preferenceStyle.push($(this).val()) }
 		)
 
 
@@ -160,12 +160,12 @@ $(function() {
 		} else {
 			$('label[for="memberId"] .error_box').html("");
 		}
-		
+
 		if (!RegexId.test(memberId)) {
 			$('label[for="memberId"] .error_box').html("아이디 형식이 올바르지 않습니다.");
 			$('label[for="memberId"] .error_box').css('color', '#dc3545');
 			$('#memberId').focus();
-			return false ;
+			return false;
 		} else {
 			$('label[for="memberId"] .error_box').html("");
 		}
@@ -185,7 +185,7 @@ $(function() {
 			return false;
 		} else {
 			$('label[for="memberName"] .error_box').html("");
-			
+
 		}
 		if (!RegexName.test(memberName)) {
 
@@ -207,7 +207,7 @@ $(function() {
 			return false;
 		} else {
 			$('label[for="memberNickname"] .error_box').html("");
-		
+
 		}
 
 		if (!RegexNick.test(memberNickname)) {
@@ -217,7 +217,7 @@ $(function() {
 			return false;
 		} else {
 			$('label[for="memberNickname"] .error_box').html("");
-			
+
 		}
 
 
@@ -263,7 +263,7 @@ $(function() {
 		}
 
 		/*우편번호 */
-		if (postNum == ''||secondAddress == '') {
+		if (postNum == '' || secondAddress == '') {
 			$('label[for="postNum"] .error_box').html(blank);
 			$('label[for="postNum"] .error_box').css('color', '#dc3545');
 			$('#secondAddress').focus();
@@ -288,8 +288,8 @@ $(function() {
 		} else {
 			$('label[for="memberEmail"] .error_box').html("");
 		}
-		
-		
+
+
 		/*if(emailCheak == false){
 			$('label[for="memberEmail"] .error_box').html("이메일 중복검사를 하지 않았습니다.");
 			$('label[for="memberEmail"] .error_box').css('color', '#dc3545');
@@ -308,8 +308,8 @@ $(function() {
 		} else {
 			$('label[for="memberBirth"] .error_box').html("");
 		}
-		
-		
+
+
 
 
 		/* 휴대전화 */
@@ -321,8 +321,8 @@ $(function() {
 		} else {
 			$('label[for="memberTel"] .error_box').html("");
 		}
-		
-		
+
+
 		if (!RegexTel.test(memberTel)) {
 
 			$('label[for="memberTel"] .error_box').html("전화번호 형식이 올바르지 않습니다. ex)010-000~0-000~0");
@@ -334,7 +334,7 @@ $(function() {
 
 
 		/*선호스타일*/
-		if(preferenceStyle.length=='0'){
+		if (preferenceStyle.length == '0') {
 			$('.likeStyle>.error_box').html(blank);
 			$('.likeStyle>.error_box').css('color', '#dc3545');
 			return false;
@@ -678,70 +678,47 @@ $(function() {
 	})
 
 
-
 	$('#btn_termCheck').click(function() {
-		//이용약관에 체크 했는지 확인
-		if (!$("#termsService").is(':checked')) {
-			// 체크 X
+		if ($('#termsService').is(":checked") == false) {
 			$('.check_error_box').html("<h6>필수 이용 약관에 동의해주세요.</h6>");
 			$('.check_error_box').css('color', '#dc3545');
 			return;
+
 		} else {
-			// 체크 O
-			$('.check_error_box').html("");
-			$.ajax({
-				type: 'post',
-				url: 'emailCheck.do',
-				data: { memberEmail: $('#memberEmail').val() },
-				contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-				success: function(result) {
-					// 중복 검사 후 나오는 결과 에러박스에 출력
-					if (result == 'Y') {
-						$('label[for="memberEmail"] .error_box').html("");
-						document.member_frm.submit();
-						alert("회원가입이 되었습니다.");
-					} else {
-						$('label[for="memberEmail"] .error_box').css('color', '#ED7A64');
-						$('label[for="memberEmail"] .error_box').html("이메일 중복 여부를 확인해주세요.");
-						emailCheak = false;
-						return;
-					}
-				},
-				error: function(err) {
-					alert('실패');
-					console.log(err);
-				}
-			}); //end of ajax			
+
+			location.href = "./sign-up-m.html"
+
 		}
+
 	})
 
-/******************************************************* */
-//회원가입-----선호스타일 버튼 이벤트
-$('.prefer').click(function(){
-  if($(this).hasClass("active")){
-	
-    	$(this).removeClass("active");
-    	$(this).css('background-color','white') 
-    	$(this).css('color','black')
-    	
-    	
-    	
-    	
-  }else{
-   		 $(this).addClass("active");
-   		 $(this).css('background-color','#1abc9c')  
-   		 $(this).css('color','white')
-  }
-});
+	/******************************************************* */
+	//회원가입-----선호스타일 버튼 이벤트
+	$('.prefer').click(function() {
+		if ($(this).hasClass("active")) {
 
-var today = new Date();
-		var day = today.getDate();
-		var monty = today.getMonth() + 1;
-		var year = today.getFullYear();
+			$(this).removeClass("active");
+			$(this).css('background-color', 'white')
+			$(this).css('color', 'black')
 
-		if (day < 10) { day = '0' + day }
-		if (monty < 10) { monty = '0' + monty }
-		today = year + "-" + monty + "-" + day;
-		document.getElementById('memberBirth').setAttribute("max", today);
+
+
+
+		} else {
+			$(this).addClass("active");
+			$(this).css('background-color', '#1abc9c')
+			$(this).css('color', 'white')
+		}
+	});
+
+	var today = new Date();
+	var day = today.getDate();
+	var monty = today.getMonth() + 1;
+	var year = today.getFullYear();
+
+	if (day < 10) { day = '0' + day }
+	if (monty < 10) { monty = '0' + monty }
+	today = year + "-" + monty + "-" + day;
+	document.getElementById('memberBirth').setAttribute("max", today);
 
 })

@@ -100,8 +100,8 @@ $(function() {
 
 
 
-//사업자번호 중복 이벤트
-var bsNumCheak = false;
+	//사업자번호 중복 이벤트
+	var bsNumCheak = false;
 
 	$('#bs_btn_businessNum').click(function() {
 
@@ -134,11 +134,11 @@ var bsNumCheak = false;
 				if (result == 'Y') {
 					$('label[for="bs_businessNum"] .error_box').css('color', '#4ABA99');
 					$('label[for="bs_businessNum"] .error_box').html("사용 가능한 사업자번호입니다.");
-					 bsNumCheak= true;
+					bsNumCheak = true;
 				} else {
 					$('label[for="bs_businessNum"] .error_box').css('color', '#ED7A64');
 					$('label[for="bs_businessNum"] .error_box').html("사용할 수 없는 사업자번호입니다.");
-					 bsNumCheak = false;
+					bsNumCheak = false;
 				}
 			},
 			error: function(err) {
@@ -666,8 +666,25 @@ var bsNumCheak = false;
 
 
 	$('#btn_termCheck').click(function() {
+		if ($('#termsService').is(":checked") == false) {
+			$('.check_error_box').html("<h6>필수 이용 약관에 동의해주세요.</h6>");
+			$('.check_error_box').css('color', '#dc3545');
+			return;
+
+		} else {
+
+			location.href = "./sign-up-b.html"
+
+		}
+
+	})
+
+
+
+
+	/*$('#btn_termCheck').click(function() {
 		//이용약관에 체크 했는지 확인
-		if (!$("#termsService").is(':checked')) {
+		if (!$("#btnAgree").is(':checked')) {
 			// 체크 X
 			$('.check_error_box').html("<h6>필수 이용 약관에 동의해주세요.</h6>");
 			$('.check_error_box').css('color', '#dc3545');
@@ -699,12 +716,13 @@ var bsNumCheak = false;
 				}
 			}); //end of ajax			
 		}
-	})
+	})*/
+
+
+
 
 
 
 
 
 })
-
-
