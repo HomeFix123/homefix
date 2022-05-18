@@ -90,7 +90,7 @@ $(function(){
 	
 	
 	function detailInfo(id){
-		detail = $('#detail-info')
+		
 		companyDetail = null;
 		$.ajax({
 			type: "GET",
@@ -103,9 +103,19 @@ $(function(){
 		})
 		
 		function success(result){
+			
 			coInfo = result.company;
+			buttons = $('#modal-buttons');
+			buttons.find('.company-update').attr('href', '/admin/company/form/' + coInfo.cid);
+			buttons.find('.company-blacklist').val(coInfo.enabled);
+			if(coInfo.enabled){
+				buttons.find('.company-blacklist').html("계정 정지");	
+			} else {
+				buttons.find('.company-blacklist').html("정지 해제");
+			}
+			
 			$('.co_name').text(coInfo.co_name);
-			default_info = $('#default-info')
+			default_info = $('#default-info');
 			default_info.find('.company_id').text(coInfo.cid);
 			default_info.find('.co_logo').attr('src', 'http://140.238.11.118:5000/upload/'+coInfo.co_logo)
 			default_info.find('.co_addr').text(coInfo.co_addr);
@@ -119,7 +129,7 @@ $(function(){
 			
 			
 			
-			
+			detail = $('#detail-info')
 			detail.find('.career').text(result.career + '년');
 			spe = detail.find('.specialty')
 			sp_cont = [];
@@ -136,10 +146,34 @@ $(function(){
 			detail.find('.area').text(result.area);
 			detail.find('.company-img').attr('src','http://140.238.11.118:5000/upload/'+result.cinfo_img);				
 		}
-		
-		
 	}
 	
 	
 });
 
+$(function(){
+	function handleBlacklist(blacklist){
+		const cid = $('#default-info .company_id').text()
+		$.ajax({
+			type: "POST",
+			url: "/admin/company/blacklist/" + cid,
+			data : {"enabled" : blacklist}
+			
+		});
+	}
+	
+	$('#modal-buttons .company-blacklist').click(function(){
+		if($(this).attr('value') == "true"){
+			$(this).html('정지 해제');
+			handleBlacklist(false);
+			$(this).attr('value', "false")	
+		} else {
+			$(this).html('계정 정지');
+			handleBlacklist(true);
+			$(this).attr('value', "true")
+		}
+		
+		
+		
+	})
+})

@@ -28,6 +28,42 @@ public class AdminServiceImpl implements AdminService {
 		return (List<Company>) companyRepo.findAll();
 	}
 	
+	/*
+	 * 업체 아이디로 정보 불러오기
+	 */
+	@Override
+	public Company getCompany(String cid) {
+		
+		return companyRepo.findById(cid).get();
+	}
+	
+	/*
+	 * 업체 정보 수정
+	 */
+	@Override
+	public void updateCompany(Company company) {
+		
+		Company temp = companyRepo.findById(company.getCid()).get();
+		temp.setCo_logo(company.getCo_logo());
+		temp.setCo_name(company.getCo_name());
+		temp.setCo_email(company.getCo_email());
+		
+		companyRepo.save(temp);
+	}
+	
+	/*
+	 * 업체 블랙리스트 지정/해제
+	 */
+	@Override
+	public void enableBlacklist(String cid, Boolean enabled) {
+		System.out.println(enabled);
+		Company company = companyRepo.findById(cid).get();
+		company.setEnabled(enabled);
+		companyRepo.save(company);
+		
+	}
+	
+	
 	@Autowired
 	CompanyInfoRepository companyDetailRepo;
 	
@@ -51,5 +87,10 @@ public class AdminServiceImpl implements AdminService {
 		
 		return paymentRepo.findByCid(cid);
 	}
+
+	
+
+	
+	
 
 }

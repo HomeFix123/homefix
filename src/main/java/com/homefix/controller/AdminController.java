@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.homefix.domain.Company;
 import com.homefix.service.AdminService;
 
 @Controller
@@ -54,9 +56,17 @@ public class AdminController {
 	
 	
 	@GetMapping(path = "/company/form/{cid}")
-	public String moveCompanyUpdatePage(@PathVariable String cid) {
+	public String moveCompanyUpdatePage(@PathVariable String cid, Model model) {
 		logger.info("[company]["+ cid + "] 업체 수정");
+		model.addAttribute("company", adminService.getCompany(cid));
 		return "/admin/company/form";
+	}
+	
+	@PutMapping(path = "/company/form/{cid}")
+	public String UpdateCompany(Company company, Model model) {
+		logger.info("[company]["+ company.getCid() + "] 업체 수정");
+		adminService.updateCompany(company);
+		return "redirect:/admin/company";
 	}
 	
 	
