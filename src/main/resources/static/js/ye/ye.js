@@ -7,9 +7,3 @@ $(function() {
     
             $(".complete_btn.btn.btn-primary").unbind('mouseenter mouseleave');
 		});
-
-//$(document).ready(function() {
-//
-//	함수 코드				
-//
-//});
