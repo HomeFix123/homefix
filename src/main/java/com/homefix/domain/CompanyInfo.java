@@ -11,11 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Entity(name = "cp_info")
 @Data
+@Table(name = "cp_info")
 public class CompanyInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

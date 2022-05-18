@@ -51,6 +51,18 @@ public class AdminServiceImpl implements AdminService {
 		companyRepo.save(temp);
 	}
 	
+	/*
+	 * 업체 블랙리스트 지정/해제
+	 */
+	@Override
+	public void enableBlacklist(String cid, Boolean enabled) {
+		System.out.println(enabled);
+		Company company = companyRepo.findById(cid).get();
+		company.setEnabled(enabled);
+		companyRepo.save(company);
+		
+	}
+	
 	
 	@Autowired
 	CompanyInfoRepository companyDetailRepo;
@@ -75,6 +87,8 @@ public class AdminServiceImpl implements AdminService {
 		
 		return paymentRepo.findByCid(cid);
 	}
+
+	
 
 	
 	
