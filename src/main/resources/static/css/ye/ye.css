@@ -17,7 +17,7 @@
 }
 
 .warning_div{
-        text-align: center;
+    text-align: center;
 }
 
 .btn_div{
@@ -40,6 +40,7 @@
 	margin-top: 5px;
 }
 
+/* 버튼 색상 변경 */
 #nothover_btn{
 	background-color: gray;
 	border: 1px solid grey;
