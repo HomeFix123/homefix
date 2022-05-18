@@ -24,6 +24,24 @@
 .nav-item {
 	width: 50%;
 }
+
+a.btn-primary {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    height: 45px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    background-color: var(--primary-color);
+   
+}
+
+.middle-content>a.btn-primary{
+	color: white;
+}
+
 /***********************필수사항 동의체크 ************** */
 #agreeForm {
 	height: 300px;

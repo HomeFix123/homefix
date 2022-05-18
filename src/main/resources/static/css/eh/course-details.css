@@ -1,3 +1,43 @@
+/**************** course-details***********************/
 #priInfo{
 	padding: 30px;
 }
+
+.fa-solid{
+	font-size: 80px;
+	margin: 10px; 
+	position:relative;
+	right:30%;
+	color: #5135dc;
+}
+
+.imgtutor {
+    width: 200px;
+    height: 200px; 
+    border-radius: 100%;
+   overflow: hidden;
+   position: relative;
+  display: inline-block;
+  
+   
+}
+
+#companyId{
+	text-align: center;
+	 height: 200px; 
+}
+
+
+.companyImg{
+	text-align: center;
+	
+	box-shadow: 5px 5px #e2dcdc;
+}
+
+.partner_detail__title{
+	padding-top: 0px;
+	margin: 0px;
+}
+
+
+.
