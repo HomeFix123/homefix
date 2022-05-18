@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!-- [estimation.html] 견적신청 페이지 -->
-
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -9,8 +7,8 @@
         <meta name="author" content="">
         <meta name="description" content="">
 
-        <title>estimation.html</title>
-        
+        <title>Educam | Education & Courses HTML Template.</title>
+
         <!-- CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/all.min.css">
@@ -20,7 +18,6 @@
         <link rel="stylesheet" href="css/structure.css">
         <link rel="stylesheet" href="css/main.css"> 
         <link rel="stylesheet" href="css/responsive.css">
-        <link rel="stylesheet" href="css/jy.css"> <!-- 개인 CSS 파일 링크 -->
         
         <!-- font -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
@@ -40,9 +37,11 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <!-- Template Developed By ChtStudio -->
-    	
+        
+        <!-- 개인 css 설정 -->
+        <link rel="stylesheet" href="css/jy.css">
+        
     </head>
-    
     <body> 
         <div id="preloader">
             <img src="images/preloader.gif" alt="Image" class="tr-preloader img-fluid">
@@ -95,7 +94,7 @@
                                         <li><a href="index2.html">Home V-3</a></li>
                                     </ul>
                                 </li>
-                                <li class="active"><a href="about.html">About</a></li>
+                                <li><a href="about.html">About</a></li>
                                 <li class="sa-dropdown">
                                     <a href="#">Courses</a>
                                     <ul class="sa-dropdown-menu">
@@ -106,7 +105,7 @@
                                 </li>
                                 <li><a href="tutor.html">Teacher</a></li>
                                 <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li class="active"><a href="contact.html">Contact</a></li>
                                 <li class="sa-dropdown">
                                     <a href="index.html">Page</a>
                                     <ul class="sa-dropdown-menu">
@@ -213,178 +212,143 @@
 
         <section class="breadcrumb-section">
             <div class="container">
-                <h1>견적 상담 신청</h1>
+                <h1>자주묻는 질문</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">견적 상담 신청</li>
+                    <li class="breadcrumb-item">FAQ</li>
                 </ol>
             </div><!-- /.container -->
-        </section><!-- /.breadcrumb-section -->  
+        </section><!-- /.breadcrumb-section -->
+
+        <div class="contact-section section-padding">
+            <div class="container">
+                <div class="address-content">
+                    <div class="row">
+                        
+                    </div>
+                </div>      
+                <div id="help" style="margin-bottom: 30px;"> <h4><i class="fa-solid fa-circle-info"></i> 무엇을 도와드릴까요?</h4></div>
+                <form id="contactform" class="contact-form" action="mail.php" method="post" enctype="text/plain" novalidate="novalidate">
+                    
+                <!-- 아코디언 시작 -->
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                  
+                    <!--1번-->
+                    <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        인테리어 상담과 시공을 직접 해주시나요?
+                      </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">홈픽에서는 사용자와 인테리어 전문가님을 중개하는 서비스로, 홈픽이 직접 상담과 시공을 진행하지 않습니다. </div>
+                      </div>
+                    </div>
+                    
+                    <!--2번-->
+                    <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        인테리어 상담과 시공을 직접 해주시나요?
+                      </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                    </div>
+                  </div>
+                  
+                  <!--3번-->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        인테리어 상담과 시공을 직접 해주시나요?
+                      </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                    </div>
+                  </div>
+                  
+                  <!--4번-->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingFour">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        인테리어 상담과 시공을 직접 해주시나요?
+                      </button>
+                    </h2>
+                    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                    </div>
+                  </div>
+                  
+                  <!-- 5번 -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingFive">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                        인테리어 상담과 시공을 직접 해주시나요?
+                      </button>
+                    </h2>
+                    <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /아코디언 끝-->
+                    
+                </form>                     
+            </div>
+        </div><!-- /.contact-section -->        
 
         <div class="sa-section">
-            <!--<div class="section-content sa-about section-padding">-->
-                <div class="container" >
+            <div class="section-content download-content section-padding section-before jarallax" style="background-image: url(images/bg/bg2.jpg);">
+                <div class="container">
+                    <div class="section-header d-flex justify-content-center">
+                        <div class="title align-self-center">
+                            <h1>Download on Store</h1>
+                            <span>Download</span>
+                        </div>              
+                    </div>
+
                     <div class="row">
-                        <div class="align-self-center" >
-                            <div class="about-info">
-                                <div style="padding: 30px;"></div>
-                                <h2 class="aa" style="padding: 30px;">
-                                    어떤 공간의 시공을 원하시나요?
-                                </h2>
-                                    <ul class="global-list m-0">
-                                    <li><h5 class="m-0"> 공간유형 </h5></li>
-                                    </ul>
-                                <a href="#" class="btn btn-primary">주거</a>
-                                <a href="#" class="btn btn-primary">상업</a>
-                                    <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
-                                        <li><h5 class="m-0" > 건물유형 </h5></li>
-                                    </ul>
-                                <a href="#" class="btn btn-primary">아파트</a>
-                                <a href="#" class="btn btn-primary">빌라</a>
-                                <a href="#" class="btn btn-primary">주택</a>
-                                <a href="#" class="btn btn-primary">오피스텔</a>
-                                    <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
-                                        <li><h5 class="m-0"> 평수 </h5></li>
-                                    </ul>
-                                 <div class="area-form-text">
-	                            <input type="text" id="underline" class="form-control" name="size" required="" placeholder="">
-                                <span style="margin-top: 10px; margin-left: 10px; margin-right: 20px">평   
+                        <div class="col-md-4">
+                            <a href="#" class="download-app">
+                                <span class="icon">
+                                    <i class="fab fa-youtube"></i>
                                 </span>
-                                <input type="text" id="underline" class="form-control" name="size2" required="" placeholder="">
-                                <span class="size2" style="margin-top: 10px; margin-left: 10px; margin-bottom: 0px;" >㎡
+                                <span class="text">
+                                    <span>available on</span>
+                                    <strong>youtube.com</strong>
                                 </span>
-                                    
-                                    
-                                </div>    
-                                </div>
-                            </div>
-                            
+                            </a>                            
                         </div>
+                        <div class="col-md-4">
+                            <a href="#" class="download-app">
+                                <span class="icon">
+                                    <i class="fab fa-vimeo-v"></i>
+                                </span>
+                                <span class="text">
+                                    <span>available on</span>
+                                    <strong>vimeo.com</strong>
+                                </span>
+                            </a>                            
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#" class="download-app">
+                                <span class="icon">
+                                    <i class="fab fa-google-drive"></i>
+                                </span>
+                                <span class="text">
+                                    <span>available on</span>
+                                    <strong>Google Drive</strong>
+                                </span>
+                            </a>                            
+                        </div>
+                    </div><!-- /.row -->
                     
                 </div><!-- /.container -->
             </div><!-- /.section-content -->
-            
-        <!--<div class="section-content sa-about section-padding">-->
-                <div class="container" >
-                    <div class="row">
-                        <div class="align-self-center" >
-                            <div class="about-info">
-                                <div style="padding: 30px;"></div>
-                                <h2 class="aa" style="padding: 30px;">
-                                    예산과 일정을 알려주세요.
-                                </h2>
-                                    <ul class="global-list m-0" width="100px;">
-                                    <li><h5 class="m-0"> 예산 </h5></li>
-                                    </ul>
-                                    <div class="area-form-text">
-                                        <div>
-	                            <input type="text" id="underline" class="form-control" name="size" required="" placeholder="">
-                                        </div>
-                                        <div style="margin-top:10px; margin-left: 10px; margin-right: 10px;">
-                                <span>만원   
-                                </span>
-                                        </div>
-                                </div>
-                                
-                                    <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
-                                        <li><h5 class="m-0" > 희망시공일정 </h5></li>
-                                    </ul>
-                                    <div class="area-form-text">
-                                        <div class="p-0">
-                                        <input type="text" readonly="readonly" title="시작일 선택" placeholder="시작일" aria-haspopup="calenderPopup" class="form-control" id="underline">
-                                        </div>
-                                            <div style="margin-top:10px; margin-left: 10px; margin-right: 10px; margin-bottom: 0px" ><span>~</span></div>
-                                        <div class="p-0">
-                                        <input type="text" readonly="readonly" title="종료일 선택" placeholder="종료일" aria-haspopup="calenderPopup" id="underline" class="form-control">
-                                        </div>
-                                        
-                                        
-                                    </div>
-                                    <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
-                                        <li><h5 class="m-0"> 주소 </h5></li>
-                                    </ul>
-                                    <!--카카오 주소 입력-->
-                                                <!--<div class="form-group">-->
-                                                    
-                                                    <input type="hidden" id="sample6_postcode" placeholder="우편번호" class="form-control">
-                                                    
-                                                    <div style="width: 350px; margin: auto;">
-                                                    <div >
-                                                    <!-- 간단 주소 입력 시작 -->
-                                                    <input type="text" id="sample6_address" placeholder="주소" class="form-control" name="eaddr" style="padding: 20px; margin: auto; margin-bottom: 10px; " 
-                                                    >
-                                                    <!-- 간단 주소 입력 끝 -->
-                                                    </div>
-                                                    
-                                                    <div >
-                                                    <!-- 주소 검색하기 버튼 시작 -->
-                                                    <input type="button" onclick="sample6_execDaumPostcode()" value="검색하기" class="btn btn-primary" style="margin-top: 0px; ">
-                                                    <!-- 주소 검색하기 버튼 끝 -->
-                                                    </div>
-                                                    </div>
-                                                    
-                                                    <input type="hidden" id="sample6_detailAddress" placeholder="상세주소" class="form-control">
-                                                    <input type="hidden" id="sample6_extraAddress" placeholder="참고항목" class="form-control">
-                                                <!--</div>-->
-                                                <!--end 카카오 주소 입력-->
-                                 
-                                    
-                                    
-                                </div>    
-                                </div>
-                            </div>
-                            
-                       
-                    
-                </div><!-- /.container -->
-        
-        <!--<div class="section-content sa-about section-padding">-->
-                <div class="container" >
-                    <div class="row">
-                        <div class="align-self-center" >
-                            <div class="about-info" style="margin-bottom: 40px;">
-                                <div style="padding: 30px;"></div>
-                                <h2 class="aa" style="padding: 30px;">
-                                    상담 정보를 알려주세요.
-                                </h2>
-                                    <ul class="global-list m-0" width="100px;">
-                                    <li><h5 class="m-0"> 이름 </h5></li>
-                                    </ul>
-                                    <div class="area-form-text" style="margin-bottom: 40px;">
-                                        <div>
-	                                    <input type="text" id="underline" class="form-control" name="ename" required="" placeholder="">
-                                        </div>
-                                    </div>
-                                    
-                                    
-                                    <ul class="global-list m-0" width="100px;">
-                                    <li><h5 class="m-0"> 전화번호 </h5></li>
-                                    </ul>
-                                    <div class="area-form-text" style="margin-bottom: 40px;">
-                                        <div>
-	                                    <input type="text" id="underline" class="form-control" name="ename" required="" placeholder="">
-                                        </div>
-                                       
-                                    </div>
-                                    
-                                    <ul class="global-list m-0" width="100px;">
-                                    <li><h5 class="m-0"> 선호스타일 (선택) </h5></li>
-                                    </ul>
-                                    <div class="area-form-text">
-                                        <div>
-	                                    <!--<input type="text" id="textbox" class="form-control" name="ename" required="" placeholder="선호하는 스타일을 자유롭게 적어주세요." style="width: 300px; height: 150px;" style="text-align: left">-->
-                                        <textarea class="form-control" name="message" required="" placeholder="선호하는 스타일을 자유롭게 적어주세요." style="width: 350px; height: 150px;"></textarea>
-                                        </div>
-                                       
-                                    </div>
-                                    <div style="padding: 10px"></div>
-                                    <a href="#" class="btn btn-primary" style="margin-bottom: 150px;">신청하기</a>
-                                    
-                            </div>    
-                        </div>
-                    </div>
-                </div><!-- /.container -->
-      
+        </div><!-- /.sa-section -->
+
         <div class="footer">
             <div class="footer-top">
                 <div class="container">
@@ -496,62 +460,10 @@
         <script src="js/counterup.min.js"></script> 
         <script src="js/waypoints.min.js"></script> 
         <script src="js/YTPlayer.min.js"></script> 
+        <script src="js/jquery-ui-min.js"></script>
         <script src="js/validate.js"></script>
-        <script src="js/main.js"></script>  
-        <!-- 카카오 지도 API -->
-        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>            
-        
-        <!--카카오 주소입력 스크립트-->
-    	<script>
-        	function sample6_execDaumPostcode() {
-            	new daum.Postcode({
-                	oncomplete: function(data) {
-                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                    var addr = ''; // 주소 변수
-                    var extraAddr = ''; // 참고항목 변수
-
-                    //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                        addr = data.roadAddress;
-                    } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                        addr = data.jibunAddress;
-                    }
-
-                    // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                    if (data.userSelectedType === 'R') {
-                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                        if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-                            extraAddr += data.bname;
-                        }
-                        // 건물명이 있고, 공동주택일 경우 추가한다.
-                        if (data.buildingName !== '' && data.apartment === 'Y') {
-                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                        }
-                        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                        if (extraAddr !== '') {
-                            extraAddr = ' (' + extraAddr + ')';
-                        }
-                        // 조합된 참고항목을 해당 필드에 넣는다.
-                        document.getElementById("sample6_extraAddress").value = extraAddr;
-
-                    } else {
-                        document.getElementById("sample6_extraAddress").value = '';
-                    }
-
-                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                    document.getElementById('sample6_postcode').value = data.zonecode;
-                    document.getElementById("sample6_address").value = addr;
-                    // 커서를 상세주소 필드로 이동한다.
-                    document.getElementById("sample6_detailAddress").focus();
-                	}
-            	}).open();
-        	}
-    	</script>
-    	<!--end 카카오 주소입력 스크립트-->
-                    
+        <script src="js/main.js"></script>
+        <!-- fontawesome js 아이콘 설정 -->
+		<script src="https://kit.fontawesome.com/2173f645ed.js"></script>
     </body>
 </html>         
