@@ -1,13 +1,17 @@
-/*공통*/
+
+/*[공통]*/
+
 #estimate_title{
     text-align: center;
 }
 .bold {
     font-weight: bold;
 }
-/*end 공통*/
 
-/*희망 견적서 상세보기*/
+/*end [공통]*/
+
+/*[희망 견적서 상세보기]*/
+
 .warning_cb {
     font-size: 12px;
 }
@@ -20,29 +24,27 @@
     margin-top: 20px;
     text-align: center;
 }
-/*end 희망 견적서 상세보기*/
 
-/*견적 진행 사항*/
+/*end [희망 견적서 상세보기]*/
+
+/*[견적 진행 사항 CIng]*/
+
 .progress_th, .progress_td, .progress_contents_td{
     text-align: center;
 }
 
-.complete_btn {
-    margin-top: 5px;
-    font-size: 14px;
-    color: #fff;
-    font-weight: 600;
-    padding: 10px 25px;
-    text-transform: uppercase;
-    display: inline-block;
-    border-radius: 4px;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    border: 0;
-    background-color: grey;
-    border: 1px solid grey;
+
+/* 버튼 hover 기능 끄기 */
+.nothover_btn.btn.btn-primary{
+	pointer-events: none;
+	margin-top: 5px;
 }
+
+#nothover_btn{
+	background-color: gray;
+	border: 1px solid grey;
+}
+
 .complete_txt.price.bold{
     color: gray;
 }
@@ -63,4 +65,6 @@
 
 
 
-/*end 견적 진행 사항*/
+
+/*end [견적 진행 사항]*/
+
