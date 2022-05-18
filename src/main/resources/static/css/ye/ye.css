@@ -1,13 +1,17 @@
+
 /*[공통]*/
+
 #estimate_title{
     text-align: center;
 }
 .bold {
     font-weight: bold;
 }
+
 /*end [공통]*/
 
 /*[희망 견적서 상세보기]*/
+
 .warning_cb {
     font-size: 12px;
 }
@@ -20,12 +24,15 @@
     margin-top: 20px;
     text-align: center;
 }
+
 /*end [희망 견적서 상세보기]*/
 
 /*[견적 진행 사항 CIng]*/
+
 .progress_th, .progress_td, .progress_contents_td{
     text-align: center;
 }
+
 
 /* 버튼 hover 기능 끄기 */
 .nothover_btn.btn.btn-primary{
@@ -55,6 +62,7 @@
 #progress_detail{
 /*    display: none;*/
 }
+
 
 
 
