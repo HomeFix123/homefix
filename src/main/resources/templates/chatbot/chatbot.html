@@ -1,0 +1,115 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Home-Fix ChatBot</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link th:href="@{/chatbot/main.css}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="https://kit.fontawesome.com/8af46b7b5f.js" crossorigin="anonymous"></script>
+    <script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+    
+
+<!-- css -->
+<style type="text/css">
+    .direct-chat-text {
+        border-radius: 0.3rem;
+        background-color: #d2d6de;
+        border: 1px solid #d2d6de;
+        color: #444;
+        margin: 5px 0 0 0;
+        padding: 5px 10px;
+        position: relative;
+    }
+
+    .right>.direct-chat-text {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+    }
+
+    #main-content {
+        background-color:aliceblue;
+        width: 350px;
+        
+    }
+    
+   /*  #msgSend{
+    	display: none;
+    } */
+    #communicate{
+    	width: 400px;
+    }
+    
+    body{
+    	height: 650px;
+    }
+    
+    div .btn-primary{
+        background-color: #1abc9c;
+        border-color: #1abc9c;
+    }
+    
+    #send{
+        background-color: #1abc9c;
+        border-color: #1abc9c;
+    }
+    
+    .talk{
+    	display: none;
+    } 
+    
+    
+</style>
+<!-- /css -->
+</head>
+<body>
+	<noscript>
+		<h2 style="color: #ff0000">Seems your browser doesn't support
+			Javascript! Websocket relies on Javascript being enabled. Please
+			enable Javascript and reload this page!</h2>
+	</noscript>
+	<div id="main-content" class="container">
+		<div class="row">
+			<!-- 웹소켓 연결 폼 -->
+			<div class="talk">
+				<form class="form-inline">
+					<div class="form-group mt-2">
+						<label for="connect"><i class="fas fa-plug fa-2x mr-2 ml-2"></i></label>
+						<button id="connect" class="btn btn-primary" type="submit">연결</button>
+						<button id="disconnect" class="btn btn-primary" type="submit"
+							disabled="disabled">해제</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- /웹소켓 연결 폼 끝 -->
+		<!-- 대화 창 부분 -->
+		<div class="row" id="msgSend" style="height:650px;">
+			<div class="talkSend" >
+				
+					<!-- 대화 말풍선이 뜨는 부분 --><!-- 아이프레임으로 띄울때 650(말 나오는창)+70(하단 말쓰는창) -->
+					<div id="communicate" class="col-12" style="overflow-y: scroll; height:650px; width:350px;">
+					</div>
+					<!-- /대화 말풍선이 뜨는 부분 끝 -->
+				
+			</div>
+			<!-- 텍스트 쓰는 부분 -->
+			<div class="card-footer" style="width: 350px; height:70px; position : absolute; bottom:0;">
+				<form class="form-group">
+					<div class="input-group">
+						<input type="text" id="msg" class="form-control"
+							placeholder="내용을 입력하세요...."> <span
+							class="input-group-append">
+							<button id="send" class="btn btn-primary" disabled type="submit">보내기</button>
+						</span>
+					</div>
+				</form>
+			</div>
+			<!-- /텍스트 쓰는 부분 끝 -->
+		</div>
+		<!-- /대화 창 부분 끝 -->
+	</div>
+</body>
+</html>
