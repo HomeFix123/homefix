@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <!-- [estimation.html] 견적신청 페이지 -->
 
-<html lang="en">
+<!-- 타임리프 설정 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> 
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,25 +13,25 @@
         <title>estimation.html</title>
         
         <!-- CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/all.min.css">
-        <link rel="stylesheet" href="css/animate.min.css">
-        <link rel="stylesheet" href="css/YTPlayer.min.css">
-        <link rel="stylesheet" href="css/slick.css">
-        <link rel="stylesheet" href="css/structure.css">
-        <link rel="stylesheet" href="css/main.css"> 
-        <link rel="stylesheet" href="css/responsive.css">
-        <link rel="stylesheet" href="css/jy.css"> <!-- 개인 CSS 파일 링크 -->
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/css/all.min.css}">
+        <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+        <link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+        <link rel="stylesheet" th:href="@{/css/slick.css}">
+        <link rel="stylesheet" th:href="@{/css/structure.css}">
+        <link rel="stylesheet" th:href="@{/css/main.css}"> 
+        <link rel="stylesheet" th:href="@{/css/responsive.css}">
+        <link rel="stylesheet" th:href="@{/css/jy.css}"> <!-- 개인 CSS 파일 링크 -->
         
         <!-- font -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
 
         <!-- icons -->
-        <link rel="icon" href="images/ico/favicon.ico"> 
-        <link rel="apple-touch-icon" sizes="144x144" href="../images/ico/apple-touch-icon-precomposed.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="../images/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="../images/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon" sizes="57x57" href="../images/ico/apple-touch-icon-57-precomposed.png">  
+        <link rel="icon" th:href="@{/images/ico/favicon.ico}"> 
+        <link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">  
         <!-- icons -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -45,7 +46,7 @@
     
     <body> 
         <div id="preloader">
-            <img src="images/preloader.gif" alt="Image" class="tr-preloader img-fluid">
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
         <header class="sa-header">
@@ -77,8 +78,8 @@
             <div class="sa-menu">
                 <nav class="navbar navbar-expand-lg">
                     <div class="container">
-                        <a class="navbar-brand" href="index.html">
-                            <img src="images/logo.png" alt="Logo" class="img-fluid">
+                        <a class="navbar-brand" th:href="@{/index.html}">
+                            <img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
                         </a>
 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,25 +91,25 @@
                                 <li class="nav-item sa-dropdown">
                                     <a href="#">Home</a>
                                     <ul class="sa-dropdown-menu">
-                                        <li><a href="index.html">Home V-1</a></li>
-                                        <li><a href="index1.html">Home V-2</a></li>
-                                        <li><a href="index2.html">Home V-3</a></li>
+                                        <li><a th:href="@{/index.html}">Home V-1</a></li>
+                                        <li><a th:href="@{/index1.html}">Home V-2</a></li>
+                                        <li><a th:href="@{/index2.html}">Home V-3</a></li>
                                     </ul>
                                 </li>
-                                <li class="active"><a href="about.html">About</a></li>
+                                <li class="active"><a th:href="@{/about.html}">About</a></li>
                                 <li class="sa-dropdown">
                                     <a href="#">Courses</a>
                                     <ul class="sa-dropdown-menu">
-                                        <li><a href="course-grid.html">Course Grid View</a></li>
-                                        <li><a href="course-list.html">Course List View</a></li>
-                                        <li><a href="course-details.html">Course Details</a></li>
+                                        <li><a th:href="@{/course-grid.html}">Course Grid View</a></li>
+                                        <li><a th:href="@{/course-list.html}">Course List View</a></li>
+                                        <li><a th:href="@{/course-details.html}">Course Details</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="tutor.html">Teacher</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a th:href="@{/tutor.html}">Teacher</a></li>
+                                <li><a th:href="@{/blog.html}">Blog</a></li>
+                                <li><a th:href="@{/contact.html}">Contact</a></li>
                                 <li class="sa-dropdown">
-                                    <a href="index.html">Page</a>
+                                    <a th:href="@{/index.html}">Page</a>
                                     <ul class="sa-dropdown-menu">
                                         <li><a href="catagory.html">Catagory</a></li>
                                         <li><a href="profile.html">User Profile</a></li>
@@ -138,7 +139,7 @@
                                                     <span class="remove-icon"><i class="fas fa-times"></i></span>
                                                     <div class="sa-course">
                                                         <div class="course-thumb">
-                                                            <img src="images/course/1.jpg" alt="Image" class="img-fluid">
+                                                            <img th:src="@{/images/course/1.jpg}" alt="Image" class="img-fluid">
                                                         </div><!-- /.course-thumb -->
 
                                                         <div class="course-info">
@@ -152,7 +153,7 @@
                                                     <span class="remove-icon"><i class="fas fa-times"></i></span>
                                                     <div class="sa-course">
                                                         <div class="course-thumb">
-                                                            <img src="images/course/2.jpg" alt="Image" class="img-fluid">
+                                                            <img th:src="@{/images/course/2.jpg}" alt="Image" class="img-fluid">
                                                         </div><!-- /.course-thumb -->
 
                                                         <div class="course-info">
@@ -166,7 +167,7 @@
                                                     <span class="remove-icon"><i class="fas fa-times"></i></span>
                                                     <div class="sa-course">
                                                         <div class="course-thumb">
-                                                            <img src="images/course/3.jpg" alt="Image" class="img-fluid">
+                                                            <img th:src="@{/images/course/3.jpg}" alt="Image" class="img-fluid">
                                                         </div><!-- /.course-thumb -->
 
                                                         <div class="course-info">
@@ -393,7 +394,7 @@
                             <div class="col-md-6 col-lg-3">
                                 <div class="footer-widget">
                                     <div class="footer-logo">
-                                        <a href="#"><img src="images/logo.png" alt="Logo" class="img-fluid"></a>
+                                        <a href="#"><img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid"></a>
                                     </div>
                                     <p>Holisticly aggregate compelling ROI before out-of-the-box benefits. Efficiently create cross functional paradigms without an expanded array of testing procedures.</p>
                                     <div class="footer-social">
@@ -427,7 +428,7 @@
                                     <div class="sa-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img src="images/blog/4.jpg" alt="Image" class="img-fluid"></a>
+                                                <a href="blog-details.html"><img th:src="@{/images/blog/4.jpg}" alt="Image" class="img-fluid"></a>
                                             </div> 
                                         </div>                               
                                         <div class="entry-content">     
@@ -437,7 +438,7 @@
                                     <div class="sa-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img src="images/blog/5.jpg" alt="Image" class="img-fluid"></a>
+                                                <a href="blog-details.html"><img th:src="@{/images/blog/5.jpg}" alt="Image" class="img-fluid"></a>
                                             </div> 
                                         </div>                               
                                         <div class="entry-content">     
@@ -447,7 +448,7 @@
                                     <div class="sa-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img src="images/blog/2.jpg" alt="Image" class="img-fluid"></a>
+                                                <a href="blog-details.html"><img th:src="@{/images/blog/2.jpg}" alt="Image" class="img-fluid"></a>
                                             </div> 
                                         </div>                               
                                         <div class="entry-content">     
@@ -466,10 +467,10 @@
                                     <div class="payment-gateway">
                                         <h4>Payment Gateway</h4> 
                                         <ul class="global-list d-flex">
-                                            <li><img src="images/others/payment1.png" alt="Image" class="img-fluid"></li>
-                                            <li><img src="images/others/payment2.png" alt="Image" class="img-fluid"></li>
-                                            <li><img src="images/others/payment3.png" alt="Image" class="img-fluid"></li>
-                                            <li><img src="images/others/payment4.png" alt="Image" class="img-fluid"></li>
+                                            <li><img th:src="@{/images/others/payment1.png}" alt="Image" class="img-fluid"></li>
+                                            <li><img th:src="@{/images/others/payment2.png}" alt="Image" class="img-fluid"></li>
+                                            <li><img th:src="@{/images/others/payment3.png}" alt="Image" class="img-fluid"></li>
+                                            <li><img th:src="@{/images/others/payment4.png}" alt="Image" class="img-fluid"></li>
                                         </ul>
                                     </div>                      
                                 </div>
@@ -486,18 +487,18 @@
         </div><!-- /.footer -->
 
         <!-- JS -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>  
-        <script src="js/inview.min.js"></script> 
-        <script src="js/slick.min.js"></script>
-        <script src="js/jquery-ui-min.js"></script>  
-        <script src="js/jarallax.min.js"></script>  
-        <script src="js/counterup.min.js"></script> 
-        <script src="js/waypoints.min.js"></script> 
-        <script src="js/YTPlayer.min.js"></script> 
-        <script src="js/validate.js"></script>
-        <script src="js/main.js"></script>  
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>  
+        <script th:src="@{/js/inview.min.js}"></script> 
+        <script th:src="@{/js/slick.min.js}"></script>
+        <script th:src="@{/js/jquery-ui-min.js}"></script>  
+        <script th:src="@{/js/jarallax.min.js}"></script>  
+        <script th:src="@{/js/counterup.min.js}"></script> 
+        <script th:src="@{/js/waypoints.min.js}"></script> 
+        <script th:src="@{/js/YTPlayer.min.js}"></script> 
+        <script th:src="@{/js/validate.js}"></script>
+        <script th:src="@{/js/main.js}"></script>  
         <!-- 카카오 지도 API -->
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>            
         
