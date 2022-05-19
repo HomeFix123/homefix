@@ -390,10 +390,11 @@
 						</div>
 					</div><!-- / .container-fluid -->
 		      </div>
-		      <div class="modal-footer">
-		        <a href="/admin/company/form" class="btn btn-primary">정보 수정</a>
-		        <a href="#" class="btn btn-white" data-animation="animated fadeInLeft">블랙리스트</a>
-		        <a href="#" class="btn btn-primary bg-danger border-danger" data-animation="animated fadeInLeft">계정 삭제</a>
+		      <div class="modal-footer" id="modal-buttons">
+		        <a href="#" class="btn btn-primary company-update" >정보 수정</a>
+		        
+		        <button class="btn btn-primary company-blacklist" value="true">계정 정지</button>
+		        <a href="#" class="btn btn-primary bg-danger border-danger company-delete" data-animation="animated fadeInLeft">계정 삭제</a>
 		      </div>
 		    </div><!-- /모달 내용 -->
 		  </div>

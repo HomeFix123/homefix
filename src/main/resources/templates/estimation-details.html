@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,28 +7,28 @@
         <meta name="author" content="">
         <meta name="description" content="">
         
-        <!-- 내 견적 상세보기 -->
-        <title>내 견적 상세보기</title>
+        <!-- 희망 견적서 상세보기 -->
+        <title>희망 견적서 상세보기</title>
 
         <!-- CSS -->
-        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-        <link rel="stylesheet" th:href="@{/css/all.min.css}">
-        <link rel="stylesheet" th:href="@{/css/animate.min.css}">
-        <link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
-        <link rel="stylesheet" th:href="@{/css/slick.css}">
-        <link rel="stylesheet" th:href="@{/css/structure.css}">
-        <link rel="stylesheet" th:href="@{/css/main.css}"> 
-        <link rel="stylesheet" th:href="@{/css/responsive.css}">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/all.min.css">
+        <link rel="stylesheet" href="css/animate.min.css">
+        <link rel="stylesheet" href="css/YTPlayer.min.css">
+        <link rel="stylesheet" href="css/slick.css">
+        <link rel="stylesheet" href="css/structure.css">
+        <link rel="stylesheet" href="css/main.css"> 
+        <link rel="stylesheet" href="css/responsive.css">
         
         <!-- font -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
 
         <!-- icons -->
-        <link rel="icon" th:href="@{/images/ico/favicon.ico}"> 
-        <link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
-        <link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
-        <link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
-        <link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}"> 
+        <link rel="icon" href="images/ico/favicon.ico"> 
+        <link rel="apple-touch-icon" sizes="144x144" href="../images/ico/apple-touch-icon-precomposed.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="../images/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="../images/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="../images/ico/apple-touch-icon-57-precomposed.png">  
         <!-- icons -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -39,13 +39,13 @@
         <![endif]-->
         <!-- Template Developed By ChtStudio -->
         
-        <!-- myccs -->
-        <link rel="stylesheet" th:href="@{/css/ye/ye.css}">
+        <!-- 개인 css 파일 링크 -->
+        <link rel="stylesheet" href="css/jy.css">
         
     </head>
     <body> 
         <div id="preloader">
-            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+            <img src="images/preloader.gif" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
         <header class="sa-header">
@@ -78,7 +78,7 @@
                 <nav class="navbar navbar-expand-lg">
                     <div class="container">
                         <a class="navbar-brand" href="index.html">
-                            <img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
+                            <img src="images/logo.png" alt="Logo" class="img-fluid">
                         </a>
 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -138,7 +138,7 @@
                                                     <span class="remove-icon"><i class="fas fa-times"></i></span>
                                                     <div class="sa-course">
                                                         <div class="course-thumb">
-                                                            <img th:src="@{/images/course/1.jpg}" alt="Image" class="img-fluid">
+                                                            <img src="images/course/1.jpg" alt="Image" class="img-fluid">
                                                         </div><!-- /.course-thumb -->
 
                                                         <div class="course-info">
@@ -152,7 +152,7 @@
                                                     <span class="remove-icon"><i class="fas fa-times"></i></span>
                                                     <div class="sa-course">
                                                         <div class="course-thumb">
-                                                            <img th:src="@{/images/course/2.jpg}" alt="Image" class="img-fluid">
+                                                            <img src="images/course/2.jpg" alt="Image" class="img-fluid">
                                                         </div><!-- /.course-thumb -->
 
                                                         <div class="course-info">
@@ -166,7 +166,7 @@
                                                     <span class="remove-icon"><i class="fas fa-times"></i></span>
                                                     <div class="sa-course">
                                                         <div class="course-thumb">
-                                                            <img th:src="@{/images/course/3.jpg}" alt="Image" class="img-fluid">
+                                                            <img src="images/course/3.jpg" alt="Image" class="img-fluid">
                                                         </div><!-- /.course-thumb -->
 
                                                         <div class="course-info">
@@ -213,7 +213,8 @@
 
         <section class="breadcrumb-section">
             <div class="container">
-                <h1>내 견적 상세보기</h1>
+                <h1>견적 희망서 상세보기</h1>
+                <p>상담 신청한 견적서를 볼 수 있어요.</p>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                     <li class="breadcrumb-item">Details</li>
@@ -221,7 +222,6 @@
             </div><!-- /.container -->
         </section><!-- /.breadcrumb-section -->  
 
-  
             <div class="section-content course-details bg-white section-padding">
                 <div class="container">
                     <div class="row">
@@ -229,7 +229,7 @@
                             <div class="sa-course">
 
                                 <div class="course-info">
-                                    <h2 class="title" id="estimate_title">내 견적 상세보기</h2>
+                                    <h2 class="title" id="estimate_title">희망 견적서 상세보기</h2>
                                     <p><span class="bold">공간 유형  :</span> 주거</p>
                                     <p><span class="bold">건물 유형 :</span> 아파트</p>
                                     <p><span class="bold">평수 :</span> 38평</p>
@@ -241,57 +241,19 @@
                                     <p><span class="bold">원하는 스타일 :</span></p>
                                     <p>엘레강스 하면서
                                     모던하며 고급스럽고 무난하면서 색은 다양하지만 화려하지않고 질리지않는 스타일 부탁드려요^^</p>
-                                    
-                                 <div class="widget widget_recent_entries">
-                                            <h3 class="widget_title m-0" >Popular Courses</h3>
-                                            <ul>
-                                                <li class="media">
-                                                   
-                                                   <div>
-                                                        <button class="btn btn-primary">확정하기</button>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 15px">
-                                                        <a><span class="post-date">2022/05/16</span></a>
-                                                        <a href="#">0000000000000업체가 시공을 원합니다.</a>
-                                                    </div>
-                                                    
-                                                        
-                                                    
-                                                </li>
-                                                <li class="media">
-                                                   
-                                                    <div>
-                                                        <button class="btn btn-primary">확정하기</button>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 15px">
-                                                        <a><span class="post-date">2022/05/16</span></a>
-                                                        <a href="#">0000000000000업체가 시공을 원합니다.</a>
-                                                    </div>
-                                                </li>
-                                                <li class="media">
-                                                    
-                                                    <div>
-                                                        <button class="btn btn-primary">확정하기</button>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 15px">
-                                                        <a><span class="post-date">2022/05/16</span></a>
-                                                        <a href="#">0000000000000업체가 시공을 원합니다.</a>
-                                                    </div>
-                                                </li>
-                                                <li class="media">
-                                                   
-                                                    <div>
-                                                        <button class="btn btn-primary">확정하기</button>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 15px">
-                                                        <a><span class="post-date">2022/05/16</span></a>
-                                                        <a href="#">0000000000000업체가 시공을 원합니다.</a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
+
                                 </div>
-                            </div><!-- /.sa-course -->                           
+                            </div><!-- /.sa-course -->  
+                            
+                            <div class="warning_div">
+                                <input type="checkbox"> <strong class="warning_cb">해당 고객의 정보를 오용할 경우 법적 제제를 받을 수 있습니다.</strong>
+                            </div>
+                            
+                            <div class="btn_div">
+                                <button class="btn btn-primary decision_btn">확정하기</button>
+                                <button class="btn btn-primary chat_btn">채팅하기</button>
+                            </div>
+                        
                         </div>
     
                     </div><!-- /.row -->
@@ -357,7 +319,7 @@
                             <div class="col-md-6 col-lg-3">
                                 <div class="footer-widget">
                                     <div class="footer-logo">
-                                        <a href="#"><img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid"></a>
+                                        <a href="#"><img src="images/logo.png" alt="Logo" class="img-fluid"></a>
                                     </div>
                                     <p>Holisticly aggregate compelling ROI before out-of-the-box benefits. Efficiently create cross functional paradigms without an expanded array of testing procedures.</p>
                                     <div class="footer-social">
@@ -391,7 +353,7 @@
                                     <div class="sa-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img th:src="@{/images/blog/4.jpg}" alt="Image" class="img-fluid"></a>
+                                                <a href="blog-details.html"><img src="images/blog/4.jpg" alt="Image" class="img-fluid"></a>
                                             </div> 
                                         </div>                               
                                         <div class="entry-content">     
@@ -401,7 +363,7 @@
                                     <div class="sa-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img th:src="@{/images/blog/5.jpg}" alt="Image" class="img-fluid"></a>
+                                                <a href="blog-details.html"><img src="images/blog/5.jpg" alt="Image" class="img-fluid"></a>
                                             </div> 
                                         </div>                               
                                         <div class="entry-content">     
@@ -411,7 +373,7 @@
                                     <div class="sa-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img th:src="@{/images/blog/2.jpg}" alt="Image" class="img-fluid"></a>
+                                                <a href="blog-details.html"><img src="images/blog/2.jpg" alt="Image" class="img-fluid"></a>
                                             </div> 
                                         </div>                               
                                         <div class="entry-content">     
@@ -430,10 +392,10 @@
                                     <div class="payment-gateway">
                                         <h4>Payment Gateway</h4> 
                                         <ul class="global-list d-flex">
-                                            <li><img th:src="@{/images/others/payment1.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment2.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment3.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment4.png}" alt="Image" class="img-fluid"></li>
+                                            <li><img src="images/others/payment1.png" alt="Image" class="img-fluid"></li>
+                                            <li><img src="images/others/payment2.png" alt="Image" class="img-fluid"></li>
+                                            <li><img src="images/others/payment3.png" alt="Image" class="img-fluid"></li>
+                                            <li><img src="images/others/payment4.png" alt="Image" class="img-fluid"></li>
                                         </ul>
                                     </div>                      
                                 </div>
@@ -450,18 +412,18 @@
         </div><!-- /.footer -->
 
         <!-- JS -->
-        <script th:src="@{/js/jquery.min.js}"></script>
-        <script th:src="@{/js/popper.min.js}"></script>
-        <script th:src="@{/js/bootstrap.min.js}"></script>  
-        <script th:src="@{/js/inview.min.js}"></script> 
-        <script th:src="@{/js/slick.min.js}"></script>
-        <script th:src="@{/js/jquery-ui-min.js}"></script>  
-        <script th:src="@{/js/jarallax.min.js}"></script>  
-        <script th:src="@{/js/counterup.min.js}"></script> 
-        <script th:src="@{/js/waypoints.min.js}"></script> 
-        <script th:src="@{/js/YTPlayer.min.js}"></script> 
-        <script th:src="@{/js/jquery-ui-min.js}"></script>
-        <script th:src="@{/js/validate.js}"></script>
-        <script th:src="@{/js/main.js}"></script>     
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>  
+        <script src="js/inview.min.js"></script> 
+        <script src="js/slick.min.js"></script>
+        <script src="js/jquery-ui-min.js"></script>  
+        <script src="js/jarallax.min.js"></script>  
+        <script src="js/counterup.min.js"></script> 
+        <script src="js/waypoints.min.js"></script> 
+        <script src="js/YTPlayer.min.js"></script> 
+        <script src="js/jquery-ui-min.js"></script>
+        <script src="js/validate.js"></script>
+        <script src="js/main.js"></script>    
     </body>
 </html>        
