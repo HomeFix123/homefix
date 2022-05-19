@@ -2,6 +2,7 @@ package com.homefix.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -21,7 +22,10 @@ public class Member {
 	private String tel;
 	private String zipcode;
 	private String addr;
-	private String addr_d;
+	
+	@Column(name = "addr_d")
+	private String addrd;
+	
 	private String email;
 	private Date subdate;
 	private String fav;

@@ -27,16 +27,17 @@ public class BragController {
 	}
 	
 	@PostMapping("/write")
-	public String saveBrag(Brag brag) {
-		bragService.saveBrag(brag);
-		System.out.println("입력성공");
+	public String saveBrag(Brag brag, String cid) {
+		String id = "test";
+		bragService.saveBrag(brag, cid, id);
+		logger.info("입력성공");
 		return "redirect:/brag/";
 	}
 	
 	
 	
 	
-	@GetMapping("/brag/{step}")
+	@GetMapping("/{step}")
 	public void viewPage(@PathVariable String step) {
 		//return "/board/" + step;
 	}
