@@ -33,6 +33,7 @@ public class Brag {
 	private String  loc;
 	
 	@JoinColumn(name = "id")
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private Member member;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
