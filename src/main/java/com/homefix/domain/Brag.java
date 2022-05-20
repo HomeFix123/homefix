@@ -1,6 +1,9 @@
 package com.homefix.domain;
 
+
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.Data;
 
@@ -19,7 +23,9 @@ public class Brag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer bid;
-	private String  b_cont;
+	
+	@Column(name = "b_cont")
+	private String  bcont;
 	private String  bimgadr;
 	private Integer bcnt;
 	private String  hometype;
@@ -29,7 +35,9 @@ public class Brag {
 	private String  job;
 	private String  worker;
 	private String  extrainfo;
-	private String  b_color;
+	
+	@Column(name = "b_color")
+	private String  bcolor;
 	private String  loc;
 	
 	@JoinColumn(name = "id")
@@ -39,5 +47,7 @@ public class Brag {
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name = "cid")
 	private Company company;
+	
+	
 	
 }
