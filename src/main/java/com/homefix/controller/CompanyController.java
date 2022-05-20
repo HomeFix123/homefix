@@ -24,10 +24,7 @@ public class CompanyController {
 	@Autowired
 	CompanyService companyService;
 
-	@RequestMapping("/{step}.do")
-	public String viewPage(@PathVariable String step) {
-		return step;
-	}
+	
 
 	// 사업자 아이디 중복 조회
 
@@ -54,20 +51,18 @@ public class CompanyController {
 
 	// 로그인하기
 
-	@GetMapping("/regist")
+	/* @GetMapping("/regist") */
 
-	public String loginCheck(Company com, HttpSession session, Model model) {
-		model.addAttribute("message", companyService.login(com))
-		
-		
-		if("Y" == companyService.login(com) ) {
-			System.out.println("*******로그인 성공********");
-			session.setAttribute("logemail",com.getId());
-			session.setAttribute("admin", com.get);
-			session.setMaxInactiveInterval(60*60*24);
-		}
-		return "profile";
-	}
+	/*
+	 * public String loginCheck(Company com, HttpSession session, Model model) {
+	 * model.addAttribute("message", companyService.login(com))
+	 * 
+	 * 
+	 * if("Y" == companyService.login(com) ) {
+	 * System.out.println("*******로그인 성공********");
+	 * session.setAttribute("logemail",com.getId()); session.setAttribute("admin",
+	 * com.get); session.setMaxInactiveInterval(60*60*24); } return "profile"; }
+	 */
 
 	/*
 	 * // 메인에서 사업자 로그인 페이지로 이동
