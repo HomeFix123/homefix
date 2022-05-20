@@ -4,12 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import lombok.Data;
 
 @Data
 @Entity(name = "company")
+@Table(name = "company")
 public class Company {
 	@Id
 	private String cid;
@@ -24,6 +26,8 @@ public class Company {
 	private String co_ceo;
 	private String co_logo;
 	private Integer co_cnt;
+	
+	private Boolean enabled;
 
 	@Transient
 	private int chatting;
