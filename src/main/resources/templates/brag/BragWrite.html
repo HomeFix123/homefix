@@ -389,19 +389,31 @@
         </header><!-- /.sa-header -->  
 		
 
-
+	<form id="writeinfo" >
         <div class="sg-section">
             <div class="section-content course-details bg-white section-padding">
                 <div class="container">
                     <div class="row justify-content-md-center">
                         <div class="col-lg-8">
                             <div class="sa-course">
-                            <button class="writedetailbtn">후기작성 세부사항</button>
+                            <button type="button" class="writedetailbtn">후기작성 세부사항</button>
                                 <div class="writedetail">
                                 	
                                 	<div class="input-group mb-3">
-									  <label class="input-group-text" for="inputGroupSelect01">주거형태</label>
-									  <select class="form-select" id="inputGroupSelect01">
+									  <label class="input-group-text" for="cid">업체명</label>
+									  <select class="form-select" id="cid">
+									    <option disabled selected>계약 업체목록</option>
+									    <option value="1">건희네</option>
+									    <option value="2">영은네</option>
+									    <option value="3">혜윤네</option>
+									    <option value="4">진영네
+									  </select>
+									</div>
+                                	
+                                	
+                                	<div class="input-group mb-3">
+									  <label class="input-group-text" for="hometype">주거형태</label>
+									  <select class="form-select" id="hometype">
 									    <option disabled selected>골라줭</option>
 									    <option value="1">마이룸</option>
 									    <option value="2">원룸</option>
@@ -418,8 +430,8 @@
 									</div>
 									
 									<div class="input-group mb-3">
-									  <label class="input-group-text" for="inputGroupSelect01">작업분야</label>
-									  <select class="form-select" id="inputGroupSelect01">
+									  <label class="input-group-text" for="job">작업분야</label>
+									  <select class="form-select" id="job">
 									    <option disabled selected>골라</option>
 									    <option value="1">홈스타일링</option>
 									    <option value="2">리모델링</option>
@@ -427,8 +439,8 @@
 									  </select>
 									</div>
 									<div class="input-group mb-3">
-									  <label class="input-group-text" for="inputGroupSelect01">가족형태</label>
-									  <select class="form-select" id="inputGroupSelect01">
+									  <label class="input-group-text" for="family">가족형태</label>
+									  <select class="form-select" id="family">
 									    <option disabled selected>Choose...</option>
 									    <option value="1">싱글</option>
 									    <option value="2">신혼/부부</option>
@@ -436,8 +448,8 @@
 									  </select>
 									</div>
 									<div class="input-group mb-3">
-									  <label class="input-group-text" for="inputGroupSelect01">작업자</label>
-									  <select class="form-select" id="inputGroupSelect01">
+									  <label class="input-group-text" for="worker">작업자</label>
+									  <select class="form-select" id="worker">
 									    <option disabled selected>Choose...</option>
 									    <option value="1">셀프 - DLY</option>
 									    <option value="2">하프셀프</option>
@@ -458,7 +470,7 @@
 									<div class="previewImage" >
 										<label class="previewImagebtn" for="inputImage">섬네일 미리보기</label>
 										<img style="width: 100%;" id="previewImage" src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload">
-										<input style="display: block; visibility: hidden;" type="file" accept="image/*" onchange="loadFile(this)" id="inputImage">  
+										<input style="display: block; visibility: hidden;" type="file" accept="image/*"  id="inputImage">  
                                 	</div>
                                 </div><!-- /.writedetail -->
                             </div><!-- /.sa-course -->                           
@@ -481,7 +493,7 @@
                                     <input type="text" placeholder="제목을 입력해주세요." class="writeTitle"/>
                                     <div id="summernote"></div>
                                 <div style="text-align: center;">
-                                    <input type="button" class="writebtn" value="작성">
+                                    <button type="button" class="writebtn">작성</button>
                                 </div>    
 									
 
@@ -492,7 +504,7 @@
 				</div>
 			</div>
 		</div>
-	
+	</form>
 		   
 
         <!-- JS -->
@@ -591,6 +603,38 @@
 			    var container = document.getElementById('image-show');
 			    container.appendChild(newImage);
 			};
+			
+			
+			$('.writebtn').click(function() {
+				
+				const formData = new FormData();
+				formData.append("fileImage", $('#inputImage')[0].files[0]);
+				console.log(formData);
+/* 				 $.ajax({
+					type : 'post',
+					url : 'http://140.238.11.118:5000/upload/',
+					data : formData,
+					processFata : false,
+					contentType:false, 
+					success: function(data){
+						
+					}
+				 });
+					 */
+					
+					
+				
+				
+			})
+			
+			// uuid 생성
+			function uuid() {
+			  function _s4() {
+			    return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+			  }
+			  return _s4() + _s4() + '-' + _s4() + '-' + _s4() + '-' + _s4() + '-' + _s4() + _s4() + _s4();
+			}
+			
         	
         	});
         
