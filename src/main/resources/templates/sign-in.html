@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- 타임리프설정 -->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -296,14 +297,14 @@
 										<div class="tab-pane fade" id="contact" role="tabpanel"
 											aria-labelledby="contact-tab">
 											<form class="ragister-form" name="ragister-form"
-												method="post" action="#">
+												method="post" action="regist">
 												<div class="form-group text-left mb-0">
-													<label>Id</label> <input type="email" class="form-control"
-														required="required" placeholder="아이디">
+													<label>Id</label> <input type="text" class="form-control"
+														 placeholder="아이디" name="id">
 												</div>
 												<div class="form-group text-left mb-0">
 													<label>Password</label> <input type="password"
-														class="form-control" required="required"
+														class="form-control" name="pass"
 														placeholder="비밀번호">
 												</div>
 												<button class="btn btn-primary" type="submit">로그인</button>
@@ -313,11 +314,7 @@
 												
 													<a id="id_find" href="#">아이디/비밀번호 찾기</a>
 												</div>
-												<div class="buttons">
-													<a class="facebook" href="#"><span> <i
-															class="fa-solid fa-comment"></i></span>카카오로 로그인 하기</a>
-
-												</div>
+												
 											</form>
 											<!-- /.contact-form -->
 

@@ -3,21 +3,16 @@
 	padding: 30px;
 }
 
-.fa-solid{
-	font-size: 80px;
-	margin: 10px; 
-	position:relative;
-	right:30%;
-	color: #5135dc;
-}
+
 
 .imgtutor {
     width: 200px;
     height: 200px; 
-    border-radius: 100%;
+  border-radius: 100%;
    overflow: hidden;
    position: relative;
   display: inline-block;
+ 
   
    
 }
@@ -30,8 +25,15 @@
 
 .companyImg{
 	text-align: center;
+	background:#8080801a;
 	
-	box-shadow: 5px 5px #e2dcdc;
+	padding-top:20px;
+	
+	
+    border-radius: 10px;
+	
+    /* 그림자 부분 */
+    box-shadow: 2px 2px 2px 2px #e2dcdcb0;;
 }
 
 .partner_detail__title{
@@ -39,5 +41,26 @@
 	margin: 0px;
 }
 
+.entry-thumbnail img{
+	width: 50%;
+	
+}
+/*******payment*****************************************************/
 
-.
+.justify-content-end{
+display: inline-block;	
+}
+select,option{
+	font-size:25px;
+}
+
+#monthSelect{
+	display: inline;
+}
+
+#paymentAdventage{
+	margin: 100px 20px 10px 20px;
+}
+#pridiv{
+		margin: 50px;
+}
