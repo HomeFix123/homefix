@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.homefix.domain.CompanyInfo;
+import com.homefix.domain.Member;
 import com.homefix.service.AdminService;
 
 @RestController
@@ -29,5 +30,19 @@ public class AdminRestController {
 	@PostMapping(path = "/company/blacklist/{cid}")
 	public void enableBlacklist(@PathVariable String cid, Boolean enabled) {
 		adminService.enableBlacklist(cid, enabled);
+	}
+	
+	@GetMapping(path = "/member/{id}")
+	public Member getMember(@PathVariable String id) {
+		if(id == null) {
+			return null;
+		}
+		
+		return adminService.getMember(id);
+	}
+	
+	@PostMapping(path = "/member/blacklist/{id}")
+	public void enableBlackMember(@PathVariable String id, Boolean enabled) {
+		adminService.enableBlackMember(id, enabled);
 	}
 }

@@ -4,9 +4,22 @@ import java.util.List;
 
 import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
+import com.homefix.domain.Member;
 import com.homefix.domain.Payment;
 
 public interface AdminService {
+	
+	// 고객 목록 불러오기
+	public List<Member> getMemberList();
+	
+	// 고객 아이디로 정보 불러오기
+	public Member getMember(String id);
+	
+	// 고객 정보 수정
+	public void updateMember(Member member);
+	
+	// 고객 블랙리스트 지정/해제
+	public void enableBlackMember(String id, Boolean enabled);
 	
 	// 업체 목록 불러오기
 	public List<Company> getCompanyList();

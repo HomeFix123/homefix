@@ -35,8 +35,9 @@ public class AdminController {
 	}
 	
 	@GetMapping(path = "/member")
-	public String moveMemberPage() {
+	public String moveMemberPage(Model model) {
 		logger.info("관리자 고객관리");
+		model.addAttribute("memberList", adminService.getMemberList());
 		return "/admin/member";
 	}
 	
@@ -64,7 +65,7 @@ public class AdminController {
 	
 	@PutMapping(path = "/company/form/{cid}")
 	public String UpdateCompany(Company company, Model model) {
-		logger.info("[company]["+ company.getCid() + "] 업체 수정");
+		logger.info("[company]["+ company.getId() + "] 업체 수정");
 		adminService.updateCompany(company);
 		return "redirect:/admin/company";
 	}

@@ -7,20 +7,70 @@ import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
+import com.homefix.domain.Member;
 import com.homefix.domain.Payment;
 import com.homefix.persistence.CompanyInfoRepository;
 import com.homefix.persistence.CompanyRepository;
+import com.homefix.persistence.MemberRepository;
 import com.homefix.persistence.PaymentRepository;
 
 @Service
 public class AdminServiceImpl implements AdminService {
+	
+	@Autowired
+	MemberRepository memberRepo;
+	
+	/*
+	 * 고객 전체 목록 불러오기
+	 */
+	@Override
+	public List<Member> getMemberList(){
+		
+		return (List<Member>)memberRepo.findAll();
+	}
+	
+	/*
+	 * 고객 아이디로 고객 정보 가져오기
+	 */
+	@Override
+	public Member getMember(String id) {
+		
+		return memberRepo.findById(id).get();
+	}
 
+	/*
+	 * 고객 정보 수정
+	 */
+	@Override
+	public void updateMember(Member member) {
+		Member temp = memberRepo.findById(member.getId()).get();
+		
+		temp.setEmail(member.getEmail());
+		temp.setNickname(member.getNickname());
+		temp.setProfilimg(member.getProfilimg());
+		
+		memberRepo.save(temp);
+		
+	}
+
+	/*
+	 * 고객 정보 수정
+	 */
+	@Override
+	public void enableBlackMember(String id, Boolean enabled) {
+		Member temp = memberRepo.findById(id).get();
+		temp.setEnabled(enabled);
+		
+		memberRepo.save(temp);
+	}
+	
+	
+	
 	@Autowired
 	CompanyRepository companyRepo;
 	
 	/*
 	 * 업체 전체 목록 불러오기
-	 * 
 	 */
 	@Override
 	public List<Company> getCompanyList() {
@@ -43,10 +93,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void updateCompany(Company company) {
 		
-		Company temp = companyRepo.findById(company.getCid()).get();
-		temp.setCo_logo(company.getCo_logo());
-		temp.setCo_name(company.getCo_name());
-		temp.setCo_email(company.getCo_email());
+		Company temp = companyRepo.findById(company.getId()).get();
+		temp.setLogo(company.getLogo());
+		temp.setName(company.getName());
+		temp.setEmail(company.getEmail());
 		
 		companyRepo.save(temp);
 	}
@@ -56,7 +106,6 @@ public class AdminServiceImpl implements AdminService {
 	 */
 	@Override
 	public void enableBlacklist(String cid, Boolean enabled) {
-		System.out.println(enabled);
 		Company company = companyRepo.findById(cid).get();
 		company.setEnabled(enabled);
 		companyRepo.save(company);
@@ -87,6 +136,8 @@ public class AdminServiceImpl implements AdminService {
 		
 		return paymentRepo.findByCid(cid);
 	}
+
+	
 
 	
 

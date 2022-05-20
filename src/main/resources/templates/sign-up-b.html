@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- 타임리프설정 -->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -252,15 +253,18 @@
 							<div class="col-lg-6 offset-lg-3">
 								<div class="account-content">
 									<h1>사업자 회원가입</h1>
+									
+									
+									
 									<form class="ragister-form" name="ragister-form" method="post"
-										action="#">
+										 th:action="signUpB">
 
 										<div class="form-group text-left mb-0">
 											<label for='bs_memberId'>아이디<span class="error_box"></span></label>
 											<div class="row">
 												<div class="id_check col-md-9">
 													<input type="text" class="form-control" id='bs_memberId'
-														name='bs_memberId' placeholder="영문자로 시작 영문자 또는 숫자 6~20자">
+														name='id' placeholder="영문자로 시작 영문자 또는 숫자 6~20자">
 												</div>
 												<div class='id_check col-md-3'>
 													<button type="button" id="bs_btn_idCheak"
@@ -273,14 +277,14 @@
 										<div class="form-group text-left mb-0">
 											<label for='bs_Name'>업체명<span class="error_box"></span></label>
 											<input type="text" class="form-control" id='bs_Name'
-												name='bs_memberName' placeholder="업체명">
+												name='name' placeholder="업체명">
 										</div>
 
 
 										<div class="form-group text-left mb-0">
 											<label for='bs_memberName'>대표자명<span class="error_box"></span></label>
 											<input type="text" class="form-control" id='bs_memberName'
-												name='bs_memberName' placeholder="대표자명">
+												name='ceo' placeholder="대표자명">
 										</div>
 
 										<div class="form-group first field--not-empty">
@@ -288,7 +292,7 @@
 											<div class="row">
 												<div class=" col-md-9">
 													<input type="text" class="form-control" id="bs_businessNum"
-														name="bs_businessNum" placeholder="숫자 10자">
+														name="num" placeholder="숫자 10자">
 												</div>
 
 												<div class=' col-md-3'>
@@ -304,20 +308,20 @@
 											<label for='bs_memberPassword'>비밀번호<span
 												class="error_box"></span>
 											</label><input type="password" class="form-control"
-												id='bs_memberPassword' name='bs_memberPassword'
+												id='bs_memberPassword' name='pass'
 												placeholder="영문, 숫자, 특수문자를 최소 한가지씩 조합하여 8~16자">
 										</div>
 										<div class="form-group first field--not-empty">
 											<label for='bs_passwordCheck'>비밀번호 확인<span
 												class="error_box"></span></label> <input type="password"
-												class="form-control" id="bs_passwordCheck" name='bs_passwordCheck'
+												class="form-control" id="bs_passwordCheck" name='pass'
 												placeholder="비밀번호 확인">
 										</div>
 										<div class="form-group">
 											<label for="bs_postNum">우편번호<span class="error_box"></span></label>
 											<div class='row'>
 												<div class="email_check col-md-8">
-													<input type="text" id="bs_postNum" name="bs_postNum"
+													<input type="text" id="bs_postNum" name="zip"
 														placeholder="우편번호" class="form-control" readonly>
 												</div>
 												<div class='email_check col-md-4'>
@@ -325,9 +329,9 @@
 														class="btn btn-primary">주소찾기</button>
 												</div>
 											</div>
-											<input type="text" id="bs_firstAddress" name="bs_firstAddress"
+											<input type="text" id="bs_firstAddress" name="addr"
 												placeholder="주소" class="form-control" readonly> <input
-												type="text" id="bs_secondAddress" name="bs_secondAddress"
+												type="text" id="bs_secondAddress" name="addrd"
 												placeholder="상세주소" class="form-control">
 										</div>
 
@@ -336,7 +340,7 @@
 											<div class="row">
 												<div class="email_check col-md-9">
 													<input type="email" class="form-control" id="bs_memberEmail"
-														name="bs_memberEmail">
+														name="email">
 												</div>
 												<div class='email_check col-md-3'>
 													<button type="button" id="bs_btn_emailCheak"
@@ -348,7 +352,7 @@
 										<div class="form-group first field--not-empty">
 											<label for="bs_memberTel">전화번호<span class="error_box"></span></label>
 											<input type="tel" class="form-control" id="bs_memberTel"
-												name="bs_memberTel">
+												name="tel">
 										</div>
 
 
