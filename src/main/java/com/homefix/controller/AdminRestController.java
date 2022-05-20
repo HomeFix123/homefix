@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +28,7 @@ public class AdminRestController {
 		return adminService.getCompanyDetail(cid);
 	}
 	
-	@PostMapping(path = "/company/blacklist/{cid}")
+	@PutMapping(path = "/company/blacklist/{cid}")
 	public void enableBlacklist(@PathVariable String cid, Boolean enabled) {
 		adminService.enableBlacklist(cid, enabled);
 	}
@@ -41,7 +42,7 @@ public class AdminRestController {
 		return adminService.getMember(id);
 	}
 	
-	@PostMapping(path = "/member/blacklist/{id}")
+	@PutMapping(path = "/member/blacklist/{id}")
 	public void enableBlackMember(@PathVariable String id, Boolean enabled) {
 		adminService.enableBlackMember(id, enabled);
 	}

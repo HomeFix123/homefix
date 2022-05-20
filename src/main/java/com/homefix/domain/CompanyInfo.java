@@ -30,7 +30,7 @@ public class CompanyInfo {
 	@JoinColumn(name = "cinfo_id")
 	private List<CompanySpecial> specialty;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name = "cp_arid")
 	private List<CompanyArea> area;
 	

@@ -44,7 +44,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void updateMember(Member member) {
 		Member temp = memberRepo.findById(member.getId()).get();
-		
+		System.out.println(temp);
 		temp.setEmail(member.getEmail());
 		temp.setNickname(member.getNickname());
 		temp.setProfilimg(member.getProfilimg());

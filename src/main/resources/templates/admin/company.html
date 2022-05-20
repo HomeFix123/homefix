@@ -132,8 +132,8 @@
 			                        			<table id="example" class="display" style="width:100%">
 			                        				<tbody>
 			                        					<tr th:each="c : ${companyList}">
-			                        						<td class="companyId" th:text="${c.cid}"></td>
-			                        						<td th:text="${c.co_name}"></td>
+			                        						<td class="companyId" th:text="${c.id}"></td>
+			                        						<td th:text="${c.name}"></td>
 			                        						<td th:text="${c.chatting}"></td>
 			                        						<td th:text="${c.contract}"></td>
 			                        						<td th:text="${#dates.format(c.pm_day, 'MM-dd')}"></td>
@@ -402,12 +402,6 @@
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.0/datatables.min.js"></script>
         <script th:src="@{/js/admin/company.js}"></script>
         
-        <script>
-       	
-
-
-
-        </script>
         
         
     </body>

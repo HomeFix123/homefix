@@ -131,7 +131,7 @@
                                             <div class="tab-pane fade show active" id="memberList" role="tabpanel" aria-labelledby="memberList-tab">
 			                        			<table id="example" class="display" style="width:100%">
 			                        				<tr th:each="m : ${memberList}">
-			                        					<td th:text="${m.id}"></td>
+			                        					<td class="id" th:text="${m.id}"></td>
 			                        					<td th:text="${m.nickname}"></td>
 			                        					<td th:text="${m.name}"></td>
 			                        					<td th:text="${#dates.format(m.subdate, 'yy-MM-dd')}"></td>
@@ -190,7 +190,7 @@
 											<div class="col-md-6">
 												<!-- 프로필 이미지 -->
 												<img src="../images/course/1.jpg" alt="Image"
-													class="img-fluid">
+													class="img-fluid" id="profileimg">
 											</div>
 										</div>
 										<div class="pt-2">
@@ -215,7 +215,7 @@
 												</tr>
 												<tr>
 													<td>이메일</td>
-													<td colspan="3">test@test.com</td>
+													<td colspan="3" class="email">test@test.com</td>
 												</tr>
 												<tr>
 													<td>생년월일</td>
@@ -312,10 +312,10 @@
 						</div>
 					</div><!-- / .container-fluid -->
 		      </div>
-		      <div class="modal-footer">
-		        <a href="#" class="btn btn-primary">정보 수정</a>
-		        <a href="#" class="btn btn-white">블랙리스트</a>
-		        <a href="#" class="btn btn-primary bg-danger border-danger" data-animation="animated fadeInLeft">계정 삭제</a>
+		      <div class="modal-footer" id="modal-buttons">
+		        <a href="#" class="btn btn-primary modify">정보 수정</a>
+		        <button type="button" class="btn btn-primary blacklist" >블랙리스트</button>
+		        <button type="button" class="btn btn-primary bg-danger border-danger delete">계정 삭제</button>
 		      </div>
 		    </div><!-- /모달 내용 -->
 		  </div>
