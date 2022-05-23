@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<!-- 타임리프설정 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,24 +10,24 @@
         <title>Educam | Education & Courses HTML Template.</title>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/all.min.css">
-        <link rel="stylesheet" href="css/animate.min.css">
-        <link rel="stylesheet" href="css/YTPlayer.min.css">
-        <link rel="stylesheet" href="css/slick.css">
-        <link rel="stylesheet" href="css/structure.css">
-        <link rel="stylesheet" href="css/main.css"> 
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/css/all.min.css}">
+        <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+        <link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+        <link rel="stylesheet" th:href="@{/css/slick.css}">
+        <link rel="stylesheet" th:href="@{/css/structure.css}">
+        <link rel="stylesheet" th:href="@{/css/main.css}"> 
+        <link rel="stylesheet" th:href="@{/css/responsive.css}">
         
         <!-- font -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
 
         <!-- icons -->
-        <link rel="icon" href="images/ico/favicon.ico"> 
-        <link rel="apple-touch-icon" sizes="144x144" href="../images/ico/apple-touch-icon-precomposed.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="../images/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="../images/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon" sizes="57x57" href="../images/ico/apple-touch-icon-57-precomposed.png">  
+        <link rel="icon" th:href="@{/images/ico/favicon.ico}"> 
+        <link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}"> 
         <!-- icons -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -39,142 +38,14 @@
         <![endif]-->
         <!-- Template Developed By ChtStudio -->
         
-        <style type="text/css">
-        	.mr-3 {
-        		margin-right: 30px; 
-        	}
-        	
-        	.entry-meta{
-        		left:auto;
-        		right: 5%;
-        		bottom: 5%;
-        		background-color:  transparent;
-        	}
-        	
-        	.entry-meta i{
-        		font-size: 20px;
-        		
-        	}
-        	
-        	.text-right{
-        		text-align: right;
-        	}
-        	
-        	.user-img {
-        		border-radius: 100%;
-        		height: 40px;
-        		width: 40px;
-        		display: inline;
-        	}
-        	.user-img-sm {
-        		border-radius: 100%;
-        		height: 20px;
-        		width: 20px;
-        		
-        		
-        	}
-        	.slick-slide .user-img-sm{
-        		display: inline;
-        	}
-        	
-        </style>
+        <link rel="stylesheet" th:href="@{/css/main_page.css}">
     </head>
     <body> 
         <div id="preloader">
             <img src="images/preloader.gif" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
-        <header class="sa-header">
-            <div class="sa-menu">
-                <nav class="navbar navbar-expand-lg">
-                    <div class="container">
-                        <a class="navbar-brand" href="index.html">
-                            <img src="images/logo.png" alt="Logo" class="img-fluid">
-                        </a>
-
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-                        </button>                       
-                        
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li><a href="#">내방어때</a></li>
-                                <li><a href="about.html">꾸미기팁</a></li>
-                                <li><a href="about.html">시공업체</a></li>
-                                <li><a href="#">견적 신청</a></li>
-                            </ul>       
-                        </div>
-                        <div class="right-content">
-                            <div class="user-option">
-                            	
-                                <ul class="global-list">
-                                    <li>
-                                        <i class="far fa-user"></i>
-                                    </li>
-                                    <li>
-                                    	<i class="far fa-question-circle"></i>
-                                    </li>
-                                    <li class="sa-dropdown">
-                                        <span class="cart-number">3</span>
-                                        <i class="far fa-bell"></i>
-                                        <div class="sa-dropdown-menu">
-                                            <ul class="global-list">
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a href="course-details.html" >Visual Basic Web Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a href="course-details.html">Computer Technologies Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a href="course-details.html" >Visual Basic Web Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                            </ul>                                  
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="sa-search-form">
-                                            <div class="search-icon">
-                                                <i class="fas fa-search"></i>
-                                            </div>
-                                            <div class="search-form text-center open-search">
-                                                <div class="close-search">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                </div>
-                                                <form action="#" id="search" method="get">
-                                                    <input name="search" type="text" placeholder="Enter keyword...">
-                                                    <button type="submit"><i class="fas fa-search"></i></button>
-                                                </form><!-- /form -->
-                                            </div><!-- /search-form -->                    
-                                        </div>                       
-                                    </li>
-                                </ul>
-                            </div>                          
-                        </div>
-                    </div><!-- /.container -->
-                </nav><!-- /.navbar -->                                
-            </div><!-- /.sa-menu -->
-        </header><!-- /.sa-header -->        
+        <div th:replace="/sections/header :: header"></div>      
                                         
         <div id="hero-slider" class="carousel slide hero-content" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -221,7 +92,6 @@
                     </div>
                 </div>
             </div><!-- /.carousel-inner -->
-
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#hero-slider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#hero-slider" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -241,7 +111,6 @@
         <div class="sa-section">
             <div class="section-content section-padding">
                 <div class="container">
-
                     <div class="sg-category-content">
                         <div class="row">
                             <div class="col-6 col-sm-4 col-lg-2">
@@ -401,7 +270,6 @@
                             <a href="course-grid.html" class="btn btn-primary">더보기</a>
                         </div>                         
                     </div><!-- /.section-header -->
-
                     <div class="sa-course-content">
                         <div class="sa-course-slider">
                             <div class="sa-course">
@@ -517,116 +385,14 @@
                                     </div>
                                 </div><!-- /.course-info -->
                             </div><!-- /.sg-course -->
-
-                            
-                                                                            
                         </div><!-- /.sg-course-slider -->
                     </div><!-- /sg-course-content -->
-
                 </div><!-- /.container -->
             </div><!-- /.section-content -->
         </div><!-- /.sa-section -->     
 
         
-        <div class="footer">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="footer-content">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <div class="footer-logo">
-                                        <a href="#"><img src="images/logo.png" alt="Logo" class="img-fluid"></a>
-                                    </div>
-                                    <p>Holisticly aggregate compelling ROI before out-of-the-box benefits. Efficiently create cross functional paradigms without an expanded array of testing procedures.</p>
-                                    <div class="footer-social">
-                                        <ul class="global-list">
-                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        </ul>
-                                    </div>                           
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget px-md-4">
-                                    <h3>Quik Links</h3>
-                                    <ul class="global-list">
-                                        <li><a href="#">All Courses</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Our Blogs</a></li>
-                                        <li><a href="#">Teacher</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                        <li><a href="#">Terms</a></li>
-                                        <li><a href="#">Carrer</a></li>
-                                    </ul>                             
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <h3>Popular Courses</h3>
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img src="images/blog/4.jpg" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a href="blog-details.html">Sed ut perspiciatis unde iste</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post --> 
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img src="images/blog/5.jpg" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a href="blog-details.html">Essential Training Training Examples</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post --> 
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img src="images/blog/2.jpg" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a href="blog-details.html">Python Programming Essential Training</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post -->                            
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <h3>Subscribe</h3>
-                                    <form action="#" class="sa-form">
-                                        <input type="email" class="form-control" placeholder="Email address" required="">
-                                        <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                                    </form> 
-                                    <div class="payment-gateway">
-                                        <h4>Payment Gateway</h4> 
-                                        <ul class="global-list d-flex">
-                                            <li><img src="images/others/payment1.png" alt="Image" class="img-fluid"></li>
-                                            <li><img src="images/others/payment2.png" alt="Image" class="img-fluid"></li>
-                                            <li><img src="images/others/payment3.png" alt="Image" class="img-fluid"></li>
-                                            <li><img src="images/others/payment4.png" alt="Image" class="img-fluid"></li>
-                                        </ul>
-                                    </div>                      
-                                </div>
-                            </div>
-                        </div><!-- /.row -->
-                    </div>
-                </div><!-- /.container -->
-            </div>
-            <div class="footer-bottom">
-                <div class="container text-center">
-                    <span>Copyright &copy; 2021 ChtStudio - All Rights Reserved.</span>
-                </div><!-- /.container -->
-            </div>
-        </div><!-- /.footer -->
+        <div th:replace="/sections/footer :: footer"></div>  
 
         <!-- JS -->
         <script src="js/jquery.min.js"></script>
