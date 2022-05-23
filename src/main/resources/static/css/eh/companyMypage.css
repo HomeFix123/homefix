@@ -1,0 +1,26 @@
+/*companyprofile  */
+#pills-tabContent {
+	-ms-flex: 0 0 80.333333%;
+	flex: 0 0 100%;
+	max-width: 100%;
+}
+
+#pills-home-tab {
+	color: #fff;
+	background-color: #1abc9c;
+	margin: 1px;
+	width: 80px;
+	font-size: 14px;
+}
+
+#pills-profile-tab {
+	color: #fff;
+	background-color: #1abc9c;
+	margin: 1px;
+	width: 90px;
+	font-size: 14px;
+}
+
+#paymentAdventage{
+margin-top: 50px;
+}

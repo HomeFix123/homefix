@@ -1,5 +1,7 @@
 package com.homefix.service;
 
+import java.util.List;
+
 import com.homefix.domain.Company;
 
 public interface CompanyService {
@@ -18,7 +20,7 @@ public interface CompanyService {
 	public String companyNumberCheck(String num);
 
 	//로그인 성공
-	public String login(Company com);
+	public List<Company> login(Company com);
 
 	// 사업자 회원 탈퇴
 	public void companyDelete(String id);
