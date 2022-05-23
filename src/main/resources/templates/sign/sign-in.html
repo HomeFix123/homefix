@@ -282,7 +282,9 @@
 													<label>Password</label> <input type="password" name="pass"
 														class="form-control" 
 														placeholder="비밀번호">
+														<input type="checkbox">아이디 저장하기</input>
 												</div>
+												
 												<button class="btn btn-primary" type="submit">로그인</button>
 												<div class="middle-content">
 													<a class='btn btn-primary' th:href='@{/sign/sign-agree-m}'>회원가입</a>
@@ -307,7 +309,17 @@
 													<label>Password</label> <input type="password"
 														class="form-control" name="pass"
 														placeholder="비밀번호">
+														<input type="checkbox">아이디 저장하기</input>
 												</div>
+												
+												
+												<span id="errorBox" th:text="${message}" hidden ></span>
+												<span id="errorBoxReal"></span>
+												
+												
+												
+												
+												
 												<button class="btn btn-primary" type="submit">로그인</button>
 												<div class="middle-content">
 													<a class='btn btn-primary' th:href='@{/sign/sign-agree-b}'>회원가입</a>
@@ -418,5 +430,8 @@
 	<script th:src="@{/js/main.js}"></script>
 	<!--font asome js-->
 	<script src="https://kit.fontawesome.com/2173f645ed.js"></script>
+	<!-- eunhye js -->
+	<script th:src="@{/js/eh/sign-up-b.js}"></script>
+	
 </body>
 </html>
