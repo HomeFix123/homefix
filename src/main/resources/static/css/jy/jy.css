@@ -179,24 +179,81 @@
 	margin-bottom: 10px;
 }
 
-/********************************************************************/
+/* 인테리어 팁 페이지 ******************************************************************/
+/* 인테리어 팁용 css */
+
+* {
+    box-sizing: border-box;
+    font-family: 'helvetica neue', 'Apple SD Gothic Neo', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #fafafa;
+    padding: 0;
+    margin: 0;
+}
+
+p,
+span {
+    font-size: 14px;
+}
+
+#interiortip_all {
+    display: flex;
+    justify-content: center;
+}
+
+#tip_header{
+    height: 50px;
+}
+header .profile-of-article{
+    margin-top: 12px;
+    margin-left: 10px;
+}
+
+#post_atl{
+    /*background-color: #F5DA81;*/
+    border-radius: 10px;
+}
 
 
+/* top 버튼 */
+#toTop { 
+ position: fixed; /* 포지션 고정 */ 
+bottom: 50px; /* 밑에서 100px */ 
+left: 90%;
+/*display: none;  보여지지 없음 - 기본적으로 안보여지게 */ 
+z-index: 9999; /* 포지션을 먼저 지정후 z-좌표(레이어) : 9999입니다. */ 
+}
+#insertTip{ 
+ position: fixed; /* 포지션 고정 */ 
+bottom: 100px; /* 밑에서 100px */ 
+left: 87.5%;
+/*display: none;  보여지지 없음 - 기본적으로 안보여지게 */ 
+z-index: 9999; /* 포지션을 먼저 지정후 z-좌표(레이어) : 9999입니다. */ 
+ text-align: center;
+ color:white;
+ width:98px;
+ height:40px;
+ 
+}
+/* top버튼 끝 */
 
-/*----------------------------------------------------------글쓰기 버튼*/
+
+/* 글쓰기 버튼----------------------------*/
 /* From uiverse.io by @alexmaracinaru */
 button {
  cursor: pointer;
  font-weight: 700;
  font-family: Helvetica,"sans-serif";
  transition: all .2s;
- padding: 10px 20px;
+ padding-left: 0px;
  border-radius: 100px;
  background: #1abc9c;
  border: 1px solid transparent;
- display: flex;
  align-items: center;
- font-size: 17px;
+ font-size: 15px;
+ text-align: center;
 }
 
 button:hover {
@@ -216,9 +273,5 @@ button:hover svg {
 button:active {
  transform: scale(0.95);
 }
-
-
-
-
-
 /*=================================글쓰기 버튼 끝*/
+/* 인테리어 팁 페이지 끝******************************************************************/
