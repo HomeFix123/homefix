@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,16 +10,17 @@
 <title>Educam | Education & Courses HTML Template.</title>
 
 <!-- CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/all.min.css">
-<link rel="stylesheet" href="css/animate.min.css">
-<link rel="stylesheet" href="css/YTPlayer.min.css">
-<link rel="stylesheet" href="css/slick.css">
-<link rel="stylesheet" href="css/structure.css">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/responsive.css">
-<!-- eunhye css -->
-<link rel="stylesheet" href="css/eh/course-details.css">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/all.min.css}">
+<link rel="stylesheet" th:href="@{/css/animate.min.css}">
+<link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+<link rel="stylesheet" th:href="@{/css/slick.css}">
+<link rel="stylesheet" th:href="@{/css/structure.css}">
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="stylesheet" th:href="@{/css/responsive.css}">
+<!--eunhye css  -->
+<link rel="stylesheet" th:href="@{/css/eh/course-details.css}">
+
 
 <!-- font -->
 <link
@@ -27,15 +28,15 @@
 	rel="stylesheet">
 
 <!-- icons -->
-<link rel="icon" href="images/ico/favicon.ico">
+<link rel="icon" th:href="@{/images/ico/favicon.ico}">
 <link rel="apple-touch-icon" sizes="144x144"
-	href="../images/ico/apple-touch-icon-precomposed.png">
+	th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
 <link rel="apple-touch-icon" sizes="114x114"
-	href="../images/ico/apple-touch-icon-114-precomposed.png">
+	th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
 <link rel="apple-touch-icon" sizes="72x72"
-	href="../images/ico/apple-touch-icon-72-precomposed.png">
+	th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
 <link rel="apple-touch-icon" sizes="57x57"
-	href="../images/ico/apple-touch-icon-57-precomposed.png">
+	th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
 <!-- icons -->
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -96,7 +97,7 @@
 						<span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
 					</button>
 
-					<div class="collapse navbar-collapse justify-content-center"
+					<div class="collapse navbar-collapse justify-content-end"
 						id="navbarNav">
 						<ul class="navbar-nav">
 							<li class="nav-item sa-dropdown"><a href="#">Home</a>
@@ -106,17 +107,16 @@
 									<li><a href="index2.html">Home V-3</a></li>
 								</ul></li>
 							<li><a href="about.html">About</a></li>
-							<li class="sa-dropdown active"><a href="#">Courses</a>
+							<li class="sa-dropdown"><a href="#">Courses</a>
 								<ul class="sa-dropdown-menu">
 									<li><a href="course-grid.html">Course Grid View</a></li>
 									<li><a href="course-list.html">Course List View</a></li>
-									<li class="active"><a href="course-details.html">Course
-											Details</a></li>
+									<li><a href="course-details.html">Course Details</a></li>
 								</ul></li>
 							<li><a href="tutor.html">Teacher</a></li>
 							<li><a href="blog.html">Blog</a></li>
 							<li><a href="contact.html">Contact</a></li>
-							<li class="sa-dropdown"><a href="index.html">Page</a>
+							<li class="sa-dropdown active"><a href="index.html">Page</a>
 								<ul class="sa-dropdown-menu">
 									<li><a href="catagory.html">Catagory</a></li>
 									<li><a href="profile.html">User Profile</a></li>
@@ -128,7 +128,7 @@
 											class="badge rounded-pill bg-dark">New</span></a></li>
 									<li><a href="cart.html">Shopping Cart<span
 											class="badge rounded-pill bg-dark">New</span></a></li>
-									<li><a href="payment.html">Payment<span
+									<li class="active"><a href="payment.html">Payment<span
 											class="badge rounded-pill bg-dark">New</span></a></li>
 									<li><a href="congrats.html">Congrats<span
 											class="badge rounded-pill bg-dark">New</span></a></li>
@@ -247,225 +247,74 @@
 
 	<section class="breadcrumb-section">
 		<div class="container">
-			<h1>시공전문가</h1>
+			<h1>Shopping Cart</h1>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-				<li class="breadcrumb-item">Details</li>
+				<li class="breadcrumb-item">Payment</li>
 			</ol>
 		</div>
 		<!-- /.container -->
 	</section>
 	<!-- /.breadcrumb-section -->
 
-	<div class="sg-section">
-		<div class="section-content course-details bg-white section-padding">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8">
-						<div class="sa-course" id="priInfo">
-							<div class="course-thumb">
-								<img src="images/course/d2.jpg" alt="Image" class="img-fluid">
-							</div>
+	<div class="payment-content section-padding">
+		<div class="container">
+			<h4 id='monthCash'>
+				&nbsp;&nbsp;<i class="fas fa-comments-dollar"></i>&nbsp;&nbsp;HOMEFIX
+				구독권 관리
+			</h4>
+			<form class="contact-form" name="contact-form" method="post"
+				action="#">
+				<div class='row'>
+					<div class='col-md-8'>
+						<h5 id='monthSelect'>
+							<i class="fas fa-check"></i>&nbsp;&nbsp; 구독 개월 수 선택하기:
+							&nbsp;&nbsp;<select id='moneySel'>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+							</select> 개월
+						</h5>
+						<div id='pridiv'></div>
+						<h5>
+							<i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;금액:&nbsp;&nbsp; <span
+								id='price'>9900</span>원이 결제됩니다!
 
-
-							<div class="description-tab">
-								<ul class="nav nav-tabs" id="myTab" role="tablist">
-									<li class="nav-item" role="presentation">
-										<button class="nav-link active" id="description-tab"
-											data-bs-toggle="tab" data-bs-target="#description"
-											type="button" role="tab" aria-controls="description"
-											aria-selected="true">업체정보</button>
-									</li>
-									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="course-info-tab"
-											data-bs-toggle="tab" data-bs-target="#course-info"
-											type="button" role="tab" aria-controls="course-info"
-											aria-selected="false">업체소개</button>
-									</li>
-									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
-											data-bs-target="#reviews" type="button" role="tab"
-											aria-controls="reviews" aria-selected="false">시공사례</button>
-									</li>
-									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="comments-tab"
-											data-bs-toggle="tab" data-bs-target="#comments" type="button"
-											role="tab" aria-controls="comments" aria-selected="false">업체후기</button>
-									</li>
-
-								</ul>
-
-								<div class="tab-content" id="myTabContent">
-									<div class="tab-pane fade show active" id="description"
-										role="tabpanel" aria-labelledby="description-tab">
-
-										<div class="requirements">
-											<h4>기본정보</h4>
-											<ul class="global-list">
-												<li>대표자:</li>
-												<li>경력:</li>
-												<li>시공지역:</li>
-												<li>주소:</li>
-											</ul>
-										</div>
-										<!-- /.requirements -->
-
-
-									</div>
-									<div class="tab-pane fade" id="course-info" role="tabpanel"
-										aria-labelledby="course-info-tab">
-										<h4>전문가 한마디</h4>
-
-
-									</div>
-									<div class="tab-pane fade" id="reviews" role="tabpanel"
-										aria-labelledby="reviews-tab">
-										<h3 class="widget_title">다양한 시공사례</h3>
-										<ul>
-											<li class="media">
-												<div class="entry-thumbnail">
-													<a href="#"><img src="images/blog/1.png" alt="Image"
-														class="img-fluid"></a>
-												</div>
-												<div class="media-body">
-													<span class="post-date">May 21, 2021</span> <a href="#">Visual
-														Basic Web Course With Live Project</a>
-												</div>
-											</li>
-											<li class="media">
-												<div class="entry-thumbnail">
-													<a href="#"><img src="images/blog/2.png" alt="Image"
-														class="img-fluid"></a>
-												</div>
-												<div class="media-body">
-													<span class="post-date">May 20, 2021</span> <a href="#">Lorem
-														ipsum dolor sit ametdo eiusmod tempor.</a>
-												</div>
-											</li>
-											<li class="media">
-												<div class="entry-thumbnail">
-													<a href="#"><img src="images/blog/3.png" alt="Image"
-														class="img-fluid"></a>
-												</div>
-												<div class="media-body">
-													<span class="post-date">May 19, 2021</span> <a href="#">Lorem
-														ipsum dolor sit ametdo eiusmod tempor.</a>
-												</div>
-											</li>
-											<li class="media">
-												<div class="entry-thumbnail">
-													<a href="#"><img src="images/blog/4.png" alt="Image"
-														class="img-fluid"></a>
-												</div>
-												<div class="media-body">
-													<span class="post-date">May 18, 2021</span> <a href="#">Lorem
-														ipsum dolor sit ametdo eiusmod tempor.</a>
-												</div>
-											</li>
-										</ul>
-									</div>
-									<div class="tab-pane fade" id="comments" role="tabpanel"
-										aria-labelledby="comments-tab">
-										<h4>업체후기</h4>
-										<div class="comments-area">
-											<ul class="comment-list global-list">
-												<li class="media">
-													<div class="commenter-avatar">
-														<a href="#"><img class="img-fluid"
-															src="images/tutor/1.jpg" alt="Image"></a>
-													</div>
-													<div class="comment-box media-body">
-														<div class="comment-meta">
-															<span class="title float-left" id="rtitle"><a
-																href="#" class="author-name">후기제목</a></span> <span
-																class="float-right" id='rdate'>후기날짜 </span>
-														</div>
-														<div class="comment-content">
-															<p id='r_cont'>후기 내용</p>
-														</div>
-													</div>
-												<li class="media">
-													<div class="commenter-avatar">
-														<a href="#"><img class="img-fluid"
-															src="images/tutor/5.jpg" alt="Image"></a>
-													</div>
-													<div class="comment-box media-body">
-														<div class="comment-meta">
-															<span class="title float-left"><a href="#">Nancy
-																	Doll</a></span> <span class="float-right">2 Minutes ago | <a
-																href="#">Replay</a></span>
-														</div>
-														<div class="comment-content">
-															<p>Lorem ipsum dolor sit amet, consectetuer
-																adipiscing elit, sed diam nonummy nibh euismod tincidunt
-																ut laoreet dolore magna aliquam erat volutpat. Ut wisi
-																enim ad minim veniam, quis nostrud exerci ation
-																ullamcorper suscipit lobortis nisl ut aliquip.</p>
-														</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-										<!-- /.comments-area -->
-									</div>
-								</div>
-								<!-- /.tab-content -->
-							</div>
-							<!-- /.description-tab -->
-						</div>
-					</div>
-					<!-- /.sa-course -->
-
-					<div class='col-lg-3'>
-
-						<aside class="partner_detail_float">
-							<div class=companyImg>
-								<div>
-									<span class="text_hidden"><i class="fa-solid fa-award"></i></span>
-									<!-- <span class="text_hidden"><i
-										class="fa-solid fa-screwdriver-wrench"></i></span> -->
-								</div>
-
-
-								<div class='imgtutor'>
-									<img src="http://140.238.11.118:5000/upload/logo4.png" alt="Profile Picture"
-										id='companyId'>
-
-								</div>
-
-								<div>
-
-									<h4 class="partner_detail__title">
-
-										우일인테리어
-										<!---->
-									</h4>
-									<ul class="global-list">
-                                    <li><i class="fas fa-check-circle"></i> 전문분야: </li>
-                                    <li><i class="fas fa-check-circle"></i> 시공횟수: </li>
-                                    <li><i class="fas fa-check-circle"></i> 후기수:&nbsp&nbsp</li>
-                                </ul>
-								</div>
-							</div>
-
-						</aside>
-
+						</h5>
 					</div>
 
+					<div class='col-md-2'></div>
+					<div class='col-md-2'>
 
-
-
-
+						<button type='button'
+							class="btn btn-primary pull-right">결제하기 </button>
+					</div>
 				</div>
 
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /.section-content -->
+			</form>
+			<!-- contact-form -->
 
-	<!-- /.sg-section -->
+
+			<div id='paymentAdventage'>
+				<h4>
+					<i class="far fa-grin"></i>&nbsp;&nbsp;결제혜택
+				</h4>
+			</div>
+			<div class="order-summary">
+				<ul>
+					<li><span><i class="fas fa-check"></i> &nbsp;&nbsp; 홈피스
+							개인회원과 인테리어 업체 연결</span></li>
+					<li><span><i class="fas fa-check"></i> &nbsp;&nbsp; 고객과
+							소통을 위한 채팅 서비스 제공</span></li>
+					<li><span><i class="fas fa-check"></i> &nbsp;&nbsp; 간편한
+							견적 신청 UI 제공</span></li>
+
+				</ul>
+
+			</div>
+		</div>
+	</div>
+	<!-- /.payment-content -->
 
 
 
@@ -595,25 +444,39 @@
 			<!-- /.container -->
 		</div>
 	</div>
+
+
+
+
+
 	<!-- /.footer -->
 
 	<!-- JS -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/inview.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/jquery-ui-min.js"></script>
-	<script src="js/jarallax.min.js"></script>
-	<script src="js/counterup.min.js"></script>
-	<script src="js/waypoints.min.js"></script>
-	<script src="js/YTPlayer.min.js"></script>
-	<script src="js/jquery-ui-min.js"></script>
-	<script src="js/validate.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/main.js"></script>
+
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/inview.min.js}"></script>
+	<script th:src="@{/js/slick.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/jarallax.min.js}"></script>
+	<script th:src="@{/js/counterup.min.js}"></script>
+	<script th:src="@{/js/waypoints.min.js}"></script>
+	<script th:src="@{/js/YTPlayer.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/validate.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
 	<!--font asome js-->
 	<script src="https://kit.fontawesome.com/2173f645ed.js"
 		crossorigin="anonymous"></script>
+	
+	<!--imfort js -->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<!--eunhye js  -->
+	<script th:src="@{/js/eh/etc.js}"></script>
+
 </body>
 </html>
