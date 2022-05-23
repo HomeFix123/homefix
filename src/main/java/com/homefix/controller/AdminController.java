@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.homefix.domain.Company;
+import com.homefix.domain.Member;
 import com.homefix.service.AdminService;
 
 @Controller
@@ -35,21 +36,31 @@ public class AdminController {
 	}
 	
 	@GetMapping(path = "/member")
-	public String moveMemberPage() {
+	public String moveMemberPage(Model model) {
 		logger.info("관리자 고객관리");
+		model.addAttribute("memberList", adminService.getMemberList());
 		return "/admin/member";
 	}
 	
-	@GetMapping(path = "/member/form")
-	public String moveMemberUpdatePage() {
+	@GetMapping(path = "/member/form/{id}")
+	public String moveMemberUpdatePage(@PathVariable String id, Model model) {
 		logger.info("관리자 고객관리 수정");
+		model.addAttribute("member", adminService.getMember(id));
 		return "/admin/member/form";
+	}
+	
+	@PutMapping(path = "/member/form/{id}")
+	public String updatePage(Member member, Model model) {
+		logger.info("[member][" + member.getId() + "]관리자 고객관리 수정");
+		adminService.updateMember(member);
+		return "redirect:/admin/member";
 	}
 	
 	
 	@GetMapping(path = "/company")
 	public String moveCompanyPage(Model model) {
 		model.addAttribute("companyList", adminService.getCompanyList());
+		model.addAttribute("reportList", adminService.getCompanyReportList());
 		logger.info("관리자 업체관리");
 		return "/admin/company";
 	}
@@ -63,8 +74,8 @@ public class AdminController {
 	}
 	
 	@PutMapping(path = "/company/form/{cid}")
-	public String UpdateCompany(Company company, Model model) {
-		logger.info("[company]["+ company.getCid() + "] 업체 수정");
+	public String updateCompany(Company company, Model model) {
+		logger.info("[company]["+ company.getId() + "] 업체 수정");
 		adminService.updateCompany(company);
 		return "redirect:/admin/company";
 	}

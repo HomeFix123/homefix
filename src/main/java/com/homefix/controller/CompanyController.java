@@ -17,6 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.homefix.domain.Company;
 import com.homefix.service.CompanyService;
 
+/**
+ * @author 이은혜
+ *
+ */
+
+
 @Controller
 @RequestMapping("/sign")
 public class CompanyController {
@@ -53,22 +59,19 @@ public class CompanyController {
 		if(companyService.login(com)!=null) {
 			System.out.println("*******로그인 성공********");
 			session.setAttribute("userId",com.getId()); 
-			session.setAttribute("companyName",companyService.login(com).get(0).getName() );
-			//session.setMaxInactiveInterval(60*60*24); //세션유지시간:초*분*시간
+			session.setAttribute("companyName",companyService.login(com) );
+			model.addAttribute("message", "Y");
 			return "redirect:/company/companyprofile"; 
 		}else {
+			model.addAttribute("message", "N");
 			System.out.println("*******로그인 실패*********");
-			return "redirect:/sign/sign-in";
+			return "/sign/sign-in";
 		}
 	}
 
 	
 	
-	// 메인에서 사업자 로그인 페이지로 이동
-	@GetMapping("sign-in")
-	public void login() {
 
-	}
 
 	// 회원가입 동의 페이지 이동
 	@GetMapping("sign-agree-b")
@@ -84,23 +87,21 @@ public class CompanyController {
 
 	/*
 	 * // 사업자 로그인 성공후 페이지 이동->정은 물어보기
-	 * 
 	 * @GetMapping("loginSucess.do") public String loginMove() { return ""; }
 	 * 
-	 * // 사업자 로그아웃
 	 * 
+	 * 
+	 * // 사업자 로그아웃
 	 * @GetMapping public String logout(HttpServletRequest request) { HttpSession
 	 * session = request.getSession();
 	 * System.out.println(session.getAttribute("logemail") + "님 로그아웃");
 	 * session.invalidate(); return ""; }
 	 * 
 	 * // 사업자 회원 탈퇴
-	 * 
 	 * @DeleteMapping public String companyDelete(String id) {
 	 * companyService.companyDelete(id); return ""; }
 	 * 
 	 * // 사업자 정보수정
-	 * 
 	 * @PutMapping public String companyUpdate(Company com) {
 	 * companyService.companyUpdate(com); return ""; }
 	 */

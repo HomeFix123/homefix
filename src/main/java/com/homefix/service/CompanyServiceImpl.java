@@ -44,10 +44,11 @@ public class CompanyServiceImpl implements CompanyService {
 	}
  
 	// 로그인 성공
-	public List<Company> login(Company com) {
-		List<Company> message = null ;
-		if ( companyRepo.findByIdAndPass(com.getId(), com.getPass()).size()>0) {
-			message= companyRepo.findByIdAndPass(com.getId(), com.getPass());
+	public String login(Company com) {
+		List<Company> list = companyRepo.findByIdAndPass(com.getId(), com.getPass());
+		String message = null;
+		if (list.size() >0) {
+			message = list.get(0).getName();
 		}
 		return message;
 	} 
