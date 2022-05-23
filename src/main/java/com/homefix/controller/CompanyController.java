@@ -8,15 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.homefix.domain.Company;
 import com.homefix.service.CompanyService;
 
+/**
+ * @author 이은혜
+ *
+ */
+
+
 @Controller
+@RequestMapping("/sign")
 public class CompanyController {
 
 	private Logger logger = LoggerFactory.getLogger(AdminController.class);
@@ -24,10 +29,7 @@ public class CompanyController {
 	@Autowired
 	CompanyService companyService;
 
-	
-
 	// 사업자 아이디 중복 조회
-
 	@GetMapping("/idCheck")
 	@ResponseBody
 	public String idCheck(String id) {
@@ -35,7 +37,6 @@ public class CompanyController {
 	}
 
 	// 사업자 이메일 중복 조회
-
 	@GetMapping("/emailCheck")
 	@ResponseBody
 	public String emailCheck(String email) {
@@ -50,48 +51,59 @@ public class CompanyController {
 	}
 
 	// 로그인하기
+	@GetMapping("/companyLogin")
+	public String loginCheck(Company com, HttpSession session, Model model) {
+		if(companyService.login(com)!=null) {
+			System.out.println("*******로그인 성공********");
+			session.setAttribute("userId",com.getId()); 
+			session.setAttribute("companyName",companyService.login(com) );
+			model.addAttribute("message", "Y");
+			return "redirect:/company/companyprofile"; 
+		}else {
+			model.addAttribute("message", "N");
+			System.out.println("*******로그인 실패*********");
+			return "/sign/sign-in";
+		}
+	}
 
-	/* @GetMapping("/regist") */
+	
+	
+
+
+	// 회원가입 동의 페이지 이동
+	@GetMapping("sign-agree-b")
+	public void signAgree() {
+
+	}
+
+	// 사업자 회원가입 페이지 이동
+	@GetMapping("sign-up-b")
+	public void signUpBusniss() {
+
+	}
 
 	/*
-	 * public String loginCheck(Company com, HttpSession session, Model model) {
-	 * model.addAttribute("message", companyService.login(com))
-	 * 
-	 * 
-	 * if("Y" == companyService.login(com) ) {
-	 * System.out.println("*******로그인 성공********");
-	 * session.setAttribute("logemail",com.getId()); session.setAttribute("admin",
-	 * com.get); session.setMaxInactiveInterval(60*60*24); } return "profile"; }
-	 */
-
-	/*
-	 * // 메인에서 사업자 로그인 페이지로 이동
-	 * 
-	 * @GetMapping("companyLogin.do") public String login() { return "sign-in"; }
-	 * 
 	 * // 사업자 로그인 성공후 페이지 이동->정은 물어보기
-	 * 
 	 * @GetMapping("loginSucess.do") public String loginMove() { return ""; }
 	 * 
-	 * // 사업자 로그아웃
 	 * 
+	 * 
+	 * // 사업자 로그아웃
 	 * @GetMapping public String logout(HttpServletRequest request) { HttpSession
 	 * session = request.getSession();
 	 * System.out.println(session.getAttribute("logemail") + "님 로그아웃");
 	 * session.invalidate(); return ""; }
 	 * 
 	 * // 사업자 회원 탈퇴
-	 * 
 	 * @DeleteMapping public String companyDelete(String id) {
 	 * companyService.companyDelete(id); return ""; }
 	 * 
 	 * // 사업자 정보수정
-	 * 
 	 * @PutMapping public String companyUpdate(Company com) {
 	 * companyService.companyUpdate(com); return ""; }
 	 */
-	// 사업자 회원가입
 
+	// 사업자 회원가입
 	@PostMapping("/signUpB")
 	public String companyInsert(Company com) {
 		com.setEnabled(true);

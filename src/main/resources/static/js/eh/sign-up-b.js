@@ -604,14 +604,13 @@ $(function() {
 			$('label[for="memberTel"] .error_box').html("");
 		}
 
-
 		document.memberUpdateForm.submit();
 		alert("회원 정보 수정이 완료되었습니다.");
 	}) //end of #btnMemberUpdate
 
 
 
-
+/*************************************회원탈퇴***************************************/
 
 
 	$('#btnMemberDelete').click(function() {
@@ -677,12 +676,20 @@ $(function() {
 
 		} else {
 
-			location.href = "./sign-up-b.html"
+			location.href = "/sign/sign-up-b"
 
 		}
 
 	})
 
+	$('#btn_signCancel').click(function(){
+		location.href = "/sign/sign-in"
+	})
+
+/*로그인 아이디 비밀번호 틀림*/
+if($('#errorBox').text() == 'N'){
+	$('#errorBoxReal').text("아이디 또는 비밀번호를 잘못 입력하셨습니다.").css("color","red")
+}
 
 
 

@@ -14,6 +14,8 @@ public interface CompanyRepository extends CrudRepository<Company, String>{
 	
 	public Long countByNum(String num);
 	
+	public List<Company> findByIdAndPass(String Id, String pass);
+	
 	
 	
 }

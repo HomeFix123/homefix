@@ -1,5 +1,7 @@
 package com.homefix.service;
 
+import java.util.List;
+
 import com.homefix.domain.Company;
 
 public interface CompanyService {
