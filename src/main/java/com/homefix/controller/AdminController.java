@@ -60,6 +60,7 @@ public class AdminController {
 	@GetMapping(path = "/company")
 	public String moveCompanyPage(Model model) {
 		model.addAttribute("companyList", adminService.getCompanyList());
+		model.addAttribute("reportList", adminService.getCompanyReportList());
 		logger.info("관리자 업체관리");
 		return "/admin/company";
 	}

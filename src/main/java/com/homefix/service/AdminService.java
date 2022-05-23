@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
+import com.homefix.domain.CompanyReport;
 import com.homefix.domain.Member;
 import com.homefix.domain.Payment;
 
@@ -38,5 +39,11 @@ public interface AdminService {
 	
 	// 업체 결제정보 불러오기
 	public List<Payment> getPaymentList(String cid);
+	
+	// 업체 신고 목록 불러오기
+	public List<CompanyReport> getCompanyReportList();
+	
+	// 업체 신고 삭제
+	public void deleteReport(String rid);
 	
 }

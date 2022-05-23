@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
+import com.homefix.domain.CompanyReport;
 import com.homefix.domain.Member;
 import com.homefix.domain.Payment;
 import com.homefix.persistence.CompanyInfoRepository;
+import com.homefix.persistence.CompanyReportRepository;
 import com.homefix.persistence.CompanyRepository;
 import com.homefix.persistence.MemberRepository;
 import com.homefix.persistence.PaymentRepository;
@@ -124,7 +126,28 @@ public class AdminServiceImpl implements AdminService {
 		Company co = companyRepo.findById(cid).get();
 		return companyDetailRepo.findByCompany(co).get(0);
 	}
-
+	
+	
+	@Autowired
+	CompanyReportRepository companyReportRepo;
+	/*
+	 * 업체 신고 목록 불러오기
+	 */
+	@Override
+	public List<CompanyReport> getCompanyReportList() {
+		
+		return (List<CompanyReport>) companyReportRepo.findAll();
+	}
+	
+	/*
+	 * 업체 신고 삭제
+	 */
+	@Override
+	public void deleteReport(String rid) {
+		Integer id = Integer.parseInt(rid);
+		CompanyReport report = companyReportRepo.findById(id).get();
+		companyReportRepo.delete(report);
+	}
 	
 	@Autowired
 	PaymentRepository paymentRepo;
@@ -134,13 +157,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Payment> getPaymentList(String cid) {
 		
-		return paymentRepo.findByCid(cid);
+		return null;
 	}
 
 	
-
-	
-
 	
 	
 

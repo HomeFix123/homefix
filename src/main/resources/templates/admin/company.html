@@ -123,7 +123,7 @@
                                             	<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#memberList" type="button" role="tab" aria-controls="description" aria-selected="true">업체 목록</button>
                                             </li>
                                             <li class="nav-item" role="presentation">
-                                            	<button class="nav-link" data-bs-toggle="tab" data-bs-target="#alertList" type="button" role="tab" aria-controls="alertList" aria-selected="false">신고 목록</button>
+                                            	<button class="nav-link" data-bs-toggle="tab" data-bs-target="#reportList" type="button" role="tab" aria-controls="reportList" aria-selected="false">신고 목록</button>
                                             </li>
                                         </ul>      
 
@@ -143,8 +143,28 @@
 			                        			</table>	
 			                        		</div>
 			                        	
-                                            <div class="tab-pane fade" id="alertList" role="tabpanel" aria-labelledby="alertList-tab">
-			                        			<table id="alert" class="display" style="width:100%"></table>	
+                                            <div class="tab-pane fade" id="reportList" role="tabpanel" aria-labelledby="alertList-tab">
+			                        			<table id="reports" class="display" style="width:100%">
+			                        				<thead>
+			                        					<tr class="text-center">
+			                        						<td>신고날짜</td>
+			                        						<td>업체명</td>
+			                        						<td>사유</td>
+			                        						<td>상세/삭제</td>
+			                        					</tr>
+			                        				</thead>
+			                        				<tbody>
+			                        					<tr th:each="r : ${reportList}">
+			                        						<td th:text="${#dates.format(r.rday, 'yy-MM-dd')}"></td>
+			                        						<td th:text="${r.company.name}"></td>
+			                        						<td th:text="${r.reason}"></td>
+			                        						<td class="text-center">
+				                        						<a href="#" class="btn btn-primary m-0 py-1 px-2 info" th:value="${r.company.id}">업체정보</a>
+				                        						<a href="#" class="btn btn-primary bg-danger border-danger m-0 py-1 px-2" th:value="${r.pid}">신고삭제</a>
+			                        						</td>
+			                        					</tr>
+			                        				</tbody>
+			                        			</table>	
 			                        		</div>
 			                        	</div><!-- / 탭내용 -->
 			                        </div><!-- / .tab -->
@@ -278,7 +298,7 @@
 										</div>
 										<div class="pt-2">
 											<!-- 결제 그래프 -->
-											<table class="table table-sm caption-top table-responsive">
+											<table class="table table-sm caption-top table-responsive" id="payment-table">
 												<thead>
 													<tr class="text-center">
 														<td>날짜</td>
@@ -287,7 +307,7 @@
 														<td>금액</td>
 													</tr>
 												</thead>
-												<tbody>
+												<tbody class="payment-body">
 													<tr>
 														<td>22/02/03</td>
 														<td>purchase-31</td>
@@ -310,7 +330,7 @@
 												<tfoot>
 													<tr>
 														<td>총 금액</td>
-														<td class="text-end" colspan="3">350000원</td>
+														<td class="text-end payment-sum" colspan="3">350000원</td>
 													</tr>
 												</tfoot>
 											</table>

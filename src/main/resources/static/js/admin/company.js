@@ -19,6 +19,13 @@ $(function(){
 		myModal.show();
 	});
 	
+	$(document).on('click', '#reports a.info', function(event){
+		event.preventDefault();
+		const cid = $(this).attr('value');
+		detailInfo(cid)
+		myModal.show();
+	});
+	
 	
 	function detailInfo(id){
 		
@@ -27,26 +34,24 @@ $(function(){
 			type: "GET",
 			url : "/admin/company/"+id,
 			contentType: 'application/json;charset=utf-8',
-			success : success,
 			error : function(err){
 				console.log(err)
 			}			
-		})
-		
-		function success(result){
-			
-			coInfo = result.company;
-			buttons = $('#modal-buttons');
-			buttons.find('.company-update').attr('href', '/admin/company/form/' + coInfo.id);
-			buttons.find('.company-blacklist').val(coInfo.enabled);
-			if(coInfo.enabled){
-				buttons.find('.company-blacklist').html("계정 정지");	
-			} else {
-				buttons.find('.company-blacklist').html("정지 해제");
-			}
+		}).done((result) =>{
+			const coInfo = result.company;
 			
 			$('.co_name').text(coInfo.name);
-			default_info = $('#default-info');
+			
+			const buttons = $('#modal-buttons');
+			const updateBtn = buttons.find('.company-update');
+			const blacklistBtn = buttons.find('.company-blacklist');
+			
+			updateBtn.attr('href', '/admin/company/form/' + coInfo.id);
+			blacklistBtn.val(coInfo.enabled);
+			
+			
+			
+			const default_info = $('#default-info');
 			default_info.find('.company_id').text(coInfo.id);
 			default_info.find('.co_logo').attr('src', 'http://140.238.11.118:5000/upload/'+coInfo.logo)
 			default_info.find('.co_addr').text(coInfo.addr);
@@ -60,16 +65,19 @@ $(function(){
 			
 			
 			
-			detail = $('#detail-info')
+			const detail = $('#detail-info')
+			const speTd = detail.find('.specialty')
+			const areTd = detail.find('.area')
+			
 			detail.find('.career').text(result.career + '년');
-			spe = detail.find('.specialty')
-			sp_cont = [];
+			
+			let sp_cont = [];
 			for(let i = 0; i < result.specialty.length; i++){
 				sp_cont.push(result.specialty[i].sp_cont);
 			}
-			spe.text(sp_cont.join(", "));
-			are = detail.find('.area')
-			areas = [];
+			speTd.text(sp_cont.join(", "));
+			
+			let areas = [];
 			for(let i = 0; i < result.area.length; i++){
 				if(result.area[i].area.dt_area){
 					
@@ -78,17 +86,58 @@ $(function(){
 					areas.push(result.area[i].area.aname);	
 				}	
 			}
-			are.text(areas.join(", "));
+			areTd.text(areas.join(", "));
 			
-			detail.find('.company-img').attr('src','http://140.238.11.118:5000/upload/'+result.cinfo_img);				
-		}
+			const companyImg = detail.find('.company-img')
+			companyImg.attr('src','http://140.238.11.118:5000/upload/'+result.cinfo_img);
+			
+			
+			const paymentTable = $('#payment-table')
+			const paymentTbody = paymentTable.find('tbody');
+			const paymentTfoot = paymentTable.find('tfoot');
+			paymentTbody.children().remove();
+			
+			const payList = searchPayList(id);
+			
+			
+			let total = 0;
+			for(let payLog of payList){
+				let tr = "<tr>";
+				tr += "<td>" + new Date(payLog.pday).toLocaleDateString() + "</td>";
+				tr += "<td>" + payLog.pid + "</td>";
+				tr += "<td class='text-center'>" + payLog.method + "</td>";
+				tr += "<td class='text-end'>" + payLog.amount.toLocaleString() + "원</td>";
+				tr += "</tr>";
+				paymentTbody.append(tr);
+				total += (payLog.amount);
+			}
+			
+			paymentTfoot.find("td.payment-sum").text(total.toLocaleString() + '원');	
+			
+							
+		})
 	}
-	
+	// 결제 목록 검색
+	function searchPayList(id){
+		let result = null;
+		$.ajax({
+			type: "GET",
+			url: "/admin/company/payment/" + id,
+			contentType: "application/json",
+			async: false
+		}).done((data) => {
+			
+			result = data;
+			
+		}).fail((err) => console.log(err))
+		return result;
+	}
 	
 });
 
 $(function(){
-	function handleBlacklist(blacklist){
+	// 블랙리스트 변경
+	function changeBlacklist(blacklist){
 		const cid = $('#default-info .company_id').text()
 		$.ajax({
 			type: "PUT",
@@ -101,16 +150,28 @@ $(function(){
 	$('#modal-buttons .company-blacklist').click(function(){
 		if($(this).attr('value') == "true"){
 			$(this).html('정지 해제');
-			handleBlacklist(false);
+			changeBlacklist(false);
 			$(this).attr('value', "false")	
 		} else {
 			$(this).html('계정 정지');
-			handleBlacklist(true);
+			changeBlacklist(true);
 			$(this).attr('value', "true")
 		}
+	})
+})
+
+$(function(){
+	$('#reports tr a.btn-danger').click(function(){
+		const reportId = $(this).attr('value');
 		
-		
-		
+		$.ajax({
+			type: "DELETE",
+			url: "/admin/company/report/" + reportId
+		}).done(() => {
+			
+		}).fail((err) => {
+			console.log(err);
+		})
 	})
 })
 
