@@ -677,12 +677,15 @@ $(function() {
 
 		} else {
 
-			location.href = "./sign-up-b.html"
+			location.href = "/sign/sign-up-b"
 
 		}
 
 	})
 
+	$('#btn_signCancel').click(function(){
+		location.href = "/sign/sign-in"
+	})
 
 
 

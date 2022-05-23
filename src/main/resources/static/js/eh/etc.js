@@ -10,13 +10,13 @@ $(function() {
 	/*2.아임포트 결제API*/
 	$('.pull-right').click(function() {
 		IMP.init('imp58368556');
-
+		var price = $('#price').text();//결제 금액
 		IMP.request_pay({
 			pg: 'inicis', // version 1.1.0부터 지원.
 			pay_method: 'card',
 			merchant_uid: 'merchant_' + new Date().getTime(),
 			name: '주문명:결제테스트',
-			amount: 100, //판매 가격
+			amount: price, //판매 가격
 			buyer_email: 'iamport@siot.do',
 			buyer_name: '구매자이름',
 			buyer_tel: '010-1234-5678',
@@ -35,11 +35,6 @@ $(function() {
 			}
 			alert(msg);
 		})
-
-
-
-
-
 	});
 
 

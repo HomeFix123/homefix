@@ -2,6 +2,8 @@ package com.homefix.service;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,6 @@ public class CompanyServiceImpl implements CompanyService {
 		 if(companyRepo.countById(id)>0) {
 			 message= "N";
 		 } 
-		 
 		 return message;
 	} 
 
@@ -41,12 +42,12 @@ public class CompanyServiceImpl implements CompanyService {
 		}
 		return message;
 	}
-
+ 
 	// 로그인 성공
-	public String login(Company com) {
-		String message = "N";
-		if (companyRepo.findById(com.getId()).get().getPass() == com.getPass()) {
-			message= "Y";
+	public List<Company> login(Company com) {
+		List<Company> message = null ;
+		if ( companyRepo.findByIdAndPass(com.getId(), com.getPass()).size()>0) {
+			message= companyRepo.findByIdAndPass(com.getId(), com.getPass());
 		}
 		return message;
 	} 
@@ -64,7 +65,6 @@ public class CompanyServiceImpl implements CompanyService {
 	// 사업자 회원가입
 	public void companyInsert(Company com) {
 		 companyRepo.save(com); 
-		 
 	}
 
 	
