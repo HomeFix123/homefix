@@ -11,10 +11,10 @@ $(function() {
 	var RegexName = /^[가-힣]+$/;
 	//전화번호
 	var RegexTel = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
-
+	var RegexCompanyNum = /^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})$/;
 
 	//사업자번호
-	function checkCorporateRegistrationNumber(value) {
+/*	function checkCorporateRegistrationNumber(value) {
 		var valueMap = value.replace(/-/gi, '').split('').map(function(item) {
 			return parseInt(item, 10);
 		});
@@ -29,7 +29,8 @@ $(function() {
 			return Math.floor(valueMap[9]) === (10 - (checkSum % 10));
 		}
 		return false;
-	}
+	}*/
+
 
 
 	// 에러박스 문구
@@ -75,7 +76,7 @@ $(function() {
 		// 아이디  중복 검사 - DB와 비교
 		$.ajax({
 			type: 'get',
-			url: '/company/idCheck',
+			url: '/sign/company/idCheck',
 			data: { id: $('#bs_memberId').val() },
 
 			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
@@ -117,8 +118,8 @@ $(function() {
 			return false;
 		}
 		// 형식에 맞지 않을 때 나오는 에러박스
-		if (!checkCorporateRegistrationNumber(bs_businessNum.replaceAll("-", ""))) {
-			$('label[for="bs_businessNum"] .error_box').html("사업자 번호 형식이 올바르지 않습니다.");
+		if (!RegexCompanyNum.test(bs_businessNum)) {
+			$('label[for="bs_businessNum"] .error_box').html("사업자 번호 형식이 올바르지 않습니다. 000-00-00000 형식으로 입력하세요");
 			$('label[for="bs_businessNum"] .error_box').css('color', '#dc3545');
 			return;
 		}
@@ -126,7 +127,7 @@ $(function() {
 		// 사업자번호  중복 검사 - DB와 비교
 		$.ajax({
 			type: 'get',
-			url: '/company/companyNumberCheck',
+			url: '/sign/company/companyNumberCheck',
 			data: { num: $('#bs_businessNum').val() },
 			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 			success: function(result) {
@@ -179,7 +180,7 @@ $(function() {
 		// 이메일 중복 검사 - DB와 비교
 		$.ajax({
 			type: 'get',
-			url: '/company/emailCheck',
+			url: '/sign/company/emailCheck',
 			data: { email: $('#bs_memberEmail').val() },
 			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 			success: function(result) {
@@ -302,7 +303,7 @@ $(function() {
 			$('label[for="bs_businessNum"] .error_box').html("");
 
 		}
-		if (!checkCorporateRegistrationNumber(bsBusinessNum.replaceAll("-", ""))) {
+		if (!RegexCompanyNum.test(bsBusinessNum)) {
 
 			$('label[for="bs_businessNum"] .error_box').html("숫자 10글자를 입력해주세요.");
 			$('label[for="bs_businessNum"] .error_box').css('color', '#dc3545');
@@ -730,8 +731,7 @@ $(function() {
 	})*/
 
 
-
-
+	
 
 
 
