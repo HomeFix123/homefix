@@ -3,7 +3,6 @@ const commentBtn = document.getElementsByClassName('submit-comment')[0];
 const commentList = document.getElementsByClassName('comments')[0];
 
 // 댓글 달기
-
 function addComment() {
     var newComment = document.createElement('li')
     newComment.innerHTML = `<span><span class="point-span userID">thisisyourhyung</span>` + commentInput.value + `</span>`;
@@ -73,8 +72,8 @@ commentInput.addEventListener('keyup', function(e){
     }
 })
 
-// 댓글 지우기
 
+// 댓글 지우기
 let deleteBtn = document.querySelectorAll('.comment-more');
 deleteBtn.forEach(function(event) {
     event.addEventListener('click', function() {
@@ -82,8 +81,8 @@ deleteBtn.forEach(function(event) {
     });
 })
 
-// 댓글 좋아요
 
+// 댓글 좋아요
 let commentLike = document.querySelectorAll('.comment-like');
 commentLike.forEach(function(event) {
     event.addEventListener('click', function() {
@@ -99,5 +98,30 @@ commentLike.forEach(function(event) {
         }
     })
 })
+
+
+// top 버튼----------------------------------------------------------------
+$(function() { 
+	// 보이기 | 숨기기 
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 250) {
+			//250 넘으면 버튼이 보여짐니다. 
+			$('#toTop').fadeIn(); $('#toTop').css('left', $('#sidebar').offset().left); 
+			//#sidebar left:0 죄표 
+			} else { $('#toTop').fadeOut(); 
+			} 
+		}); 
+	// 버튼 클릭시 
+	$("#toTop").click(function() {
+		$('html, body').animate({ 
+			scrollTop : 0 
+			// 0 까지 animation 이동합니다. 
+			}, 400); 
+		// 속도 400 
+		return false; 
+		}); 
+	});
+// top 버튼 끝==============================================================
+   
 
 
