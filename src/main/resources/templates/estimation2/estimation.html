@@ -224,7 +224,8 @@
             </div><!-- /.container -->
         </section><!-- /.breadcrumb-section -->  
 
-        <div class="sa-section">
+        <dvgiv class="sa-section">
+           <form method="post" th:action="@{saveEst}">
             <!--<div class="section-content sa-about section-padding">-->
                 <div class="container" >
                     <div class="row">
@@ -237,15 +238,15 @@
                                     <ul class="global-list m-0">
                                     <li><h5 class="m-0"> 공간유형 </h5></li>
                                     </ul>
-                                <a href="#" class="btn btn-primary">주거</a>
-                                <a href="#" class="btn btn-primary">상업</a>
+                                <a href="#" class="btn btn-primary" name="space">주거</a>
+                                <a href="#" class="btn btn-primary" name="space">상업</a>
                                     <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
                                         <li><h5 class="m-0" > 건물유형 </h5></li>
                                     </ul>
-                                <a href="#" class="btn btn-primary">아파트</a>
-                                <a href="#" class="btn btn-primary">빌라</a>
-                                <a href="#" class="btn btn-primary">주택</a>
-                                <a href="#" class="btn btn-primary">오피스텔</a>
+                                <a href="#" class="btn btn-primary" name="building">아파트</a>
+                                <a href="#" class="btn btn-primary" name="building">빌라</a>
+                                <a href="#" class="btn btn-primary" name="building">주택</a>
+                                <a href="#" class="btn btn-primary" name="building">오피스텔</a>
                                     <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
                                         <li><h5 class="m-0"> 평수 </h5></li>
                                     </ul>
@@ -281,7 +282,7 @@
                                     </ul>
                                     <div class="area-form-text">
                                         <div>
-	                            <input type="text" id="underline" class="form-control" name="size" required="" placeholder="">
+	                            <input type="text" id="underline" class="form-control" name="budget" required="" placeholder="">
                                         </div>
                                         <div style="margin-top:10px; margin-left: 10px; margin-right: 10px;">
                                 <span>만원   
@@ -294,11 +295,11 @@
                                     </ul>
                                     <div class="area-form-text">
                                         <div class="p-0">
-                                        <input type="text" readonly="readonly" title="시작일 선택" placeholder="시작일" aria-haspopup="calenderPopup" class="form-control" id="underline">
+                                        <input type="text" name="start_d" readonly="readonly" title="시작일 선택" placeholder="시작일" aria-haspopup="calenderPopup" class="form-control" id="underline">
                                         </div>
                                             <div style="margin-top:10px; margin-left: 10px; margin-right: 10px; margin-bottom: 0px" ><span>~</span></div>
                                         <div class="p-0">
-                                        <input type="text" readonly="readonly" title="종료일 선택" placeholder="종료일" aria-haspopup="calenderPopup" id="underline" class="form-control">
+                                        <input type="text" name="end_d" readonly="readonly" title="종료일 선택" placeholder="종료일" aria-haspopup="calenderPopup" id="underline" class="form-control">
                                         </div>
                                         
                                         
@@ -314,7 +315,7 @@
                                                     <div style="width: 350px; margin: auto;">
                                                     <div >
                                                     <!-- 간단 주소 입력 시작 -->
-                                                    <input type="text" id="sample6_address" placeholder="주소" class="form-control" name="eaddr" style="padding: 20px; margin: auto; margin-bottom: 10px; " 
+                                                    <input type="text" name="eaddr" id="sample6_address" placeholder="주소" class="form-control" name="eaddr" style="padding: 20px; margin: auto; margin-bottom: 10px; " 
                                                     >
                                                     <!-- 간단 주소 입력 끝 -->
                                                     </div>
@@ -365,7 +366,7 @@
                                     </ul>
                                     <div class="area-form-text" style="margin-bottom: 40px;">
                                         <div>
-	                                    <input type="text" id="underline" class="form-control" name="ename" required="" placeholder="">
+	                                    <input type="text" id="underline" class="form-control" name="etel" required="" placeholder="">
                                         </div>
                                        
                                     </div>
@@ -376,18 +377,19 @@
                                     <div class="area-form-text">
                                         <div>
 	                                    <!--<input type="text" id="textbox" class="form-control" name="ename" required="" placeholder="선호하는 스타일을 자유롭게 적어주세요." style="width: 300px; height: 150px;" style="text-align: left">-->
-                                        <textarea class="form-control" name="message" required="" placeholder="선호하는 스타일을 자유롭게 적어주세요." style="width: 350px; height: 150px;"></textarea>
+                                        <textarea class="form-control" name="estyle" required="" placeholder="선호하는 스타일을 자유롭게 적어주세요." style="width: 350px; height: 150px;"></textarea>
                                         </div>
                                        
                                     </div>
                                     <div style="padding: 10px"></div>
-                                    <a href="#" class="btn btn-primary" style="margin-bottom: 150px;">신청하기</a>
+                                    <a href="#" class="btn btn-primary" type="submit" style="margin-bottom: 150px;">신청하기</a>
                                     
                             </div>    
                         </div>
                     </div>
                 </div><!-- /.container -->
-      
+      </form>
+      </dvgiv>
         <div class="footer">
             <div class="footer-top">
                 <div class="container">
