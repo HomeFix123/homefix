@@ -11,7 +11,7 @@ public interface MemberRepository extends CrudRepository<Member, String>{
 
 	void deleteAllById(Member mem);
 
-	List<Company> findByIdAndPass(String id, String password);
+	List<Company> findByIdAndPassword(String id, String password);
 
 	int countById(Member mem);
 

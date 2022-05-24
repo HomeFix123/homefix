@@ -2,12 +2,18 @@ package com.homefix.service;
 
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 
 import com.homefix.domain.Company;
+import com.homefix.domain.CompanyDto;
 import com.homefix.persistence.CompanyRepository;
 
 @Service
@@ -59,13 +65,26 @@ public class CompanyServiceImpl implements CompanyService {
 	}
   
 	// 사업자 정보수정
-	public void companyUpdate(Company com) {
-		companyRepo.save(com);
+	public void companyUpdate(CompanyDto dto) {
+		companyRepo.save(dto); 
 	}
 
 	// 사업자 회원가입
 	public void companyInsert(Company com) {
 		 companyRepo.save(com); 
+	}
+
+	
+	/* 회원가입 시, 유효성 체크 */
+	@Transactional(readOnly = true)
+	public Map<String, String> validateHandling(Errors errors) {
+	Map<String, String> validatorResult = new HashMap<>();
+	/* 유효성 검사에 실패한 필드 목록을 받음 */
+	for (FieldError error : errors.getFieldErrors()) {
+	String validKeyName = String.format("valid_%s", error.getField());
+	validatorResult.put(validKeyName, error.getDefaultMessage());
+	}
+	return validatorResult;
 	}
 
 	
