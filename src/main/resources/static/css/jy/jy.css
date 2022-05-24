@@ -1,0 +1,277 @@
+/********* 견적신청 페이지 estimation.html 설정 ***********/
+
+	/* 화면글자 전체 가운데 정렬*/    
+	.about-info { text-align:  center; }
+	    
+	/* li 체크표시 가운데 정렬*/
+	li {display: inline-block;
+	    margin: 0px;
+	    padding: 0px; 
+	    } 
+	
+	.area-form-text{
+	    position: relative;
+	    display : inline-flex;
+	    /*border-bottom : 1px solid #ccc;*/ 
+	    }
+	        
+	#underline, sample6_address{
+	   margin-bottom: 0px
+	   }
+	
+	#addr_t{
+	   text-align: center;
+	   }    
+	   
+/***********************************************************/
+
+/*** 견적상세 페이지 estimation-details.html 설정******/
+
+/*공통*/
+#estimate_title{
+    text-align: center;
+}
+.bold {
+    font-weight: bold;
+}
+/*end 공통*/
+
+/*희망 견적서 상세보기*/
+.warning_cb {
+    font-size: 12px;
+}
+
+.warning_div{
+        text-align: center;
+}
+
+.btn_div{
+    margin-top: 20px;
+    text-align: center;
+}
+/*end 희망 견적서 상세보기*/
+
+/***qna.html 페이지****************************************************/
+#help {
+    text-align: center;
+}
+/********************************************************************/
+
+/*** interiortip-input.html 페이지 ************************************/
+
+.t_submitdiv{
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.category{
+	margin-bottom: 10px;
+}
+
+.course-info{
+	margin-bottom: 0px;
+}
+
+/*Template Developed By ChtStudio*/
+.breadcrumb-section {
+				padding: 0;
+			}
+			
+.thumnail {
+	width: 100vw;
+  		height:500px;
+  		
+	background-repeat: no-repeat;
+  		background-position: center center;
+  		backgorund-size: 50% 50%;
+  		top: 0;
+  		left: 0;
+  	}
+  	
+.reviewBar{
+	list-style: none;
+	
+}
+.reviewBar li{
+	float: left;
+	font-size: 30px;
+	padding-right: 20px;
+}
+
+.reBar{
+	padding-top: 15px;
+	
+}
+
+#love{
+	color: red;
+	padding-right: 10px;
+	font-size: 30px;
+}
+
+.review_detail li{
+	width:400px;
+	list-style: none;
+	
+}
+
+.reviewer{
+	width: 100px;
+	height: 100px;
+	
+	display: inline-block;
+}
+
+.reviewer img{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	vertical-align: middle;
+	display: block;
+}
+
+.reviewer_name{
+	
+
+}
+
+.details{
+	float: left;
+	margin-top: 10px;
+}
+.details strong{
+	font-size: 20px;
+}
+.detail{
+	float: left;
+	text-align: center;
+	padding-top: 10px;
+	padding-left: 20px;
+}
+
+.fa-home:before{
+	font-size: 30px;
+}
+.fa-ruler:before{
+	font-size: 30px;
+}
+.fa-tools:before{
+	font-size: 30px;
+}
+.fa-users:before{
+	font-size: 30px;
+}
+
+.note-modal-footer .note-btn {
+	float: none;
+}
+
+.note-modal-footer{
+	height: auto;
+}
+
+.writeTitle{
+	border-style: 5px solid;
+	border-color: #1abc9c;
+	border-radius: 5px;
+	width: 100%;
+	height: 40px;
+	margin-bottom: 10px;
+}
+
+/* 인테리어 팁 페이지 ******************************************************************/
+/* 인테리어 팁용 css */
+
+* {
+    box-sizing: border-box;
+    font-family: 'helvetica neue', 'Apple SD Gothic Neo', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #fafafa;
+    padding: 0;
+    margin: 0;
+}
+
+p,
+span {
+    font-size: 14px;
+}
+
+#interiortip_all {
+    display: flex;
+    justify-content: center;
+}
+
+#tip_header{
+    height: 50px;
+}
+header .profile-of-article{
+    margin-top: 12px;
+    margin-left: 10px;
+}
+
+#post_atl{
+    /*background-color: #F5DA81;*/
+    border-radius: 10px;
+}
+
+
+/* top 버튼 */
+#toTop { 
+ position: fixed; /* 포지션 고정 */ 
+bottom: 50px; /* 밑에서 100px */ 
+left: 90%;
+/*display: none;  보여지지 없음 - 기본적으로 안보여지게 */ 
+z-index: 9999; /* 포지션을 먼저 지정후 z-좌표(레이어) : 9999입니다. */ 
+}
+#insertTip{ 
+ position: fixed; /* 포지션 고정 */ 
+bottom: 100px; /* 밑에서 100px */ 
+left: 87.5%;
+/*display: none;  보여지지 없음 - 기본적으로 안보여지게 */ 
+z-index: 9999; /* 포지션을 먼저 지정후 z-좌표(레이어) : 9999입니다. */ 
+ text-align: center;
+ color:white;
+ width:98px;
+ height:40px;
+ 
+}
+/* top버튼 끝 */
+
+
+/* 글쓰기 버튼----------------------------*/
+/* From uiverse.io by @alexmaracinaru */
+button {
+ cursor: pointer;
+ font-weight: 700;
+ font-family: Helvetica,"sans-serif";
+ transition: all .2s;
+ padding-left: 0px;
+ border-radius: 100px;
+ background: #1abc9c;
+ border: 1px solid transparent;
+ align-items: center;
+ font-size: 15px;
+ text-align: center;
+}
+
+button:hover {
+ background: #1abc9c;
+}
+
+button > svg {
+ width: 25px;
+ margin-left: 10px;
+ transition: transform .3s ease-in-out;
+}
+
+button:hover svg {
+ transform: translateX(5px);
+}
+
+button:active {
+ transform: scale(0.95);
+}
+/*=================================글쓰기 버튼 끝*/
+/* 인테리어 팁 페이지 끝******************************************************************/
