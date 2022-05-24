@@ -42,7 +42,7 @@ $(function() {
 				console.log(data);
 				document.getElementById("bs_firstAddress").value = data.address; // 주소 넣기
 				document.getElementById("bs_postNum").value = data.zonecode; // 주소 넣기
-				document.querySelector("input[name=bs_secondAddress").focus(); //상세입력 포커싱
+				document.querySelector("input[name=addrd").focus(); //상세입력 포커싱
 			}
 		}).open();
 	})
@@ -74,12 +74,13 @@ $(function() {
 
 		// 아이디  중복 검사 - DB와 비교
 		$.ajax({
-			type: 'post',
-			url: 'idCheck.do',
-			data: { MemberId: $('#bs_memberId').val() },
+			type: 'get',
+			url: '/company/idCheck',
+			data: { id: $('#bs_memberId').val() },
+
 			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 			success: function(result) {
-
+				console.log(result)
 				// 중복 검사 후 나오는 결과 에러박스에 출력
 				if (result == 'Y') {
 					$('label[for="bs_memberId"] .error_box').css('color', '#4ABA99');
@@ -117,16 +118,16 @@ $(function() {
 		}
 		// 형식에 맞지 않을 때 나오는 에러박스
 		if (!checkCorporateRegistrationNumber(bs_businessNum.replaceAll("-", ""))) {
-			$('label[for="bs_businessNum"] .error_box').html("아이디 형식이 올바르지 않습니다.");
+			$('label[for="bs_businessNum"] .error_box').html("사업자 번호 형식이 올바르지 않습니다.");
 			$('label[for="bs_businessNum"] .error_box').css('color', '#dc3545');
 			return;
 		}
 
 		// 사업자번호  중복 검사 - DB와 비교
 		$.ajax({
-			type: 'post',
-			url: ' ',
-			data: { bs_businessNum: $('#bs_businessNum').val() },
+			type: 'get',
+			url: '/company/companyNumberCheck',
+			data: { num: $('#bs_businessNum').val() },
 			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 			success: function(result) {
 
@@ -177,9 +178,9 @@ $(function() {
 
 		// 이메일 중복 검사 - DB와 비교
 		$.ajax({
-			type: 'post',
-			url: 'emailCheck.do',
-			data: { MemberEmail: $('#bs_memberEmail').val() },
+			type: 'get',
+			url: '/company/emailCheck',
+			data: { email: $('#bs_memberEmail').val() },
 			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 			success: function(result) {
 				// 중복 검사 후 나오는 결과 에러박스에 출력
@@ -310,12 +311,12 @@ $(function() {
 		} else {
 			$('label[for="bs_businessNum"] .error_box').html("");
 		}
-		/*if(bsNumCheak == false){
+		if (bsNumCheak == false) {
 			$('label[for="bs_businessNum"] .error_box').html("사업자번호 중복검사를 하지 않았습니다.");
 			$('label[for="bs_businessNum"] .error_box').css('color', '#dc3545');
-			
-			return false ;
-		}*/
+
+			return false;
+		}
 
 
 
@@ -386,12 +387,13 @@ $(function() {
 		}
 
 
-		/*if(emailCheak == false){
+		if (emailCheak == false) {
 			$('label[for="memberEmail"] .error_box').html("이메일 중복검사를 하지 않았습니다.");
 			$('label[for="memberEmail"] .error_box').css('color', '#dc3545');
-			
-			return false ;
-		}*/
+
+			return false
+		};
+
 
 
 
@@ -418,9 +420,11 @@ $(function() {
 			$('label[for="bs_memberTel"] .error_box').html("");
 		}
 
-
-
 	});
+
+
+
+
 
 
 
@@ -600,14 +604,13 @@ $(function() {
 			$('label[for="memberTel"] .error_box').html("");
 		}
 
-
 		document.memberUpdateForm.submit();
 		alert("회원 정보 수정이 완료되었습니다.");
 	}) //end of #btnMemberUpdate
 
 
 
-
+	/*************************************회원탈퇴***************************************/
 
 
 	$('#btnMemberDelete').click(function() {
@@ -673,12 +676,20 @@ $(function() {
 
 		} else {
 
-			location.href = "./sign-up-b.html"
+			location.href = "/sign/company/sign-up-b"
 
 		}
 
 	})
 
+	$('#btn_signCancel').click(function() {
+		location.href = "/sign/sign-in"
+	})
+
+	/*로그인 아이디 비밀번호 틀림*/
+	if ($('#errorBox').text() == 'N') {
+		$('#errorBoxReal').text("아이디 또는 비밀번호를 잘못 입력하셨습니다.").css("color", "red")
+	}
 
 
 

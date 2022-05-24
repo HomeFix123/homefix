@@ -1,0 +1,46 @@
+/*companyprofile  */
+#pills-tabContent {
+	-ms-flex: 0 0 80.333333%;
+	flex: 0 0 100%;
+	max-width: 100%;
+}
+
+#pills-home-tab {
+	color: #fff;
+	background-color: #1abc9c;
+	margin: 1px;
+	width: 80px;
+	font-size: 14px;
+}
+
+#pills-profile-tab {
+	color: #fff;
+	background-color: #1abc9c;
+	margin: 1px;
+	width: 90px;
+	font-size: 14px;
+}
+
+#paymentAdventage{
+margin-top: 50px;
+}
+
+.form-group-btn{
+	text-align: center;
+}
+
+#Withdrawal{width:80px; height:30px; font-size:12px; padding:1px; }
+#blockWithdrawal{text-align: right;}
+
+#photoFile{
+	text-align:center;
+}
+#postBtn{
+	width:180px;
+	padding:10px 30px;
+	margin: 0px, 30px;
+}
+#bs_btn_emailCheak{
+	padding:10px 25px;
+}
+

@@ -60,33 +60,7 @@
 	</div>
 	<!-- preloader -->
 
-	<header class="sa-header">
-		<div class="sa-topbar">
-			<div class="container">
-				<div class="topbar-content">
-					<div class="left-content">
-						<ul class="global-list">
-							<li><a href="#"><i class="fas fa-home"></i>HOMEFIX</a></li>
-						</ul>
-					</div>
-					<div class="right-content">
-						<ul class="global-list social">
-							<li><a href="#"><i class="fas fa-user"></i> 관리자 님</a></li>
-						</ul>
-						<ul class="global-list">
-							<li><a href="#" class="btn btn-primary">로그아웃 <i
-									class="fas fa-sign-in-alt"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- /.container -->
-		</div>
-		<!-- /.top-bar -->
-
-
-	</header>
-	<!-- /.sa-header -->
+	<div th:replace="/admin/sections/header :: header"></div>
 
 	<div class="container">
 		<div class="row">
@@ -138,13 +112,13 @@
 									<div class="col-lg-9 offset-lg-3">
 										<div class="account-content">
 											<form class="ragister-form" name="ragister-form"
-												method="post" th:action="@{/admin/company/form/{cid}(cid=${company.cid})}">
+												method="post" th:action="@{/admin/company/form/{id}(id=${company.id})}">
 												<input type="hidden" name="_method" value="put">
 												<div class="row form-group justify-content-center pt-3">
 													<label>로고 이미지</label>
-													<input type="hidden" class="logo_image" name="co_logo" th:value="${company.co_logo}">
+													<input type="hidden" class="logo_image" name="logo" th:value="${company.logo}">
 													<div class="col-md-6">
-														<img th:src="@{http://140.238.11.118:5000/upload/{logo}(logo=${company.co_logo})}" alt="Image"
+														<img th:src="@{http://140.238.11.118:5000/upload/{logo}(logo=${company.logo})}" alt="Image"
 															class="img-fluid" id="logo_image">
 													</div>
 													<div class="col-12 add-photo">
@@ -154,15 +128,15 @@
 												<div class="form-group text-left mb-0">
 													<label>아이디</label> <input type="text" class="form-control"
 														required="required" placeholder="admin"
-														readonly="readonly" th:value="${company.cid}" name="cid">
+														readonly="readonly" th:value="${company.id}" name="id">
 												</div>
 												<div class="form-group text-left mb-0">
-													<label>업체명</label> <input type="text" class="form-control" name="co_name"
-														required="required" placeholder="착한닉네임1" th:value="${company.co_name}">
+													<label>업체명</label> <input type="text" class="form-control" name="name"
+														required="required" placeholder="착한닉네임1" th:value="${company.name}">
 												</div>
 												<div class="form-group text-left mb-0">
-													<label>이메일</label> <input type="email" class="form-control" name="co_email"
-														required="required" placeholder="example@example.com" th:value="${company.co_email}">
+													<label>이메일</label> <input type="email" class="form-control" name="email"
+														required="required" placeholder="example@example.com" th:value="${company.email}">
 												</div>
 												<button class="btn btn-primary" type="submit">변경</button>
 											</form>
