@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <!-- [estimation.html] 견적신청 페이지 -->
 
-<html lang="en">
+<!-- 타임리프 설정 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> 
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,25 +13,24 @@
         <title>estimation.html</title>
         
         <!-- CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/all.min.css">
-        <link rel="stylesheet" href="css/animate.min.css">
-        <link rel="stylesheet" href="css/YTPlayer.min.css">
-        <link rel="stylesheet" href="css/slick.css">
-        <link rel="stylesheet" href="css/structure.css">
-        <link rel="stylesheet" href="css/main.css"> 
-        <link rel="stylesheet" href="css/responsive.css">
-        <link rel="stylesheet" href="css/jy.css"> <!-- 개인 CSS 파일 링크 -->
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/css/all.min.css}">
+        <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+        <link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+        <link rel="stylesheet" th:href="@{/css/slick.css}">
+        <link rel="stylesheet" th:href="@{/css/structure.css}">
+        <link rel="stylesheet" th:href="@{/css/main.css}"> 
+        <link rel="stylesheet" th:href="@{/css/responsive.css}">
         
         <!-- font -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
 
         <!-- icons -->
-        <link rel="icon" href="images/ico/favicon.ico"> 
-        <link rel="apple-touch-icon" sizes="144x144" href="../images/ico/apple-touch-icon-precomposed.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="../images/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="../images/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon" sizes="57x57" href="../images/ico/apple-touch-icon-57-precomposed.png">  
+        <link rel="icon" th:href="@{/images/ico/favicon.ico}"> 
+        <link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">  
         <!-- icons -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -41,11 +41,14 @@
         <![endif]-->
         <!-- Template Developed By ChtStudio -->
     	
+    	<!-- 개인 CSS 파일 링크 -->
+        <link rel="stylesheet" th:href="@{/css/jy/jy.css}"> 
+        
     </head>
     
     <body> 
         <div id="preloader">
-            <img src="images/preloader.gif" alt="Image" class="tr-preloader img-fluid">
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
         <header class="sa-header">
@@ -77,8 +80,8 @@
             <div class="sa-menu">
                 <nav class="navbar navbar-expand-lg">
                     <div class="container">
-                        <a class="navbar-brand" href="index.html">
-                            <img src="images/logo.png" alt="Logo" class="img-fluid">
+                        <a class="navbar-brand" th:href="@{/index.html}">
+                            <img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
                         </a>
 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,25 +93,25 @@
                                 <li class="nav-item sa-dropdown">
                                     <a href="#">Home</a>
                                     <ul class="sa-dropdown-menu">
-                                        <li><a href="index.html">Home V-1</a></li>
-                                        <li><a href="index1.html">Home V-2</a></li>
-                                        <li><a href="index2.html">Home V-3</a></li>
+                                        <li><a th:href="@{/index.html}">Home V-1</a></li>
+                                        <li><a th:href="@{/index1.html}">Home V-2</a></li>
+                                        <li><a th:href="@{/index2.html}">Home V-3</a></li>
                                     </ul>
                                 </li>
-                                <li class="active"><a href="about.html">About</a></li>
+                                <li class="active"><a th:href="@{/about.html}">About</a></li>
                                 <li class="sa-dropdown">
                                     <a href="#">Courses</a>
                                     <ul class="sa-dropdown-menu">
-                                        <li><a href="course-grid.html">Course Grid View</a></li>
-                                        <li><a href="course-list.html">Course List View</a></li>
-                                        <li><a href="course-details.html">Course Details</a></li>
+                                        <li><a th:href="@{/course-grid.html}">Course Grid View</a></li>
+                                        <li><a th:href="@{/course-list.html}">Course List View</a></li>
+                                        <li><a th:href="@{/course-details.html}">Course Details</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="tutor.html">Teacher</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a th:href="@{/tutor.html}">Teacher</a></li>
+                                <li><a th:href="@{/blog.html}">Blog</a></li>
+                                <li><a th:href="@{/contact.html}">Contact</a></li>
                                 <li class="sa-dropdown">
-                                    <a href="index.html">Page</a>
+                                    <a th:href="@{/index.html}">Page</a>
                                     <ul class="sa-dropdown-menu">
                                         <li><a href="catagory.html">Catagory</a></li>
                                         <li><a href="profile.html">User Profile</a></li>
@@ -138,7 +141,7 @@
                                                     <span class="remove-icon"><i class="fas fa-times"></i></span>
                                                     <div class="sa-course">
                                                         <div class="course-thumb">
-                                                            <img src="images/course/1.jpg" alt="Image" class="img-fluid">
+                                                            <img th:src="@{/images/course/1.jpg}" alt="Image" class="img-fluid">
                                                         </div><!-- /.course-thumb -->
 
                                                         <div class="course-info">
@@ -152,7 +155,7 @@
                                                     <span class="remove-icon"><i class="fas fa-times"></i></span>
                                                     <div class="sa-course">
                                                         <div class="course-thumb">
-                                                            <img src="images/course/2.jpg" alt="Image" class="img-fluid">
+                                                            <img th:src="@{/images/course/2.jpg}" alt="Image" class="img-fluid">
                                                         </div><!-- /.course-thumb -->
 
                                                         <div class="course-info">
@@ -166,7 +169,7 @@
                                                     <span class="remove-icon"><i class="fas fa-times"></i></span>
                                                     <div class="sa-course">
                                                         <div class="course-thumb">
-                                                            <img src="images/course/3.jpg" alt="Image" class="img-fluid">
+                                                            <img th:src="@{/images/course/3.jpg}" alt="Image" class="img-fluid">
                                                         </div><!-- /.course-thumb -->
 
                                                         <div class="course-info">
@@ -221,7 +224,8 @@
             </div><!-- /.container -->
         </section><!-- /.breadcrumb-section -->  
 
-        <div class="sa-section">
+        <dvgiv class="sa-section">
+           <form method="post" th:action="@{saveEst}">
             <!--<div class="section-content sa-about section-padding">-->
                 <div class="container" >
                     <div class="row">
@@ -234,15 +238,15 @@
                                     <ul class="global-list m-0">
                                     <li><h5 class="m-0"> 공간유형 </h5></li>
                                     </ul>
-                                <a href="#" class="btn btn-primary">주거</a>
-                                <a href="#" class="btn btn-primary">상업</a>
+                                <a href="#" class="btn btn-primary" name="space">주거</a>
+                                <a href="#" class="btn btn-primary" name="space">상업</a>
                                     <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
                                         <li><h5 class="m-0" > 건물유형 </h5></li>
                                     </ul>
-                                <a href="#" class="btn btn-primary">아파트</a>
-                                <a href="#" class="btn btn-primary">빌라</a>
-                                <a href="#" class="btn btn-primary">주택</a>
-                                <a href="#" class="btn btn-primary">오피스텔</a>
+                                <a href="#" class="btn btn-primary" name="building">아파트</a>
+                                <a href="#" class="btn btn-primary" name="building">빌라</a>
+                                <a href="#" class="btn btn-primary" name="building">주택</a>
+                                <a href="#" class="btn btn-primary" name="building">오피스텔</a>
                                     <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
                                         <li><h5 class="m-0"> 평수 </h5></li>
                                     </ul>
@@ -278,7 +282,7 @@
                                     </ul>
                                     <div class="area-form-text">
                                         <div>
-	                            <input type="text" id="underline" class="form-control" name="size" required="" placeholder="">
+	                            <input type="text" id="underline" class="form-control" name="budget" required="" placeholder="">
                                         </div>
                                         <div style="margin-top:10px; margin-left: 10px; margin-right: 10px;">
                                 <span>만원   
@@ -291,11 +295,11 @@
                                     </ul>
                                     <div class="area-form-text">
                                         <div class="p-0">
-                                        <input type="text" readonly="readonly" title="시작일 선택" placeholder="시작일" aria-haspopup="calenderPopup" class="form-control" id="underline">
+                                        <input type="text" name="start_d" readonly="readonly" title="시작일 선택" placeholder="시작일" aria-haspopup="calenderPopup" class="form-control" id="underline">
                                         </div>
                                             <div style="margin-top:10px; margin-left: 10px; margin-right: 10px; margin-bottom: 0px" ><span>~</span></div>
                                         <div class="p-0">
-                                        <input type="text" readonly="readonly" title="종료일 선택" placeholder="종료일" aria-haspopup="calenderPopup" id="underline" class="form-control">
+                                        <input type="text" name="end_d" readonly="readonly" title="종료일 선택" placeholder="종료일" aria-haspopup="calenderPopup" id="underline" class="form-control">
                                         </div>
                                         
                                         
@@ -311,7 +315,7 @@
                                                     <div style="width: 350px; margin: auto;">
                                                     <div >
                                                     <!-- 간단 주소 입력 시작 -->
-                                                    <input type="text" id="sample6_address" placeholder="주소" class="form-control" name="eaddr" style="padding: 20px; margin: auto; margin-bottom: 10px; " 
+                                                    <input type="text" name="eaddr" id="sample6_address" placeholder="주소" class="form-control" name="eaddr" style="padding: 20px; margin: auto; margin-bottom: 10px; " 
                                                     >
                                                     <!-- 간단 주소 입력 끝 -->
                                                     </div>
@@ -362,7 +366,7 @@
                                     </ul>
                                     <div class="area-form-text" style="margin-bottom: 40px;">
                                         <div>
-	                                    <input type="text" id="underline" class="form-control" name="ename" required="" placeholder="">
+	                                    <input type="text" id="underline" class="form-control" name="etel" required="" placeholder="">
                                         </div>
                                        
                                     </div>
@@ -373,18 +377,19 @@
                                     <div class="area-form-text">
                                         <div>
 	                                    <!--<input type="text" id="textbox" class="form-control" name="ename" required="" placeholder="선호하는 스타일을 자유롭게 적어주세요." style="width: 300px; height: 150px;" style="text-align: left">-->
-                                        <textarea class="form-control" name="message" required="" placeholder="선호하는 스타일을 자유롭게 적어주세요." style="width: 350px; height: 150px;"></textarea>
+                                        <textarea class="form-control" name="estyle" required="" placeholder="선호하는 스타일을 자유롭게 적어주세요." style="width: 350px; height: 150px;"></textarea>
                                         </div>
                                        
                                     </div>
                                     <div style="padding: 10px"></div>
-                                    <a href="#" class="btn btn-primary" style="margin-bottom: 150px;">신청하기</a>
+                                    <a href="#" class="btn btn-primary" type="submit" style="margin-bottom: 150px;">신청하기</a>
                                     
                             </div>    
                         </div>
                     </div>
                 </div><!-- /.container -->
-      
+      </form>
+      </dvgiv>
         <div class="footer">
             <div class="footer-top">
                 <div class="container">
@@ -393,7 +398,7 @@
                             <div class="col-md-6 col-lg-3">
                                 <div class="footer-widget">
                                     <div class="footer-logo">
-                                        <a href="#"><img src="images/logo.png" alt="Logo" class="img-fluid"></a>
+                                        <a href="#"><img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid"></a>
                                     </div>
                                     <p>Holisticly aggregate compelling ROI before out-of-the-box benefits. Efficiently create cross functional paradigms without an expanded array of testing procedures.</p>
                                     <div class="footer-social">
@@ -427,7 +432,7 @@
                                     <div class="sa-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img src="images/blog/4.jpg" alt="Image" class="img-fluid"></a>
+                                                <a href="blog-details.html"><img th:src="@{/images/blog/4.jpg}" alt="Image" class="img-fluid"></a>
                                             </div> 
                                         </div>                               
                                         <div class="entry-content">     
@@ -437,7 +442,7 @@
                                     <div class="sa-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img src="images/blog/5.jpg" alt="Image" class="img-fluid"></a>
+                                                <a href="blog-details.html"><img th:src="@{/images/blog/5.jpg}" alt="Image" class="img-fluid"></a>
                                             </div> 
                                         </div>                               
                                         <div class="entry-content">     
@@ -447,7 +452,7 @@
                                     <div class="sa-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img src="images/blog/2.jpg" alt="Image" class="img-fluid"></a>
+                                                <a href="blog-details.html"><img th:src="@{/images/blog/2.jpg}" alt="Image" class="img-fluid"></a>
                                             </div> 
                                         </div>                               
                                         <div class="entry-content">     
@@ -466,10 +471,10 @@
                                     <div class="payment-gateway">
                                         <h4>Payment Gateway</h4> 
                                         <ul class="global-list d-flex">
-                                            <li><img src="images/others/payment1.png" alt="Image" class="img-fluid"></li>
-                                            <li><img src="images/others/payment2.png" alt="Image" class="img-fluid"></li>
-                                            <li><img src="images/others/payment3.png" alt="Image" class="img-fluid"></li>
-                                            <li><img src="images/others/payment4.png" alt="Image" class="img-fluid"></li>
+                                            <li><img th:src="@{/images/others/payment1.png}" alt="Image" class="img-fluid"></li>
+                                            <li><img th:src="@{/images/others/payment2.png}" alt="Image" class="img-fluid"></li>
+                                            <li><img th:src="@{/images/others/payment3.png}" alt="Image" class="img-fluid"></li>
+                                            <li><img th:src="@{/images/others/payment4.png}" alt="Image" class="img-fluid"></li>
                                         </ul>
                                     </div>                      
                                 </div>
@@ -486,18 +491,18 @@
         </div><!-- /.footer -->
 
         <!-- JS -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>  
-        <script src="js/inview.min.js"></script> 
-        <script src="js/slick.min.js"></script>
-        <script src="js/jquery-ui-min.js"></script>  
-        <script src="js/jarallax.min.js"></script>  
-        <script src="js/counterup.min.js"></script> 
-        <script src="js/waypoints.min.js"></script> 
-        <script src="js/YTPlayer.min.js"></script> 
-        <script src="js/validate.js"></script>
-        <script src="js/main.js"></script>  
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>  
+        <script th:src="@{/js/inview.min.js}"></script> 
+        <script th:src="@{/js/slick.min.js}"></script>
+        <script th:src="@{/js/jquery-ui-min.js}"></script>  
+        <script th:src="@{/js/jarallax.min.js}"></script>  
+        <script th:src="@{/js/counterup.min.js}"></script> 
+        <script th:src="@{/js/waypoints.min.js}"></script> 
+        <script th:src="@{/js/YTPlayer.min.js}"></script> 
+        <script th:src="@{/js/validate.js}"></script>
+        <script th:src="@{/js/main.js}"></script>  
         <!-- 카카오 지도 API -->
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>            
         
