@@ -26,6 +26,7 @@ public class Brag {
 	
 	@Column(name = "b_cont")
 	private String  bcont;
+	private String  btitle;
 	private String  bimgadr;
 	private Integer bcnt;
 	private String  hometype;

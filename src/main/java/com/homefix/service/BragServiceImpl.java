@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Brag;
+import com.homefix.domain.Member;
 import com.homefix.persistence.BragRepository;
 import com.homefix.persistence.CompanyRepository;
 import com.homefix.persistence.MemberRepository;
@@ -22,12 +23,12 @@ public class BragServiceImpl implements BragService {
 	
 	
 	@Override
-	public void saveBrag(Brag brag, String id, String cid) {
+	public void saveBrag(Brag brag, String cid, String id) {
 		
 		brag.setMember(memberRepo.findById(id).get());
 		brag.setCompany(companyRepo.findById(cid).get());
 		
-		
+		System.out.println(brag);
 		bragRepo.save(brag);
 		
 	}

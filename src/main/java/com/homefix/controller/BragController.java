@@ -30,10 +30,11 @@ public class BragController {
 	
 	@PostMapping("/write")
 	public String saveBrag(Brag brag, String cid) {
+		System.out.println(cid);
 		String id = "test";
 		bragService.saveBrag(brag, cid, id);
 		logger.info("입력성공");
-		return "redirect:/brag/";
+		return "redirect:/brag/write";
 	}
 	
 	
