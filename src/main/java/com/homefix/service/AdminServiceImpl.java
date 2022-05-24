@@ -1,5 +1,7 @@
 package com.homefix.service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +11,12 @@ import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
 import com.homefix.domain.CompanyReport;
 import com.homefix.domain.Member;
+import com.homefix.domain.MemberReport;
 import com.homefix.domain.Payment;
 import com.homefix.persistence.CompanyInfoRepository;
 import com.homefix.persistence.CompanyReportRepository;
 import com.homefix.persistence.CompanyRepository;
+import com.homefix.persistence.MemberReportRepository;
 import com.homefix.persistence.MemberRepository;
 import com.homefix.persistence.PaymentRepository;
 
@@ -36,7 +40,6 @@ public class AdminServiceImpl implements AdminService {
 	 */
 	@Override
 	public Member getMember(String id) {
-		
 		return memberRepo.findById(id).get();
 	}
 
@@ -66,7 +69,40 @@ public class AdminServiceImpl implements AdminService {
 		memberRepo.save(temp);
 	}
 	
+	@Autowired
+	MemberReportRepository memberReportRepo;
 	
+	/*
+	 * 고객 신고 목록 불러오기
+	 */
+	@Override
+	public List<MemberReport> getMemberReportList() {
+		
+		return (List<MemberReport>)memberReportRepo.findAll();
+	}
+
+	/*
+	 * 고객 신고 삭제
+	 */
+	@Override
+	public void deleteMemberReport(String rid) {
+		Integer id = Integer.parseInt(rid);
+		MemberReport memRe = memberReportRepo.findById(id).get();
+		memberReportRepo.delete(memRe);
+	}
+	
+	/*
+	 * 오늘의 고객 신고 개수
+	 */
+	@Override
+	public Long countTodayMemberReport() {
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DATE, -1); // 빼고 싶다면 음수 입력
+		Date date = new Date(cal.getTimeInMillis());
+		return memberReportRepo.countByRdayGreaterThan(date);
+	}
 	
 	@Autowired
 	CompanyRepository companyRepo;
@@ -143,7 +179,7 @@ public class AdminServiceImpl implements AdminService {
 	 * 업체 신고 삭제
 	 */
 	@Override
-	public void deleteReport(String rid) {
+	public void deleteCompanyReport(String rid) {
 		Integer id = Integer.parseInt(rid);
 		CompanyReport report = companyReportRepo.findById(id).get();
 		companyReportRepo.delete(report);
@@ -156,9 +192,11 @@ public class AdminServiceImpl implements AdminService {
 	 */
 	@Override
 	public List<Payment> getPaymentList(String cid) {
-		
-		return null;
+		Company temp = companyRepo.findById(cid).get();
+		return paymentRepo.findByCompany(temp);
 	}
+
+	
 
 	
 	
