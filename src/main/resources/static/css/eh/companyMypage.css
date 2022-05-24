@@ -24,3 +24,23 @@
 #paymentAdventage{
 margin-top: 50px;
 }
+
+.form-group-btn{
+	text-align: center;
+}
+
+#Withdrawal{width:80px; height:30px; font-size:12px; padding:1px; }
+#blockWithdrawal{text-align: right;}
+
+#photoFile{
+	text-align:center;
+}
+#postBtn{
+	width:180px;
+	padding:10px 30px;
+	margin: 0px, 30px;
+}
+#bs_btn_emailCheak{
+	padding:10px 25px;
+}
+

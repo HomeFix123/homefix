@@ -38,8 +38,8 @@ public class MemberServiceImpl implements MemberService {
 	// 개인 성공
 	public List<Company> login(Member mem) {
 		List<Company> message = null ;
-		if ( memberRepo.findByIdAndPass(mem.getId(), mem.getPassword()).size()>0) {
-			message= memberRepo.findByIdAndPass(mem.getId(), mem.getPassword());
+		if ( memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword()).size()>0) {
+			message= memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword());
 		}
 		return message;
 	} 
