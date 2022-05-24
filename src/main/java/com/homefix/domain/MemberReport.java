@@ -1,5 +1,7 @@
 package com.homefix.domain;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,11 +26,13 @@ public class MemberReport {
 	@Column(name = "m_reason")
 	private String reason;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	@JoinColumn(name = "id")
 	private Member member;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	@JoinColumn(name = "reporter")
 	private Member reporter;
+	
+	private Date rday;
 }

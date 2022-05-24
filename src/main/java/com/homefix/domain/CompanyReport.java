@@ -26,11 +26,11 @@ public class CompanyReport {
 	@Column(name = "cp_reason")
 	private String reason;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne()
 	@JoinColumn(name = "cid")
 	private Company company;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne()
 	@JoinColumn(name = "id")
 	private Member member;
 	
