@@ -102,7 +102,7 @@
 				                            <div class="address">
 				                                <div class="text d-inline">
 				                                    <span>신규 신고수</span>
-				                                    <h3><i class="far fa-angry"></i> 3</h3>
+				                                    <h3><i class="far fa-angry"></i> <span th:text="${todayMemberReport}">0</span></h3>
 				                                </div>                                    
 				                            </div>
 				                        </div>
@@ -141,7 +141,29 @@
 			                        			</table>	
 			                        		</div>
                                             <div class="tab-pane fade" id="alertList" role="tabpanel" aria-labelledby="alertList-tab">
-			                        			<table id="alert" class="display" style="width:100%"></table>	
+			                        			<table id="reports" class="display" style="width:100%">
+			                        				<thead>
+			                        					<tr class="text-center">
+			                        						<td>신고날짜</td>
+			                        						<td>아이디</td>
+			                        						<td>닉네임</td>
+			                        						<td>사유</td>
+			                        						<td>상세/삭제</td>
+			                        					</tr>
+			                        				</thead>
+			                        				<tbody>
+			                        					<tr th:each="r : ${reportList}">
+			                        						<td th:text="${#dates.format(r.rday, 'yy-MM-dd')}"></td>
+			                        						<td th:text="${r.member.id}"></td>
+			                        						<td th:text="${r.member.name}"></td>
+			                        						<td th:text="${r.reason}"></td>
+			                        						<td class="text-center">
+				                        						<a href="#" class="btn btn-primary m-0 py-1 px-2 info" th:value="${r.member.id}">고객정보</a>
+				                        						<a href="#" class="btn btn-primary bg-danger border-danger m-0 py-1 px-2" th:value="${r.rpid}">신고삭제</a>
+			                        						</td>
+			                        					</tr>
+			                        				</tbody>
+			                        			</table>	
 			                        		</div>
 			                        	</div><!-- / 탭내용 -->
 			                        </div><!-- / .tab -->

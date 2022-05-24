@@ -14,8 +14,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CompanyDto {
 
-	//@NotBlank(message = "아이디는 필수 입력 값입니다.")
-	//@Pattern(regexp = "/^[a-zA-z0-9]{4,12}$/", message = "아이디 형식이 올바르지 않습니다.")
 	private String id;
 	
 	@NotBlank(message = "비밀번호는 필수 입력 값입니다.")
