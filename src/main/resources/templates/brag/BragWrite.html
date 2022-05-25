@@ -1,533 +1,570 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="">
-        <meta name="description" content="">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="">
+<meta name="description" content="">
 
-        <title>Educam | Education & Courses HTML Template.</title>
+<title>Educam | Education & Courses HTML Template.</title>
 
-        <!-- CSS -->
-        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-        <link rel="stylesheet" th:href="@{/css/all.min.css}">
-        <link rel="stylesheet" th:href="@{/css/animate.min.css}">
-        <link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
-        <link rel="stylesheet" th:href="@{/css/slick.css}">
-        <link rel="stylesheet" th:href="@{/css/structure.css}">
-        <link rel="stylesheet" th:href="@{/css/main.css}"> 
-        <link rel="stylesheet" th:href="@{/css/responsive.css}">
-        <link th:href="@{/css/summernote/summernote-lite.css}" rel="stylesheet">
-        
-        <!-- font -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
+<!-- CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/all.min.css}">
+<link rel="stylesheet" th:href="@{/css/animate.min.css}">
+<link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+<link rel="stylesheet" th:href="@{/css/slick.css}">
+<link rel="stylesheet" th:href="@{/css/structure.css}">
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="stylesheet" th:href="@{/css/responsive.css}">
+<link th:href="@{/css/summernote/summernote-lite.css}" rel="stylesheet">
 
-        <!-- icons -->
-        <link rel="icon" th:href="@{/images/ico/favicon.ico}"> 
-        <link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
-        <link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
-        <link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
-        <link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">   
-        <!-- icons -->
+<!-- font -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+<!-- icons -->
+<link rel="icon" th:href="@{/images/ico/favicon.ico}">
+<link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+<link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+<link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+<link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
+<!-- icons -->
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <!-- Template Developed By ChtStudio -->
-        <style type="text/css">
-			.breadcrumb-section {
-				padding: 0;
-			}
-			
-			.thumnail {
-				width: 100vw;
-	    		height:500px;
-	    		
-				background-repeat: no-repeat;
-	    		background-position: center center;
-	    		backgorund-size: 50% 50%;
-	    		top: 0;
-	    		left: 0;
-	    	}
-	    	
-	    	.course-info{
-	    		margin-bottom: 60px;
-	    	}
-			
-			.reviewBar{
-				list-style: none;
-				
-			}
-			.reviewBar li{
-				float: left;
-				font-size: 30px;
-				padding-right: 20px;
-			}
-			
-			.reBar{
-				padding-top: 15px;
-				
-			}
-			
-			#love{
-				color: red;
-				padding-right: 10px;
-				font-size: 30px;
-			}
-			
-			.review_detail li{
-				width:400px;
-				list-style: none;
-				
-			}
-			
-			.reviewer{
-				width: 100px;
-				height: 100px;
-				
-				display: inline-block;
-			}
-			
-			.reviewer img{
-				width: 100%;
-				height: 100%;
-				border-radius: 50%;
-				vertical-align: middle;
-				display: block;
-			}
-			
-			.reviewer_name{
-				
-			
-			}
+<!-- Template Developed By ChtStudio -->
+<style type="text/css">
+.breadcrumb-section {
+	padding: 0;
+}
 
-			.details{
-				float: left;
-				margin-top: 10px;
-			}
-			.details strong{
-				font-size: 20px;
-			}
-			.detail{
-				float: left;
-				text-align: center;
-				padding-top: 10px;
-				padding-left: 20px;
-			}
-			
-			.fa-home:before{
-				font-size: 30px;
-			}
-			.fa-ruler:before{
-				font-size: 30px;
-			}
-			.fa-tools:before{
-				font-size: 30px;
-			}
-			.fa-users:before{
-				font-size: 30px;
-			}
-			
-			.note-modal-footer .note-btn {
-				float: none;
-			}
-			
-			.note-modal-footer{
-				height: auto;
-			}
-			
-			.writeTitle{
-				border-style: 5px solid;
-				border-color: #1abc9c;
-				border-radius: 5px;
-				width: 100%;
-				height: 40px;
-				margin-bottom: 10px;
-			}
-			
-			.writedetail{
-				padding: 30px;
-				text-align: center;
-			}
-			
-			#bsize{
-				margin-bottom: 0px;
-				margin-right: 50px;
-			}
-			
-			#bbudget{
-				margin: 0px;
-			}
-			
-			#loc{
-				margin: 0px;
-			}
-			
-			#extrainfo{
-				margin: 0px;
-			}
-			
-			.input-group{
-				width: 100%;
-			}
+.thumnail {
+	width: 100vw;
+	height: 500px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	backgorund-size: 50% 50%;
+	top: 0;
+	left: 0;
+}
 
-		  .input-group-text{
-		      width: 13%;
-		      justify-content: center;
-		      background-color:  #1abc9c;
-		      color: white;
-		  }
-		  .form-control {
-		      width: 55%;
-		      
-		  }
-		  
-		  .writedetailbtn{
-		  	
-		  	width: 100%;
-		  	height: 50px;
-		  	border-style: 1px solid;
-		  	border-color:  #1abc9c;
-		  	background-color: white;
-		  }
-		  
-		  .writebtn{
-		  	width: 200px;
-		  	height: 50px;
-		  	margin-top: 30px;
-		  	background-color:  #1abc9c;
-		  	color: white;
-		  	border: none;
-		  	border-radius: 5px;
-		  }
-		  
-		  .previewImagebtn{
-		  	border: none;
-		  	border-radius: 5px;
-		  	background-color:  #1abc9c;
-		  	color: white;
-		  	width: 150px;
-		  	height: 25px;
-		  	text-align: center;
-		  	margin-top: 20px;
-		  	margin-bottom: 20px;
-		  }
-		  
-        </style>
-        
-    </head>
-    <body> 
-        <div id="preloader">
-            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
-        </div><!-- preloader -->
-        
-        <header class="sa-header">
-            <div class="sa-topbar">
-                <div class="container">
-                    <div class="topbar-content">
-                        <div class="left-content">
-                            <ul class="global-list">
-                                <li><a href="#"><i class="far fa-envelope"></i>info@gmail.com</a></li>
-                                <li><a href="#"><i class="fas fa-phone-volume"></i>0123456789</a></li>
-                            </ul>
-                        </div>
-                        <div class="right-content">
-                            <ul class="global-list social">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                            </ul>
-                            <ul class="global-list">
-                                <li><a href="#" class="btn btn-primary">Register <i class="fas fa-sign-in-alt"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- /.container -->
-            </div><!-- /.top-bar -->
+.course-info {
+	margin-bottom: 60px;
+}
 
-            <div class="sa-menu">
-                <nav class="navbar navbar-expand-lg">
-                    <div class="container">
-                        <a class="navbar-brand" href="index.html">
-                            <img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
-                        </a>
+.reviewBar {
+	list-style: none;
+}
 
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-                        </button> 
-                        
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item sa-dropdown">
-                                    <a href="#">Home</a>
-                                    <ul class="sa-dropdown-menu">
-                                        <li><a href="index.html">Home V-1</a></li>
-                                        <li><a href="index1.html">Home V-2</a></li>
-                                        <li><a href="index2.html">Home V-3</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about.html">About</a></li>
-                                <li class="sa-dropdown">
-                                    <a href="#">Courses</a>
-                                    <ul class="sa-dropdown-menu">
-                                        <li><a href="course-grid.html">Course Grid View</a></li>
-                                        <li><a href="course-list.html">Course List View</a></li>
-                                        <li><a href="course-details.html">Course Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="tutor.html">Teacher</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li class="sa-dropdown active">
-                                    <a href="index.html">Page</a>
-                                    <ul class="sa-dropdown-menu">
-                                        <li><a href="catagory.html">Catagory</a></li>
-                                        <li><a href="profile.html">User Profile</a></li>
-                                        <li class="active"><a href="blog-details.html">Blog Details</a></li>
-                                        <li><a href="tutor-details.html">Tutor Details</a></li>
-                                        <li><a href="my-course.html">My Course<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a href="course-video.html">Course Video<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a href="cart.html">Shopping Cart<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a href="payment.html">Payment<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a href="congrats.html">Congrats<span class="badge rounded-pill bg-dark">New</span></a></li> 
-                                        <li><a href="sign-in.html">Sign In</a></li>
-                                        <li><a href="sign-up.html">Sign Up</a></li>
-                                    </ul>
-                                </li>
-                            </ul>       
-                        </div> 
+.reviewBar li {
+	float: left;
+	font-size: 30px;
+	padding-right: 20px;
+}
 
-                        <div class="right-content">
-                            <div class="user-option">
-                                <ul class="global-list">
-                                    <li class="sa-dropdown">
-                                        <span class="cart-number">5</span>
-                                        <i class="fas fa-cart-plus"></i>
-                                        <div class="sa-dropdown-menu">
-                                            <ul class="global-list">
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-thumb">
-                                                            <img th:src="@{/images/course/1.jpg}" alt="Image" class="img-fluid">
-                                                        </div><!-- /.course-thumb -->
+.reBar {
+	padding-top: 15px;
+}
 
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a href="course-details.html" >Visual Basic Web Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-thumb">
-                                                            <img th:src="@{/images/course/2.jpg}" alt="Image" class="img-fluid">
-                                                        </div><!-- /.course-thumb -->
+#love {
+	color: red;
+	padding-right: 10px;
+	font-size: 30px;
+}
 
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a href="course-details.html">Computer Technologies Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-thumb">
-                                                            <img th:src="@{/images/course/3.jpg}" alt="Image" class="img-fluid">
-                                                        </div><!-- /.course-thumb -->
+.review_detail li {
+	width: 400px;
+	list-style: none;
+}
 
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a href="course-details.html" >Visual Basic Web Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                            </ul> 
-                                            <div class="total-price">
-                                                <span><strong>Total Price: </strong>$598:00</span>
-                                            </div> 
-                                            <div class="buttons">
-                                                <a class="btn btn-primary cart-button" href="#">View Cart</a>
-                                                <a class="btn btn-primary" href="#">Checkout</a>
-                                            </div>                                              
-                                        </div>
-                                    </li>
-                                    <li><i class="far fa-bell"></i></li>
-                                    <li>
-                                        <div class="sa-search-form">
-                                            <div class="search-icon">
-                                                <i class="fas fa-search"></i>
-                                            </div>
-                                            <div class="search-form text-center open-search">
-                                                <div class="close-search">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                </div>
-                                                <form action="#" id="search" method="get">
-                                                    <input name="search" type="text" placeholder="Enter keyword...">
-                                                    <button type="submit"><i class="fas fa-search"></i></button>
-                                                </form><!-- /form -->
-                                            </div><!-- /search-form -->                    
-                                        </div>                        
-                                    </li>
-                                </ul>
-                            </div>                          
-                        </div>
-                    </div><!-- /.container -->
-                </nav><!-- /.navbar -->                                
-            </div><!-- /.sa-menu -->
-        </header><!-- /.sa-header -->  
-		
+.reviewer {
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+}
 
-	<form id="writeinfo" enctype="multipart/form-data" method="post"  action="/brag/write">
-        <div class="sg-section">
-            <div class="section-content course-details bg-white section-padding">
-                <div class="container">
-                    <div class="row justify-content-md-center">
-                        <div class="col-lg-8">
-                            <div class="sa-course">
-                            <button type="button" class="writedetailbtn">후기작성 세부사항</button>
-                                <div class="writedetail">
-                                	
-                                	<div class="input-group mb-3">
-									  <label class="input-group-text" for="cid">업체명</label>
-									  <select class="form-select" id="cid" name="cid">
-									    <option disabled selected>계약 업체목록</option>
-									    <option value="1004">건희네</option>
-									    <option value="2">영은네</option>
-									    <option value="3">혜윤네</option>
-									    <option value="4">진영네
-									  </select>
-									</div>
-                                	
-                                	
-                                	<div class="input-group mb-3">
-									  <label class="input-group-text" for="hometype">주거형태</label>
-									  <select class="form-select" id="hometype" name="hometype">
-									    <option disabled selected>골라줭</option>
-									    <option value="1">마이룸</option>
-									    <option value="2">원룸</option>
-									    <option value="3">오피스텔</option>
-									    <option value="4">주택
-									  </select>
-									</div>
-									
-									<div class="input-group input-group-sm mb-3">
-									  <span class="input-group-text" id="inputGroup-sizing-sm">평수</span>
-									  <input type="text" id="bsize" name="bsize" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-									  <span class="input-group-text" id="inputGroup-sizing-sm">예산</span>
-									  <input type="text" id="bbudget" name="bbudget" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-									</div>
-									
-									<div class="input-group mb-3">
-									  <label class="input-group-text" for="job">작업분야</label>
-									  <select class="form-select" id="job" name="job">
-									    <option disabled selected>골라</option>
-									    <option value="1">홈스타일링</option>
-									    <option value="2">리모델링</option>
-									    <option value="3">부분시공</option>
-									  </select>
-									</div>
-									<div class="input-group mb-3">
-									  <label class="input-group-text" for="family">가족형태</label>
-									  <select class="form-select" id="family" name="family">
-									    <option disabled selected>Choose...</option>
-									    <option value="1">싱글</option>
-									    <option value="2">신혼/부부</option>
-									    <option value="3">자녀와</option>
-									  </select>
-									</div>
-									<div class="input-group mb-3">
-									  <label class="input-group-text" for="worker">작업자</label>
-									  <select class="form-select" id="worker" name="worker">
-									    <option disabled selected>Choose...</option>
-									    <option value="1">셀프 - DLY</option>
-									    <option value="2">하프셀프</option>
-									    <option value="3">전문가</option>
-									  </select>
-									</div>
-									
-									<div class="input-group input-group-sm mb-3 ">
-									  <span class="input-group-text" id="inputGroup-sizing-sm">지역</span>
-									  <input type="text" id="loc" name="loc" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-									</div>
-									
-									<div class="input-group input-group-sm mb-3">
-									  <span class="input-group-text" id="inputGroup-sizing-sm">세부정보</span>
-									  <input type="text" id="extrainfo" name="extrainfo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-									</div>
-									
-									<div class="previewImage" >
-										<label class="previewImagebtn" for="inputImage">섬네일 미리보기</label>
-										<img style="width: 100%;" id="previewImage" src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload">
-										<input style="display: block; visibility: hidden;" type="file" accept="image/*"  id="inputImage" name="inputImage">
-										<input hidden="" id="bimgadr" name="bimgadr">  
-                                	</div>
-                                </div><!-- /.writedetail -->
-                            </div><!-- /.sa-course -->                           
-                        </div>
+.reviewer img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	vertical-align: middle;
+	display: block;
+}
+
+.reviewer_name {
+	
+}
+
+.details {
+	float: left;
+	margin-top: 10px;
+}
+
+.details strong {
+	font-size: 20px;
+}
+
+.detail {
+	float: left;
+	text-align: center;
+	padding-top: 10px;
+	padding-left: 20px;
+}
+
+.fa-home:before {
+	font-size: 30px;
+}
+
+.fa-ruler:before {
+	font-size: 30px;
+}
+
+.fa-tools:before {
+	font-size: 30px;
+}
+
+.fa-users:before {
+	font-size: 30px;
+}
+
+.note-modal-footer .note-btn {
+	float: none;
+}
+
+.note-modal-footer {
+	height: auto;
+}
+
+.writeTitle {
+	border-style: 5px solid;
+	border-color: #1abc9c;
+	border-radius: 5px;
+	width: 100%;
+	height: 40px;
+	margin-bottom: 10px;
+}
+
+.writedetail {
+	padding: 30px;
+	text-align: center;
+}
+
+#bsize {
+	margin-bottom: 0px;
+	margin-right: 50px;
+}
+
+#bbudget {
+	margin: 0px;
+}
+
+#loc {
+	margin: 0px;
+}
+
+#extrainfo {
+	margin: 0px;
+}
+
+.input-group {
+	width: 100%;
+}
+
+.input-group-text {
+	width: 13%;
+	justify-content: center;
+	background-color: #1abc9c;
+	color: white;
+}
+
+.form-control {
+	width: 55%;
+}
+
+.writedetailbtn {
+	width: 100%;
+	height: 50px;
+	border-style: 1px solid;
+	border-color: #1abc9c;
+	background-color: white;
+}
+
+.writebtn {
+	width: 200px;
+	height: 50px;
+	margin-top: 30px;
+	background-color: #1abc9c;
+	color: white;
+	border: none;
+	border-radius: 5px;
+}
+
+.previewImagebtn {
+	border: none;
+	border-radius: 5px;
+	background-color: #1abc9c;
+	color: white;
+	width: 150px;
+	height: 25px;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+</style>
+
+</head>
+<body>
+	<div id="preloader">
+		<img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+	</div>
+	<!-- preloader -->
+
+	<header class="sa-header">
+		<div class="sa-topbar">
+			<div class="container">
+				<div class="topbar-content">
+					<div class="left-content">
+						<ul class="global-list">
+							<li><a href="#">
+									<i class="far fa-envelope"></i>info@gmail.com
+								</a></li>
+							<li><a href="#">
+									<i class="fas fa-phone-volume"></i>0123456789
+								</a></li>
+						</ul>
+					</div>
+					<div class="right-content">
+						<ul class="global-list social">
+							<li><a href="#">
+									<i class="fab fa-facebook-f"></i>
+								</a></li>
+							<li><a href="#">
+									<i class="fab fa-twitter"></i>
+								</a></li>
+							<li><a href="#">
+									<i class="fab fa-google-plus-g"></i>
+								</a></li>
+							<li><a href="#">
+									<i class="fab fa-linkedin-in"></i>
+								</a></li>
+							<li><a href="#">
+									<i class="fab fa-pinterest-p"></i>
+								</a></li>
+						</ul>
+						<ul class="global-list">
+							<li><a href="#" class="btn btn-primary">
+									Register <i class="fas fa-sign-in-alt"></i>
+								</a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
-		</div>        
+			<!-- /.container -->
+		</div>
+		<!-- /.top-bar -->
+
+		<div class="sa-menu">
+			<nav class="navbar navbar-expand-lg">
+				<div class="container">
+					<a class="navbar-brand" href="index.html">
+						<img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
+					</a>
+
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+					</button>
+
+					<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+						<ul class="navbar-nav">
+							<li class="nav-item sa-dropdown"><a href="#">Home</a>
+								<ul class="sa-dropdown-menu">
+									<li><a href="index.html">Home V-1</a></li>
+									<li><a href="index1.html">Home V-2</a></li>
+									<li><a href="index2.html">Home V-3</a></li>
+								</ul></li>
+							<li><a href="about.html">About</a></li>
+							<li class="sa-dropdown"><a href="#">Courses</a>
+								<ul class="sa-dropdown-menu">
+									<li><a href="course-grid.html">Course Grid View</a></li>
+									<li><a href="course-list.html">Course List View</a></li>
+									<li><a href="course-details.html">Course Details</a></li>
+								</ul></li>
+							<li><a href="tutor.html">Teacher</a></li>
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="contact.html">Contact</a></li>
+							<li class="sa-dropdown active"><a href="index.html">Page</a>
+								<ul class="sa-dropdown-menu">
+									<li><a href="catagory.html">Catagory</a></li>
+									<li><a href="profile.html">User Profile</a></li>
+									<li class="active"><a href="blog-details.html">Blog Details</a></li>
+									<li><a href="tutor-details.html">Tutor Details</a></li>
+									<li><a href="my-course.html">
+											My Course<span class="badge rounded-pill bg-dark">New</span>
+										</a></li>
+									<li><a href="course-video.html">
+											Course Video<span class="badge rounded-pill bg-dark">New</span>
+										</a></li>
+									<li><a href="cart.html">
+											Shopping Cart<span class="badge rounded-pill bg-dark">New</span>
+										</a></li>
+									<li><a href="payment.html">
+											Payment<span class="badge rounded-pill bg-dark">New</span>
+										</a></li>
+									<li><a href="congrats.html">
+											Congrats<span class="badge rounded-pill bg-dark">New</span>
+										</a></li>
+									<li><a href="sign-in.html">Sign In</a></li>
+									<li><a href="sign-up.html">Sign Up</a></li>
+								</ul></li>
+						</ul>
+					</div>
+
+					<div class="right-content">
+						<div class="user-option">
+							<ul class="global-list">
+								<li class="sa-dropdown"><span class="cart-number">5</span> <i class="fas fa-cart-plus"></i>
+									<div class="sa-dropdown-menu">
+										<ul class="global-list">
+											<li class="remove-item"><span class="remove-icon"><i class="fas fa-times"></i></span>
+												<div class="sa-course">
+													<div class="course-thumb">
+														<img th:src="@{/images/course/1.jpg}" alt="Image" class="img-fluid">
+													</div>
+													<!-- /.course-thumb -->
+
+													<div class="course-info">
+														<div class="info">
+															<h2 class="title">
+																<a href="course-details.html">Visual Basic Web Course With Live Project</a>
+															</h2>
+														</div>
+													</div>
+													<!-- /.course-info -->
+												</div>
+												<!-- /.sa-course --></li>
+											<li class="remove-item"><span class="remove-icon"><i class="fas fa-times"></i></span>
+												<div class="sa-course">
+													<div class="course-thumb">
+														<img th:src="@{/images/course/2.jpg}" alt="Image" class="img-fluid">
+													</div>
+													<!-- /.course-thumb -->
+
+													<div class="course-info">
+														<div class="info">
+															<h2 class="title">
+																<a href="course-details.html">Computer Technologies Course With Live Project</a>
+															</h2>
+														</div>
+													</div>
+													<!-- /.course-info -->
+												</div>
+												<!-- /.sa-course --></li>
+											<li class="remove-item"><span class="remove-icon"><i class="fas fa-times"></i></span>
+												<div class="sa-course">
+													<div class="course-thumb">
+														<img th:src="@{/images/course/3.jpg}" alt="Image" class="img-fluid">
+													</div>
+													<!-- /.course-thumb -->
+
+													<div class="course-info">
+														<div class="info">
+															<h2 class="title">
+																<a href="course-details.html">Visual Basic Web Course With Live Project</a>
+															</h2>
+														</div>
+													</div>
+													<!-- /.course-info -->
+												</div>
+												<!-- /.sa-course --></li>
+										</ul>
+										<div class="total-price">
+											<span><strong>Total Price: </strong>$598:00</span>
+										</div>
+										<div class="buttons">
+											<a class="btn btn-primary cart-button" href="#">View Cart</a>
+											<a class="btn btn-primary" href="#">Checkout</a>
+										</div>
+									</div></li>
+								<li><i class="far fa-bell"></i></li>
+								<li>
+									<div class="sa-search-form">
+										<div class="search-icon">
+											<i class="fas fa-search"></i>
+										</div>
+										<div class="search-form text-center open-search">
+											<div class="close-search">
+												<span class="remove-icon"><i class="fas fa-times"></i></span>
+											</div>
+											<form action="#" id="search" method="get">
+												<input name="search" type="text" placeholder="Enter keyword...">
+												<button type="submit">
+													<i class="fas fa-search"></i>
+												</button>
+											</form>
+											<!-- /form -->
+										</div>
+										<!-- /search-form -->
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /.container -->
+			</nav>
+			<!-- /.navbar -->
+		</div>
+		<!-- /.sa-menu -->
+	</header>
+	<!-- /.sa-header -->
 
 
-		
+	<form id="writeinfo" enctype="multipart/form-data" method="post" action="/brag/write">
+		<div class="sg-section">
+			<div class="section-content course-details bg-white section-padding">
+				<div class="container">
+					<div class="row justify-content-md-center">
+						<div class="col-lg-8">
+							<div class="sa-course">
+								<button type="button" class="writedetailbtn">후기작성 세부사항</button>
+								<div class="writedetail">
+
+									<div class="input-group mb-3">
+										<label class="input-group-text" for="cid">업체명</label>
+										<select class="form-select" id="cid" name="cid">
+											<option disabled selected>계약 업체목록</option>
+											<option value="1004">건희네</option>
+											<option value="2">영은네</option>
+											<option value="3">혜윤네</option>
+											<option value="4">진영네
+										</select>
+									</div>
+
+
+									<div class="input-group mb-3">
+										<label class="input-group-text" for="hometype">주거형태</label>
+										<select class="form-select" id="hometype" name="hometype">
+											<option disabled selected>골라줭</option>
+											<option value="1">마이룸</option>
+											<option value="2">원룸</option>
+											<option value="3">오피스텔</option>
+											<option value="4">주택
+										</select>
+									</div>
+
+									<div class="input-group input-group-sm mb-3">
+										<span class="input-group-text" id="inputGroup-sizing-sm">평수</span>
+										<input type="text" id="bsize" name="bsize" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+										<span class="input-group-text" id="inputGroup-sizing-sm">예산</span>
+										<input type="text" id="bbudget" name="bbudget" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+									</div>
+
+									<div class="input-group mb-3">
+										<label class="input-group-text" for="job">작업분야</label>
+										<select class="form-select" id="job" name="job">
+											<option disabled selected>골라</option>
+											<option value="1">홈스타일링</option>
+											<option value="2">리모델링</option>
+											<option value="3">부분시공</option>
+										</select>
+									</div>
+									<div class="input-group mb-3">
+										<label class="input-group-text" for="family">가족형태</label>
+										<select class="form-select" id="family" name="family">
+											<option disabled selected>Choose...</option>
+											<option value="1">싱글</option>
+											<option value="2">신혼/부부</option>
+											<option value="3">자녀와</option>
+										</select>
+									</div>
+									<div class="input-group mb-3">
+										<label class="input-group-text" for="worker">작업자</label>
+										<select class="form-select" id="worker" name="worker">
+											<option disabled selected>Choose...</option>
+											<option value="1">셀프 - DLY</option>
+											<option value="2">하프셀프</option>
+											<option value="3">전문가</option>
+										</select>
+									</div>
+
+									<div class="input-group input-group-sm mb-3 ">
+										<span class="input-group-text" id="inputGroup-sizing-sm">지역</span>
+										<input type="text" id="loc" name="loc" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+									</div>
+
+									<div class="input-group input-group-sm mb-3">
+										<span class="input-group-text" id="inputGroup-sizing-sm">세부정보</span>
+										<input type="text" id="extrainfo" name="extrainfo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+									</div>
+
+									<div class="previewImage">
+										<label class="previewImagebtn" for="inputImage">섬네일 미리보기</label> <img style="width: 100%;" id="previewImage" src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload">
+										<input style="display: block; visibility: hidden;" type="file" accept="image/*" id="inputImage" name="inputImage">
+										<input hidden="" id="bimgadr" name="bimgadr">
+									</div>
+								</div>
+								<!-- /.writedetail -->
+							</div>
+							<!-- /.sa-course -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
 		<!-- 본문 -->
-        <div class="sg-section">
-            <div class="section-content course-details bg-white ">
-                <div class="container">
-                    <div class="row justify-content-md-center">
-                        <div class="col-lg-8">
-                            <div class="sa-course">
-                                <div class="course-info">
-                                    <input type="text" placeholder="제목을 입력해주세요." class="writeTitle" name="btitle" />
-                                    <textarea id="summernote" name="bcont"></textarea>
-                                <div style="text-align: center;">
-                                    <button type="button" class="writebtn">작성</button>
-                                </div>    
-									
+		<div class="sg-section">
+			<div class="section-content course-details bg-white ">
+				<div class="container">
+					<div class="row justify-content-md-center">
+						<div class="col-lg-8">
+							<div class="sa-course">
+								<div class="course-info">
+									<input type="text" placeholder="제목을 입력해주세요." class="writeTitle" name="btitle" />
+									<textarea id="summernote" name="bcont"></textarea>
+									<div style="text-align: center;">
+										<button type="button" class="writebtn">작성</button>
+									</div>
 
-                                </div>
-                            </div><!-- /.sa-course -->                           
-                        </div>
+
+								</div>
+							</div>
+							<!-- /.sa-course -->
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
-		   
 
-        <!-- JS -->
-        <script th:src="@{/js/jquery.min.js}"></script>
-        <script th:src="@{/js/popper.min.js}"></script>
-        <script th:src="@{/js/bootstrap.min.js}"></script>  
-        <script th:src="@{/js/inview.min.js}"></script> 
-        <script th:src="@{/js/slick.min.js}"></script>
-        <script th:src="@{/js/jquery-ui-min.js}"></script>  
-        <script th:src="@{/js/jarallax.min.js}"></script>  
-        <script th:src="@{/js/counterup.min.js}"></script> 
-        <script th:src="@{/js/waypoints.min.js}"></script> 
-        <script th:src="@{/js/YTPlayer.min.js}"></script> 
-        <script th:src="@{/js/jquery-ui-min.js}"></script>
-        <script th:src="@{/js/validate.js}"></script>
-        <script th:src="@{/js/main.js}"></script> 
-        <script th:src="@{/js/summernote/summernote-lite.js}"></script>
-        <script th:src="@{/js/summernote/lang/summernote-ko-KR.js}"></script>
-        
-        
-        
-        <script type="text/javascript">
+
+	<!-- JS -->
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/inview.min.js}"></script>
+	<script th:src="@{/js/slick.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/jarallax.min.js}"></script>
+	<script th:src="@{/js/counterup.min.js}"></script>
+	<script th:src="@{/js/waypoints.min.js}"></script>
+	<script th:src="@{/js/YTPlayer.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/validate.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/summernote/summernote-lite.js}"></script>
+	<script th:src="@{/js/summernote/lang/summernote-ko-KR.js}"></script>
+
+
+
+	<script type="text/javascript">
         $(document).ready(function(){ 
         	var currentPosition = parseInt($(".quickmenu").css("top")); 
         	
@@ -556,7 +593,15 @@
     			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
                 
                 lang: 'ko-KR',
-                placeholder:'최대 2048자까지 쓸 수 있습니다.'
+                placeholder:'최대 2048자까지 쓸 수 있습니다.',
+                 callbacks:{
+                	onImageUpload: function(files, editor, welEditable) {
+						for( let i = files.length - 1; i >= 0; i--) {
+							sendFile(files[i], this);
+						}
+					}
+                } 
+                
               });
             
             $(".writedetailbtn").on("click", function() {
@@ -635,11 +680,32 @@
         		   return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length-1).toLowerCase();
         		}
 
-			
+			// summernote 이미지 저장
+			function sendFile(file, el) {
+				let formData = new FormData();
+				formData.append('file', file, uuid(file.name));
+				console.log("uuid 적용확인: ", formData.get('file').name);
+				$.ajax({
+					type: "POST",
+					url: "http://140.238.11.118:5000/upload",
+					data: formData,
+					processData: false,
+					contentType: false,
+					success: function(result) {
+						console.log("result 값 확인: ",  formData.get('file').name);
+						$(el).summernote('insertImage', 'http://140.238.11.118:5000/upload/'+result );
+						$('#imageBoard > ul').append('<img src="'+result+'" width="auto" height="auto"/>');
+						console.log("성공");
+					},
+					err: function(err) {
+						console.log("에러: ", err)
+					}
+				})
+			}
         
         	});
         
         </script>
-        
-    </body>
-</html>        
+
+</body>
+</html>
