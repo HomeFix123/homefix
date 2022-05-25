@@ -586,7 +586,7 @@
     			    ['table', ['table']],
     			    ['para', ['ul', 'ol', 'paragraph']],
     			    ['height', ['height']],
-    			    ['insert',['picture','link','video']],
+    			    ['insert',['picture','link']],
     			    ['view', ['help']]
     			  ],
     			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
@@ -648,7 +648,7 @@
       		  const formData = new FormData();
       		  formData.append("file", imageInput.files[0], uuid(imageInput.files[0].name));
 					console.log(formData.get('file'))
-					$('#bimgadr').val(formData.get('file').name);
+					$('#bimgadr').val('http://140.238.11.118:5000/upload/'+formData.get('file').name);
 				
 					
 				  $.ajax({
