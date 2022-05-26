@@ -36,6 +36,6 @@ public class Estimation {
 	
 	@JoinColumn(name="cid")
 	@ManyToOne
-	private Company compay;		// 업체 아이디
+	private Company company;		// 업체 아이디
 	
 }

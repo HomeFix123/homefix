@@ -226,7 +226,24 @@
                 <div class="container">
                     <div class="sa-course-content">
                         <div class="row">
-                            <div class="col-lg-6">
+                        <div th:each="list:${Lists}" class="col-lg-6">
+                                <div class="sa-course">
+                                    <div class="course-info">
+                                        <div class="info">
+                                            <h2 class="title"><a th:href="@{/estimation/MPickCDetail}" th:text="|${list.building}/${list.size}평/예산:${list.budget}|"></a></h2>
+                                            <p th:text="${list.eaddr}"></p>
+                                        </div>
+                                        <div class="sa-meta">
+                                            <ul class="global-list">
+                                                <li><a href="#"><span><i class="far fa-comments"></i></span>대기중</a></li>
+                                                <li><a href="#"><span><i class="far fa-user"></i></span><span th:text="${list.ename}"></span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div><!-- /.course-info -->
+                                </div><!-- /.sg-course -->
+                            </div>
+                        
+                            <!-- <div class="col-lg-6">
                                 <div class="sa-course">
 
 
@@ -241,8 +258,8 @@
                                                 <li><a href="#"><span><i class="far fa-user"></i></span>고객 아이디입니다</a></li>
                                             </ul>
                                         </div>
-                                    </div><!-- /.course-info -->
-                                </div><!-- /.sg-course -->
+                                    </div>/.course-info
+                                </div>/.sg-course
                             </div>
                             <div class="col-lg-6">
                                 <div class="sa-course">
@@ -259,8 +276,8 @@
                                                 <li><a href="#"><span><i class="far fa-user"></i></span>고객 아이디입니다</a></li>
                                             </ul>
                                         </div>
-                                    </div><!-- /.course-info -->
-                                </div><!-- /.sg-course -->
+                                    </div>/.course-info
+                                </div>/.sg-course
                             </div>
                             <div class="col-lg-6">
                                 <div class="sa-course">
@@ -278,8 +295,8 @@
 
                                             </ul>
                                         </div>
-                                    </div><!-- /.course-info -->
-                                </div><!-- /.sg-course -->
+                                    </div>/.course-info
+                                </div>/.sg-course
                             </div>
                             <div class="col-lg-6">
                                 <div class="sa-course">
@@ -295,26 +312,8 @@
                                                 <li><a href="#"><span><i class="far fa-user"></i></span>고객 아이디입니다</a></li>
                                             </ul>
                                         </div>
-                                    </div><!-- /.course-info -->
-                                </div><!-- /.sg-course -->
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="sa-course">
-
-
-                                    <div class="course-info">
-                                        <div class="info">
-                                            <h2 class="title"><a href="course-details2.html">○○○○아파트 / 38평 / 예산 1,000만원</a></h2>
-                                            <p>서울 특별시 가산동</p>
-                                        </div>
-                                        <div class="sa-meta">
-                                            <ul class="global-list">
-                                                <li><a href="#"><span><i class="far fa-comments"></i></span>대기중</a></li>
-                                                <li><a href="#"><span><i class="far fa-user"></i></span>고객 아이디입니다</a></li>
-                                            </ul>
-                                        </div>
-                                    </div><!-- /.course-info -->
-                                </div><!-- /.sg-course -->
+                                    </div>/.course-info
+                                </div>/.sg-course
                             </div>
                             <div class="col-lg-6">
                                 <div class="sa-course">
@@ -331,8 +330,26 @@
                                                 <li><a href="#"><span><i class="far fa-user"></i></span>고객 아이디입니다</a></li>
                                             </ul>
                                         </div>
-                                    </div><!-- /.course-info -->
-                                </div><!-- /.sg-course -->
+                                    </div>/.course-info
+                                </div>/.sg-course
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="sa-course">
+
+
+                                    <div class="course-info">
+                                        <div class="info">
+                                            <h2 class="title"><a href="course-details2.html">○○○○아파트 / 38평 / 예산 1,000만원</a></h2>
+                                            <p>서울 특별시 가산동</p>
+                                        </div>
+                                        <div class="sa-meta">
+                                            <ul class="global-list">
+                                                <li><a href="#"><span><i class="far fa-comments"></i></span>대기중</a></li>
+                                                <li><a href="#"><span><i class="far fa-user"></i></span>고객 아이디입니다</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>/.course-info
+                                </div>/.sg-course
                             </div>
                             <div class="col-lg-6">
                                 <div class="sa-course">
@@ -350,8 +367,8 @@
 
                                             </ul>
                                         </div>
-                                    </div><!-- /.course-info -->
-                                </div><!-- /.sg-course -->
+                                    </div>/.course-info
+                                </div>/.sg-course
                             </div>
                             <div class="col-lg-6">
                                 <div class="sa-course">
@@ -367,9 +384,9 @@
                                                 <li><a href="#"><span><i class="far fa-user"></i></span>고객 아이디입니다</a></li>
                                             </ul>
                                         </div>
-                                    </div><!-- /.course-info -->
-                                </div><!-- /.sg-course -->
-                            </div>
+                                    </div>/.course-info
+                                </div>/.sg-course
+                            </div> -->
                         </div><!-- /.row -->
                     </div><!-- /.sg-course-content -->
 
