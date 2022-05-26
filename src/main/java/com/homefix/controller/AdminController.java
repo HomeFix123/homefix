@@ -39,6 +39,8 @@ public class AdminController {
 	public String moveMemberPage(Model model) {
 		logger.info("관리자 고객관리");
 		model.addAttribute("memberList", adminService.getMemberList());
+		model.addAttribute("reportList", adminService.getMemberReportList());
+		model.addAttribute("todayMemberReport", adminService.countTodayMemberReport());
 		return "/admin/member";
 	}
 	

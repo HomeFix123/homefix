@@ -6,6 +6,7 @@ import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
 import com.homefix.domain.CompanyReport;
 import com.homefix.domain.Member;
+import com.homefix.domain.MemberReport;
 import com.homefix.domain.Payment;
 
 public interface AdminService {
@@ -21,6 +22,15 @@ public interface AdminService {
 	
 	// 고객 블랙리스트 지정/해제
 	public void enableBlackMember(String id, Boolean enabled);
+	
+	// 고객 신고 목록 불러오기
+	public List<MemberReport> getMemberReportList();
+	
+	// 고객 신고 삭제
+	public void deleteMemberReport(String rid);
+	
+	// 고객 오늘의 신고 개수
+	public Long countTodayMemberReport();
 	
 	// 업체 목록 불러오기
 	public List<Company> getCompanyList();
@@ -44,6 +54,6 @@ public interface AdminService {
 	public List<CompanyReport> getCompanyReportList();
 	
 	// 업체 신고 삭제
-	public void deleteReport(String rid);
+	public void deleteCompanyReport(String rid);
 	
 }

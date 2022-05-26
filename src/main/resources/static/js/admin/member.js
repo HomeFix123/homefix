@@ -106,5 +106,16 @@ $(function(){
 
 
 $(function(){
-	
+	$('#reports > tbody > tr > td > a.bg-danger').click(function(event){
+		event.preventDefault();
+		const rid = $(this).attr('value');
+		$.ajax({
+			type: "DELETE",
+			url: '/admin/member/report/' + rid
+		}).done((result) => {
+			$(this).parent().parent().remove();
+		}).fail((err) => {
+			console.log(err)
+		})
+	});
 });
