@@ -1,6 +1,5 @@
 package com.homefix.controller;
 
-
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -56,7 +55,7 @@ public class CompanyController {
 	}
 
 	// 로그인하기
-	@GetMapping("/company/companyLogin")
+	@PostMapping("/company/companyLogin")
 	public String loginCheck(Company com, HttpSession session, Model model) {
 
 		if (companyService.login(com) != null) {
@@ -94,36 +93,28 @@ public class CompanyController {
 
 	// 사업자 회원가입 페이지 이동
 	@GetMapping("/company/sign-up-b")
-	public String signUpBusniss() {
-
-		return "/sign/company/sign-up-b";
-	}
-
-	//사업자 정보수정 전 정보 요청
-	
-	
-	
-	
-	// 사업자 정보수정
-
-	@PutMapping("/company/companyUpdate")
-	public String companyUpdate(@Valid CompanyDto dto, Errors errors, Model model) {
-		if (errors.hasErrors()) {
-			/* 수정 실패시 입력 데이터 값을 유지 */
-			model.addAttribute("dto", dto);
-			/* 유효성 통과 못한 필드와 메시지를 핸들링 */
-			Map<String, String> validatorResult = companyService.validateHandling(errors);
-			for (String key : validatorResult.keySet()) {
-			model.addAttribute(key, validatorResult.get(key));
-			}
-			/* 회원가입 페이지로 다시 리턴 */
-			return "/user/user-join";
-			} 
-		 
-			companyService.companyUpdate(dto);
-			return "redirect:/company/companyprofile";
+	public void signUpBusniss() {
 
 	}
+
+	/*
+	 * // 사업자 정보수정
+	 * 
+	 * @PutMapping("/company/companyUpdate") public String companyUpdate(@Valid
+	 * CompanyDto dto, Errors errors, Model model) { if (errors.hasErrors()) { 수정
+	 * 실패시 입력 데이터 값을 유지 //model.addAttribute("dto", dto); 유효성 통과 못한 필드와 메시지를 핸들링
+	 * Map<String, String> validatorResult =
+	 * companyService.validateHandling(errors); for (String key :
+	 * validatorResult.keySet()) { model.addAttribute(key,
+	 * validatorResult.get(key)); } }else { companyService.companyUpdate(dto);
+	 * 
+	 * return "/company/companyprofile"; }
+	 * 
+	 * 
+	 * return "redirect:/company/companyprofile";
+	
+
+	} */
 
 	/*
 	 * // 사업자 회원 탈퇴
@@ -145,10 +136,12 @@ public class CompanyController {
 	@PostMapping("/company/signUpB")
 	public String companyInsert(Company com) {
 		com.setEnabled(true);
+		String num = com.getNum();
+		com.setNum(num.replaceAll("-", ""));
 		companyService.companyInsert(com);
-		return "index";
+		return "redirect:/index";
 	}
-	
+
 	/* 비밀번호 찾기 */
 	/*
 	 * @RequestMapping(value = "findIdPw", method = RequestMethod.GET) public void

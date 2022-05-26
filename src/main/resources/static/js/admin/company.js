@@ -161,17 +161,17 @@ $(function(){
 })
 
 $(function(){
-	$('#reports tr a.btn-danger').click(function(){
+	$('#reports > tbody > tr > td.text-center > a.border-danger').click(function(){
 		const reportId = $(this).attr('value');
 		
 		$.ajax({
 			type: "DELETE",
 			url: "/admin/company/report/" + reportId
 		}).done(() => {
-			
+			$(this).parent().parent().remove();
 		}).fail((err) => {
 			console.log(err);
-		})
+		});
 	})
 })
 

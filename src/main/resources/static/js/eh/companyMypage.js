@@ -60,11 +60,15 @@ $(function() {
 	}
 
 
+	/*$('#user-five-tab').click(function() {
+		var companyId = $('#companyId').text()
+		
+		//console.log(companyId)
+		location.href="/company/getCompanyMyInfo?companyId="+companyId;
+	
+	})*/
 
-
-
-
-
+	
 
 
 

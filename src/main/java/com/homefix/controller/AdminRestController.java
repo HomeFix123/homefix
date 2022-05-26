@@ -1,5 +1,7 @@
 package com.homefix.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.homefix.domain.CompanyInfo;
 import com.homefix.domain.Member;
+import com.homefix.domain.Payment;
 import com.homefix.service.AdminService;
 
 @RestController
@@ -50,11 +53,28 @@ public class AdminRestController {
 		adminService.enableBlackMember(id, enabled);
 	}
 	
-	@DeleteMapping(path = "/company/report/{rid}")
-	public void deleteReport(@PathVariable String rid) {
+	
+	@DeleteMapping(path = "/member/report/{rid}")
+	public void deleteMemberReport(@PathVariable String rid) {
 		if(rid == null) {
 			return;
 		}
-		adminService.deleteReport(rid);
+		adminService.deleteMemberReport(rid);
+	}
+	
+	@DeleteMapping(path = "/company/report/{rid}")
+	public void deleteCompanyReport(@PathVariable String rid) {
+		if(rid == null) {
+			return;
+		}
+		adminService.deleteCompanyReport(rid);
+	}
+	
+	@GetMapping(path = "/company/payment/{cid}")
+	public List<Payment> getPaymentList(@PathVariable String cid){
+		if(cid == null) {
+			return null;
+		}
+		return adminService.getPaymentList(cid);
 	}
 }

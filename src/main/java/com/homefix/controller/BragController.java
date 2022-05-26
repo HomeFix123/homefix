@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.homefix.domain.Brag;
 import com.homefix.service.BragService;
@@ -28,10 +30,11 @@ public class BragController {
 	
 	@PostMapping("/write")
 	public String saveBrag(Brag brag, String cid) {
+		System.out.println(cid);
 		String id = "test";
 		bragService.saveBrag(brag, cid, id);
 		logger.info("입력성공");
-		return "redirect:/brag/";
+		return "redirect:/brag/write";
 	}
 	
 	
