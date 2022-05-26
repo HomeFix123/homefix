@@ -25,7 +25,7 @@ public class BragController {
 	private BragService bragService;
 	
 	@GetMapping("/write")
-	public String insertReview() {
+	public String insertBrag() {
 		return "/brag/BragWrite";
 	}
 	

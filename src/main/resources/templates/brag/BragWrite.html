@@ -636,11 +636,16 @@
 			
 			$('.writebtn').click(function() {
 				const imageInput = $('#inputImage')[0];
+				const title = document.querySelector('.writeTitle');
 				// 파일을 여러개 선택할 수 있으므로 files 라는 객체에 담긴다.
       		  console.log("imageInput: ", imageInput.files)
-
+			  if(title.value.trim()<1){
+				  alert("제목을 입력해주세요.");
+	      		    return;
+			  }
+			  
       		  if(imageInput.files.length === 0){
-      		    alert("파일은 선택해주세요");
+      		    alert("대표사진을 넣어주세요.");
       		    return;
       		  }
       		  
