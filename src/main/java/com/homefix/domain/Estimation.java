@@ -47,6 +47,9 @@ public class Estimation {
 	private String ename;		// 이름
 	private String etel;		// 전화번호
 	private String estyle;		// 선호스타일
+	
+	@Column(name="edate",columnDefinition="Datetime")
+	private String edate;	// 입력 날짜
 		
 	@JoinColumn(name="id")
 	@ManyToOne
@@ -57,7 +60,7 @@ public class Estimation {
 
 	private Company company;			// 업체 아이디
 	
-	private Date edate = new Date();	// 입력 날짜
+	
 	
 	
 }
