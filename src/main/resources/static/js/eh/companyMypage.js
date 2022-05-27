@@ -1,75 +1,244 @@
 /*companyprofile*/
 
 $(function() {
-	function sample6_execDaumPostcode() {
+	$('#postBtn').click(function() {
+		$('#sample6_postcode').val('')
+		$('#sample6_address').val('')
 		/*카카오 주소 API*/
 		new daum.Postcode(
 			{
 				oncomplete: function(data) {
-					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-					// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-					var addr = ''; // 주소 변수
-					var extraAddr = ''; // 참고항목 변수
-
-					//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-						addr = data.roadAddress;
-					} else { // 사용자가 지번 주소를 선택했을 경우(J)
-						addr = data.jibunAddress;
-					}
-
-					// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-					if (data.userSelectedType === 'R') {
-						// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-						// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-						if (data.bname !== ''
-							&& /[동|로|가]$/g.test(data.bname)) {
-							extraAddr += data.bname;
-						}
-						// 건물명이 있고, 공동주택일 경우 추가한다.
-						if (data.buildingName !== ''
-							&& data.apartment === 'Y') {
-							extraAddr += (extraAddr !== '' ? ', '
-								+ data.buildingName : data.buildingName);
-						}
-						// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-						if (extraAddr !== '') {
-							extraAddr = ' (' + extraAddr + ')';
-						}
-						// 조합된 참고항목을 해당 필드에 넣는다.
-						document.getElementById("sample6_extraAddress").value = extraAddr;
-
-					} else {
-						document.getElementById("sample6_extraAddress").value = '';
-					}
-
-					// 우편번호와 주소 정보를 해당 필드에 넣는다.
 					document.getElementById('sample6_postcode').value = data.zonecode;
-					document.getElementById("sample6_address").value = addr;
+					document.getElementById("sample6_address").value = data.address;
+
 					// 커서를 상세주소 필드로 이동한다.
 					document.getElementById("sample6_detailAddress")
 						.focus();
 				}
 			}).open();
+	})
 
-		$('#companyName').text(
+	// 에러박스 문구
+	var blank = "  필수 입력 사항입니다.";
+	var RegexId = /^[a-zA-z0-9]{4,12}$/; //아이디는 영문 대소문자와 숫자 4~12자리
+	//업체명
+	var RegexCompany = /^[가-힣a-zA-Z0-9]{1,10}$/;
+	var RegexEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+	var RegexPW = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/; //8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합
+	var RegexName = /^[가-힣]+$/;
+	//전화번호
+	var RegexTel = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
+	var RegexCompanyNum = /^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})$/;
 
-		)
-	}
+	//이메일 중복 버튼 클릭 이벤트
 
 
-	/*$('#user-five-tab').click(function() {
-		var companyId = $('#companyId').text()
+	var emailCheak = false;
+	$('#bs_btn_emailCheak').click(function() {
+		// 이메일 중복검사 확인 여부
+		$('label[for="bs_memberEmail"] .error_box').html("");
+		var memberEmail = $.trim($('#bs_memberEmail').val());
+
+		// 입력값이 없을 때 에러박스
+		if (memberEmail == '') {
+			$('label[for="bs_memberEmail"] .error_box').html(blank);
+			$('label[for="bs_memberEmail"] .error_box').css('color', '#dc3545');
+			return false;
+		}
+
+		// 형식에 맞지 않을 때 나오는 에러박스
+		if (!RegexEmail.test(memberEmail)) {
+			$('label[for="bs_memberEmail"] .error_box').css('color', '#dc3545');
+			$('label[for="bs_memberEmail"] .error_box').html("이메일 형식이 올바르지 않습니다.");
+			return;
+		}
+
+		// 이메일 중복 검사 - DB와 비교
+		$.ajax({
+			type: 'get',
+			url: '/sign/company/emailCheck',
+			data: { email: $('#bs_memberEmail').val(), email2: $('#bs_memberEmailHidden').val() },
+			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+			success: function(result) {
+				// 중복 검사 후 나오는 결과 에러박스에 출력
+				console.log(result)
+				if (result == 'Y') {
+					$('label[for="bs_memberEmail"] .error_box').css('color', '#4ABA99');
+					$('label[for="bs_memberEmail"] .error_box').html("사용 가능한 이메일입니다.");
+					emailCheak = true;
+				} else if (result == 'S') {
+					$('label[for="bs_memberEmail"] .error_box').css('color', '#ED7A64');
+					$('label[for="bs_memberEmail"] .error_box').html("  같은 이메일입니다.");
+					emailCheak = true;
+				} else {
+					$('label[for="bs_memberEmail"] .error_box').css('color', '#ED7A64');
+					$('label[for="bs_memberEmail"] .error_box').html("사용할 수 없는 이메일입니다.");
+					emailCheak = false;
+				}
+			},
+			error: function(err) {
+				alert('실패');
+				console.log(err);
+			}
+		}); //end of ajax
+	}); // end of $('#btn_emailCheak').click
+	/************************************************************************************ **/
+
+	$('#companyUpdate').click(function() {
+
+		// input에 입력된 값을 공백제거하고 변수에 담기
+		var memberNickname = $.trim($("#nicname").val());
+		var memberPassword = $.trim($("#password").val());
+		var passwordCheck = $.trim($("#two_password").val());
 		
-		//console.log(companyId)
-		location.href="/company/getCompanyMyInfo?companyId="+companyId;
-	
-	})*/
-
-	
-
+		var memberTel = $.trim($("#first-name1").val());
+		var memberEmail = $.trim($("#bs_memberEmail").val());
+		var zip = $.trim($("#sample6_postcode").val());
+		var address = $.trim($("#sample6_address").val());
+		var detailaddress = $.trim($("#sample6_detailAddress").val());
 
 
+		/* 업체명 */
+		if (memberNickname == '') {
+			$('label[for="nicname"] .error_box').html(blank);
+			$('#nicname').focus();
+			return false;
+		} else {
+			$('label[for="nicname"] .error_box').html("");
+		}
+
+		if (!RegexCompany.test(memberNickname)) {
+
+			$('label[for="nicname"] .error_box').html("닉네임 형식이 올바르지 않습니다.");
+			return false;
+		} else {
+			$('label[for="nicname"] .error_box').html("");
+		}
+
+
+		/* 비밀번호 */
+		if (memberPassword == '') {
+			$('label[for="password"] .error_box').html(blank);
+			$('label[for="password"] .error_box').css('color', '#dc3545');
+			$('#password').focus();
+			return false;
+		} else {
+			$('label[for="password"] .error_box').html("");
+		}
+
+		if (!RegexPW.test(memberPassword)) {
+
+			$('label[for="password"] .error_box').html("8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합하여 만들어 주십시오.");
+			$('label[for="password"] .error_box').css('color', '#dc3545');
+			return false;
+		} else {
+			$('label[for="password"] .error_box').html("");
+		}
+
+		/* 비밀번호 재확인 */
+		if (passwordCheck == '') {
+			$('label[for="two_password"] .error_box').html("필수 입력 사항입니다.");
+			$('label[for="two_password"] .error_box').css('color', '#dc3545');
+			$('#two_password').focus();
+			return false;
+		} else {
+			$('label[for="two_password"] .error_box').html("");
+		}
+
+		/* 비밀번호 일치 여부 확인 */
+		if (memberPassword != passwordCheck) {
+			$('label[for="two_password"] .error_box').html("비밀번호가 일치하지 않습니다.");
+			$('label[for="two_password"] .error_box').css('color', '#dc3545');
+			$('#two_password').focus();
+			return false;
+		}
+
+
+
+		// end of if(비밀번호 입력 여부)
+
+
+
+
+		/* 이름 */
+	/*	if (memberName == '') {
+			$('label[for="memberName"] .error_box').html(blank);
+			$('#name').focus();
+			return false;
+		} else {
+			$('label[for="memberName"] .error_box').html("");
+		}
+		if (!RegexName.test(memberName)) {
+
+			$('label[for="name"] .error_box').html("이름 형식이 올바르지 않습니다.");
+			return false;
+		} else {
+			$('label[for="name"] .error_box').html("");
+		}*/
+
+
+		if (memberEmail == '') {
+			$('label[for="bs_memberEmail"] .error_box').html(blank);
+			$('label[for="bs_memberEmail"] .error_box').css('color', '#dc3545');
+			$('#bs_memberEmail').focus();
+			return false;
+		} else {
+			$('label[for="bs_memberEmail"] .error_box').html("");
+		}
+
+		if (!RegexEmail.test(memberEmail)) {
+			$('label[for="bs_memberEmail"] .error_box').html("이메일 형식이 올바르지 않습니다.");
+			$('label[for="bs_memberEmail"] .error_box').css('color', '#dc3545');
+			$('#bs_memberEmail').focus();
+			return false;
+		} else {
+			$('label[for="bs_memberEmail"] .error_box').html("");
+		}
+
+
+		if (emailCheak == false) {
+			$('label[for="bs_memberEmail"] .error_box').html("이메일 중복검사를 하지 않았습니다.");
+			$('label[for="bs_memberEmail"] .error_box').css('color', '#dc3545');
+
+			return false
+		};
+
+
+
+
+
+
+		/* 전화번호 */
+		if (memberTel == '') {
+			$('label[for="first-name1"] .error_box').html(blank);
+			$('#first-name1').focus();
+			return false;
+		} else {
+			$('label[for="first-name1"] .error_box').html("");
+		}
+
+		if (!RegexTel.test(memberTel)) {
+
+			$('label[for="first-name1"] .error_box').html("전화번호 형식이 올바르지 않습니다. ex)010-000~0-000~0");
+			return false;
+		} else {
+			$('label[for="first-name1"] .error_box').html("");
+		}
+
+		
+		alert("회원 정보 수정이 완료되었습니다.");
+	}) //end of #btnMemberUpdate
+
+
+
+	/*************************************회원탈퇴***************************************/
+
+
+	$('#Withdrawal').click(function() {
+		var result = confirm("정말 탈퇴하시겠습니까?");
+		if (result) {
+			document.memberDelete.submit();
+		}
+
+	})
 })
