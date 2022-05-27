@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
@@ -48,7 +49,7 @@ public class Estimation {
 	private String etel;		// 전화번호
 	private String estyle;		// 선호스타일
 	
-	@Column(name="edate",columnDefinition="Datetime")
+	@Transient
 	private String edate;	// 입력 날짜
 		
 	@JoinColumn(name="id")
@@ -57,7 +58,6 @@ public class Estimation {
 	
 	@JoinColumn(name="cid")
 	@ManyToOne
-
 	private Company company;			// 업체 아이디
 	
 	
