@@ -35,14 +35,14 @@ public interface CompanyService {
 	
 	
 	// 사업자 정보수정
-	public void companyUpdate(CompanyDto dto);
+	public void companyUpdate(Company com);
 
 	// 사업자 회원가입
 	public void companyInsert(Company com);
 
 	
 	
-	public Map<String, String> validateHandling(Errors errors);
+	//public Map<String, String> validateHandling(Errors errors);
 	
 	 
 }
