@@ -32,6 +32,7 @@ public class EstController {
 		//return "/board/" + step;
 	}
 	
+	//고객이 직접 회사 골라서 신청한 회사별 견정신청서 리스트 불러오기
 	@GetMapping("/MPickC")
 	public String queryAnno(Model m,String cid) {
 		m.addAttribute("Lists",estService.getCEst(cid));
@@ -40,6 +41,13 @@ public class EstController {
 	
 	@GetMapping("/MPickCDetail")
 	public String estDetail(String id,Model m) {
+		System.out.println("넘어온 아이디는"+id);
+		m.addAttribute("Detail",estService.getEstDetail(id));
+		return "/estimation/MPickCDetail";
+	}
+	
+	@GetMapping("/MEstimation")
+	public String mEstimation(String id,Model m) {
 		System.out.println("넘어온 아이디는"+id);
 		m.addAttribute("Detail",estService.getEstDetail(id));
 		return "/estimation/MPickCDetail";
