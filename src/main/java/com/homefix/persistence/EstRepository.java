@@ -14,11 +14,6 @@ CRUD 기능을 처리하는 인터페이스로 기존의 DAO 역할로 DB 처리
 public interface EstRepository extends CrudRepository<Estimation, Integer>{
 	
 	public List<Estimation> findByCompany(Company company);
-
-    @Query(value="SELECT building,size,budget,eaddr,ename,eid FROM estimation WHERE cid = ?1" , nativeQuery = true)
-    List<HashMap<String, Object>> queryAnnotation(String word);
-
-	public List<Estimation> findByCompany(Company company);
 	
 	@Query(value="SELECT building,size,budget,eaddr,ename,eid FROM estimation WHERE cid = ?1" , nativeQuery = true)
 	List<HashMap<String, Object>> queryAnnotation(String word);
