@@ -3,6 +3,8 @@ package com.homefix.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,6 +19,7 @@ public class Tip {
 	
 	/*인테리어팁[tip] 테이블 */
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer tid; 	 // 팁 아이디
 	private String category; // 카테고리(기본정보 선택)
 	private String tiptitle; // 팁 제목
