@@ -16,11 +16,15 @@
 <div>
 <form action="/estimation/MPickC">
 <input type="hidden" name="cid" value=1004>
-<button type="submit">나에게온 견적 보기</button>
+<label>(회사로그인일때)</label><button type="submit">나에게온 견적 보기</button>
 </form>
+</div>
 
-
-
+<div>
+<form action="/estimation/MEstimation">
+<input type="hidden" name="id" value="test">
+<label>(고객로그인일때)</label><button type="submit">나에게온 견적 보기</button>
+</form>
 </div>
 
 <!-- 세션에 저장하고 불러오기 ajax -->

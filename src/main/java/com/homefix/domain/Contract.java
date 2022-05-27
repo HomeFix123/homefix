@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -21,9 +22,9 @@ public class Contract {
 	private String ing;   // 진행도
 	private Date ct_d;	  // 날짜
 	
-	@JoinColumn(name="id")
-	@ManyToOne
-	private Member member;	// 이용자 아이디(멤버테이블)
+	@JoinColumn(name="eid")
+	@OneToOne
+	private Estimation estimation; //견적아이디(견적테이블)
 	
 	@JoinColumn(name="cid")
 	@ManyToOne
