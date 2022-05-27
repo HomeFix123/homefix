@@ -30,13 +30,15 @@ $(function(){
 	const modifyBtn = modalButtons.find('.modify');
 	const blacklistBtn = modalButtons.find(".blacklist");
 	
+	const reportTable = $('#reportTable');
+	const reportTbody = reportTable.find('tbody'); 
+	
 	let memberData;
+	let memberReportData;
 	let isBlacklist;
 	
-	$(document).on('click', '#example tbody tr', function(){
-		const id = $(this).find('.id').text();
+	function showMemberModal(id){
 		memberData = searchInfo(id);
-		
 		if(memberData.profilimg == undefined){
 			profileimg.attr('src', 'http://140.238.11.118:5000/upload/profile_basic.png');
 		} else {
@@ -59,11 +61,21 @@ $(function(){
 		blacklistBtn.val(isBlacklist);
 		blacklistBtn.text(isBlacklist ? '정지 해제' : '계정 정지');
 		
+		memberReportData = searchReportById(id);
+		reportTbody.empty();
+		
+		for(let report of memberReportData){
+			let tr = "<tr>"
+			tr += "<td>" + new Date(report.rday).toLocaleDateString() + "</td>"
+			tr += "<td>" + report.reason + "</td>"
+			tr += "</tr>"
+			reportTbody.append(tr);	
+		}
+		reportTable.find('tfoot > tr > td:eq(1)').text(memberReportData.length + '건');
+		
 		
 		myModal.show();
-	});
-	
-	
+	}
 	function searchInfo(id){
 		let result = null;
 		$.ajax({
@@ -79,6 +91,25 @@ $(function(){
 		return result;
 	}
 	
+	function searchReportById(id){
+		let result = null;
+		$.ajax({
+			type: "GET",
+			url: "/admin/member/report/" + id,
+			contentType: "application/json",
+			async: false
+		}).done((data) => {
+			result = data;
+		}).fail((error) => {
+			console.log(error);
+		})
+		return result;
+	}
+	
+	$(document).on('click', '#example tbody tr', function(){
+		const id = $(this).find('.id').text();
+		showMemberModal(id);
+	});
 	
 	modifyBtn.click((event) => {
 		event.preventDefault();
@@ -101,7 +132,12 @@ $(function(){
 			blacklistBtn.text(isBlacklist ? '정지 해제' : '계정 정지');
 		});
 	})
-
+	
+	$(document).on('click', '#reports > tbody > tr > td > a.info', function(event){
+		event.preventDefault();
+		const id = $(this).attr('value')
+		showMemberModal(id);
+	})
 });
 
 
@@ -118,4 +154,39 @@ $(function(){
 			console.log(err)
 		})
 	});
+});
+
+// 데이터 테이블
+$(function(){
+        $(document).ready(function () {
+            $('#example').DataTable({
+            	columns: col_kor,
+                language: kor_setting
+            });
+        });
+        
+        const kor_setting = {
+        	"decimal" : "",
+        	"emptyTable" : "데이터가 없습니다.",
+        	"info" : "_START_ - _END_ (총 _TOTAL_ 명)",
+        	"infoEmpty" : "0명",
+            "infoFiltered" : "(전체 _MAX_ 명 중 검색결과)",
+            "infoPostFix" : "",
+            "thousands" : ",",
+            "lengthMenu" : "_MENU_ 개씩 보기",
+            "loadingRecords" : "로딩중...",
+            "processing" : "처리중...",
+            "search" : "검색 : ",
+            "zeroRecords" : "검색된 데이터가 없습니다.",
+            "paginate" : {
+            	"first" : "첫 페이지",
+            	"last" : "마지막 페이지",
+            	"next" : "다음",
+            	"previous" : "이전"
+            },
+            "aria" : {
+            	"sortAscending" : " :  오름차순 정렬",
+            	"sortDescending" : " :  내림차순 정렬"
+        	}
+        };
 });
