@@ -15,7 +15,10 @@ $(function() {
 		window.open("http://localhost:3000/chat?roomCode='+ 1'", 'chatting', 'width=500px, height=800px');
 	});
 
-
+	//예산 1000단위로 ,찍기
+	let budget = $('.budget').text();
+	let budget2 = budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	$('.budget').text(budget2);
 
 
 

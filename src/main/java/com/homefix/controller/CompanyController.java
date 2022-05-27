@@ -43,8 +43,13 @@ public class CompanyController {
 	// 사업자 이메일 중복 조회
 	@GetMapping("/company/emailCheck")
 	@ResponseBody
-	public String emailCheck(String email) {
-		return companyService.emailCheck(email);
+	public String emailCheck(String email,String email2 ) {
+		
+		if(email.equals(email2)) {
+			return "S";
+		}else {
+		
+		return companyService.emailCheck(email);}
 	}
 
 	// 사업자번호 중복 조회
@@ -97,24 +102,19 @@ public class CompanyController {
 
 	}
 
-	/*
-	 * // 사업자 정보수정
-	 * 
-	 * @PutMapping("/company/companyUpdate") public String companyUpdate(@Valid
-	 * CompanyDto dto, Errors errors, Model model) { if (errors.hasErrors()) { 수정
-	 * 실패시 입력 데이터 값을 유지 //model.addAttribute("dto", dto); 유효성 통과 못한 필드와 메시지를 핸들링
-	 * Map<String, String> validatorResult =
-	 * companyService.validateHandling(errors); for (String key :
-	 * validatorResult.keySet()) { model.addAttribute(key,
-	 * validatorResult.get(key)); } }else { companyService.companyUpdate(dto);
-	 * 
-	 * return "/company/companyprofile"; }
-	 * 
-	 * 
-	 * return "redirect:/company/companyprofile";
 	
-
-	} */
+	
+	
+	
+	
+	// 사업자 정보수정
+	@PutMapping("/company/companyUpdate")
+	public String companyUpdate(Company com) {
+		
+	System.out.println(	"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+com.getId());
+		companyService.companyUpdate(com);
+		return "/company/companyprofile";
+	}
 
 	/*
 	 * // 사업자 회원 탈퇴

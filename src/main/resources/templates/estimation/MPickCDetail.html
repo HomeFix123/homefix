@@ -228,22 +228,22 @@
                     <div class="row">
                         <div class="col-lg-8" style="float: none; margin:0 auto;"> <!--가운데 정렬-->
                             <div class="sa-course">
-
-                                <div class="course-info">
+								<form action="">
+								<div class="course-info" th:each="detail:${Detail}">
                                     <h2 class="title" id="estimate_title">희망 견적서 상세보기</h2>
-                                    <p><span class="bold">공간 유형  :</span> 주거</p>
-                                    <p><span class="bold">건물 유형 :</span> 아파트</p>
-                                    <p><span class="bold">평수 :</span> 38평</p>
-                                    <p><span class="bold">예산 :</span> 3,000만원</p>
-                                    <p><span class="bold">희망시공일정 :</span> 2022/05/16 ~ 2022/06/16</p>
-                                    <p><span class="bold">주소 :</span> 서울 특별시 가산동 ㅇㅇ아파트 ㅇㅇ동 ㅇㅇ호</p>
-                                    <p><span class="bold">상담인 :</span> 코스모</p>
-                                    <p><span class="bold">핸드폰 번호 :</span> 010-1234-5678</p>
+                                    <p><span class="bold">공간 유형  :</span> <span th:text="${detail.space}"></span></p>
+                                    <p><span class="bold">건물 유형 :</span> <span th:text="${detail.building}"></span></p>
+                                    <p><span class="bold">평수 :</span> <span th:text="${detail.size}"></span> 평</p>
+                                    <p><span class="bold">예산 :</span> <span class="budget" th:text="${detail.budget}"></span> 만원</p>
+                                    <p><span class="bold">희망시공일정 :</span> <span th:text="${detail.start_d}"></span> ~ <span th:text="${detail.end_d}"></span></p>
+                                    <p><span class="bold">주소 :</span> <span th:text="${detail.eaddr}"></span></p>
+                                    <p><span class="bold">상담인 :</span> <span th:text="${detail.ename}"></span></p>
+                                    <p><span class="bold">핸드폰 번호 :</span> <span th:text="${detail.etel}"></span></p>
                                     <p><span class="bold">원하는 스타일 :</span></p>
-                                    <p>엘레강스 하면서
-                                    모던하며 고급스럽고 무난하면서 색은 다양하지만 화려하지않고 질리지않는 스타일 부탁드려요^^</p>
-
+                                    <p><span th:text="${detail.estyle}"></span></p>
                                 </div>
+								</form>
+                                
                             </div><!-- /.sa-course -->  
                             
                             <div class="warning_div">

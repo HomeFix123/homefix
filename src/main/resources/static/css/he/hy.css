@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+#check{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
