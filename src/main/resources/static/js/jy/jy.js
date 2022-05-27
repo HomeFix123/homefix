@@ -60,7 +60,6 @@ $(function() {
 		//공간, 건물유형 유효성 검사
 		if($("input[name=space]:radio:checked").length<1){
 			$('.space_error_box').text("공간유형을 선택해주세요.");
-			//$('.space_error_box' ).focus(); //포커스가 안먹힘, 확인필요
 			window.scrollTo({top:0, left:0, behavior:'auto'}); //화면 위로 이동
 			return false;
 		} else{
@@ -70,7 +69,7 @@ $(function() {
 		
 		if($("input[name=building]:radio:checked").length<1){
 			$('.building_error_box').text("건물유형을 선택해주세요.");
-			window.scrollTo({top:0, left:0, behavior:'auto'});
+			window.scrollTo({top:1000, left:0, behavior:'auto'});
 			return false;
 		 } else{
 			$('.building_error_box').text("");
@@ -97,6 +96,16 @@ $(function() {
 			return false;        
 		} else{
 			$('.budget_error_box').text("");
+		}
+		//==============================================
+		
+		//================ 주소 유효성검사 ================== 
+		if(sample6_address.value ==''){            
+			$('.eaddr_error_box').text("주소를 입력해주세요.");
+			$('#sample6_address' ).focus();
+			return false;        
+		} else{
+			$('.eaddr_error_box').text("");
 		}
 		//==============================================
 		
