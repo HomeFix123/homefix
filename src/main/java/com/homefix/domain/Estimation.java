@@ -54,7 +54,9 @@ public class Estimation {
 	
 	@JoinColumn(name="cid")
 	@ManyToOne
-	private Company company;		// 업체 아이디
+	private Company company;			// 업체 아이디
+	
+	private Date edate = new Date();	// 입력 날짜
 	
 	
 	
