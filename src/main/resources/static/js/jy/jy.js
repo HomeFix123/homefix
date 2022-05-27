@@ -53,36 +53,96 @@ $(function() {
 	});
 
 	$('img.ui-datepicker-trigger').css({ 'cursor': 'pointer', 'margin-left': '5px' });  //아이콘(icon) 위치
-
-	//===========================================================================
-
-	// 견적상담 입력 유효성 검사
-	$('#subbutton').click(function() {
-		invalidItem();
-	})
-	
+//===========================================================================
+// 견적상담 입력 유효성 검사
 	function invalidItem() {
+		
+		//공간, 건물유형 유효성 검사
 		if($("input[name=space]:radio:checked").length<1){
-			$('.error_box1').text("공간유형을 선택해주세요.");
-			$('.error_box1' ).focus();
+			$('.space_error_box').text("공간유형을 선택해주세요.");
+			//$('.space_error_box' ).focus(); //포커스가 안먹힘, 확인필요
+			window.scrollTo({top:0, left:0, behavior:'auto'}); //화면 위로 이동
 			return false;
+		} else{
+			$('.space_error_box').text("");
+			
 		}
 		
 		if($("input[name=building]:radio:checked").length<1){
-			alert("건물유형을 선택하세여.");
+			$('.building_error_box').text("건물유형을 선택해주세요.");
+			window.scrollTo({top:0, left:0, behavior:'auto'});
 			return false;
+		 } else{
+			$('.building_error_box').text("");
 		}
-		
-		
-		
-		
-	}		
+	}
 	
-	
+	$('#subbutton').click(function() {
+		invalidItem();
+		
+		//================ 평수 유효성검사 ================== 
+		if(inSize.value ==''){            
+			$('.size_error_box').text("평수를 입력해주세요.");
+			$('#inSize' ).focus();
+			return false;        
+		} else{
+			$('.size_error_box').text("");
+		}
+		//==============================================
+		
+		//================ 예산 유효성검사 ================== 
+		if(budget.value ==''){            
+			$('.budget_error_box').text("예산을 입력해주세요.");
+			$('#budget' ).focus();
+			return false;        
+		} else{
+			$('.budget_error_box').text("");
+		}
+		//==============================================
+		
+		//============== 이름 유효성검사 ==================                
+		 
+		var name = /^[가-힣]+$/;
+		var tel = /^[0-9]{2,3}[0-9]{3,4}[0-9]{4}/;
+		
+		if(ename.value ==''){            
+			$('.ename_error_box').text("이름을 입력해주세요.");
+			$('.ename_error_box' ).focus();
+			return false;        
+		} else{
+			$('.ename_error_box').text("");
+		}          
+			
+		if(!name.test(ename.value)){            
+			$('.ename_error_box').text("특수문자, 영어, 숫자는 사용할수 없습니다. 한글만 입력해주세요.");
+			$('.ename_error_box' ).focus();
+			return false;        
+		} else{
+			$('.ename_error_box').text("");
+		}   
+		//================================================
+		
+		//================ 전화번호 유효성검사 ================== 
+		if(etel.value ==''){            
+			$('.etel_error_box').text("전화번호를 입력해주세요.");
+			$('.etel_error_box' ).focus();
+			return false;        
+		} else{
+			$('.etel_error_box').text("");
+			
+		}        
+			
+		if(!tel.test(etel.value)){            
+			$('.etel_error_box').text("형식이 올바르지 않습니다. 예) 01012345678");
+			$('.etel_error_box' ).focus();
+			return false;        
+		} else{
+			$('.etel_error_box').text("");
+			
+		}   
 		
 		
-		
-	
+	})
 	
 	
 	

@@ -79,7 +79,7 @@
                                     <ul class="global-list m-0">
                                     <li><h5 class="m-0" id="spaceTitle"> 공간유형 </h5></li>
                                     </ul>
-                                    <span class="error_box1"></span>
+                                    <div class="error_box"><span class="space_error_box"></span></div>
                                     
                                 
                                 <div class="radio">
@@ -89,6 +89,8 @@
                                     <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
                                         <li><h5 class="m-0" > 건물유형 </h5></li>
                                     </ul>
+                                     <div class="error_box"><span class="building_error_box"></span></div>
+                                    
                                 <div class="radio">
 	                                <input type="radio" id="building1" name="building" value="아파트"><label for="building1">아파트</label>
 	                                <input type="radio" id="building2" name="building" value="빌라"><label for="building2">빌라</label>
@@ -98,6 +100,7 @@
                                     <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
                                         <li><h5 class="m-0"> 평수 </h5></li>
                                     </ul>
+                                    <div class="error_box" style="margin-bottom:10px"><span class="size_error_box"></span></div>
                                 <div class="area-form-text">
 		                            <input type="text" id="inSize" class="form-control" name="size" required="" placeholder="" dir="rtl" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 	                                <span style="margin-top: 10px; margin-left: 10px; margin-right: 20px">평   
@@ -126,9 +129,11 @@
                                     <ul class="global-list m-0" width="100px;">
                                     <li><h5 class="m-0"> 예산 </h5></li>
                                     </ul>
+                                    <div class="error_box" style="margin-bottom:10px"><span class="budget_error_box"></span></div>
+                                    
                                     <div class="area-form-text">
                                     <div>
-	                            		<input type="text" id="underline" class="form-control" name="budget" required="" placeholder="" dir="rtl" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+	                            		<input type="text" id="budget" class="form-control" name="budget" required="" placeholder="" dir="rtl" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                     </div>
                                     <div style="margin-top:10px; margin-left: 10px; margin-right: 10px;">
                                 		<span>만원   
@@ -156,12 +161,12 @@
                                     <!--카카오 주소 입력-->
                                                 <!--<div class="form-group">-->
                                                     
-                                                    <input type="hidden" id="sample6_postcode" placeholder="우편번호" class="form-control">
+                                                    <input type="hidden" id="sample6_postcode" placeholder="우편번호" class="form-control" required>
                                                     
                                                     <div style="width: 350px; margin: auto;">
                                                     <div >
                                                     <!-- 간단 주소 입력 시작 -->
-                                                    <input type="text" name="eaddr" id="sample6_address" placeholder="주소" class="form-control" style="padding: 20px; margin: auto; margin-bottom: 10px;" required="" readonly>
+                                                    <input type="text" name="eaddr" id="sample6_address" placeholder="주소" class="form-control" style="padding: 20px; margin: auto; margin-bottom: 10px;" readonly>
                                                     <!-- 간단 주소 입력 끝 -->
                                                     </div>
                                                     
@@ -199,9 +204,10 @@
                                     <ul class="global-list m-0" width="100px;">
                                     <li><h5 class="m-0"> 이름 </h5></li>
                                     </ul>
+                                    <div class="error_box" style="margin-bottom:10px"><span class="ename_error_box"></span></div>
                                     <div class="area-form-text" style="margin-bottom: 40px;">
                                         <div>
-	                                    <input type="text" id="underline" class="form-control" name="ename" required="" placeholder="">
+	                                    <input type="text" id="ename" class="form-control" name="ename" required placeholder="">
                                         </div>
                                     </div>
                                     
@@ -209,9 +215,10 @@
                                     <ul class="global-list m-0" width="100px;">
                                     <li><h5 class="m-0"> 전화번호 </h5></li>
                                     </ul>
+                                    <div class="error_box" style="margin-bottom:10px"><span class="etel_error_box"></span></div>
                                     <div class="area-form-text" style="margin-bottom: 40px;">
                                         <div>
-	                                    <input type="text" id="underline" class="form-control" name="etel" required="" placeholder="" pattern="(010)\d{3,4}\d{4}" title = " 숫자만 입력해주세요. 예) 01000000000 ">
+	                                    <input type="text" id="etel" class="form-control" name="etel" required="" placeholder="">
                                         </div>
                                        
                                     </div>
