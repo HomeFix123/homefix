@@ -136,7 +136,8 @@
 			                        						<td th:text="${c.name}"></td>
 			                        						<td th:text="${c.chatting}"></td>
 			                        						<td th:text="${c.contract}"></td>
-			                        						<td th:text="${#dates.format(c.pm_day, 'MM-dd')}"></td>
+			                        						<td th:if="${c.pm_day == null}">미결제</td>
+			                        						<td th:if="${c.pm_day != null}" th:text="${c.pm_day + '일'}"></td>
 			                        						<td th:text="${c.report}"></td>
 			                        					</tr>
 			                        				</tbody>
@@ -289,13 +290,6 @@
 									</div>
 									<div class="tab-pane fade" id="discount-info" role="tabpanel"
 										aria-labelledby="alertList-tab">
-										<div class="justify-content-center">
-											<div class="col">
-												<!--  그래프 이미지 -->
-												<img src="../images/course/1.jpg" alt="Image"
-													class="img-fluid">
-											</div>
-										</div>
 										<div class="pt-2">
 											<!-- 결제 그래프 -->
 											<table class="table table-sm caption-top table-responsive" id="payment-table">

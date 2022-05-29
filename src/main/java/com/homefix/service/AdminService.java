@@ -77,4 +77,9 @@ public interface AdminService {
 	// 팁 게시글 개수 불러오기
 	public long countTipList();
 	
+	// 월별 회원가입수
+	public List<Object[]> aggregateNewUser();
+	
+	// 월별 매출액
+	public List<Object[]> aggregatePayments();
 }
