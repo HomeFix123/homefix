@@ -17,6 +17,7 @@ import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
 import com.homefix.domain.CompanyReport;
+import com.homefix.domain.Estimation;
 import com.homefix.domain.Member;
 import com.homefix.domain.MemberReport;
 import com.homefix.domain.Payment;
@@ -26,6 +27,7 @@ import com.homefix.persistence.CompanyInfoRepository;
 import com.homefix.persistence.CompanyReportRepository;
 import com.homefix.persistence.CompanyRepository;
 import com.homefix.persistence.DashboardRepository;
+import com.homefix.persistence.EstRepository;
 import com.homefix.persistence.MemberReportRepository;
 import com.homefix.persistence.MemberRepository;
 import com.homefix.persistence.PaymentRepository;
@@ -306,6 +308,18 @@ public class AdminServiceImpl implements AdminService {
 	public List<Object[]> aggregatePayments(){
 		
 		return dashRepo.searchAggPayments();
+	}
+
+	@Autowired
+	EstRepository estRepo;
+	
+	/*
+	 * 고객이 작성한 견적 목록
+	 */
+	@Override
+	public List<Estimation> getEstimationList(String id) {
+		// 해야함
+		return null;
 	}
 
 	

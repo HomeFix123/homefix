@@ -6,6 +6,7 @@ import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
 import com.homefix.domain.CompanyReport;
+import com.homefix.domain.Estimation;
 import com.homefix.domain.Member;
 import com.homefix.domain.MemberReport;
 import com.homefix.domain.Payment;
@@ -82,4 +83,7 @@ public interface AdminService {
 	
 	// 월별 매출액
 	public List<Object[]> aggregatePayments();
+	
+	// 작성 견적글 불러오기
+	public List<Estimation> getEstimationList(String id);
 }
