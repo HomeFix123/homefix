@@ -11,27 +11,8 @@ $(function() {
 	var RegexName = /^[가-힣]+$/;
 	//전화번호
 	var RegexTel = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
-	var RegexCompanyNum = /^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})$/;
-
 	//사업자번호
-/*	function checkCorporateRegistrationNumber(value) {
-		var valueMap = value.replace(/-/gi, '').split('').map(function(item) {
-			return parseInt(item, 10);
-		});
-
-		if (valueMap.length === 10) {
-			var multiply = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5);
-			var checkSum = 0;
-			for (var i = 0; i < multiply.length; ++i) {
-				checkSum += multiply[i] * valueMap[i];
-			}
-			checkSum += parseInt((multiply[8] * valueMap[8]) / 10, 10);
-			return Math.floor(valueMap[9]) === (10 - (checkSum % 10));
-		}
-		return false;
-	}*/
-
-
+	var RegexCompanyNum = /^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})$/;
 
 	// 에러박스 문구
 	var blank = "  필수 입력 사항입니다.";
@@ -55,7 +36,6 @@ $(function() {
 	var idCheak = false;
 
 	$('#bs_btn_idCheak').click(function() {
-
 		// 아이디 중복검사 확인 여부
 		$('label[for="bs_memberId"] .error_box').html("");
 		var memberId = $.trim($("#bs_memberId").val());
@@ -106,11 +86,9 @@ $(function() {
 	var bsNumCheak = false;
 
 	$('#bs_btn_businessNum').click(function() {
-
 		// 사업자번호 중복검사 확인 여부
 		$('label[for="bs_businessNum"] .error_box').html("");
 		var bs_businessNum = $.trim($("#bs_businessNum").val());
-
 		// 입력값이 없을 때 에러박스
 		if (bs_businessNum == '') {
 			$('label[for="bs_businessNum"] .error_box').html(blank);
@@ -162,7 +140,6 @@ $(function() {
 		// 이메일 중복검사 확인 여부
 		$('label[for="bs_memberEmail"] .error_box').html("");
 		var memberEmail = $.trim($("#bs_memberEmail").val());
-
 		// 입력값이 없을 때 에러박스
 		if (memberEmail == '') {
 			$('label[for="bs_memberEmail"] .error_box').html(blank);
@@ -210,18 +187,16 @@ $(function() {
 	$('#bs_btn_signUp').click(function() {
 
 		// input에 입력된 값을 공백제거하고 변수에 담기
-		var memberEmail = $.trim($("#bs_memberEmail").val());
-		var memberPassword = $.trim($("#bs_memberPassword").val());
-		var passwordCheck = $.trim($("#bs_passwordCheck").val());
-		var memberName = $.trim($("#bs_memberName").val());
-		var bsName = $.trim($("#bs_Name").val());
-		var memberTel = $.trim($("#bs_memberTel").val());
-		var postNum = $.trim($("#bs_postNum").val());
-		var bsBusinessNum = $.trim($("#bs_businessNum").val());
-		var memberId = $.trim($("#bs_memberId").val());
-		var secondAddress = $.trim($("#bs_secondAddress").val());
-
-
+		var memberEmail = $("#bs_memberEmail").val();
+		var memberPassword = $("#bs_memberPassword").val();
+		var passwordCheck = $("#bs_passwordCheck").val();
+		var memberName = $("#bs_memberName").val();
+		var bsName = $("#bs_Name").val();
+		var memberTel = $("#bs_memberTel").val();
+		var postNum = $("#bs_postNum").val();
+		var bsBusinessNum = $("#bs_businessNum").val();
+		var memberId = $("#bs_memberId").val();
+		var secondAddress = $("#bs_secondAddress").val();
 
 
 		/*아이디*/
@@ -242,12 +217,12 @@ $(function() {
 		} else {
 			$('label[for="bs_memberId"] .error_box').html("");
 		}
-		/*if(idCheak == false){
+		if(idCheak == false){
 			$('label[for="bs_memberId"] .error_box').html("아이디 중복검사를 하지 않았습니다.");
 			$('label[for="bs_memberId"] .error_box').css('color', '#dc3545');
 			
 			return false ;
-		}*/
+		}
 
 		/*업체명*/
 
@@ -395,12 +370,6 @@ $(function() {
 			return false
 		};
 
-
-
-
-
-
-
 		/* 전화번호 */
 		if (memberTel == '') {
 			$('label[for="bs_memberTel"] .error_box').html(blank);
@@ -534,9 +503,6 @@ $(function() {
 		$('#agreeChoiceForm').toggle();
 	});
 
-
-
-
 	$("#allCheck").click(function() {
 		if ($("input:checkbox[id='allCheck']").is(":checked") == true) {
 
@@ -631,7 +597,7 @@ $(function() {
 	})*/
 
 
-	
+
 
 
 
