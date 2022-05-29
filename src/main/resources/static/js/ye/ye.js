@@ -10,7 +10,7 @@ $(function() {
 
 	//채팅하기 버튼 클릭시 채팅띄우기(MPickCDetail)
 	$(".chat_btn").on("click",function(){
-		window.open("http://localhost:3000/chat?roomCode='+ 1'", 'chatting', 'width=500px, height=800px');
+		window.open("http://localhost:3000/chat?roomCode=1&id=1", 'chatting', 'width=500px, height=800px');
 	});
 
 	//예산 1000단위로 ,찍기
