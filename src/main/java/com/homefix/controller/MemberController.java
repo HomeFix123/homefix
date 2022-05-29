@@ -26,6 +26,12 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	//로그인 페이지로 이동
+	@GetMapping(path ="/sign-in")
+	public void login() {
+		logger.info("로그인");	
+	}
+	
 	//회원가입 페이지로 이동
 	@GetMapping(path ="member/sign_member")
 	public String signUpMember() {
@@ -58,7 +64,7 @@ public class MemberController {
 	@PostMapping(value = "/member/memSave")
 	public String memberInsert(Member mem) throws IOException {
 		memberService.memberInsert(mem);
-		return "redirect:/index";
+		return "redirect:/sign/sign-in";
 					
 	}
 

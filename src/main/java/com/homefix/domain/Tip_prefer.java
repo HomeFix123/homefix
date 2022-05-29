@@ -1,6 +1,8 @@
 package com.homefix.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,6 +17,7 @@ public class Tip_prefer {
 	
 	/* 팁 좋아요[tip-prefer] 테이블 */
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer tpid; // 팁좋아요 아이디
 	
 	@JoinColumn(name="tid")

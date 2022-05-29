@@ -1,7 +1,9 @@
 package com.homefix.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -30,23 +32,25 @@ public class EstController {
 		//return "/board/" + step;
 	}
 	
+	//고객이 직접 회사 골라서 신청한 회사별 견정신청서 리스트 불러오기
 	@GetMapping("/MPickC")
 	public String queryAnno(Model m,String cid) {
-		System.out.println("넘어온 아이디 값은 " + cid);
-		List<Object[]> result = estRepo.queryAnnotation(cid);
-		List<Estimation> resultData = new ArrayList<Estimation>();
-		for(Object[] obj : result) {
-			Estimation vo = new Estimation();
-			vo.setBuilding((String)obj[0]);
-			vo.setSize((Integer)obj[1]);
-			vo.setBudget((Integer)obj[2]);
-			vo.setEaddr((String)obj[3]);
-			vo.setEname((String)obj[4]);
-			resultData.add(vo);
-		}
-		
-		m.addAttribute("Lists", resultData); 
+		m.addAttribute("Lists",estService.getCEst(cid));
 		return "/estimation/MPickC";
+	}
+	
+	@GetMapping("/MPickCDetail")
+	public String estDetail(String id,Model m) {
+		System.out.println("넘어온 아이디는"+id);
+		m.addAttribute("Detail",estService.getEstDetail(id));
+		return "/estimation/MPickCDetail";
+	}
+	
+	@GetMapping("/MEstimation")
+	public String mEstimation(String id,Model m) {
+		System.out.println("넘어온 아이디는"+id);
+		m.addAttribute("Detail",estService.getEstDetail(id));
+		return "/estimation/MPickCDetail";
 	}
 	
 	//ajax로 session에 값 저장하고 출력하는거 테스트 후에 지우기!!!!!!!!!!!!!!!!!
