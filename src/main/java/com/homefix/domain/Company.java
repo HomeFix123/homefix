@@ -50,16 +50,18 @@ public class Company {
 	
 	private Boolean enabled;
 	
+	@Column(columnDefinition = "Datetime")
+	private String deadday;
 	
 	@Transient
-	private int chatting;
+	private Integer chatting;
 	@Transient
-	private int contract;
+	private Integer contract;
 	@Transient
-	private int report;
+	private Integer report;
 	@Transient
-	private Date pm_day = new Date();
+	private Integer pm_day; 
 	@Transient
-	private int prefer;
+	private Integer prefer;
 
 }

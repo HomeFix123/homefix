@@ -114,7 +114,23 @@ $(function(){
 			
 			paymentTfoot.find("td.payment-sum").text(total.toLocaleString() + '원');	
 			
-							
+			
+			const reportTable = $('#report-table');
+			const reportTbody = reportTable.find('tbody');
+			const reportTfoot = reportTable.find('tfoot');
+			reportTbody.children().remove();
+			
+			const reportList = searchReportList(id);
+			
+			for(let report of reportList){
+				let tr = "<tr>";
+				tr += "<td>" + new Date(report.rday).toLocaleDateString() + "</td>";
+				tr += "<td class='text-center'>" + report.reason + "</td>";
+				tr += "</tr>";
+				reportTbody.append(tr);
+			}
+			reportTfoot.find("td.total-report").text(reportList.length + '회');
+			
 		})
 	}
 	// 결제 목록 검색
@@ -123,6 +139,21 @@ $(function(){
 		$.ajax({
 			type: "GET",
 			url: "/admin/company/payment/" + id,
+			contentType: "application/json",
+			async: false
+		}).done((data) => {
+			
+			result = data;
+			
+		}).fail((err) => console.log(err))
+		return result;
+	}
+	
+	function searchReportList(id){ 
+		let result = null;
+		$.ajax({
+			type: "GET",
+			url: "/admin/company/report/" + id,
 			contentType: "application/json",
 			async: false
 		}).done((data) => {

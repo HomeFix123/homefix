@@ -3,7 +3,7 @@
 		<nav class="navbar navbar-expand-lg">
 			<div class="container">
 				<a class="navbar-brand" th:href="@{/index}"> <img
-					th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
+					th:src="@{/images/homefix.png}" alt="Logo" class="img-fluid">
 				</a>
 
 				<button class="navbar-toggler" type="button"
@@ -16,18 +16,19 @@
 				<div class="collapse navbar-collapse justify-content-end"
 					id="navbarNav">
 					<ul class="navbar-nav">
-						<li><a href="#">내방어때</a></li>
-						<li><a href="about.html">꾸미기팁</a></li>
-						<li><a href="about.html">시공업체</a></li>
-						<li><a href="#">견적 신청</a></li>
+						<li><a th:href="@{/brag/braglist}">내방어때</a></li>
+						<li><a th:href="@{/tip/interiortip}">꾸미기팁</a></li>
+						<li><a th:href="@{/brag/coList}">시공업체</a></li>
+						<li><a th:href="@{/estimation/total}">견적 목록</a></li>
+						<li><a th:href="@{/estimation/write}">견적 신청</a></li>
 					</ul>
 				</div>
 				<div class="right-content">
 					<div class="user-option">
 
 						<ul class="global-list">
-							<li><i class="far fa-user"></i></li>
-							<li><i class="far fa-question-circle"></i></li>
+							<li><a th:href="@{/sign/sign-in}"><i class="far fa-user"></i></a></li>
+							<li><a th:href="@{/estimation/qna}"><i class="far fa-question-circle"></i></a></li>
 							<li class="sa-dropdown"><span class="cart-number">3</span> <i
 								class="far fa-bell"></i>
 								<div class="sa-dropdown-menu">
