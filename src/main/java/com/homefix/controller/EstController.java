@@ -70,6 +70,9 @@ public class EstController {
 		
 	}
 	
+	@GetMapping("/estimationtest")
+	public void estimationtest() {}
+	
 	//ajax로 session에 값 저장하고 출력하는거 테스트 후에 지우기!!!!!!!!!!!!!!!!!
 	@RequestMapping("/sessiontest")
 	@ResponseBody
