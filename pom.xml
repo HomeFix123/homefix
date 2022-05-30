@@ -120,15 +120,15 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 		</dependency>
-
 		<!-- /KAKAO 소셜로그인 끝 -->
-		<!-- (비밀번호 찾기) 메일 api -->
+		
+		<!-- (비밀번호 찾기) -->
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-email</artifactId>
-			<version>1.2</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 		<!-- /(비밀번호 찾기) 메일 api -->
+		
 		<!-- validation add -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

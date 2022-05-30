@@ -83,26 +83,26 @@
 										<div class="tab-pane fade show active" id="profile"
 											role="tabpanel" aria-labelledby="profile-tab">
 											<form class="ragister-form" name="ragister-form"
-												method="post" action="#">
+												method="post" th:action="@{/sign/member/loginMem}">
 
 												<div class="form-group text-left mb-0">
 													<label>Id</label> <input type="text" class="form-control" name="id"
 														 placeholder="아이디">
 												</div>
 												<div class="form-group text-left mb-0">
-													<label>Password</label> <input type="password" name="pass"
+													<label>Password</label> <input type="password" name="password"
 														class="form-control" 
 														placeholder="비밀번호">
 														<input type="checkbox">아이디 저장하기</input>
 												</div>
 												
-												<button class="btn btn-primary" type="submit">로그인</button>
+												<button class="btn btn-primary" type="submit" id="memberLogin">로그인</button>
 												<div class="middle-content">
 													<a class='btn btn-primary' th:href='@{/sign/sign-agree-m}'>회원가입</a>
 													<a id="id_find" href="#">아이디/비밀번호 찾기</a>
 												</div>
 												<div class="buttons">
-													<a class="facebook" href="#"><span> <i
+													<a class="facebook" href="https://kauth.kakao.com/oauth/authorize?client_id=128117ab9eeaf50369ebf4054753d09e&redirect_uri=http://localhost:8000/kakao/kakao&response_type=code"><span> <i
 															class="fa-solid fa-comment"></i></span>카카오로 로그인 하기</a>
 
 												</div>
@@ -136,7 +136,7 @@
 													<a class='btn btn-primary' th:href='@{/sign/company/sign-agree-b}'>회원가입</a>
 												
 												
-													<a id="id_find" href="#">아이디/비밀번호 찾기</a>
+													<a id="id_find" th:href='@{/sign/findIdPw}'>아이디/비밀번호 찾기</a>
 												</div>
 												
 											</form>
@@ -179,6 +179,9 @@
 	<script src="https://kit.fontawesome.com/2173f645ed.js"></script>
 	<!-- eunhye js -->
 	<script th:src="@{/js/eh/sign-up-b.js}"></script>
+	
+	<!-- heayun js -->
+<!-- 	<script th:src="@{/js/he/memberLogin.js}"></script> -->
 	
 </body>
 </html>
