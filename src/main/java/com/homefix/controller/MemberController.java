@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.homefix.domain.MailDto;
 import com.homefix.domain.Member;
+import com.homefix.mail.MailDto;
+import com.homefix.mail.SendEmailService;
 import com.homefix.service.MemberService;
-import com.homefix.service.SendEmailService;
 
 
 @Controller
@@ -35,10 +34,9 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@Autowired
-	public JavaMailSender javaMailSender;
-	
-	@Autowired
 	private SendEmailService sendEmailService;
+	
+	
 	
 	//로그인 페이지로 이동
 	@GetMapping(path ="/sign-in")
@@ -56,7 +54,7 @@ public class MemberController {
 	@GetMapping(path ="/member/sign_member")
 	public String signUpMember() {
 		logger.info("개인 회원가입");
-		return "/sign/member/sign_member";
+		return "sign/member/sign_member";
 	}
 	
 	// 아이디 중복 조회
@@ -105,7 +103,7 @@ public class MemberController {
 			System.out.println("로그인 실패했음");
 			System.out.println(mem.getPassword());
 			System.out.println(mem.getId());
-			return "/sign/sign-in";
+			return "sign/sign-in";
 		}
 	}
 	
@@ -117,7 +115,7 @@ public class MemberController {
 			return "/member/profile";
 	
 		} else {
-			return "/sign/sign-in";
+			return "sign/sign-in";
 	
 		}
 	
@@ -136,46 +134,27 @@ public class MemberController {
 		return "redirect:/member/profile";
 	}
 	
-	// 임시비밀번호 발급
-//	1. 임시 비밀번호를 발급받을 이메일을 입력 ( 입력한 화면 ) 확인을 누르면 이메일이 전송됨
-//	2. 로그인 화면으로 이동
-//	@PostMapping(value = "/member/sendEmail")
-//	public String tempPasssword(Member mem) {
-//		try {
-//			logger.info("임시 비밀번호 발급 시작 -- ");
-//			String result = memberService.sendForgotPassword(mem.getEmail());
-//			if (result.equals("ok")) {
-//				return "redirect:/sign/sign-in";
-//			} else {
-//				return "redirect:/sign/member/sign_member";
-//			}
-//		} catch (Exception e) {
-//			System.out.println("E : " + e);
-//			return "redirect:/sign/sign-in";
-//		}
-//	}
-	
+	//비밀번호 임시 발급 -------------------------------------------
 	//Email과 name의 일치여부를 check하는 컨트롤러
-	 @GetMapping("/member/sendEmail")
-	 public @ResponseBody Map<String, Boolean> pw_find(String email, String id){
-	 	Map<String,Boolean> json = new HashMap<>();
-	 	boolean pwFindCheck = memberService.userEmailCheck(email,id);
-
-	    System.out.println(pwFindCheck);
-	    json.put("check", pwFindCheck);
-	    System.out.println("비번찾기 실행됨");
-	    return json;
-	  }
+	@GetMapping("/check/findPw")
+	public @ResponseBody Map<String, Boolean> pw_find(String email, String id){
+		Map<String,Boolean> json = new HashMap<>();
+		System.out.println("제이슨 :: "+json);
+		boolean pwFindCheck = memberService.userEmailCheck(email,id);
+		System.out.println("이메일 :: "+email);	
+		System.out.println("아이디 :: "+id);
+		System.out.println(pwFindCheck);
+		json.put("check", pwFindCheck);
+		return json;
+	}
 
 	//등록된 이메일로 임시비밀번호를 발송하고 발송된 임시비밀번호로 사용자의 pw를 변경하는 컨트롤러
 	@PostMapping("/check/findPw/sendEmail")
-	public @ResponseBody void sendEmail(Member mem, String email, String name){
-		MailDto dto = sendEmailService.createMailAndChangePassword(mem, email, name);
-		sendEmailService.mailSend(dto);
-		System.out.println("비번찾기 여기까지 옴");
-
+	public @ResponseBody void sendEmail(String email, String id){
+	    MailDto dto = sendEmailService.createMailAndChangePassword(email, id);
+	    sendEmailService.mailSend(dto);
+	
 	}
-	
-	
+		
 	
 }

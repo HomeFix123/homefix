@@ -2,6 +2,7 @@ package com.homefix.persistence;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
@@ -21,14 +22,14 @@ public interface MemberRepository extends CrudRepository<Member, String>{
 	public List<Member> findByIdAndPassword(String id, String password);
 	
 	//임시비밀번호 발급-------------------------	
-	public Member findUserById(String email);
-	
-	public Member findMemberByEmail(String email);
+	public Member findMemberById(String email);
 	
 	
+	
+	
+//	//임시비밀번호 발급-------------------------	
+//	public Optional<Member> findById(String email);
+//	
+//	public Member findMemberByEmail(String email);
 
-	
-	//이메일 송부용
-//	public Member findByEmail(String email);
-	
 }

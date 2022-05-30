@@ -16,18 +16,20 @@ public interface MemberService {
 
 	//회원가입
 	public void memberInsert(Member mem);
-
-	//임시비밀번호 발급용
-//	public String sendForgotPassword(String email);
 	
 	//임시비밀번호발급용 test
-	public boolean userEmailCheck(String email, String name);
-
-	public void updatePassword(Member mem, String id, String password);
+//	public boolean userEmailCheck(String email, String name);
+//
+//	public void updatePassword(String id, String password);
 
 	//로그인
 	public String login(Member mem);
 
 	//회원정보 수정
 	public void update(Member mem);
+	
+	//임시 비밀번호 발급용
+	public boolean userEmailCheck(String email, String id);
+	
+	
 }
