@@ -185,11 +185,11 @@
 			logo_img = $('.logo_image').val()
 			if(logo_img != default_img){
 				$(this).text('변경 취소')
-				$('.logo_image').val(default_img)
+				$('.logo_image').val(default_img);
 				$('#logo_image').attr('src', 'http://140.238.11.118:5000/upload/' + default_img);
 			} else {
 				$(this).text('기본 이미지로 변경')
-				$('.logo_image').val(company_img)
+				$('.logo_image').val(company_img);
 				$('#logo_image').attr('src', 'http://140.238.11.118:5000/upload/' + company_img);
 			}
 			

@@ -32,8 +32,10 @@ public class AdminController {
 	}
 	
 	@GetMapping(path = "/dashboard")
-	public String moveDashBoardPage() {
+	public String moveDashBoardPage(Model model) {
 		logger.info("관리자 대시보드");
+		model.addAttribute("aggNewUser", adminService.aggregateNewUser());
+		model.addAttribute("aggPayments", adminService.aggregatePayments());
 		return "/admin/dashboard";
 	}
 	
@@ -104,6 +106,8 @@ public class AdminController {
 	@GetMapping(path = "/board/tip")
 	public String moveTipPage(Integer page, Model model) {
 		if(page == null) page = 1;
+		model.addAttribute("tipList", adminService.getTipList(page)); 
+		model.addAttribute("cntTip", adminService.countTipList());
 		return "/admin/board/tip";
 	}
 	

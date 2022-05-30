@@ -1,9 +1,13 @@
 package com.homefix.service;
 
-import org.springframework.stereotype.Service;
+import java.util.HashMap;
 
 
-@Service
+
 public interface KakaoService {
+	
+	String getKakaoAccessToken(String code);
+
+	HashMap<String, Object> getUserInfo(String access_Token);
 	
 }

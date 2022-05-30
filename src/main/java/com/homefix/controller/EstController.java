@@ -39,6 +39,7 @@ public class EstController {
 		return "/estimation/MPickC";
 	}
 	
+	//고객이 직접 회사 고른거 리스트 상세보기
 	@GetMapping("/MPickCDetail")
 	public String estDetail(String id,Model m) {
 		System.out.println("넘어온 아이디는"+id);
@@ -46,12 +47,31 @@ public class EstController {
 		return "/estimation/MPickCDetail";
 	}
 	
+	//고객 본인이 보낸 견적리스트
 	@GetMapping("/MEstimation")
 	public String mEstimation(String id,Model m) {
 		System.out.println("넘어온 아이디는"+id);
-		m.addAttribute("Detail",estService.getEstDetail(id));
-		return "/estimation/MPickCDetail";
+		m.addAttribute("Lists",estService.getMEstimation(id));
+		return "/estimation/MEstimation";
 	}
+	
+	//업체의 현재 진행중인 견적 리스트 
+	@GetMapping("/CIng")
+	public void getCIngList(String id,Model m) {
+		
+	}
+	
+	//내(고객) 견적 리스트 상세보기
+	@GetMapping("/MEDetail")
+	public String getMEDetail(Integer id, Model m) {
+		System.out.println("integer 잘 넘어왔니 " + id);
+		m.addAttribute("Detail",estService.getMEDetail(id));
+		return "/estimation/MEDetail";
+		
+	}
+	
+	@GetMapping("/estimationtest")
+	public void estimationtest() {}
 	
 	//ajax로 session에 값 저장하고 출력하는거 테스트 후에 지우기!!!!!!!!!!!!!!!!!
 	@RequestMapping("/sessiontest")
@@ -62,4 +82,5 @@ public class EstController {
 		//System.out.println(sessionid);
 		return sessionid;
 	}
+	
 }
