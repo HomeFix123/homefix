@@ -102,10 +102,10 @@
                                     </ul>
                                     <div class="error_box" style="margin-bottom:10px"><span class="size_error_box"></span></div>
                                 <div class="area-form-text">
-		                            <input type="text" id="inSize" class="form-control" name="size" required="" placeholder="" dir="rtl" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+		                            <input type="text" id="inSize" maxlength="3"  class="form-control" name="size" required="" placeholder="" dir="rtl" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1').replace(/\B(?=(\d{3})+(?!\d))/g, ',');">
 	                                <span style="margin-top: 10px; margin-left: 10px; margin-right: 20px">평   
 	                                </span>
-	                                <input type="text" id="outSize" class="form-control" name="size2" required="" placeholder="" dir="rtl" readonly>
+	                                <input type="text" id="outSize" class="form-control" name="size2" required="" placeholder="" dir="rtl"  readonly>
 	                                <span class="size2" style="margin-top: 10px; margin-left: 10px; margin-bottom: 0px;" >㎡
 	                                </span>
                                 </div>    
@@ -141,9 +141,11 @@
                                     </div>
                                 </div>
                                 
-                                    <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
+                                    <ul class="global-list" style="margin-top: 30px; margin-bottom: 0px">
                                         <li><h5 class="m-0" > 희망 시공일정 </h5></li>
                                     </ul>
+                                    <div class="error_box" style="margin-bottom:10px"><span class="day_error_box"></span></div>
+                                    
                                     <div class="area-form-text">
                                         <div class="p-0" >
                                         <input type="text" id="startDay" name="startDay" placeholder="시작일" class="form-control" required="">
@@ -155,7 +157,7 @@
                                         <input type="text" id="endDay" name="endDay" placeholder="종료일" class="form-control" required="">
                                         </div>
                                     </div>
-                                    <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
+                                    <ul class="global-list" style="margin-top: 50px; margin-bottom: 0px">
                                         <li><h5 class="m-0"> 주소 </h5></li>
                                     </ul>
                                     <div class="error_box" style="margin-bottom:10px"><span class="eaddr_error_box"></span></div>
