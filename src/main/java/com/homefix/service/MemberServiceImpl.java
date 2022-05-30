@@ -147,6 +147,13 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	//회원정보 수정
+	@Override
+	public void update(Member mem) {
+		memberRepo.save(mem);
+		
+	}
+
 	
 	
 	

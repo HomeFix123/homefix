@@ -35,8 +35,9 @@ public class KakaoController {
     public String login(@RequestParam String code) {
         String access_Token = kakao.getKakaoAccessToken(code);
         System.out.println("controller access_token : " + access_Token);
-        System.out.println("hhh");
+        System.out.println("로그인 성공");
         
-        return "/kakao/loginkakao";
+        //return "/kakao/loginkakao";
+        return "redirect:/index";
     }
 }

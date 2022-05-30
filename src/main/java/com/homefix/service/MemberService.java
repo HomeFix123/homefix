@@ -27,4 +27,7 @@ public interface MemberService {
 
 	//로그인
 	public String login(Member mem);
+
+	//회원정보 수정
+	public void update(Member mem);
 }
