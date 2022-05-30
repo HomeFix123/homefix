@@ -12,4 +12,9 @@ public interface BragService {
 	// 인테리어 자랑 리스트
 	public List<Brag> getBragList(Brag brag);
 	
+	// 인테리어 자랑 상세
+	public Brag getBrag(Brag brag, String id);
+	
+	// 좋아요 저장
+	public void savePrefer(Integer bid, String id);
 }

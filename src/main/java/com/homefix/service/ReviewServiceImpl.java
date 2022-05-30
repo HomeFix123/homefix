@@ -18,8 +18,9 @@ public class ReviewServiceImpl implements ReviewService {
 	@Autowired
 	ReviewRepository reviewRepo;
 	
-	@Autowired
-	MemberRepository memberRepo;
+	/*
+	 * @Autowired MemberRepository memberRepo;
+	 */
 	
 	@Autowired
 	CompanyRepository companyRepo;

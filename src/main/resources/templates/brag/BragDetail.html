@@ -131,7 +131,9 @@
 				font-size: 30px;
 			}
 			
-			
+			#detailVal{
+				padding-left: 15%;
+			}
 			
 			
         </style>
@@ -309,8 +311,7 @@
 
 		<!-- 섬네일 -->
         <section class="breadcrumb-section bg-white">
-            <div class="thumnail" th:style="'background-image: url('+@{/images/course/cute.jpg}+');'">
-            </div>
+            <div class="thumnail" th:style="'background-image: url('+|http://140.238.11.118:5000/upload/${brag.bimgadr}|+');'"></div>
         </section><!-- /.breadcrumb-section -->
 
         <section class="detail_section bg-white section-padding">
@@ -319,25 +320,25 @@
         				<div class="row justify-content-md-center">
         					<div class="col-lg-8" style="text-align: center;">
 	        					<div class="reviewer">
-	        						<a href="#"><img class="img-fluid" th:src="@{/images/tutor/2.jpg}" alt="Image"></a>
+	        						<a href="#"><img class="img-fluid" th:src="|http://140.238.11.118:5000/upload/${brag.member.profilimg}|" alt="Image"></a>
 	        					</div>
-	        					<div ><h5  class="reviewer_name">사용자명</h5></div>
+	        					<div ><h5  class="reviewer_name" th:text="${brag.member.nickname}">사용자명</h5></div>
         					</div>
-        					<div class="details col-lg-8">
-        						<div class="detail col-lg-3" name="주거형태"><a><i class="fas fa-home"></i> 원룸&오피스텔</a></div>
-        						<div class="detail col-lg-3" name="평수"><a><i class="fas fa-ruler"></i> 10평</a></div>
-        						<div class="detail col-lg-3" name="작업분야"><a><i class="fas fa-tools"></i> 홈스타일링</a></div>
-        						<div class="detail col-lg-3" name="가족형태"><a><i class="fas fa-users"></i> 신혼부부</a></div>
+        					<div class="details col-8">
+        						<div class="detail col-lg-3 col-md-6 col-sm-6" name="주거형태"><i class="fas fa-home"></i><a id="detailVal" th:text="${brag.hometype}"></a></div>
+        						<div class="detail col-lg-3 col-md-6 col-sm-6" name="평수"><i class="fas fa-ruler"></i><a id="detailVal" th:text="${brag.bsize}"></a></div>
+        						<div class="detail col-lg-3 col-md-6 col-sm-6" name="작업분야"><i class="fas fa-tools"></i><a id="detailVal" th:text="${brag.job}"></a></div>
+        						<div class="detail col-lg-3 col-md-6 col-sm-6" name="가족형태"><i class="fas fa-users"></i><a id="detailVal" th:text="${brag.family}"></a></div>
         					</div>
         					
         					<div class="details col-lg-8">
-        						<div class="detail col-lg-3" name="작업자"><strong>작업</strong> 원룸&오피스텔</div>
-        						<div class="detail col-lg-3" name="예산"><strong>예산</strong> 100마넌</div>
-        						<div class="detail col-lg-3" name="지역"><strong>지역</strong> 서울시 어딘가</div>
+        						<div class="detail col-lg-3" name="작업자"><strong>작업</strong><a id="detailVal" th:text="${brag.worker}"></a></div>
+        						<div class="detail col-lg-3" name="예산"><strong>예산</strong><a id="detailVal" th:text="|${brag.bbudget} 원|"></a></div>
+        						<div class="detail col-lg-6" name="지역"><strong>지역</strong><a id="detailVal" th:text="${brag.loc}"></a></div>
         						
         					</div>
         					<div class="details col-lg-8">
-        						<div class="detail col-lg-3" name="세부정보"><strong>세부정보</strong> 기타등등</div>
+        						<div class="detail col-3" name="세부정보"><strong>세부정보</strong><a id="detailVal" th:text="${brag.extrainfo}"></a></div>
         					</div>        					
         				</div>
         			</div>
@@ -354,38 +355,9 @@
                         <div class="col-lg-8">
                             <div class="sa-course">
                                 <div class="course-info">
-                                    <h2 class="title">Visual Basic Web Course With Live Project</h2>
-                                    <div>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	
-                                	</div>
+                                    <h2 class="title" th:text="${brag.btitle}"></h2>
+                                    <p th:text="${#calendars.format(brag.bdate, 'yyyy-MM-dd')}"></p>
+                                    <div th:utext="${brag.bcont}"></div>
                                 	
                                 	
                                 	
@@ -399,8 +371,13 @@
 		<nav class="navbar fixed-bottom bg-light">
 		  <div class="reBar container-fluid  justify-content-center">		    
 		  	<ul class="reviewBar">
-              	<li><a  href="#"><span><i id="love" class="fas fa-heart"></i></span>50</a></li>
-                <li><a href="#"><span><i class="fas fa-bars"></i></span></a></li>
+              	<li><span th:if="${brag.preferck == null or 'false'}" ><i id="love" class="far fa-heart"></i></span>
+              		<span th:if="${brag.preferck == 'true'}"><i id="love" class="fas fa-heart"></i></span>
+              		<a th:text="${brag.prefer}"></a>
+              	</li>
+                <li>
+                	<a href="#"><span><i class="fas fa-bars"></i></span></a>
+                </li>
            	</ul>
 		  </div>
 		</nav>		

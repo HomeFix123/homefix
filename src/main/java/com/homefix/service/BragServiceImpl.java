@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Brag;
+import com.homefix.domain.Prefer;
 import com.homefix.persistence.BragRepository;
 import com.homefix.persistence.CompanyRepository;
 import com.homefix.persistence.MemberRepository;
+import com.homefix.persistence.PreferRepository;
 
 @Service
 public class BragServiceImpl implements BragService {
@@ -22,7 +24,9 @@ public class BragServiceImpl implements BragService {
 	
 	@Autowired
 	CompanyRepository companyRepo;
-	
+
+	@Autowired
+	PreferRepository preferRepo;
 	
 	@Override
 	public void saveBrag(Brag brag, String cid, String id) {
@@ -43,5 +47,19 @@ public class BragServiceImpl implements BragService {
 		return (List<Brag>)bragRepo.findAll();
 	}
 	
+	@Override
+	public Brag getBrag(Brag brag, String id) {
+		Brag result = bragRepo.findByBid(brag.getBid());
+		result.setPrefer(preferRepo.countByBrag(brag));
+		result.setPreferck(preferRepo.findByBragAndMember(brag, memberRepo.findById(id).get()));
+		System.out.println(result.getPreferck());
+		return result;
+		
+	}
+	
+	@Override
+	public void savePrefer(Integer bid, String id) {
+		
+	}
 	
 }

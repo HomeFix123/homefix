@@ -26,7 +26,7 @@ public class BragController {
 	
 	@GetMapping("/write")
 	public String insertBrag() {
-		return "/brag/BragWrite";
+		return "brag/BragWrite";
 	}
 	
 	@PostMapping("/write")
@@ -46,5 +46,22 @@ public class BragController {
 		m.addAttribute("bragList", list);
 		return "brag/BragList";
 	}
+	
+	
+	@GetMapping("/{bid}")
+	public String getBrag(Model m, Brag brag) {
+		String id = "test";
+		Brag result = bragService.getBrag(brag, id);
+		m.addAttribute("brag", result);
+		return "brag/BragDetail";
+	}
+	
+	@RequestMapping
+	public void savePrefer(Integer bid) {
+		String id = "test";
+		bragService.savePrefer(bid, id);
+		
+	}
+	 
 	
 }

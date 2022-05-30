@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.AssertFalse;
 
 import lombok.Data;
@@ -54,6 +55,9 @@ public class Brag {
 	@JoinColumn(name = "cid")
 	private Company company;
 	
-	
+	@Transient
+	private long prefer;
+	@Transient
+	private Boolean preferck;
 	
 }

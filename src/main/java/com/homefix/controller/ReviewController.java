@@ -25,7 +25,7 @@ public class ReviewController {
 	
 	@GetMapping("/write")
 	public String insertReview() {
-		return "/review/ReviewWrite";
+		return "review/ReviewWrite";
 	}
 	
 	@PostMapping("/write")
@@ -38,7 +38,7 @@ public class ReviewController {
 	}
 	
 	@GetMapping
-	public String getBragList(Model m){
+	public String getReviewList(Model m){
 		
 		Review rev = new Review();
 		List<Review> list = reviewService.getReviewList(rev);
