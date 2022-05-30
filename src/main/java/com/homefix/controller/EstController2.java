@@ -57,11 +57,13 @@ public class EstController2 {
 		List<Estimation> list = estService2.estList(est);
 		m.addAttribute("estList", list);
 		return "/estimation2/est-total-list";
+		
 	}
 	
 	/* 견적희망서(상세) 페이지 */
 	@GetMapping("/details")
-	public String estDetails() {
+	public String estDetails(String id, Model m) {
+		m.addAttribute("Details", estService2.getEstDetails(id));
 		return "/estimation2/estimation-details";
 	}
 	
