@@ -200,7 +200,7 @@
 	                                <div class="entry-header">
 	                                    <div class="entry-thumbnail">
 	                                        <a href="blog-details.html">
-	                                        	<img th:if="${not #strings.isEmpty(b.bimgadr)}" th:src="${b.bimgadr}" alt="Image" class="img-fluid">
+	                                        	<img th:if="${not #strings.isEmpty(b.bimgadr)}" th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|" alt="Image" class="img-fluid">
 	                                        	<img th:if="${#strings.isEmpty(b.bimgadr)}" src="images/course/1.jpg" alt="Image" class="img-fluid">
 	                                        </a>
 	                                    </div>
