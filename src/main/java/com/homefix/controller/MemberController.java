@@ -123,6 +123,19 @@ public class MemberController {
 	
 	}
 	
+	//개인 마이페이지
+	@GetMapping(path ="/member/profile")
+	public void myPage() {
+		logger.info("개인 마이페이지");	
+	}
+	
+	// 글 수정
+	@PostMapping("/member/update")
+	public String update(Member mem) {	
+		memberService.update(mem);
+		return "redirect:/member/profile";
+	}
+	
 	// 임시비밀번호 발급
 //	1. 임시 비밀번호를 발급받을 이메일을 입력 ( 입력한 화면 ) 확인을 누르면 이메일이 전송됨
 //	2. 로그인 화면으로 이동
