@@ -1,5 +1,5 @@
 /********* 견적신청 페이지 estimation.html 설정 ***********/
-
+	
 	/* 화면글자 전체 가운데 정렬*/    
 	.about-info { text-align:  center; }
 	    
@@ -15,22 +15,70 @@
 	    /*border-bottom : 1px solid #ccc;*/ 
 	    }
 	        
-	#underline, sample6_address{
+	#size, sample6_address, #startDay, #endDay, #underline{
 	   margin-bottom: 0px
 	   }
 	
 	#addr_t{
 	   text-align: center;
-	   }    
+	   }
+	   
+	/*라디오 버튼 css*/
+	.radio {
+    padding: 15px 10px;
+	}
+	.radio input[type=radio]{
+	    display: none;
+	}
+	.radio input[type=radio]+label{
+	    display: inline-block;
+	    cursor: pointer;
+	    height: 45px;
+	    width: 130px;
+	    border: 1px solid #1abc9c;
+	    line-height: 24px;
+	    text-align: center;
+	    font-weight:bold;
+	    font-size:16px;
+        border-radius: 4px;
+        line-height: 40px;
+        margin : 2px;
+	}
+	.radio input[type=radio]+label{
+	    background-color: #1abc9c;
+	    color: white;
+	}
+	.radio input[type=radio]:checked+label{
+	    background-color: white;
+	    color: #1abc9c;
+	}
+	
+	/*datepicker에서 사용한 이미지 버튼 style적용*/
+    
+    .ui-datepicker{ font-size: 12px; width: 240px; }
+    .ui-datepicker select.ui-datepicker-month{ width:30%; font-size: 11px; }
+    .ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 11px; }
+    img.ui-datepicker-trigger{ 
+    margin-left:2px; vertical-align:middle; cursor: Pointer;
+    width:20px;}
+
+    
+	
+	
+	
+	
+	       
 	   
 /***********************************************************/
 
 /*** 견적상세 페이지 estimation-details.html 설정******/
 
 /*공통*/
+
 #estimate_title{
     text-align: center;
 }
+
 .bold {
     font-weight: bold;
 }

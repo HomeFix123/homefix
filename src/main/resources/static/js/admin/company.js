@@ -114,7 +114,23 @@ $(function(){
 			
 			paymentTfoot.find("td.payment-sum").text(total.toLocaleString() + '원');	
 			
-							
+			
+			const reportTable = $('#report-table');
+			const reportTbody = reportTable.find('tbody');
+			const reportTfoot = reportTable.find('tfoot');
+			reportTbody.children().remove();
+			
+			const reportList = searchReportList(id);
+			
+			for(let report of reportList){
+				let tr = "<tr>";
+				tr += "<td>" + new Date(report.rday).toLocaleDateString() + "</td>";
+				tr += "<td class='text-center'>" + report.reason + "</td>";
+				tr += "</tr>";
+				reportTbody.append(tr);
+			}
+			reportTfoot.find("td.total-report").text(reportList.length + '회');
+			
 		})
 	}
 	// 결제 목록 검색
@@ -123,6 +139,21 @@ $(function(){
 		$.ajax({
 			type: "GET",
 			url: "/admin/company/payment/" + id,
+			contentType: "application/json",
+			async: false
+		}).done((data) => {
+			
+			result = data;
+			
+		}).fail((err) => console.log(err))
+		return result;
+	}
+	
+	function searchReportList(id){ 
+		let result = null;
+		$.ajax({
+			type: "GET",
+			url: "/admin/company/report/" + id,
 			contentType: "application/json",
 			async: false
 		}).done((data) => {
@@ -176,3 +207,37 @@ $(function(){
 })
 
 
+// 데이터 테이블
+$(function(){
+        $(document).ready(function () {
+            $('#example').DataTable({
+            	columns: col_kor,
+                language: kor_setting
+            });
+        });
+        
+        const kor_setting = {
+        	"decimal" : "",
+        	"emptyTable" : "데이터가 없습니다.",
+        	"info" : "_START_ - _END_ (총 _TOTAL_ 명)",
+        	"infoEmpty" : "0명",
+            "infoFiltered" : "(전체 _MAX_ 명 중 검색결과)",
+            "infoPostFix" : "",
+            "thousands" : ",",
+            "lengthMenu" : "_MENU_ 개씩 보기",
+            "loadingRecords" : "로딩중...",
+            "processing" : "처리중...",
+            "search" : "검색 : ",
+            "zeroRecords" : "검색된 데이터가 없습니다.",
+            "paginate" : {
+            	"first" : "첫 페이지",
+            	"last" : "마지막 페이지",
+            	"next" : "다음",
+            	"previous" : "이전"
+            },
+            "aria" : {
+            	"sortAscending" : " :  오름차순 정렬",
+            	"sortDescending" : " :  내림차순 정렬"
+        	}
+        };
+});

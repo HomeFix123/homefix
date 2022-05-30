@@ -1,50 +1,69 @@
 package com.homefix.controller;
 
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.homefix.domain.Estimation;
+import com.homefix.service.EstService2;
+
 @Controller
-@RequestMapping("/estimation2")
+@RequestMapping("/estimation") // 뷰폴더 이름이 아니라 요청하는 url 주소
 public class EstController2 {
 	
-	@GetMapping("/{step}")
-	public void viewPage(@PathVariable String step) {
-		//return "/estimation2/" + step;
+	static final Logger logger = LoggerFactory.getLogger(EstController2.class);
+	
+	@Autowired
+	private EstService2 estService2;
+	
+//	@GetMapping("/{step}")
+//	public void viewPage(@PathVariable String step) {
+//		//return "/estimation2/" + step;
+//	}
+	
+	/* 견적상담 신청 페이지 */
+	@GetMapping("/write") //RESTful 방식 : /estimation/write
+	public String insertEst() {
+		return "/estimation2/estimation"; // RESTful은 리턴값을 반드시 써주어야 함(리턴은 뷰페이지 경로 적기)
+	}
+		
+	@PostMapping("/write")
+	public String saveEst(Estimation est) {
+		
+		String id = "test"; // 나중에는 세션에서 ID 값을 가져옴, 현재 테스트로 ID 직접 넣어줌
+		estService2.saveEst(est, id);
+		logger.info("입력성공");
+		return "redirect:/estimation/write"; //redirect는 요청 url 주소를 써줌
 	}
 	
+	/* Q&A 페이지 */
+	@GetMapping("/qna")
+	public String qna() {
+		return "/estimation2/qna";
+	}
 	
-	/***RESTful 방식 2가지 
- 	* 기능 				기존URI							요청			***RESTful URI
---------------------------------------------------------------------------------
-	'견적목록보기		/estimation2/getEstList			GET			/estimation2
-	'견적작성화면		/estimation2/insertEst			GET			/estimation2/write
-	'게시판작성			/estimation2/saveEst			POST		/estimation2/write
-	'게시판상세보기		/estimation2/getEst?seq=글번호	GET			/estimation2/글번호
-	'게시판수정			/estimation2/updateEst?seq=글번호	PUT			/estimation2/글번호
-	'게시판삭제			/estimation2/deleteEst?seq=글번호	DELETE		/estimation2/글번호
--------------------------------------------------------------------------------- 
- * 1. value값 써주기 => @RequestMapping(value="/write", method=RequestMethod.GET) 
- * 2. 리턴값 뷰페이지 지정 필수
- * 3. 뷰페이지(insertBoard 페이지)에서 <a th:href='@{/board/write}'>새글등록</a> 경로를 RESTful URI로 수정해줘야 페이지가 뜸 */
+	/* 전체견적 목록 페이지 */
+	@GetMapping("/total")
+	public String estList(Model m) {
+		
+		Estimation est = new Estimation();
+		List<Estimation> list = estService2.estList(est);
+		m.addAttribute("estList", list);
+		return "/estimation2/est-total-list";
+	}
 	
-	
-//	//입력하기-----------------------------------------
-//	@GetMapping("/writer") //RESTful 방식
-//	public String insertEst() {
-//		return "/estimation2/estimation"; //URL 방식 => restful 이라면 리턴값 따로 써주어야 함
-//	}
-//		
-//	@PostMapping("/writer")
-//	public String saveEst() {
-//		empService.insertBoard();
-//		return "redirect: ";
-//	}
-//	//--------------------------------------------------
-//	
-	
-	
+	/* 견적희망서(상세) 페이지 */
+	@GetMapping("/details")
+	public String estDetails() {
+		return "/estimation2/estimation-details";
+	}
 	
 	
 	

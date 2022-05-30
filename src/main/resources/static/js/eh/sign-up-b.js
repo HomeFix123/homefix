@@ -11,27 +11,8 @@ $(function() {
 	var RegexName = /^[가-힣]+$/;
 	//전화번호
 	var RegexTel = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
-	var RegexCompanyNum = /^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})$/;
-
 	//사업자번호
-/*	function checkCorporateRegistrationNumber(value) {
-		var valueMap = value.replace(/-/gi, '').split('').map(function(item) {
-			return parseInt(item, 10);
-		});
-
-		if (valueMap.length === 10) {
-			var multiply = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5);
-			var checkSum = 0;
-			for (var i = 0; i < multiply.length; ++i) {
-				checkSum += multiply[i] * valueMap[i];
-			}
-			checkSum += parseInt((multiply[8] * valueMap[8]) / 10, 10);
-			return Math.floor(valueMap[9]) === (10 - (checkSum % 10));
-		}
-		return false;
-	}*/
-
-
+	var RegexCompanyNum = /^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})$/;
 
 	// 에러박스 문구
 	var blank = "  필수 입력 사항입니다.";
@@ -55,7 +36,6 @@ $(function() {
 	var idCheak = false;
 
 	$('#bs_btn_idCheak').click(function() {
-
 		// 아이디 중복검사 확인 여부
 		$('label[for="bs_memberId"] .error_box').html("");
 		var memberId = $.trim($("#bs_memberId").val());
@@ -106,11 +86,9 @@ $(function() {
 	var bsNumCheak = false;
 
 	$('#bs_btn_businessNum').click(function() {
-
 		// 사업자번호 중복검사 확인 여부
 		$('label[for="bs_businessNum"] .error_box').html("");
 		var bs_businessNum = $.trim($("#bs_businessNum").val());
-
 		// 입력값이 없을 때 에러박스
 		if (bs_businessNum == '') {
 			$('label[for="bs_businessNum"] .error_box').html(blank);
@@ -162,7 +140,6 @@ $(function() {
 		// 이메일 중복검사 확인 여부
 		$('label[for="bs_memberEmail"] .error_box').html("");
 		var memberEmail = $.trim($("#bs_memberEmail").val());
-
 		// 입력값이 없을 때 에러박스
 		if (memberEmail == '') {
 			$('label[for="bs_memberEmail"] .error_box').html(blank);
@@ -210,18 +187,16 @@ $(function() {
 	$('#bs_btn_signUp').click(function() {
 
 		// input에 입력된 값을 공백제거하고 변수에 담기
-		var memberEmail = $.trim($("#bs_memberEmail").val());
-		var memberPassword = $.trim($("#bs_memberPassword").val());
-		var passwordCheck = $.trim($("#bs_passwordCheck").val());
-		var memberName = $.trim($("#bs_memberName").val());
-		var bsName = $.trim($("#bs_Name").val());
-		var memberTel = $.trim($("#bs_memberTel").val());
-		var postNum = $.trim($("#bs_postNum").val());
-		var bsBusinessNum = $.trim($("#bs_businessNum").val());
-		var memberId = $.trim($("#bs_memberId").val());
-		var secondAddress = $.trim($("#bs_secondAddress").val());
-
-
+		var memberEmail = $("#bs_memberEmail").val();
+		var memberPassword = $("#bs_memberPassword").val();
+		var passwordCheck = $("#bs_passwordCheck").val();
+		var memberName = $("#bs_memberName").val();
+		var bsName = $("#bs_Name").val();
+		var memberTel = $("#bs_memberTel").val();
+		var postNum = $("#bs_postNum").val();
+		var bsBusinessNum = $("#bs_businessNum").val();
+		var memberId = $("#bs_memberId").val();
+		var secondAddress = $("#bs_secondAddress").val();
 
 
 		/*아이디*/
@@ -242,12 +217,12 @@ $(function() {
 		} else {
 			$('label[for="bs_memberId"] .error_box').html("");
 		}
-		/*if(idCheak == false){
+		if(idCheak == false){
 			$('label[for="bs_memberId"] .error_box').html("아이디 중복검사를 하지 않았습니다.");
 			$('label[for="bs_memberId"] .error_box').css('color', '#dc3545');
 			
 			return false ;
-		}*/
+		}
 
 		/*업체명*/
 
@@ -389,17 +364,11 @@ $(function() {
 
 
 		if (emailCheak == false) {
-			$('label[for="memberEmail"] .error_box').html("이메일 중복검사를 하지 않았습니다.");
-			$('label[for="memberEmail"] .error_box').css('color', '#dc3545');
+			$('label[for="bs_memberEmail"] .error_box').html("이메일 중복검사를 하지 않았습니다.");
+			$('label[for="bs_memberEmail"] .error_box').css('color', '#dc3545');
 
 			return false
 		};
-
-
-
-
-
-
 
 		/* 전화번호 */
 		if (memberTel == '') {
@@ -520,107 +489,7 @@ $(function() {
 	}); // end of #btnPwChange
 
 
-	$('#btnMemberUpdate').click(function() {
 
-		// input에 입력된 값을 공백제거하고 변수에 담기
-		var memberNickname = $.trim($("#memberNickname").val());
-		var memberPassword = $.trim($("#memberPassword").val());
-		var passwordCheck = $.trim($("#passwordCheck").val());
-		var memberName = $.trim($("#memberName").val());
-		var memberBirth = $.trim($("#memberBirth").val());
-		var memberTel = $.trim($("#memberTel").val());
-
-
-		/* 업체명 */
-		if (memberNickname == '') {
-			$('label[for="memberNickname"] .error_box').html(blank);
-			$('#memberNickname').focus();
-			return;
-		} else {
-			$('label[for="memberNickname"] .error_box').html("");
-		}
-
-		if (!RegexNick.test(memberNickname)) {
-
-			$('label[for="memberNickname"] .error_box').html("닉네임 형식이 올바르지 않습니다.");
-			return;
-		} else {
-			$('label[for="memberNickname"] .error_box').html("");
-		}
-
-		if (memberPassword != "") {
-
-			/* 비밀번호 */
-
-			if (!RegexPW.test(memberPassword)) {
-
-				$('label[for="memberPassword"] .error_box').html("비밀번호는 영문자와 숫자를 사용하여 6~15자로 작성해 주십시오.");
-				return;
-			} else {
-				$('label[for="memberPassword"] .error_box').html("");
-			}
-
-			/* 비밀번호 재확인 */
-
-			/* 비밀번호 일치 여부 확인 */
-			if (memberPassword != passwordCheck) {
-				$('label[for="passwordCheck"] .error_box').html("비밀번호가 일치하지 않습니다.");
-				$('#passwordCheck').focus();
-				return;
-			}
-		}// end of if(비밀번호 입력 여부)
-
-		/* 이름 */
-		if (memberName == '') {
-			$('label[for="memberName"] .error_box').html(blank);
-			$('#memberName').focus();
-			return;
-		} else {
-			$('label[for="memberName"] .error_box').html("");
-		}
-		if (!RegexName.test(memberName)) {
-
-			$('label[for="memberName"] .error_box').html("이름 형식이 올바르지 않습니다.");
-			return;
-		} else {
-			$('label[for="memberName"] .error_box').html("");
-		}
-
-
-
-		/* 전화번호 */
-		if (memberTel == '') {
-			$('label[for="memberTel"] .error_box').html(blank);
-			$('#memberTel').focus();
-			return false;
-		} else {
-			$('label[for="memberTel"] .error_box').html("");
-		}
-
-		if (!RegexTel.test(memberTel)) {
-
-			$('label[for="memberTel"] .error_box').html("전화번호 형식이 올바르지 않습니다. ex)010-000~0-000~0");
-			return;
-		} else {
-			$('label[for="memberTel"] .error_box').html("");
-		}
-
-		document.memberUpdateForm.submit();
-		alert("회원 정보 수정이 완료되었습니다.");
-	}) //end of #btnMemberUpdate
-
-
-
-	/*************************************회원탈퇴***************************************/
-
-
-	$('#btnMemberDelete').click(function() {
-		var result = confirm("정말 탈퇴하시겠습니까?");
-		if (result) {
-			document.memberDelete.submit();
-		}
-
-	})
 
 
 
@@ -633,9 +502,6 @@ $(function() {
 	$('#btnChoiceAgree').click(function() {
 		$('#agreeChoiceForm').toggle();
 	});
-
-
-
 
 	$("#allCheck").click(function() {
 		if ($("input:checkbox[id='allCheck']").is(":checked") == true) {
@@ -731,7 +597,7 @@ $(function() {
 	})*/
 
 
-	
+
 
 
 
