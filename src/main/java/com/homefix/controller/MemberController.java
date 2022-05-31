@@ -131,7 +131,7 @@ public class MemberController {
 		Member mem = new Member();
 		List<Member> list = memberService.myPageList(mem);
 		m.addAttribute("member",list);
-		
+	}	
 
 	public void myPage() {
 		logger.info("개인 마이페이지");	
