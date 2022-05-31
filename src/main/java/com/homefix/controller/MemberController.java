@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -91,8 +92,6 @@ public class MemberController {
 	// 로그인하기
 	@PostMapping("/member/loginMem")
 	public String LoginMember(Member mem, HttpSession session, Model model) {
-		
-
 		System.out.println("로그인성공했나?" + memberService.login(mem));
 		if (memberService.login(mem) != null) {
 			System.out.println("로그인 성공함");
@@ -186,6 +185,8 @@ public class MemberController {
 	    sendEmailService.mailSend(dto);
 	
 	}
+	
+
 		
 	
 }

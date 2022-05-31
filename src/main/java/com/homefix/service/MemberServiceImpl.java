@@ -119,15 +119,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public List<Member> myPageList(Member mem) {
-		return (List<Member>)memberRepo.findAll();
+		// TODO Auto-generated method stub
+		return null;
 	}
-
-
-	//회원정보 수정
-	@Override
-	public void update(Member mem) {
-		memberRepo.save(mem);
-		
-	}
-
 }

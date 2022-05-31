@@ -72,5 +72,13 @@ public class EstServiceImpl implements EstService {
 		return contractRepo.findByCompay(company);
 	}
 
+	@Override
+	public void saveIng(Integer eid) {
+		Estimation estimation = estRepo.findById(eid).get();
+	 	Contract contract = contractRepo.findByEstimation(estimation);
+		contract.setIng("시공완료"); 
+		contractRepo.save(contract);
+	}
+
 	
 }

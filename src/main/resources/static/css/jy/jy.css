@@ -239,4 +239,8 @@
 	margin-bottom: 10px;
 }
 
-
+/* 인테리어 팁 화면 작게 */
+.tipContainer {
+	max-width: 800px;
+	min-width: 300px;
+}
