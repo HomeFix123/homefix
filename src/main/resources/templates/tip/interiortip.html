@@ -25,6 +25,7 @@
     
     <!-- tip_main css 설정 파일 -->    
     <link th:href="@{/css/tip_main.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/tip_common.css}" rel="stylesheet" type="text/css" />
     
     <!-- font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
@@ -57,7 +58,7 @@
 
     <header class="sa-header" id="header">
         <div class="sa-topbar">
-            <div class="container">
+            <div class="container" >
                 <div class="topbar-content">
                     <div class="left-content">
                         <ul class="global-list">
@@ -81,9 +82,9 @@
             </div><!-- /.container -->
         </div><!-- /.top-bar -->
 
-        <div class="sa-menu">
-            <nav class="navbar navbar-expand-lg">
-                <div class="container" style="align-content: center;">
+        <div class="sa-menu ">
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container">
                     <a class="navbar-brand" th:href="@{/index.html}">
                         <img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
                     </a>
@@ -218,8 +219,8 @@
         </div><!-- /.sa-menu -->
     </header><!-- /.sa-header -->
 
-    <section class="breadcrumb-section">
-        <div class="container">
+    <section class="breadcrumb-section ">
+        <div class="container ">
             <h1>인테리어 팁</h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a th:href="@{/index.html}">Home</a></li>
@@ -228,10 +229,9 @@
         </div><!-- /.container -->
     </section><!-- /.breadcrumb-section -->
     <!-- 인테리어팁 내용물들 -->
-    
     <div class="sa-section" id="interiortip_all">
         <div class="section-content sa-about section-padding">
-            <div class="container">
+            <div class="container tipContainer">
                         <div class="section-header">
                             <div class="title">
                                 <h1>인테리어팁</h1>
@@ -252,7 +252,7 @@
                                 </header>
                                 <!-- /게시물 헤더 끝-->
                                 <div class="main-image">
-                                    <img src="" alt="" class="mainPic">
+                                    <span th:utext="${tip.tcontent}"></span><!-- <img src="" alt="" class="mainPic"> --> <!-- 이미지 입력 란 -->
                                     
                                 </div>
                                 <div class="icons-react">
@@ -264,7 +264,7 @@
                                 <!-- article text data -->
                                 <div class="reaction">
                                     <div class="description">
-                                        <p style="margin-top:20px;"><span class="point-span userID" th:utext="${tip.tcontent}"></span><!-- <span class="at-tag"></span> --></p>
+                                        <p style="margin-top:20px;"><span class="point-span userID"></span><!-- <span class="at-tag"></span> --></p>
                                     </div>
                                     
                                     <!-- 댓글목록 -->
@@ -303,7 +303,7 @@
         </div><!-- /.section-content -->
     </div><!-- /.sa-section -->
     </div>
-    
+    </div>
     
     <!-- /인테리어팁 내용물들 끝-->
 	<!-- top 이동 버튼 -->
@@ -408,7 +408,6 @@
                     </div><!-- /.row -->
                 </div>
             </div><!-- /.container -->
-        </div>
         
         <div class="footer-bottom">
             <div class="container text-center">
@@ -416,9 +415,6 @@
             </div><!-- /.container -->
         </div>
     </div><!-- /.footer -->
-    
-    
-     
     
 
     <!-- JS -->
