@@ -58,8 +58,18 @@ public class BragServiceImpl implements BragService {
 	}
 	
 	@Override
-	public void savePrefer(Integer bid, String id) {
+	public void savePrefer(Brag brag, String id) {
+		Prefer result = new Prefer();
+		result.setBrag(brag);
+		result.setMember(memberRepo.findById(id).get());
+		System.out.println("좋아요 입력"+result);
+		preferRepo.save(result);
 		
+	}
+	
+	@Override
+	public void deletePrefer(Brag brag, String id) {
+		preferRepo.deleteByBragAndMember(brag, memberRepo.findById(id).get());
 	}
 	
 }

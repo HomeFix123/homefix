@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,12 +57,18 @@ public class BragController {
 		return "brag/BragDetail";
 	}
 	
-	@RequestMapping
-	public void savePrefer(Integer bid) {
-		String id = "test";
-		bragService.savePrefer(bid, id);
-		
-	}
+	
+	
+	
+	
+	
+	  @PostMapping("/prefer/{bid}") public void savePrefer(Brag brag) { String id =
+	  "test"; bragService.savePrefer(brag, id);
+	  
+	  }
+	  
+	  @DeleteMapping("/prefer/{bid}") public void deletePrefer(Brag brag) { String id =
+	  "test"; bragService.deletePrefer(brag, id); }
 	 
 	
 }

@@ -12,4 +12,8 @@ public interface PreferRepository extends CrudRepository<Prefer, Integer> {
 
 	Boolean findByBragAndMember(Brag brag, Member member);
 
+	void deleteByBragAndMember(Brag brag, Member member);
+
+	
+
 }

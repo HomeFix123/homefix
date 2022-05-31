@@ -74,7 +74,7 @@
 			
 			#love{
 				color: red;
-				padding-right: 10px;
+				
 				font-size: 30px;
 			}
 			
@@ -135,6 +135,17 @@
 				padding-left: 15%;
 			}
 			
+			.preferSave{
+				border: none;
+				
+			}
+			.preferDelete{
+				border: none;
+				
+			}
+			.deletebtn{
+				border: none;
+			}
 			
         </style>
         
@@ -371,13 +382,17 @@
 		<nav class="navbar fixed-bottom bg-light">
 		  <div class="reBar container-fluid  justify-content-center">		    
 		  	<ul class="reviewBar">
-              	<li><span th:if="${brag.preferck == null or 'false'}" ><i id="love" class="far fa-heart"></i></span>
-              		<span th:if="${brag.preferck == 'true'}"><i id="love" class="fas fa-heart"></i></span>
-              		<a th:text="${brag.prefer}"></a>
+              	<li><button th:if="${brag.preferck == null || false}" class="preferSave bg-light"><i id="prefer" class="far fa-heart"></i></button>
+              		<button th:if="${brag.preferck == true}" class="preferDelete bg-light" ><i id="prefer" class="fas fa-heart"></i></button>
+              		<a class="preferCnt" th:text="${brag.prefer}"></a>
               	</li>
+              	<li>
+                	<button class="deletebtn bg-light"><i class="fas fa-trash-alt"></i></button>
+                </li>
                 <li>
                 	<a href="#"><span><i class="fas fa-bars"></i></span></a>
                 </li>
+                
            	</ul>
 		  </div>
 		</nav>		
@@ -405,8 +420,55 @@
         	$(window).scroll(function() { 
         		var position = $(window).scrollTop(); 
         		$(".quickmenu").css("top",position+currentPosition+"px"); 
-        		}); 
-        	});
+        		});
+        
+        	$('.preferSave').on("click", function() {
+        		let preferCnt = $('.preferCnt').text();
+        		const bid = "";
+        		const preferck = "";
+        		
+        		if(preferck == null || false){
+					$.ajax({
+						type:'POST',
+						url:'/brag/prefer/' + bid,
+						success: function(result) {
+							console.log(result);
+							$('#love').removeClass('far fa-heart');
+							$('#love').addClass('fas fa-heart');
+							$('#prefer').removeClass('preferSave bg-light');
+							$('#prefer').addClass('preferDelete bg-light');
+							$('.preferCnt').text(preferCnt+1);
+							console.log("좋아요 성공");
+						}
+					})
+        		}
+			})
+			
+			$('.preferDelete').on("click", function() {
+        		let preferCnt = $('.preferCnt').text();
+        		const bid = "";
+        		const preferck = "";
+        		
+        		if(preferck == true){
+					$.ajax({
+						type:'DELETE',
+						url:'/brag/prefer/' + bid,
+						success: function(result) {
+							console.log(result);
+							$('#love').removeClass('fas fa-heart');
+							$('#love').addClass('far fa-heart');
+							$('#prefer').removeClass('preferDelete bg-light');
+							$('#prefer').addClass('preferSave bg-light');
+							$('.preferCnt').text(preferCnt-1);
+							console.log("좋아요 취소");
+						}
+					})
+        		}
+			})
+        	
+        	
+        	
+        });
         
         </script>
         

@@ -15,6 +15,11 @@ public interface BragService {
 	// 인테리어 자랑 상세
 	public Brag getBrag(Brag brag, String id);
 	
-	// 좋아요 저장
-	public void savePrefer(Integer bid, String id);
+	// 좋아요 입력
+	public void savePrefer(Brag brag, String id);
+	
+	// 좋아요 취소
+	public void deletePrefer(Brag brag, String id);
+	
+	
 }
