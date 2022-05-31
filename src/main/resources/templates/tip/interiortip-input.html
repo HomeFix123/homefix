@@ -219,7 +219,7 @@
 
 		<!-- 노트 본문 -->
         <div class="sg-section">
-          <form th:action='@{/tip/write}' method="post">
+          <form th:action='@{/tip/write}' method="post" enctype="multipart/form-data">
             <div class="section-content course-details bg-white ">
                 <div class="container">
                     <div class="row justify-content-md-center">
@@ -242,7 +242,7 @@
                                     
                                     <input type="text" placeholder="제목을 입력해주세요." class="writeTitle" name="tiptitle"/>
                                    	<!--  <div id="summernote">
-                                    	노트 본문 창
+                                    노트 본문 창
                                   	</div> -->
                                   	<textarea id="summernote" name="tcontent"></textarea>
                                 	
@@ -313,8 +313,49 @@
     			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
                 focus: true,
                 lang: 'ko-KR',
-                placeholder:'최대 2048자까지 쓸 수 있습니다.'
+                placeholder:'최대 2048자까지 쓸 수 있습니다.',
+                 callbacks:{
+                    onImageUpload: function(files, editor, welEditable) {
+          			for( let i = files.length - 1; i >= 0; i--) {
+          				sendFile(files[i], this);
+          			   }
+          			}
+                 }
               });
+            
+            
+         // uuid 생성
+			function uuid(file_nm) {
+        		function s4() {
+        		     return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+        		   }
+        		   return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length-1).toLowerCase();
+        		}
+
+			// summernote 이미지 저장
+			function sendFile(file, el) {
+				let formData = new FormData();
+				formData.append('file', file, uuid(file.name));
+				console.log("uuid 적용확인: ", formData.get('file').name);
+				$.ajax({
+					type: "POST",
+					url: "http://140.238.11.118:5000/upload",
+					data: formData,
+					processData: false,
+					contentType: false,
+					success: function(result) {
+						console.log("result 값 확인: ",  formData.get('file').name);
+						$(el).summernote('insertImage', 'http://140.238.11.118:5000/upload/'+result );
+						$('#imageBoard > ul').append('<img src="'+result+'" width="auto" height="auto"/>');
+						console.log("성공");
+					},
+					err: function(err) {
+						console.log("에러: ", err)
+					}
+				})
+			}
+            
+            
             
             
             
@@ -322,11 +363,7 @@
             
         	
         	});
-        
-        
-        
-        
-        </script>
+        	</script>
         
     </body>
 </html>        
