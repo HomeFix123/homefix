@@ -1,6 +1,4 @@
-package com.homefix.service;
-
-import java.util.List;
+package com.homefix.mail;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -8,7 +6,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.homefix.config.EncryptionUtils;
-import com.homefix.domain.MailDto;
 import com.homefix.domain.Member;
 import com.homefix.persistence.MemberRepository;
 
@@ -18,32 +15,34 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SendEmailService{
 
-	@Autowired
-	private MemberService memberService;
-	
-	@Autowired
-	MemberRepository memberRepo;
+    @Autowired
+    MemberRepository memberRepo;
 
+    @Autowired
     private JavaMailSender mailSender;
-    private static final String FROM_ADDRESS = "tlqls3169@gmail.com";
+    
+    private static final String FROM_ADDRESS = "ducksoo93@gmail.com";
 
 
 
-    public MailDto createMailAndChangePassword(Member mem,String email, String id){
+    public MailDto createMailAndChangePassword(String email, String name){
         String str = getTempPassword();
         MailDto dto = new MailDto();
         dto.setAddress(email);
-        dto.setTitle(id+"님의 Home-Fix 임시비밀번호 안내 이메일 입니다.");
-        dto.setMessage("안녕하세요. Home-Fix 임시비밀번호 안내 관련 이메일 입니다." + "[" + id + "]" +"님의 임시 비밀번호는 "
+        dto.setTitle("[ HOME - FIX ] 임시비밀번호 안내 이메일 입니다.");
+        dto.setMessage("안녕하세요. HOME - FIX 임시비밀번호 안내 관련 이메일 입니다." + "[" + name + "]" +"님의 임시 비밀번호는 "
         + str + " 입니다.");
-        updatePassword(mem,str,email);
+        updatePassword(str,email);
         return dto;
     }
 
-    public void updatePassword(Member mem, String str,String email){
-        String password = EncryptionUtils.encryptMD5(str);
-		String id = memberRepo.findUserById(email).getId();
-		memberService.updatePassword(mem, id,password);
+    public void updatePassword(String str,String email){
+    	String password = str;
+    	//아래꺼 사용할경우 비밀번호 암호화되서 들어감!!
+//        String password = EncryptionUtils.encryptMD5(str);
+        Member temp = memberRepo.findMemberByEmail(email);
+        temp.setPassword(password);
+        memberRepo.save(temp);
     }
 
 
@@ -72,3 +71,4 @@ public class SendEmailService{
         mailSender.send(message);
     }
 }
+
