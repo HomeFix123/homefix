@@ -132,6 +132,10 @@ public class MemberController {
 		List<Member> list = memberService.myPageList(mem);
 		m.addAttribute("member",list);
 		
+
+	public void myPage() {
+		logger.info("개인 마이페이지");	
+
 	}
 	
 	// 글 수정
@@ -140,6 +144,26 @@ public class MemberController {
 		memberService.update(mem);
 		return "redirect:/member/profile";
 	}
+
+	// 임시비밀번호 발급
+//	1. 임시 비밀번호를 발급받을 이메일을 입력 ( 입력한 화면 ) 확인을 누르면 이메일이 전송됨
+//	2. 로그인 화면으로 이동
+//	@PostMapping(value = "/member/sendEmail")
+//	public String tempPasssword(Member mem) {
+//		try {
+//			logger.info("임시 비밀번호 발급 시작 -- ");
+//			String result = memberService.sendForgotPassword(mem.getEmail());
+//			if (result.equals("ok")) {
+//				return "redirect:/sign/sign-in";
+//			} else {
+//				return "redirect:/sign/member/sign_member";
+//			}
+//		} catch (Exception e) {
+//			System.out.println("E : " + e);
+//			return "redirect:/sign/sign-in";
+//		}
+//	}
+
 	
 	//비밀번호 임시 발급 -------------------------------------------
 	//Email과 name의 일치여부를 check하는 컨트롤러

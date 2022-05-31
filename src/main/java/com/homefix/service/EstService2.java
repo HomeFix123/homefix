@@ -12,4 +12,8 @@ public interface EstService2 {
 	// 전체 견적 목록
 	List<Estimation> estList(Estimation est);
 	
+	//전체 견적 상세목록 보기
+	public Estimation getEstDetails(String id);
+		
+	
 }

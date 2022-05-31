@@ -39,6 +39,10 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <!-- Template Developed By ChtStudio -->
+        
+        <!-- 개인 CSS 파일 링크 -->
+        <link rel="stylesheet" th:href="@{/css/jy/jy.css}"> 
+        
     </head>
     <body> 
         <div id="preloader">
@@ -224,46 +228,39 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <form class="woocommerce-cart-form" action="#">
-                            <table class="table">
+                            <table class="table" >
                                 <thead>
                                     <tr>
-                                        <th scope="col">신청번호</th>
-                                        <th scope="col">공간유형</th>
-                                        <th scope="col">건물유형</th>
-                                        <th scope="col">평수</th>
-                                        <th scope="col">주소</th>
-                                        <th scope="col">아이디</th>
-                                        <th scope="col">상태</th>
+                                        <th class="table-title" scope="col" width="10%" style="text-align: center;">번호</th>
+                                        <th class="table-title" scope="col" colspan='4' width="35%">견적 정보</th>
+                                        <th class="table-title" scope="col" width="10%">아이디</th>
+                                        <th class="table-title" scope="col" width="10%">상태</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     
-                                    
-                                    
-                                    
-                                    
                                     <tr th:each="est : ${estList}">
-                                        <th>
-                                            <div class="product">
-                                                <a th:href="@{/estimation/details}"> <!-- 나중에 상세페이지로 가기위한 경로설정(게시글 번호) -->
-                                                    <span th:text="${est.eid}"></span> 
-                                                </a>
+                                        <td >
+                                            <div class="product table-eid" >
+                                                <span style="color:black;" th:text="${est.eid}"></span> 
                                             </div><!-- /.product -->                                                  
-                                        </th>
-                                        <td><span class="price" th:text="${est.space}"></span></td>
-                                        <td><span class="price" th:text="${est.building}"></span></td>
-                                        <td><span class="price" th:text="${est.size}" ></span><p style="color:#1abc9c">평</p></td>
-                                        <td><span class="price" th:text="${est.eaddr}"></span></td>
-                                        <td><span class="price" th:text="${est.member.id}">아이디</span></td>
-                                        <td><span class="price">대기중</span></td>
+                                        </td>
+                                        
+                                        <td colspan='4' >
+                                        	<a th:href="@{/estimation/details(id=${est.eid})}"><!-- 나중에 상세페이지로 가기위한 경로설정(게시글 번호) -->
+                                        	<span class="price" style="color:black;" th:text="${est.space}"></span> <!--공간유형 -->
+                                   				<span style="color:black;">/</span> 
+                                   				<span class="price" style="color:black;" th:text="${est.building}"></span> <!-- 건물유형 -->
+                                   				<span style="color:black;">/</span> 
+                                   				<span class="price" style="color:black;"><span class="price" style="color:black;" th:text="${est.size}"></span>평</span> <!-- 평수 -->
+                                   				<span style="color:black;">/</span>
+                                   				<span class="price" style="color:black;" th:text="${est.eaddr}"></span> 
+                                        	</a></td>
+										<td class="table-id"><span class="price" style="color:black;">아이디</span></td>
+                                        <td class="table-ing"><span class="price" >대기중</span></td>
                                         
                                     </tr>
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
+                                   
                                         
                                 </tbody>
                             </table>

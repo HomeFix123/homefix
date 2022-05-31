@@ -121,4 +121,13 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> myPageList(Member mem) {
 		return (List<Member>)memberRepo.findAll();
 	}
+
+
+	//회원정보 수정
+	@Override
+	public void update(Member mem) {
+		memberRepo.save(mem);
+		
+	}
+
 }

@@ -146,7 +146,7 @@
                             </div>
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a th:href="catagory.html">
+                                    <a th:href="@{/sign/member/profile}">
                                         <span class="icon">
                                             <i class="fas fa-user-alt"></i>
                                         </span>
@@ -154,6 +154,7 @@
                                     </a>
                                 </div><!-- /.sg-category -->
                             </div>
+                            
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
                                     <a th:href="@{/estimation/qna}">
@@ -174,7 +175,18 @@
                                     </a>
                                 </div><!-- /.sg-category -->
                             </div>
-
+							
+							<div class="col-6 col-sm-4 col-lg-2">
+                                <div class="sg-category style-1">
+                                    <a th:href="@{/company/companyprofile}">
+                                        <span class="icon">
+                                            <i class="fas fa-user-alt"></i>
+                                        </span>
+                                        <span>(임시) 업체마이페이지</span>
+                                    </a>
+                                </div><!-- /.sg-category -->
+                            </div>
+							
                         </div><!-- /.row -->
                     </div><!-- /.sg-category-content -->
                 </div><!-- /.container -->
@@ -200,7 +212,7 @@
 	                                <div class="entry-header">
 	                                    <div class="entry-thumbnail">
 	                                        <a href="blog-details.html">
-	                                        	<img th:if="${not #strings.isEmpty(b.bimgadr)}" th:src="${b.bimgadr}" alt="Image" class="img-fluid">
+	                                        	<img th:if="${not #strings.isEmpty(b.bimgadr)}" th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|" alt="Image" class="img-fluid">
 	                                        	<img th:if="${#strings.isEmpty(b.bimgadr)}" src="images/course/1.jpg" alt="Image" class="img-fluid">
 	                                        </a>
 	                                    </div>

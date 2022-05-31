@@ -61,12 +61,22 @@
     img.ui-datepicker-trigger{ 
     margin-left:2px; vertical-align:middle; cursor: Pointer;
     width:20px;}
+    
+    /*에러 박스*/
+    .error_box {
+	    color : red;
+	    font-weight: bold;
+    
+    
+    }
+    
+/*전체 견적 목록****/
+
+.table-eid {
+  text-align: center;
+}    
 
     
-	
-	
-	
-	
 	       
 	   
 /***********************************************************/
@@ -97,12 +107,14 @@
     margin-top: 20px;
     text-align: center;
 }
+
 /*end 희망 견적서 상세보기*/
 
 /***qna.html 페이지****************************************************/
 #help {
     text-align: center;
 }
+
 /********************************************************************/
 
 /*** interiortip-input.html 페이지 ************************************/
