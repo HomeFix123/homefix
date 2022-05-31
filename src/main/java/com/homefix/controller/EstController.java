@@ -87,7 +87,13 @@ public class EstController {
 	@RequestMapping("/estimationDetail")
 	@ResponseBody
 	public Estimation estimationDetail(Integer id) {
-		
 		return estService.getMEDetail(id);
+	}
+	
+	@RequestMapping("/complete")
+	@ResponseBody
+	public void complete(Integer id) {
+		System.out.println(id);
+		estService.saveIng(id);
 	}
 }
