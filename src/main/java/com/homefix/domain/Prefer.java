@@ -22,7 +22,7 @@ public class Prefer {
 	
 	@ManyToOne
 	@JoinColumn(name = "bid")
-	private Brag Brag;
+	private Brag brag;
 	
 	@ManyToOne
 	@JoinColumn(name = "id")

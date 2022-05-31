@@ -1,15 +1,17 @@
 package com.homefix.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.homefix.domain.Brag;
 import com.homefix.service.BragService;
@@ -24,8 +26,8 @@ public class BragController {
 	private BragService bragService;
 	
 	@GetMapping("/write")
-	public String insertReview() {
-		return "/brag/BragWrite";
+	public String insertBrag() {
+		return "brag/BragWrite";
 	}
 	
 	@PostMapping("/write")
@@ -37,11 +39,36 @@ public class BragController {
 		return "redirect:/brag/write";
 	}
 	
-	
-	
-	
-	@GetMapping("/{step}")
-	public void viewPage(@PathVariable String step) {
-		//return "/board/" + step;
+	@GetMapping
+	public String getBragList(Model m){
+		
+		Brag brag = new Brag();
+		List<Brag> list = bragService.getBragList(brag);
+		m.addAttribute("bragList", list);
+		return "brag/BragList";
 	}
+	
+	
+	@GetMapping("/{bid}")
+	public String getBrag(Model m, Brag brag) {
+		String id = "test";
+		Brag result = bragService.getBrag(brag, id);
+		m.addAttribute("brag", result);
+		return "brag/BragDetail";
+	}
+	
+	
+	
+	
+	
+	
+	  @PostMapping("/prefer/{bid}") public void savePrefer(Brag brag) { String id =
+	  "test"; bragService.savePrefer(brag, id);
+	  
+	  }
+	  
+	  @DeleteMapping("/prefer/{bid}") public void deletePrefer(Brag brag) { String id =
+	  "test"; bragService.deletePrefer(brag, id); }
+	 
+	
 }

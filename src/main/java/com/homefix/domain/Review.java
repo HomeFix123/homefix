@@ -15,49 +15,42 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.AssertFalse;
 
 import lombok.Data;
 
-@Entity(name = "brag")
+@Entity(name = "review")
 @Data
-@Table(name = "brag")
-public class Brag {
+@Table(name = "review")
+public class Review {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer bid;
+	private Integer rid;
 	
-	@Column(name = "b_cont")
-	private String  bcont;
-	private String  btitle;
-	private String  bimgadr;
-	private Integer bcnt;
+	@Column(name = "r_cont")
+	private String  rcont;
+	private String  rtitle;
+	private String  rimgadr;
+	private Integer rcnt;
 	private String  hometype;
-	private Integer bsize;
-	private Integer bbudget;
+	private Integer rsize;
+	private Integer rbudget;
 	private String  family;
 	private String  job;
 	private String  worker;
 	private String  extrainfo;
 	
-	@Column(name = "b_color")
-	private String  bcolor;
+	@Column(name = "r_color")
+	private String  rcolor;
 	private String  loc;
-	private Date  bdate;
-	
-	@JoinColumn(name = "id")
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	private Member member;
+	@Column(name = "r_date")
+	private Date  rdate;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name = "cid")
 	private Company company;
 	
-	@Transient
-	private long prefer;
-	@Transient
-	private Boolean preferck;
+	
 	
 }
