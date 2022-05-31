@@ -18,11 +18,6 @@ public interface MemberService {
 
 	//회원가입
 	public void memberInsert(Member mem);
-	
-	//임시비밀번호발급용 test
-//	public boolean userEmailCheck(String email, String name);
-//
-//	public void updatePassword(String id, String password);
 
 	//로그인
 	public String login(Member mem);
@@ -36,5 +31,6 @@ public interface MemberService {
 
 	//마이페이지
 	public List<Member> myPageList(Member mem);
+
 
 }
