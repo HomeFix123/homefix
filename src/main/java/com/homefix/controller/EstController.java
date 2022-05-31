@@ -67,7 +67,7 @@ public class EstController {
 	public String getMEDetail(Integer id, Model m) {
 		System.out.println("integer 잘 넘어왔니 " + id);
 		m.addAttribute("Detail",estService.getMEDetail(id));
-		m.addAttribute("Company",estService.getMEDetailC(id));
+		m.addAttribute("CLists",estService.getMEDetailC(id));
 		return "estimation/MEDetail";
 	}
 	

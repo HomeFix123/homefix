@@ -246,43 +246,14 @@
                                   
                                  <div class="widget widget_recent_entries">
                                             <h3 class="widget_title m-0" >Popular Courses</h3>
-                                            <ul >
-                                                <li class="media" >
+                                            <ul>
+                                                <li class="media" th:each="cList:${CLists}" >
                                                    <div>
                                                         <button class="btn btn-primary">확정하기</button>
                                                     </div>
                                                     <div class="media-body" style="margin-left: 15px">
-                                                        <a><span class="post-date">2022/05/16</span></a>
-                                                        <a href="#" ></a>
-                                                    </div>
-                                                </li>
-                                                <li class="media">
-                                                    <div>
-                                                        <button class="btn btn-primary">확정하기</button>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 15px">
-                                                        <a><span class="post-date">2022/05/16</span></a>
-                                                        <a href="#">0000000000000업체가 시공을 원합니다.</a>
-                                                    </div>
-                                                </li>
-                                                <li class="media">
-                                                    
-                                                    <div>
-                                                        <button class="btn btn-primary">확정하기</button>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 15px">
-                                                        <a><span class="post-date">2022/05/16</span></a>
-                                                        <a href="#">0000000000000업체가 시공을 원합니다.</a>
-                                                    </div>
-                                                </li>
-                                                <li class="media">
-                                                   
-                                                    <div>
-                                                        <button class="btn btn-primary">확정하기</button>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 15px">
-                                                        <a><span class="post-date">2022/05/16</span></a>
-                                                        <a href="#">0000000000000업체가 시공을 원합니다.</a>
+                                                        <a><span class="post-date" th:text="${cList.erdate}"> </span></a>
+                                                        <p><span class="bold" th:text="|<${cList.company.name}> 업체가 시공을 원합니다.|"></span></p>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -459,14 +430,6 @@
         <script th:src="@{/js/YTPlayer.min.js}"></script> 
         <script th:src="@{/js/jquery-ui-min.js}"></script>
         <script th:src="@{/js/validate.js}"></script>
-        <script th:src="@{/js/main.js}"></script> 
-        
-        <script type="text/javascript">
-        $(function(){
-        
-        	
-        });//end $(function(){});
-        
-        </script>    
+        <script th:src="@{/js/main.js}"></script>     
     </body>
 </html>        

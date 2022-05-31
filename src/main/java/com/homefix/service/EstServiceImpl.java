@@ -61,7 +61,8 @@ public class EstServiceImpl implements EstService {
 
 	@Override
 	public List<Esti_request> getMEDetailC(Integer id) {
-		return esti_reqRepo.findByErid(id);
+		Estimation estimation = estRepo.findById(id).get();
+		return esti_reqRepo.findByEstimation(estimation);
 	}
 
 	//업체가 진행중인 견적 리스트 보기
