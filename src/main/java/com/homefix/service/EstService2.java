@@ -2,6 +2,7 @@ package com.homefix.service;
 
 import java.util.List;
 
+
 import com.homefix.domain.Estimation;
 
 public interface EstService2 {
@@ -14,6 +15,6 @@ public interface EstService2 {
 	
 	//전체 견적 상세목록 보기
 	public Estimation getEstDetails(String id);
-		
+			
 	
 }

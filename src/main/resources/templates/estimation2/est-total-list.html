@@ -256,7 +256,7 @@
                                    				<span style="color:black;">/</span>
                                    				<span class="price" style="color:black;" th:text="${est.eaddr}"></span> 
                                         	</a></td>
-										<td class="table-id"><span class="price" style="color:black;">아이디</span></td>
+										<td class="table-id"><span class="price" style="color:black;" th:text="${est.member?.id}">아이디</span></td>
                                         <td class="table-ing"><span class="price" >대기중</span></td>
                                         
                                     </tr>
@@ -265,6 +265,7 @@
                                 </tbody>
                             </table>
                             
+                            <!-- 페이지 버튼 -->
                             <div class="sg-pagination text-center">
                             <ul class="pagination justify-content-center mb-0 " style="margin-top: 20px;">
                                 <li><a class="page-numbers current" href="#">1</a></li>
