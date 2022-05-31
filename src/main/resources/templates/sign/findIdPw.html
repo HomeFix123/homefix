@@ -153,33 +153,6 @@
 											</form>
 											<!-- /.contact-form -->
 										</div>
-										<!-- Id modal -->
-											<div class="modal" id="modalid">
-											  <div class="modal_content" 
-											       title="클릭하면 창이 닫힙니다." id="contentid">
-											    아이디를 찾는 페이지가 뜹니다<br/>
-											     아이디 못찾을시? 어떻게?
-											  </div>
-											</div>
-										<!-- /modal end -->
-										
-										<!-- Pw modal -->
-											<div class="modal pw" id="modalpw">
-											  <div class="modal_content" title="클릭하면 창이 닫힙니다." id="contentpw">
-											    <form role="form" class="text-start" action="/member/sendEmail" method="post" name="sendEmail">
-			                                        <p>입력한 이메일로 임시 비밀번호가 전송됩니다.</p>
-			                                        <div class="input-group input-group-outline my-3">
-			                                            <label class="form-label">Email</label>
-			                                            <input type="email" id="userEmail" name="memberEmail" class="form-control" required>
-			                                        </div>
-			                                        <div class="text-center">
-			                                            <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2"
-			                                                    id="checkEmail">비밀번호 발송</button>
-			                                        </div>
-			                                    </form>
-											  </div>
-											</div>
-										<!-- /modal end -->
 									</div>
 								</div>
 								<!-- /.account-content -->
@@ -220,40 +193,8 @@
 	
 	<!-- haeyun js -->
 	<script th:src="@{/js/he/findidpw.js}"></script>
-	
-	<!-- modal js -->
-	
-	<script th:inline="javascript">
-	
-	/*<![CDATA[*/
-	/*$(function(){ 
-
-		  $("#findid").click(function(){
-		    $("#modalid").fadeIn();
-		  });
-		  
-		  $("#contentid").click(function(){
-		    $("#modalid").fadeOut();
-		  });
-		  
-		});*/
-	
-	/*]]>*/
-	/*<![CDATA[*/
-	/*$(function(){ 
-
-		  $("#findpw").click(function(){
-		    $("#modalpw").fadeIn();
-		  });
-		  
-		  $("#contentpw").click(function(){
-		    $("#modalpw").fadeOut();
-		  });
-		  
-		});*/
-	
-	/*]]>*/
-	</script>
-	<!-- /modal js end -->
+	<script th:src="@{/js/he/sweetalert.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </body>
 </html>

@@ -73,31 +73,44 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">견적정보</th>
-                                        <th scope="col" class="progress_th">아이디</th>
+                                        <th scope="col" class="progress_th">신청자</th>
                                         <th scope="col" class="progress_th">진행사항</th>
 <!--                                        <th scope="col" class="progress_th">시공완료</th>-->
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+                                     <tr th:each="list:${Lists}">
                                         <th>
                                             <div class="product">
-                                                <h4 class="progress_space">아파트/38평</h4>
-                                                <p class="progress_tel">핸드폰 번호 : 010-1234-5678</p>
-                                                <p class="progress_addr">주소 : 서울 특별시 가산동 ㅇㅇ아파트 ㅇㅇ동 ㅇㅇ호</p>
+                                            	<input type="hidden" class="eid" id="eid" th:value="${list.estimation.eid}">
+                                                <h4 class="progress_space cursor_pointer ajax_detail" th:text="|${list.estimation.space}/${list.estimation.size}평|"></h4>
+                                                <p class="progress_tel" th:text="|핸드폰 번호 : ${list.estimation.etel}|"></p>
+                                                <p class="progress_addr" th:text="|주소 : ${list.estimation.eaddr}|"></p>
                                             </div><!-- /.product -->                                                  
                                         </th>
-                                        <td><h6 class="progress_contents_td">kosmo</h6></td>
-                                        <td class="progress_td">
-                                            <span class="price bold">진행중</span>
-                                            <p><button class="ing_btn btn btn-primary">시공완료</button></p>                                    
+                                        <td>
+                                        	<h6 class="progress_contents_td" th:text="${list.estimation.member.id}">kosmo</h6>
                                         </td>
-
+                                        <td class="progress_td">
+                                        	<!-- 진행중일 경우 -->
+                                        	<span th:if="${list.ing == '진행중'}" th:text="${list.ing}" class="price bold" ></span>
+                                            <!-- <span class="price bold" th:text="${list.ing}"></span> -->
+                                            <p>
+                                            	<a th:if="${list.ing == '진행중'}" class="ing_btn btn btn-primary" th:text="시공완료"></a>
+                                            </p>
+                                            <!-- 시공완료일 경우 -->
+                                            <span th:unless="${list.ing == '진행중'}" th:text="${list.ing}" class="complete_txt price bold" ></span>
+                                            <!-- <span class="price bold" th:text="${list.ing}"></span> -->
+                                            <p>
+                                            	<a th:unless="${list.ing == '진행중'}" class="ing_btn nothover_btn btn btn-primary" id="nothover_btn" th:text="시공완료"></a>
+                                            </p>
+                                                                                
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>
                                             <div class="product">
-                                                <h4 class="progress_space">아파트/38평</h4>
+                                                <h4 class="progress_space cursor_pointer">아파트/38평</h4>
                                                 <p class="progress_tel">핸드폰 번호 : 010-1234-5678</p>
                                                 <p class="progress_addr">주소 : 서울 특별시 가산동 ㅇㅇ아파트 ㅇㅇ동 ㅇㅇ호</p>
                                             </div><!-- /.product -->                                                 
@@ -108,48 +121,6 @@
                                             <p><button class="btn nothover_btn btn-primary" id="nothover_btn">시공완료</button></p>                                    
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th>
-                                            <div class="product">
-                                                <h4 class="progress_space" id="progress_space">아파트/38평</h4>
-                                                <p class="progress_tel">핸드폰 번호 : 010-1234-5678</p>
-                                                <p class="progress_addr">주소 : 서울 특별시 가산동 ㅇㅇ아파트 ㅇㅇ동 ㅇㅇ호</p>
-                                            </div><!-- /.product -->                                     
-                                        </th>
-                                        <td><h6 class="progress_contents_td">kosmo</h6></td>
-                                        <td class="progress_td">
-                                            <span class="price bold">진행중</span>
-                                            <p><button class="ing_btn btn btn-primary">시공완료</button></p>                                    
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                       <th>
-                                            <div class="product">
-                                                 <h4 class="progress_space" id="progress_space">아파트/38평</h4>
-                                                <p class="progress_tel">핸드폰 번호 : 010-1234-5678</p>
-                                                <p class="progress_addr">주소 : 서울 특별시 가산동 ㅇㅇ아파트 ㅇㅇ동 ㅇㅇ호</p>
-                                            </div><!-- /.product -->                                                  
-                                        </th>
-                                        <td><h6 class="progress_contents_td">kosmo</h6></td>
-                                        <td class="progress_td">
-                                            <span class="price bold">진행중</span>
-                                            <p><button class="ing_btn btn btn-primary">시공완료</button></p>                                    
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <div class="product">
-                                                 <h4 class="progress_space" id="progress_space">아파트/38평</h4>
-                                                <p class="progress_tel">핸드폰 번호 : 010-1234-5678</p>
-                                                <p class="progress_addr">주소 : 서울 특별시 가산동 ㅇㅇ아파트 ㅇㅇ동 ㅇㅇ호</p>
-                                            </div><!-- /.product -->                                                  
-                                        </th>
-                                        <td><h6 class="progress_contents_td">kosmo</h6></td>
-                                        <td class="progress_td">
-                                            <span class="price bold">진행중</span>
-                                            <p><button class="ing_btn btn btn-primary">시공완료</button></p>                                    
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </form>                         
@@ -158,20 +129,20 @@
                         <div class="order-summary progress_detail" id="progress_detail">
                             <h2>견적 상세보기</h2>
                             <ul class="global-list">
-                                <li>상담인 <span>코스모</span></li>
-                                <li>번호 <span>010.1234.5678</span></li>
-                                <li>공간유형 <span>주거</span></li>
-                                <li>건물유형 <span>아파트</span></li>
-                                <li>평수 <span>38평</span></li>
+                                <li>상담인 <span class="ename">코스모</span></li>
+                                <li>번호 <span class="etel">010.1234.5678</span></li>
+                                <li>공간유형 <span class="space">주거</span></li>
+                                <li>건물유형 <span class="building">아파트</span></li>
+                                <li>평수 <span class="size">38평</span></li>
                                 <li>희망시공일정</li>
-                                <li><span>2022/05/16~2022/06</span></li>
+                                <li><span class="start_d">2022/05/16</span>~<span class="end_d">2022/06</span></li>
                                 <li>주소</li>
-                                <li><span>서울 특별시 가산동 00아파트 00동 00호</span></li>
+                                <li><span class="eaddr">서울 특별시 가산동 00아파트 00동 00호</span></li>
                                 <li>원하는 스타일</li>
-                                <li><span>엘레강스 하면서 모던하며 고급스럽고 무난하면서 색은 다양하지만 화려하지않고 질리지않는 스타일 부탁드려요^^</span></li>
+                                <li><span class="estyle">엘레강스 하면서 모던하며 고급스럽고 무난하면서 색은 다양하지만 화려하지않고 질리지않는 스타일 부탁드려요^^</span></li>
                             </ul>
                             <div class="order-total">
-                                <p>예산 <span>3,000만원</span></p>
+                                <p>예산 <span> 만원</span> <span class="budget">3,000</span> </p>
                             </div> 
                             <a href="payment.html" class="btn btn-primary">go to checkout</a>
                         </div>                        
@@ -347,5 +318,9 @@
         
         <!--my hs-->
         <script th:src="@{/js/ye/ye.js}"></script>  
+        
+        <!-- 주소창 파라미터 숨기기 -->
+        <script >history.replaceState({}, null, location.pathname);</script>
+        
     </body>
 </html>         
