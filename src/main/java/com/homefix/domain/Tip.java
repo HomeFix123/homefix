@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.Data;
 
@@ -24,7 +25,10 @@ public class Tip {
 	private String category; // 카테고리(기본정보 선택)
 	private String tiptitle; // 팁 제목
 	private String tcontent; // 팁 내용
-	private Date tdate; 	// 날짜
+	
+	@Transient
+	private String tdate; 	// 날짜
+	
 	private String tipimg;   // 이미지 주소
 	
 	@JoinColumn(name="id")
