@@ -22,14 +22,7 @@ public interface MemberRepository extends CrudRepository<Member, String>{
 	public List<Member> findByIdAndPassword(String id, String password);
 	
 	//임시비밀번호 발급-------------------------	
-	public Member findMemberById(String email);
-	
-	
-	
-	
-//	//임시비밀번호 발급-------------------------	
-//	public Optional<Member> findById(String email);
-//	
-//	public Member findMemberByEmail(String email);
+	public Member findMemberByEmail(String email);
+
 
 }

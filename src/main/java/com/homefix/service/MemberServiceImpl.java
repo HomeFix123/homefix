@@ -68,7 +68,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	//로그인
-	@Override
+	@Override	//String - > Member :: 시큐리티 사용시 이렇게 변경!
 	public String login(Member mem) {
 		System.out.println("멤버레포에서 넘어왔나?" + memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword()));
 		List<Member> list = memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword());
@@ -77,6 +77,25 @@ public class MemberServiceImpl implements MemberService {
 			message = list.get(0).getName();
 		}
 		return message;
+		
+//		try {
+//			Member member = memberRepo.findMemberByEmail(mem.getEmail());
+//			System.out.println("확인용!!!!!!!!!이메일!!! :: " + mem.getEmail());
+//			if(member !=null) {
+//				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//				if(encoder.matches(mem.getPassword(),member.getPassword())) {
+//					mem.setId(member.getId());
+//					mem.setEmail(member.getEmail());
+//					mem.setName(member.getName());
+//					return mem;
+//				}else {
+//					throw new RuntimeException("passwordError");
+//				}
+//			}
+//			throw new RuntimeException("notExist");
+//		}catch(Exception e) {
+//			throw new RuntimeException("fail" + e);
+//		}
 	}
 
 	//회원정보 수정
@@ -97,4 +116,9 @@ public class MemberServiceImpl implements MemberService {
             return false;
         }
     }
+
+	@Override
+	public List<Member> myPageList(Member mem) {
+		return (List<Member>)memberRepo.findAll();
+	}
 }

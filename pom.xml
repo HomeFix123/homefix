@@ -147,7 +147,7 @@
 		    <version>1.9.13</version>
 		</dependency>
 		
-		<!-- Spring security (비밀번호 찾기때문에 사용)-->
+		<!-- Spring security (비밀번호 찾기때문에 사용) 현재 시큐리티 사용안해서 주석달아놓음-->
 		<!-- <dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-web</artifactId>

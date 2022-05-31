@@ -4,6 +4,7 @@ package com.homefix.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -107,6 +109,7 @@ public class MemberController {
 		}
 	}
 	
+	
 	@GetMapping("/member/sign-in")
 	public String memLogin(HttpSession session) {
 	
@@ -123,8 +126,12 @@ public class MemberController {
 	
 	//개인 마이페이지
 	@GetMapping(path ="/member/profile")
-	public void myPage() {
+	public void myPage(Model m) {
 		logger.info("개인 마이페이지");	
+		Member mem = new Member();
+		List<Member> list = memberService.myPageList(mem);
+		m.addAttribute("member",list);
+		
 	}
 	
 	// 글 수정

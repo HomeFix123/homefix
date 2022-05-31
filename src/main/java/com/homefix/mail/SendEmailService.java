@@ -21,7 +21,7 @@ public class SendEmailService{
     @Autowired
     private JavaMailSender mailSender;
     
-    private static final String FROM_ADDRESS = "tlqls3169@gmail.com";
+    private static final String FROM_ADDRESS = "ducksoo93@gmail.com";
 
 
 
@@ -37,8 +37,10 @@ public class SendEmailService{
     }
 
     public void updatePassword(String str,String email){
-        String password = EncryptionUtils.encryptMD5(str);
-        Member temp = memberRepo.findMemberById(email);
+    	String password = str;
+    	//아래꺼 사용할경우 비밀번호 암호화되서 들어감!!
+//        String password = EncryptionUtils.encryptMD5(str);
+        Member temp = memberRepo.findMemberByEmail(email);
         temp.setPassword(password);
         memberRepo.save(temp);
     }
