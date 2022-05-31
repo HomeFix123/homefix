@@ -3,7 +3,9 @@ package com.homefix.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Estimation;
@@ -34,9 +36,6 @@ public class EstServiceImpl2 implements EstService2 {
 	@Override
 	public List<Estimation> estList(Estimation est) {
 		return (List<Estimation>)estRepo.findAll();
-		//Sort sort = Sort.by(Sort.Direction.DESC, "edate");
-		//return (List<Estimation>)estRepo.findAllDesc();
-		
 	}
 	
 	// 전체 견적 목록 상세보기
@@ -45,6 +44,10 @@ public class EstServiceImpl2 implements EstService2 {
 		System.out.println("서비스에서 가져온 아이디 " + estRepo.getEstDetail(id));
 		return estRepo.getEstDetail(id); //EstRepository에 있는 getEstDetail함수 리턴
 	}
+
+
+
+	
 	
 	
 	
