@@ -3,7 +3,7 @@ $(function() {
 	//평수 입력시 ㎡ 자동입력 ===========================================
 	$("#inSize").keyup(function() {
 		let input = $("#inSize").val();
-		let output = input * 3.305785;
+		let output = input * 3.31; //3.305785
 		$("#outSize").val(output);
 	});
 	//=============================================================
@@ -69,7 +69,7 @@ $(function() {
 		
 		if($("input[name=building]:radio:checked").length<1){
 			$('.building_error_box').text("건물유형을 선택해주세요.");
-			window.scrollTo({top:1000, left:0, behavior:'auto'});
+			window.scrollTo({top:250, left:0, behavior:'auto'});
 			return false;
 		 } else{
 			$('.building_error_box').text("");
@@ -83,6 +83,7 @@ $(function() {
 		if(inSize.value ==''){            
 			$('.size_error_box').text("평수를 입력해주세요.");
 			$('#inSize' ).focus();
+			window.scrollTo({top:300, left:0, behavior:'auto'});
 			return false;        
 		} else{
 			$('.size_error_box').text("");
@@ -116,7 +117,7 @@ $(function() {
 		
 		if(ename.value ==''){            
 			$('.ename_error_box').text("이름을 입력해주세요.");
-			$('.ename_error_box' ).focus();
+			$('#ename' ).focus();
 			return false;        
 		} else{
 			$('.ename_error_box').text("");
@@ -124,7 +125,7 @@ $(function() {
 			
 		if(!name.test(ename.value)){            
 			$('.ename_error_box').text("특수문자, 영어, 숫자는 사용할수 없습니다. 한글만 입력해주세요.");
-			$('.ename_error_box' ).focus();
+			$('#ename' ).focus();
 			return false;        
 		} else{
 			$('.ename_error_box').text("");
@@ -134,7 +135,7 @@ $(function() {
 		//================ 전화번호 유효성검사 ================== 
 		if(etel.value ==''){            
 			$('.etel_error_box').text("전화번호를 입력해주세요.");
-			$('.etel_error_box' ).focus();
+			$('#etel' ).focus();
 			return false;        
 		} else{
 			$('.etel_error_box').text("");
@@ -143,26 +144,37 @@ $(function() {
 			
 		if(!tel.test(etel.value)){            
 			$('.etel_error_box').text("형식이 올바르지 않습니다. 예) 01012345678");
-			$('.etel_error_box' ).focus();
+			$('#etel' ).focus();
 			return false;        
 		} else{
 			$('.etel_error_box').text("");
 			
 		}   
 		
+		//================ 희망일 유효성검사 ================== 
+		if(startDay.value == '' || endDay.value == ''){            
+			$('.day_error_box').text("희망일을 입력해주세요.");
+			//$('#startDay' ).focus();
+			window.scrollTo({top:800, left:0, behavior:'auto'});
+			return false;        
+		} else{
+			$('.day_error_box').text("");
+		}
+		//==============================================
+		
+		alert('견적상담 신청이 완료되었습니다.');
+		
+				
 		
 	})
 	
 	
 	
-
-/*if(selectSpace ==""){
-				$('#spaceTitle .error_box'  ).html("이름 형식이 올바르지 않습니다.");
-				$('#spaceTitle' ).focus();
-				return false;
-		}*/
 	
-
+	
+	
+	
+	
 })
 
 

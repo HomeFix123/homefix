@@ -1,5 +1,8 @@
 package com.homefix.service;
 
+
+import java.util.List;
+
 import com.homefix.domain.Member;
 
 public interface MemberService {
@@ -15,7 +18,19 @@ public interface MemberService {
 
 	//회원가입
 	public void memberInsert(Member mem);
+
+	//로그인
+	public String login(Member mem);
+
+	//회원정보 수정
+	public void update(Member mem);
+
 	
-	
-	
+	//임시 비밀번호 발급용
+	public boolean userEmailCheck(String email, String id);
+
+	//마이페이지
+	public List<Member> myPageList(Member mem);
+
+
 }

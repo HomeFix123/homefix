@@ -227,17 +227,17 @@
                 <div class="container">
                     <div class="sa-course-content">
                         <div class="row">
-       						<div class="col-lg-6">
+                        <div th:each="list:${Lists}" class="col-lg-6">
                                 <div class="sa-course">
                                     <div class="course-info">
                                         <div class="info">
-                                            <h2 class="title"><a>gg</a></h2>
-                                            <p >gg</p>
+                                            <h2 class="title"><a th:href="@{/estimation/MyDetail(id=${list.eid})}" th:text="|${list.building}/${list.size}평/예산:${list.budget}|"></a></h2>
+                                            <p th:text="${list.eaddr}"></p>
                                         </div>
                                         <div class="sa-meta">
                                             <ul class="global-list">
                                                 <li><a href="#"><span><i class="far fa-comments"></i></span>대기중</a></li>
-                                                <li><a href="#"><span><i class="far fa-user"></i></span><span >ff</span></a></li>
+                                                <li><a href="#"><span><i class="far fa-user"></i></span><span th:text="${list.ename}"></span></a></li>
                                             </ul>
                                         </div>
                                     </div><!-- /.course-info -->

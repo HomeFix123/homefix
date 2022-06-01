@@ -9,11 +9,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import lombok.Data;
 
 @Data
 @Entity(name="contract")
 @Table(name="contract")
+@DynamicUpdate
 public class Contract {
 	
 	/*계약[Contract] 테이블 */	

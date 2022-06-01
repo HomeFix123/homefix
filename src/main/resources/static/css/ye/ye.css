@@ -64,7 +64,10 @@
 /*    display: none;*/
 }
 
-
+/* 커서(포인터) */
+.cursor_pointer{
+	cursor: pointer;
+}
 
 
 /*end [견적 진행 사항]*/

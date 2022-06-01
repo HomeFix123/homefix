@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div>
+<label>아이디</label>
+<input id="id" placeholder="세션에 저장할 값">
+<button id="login" type="button">로그인하기</button>
+</div>
+<div class="sessioncheck"></div>
+
+<div>
+<form action="/estimation/Chosen">
+<input type="hidden" name="cid" value=1004>
+<label>(업체로그인일때)</label><button type="submit">나에게온 견적 보기</button>
+</form>
+</div>
+
+<div>
+<form action="/estimation/Progress">
+<input type="hidden" name="cid" value=1004>
+<label>(업체로그인일때)</label><button type="submit">업체 진행중 견적 보기</button>
+</form>
+</div>
+
+<div>
+<form action="/estimation/MyEstimate">
+<input type="hidden" name="id" value="test">
+<label>(고객로그인일때)</label><button type="submit">나의 견적 보기</button>
+</form>
+</div>
+
+
+
+<!-- 세션에 저장하고 불러오기 ajax -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script type="text/javascript">
+	$(function () {
+		$('#login').on("click",function(){
+			$.ajax({
+				type:'get',
+				url:'/estimation/sessiontest',
+				data:{id:$('#id').val()},
+				contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8',
+				success:function(result){
+					$('.sessioncheck').html(result +" 님이 로그인하셨습니다.")
+				},
+				error : function(err) {
+					//실패했을 때
+	    		alert('실패:');
+	    		console.log(err);
+	    		}
+			})
+		});
+		
+		
+	});//$(function(){})
+	
+
+</script>
+</body>
+</html>

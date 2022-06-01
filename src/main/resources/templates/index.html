@@ -39,6 +39,7 @@
         <!-- Template Developed By ChtStudio -->
         
         <link rel="stylesheet" th:href="@{/css/main_page.css}">
+        
     </head>
     <body> 
         <div id="preloader">
@@ -115,7 +116,7 @@
                         <div class="row">
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a href="catagory.html">
+                                    <a th:href="@{/brag/braglist}">
                                         <span class="icon">
                                             <i class="fas fa-house-user"></i>
                                         </span>
@@ -125,7 +126,7 @@
                             </div>
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a href="catagory.html">
+                                    <a th:href="@{/tip/interiortip}">
                                         <span class="icon">
                                             <i class="fas fa-lightbulb"></i>
                                         </span>
@@ -135,7 +136,7 @@
                             </div>
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a href="catagory.html">
+                                    <a th:href="@{/brag/colist}">
                                         <span class="icon">
                                             <i class="fas fa-hard-hat"></i>
                                         </span>
@@ -145,7 +146,7 @@
                             </div>
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a href="catagory.html">
+                                    <a th:href="@{/sign/member/profile}">
                                         <span class="icon">
                                             <i class="fas fa-user-alt"></i>
                                         </span>
@@ -153,9 +154,10 @@
                                     </a>
                                 </div><!-- /.sg-category -->
                             </div>
+                            
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a href="catagory.html">
+                                    <a th:href="@{/estimation/qna}">
                                         <span class="icon">
                                             <i class="fas fa-question"></i>
                                         </span>
@@ -165,7 +167,7 @@
                             </div>
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a href="catagory.html">
+                                    <a th:href="@{/estimation/write}">
                                         <span class="icon">
                                             <i class="fas fa-ruler"></i>
                                         </span>
@@ -173,7 +175,18 @@
                                     </a>
                                 </div><!-- /.sg-category -->
                             </div>
-
+							
+							<div class="col-6 col-sm-4 col-lg-2">
+                                <div class="sg-category style-1">
+                                    <a th:href="@{/company/companyprofile}">
+                                        <span class="icon">
+                                            <i class="fas fa-user-alt"></i>
+                                        </span>
+                                        <span>(임시) 업체마이페이지</span>
+                                    </a>
+                                </div><!-- /.sg-category -->
+                            </div>
+							
                         </div><!-- /.row -->
                     </div><!-- /.sg-category-content -->
                 </div><!-- /.container -->
@@ -188,72 +201,31 @@
                             <h1>인테리어 자랑</h1>
                         </div>  
                         <div class="view-all align-self-center">
-                            <a href="blog.html" class="btn btn-primary">View All</a>
+                            <a th:href="@{/brag/braglist}" class="btn btn-primary">더보기</a>
                         </div>                  
                     </div>
 
                     <div class="row">
-                        <div class="col-6 col-lg-3">
-                            <div class="sa-post">
-                                <div class="entry-header">
-                                    <div class="entry-thumbnail">
-                                        <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
-                                    </div>
-                                </div>                               
-                                <div class="course-info ">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">집 한번 꾸며봤어요^^</a></h2>
-                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg">집돌이</p>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sa-post -->                            
-                        </div>
-                        
-                        <div class="col-6 col-lg-3">
-                            <div class="sa-post">
-                                <div class="entry-header">
-                                    <div class="entry-thumbnail">
-                                        <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
-                                    </div>
-                                </div>                               
-                                <div class="course-info ">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">집 한번 꾸며봤어요^^</a></h2>
-                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg">집돌이</p>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sa-post -->                            
-                        </div>
-                        <div class="col-6 col-lg-3">
-                            <div class="sa-post">
-                                <div class="entry-header">
-                                    <div class="entry-thumbnail">
-                                        <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
-                                    </div>
-                                </div>                               
-                                <div class="course-info ">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">집 한번 꾸며봤어요^^</a></h2>
-                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg">집돌이</p>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sa-post -->                            
-                        </div><div class="col-6 col-lg-3">
-                            <div class="sa-post">
-                                <div class="entry-header">
-                                    <div class="entry-thumbnail">
-                                        <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
-                                    </div>
-                                </div>                               
-                                <div class="course-info ">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">집 한번 꾸며봤어요^^</a></h2>
-                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg">집돌이</p>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sa-post -->                            
-                        </div>
-                        
+	                    <th:block th:each="b : ${bragList}">
+	                        <div class="col-6 col-lg-3">
+	                            <div class="sa-post">
+	                                <div class="entry-header">
+	                                    <div class="entry-thumbnail">
+	                                        <a href="blog-details.html">
+	                                        	<img th:if="${not #strings.isEmpty(b.bimgadr)}" th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|" alt="Image" class="img-fluid">
+	                                        	<img th:if="${#strings.isEmpty(b.bimgadr)}" src="images/course/1.jpg" alt="Image" class="img-fluid">
+	                                        </a>
+	                                    </div>
+	                                </div>                               
+	                                <div class="course-info ">
+	                                    <div class="info">
+	                                        <h2 class="title"><a href="course-details.html" th:text="${b.btitle}"></a></h2>
+	                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg"><span th:text="${b.member.nickname}"></span></p>
+	                                    </div>
+	                                </div><!-- /.course-info -->
+	                            </div><!-- /.sa-post -->                            
+	                        </div>
+	                	</th:block>
                     </div><!-- /.row -->
                 </div><!-- /.container -->
             </div><!-- /.section-content -->
@@ -390,8 +362,7 @@
                 </div><!-- /.container -->
             </div><!-- /.section-content -->
         </div><!-- /.sa-section -->     
-
-        
+		
         <div th:replace="/sections/footer :: footer"></div>  
 
         <!-- JS -->
@@ -407,5 +378,6 @@
         <script src="js/YTPlayer.min.js"></script> 
         <script src="js/validate.js"></script>
         <script src="js/main.js"></script>  
+        
     </body>
 </html>         
