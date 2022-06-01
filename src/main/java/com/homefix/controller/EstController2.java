@@ -51,11 +51,12 @@ public class EstController2 {
 	
 	/* 전체견적 목록 페이지 */
 	@GetMapping("/total")
-	public String estList(Model m) {
-		
+	public String getEstList(Model m, Integer page) {
+		if(page == null) page = 1;
 		Estimation est = new Estimation(); 
-		List<Estimation> list =	estService2.estList(est); 
-		m.addAttribute("estList", list); 
+		/*List<Estimation> list = estService2.getEstList(est, page);*/ 
+		m.addAttribute("estList", estService2.getEstList(est, page)); 
+		m.addAttribute("cntEst", estService2.countEstList());
 		return "estimation2/est-total-list";
 	}
 	

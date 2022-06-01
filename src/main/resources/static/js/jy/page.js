@@ -1,8 +1,9 @@
-	
-$(function(){
+$(function() {
+// 전체견적 리스트 페이징 ===========================================
 	// 전체 페이지 수
 	const page = pageCnt;
 	
+	console.log(page);
 	// 현재 페이지
 	// url 주소에서 page 파라미터 값 불러옴
 	const params = new URLSearchParams(location.search);
@@ -28,7 +29,7 @@ $(function(){
 	// 1~5 페이지에 있다면 이전 버튼을 출력하지않음
 	if(classify > 0){
 		let li = "<li class='float-left mb-0'>"
-		li += "<a class='page-numbers' href='brag?page="+ ((classify-1)*5+1) +"'>"
+		li += "<a class='page-numbers' href='total?page="+ ((classify-1)*5+1) +"'>"
 		li += "<i class='fas fa-chevron-left'></i>"
 		li += "</a>"
 		li += "</li>"
@@ -46,7 +47,7 @@ $(function(){
 			li += "<a class='page-numbers current'>"
 		} else {
 			// 현재 페이지가 아닌 경우
-			li += "<a class='page-numbers' href='brag?page="+ (classify*5+i) +"'>"
+			li += "<a class='page-numbers' href='total?page="+ (classify*5+i) +"'>"
 		}
 		li += classify*5+i
 		li += "</a>"
@@ -58,11 +59,11 @@ $(function(){
 	// 다음 버튼
 	if(classify < parseInt((page-1)/5)){
 		let li = "<li class='float-right mb-0'>"
-		li += "<a class='page-numbers' href='brag?page="+ (classify*5+6) +"'>"
+		li += "<a class='page-numbers' href='total?page="+ (classify*5+6) +"'>"
 		li += "<i class='fas fa-chevron-right'></i>"
 		li += "</a>"
 		li += "</li>"
 		ul.append(li);
 	}
 	
-})
+	});

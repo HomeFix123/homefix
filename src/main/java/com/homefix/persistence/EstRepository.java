@@ -27,6 +27,7 @@ public interface EstRepository extends CrudRepository<Estimation, Integer>{
 	@Query(value="SELECT * FROM estimation WHERE eid = ?1" , nativeQuery = true)
 	Estimation getEstDetail(String word);
 	
-	
+	// 전체 견적 페이징 처리
+	public List<Estimation> findAll(Pageable pageable);
 
 }
