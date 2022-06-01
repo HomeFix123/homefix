@@ -23,17 +23,20 @@ public class CompanyPageController {
 	
 	
 	//사업체 마이페이지-정보수정페이지 정보 불러오기
-	@GetMapping("/companyprofile")
-	public void getCompanyMypage(HttpSession session, Model model){
+	@GetMapping("/profile")
+	public String getCompanyMypage(HttpSession session, Model model){
 		String id= session.getAttribute("userId").toString();
 		model.addAttribute("company",companyService.getCompanyMyInfo(id));
+		
+		return "/company/companyprofile";
 	}
 	
 	 
 	//사업체 상세페이지 로딩
-	@GetMapping("/companydetails")
-	public void companyDetailPage() {
+	@GetMapping("")
+	public String companyDetailPage() {
 		
+		return"/company/companydetails";
 	}
 	
 	

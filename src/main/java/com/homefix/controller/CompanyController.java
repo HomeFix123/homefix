@@ -76,7 +76,7 @@ public class CompanyController {
 		}
 	}
 
-	@GetMapping("/company/sign-in")
+	@GetMapping("")
 	public String signIn(HttpSession session) {
 
 		if (session.getAttribute("userId") != null) {
