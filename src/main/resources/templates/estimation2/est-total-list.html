@@ -267,12 +267,13 @@
                             
                             <!-- 페이지 버튼 -->
                             <div class="sg-pagination text-center">
-                            <ul class="pagination justify-content-center mb-0 " style="margin-top: 20px;">
-                                <li><a class="page-numbers current" href="#">1</a></li>
-                                <li><a class="page-numbers" href="#">2</a></li>
-                                <li class="float-right"><a class="page-numbers" href="#"><i class="fas fa-chevron-right"></i></a></li>
-                            </ul>       
-                        </div><!-- /.sg-pagination -->  
+	                            <ul class="pagination justify-content-center mb-0 " style="margin-top: 20px;" id="pagination">
+	                                <li><a class="page-numbers current" href="#">1</a></li>
+	                                <li><a class="page-numbers" href="#">2</a></li>
+	                                <li class="float-right"><a class="page-numbers" href="#">
+	                                <i class="fas fa-chevron-right"></i></a></li>
+	                            </ul>       
+                       		</div><!-- /.sg-pagination -->  
                         </form>                         
                     </div>
                 </div><!-- /.row -->                      
@@ -402,5 +403,18 @@
         <script th:src="@{/js/validate.js}"></script>
         <script th:src="@{/js/jquery.spinner.min.js}"></script>
         <script th:src="@{/js/main.js}"></script>   
+        
+        <!-- 개인 js 스크립트 -->
+        <script th:src="@{/js/jy/page.js}"></script>
+        
+        <!-- 페이징 용 -->
+        <script th:inline="javascript">
+        	/*<![CDATA[*/
+        	const pageCnt = /*[[ ${cntEst} ]]*/ +0;
+        	/*]]*/
+        </script>
+        
+        
+        
     </body>
 </html>         

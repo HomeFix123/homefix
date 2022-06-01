@@ -34,8 +34,18 @@ public class EstServiceImpl2 implements EstService2 {
 
 	// 전체견적 리스트
 	@Override
-	public List<Estimation> estList(Estimation est) {
-		return (List<Estimation>)estRepo.findAll();
+	public List<Estimation> getEstList(Estimation est, int page) {
+		//return (List<Estimation>)estRepo.findAll();
+		int showCntPerPage = 5;
+		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
+		return estRepo.findAll(pageable);
+	}
+	
+	// 전체견적 개수 (페이징 용)
+	@Override
+	public long countEstList() {
+		int showCntPerPage = 5;
+		return (long)(estRepo.count()+1)/showCntPerPage + 1;
 	}
 	
 	// 전체 견적 목록 상세보기
@@ -44,6 +54,10 @@ public class EstServiceImpl2 implements EstService2 {
 		System.out.println("서비스에서 가져온 아이디 " + estRepo.getEstDetail(id));
 		return estRepo.getEstDetail(id); //EstRepository에 있는 getEstDetail함수 리턴
 	}
+
+	
+
+	
 
 
 

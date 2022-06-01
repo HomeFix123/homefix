@@ -29,11 +29,12 @@ public class TipController {
 	
 	/* 팁 전체 목록 페이지 */
 	@GetMapping("/list")
-	public String tipList(Model m) {
-		
+	public String tipList(Model m, Integer page) {
+		if(page == null) page = 1;
 		Tip tip = new Tip();
-		List<Tip> list = tipService.tipList(tip);
-		m.addAttribute("tipList", list);
+		//List<Tip> list = tipService.getTipList(tip);
+		m.addAttribute("tipList", tipService.getTipList(tip, page)); 
+		m.addAttribute("cntTip", tipService.countEstList());
 		return "tip/interiortip";
 	}
 	

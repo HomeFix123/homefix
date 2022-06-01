@@ -315,6 +315,16 @@
 	<a th:href="@{/tip/write}"><button id="insertTip"> +글쓰기 </button></a>
 	<!-- 버튼 끝 -->
 	
+	<!-- 페이지 버튼 -->
+    <div class="sg-pagination text-center">
+     <ul class="pagination justify-content-center mb-0 " style="margin-top: 20px;" id="pagination">
+         <li><a class="page-numbers current" href="#">1</a></li>
+         <li><a class="page-numbers" href="#">2</a></li>
+         <li class="float-right"><a class="page-numbers" href="#">
+         <i class="fas fa-chevron-right"></i></a></li>
+     </ul>       
+	</div><!-- /.sg-pagination -->  
+	
 <!-- footer -->
     <div class="footer">
         <div class="footer-top">
@@ -432,5 +442,16 @@
     <script th:src="@{/js/main.js}"></script>
     <!-- 인테리어팁용 js 파일 -->
     <script th:src="@{/js/tip_main.js}"></script>
+	
+	<!-- 개인 js 스크립트 -->
+    <script th:src="@{/js/jy/tipPage.js}"></script>
+    
+    <!-- 페이징 용 -->
+    <script th:inline="javascript">
+    	/*<![CDATA[*/
+    	const pageCnt = /*[[ ${cntTip} ]]*/ +0;
+    	/*]]*/
+    </script>
+    
     
 </body></html>

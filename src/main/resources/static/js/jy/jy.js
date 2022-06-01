@@ -169,12 +169,8 @@ $(function() {
 	})
 	
 	
-
-/*if(selectSpace ==""){
-				$('#spaceTitle .error_box'  ).html("이름 형식이 올바르지 않습니다.");
-				$('#spaceTitle' ).focus();
-				return false;
-		}*/
+	
+	
 	
 	
 	
