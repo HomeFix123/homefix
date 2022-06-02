@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.homefix.domain.CompanyInfo;
 import com.homefix.domain.CompanyReport;
+import com.homefix.domain.Estimation;
 import com.homefix.domain.Member;
 import com.homefix.domain.MemberReport;
 import com.homefix.domain.Payment;
@@ -118,5 +119,15 @@ public class AdminRestController {
 			return null;
 		}
 		return adminService.getCompanyReport(id);
+	}
+	/*
+	 * 
+	 */
+	@GetMapping(path = "/member/est/{id}")
+	public List<Estimation> getEstimationById(@PathVariable String id){
+		if(id == null) {
+			return null;
+		}
+		return adminService.getEstimationList(id);
 	}
 }

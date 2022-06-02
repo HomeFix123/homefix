@@ -17,6 +17,7 @@ public class MainController {
 	@GetMapping(name = "/")
 	public String mainPage(Model model) {
 		model.addAttribute("bragList", mainService.getBragList());
+		model.addAttribute("reviewList", mainService.getReviewList());
 		return "index";
 	}
 	

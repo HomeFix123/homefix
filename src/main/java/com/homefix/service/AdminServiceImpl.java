@@ -322,8 +322,8 @@ public class AdminServiceImpl implements AdminService {
 	 */
 	@Override
 	public List<Estimation> getEstimationList(String id) {
-		// 해야함
-		return null;
+		Member mem = memberRepo.findById(id).get();
+		return estRepo.findByMember(mem);
 	}
 
 	
