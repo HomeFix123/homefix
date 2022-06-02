@@ -26,4 +26,7 @@ public interface EstService {
 
 	//진행중 -> 시공완료
 	public void saveIng(Integer id);
+	
+	//(회사) 확정하기 선택 시 esti_request테이블에 값 저장
+	public void saveEstReq(Integer eid,String cid);
 }

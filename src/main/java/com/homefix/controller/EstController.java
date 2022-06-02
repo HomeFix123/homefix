@@ -90,10 +90,20 @@ public class EstController {
 		return estService.getMEDetail(id);
 	}
 	
+	//시공완료 버튼 선택시 db 시공완료로 변경
 	@RequestMapping("/complete")
 	@ResponseBody
 	public void complete(Integer id) {
 		System.out.println(id);
 		estService.saveIng(id);
+	}
+	
+	//업체에게 온 견적 상세보기에서 확정하기 클릭 시  esti_request테이블에 값 저장
+	@GetMapping("/confirmation")
+	@ResponseBody
+	public void saveEstiReq(Integer eid,String cid) {
+		System.out.println("넘어온 eid 값은"+eid);
+		System.out.println("넘어온 cid 값은"+cid);
+		estService.saveEstReq(eid, cid);
 	}
 }

@@ -80,5 +80,15 @@ public class EstServiceImpl implements EstService {
 		contractRepo.save(contract);
 	}
 
+	@Override
+	public void saveEstReq(Integer eid, String cid) {
+		Estimation estimation = estRepo.findById(eid).get();
+		Company company  = companyRepo.findById(cid).get();
+		Esti_request estReq = new Esti_request();
+		estReq.setEstimation(estimation);
+		estReq.setCompany(company);
+		esti_reqRepo.save(estReq);
+	}
+
 	
 }
