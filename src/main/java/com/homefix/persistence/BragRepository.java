@@ -9,4 +9,6 @@ import com.homefix.domain.Brag;
 
 public interface BragRepository extends CrudRepository<Brag, String>{
 	public List<Brag> findAll(Pageable pageable);
+	
+	public Brag findByBid(Integer bid);
 }

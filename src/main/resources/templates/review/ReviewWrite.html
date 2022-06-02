@@ -424,7 +424,7 @@
 	<!-- /.sa-header -->
 
 
-	<form id="writeinfo" enctype="multipart/form-data" method="post" action="/brag/write">
+	<form id="writeinfo" enctype="multipart/form-data" method="post" action="/review/write">
 		<div class="sg-section">
 			<div class="section-content course-details bg-white section-padding">
 				<div class="container">
@@ -433,19 +433,6 @@
 							<div class="sa-course">
 								<button type="button" class="writedetailbtn">후기작성 세부사항</button>
 								<div class="writedetail">
-
-									<div class="input-group mb-3">
-										<label class="input-group-text" for="cid">업체명</label>
-										<select class="form-select" id="cid" name="cid">
-											<option disabled selected>계약 업체목록</option>
-											<option value="1004">한샘리하우스디자인디원</option>
-											<option value="1008">탑인테리어디자인</option>
-											<option value="1012">채움</option>
-											<option value="1017">근생정수
-										</select>
-									</div>
-
-
 									<div class="input-group mb-3">
 										<label class="input-group-text" for="hometype">주거형태</label>
 										<select class="form-select" id="hometype" name="hometype">
@@ -459,9 +446,9 @@
 
 									<div class="input-group input-group-sm mb-3">
 										<span class="input-group-text" id="inputGroup-sizing-sm">평수</span>
-										<input type="text" id="bsize" name="bsize" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+										<input type="text" id="rsize" name="rsize" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 										<span class="input-group-text" id="inputGroup-sizing-sm">예산</span>
-										<input type="text" id="bbudget" name="bbudget" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+										<input type="text" id="rbudget" name="rbudget" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 									</div>
 
 									<div class="input-group mb-3">
@@ -505,7 +492,7 @@
 									<div class="previewImage">
 										<label class="previewImagebtn" for="inputImage">섬네일 미리보기</label> <img style="width: 100%;" id="previewImage" src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload">
 										<input style="display: block; visibility: hidden;" type="file" accept="image/*" id="inputImage" name="inputImage">
-										<input hidden="" id="bimgadr" name="bimgadr">
+										<input hidden="" id="rimgadr" name="rimgadr">
 									</div>
 								</div>
 								<!-- /.writedetail -->
@@ -527,8 +514,8 @@
 						<div class="col-lg-8">
 							<div class="sa-course">
 								<div class="course-info">
-									<input type="text" placeholder="제목을 입력해주세요." class="writeTitle" name="btitle" />
-									<textarea id="summernote" name="bcont"></textarea>
+									<input type="text" placeholder="제목을 입력해주세요." class="writeTitle" name="rtitle" />
+									<textarea id="summernote" name="rcont"></textarea>
 									<div style="text-align: center;">
 										<button type="button" class="writebtn">작성</button>
 									</div>
@@ -653,7 +640,7 @@
       		  const formData = new FormData();
       		  formData.append("file", imageInput.files[0], uuid(imageInput.files[0].name));
 					console.log(formData.get('file'))
-					$('#bimgadr').val(formData.get('file').name);
+					$('#rimgadr').val(formData.get('file').name);
 				
 					
 				  $.ajax({

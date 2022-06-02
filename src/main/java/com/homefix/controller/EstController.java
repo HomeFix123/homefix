@@ -35,7 +35,7 @@ public class EstController {
 	@GetMapping("/Chosen")
 	public String queryAnno(Model m,String cid) {
 		m.addAttribute("Lists",estService.getCEst(cid));
-		return "estimation/MPickC";
+		return "estimation/Chosen";
 	}
 	
 	//고객이 직접 회사 고른거 리스트 상세보기
@@ -43,7 +43,7 @@ public class EstController {
 	public String estDetail(String id,Model m) {
 		System.out.println("넘어온 아이디는"+id);
 		m.addAttribute("Detail",estService.getEstDetail(id));
-		return "estimation/MPickCDetail";
+		return "estimation/ChosenDetail";
 	}
 	
 	//고객 본인이 보낸 견적리스트
@@ -51,7 +51,7 @@ public class EstController {
 	public String mEstimation(String id,Model m) {
 		System.out.println("넘어온 아이디는"+id);
 		m.addAttribute("Lists",estService.getMEstimation(id));
-		return "estimation/MEstimation";
+		return "estimation/MyEstimate";
 	}
 	
 	//업체의 현재 진행중인 견적 리스트 
@@ -59,7 +59,7 @@ public class EstController {
 	public String getCIngList(String cid,Model m) {
 		System.out.println("넘어온 cid값은 "+cid);
 		m.addAttribute("Lists",estService.getCIngList(cid));
-		return "estimation/CIng";
+		return "estimation/Progress";
 	}
 	
 	//내(고객) 견적 리스트 상세보기
@@ -68,7 +68,7 @@ public class EstController {
 		System.out.println("integer 잘 넘어왔니 " + id);
 		m.addAttribute("Detail",estService.getMEDetail(id));
 		m.addAttribute("CLists",estService.getMEDetailC(id));
-		return "estimation/MEDetail";
+		return "estimation/MyDetail";
 	}
 	
 	@GetMapping("/estimationtest")

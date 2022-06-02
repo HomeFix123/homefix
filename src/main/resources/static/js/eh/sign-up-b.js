@@ -38,7 +38,7 @@ $(function() {
 	$('#bs_btn_idCheak').click(function() {
 		// 아이디 중복검사 확인 여부
 		$('label[for="bs_memberId"] .error_box').html("");
-		var memberId = $.trim($("#bs_memberId").val());
+		var memberId = $("#bs_memberId").val();
 
 		// 입력값이 없을 때 에러박스
 		if (memberId == '') {
@@ -88,7 +88,7 @@ $(function() {
 	$('#bs_btn_businessNum').click(function() {
 		// 사업자번호 중복검사 확인 여부
 		$('label[for="bs_businessNum"] .error_box').html("");
-		var bs_businessNum = $.trim($("#bs_businessNum").val());
+		var bs_businessNum = $("#bs_businessNum").val();
 		// 입력값이 없을 때 에러박스
 		if (bs_businessNum == '') {
 			$('label[for="bs_businessNum"] .error_box').html(blank);
@@ -139,7 +139,7 @@ $(function() {
 	$('#bs_btn_emailCheak').click(function() {
 		// 이메일 중복검사 확인 여부
 		$('label[for="bs_memberEmail"] .error_box').html("");
-		var memberEmail = $.trim($("#bs_memberEmail").val());
+		var memberEmail = $("#bs_memberEmail").val();
 		// 입력값이 없을 때 에러박스
 		if (memberEmail == '') {
 			$('label[for="bs_memberEmail"] .error_box').html(blank);

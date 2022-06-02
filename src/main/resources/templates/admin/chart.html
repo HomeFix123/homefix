@@ -23,7 +23,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
 
         <!-- icons -->
-        <link rel="icon" th:href="@{/images/ico/favicon.ico}"> 
+        <link rel="icon" href="images/ico/favicon.ico"> 
         <link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
         <link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
         <link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
@@ -38,20 +38,23 @@
         <![endif]-->
         <!-- Template Developed By ChtStudio -->
         
-        <!-- 데이터 테이블 -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.0/datatables.min.css"/>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css"/>
-        <!-- 관리자 CSS -->
-        <link rel="stylesheet" th:href="@{/css/admin_css.css}">
-        <link rel="stylesheet" th:href="@{/css/admin/brag.css}">
-        
+        <style type="text/css">
+        	@media (max-width: 575px){
+				.sa-topbar {
+				    display: block;
+				}
+			}
+			#kibana {
+				height: 100vw;
+			}
+        </style>
     </head>
     <body> 
         <div id="preloader">
             <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
-        <div th:replace="/admin/sections/header :: header"></div>
+        <div th:replace="/admin/sections/header :: header"></div> 
         
         <div class="container">
 	        <div class="row">
@@ -70,8 +73,8 @@
 		                                <li><a class="w-100" th:href="@{/admin/dashboard}"><i class="fas fa-chart-line"></i> <span>대시보드</span></a></li>
 		                                <li><a class="w-100" th:href="@{/admin/member}"><i class="fas fa-user"></i> <span>회원관리</span></a></li>
 		                                <li><a class="w-100" th:href="@{/admin/company}"><i class="fas fa-building"></i> <span>업체관리</span></a></li>
-		                                <li class="active"><a class="w-100" th:href="@{/admin/board}"><i class="fas fa-book"></i> <span>게시글</span></a></li>
-		                                <li><a class="w-100" th:href="@{/admin/chart}"><i class="fas fa-chart-line"></i> <span>차트</span></a></li>
+		                                <li><a class="w-100" th:href="@{/admin/board}"><i class="fas fa-book"></i> <span>게시글</span></a></li>
+		                                <li class="active"><a class="w-100" th:href="@{/admin/chart}"><i class="fas fa-chart-line"></i> <span>차트</span></a></li>
 		                            </ul>       
 		                        </div> 
 		
@@ -81,92 +84,31 @@
 		            </div><!-- /.sa-menu -->       
 				</div>
 				<div class="col-lg-9">
-			        <div class="sa-section">
-			            <div class="section-content feature-content section-padding pt-0">
+					<div class="sa-section">
+			            <div class="section-content section-padding pt-3 pb-0">
 			                <div class="container">
-			                    <div class="row">
-			                    	<div class="description-tab">
-									<ul class="nav nav-tabs" id="myTab" role="tablist">
-										<li class="nav-item" role="presentation">
-											<button class="nav-link active" aria-selected="true">인테리어
-												자랑</button>
-										</li>
-										<li class="nav-item" role="presentation">
-											<a th:href="@{/admin/board/tip}" class="nav-link"  aria-selected="false">인테리어
-												팁글</a>
-										</li>
-									</ul>
-
-									<div class="tab-content" id="myTabContent">
-										<div class="tab-pane fade show active" id="reviewList"
-											>
-											<div class="profile-section">
-												<!-- header -->
-												<!-- 후기 테이블 -->
-												<div class="tab-body">
-													<div class="shopping-cart">
-														<div class="container">
-															<div class="row">
-																<table class="table ">
-																	<thead>
-																		<tr>
-																			<th scope="col">글번호</th>
-																			<th scope="col">썸네일</th>
-																			<th scope="col">제목</th>
-																			<th scope="col">작성자</th>
-																			<th scope="col">좋아요</th>
-																			<th scope="col">조회수</th>
-																		</tr>
-																	</thead>
-																	<tbody>
-																		<tr th:each="b : ${bragList}">
-																			<td th:text="${b.bid}"></td>
-																			<td th:if="${b.bimgadr == null}">이미지 없음</td>
-																			<td th:if="${b.bimgadr != null}"><img th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|"></td>
-																			<td><a th:text="${b.btitle}" th:href="@{/brag/{id}(id = ${b.bid})}"></a></td>
-																			<td th:text="${b.member.id}"></td>
-																			<td>0</td>
-																			<td th:text="${b.bcnt}"></td>
-																		</tr>
-
-																	</tbody>
-																</table>
-															</div>
-															<!-- /.row -->
-															<!-- 페이지버튼 -->
-															<div class="text-center">
-																<ul class="pagination justify-content-center mb-0" id="pagination">
-																	<li><a class="page-numbers current" href="#">1</a></li>
-																	<li><a class="page-numbers" href="#">2</a></li>
-																	<li class="float-right"><a class="page-numbers"
-																		href="#"><i class="fas fa-chevron-right"></i></a></li>
-																</ul>
-															</div>
-															<!-- /.sg-pagination -->
-														</div>
-													</div>
-													<!-- /.cart-section -->
-													<!-- End 후기 테이블 -->
-
-													
-												</div>
-												<!-- tab-footer -->
-											</div>
-										</div>
-										</div>
-									</div>
-										
-			                    </div><!-- /.row -->
+				                <div class="section-header justify-content-between">
+			                        <div class="title">
+			                        	<h1>Chart</h1>
+			                        </div>                        
+			                    </div><!-- /.section-header -->
+			                    <div class="address-content" id="admin-info">
+			                        <div class="row">
+			                            <iframe id="kibana" src="http://13.125.243.244:5601/app/dashboards#/view/c7f89c60-e005-11ec-b047-57b9d7414ff8?embed=true&_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-1y,to:now))&_a=(description:'',filters:!(),fullScreenMode:!f,options:(hidePanelTitles:!f,useMargins:!t),query:(language:kuery,query:''),timeRestore:!f,title:myDashboard,viewMode:view)&hide-filter-bar=true"></iframe>
+				                        
+			                        </div><!-- /.row -->
+			                    </div><!-- /.sg-category-content -->
 			                </div><!-- /.container -->
 			            </div><!-- /.section-content -->
-			        </div><!-- /.sa-section --> 
+			        </div><!-- /.sa-section -->
 				</div>
 			</div>
         </div>
 
-     	
-		
-		
+     
+
+        
+
 
 
         <!-- JS -->
@@ -183,18 +125,83 @@
         <script th:src="@{/js/jquery-ui-min.js}"></script>
         <script th:src="@{/js/validate.js}"></script>
         <script th:src="@{/js/main.js}"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
         
         <!-- 관리자 스크립트 -->
         <script th:src="@{/js/admin_script.js}"></script> 
-        
-        <script th:src="@{/js/admin/brag.js}"></script>
-        
         <script th:inline="javascript">
         	/*<![CDATA[*/
-        	const pageCnt = /*[[ ${cntBrag} ]]*/ +0;
+        	const aggNewUser = /*[[ ${aggNewUser} ]]*/ 
+        	"";
+        	const aggPayment = /*[[ ${aggPayments} ]]*/ 
         	/*]]*/
         </script>
+        <script>
+        aggUserLabels = [];
+        aggUserCnt = [];
+        for(let item of aggNewUser){
+        	aggUserLabels.push(item[0]);
+        	aggUserCnt.push(item[1]);
+        }
+        const ctx = document.getElementById('newUserPerMonth').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: aggUserLabels,
+                datasets: [{
+                    label: '가입자 수',
+                    data: aggUserCnt,
+                    backgroundColor: [
+                    	'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
         
+        
+        aggPaymentLabels = [];
+        aggPaymentCnt = [];
+        for(let item of aggPayment){
+        	aggPaymentLabels.push(item[0]);
+        	aggPaymentCnt.push(item[1]);
+        }
+        const ctx2 = document.getElementById('paymentPerMonth').getContext('2d');
+        const myChart2 = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: aggPaymentLabels,
+                datasets: [{
+                    label: '매출액(원)',
+                    data: aggPaymentCnt,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        </script>
         
     </body>
 </html>         
