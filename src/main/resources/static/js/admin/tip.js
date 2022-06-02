@@ -16,7 +16,7 @@ $(function(){
 	ul.empty();
 	if(classify > 0){
 		let li = "<li class='float-left mb-0'>"
-		li += "<a class='page-numbers' href='brag?page="+ ((classify-1)*5+1) +"'>"
+		li += "<a class='page-numbers' href='tip?page="+ ((classify-1)*5+1) +"'>"
 		li += "<i class='fas fa-chevron-left'></i>"
 		li += "</a>"
 		li += "</li>"
@@ -29,7 +29,7 @@ $(function(){
 		if(classify*5+i == currentPage){
 			li += "<a class='page-numbers current'>"
 		} else {
-			li += "<a class='page-numbers' href='brag?page="+ (classify*5+i) +"'>"
+			li += "<a class='page-numbers' href='tip?page="+ (classify*5+i) +"'>"
 		}
 		li += classify*5+i
 		li += "</a>"
@@ -39,7 +39,7 @@ $(function(){
 	}
 	if(classify < parseInt((page-1)/5)){
 		let li = "<li class='float-right mb-0'>"
-		li += "<a class='page-numbers' href='brag?page="+ (classify*5+6) +"'>"
+		li += "<a class='page-numbers' href='tip?page="+ (classify*5+6) +"'>"
 		li += "<i class='fas fa-chevron-right'></i>"
 		li += "</a>"
 		li += "</li>"

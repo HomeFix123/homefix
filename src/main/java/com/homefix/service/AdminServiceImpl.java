@@ -1,6 +1,5 @@
 package com.homefix.service;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -290,20 +289,25 @@ public class AdminServiceImpl implements AdminService {
 	 */
 	@Override
 	public long countTipList() {
-		
-		return tipRepo.count();
+		int showCntPerPage = 5;
+		return (tipRepo.count()+1)/showCntPerPage + 1;
 	}
 	
 	
 	@Autowired
 	DashboardRepository dashRepo;
 
+	/*
+	 * 회원가입수 집계
+	 */
 	@Override
 	public List<Object[]> aggregateNewUser(){
 		
 		return dashRepo.searchAggNewUser();
 	}
-	
+	/*
+	 * 결제 집계
+	 */
 	@Override
 	public List<Object[]> aggregatePayments(){
 		
@@ -318,8 +322,8 @@ public class AdminServiceImpl implements AdminService {
 	 */
 	@Override
 	public List<Estimation> getEstimationList(String id) {
-		// 해야함
-		return null;
+		Member mem = memberRepo.findById(id).get();
+		return estRepo.findByMember(mem);
 	}
 
 	
