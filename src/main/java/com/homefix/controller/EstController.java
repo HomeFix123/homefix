@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.homefix.domain.Chatting;
 import com.homefix.domain.Estimation;
 import com.homefix.persistence.EstRepository;
 import com.homefix.persistence.Esti_requestRepository;
@@ -23,6 +26,9 @@ import com.homefix.service.EstService;
 @Controller
 @RequestMapping("/estimation")
 public class EstController {
+	
+	static final Logger logger = LoggerFactory.getLogger(EstController.class);
+	
 	@Autowired
 	private EstService estService;
 	
@@ -105,5 +111,15 @@ public class EstController {
 		System.out.println("넘어온 eid 값은"+eid);
 		System.out.println("넘어온 cid 값은"+cid);
 		estService.saveEstReq(eid, cid);
+	}
+	
+	//업체에게 온 견적 상세보기에서 채팅하기 클릭 시 chat테이블에 값 저장
+	@GetMapping("/saveChatRoom")
+	@ResponseBody
+	public Chatting saveChatRoom(String id,String cid,String nickname) {
+		System.out.println("넘어온 id 값은 "+id);
+		System.out.println("넘어온 cid 값은 "+cid);
+		System.out.println("넘어온 nickname 값은 "+nickname);
+		return estService.saveChatRoom(id, cid, nickname);
 	}
 }
