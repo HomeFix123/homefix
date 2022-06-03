@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Company;
+import com.homefix.domain.Contract;
 import com.homefix.domain.Esti_request;
 import com.homefix.domain.Estimation;
 import com.homefix.domain.Member;
@@ -56,6 +57,37 @@ public class EstServiceImpl implements EstService {
 	@Override
 	public Estimation getMEDetail(Integer id) {
 		return estRepo.findById(id).get();
+	}
+
+	@Override
+	public List<Esti_request> getMEDetailC(Integer id) {
+		Estimation estimation = estRepo.findById(id).get();
+		return esti_reqRepo.findByEstimation(estimation);
+	}
+
+	//업체가 진행중인 견적 리스트 보기
+	@Override 
+	public List<Contract> getCIngList(String cid) {
+		Company company  = companyRepo.findById(cid).get();
+		return contractRepo.findByCompay(company);
+	}
+
+	@Override
+	public void saveIng(Integer eid) {
+		Estimation estimation = estRepo.findById(eid).get();
+	 	Contract contract = contractRepo.findByEstimation(estimation);
+		contract.setIng("시공완료"); 
+		contractRepo.save(contract);
+	}
+
+	@Override
+	public void saveEstReq(Integer eid, String cid) {
+		Estimation estimation = estRepo.findById(eid).get();
+		Company company  = companyRepo.findById(cid).get();
+		Esti_request estReq = new Esti_request();
+		estReq.setEstimation(estimation);
+		estReq.setCompany(company);
+		esti_reqRepo.save(estReq);
 	}
 
 	

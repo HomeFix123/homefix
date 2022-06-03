@@ -228,7 +228,8 @@
                         <div class="col-lg-8" style="float: none; margin:0 auto;"> <!--가운데 정렬-->
                             <div class="sa-course">
 
-                                <div class="course-info" th:each="detail:${Detail}">
+                                <div class="course-info" >
+                                <div th:each="detail:${Detail}">
                                     <h2 class="title" id="estimate_title">내 견적 상세보기</h2>
                                     <input type="hidden" class="eid_hidden" th:value="${detail.eid}">
                                     <p><span class="bold">공간 유형  :</span> <span th:text="${detail.space}"></span></p>
@@ -241,51 +242,18 @@
                                     <p><span class="bold">핸드폰 번호 :</span> <span th:text="${detail.etel}"></span></p>
                                     <p><span class="bold">원하는 스타일 :</span></p>
                                     <p><span th:text="${detail.estyle}"></span></p>
-                                    
+                                 </div>  
+                                  
                                  <div class="widget widget_recent_entries">
                                             <h3 class="widget_title m-0" >Popular Courses</h3>
                                             <ul>
-                                                <li class="media">
-                                                   
+                                                <li class="media" th:each="cList:${CLists}" >
                                                    <div>
                                                         <button class="btn btn-primary">확정하기</button>
                                                     </div>
                                                     <div class="media-body" style="margin-left: 15px">
-                                                        <a><span class="post-date">2022/05/16</span></a>
-                                                        <a href="#">0000000000000업체가 시공을 원합니다.</a>
-                                                    </div>
-                                                    
-                                                        
-                                                    
-                                                </li>
-                                                <li class="media">
-                                                   
-                                                    <div>
-                                                        <button class="btn btn-primary">확정하기</button>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 15px">
-                                                        <a><span class="post-date">2022/05/16</span></a>
-                                                        <a href="#">0000000000000업체가 시공을 원합니다.</a>
-                                                    </div>
-                                                </li>
-                                                <li class="media">
-                                                    
-                                                    <div>
-                                                        <button class="btn btn-primary">확정하기</button>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 15px">
-                                                        <a><span class="post-date">2022/05/16</span></a>
-                                                        <a href="#">0000000000000업체가 시공을 원합니다.</a>
-                                                    </div>
-                                                </li>
-                                                <li class="media">
-                                                   
-                                                    <div>
-                                                        <button class="btn btn-primary">확정하기</button>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 15px">
-                                                        <a><span class="post-date">2022/05/16</span></a>
-                                                        <a href="#">0000000000000업체가 시공을 원합니다.</a>
+                                                        <a><span class="post-date" th:text="${cList.erdate}"> </span></a>
+                                                        <p><span class="bold" th:text="|<${cList.company.name}> 업체가 시공을 원합니다.|"></span></p>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -462,14 +430,6 @@
         <script th:src="@{/js/YTPlayer.min.js}"></script> 
         <script th:src="@{/js/jquery-ui-min.js}"></script>
         <script th:src="@{/js/validate.js}"></script>
-        <script th:src="@{/js/main.js}"></script> 
-        
-        <script type="text/javascript">
-        $(function(){
-        
-        	
-        });//end $(function(){});
-        
-        </script>    
+        <script th:src="@{/js/main.js}"></script>     
     </body>
 </html>        

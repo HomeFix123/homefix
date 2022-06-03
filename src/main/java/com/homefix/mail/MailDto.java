@@ -1,4 +1,4 @@
-package com.homefix.domain;
+package com.homefix.mail;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

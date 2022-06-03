@@ -10,7 +10,7 @@
         <meta name="author" content="">
         <meta name="description" content="">
 
-        <title>Educam | Education & Courses HTML Template.</title>
+        <title>글쓰기</title>
 
         <!-- CSS -->
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -50,171 +50,24 @@
             <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
-        <header class="sa-header">
-            <div class="sa-topbar">
-                <div class="container">
-                    <div class="topbar-content">
-                        <div class="left-content">
-                            <ul class="global-list">
-                                <li><a href="#"><i class="far fa-envelope"></i>info@gmail.com</a></li>
-                                <li><a href="#"><i class="fas fa-phone-volume"></i>0123456789</a></li>
-                            </ul>
-                        </div>
-                        <div class="right-content">
-                            <ul class="global-list social">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                            </ul>
-                            <ul class="global-list">
-                                <li><a href="#" class="btn btn-primary">Register <i class="fas fa-sign-in-alt"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- /.container -->
-            </div><!-- /.top-bar -->
-
-            <div class="sa-menu">
-                <nav class="navbar navbar-expand-lg">
-                    <div class="container">
-                        <a class="navbar-brand" th:href="@{/index.html}">
-                            <img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
-                        </a>
-
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-                        </button> 
-                        
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item sa-dropdown">
-                                    <a href="#">Home</a>
-                                    <ul class="sa-dropdown-menu">
-                                        <li><a th:href="@{/index.html}">Home V-1</a></li>
-                                        <li><a th:href="@{/index1.html}">Home V-2</a></li>
-                                        <li><a th:href="@{/index2.html}">Home V-3</a></li>
-                                    </ul>
-                                </li>
-                                <li><a th:href="@{/about.html}">About</a></li>
-                                <li class="sa-dropdown">
-                                    <a href="#">Courses</a>
-                                    <ul class="sa-dropdown-menu">
-                                        <li><a th:href="@{/course-grid.html}">Course Grid View</a></li>
-                                        <li><a th:href="@{/course-list.html}">Course List View</a></li>
-                                        <li><a th:href="@{/course-details.html}">Course Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a th:href="@{/tutor.html}">Teacher</a></li>
-                                <li><a th:href="@{/blog.html}">Blog</a></li>
-                                <li><a th:href="@{/contact.html}">Contact</a></li>
-                                <li class="sa-dropdown active">
-                                    <a th:href="@{/index.html}">Page</a>
-                                    <ul class="sa-dropdown-menu">
-                                        <li><a th:href="@{/catagory.html}">Catagory</a></li>
-                                        <li><a th:href="@{/profile.html}">User Profile</a></li>
-                                        <li class="active"><a th:href="@{/blog-details.html}">Blog Details</a></li>
-                                        <li><a th:href="@{/tutor-details.html}">Tutor Details</a></li>
-                                        <li><a th:href="@{/my-course.html}">My Course<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a th:href="@{/course-video.html}">Course Video<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a th:href="@{/cart.html}">Shopping Cart<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a th:href="@{/payment.html}">Payment<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a th:href="@{/congrats.html}">Congrats<span class="badge rounded-pill bg-dark">New</span></a></li> 
-                                        <li><a th:href="@{/sign-in.html}">Sign In</a></li>
-                                        <li><a th:href="@{/sign-up.html}">Sign Up</a></li>
-                                    </ul>
-                                </li>
-                            </ul>       
-                        </div> 
-
-                        <div class="right-content">
-                            <div class="user-option">
-                                <ul class="global-list">
-                                    <li class="sa-dropdown">
-                                        <span class="cart-number">5</span>
-                                        <i class="fas fa-cart-plus"></i>
-                                        <div class="sa-dropdown-menu">
-                                            <ul class="global-list">
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-thumb">
-                                                            <img th:src="@{/images/course/1.jpg}" alt="Image" class="img-fluid">
-                                                        </div><!-- /.course-thumb -->
-
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a href="course-details.html" >Visual Basic Web Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-thumb">
-                                                            <img th:src="@{/images/course/2.jpg}" alt="Image" class="img-fluid">
-                                                        </div><!-- /.course-thumb -->
-
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a href="course-details.html">Computer Technologies Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-thumb">
-                                                            <img th:src="@{/images/course/3.jpg}" alt="Image" class="img-fluid">
-                                                        </div><!-- /.course-thumb -->
-
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a href="course-details.html" >Visual Basic Web Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                            </ul> 
-                                            <div class="total-price">
-                                                <span><strong>Total Price: </strong>$598:00</span>
-                                            </div> 
-                                            <div class="buttons">
-                                                <a class="btn btn-primary cart-button" href="#">View Cart</a>
-                                                <a class="btn btn-primary" href="#">Checkout</a>
-                                            </div>                                              
-                                        </div>
-                                    </li>
-                                    <li><i class="far fa-bell"></i></li>
-                                    <li>
-                                        <div class="sa-search-form">
-                                            <div class="search-icon">
-                                                <i class="fas fa-search"></i>
-                                            </div>
-                                            <div class="search-form text-center open-search">
-                                                <div class="close-search">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                </div>
-                                                <form action="#" id="search" method="get">
-                                                    <input name="search" type="text" placeholder="Enter keyword...">
-                                                    <button type="submit"><i class="fas fa-search"></i></button>
-                                                </form><!-- /form -->
-                                            </div><!-- /search-form -->                    
-                                        </div>                        
-                                    </li>
-                                </ul>
-                            </div>                          
-                        </div>
-                    </div><!-- /.container -->
-                </nav><!-- /.navbar -->                                
-            </div><!-- /.sa-menu -->
-        </header><!-- /.sa-header -->  
-
+        <!-- 헤더 -->
+        <div th:replace="/sections/header :: header"></div>
+        <!-- 헤더 끝 -->
+        
+        <section class="breadcrumb-section" >
+            <div class="container" style="padding-top:30px; padding-bottom:30px;">
+                <h1>인테리어 팁</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">글쓰기</li>
+                </ol>
+            </div><!-- /.container -->
+        </section><!-- /.breadcrumb-section --> 
+        
+        
 		<!-- 노트 본문 -->
         <div class="sg-section">
+          <form th:action='@{/tip/write}' method="post" enctype="multipart/form-data">
             <div class="section-content course-details bg-white ">
                 <div class="container">
                     <div class="row justify-content-md-center">
@@ -235,24 +88,29 @@
 									  <option value="기타">기타</option>
 									</select>
                                     
-                                    <input type="text" placeholder="제목을 입력해주세요." class="writeTitle"/>
-                                    <div id="summernote">
-                                    	<!-- 노트 본문 창 -->
-                                  	</div>
+                                    <input type="text" placeholder="제목을 입력해주세요." class="writeTitle" name="tiptitle" id="tiptitle" required="required"/>
+                                    <!--  <div id="summernote">
+                                    노트 본문 창
+                                  	</div> -->
+                                  	<textarea id="summernote" name="tcontent"></textarea>
                                 	
                                 </div>
-                                <div class="t_submitdiv">
-                                	<a href="#" class="btn btn-primary" >게시하기</a>
+                                <div class="t_submitdiv" >
+                                <button class="btn btn-primary" type="submit" id="submitButton">게시하기</button>
                                 </div>
                             </div><!-- /.sa-course -->                           
                         </div>
 					</div>
 				</div>
 			</div>
+		  </form>
 		</div>
 		<!-- 노트 끝 -->
-				
-
+		
+		<!-- 푸터 -->
+        <div th:replace="/sections/footer :: footer"></div>
+		<!-- 푸터 끝 -->
+		
         <!-- JS -->
         <script th:src="@{/js/jquery.min.js}"></script>
         <script th:src="@{/js/popper.min.js}"></script>
@@ -270,7 +128,6 @@
         <script th:src="@{/js/summernote/summernote-lite.js}"></script>
         <script th:src="@{/js/summernote/lang/summernote-ko-KR.js}"></script>
         
-        
         <!-- 노트 summernote js -->
         <script type="text/javascript">
         $(document).ready(function(){ 
@@ -280,6 +137,7 @@
         		var position = $(window).scrollTop(); 
         		$(".quickmenu").css("top",position+currentPosition+"px"); 
         		});
+        	
         	
             $('#summernote').summernote({
                 placeholder: 'Hello Bootstrap 4',
@@ -300,12 +158,52 @@
     			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
                 focus: true,
                 lang: 'ko-KR',
-                placeholder:'최대 2048자까지 쓸 수 있습니다.'
+                placeholder:'최대 2048자까지 쓸 수 있습니다.',
+                 callbacks:{
+                    onImageUpload: function(files, editor, welEditable) {
+          			for( let i = files.length - 1; i >= 0; i--) {
+          				sendFile(files[i], this);
+          			   }
+          			}
+                 }
               });
-        	
+            
+            
+         // uuid 생성
+			function uuid(file_nm) {
+        		function s4() {
+        		     return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+        		   }
+        		   return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length-1).toLowerCase();
+        		}
+
+			// summernote 이미지 저장
+			function sendFile(file, el) {
+				let formData = new FormData();
+				formData.append('file', file, uuid(file.name));
+				console.log("uuid 적용확인: ", formData.get('file').name);
+				$.ajax({
+					type: "POST",
+					url: "http://140.238.11.118:5000/upload",
+					data: formData,
+					processData: false,
+					contentType: false,
+					success: function(result) {
+						console.log("result 값 확인: ",  formData.get('file').name);
+						$(el).summernote('insertImage', 'http://140.238.11.118:5000/upload/'+result );
+						$('#imageBoard > ul').append('<img src="'+result+'" width="auto" height="auto"/>');
+						console.log("성공");
+					},
+					err: function(err) {
+						console.log("에러: ", err)
+					}
+				})
+			}
+			
+			
+			
         	});
-        
-        </script>
+        	</script>
         
     </body>
 </html>        

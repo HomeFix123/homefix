@@ -11,8 +11,7 @@ import com.homefix.domain.Estimation;
 
 public interface ContractRepository extends CrudRepository<Contract, Integer>{
 
-	Contract findByEstimation(Estimation estimation);
-
-	
+		List<Contract> findByCompay(Company compay);
 		
+		Contract findByEstimation(Estimation estimation);
 }

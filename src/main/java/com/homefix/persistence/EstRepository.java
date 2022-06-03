@@ -3,10 +3,12 @@ package com.homefix.persistence;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
 import com.homefix.domain.Estimation;
 import com.homefix.domain.Member;
@@ -25,9 +27,7 @@ public interface EstRepository extends CrudRepository<Estimation, Integer>{
 	@Query(value="SELECT * FROM estimation WHERE eid = ?1" , nativeQuery = true)
 	Estimation getEstDetail(String word);
 	
-	//전체 견적 목록 보기
-	//@Query(value="SELECT * FROM estimation e ORDER BY e.eid DESC")
-	//List<Estimation> findAllDesc();
-	
+	// 전체 견적 페이징 처리
+	public List<Estimation> findAll(Pageable pageable);
 
 }

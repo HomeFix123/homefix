@@ -3,8 +3,6 @@ var col_kor = [
 	{"title": "닉네임"},
 	{"title": "이름"},
 	{"title": "가입일"},
-	{"title": "최근 접속일"},
-	{"title": "신고수"},
 ]
 $(function(){
 	
@@ -30,10 +28,14 @@ $(function(){
 	const modifyBtn = modalButtons.find('.modify');
 	const blacklistBtn = modalButtons.find(".blacklist");
 	
+	const estTable = $('#estTable');
+	const estTbody = estTable.find('tbody');
+	
 	const reportTable = $('#reportTable');
 	const reportTbody = reportTable.find('tbody'); 
 	
 	let memberData;
+	let memberEstData;
 	let memberReportData;
 	let isBlacklist;
 	
@@ -57,10 +59,27 @@ $(function(){
 		trAddr.text(memberData.addr);
 		trAddrd.text(memberData.addrd);
 		
+		// 블랙리스트 설정
 		isBlacklist = !memberData.enabled;
 		blacklistBtn.val(isBlacklist);
 		blacklistBtn.text(isBlacklist ? '정지 해제' : '계정 정지');
 		
+		// 견적 목록
+		memberEstData = searchEstById(id);
+		console.log(memberEstData);
+		estTbody.empty();
+		for(let est of memberEstData){
+			let tr = "<tr>"
+			tr += "<td>"+ est.eid + "</td>"
+			tr += "<td>"
+			tr += "<a>" + est.building + "/" +est.space + "/" + est.size + "평</a>"
+			tr += "</td>"
+			tr += "<td>"+ est.budget +"만원</td>"
+			tr += "</tr>" 
+			estTbody.append(tr);
+		}
+		
+		// 신고 목록
 		memberReportData = searchReportById(id);
 		reportTbody.empty();
 		
@@ -72,6 +91,9 @@ $(function(){
 			reportTbody.append(tr);	
 		}
 		reportTable.find('tfoot > tr > td:eq(1)').text(memberReportData.length + '건');
+		
+		
+		
 		
 		
 		myModal.show();
@@ -96,6 +118,21 @@ $(function(){
 		$.ajax({
 			type: "GET",
 			url: "/admin/member/report/" + id,
+			contentType: "application/json",
+			async: false
+		}).done((data) => {
+			result = data;
+		}).fail((error) => {
+			console.log(error);
+		})
+		return result;
+	}
+	
+	function searchEstById(id){
+		let result = null;
+		$.ajax({
+			type: "GET",
+			url: "/admin/member/est/" + id,
 			contentType: "application/json",
 			async: false
 		}).done((data) => {

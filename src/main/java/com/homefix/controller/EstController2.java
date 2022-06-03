@@ -31,7 +31,7 @@ public class EstController2 {
 	/* 견적상담 신청 페이지 */
 	@GetMapping("/write") //RESTful 방식 : /estimation/write
 	public String insertEst() {
-		return "/estimation2/estimation"; // RESTful은 리턴값을 반드시 써주어야 함(리턴은 뷰페이지 경로 적기)
+		return "estimation2/estimation"; // RESTful은 리턴값을 반드시 써주어야 함(리턴은 뷰페이지 경로 적기)
 	}
 		
 	@PostMapping("/write")
@@ -40,34 +40,32 @@ public class EstController2 {
 		String id = "test"; // 나중에는 세션에서 ID 값을 가져옴, 현재 테스트로 ID 직접 넣어줌
 		estService2.saveEst(est, id);
 		logger.info("입력성공");
-		return "redirect:/estimation/write"; //redirect는 요청 url 주소를 써줌
+		return "redirect:write"; //redirect는 요청 url 주소를 써줌
 	}
 	
 	/* Q&A 페이지 */
 	@GetMapping("/qna")
 	public String qna() {
-		return "/estimation2/qna";
+		return "estimation2/qna";
 	}
 	
 	/* 전체견적 목록 페이지 */
 	@GetMapping("/total")
-	public String estList(Model m) {
-		
-		Estimation est = new Estimation();
-		List<Estimation> list = estService2.estList(est);
-		m.addAttribute("estList", list);
-		return "/estimation2/est-total-list";
-		
+	public String getEstList(Model m, Integer page) {
+		if(page == null) page = 1;
+		Estimation est = new Estimation(); 
+		/*List<Estimation> list = estService2.getEstList(est, page);*/ 
+		m.addAttribute("estList", estService2.getEstList(est, page)); 
+		m.addAttribute("cntEst", estService2.countEstList());
+		return "estimation2/est-total-list";
 	}
 	
 	/* 견적희망서(상세) 페이지 */
 	@GetMapping("/details")
 	public String estDetails(String id, Model m) {
 		m.addAttribute("Details", estService2.getEstDetails(id));
-		return "/estimation2/estimation-details";
+		return "estimation2/estimation-details";
 	}
-	
-	
 	
 	
 	

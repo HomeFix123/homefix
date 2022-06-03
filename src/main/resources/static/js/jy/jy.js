@@ -163,20 +163,7 @@ $(function() {
 		//==============================================
 		
 		alert('견적상담 신청이 완료되었습니다.');
-		
-				
-		
 	})
-	
-	
-
-/*if(selectSpace ==""){
-				$('#spaceTitle .error_box'  ).html("이름 형식이 올바르지 않습니다.");
-				$('#spaceTitle' ).focus();
-				return false;
-		}*/
-	
-	
 	
 	
 })
