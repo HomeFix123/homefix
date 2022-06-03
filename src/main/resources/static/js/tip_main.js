@@ -44,11 +44,11 @@ function addComment() {
     })
 
     // 코멘트에 버튼 추가
-    commentLike.appendChild(likeBtn);
-    commentLike.appendChild(likedBtn);
-    commentBtns.appendChild(deleteBtn);
+    /*commentLike.appendChild(likeBtn);
+    commentLike.appendChild(likedBtn);*/
+    commentBtns.appendChild(deleteBtn);/*
     commentBtns.appendChild(commentLike);
-    newComment.appendChild(commentBtns);
+    newComment.appendChild(commentBtns);*/
     commentList.appendChild(newComment);
     commentInput.value = "";
     commentBtn.disabled = true;
