@@ -1,6 +1,8 @@
 package com.homefix.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,6 +18,7 @@ public class Comment {
 	
 	/*댓글[comment] 테이블 */
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer cmid;   // 댓글 아이디
 	private String content; // 댓글 내용
 	@Transient

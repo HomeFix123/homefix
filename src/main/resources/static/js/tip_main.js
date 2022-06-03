@@ -1,107 +1,59 @@
-const commentInput = document.getElementsByClassName('input-comment')[0];
-const commentBtn = document.getElementsByClassName('submit-comment')[0];
-const commentList = document.getElementsByClassName('comments')[0];
-
 // 댓글 달기
-function addComment() {
-    var newComment = document.createElement('li')
-    newComment.innerHTML = `<span><span class="point-span userID">thisisyourhyung</span>` + commentInput.value + `</span>`;
+$(function() { 
 
-    // 코멘트에 더해지는 버튼 생성
-    let commentBtns = document.createElement('div');
-
-    let deleteBtn = document.createElement('img');
-    deleteBtn.classList.add("comment-more");
-    deleteBtn.src = "https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/more.png";
-    deleteBtn.alt = "more";
-
-    let likeBtn = document.createElement('img');
-    likeBtn.classList.add("comment-heart");
-    likeBtn.src = "https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/heart.png";
-    likeBtn.alt = "하트";
-
-    let likedBtn = document.createElement('img');
-    likedBtn.classList.add("comment-heart-liked");
-    likedBtn.src = "img/liked.png";
-    likedBtn.alt = "좋아요된하트";
-
-    let commentLike = document.createElement('div');
-    commentLike.classList.add("comment-like");
-
-    // 버튼에 함수 선언
-    deleteBtn.addEventListener('click', function() {
-        this.parentNode.parentNode.remove();
-    })
-
-    commentLike.addEventListener('click', () => {
-        if (likeBtn.style.display === 'none') {
-            likeBtn.style.display = 'inline-block';
-            likedBtn.style.display = 'none';
-        } else {
-            likeBtn.style.display = 'none';
-            likedBtn.style.display = 'inline-block';
+$(".submit-comment").click(function(){
+	//console.log('댓글 버튼 클릭');
+	const submitComment = $(this);
+	
+		
+	
+	const commetWriter = $('.commetWriter').val();  //댓글 작성자
+	console.log(commetWriter)
+	
+	const inputComment = $('.input-comment').val(); //댓글 내용
+	console.log(inputComment)
+	
+	const tipId = $('.tipId').val(); // 팁 아이디(번호)  
+	console.log(tipId)
+	
+	$.ajax({
+		type: 'get', //get, post 중 선택
+		url: '/tip/save', //요청을 보냄, 받을때는 컨트롤러에서 받음
+		data: { //보내는 데이터
+			id: commetWriter, // id => 컨트롤러 함수 매개변수와 똑같이 써줘야 함
+            content: inputComment,
+            tid: tipId
+        },
+        contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8', //한글처리
+        success: function (result) { // 성공했을 때
+        	alert(result.content);
+			console.log(result);
+			console.log(result[0]);
+			console.log(result[0].cmid);
+			console.log(result[0].member.name);
+			$('.contecnt').text(); html(), val()
+        },
+        error: function (err){    // 실패했을 때
+           alert('실패')
         }
-    })
-
-    // 코멘트에 버튼 추가
-    /*commentLike.appendChild(likeBtn);
-    commentLike.appendChild(likedBtn);*/
-    commentBtns.appendChild(deleteBtn);/*
-    commentBtns.appendChild(commentLike);
-    newComment.appendChild(commentBtns);*/
-    commentList.appendChild(newComment);
-    commentInput.value = "";
-    commentBtn.disabled = true;
-}
-
-commentBtn.addEventListener('click', function(){
-    if (commentInput.value) {
-        addComment();
-    }
-})
-
-commentInput.addEventListener('keyup', function(e){
-    if (commentInput.value) {
-        commentBtn.disabled = false;
-        if (e.which === 13) {
-            addComment();
-        }
-    }
-    else {
-    commentBtn.disabled = true;
-    }
-})
+        
+		
+	});
+	
+	
+});
 
 
-// 댓글 지우기
-let deleteBtn = document.querySelectorAll('.comment-more');
-deleteBtn.forEach(function(event) {
-    event.addEventListener('click', function() {
-        this.parentNode.parentNode.remove();
-    });
-})
 
 
-// 댓글 좋아요
-let commentLike = document.querySelectorAll('.comment-like');
-commentLike.forEach(function(event) {
-    event.addEventListener('click', function() {
-        var likeBtn = this.querySelector('.comment-heart');
-        var likedBtn = this.querySelector('.comment-heart-liked');
 
-        if (likeBtn.style.display === 'none') {
-            likeBtn.style.display = 'inline-block';
-            likedBtn.style.display = 'none';
-        } else {
-            likeBtn.style.display = 'none';
-            likedBtn.style.display = 'inline-block';
-        }
-    })
-})
+
+
+
 
 
 // top 버튼----------------------------------------------------------------
-$(function() { 
+
 	// 보이기 | 숨기기 
 	$(window).scroll(function() {
 		if ($(this).scrollTop() > 250) {
