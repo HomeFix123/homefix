@@ -11,4 +11,6 @@ public interface PaymentRepository extends CrudRepository<Payment, String>{
 	
 	public List<Payment> findByCompany(Company company);
 	
+	
+	public List<Payment> findByCompanyOrderByCompanyDesc(Company company);
 }

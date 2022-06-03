@@ -2,6 +2,7 @@ package com.homefix.service;
 
 import java.util.List;
 
+import com.homefix.domain.Chatting;
 import com.homefix.domain.Contract;
 import com.homefix.domain.Esti_request;
 import com.homefix.domain.Estimation;
@@ -29,4 +30,7 @@ public interface EstService {
 	
 	//(회사) 확정하기 선택 시 esti_request테이블에 값 저장
 	public void saveEstReq(Integer eid,String cid);
+	
+	//(회사) 채팅하기 선택 시 chatting테이블에 값 저장
+	public Chatting saveChatRoom(String id,String cid,String nickname);
 }

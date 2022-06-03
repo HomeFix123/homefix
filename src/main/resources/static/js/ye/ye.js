@@ -75,7 +75,7 @@ $(function() {
 		 });//===$(".ing_btn") click
 
 //---<ChosenDetail(구  MPickCDetail)>		 
-	//-확정하기 버튼 클릭 시 체크박스 유효성검사
+	//-확정하기 버튼 클릭 시 체크박스 유효성검사/db저장 버튼 변경
 	$(".decision_btn_CD").on("click", function(e){
 		//기본 이벤트 비활성화
 		e.preventDefault();
@@ -90,6 +90,7 @@ $(function() {
 				contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8',
 				success:function(){
 					console.log('성공');
+					//버튼 css 변경
 					decisionBtn.text("확정요청완료");
 					decisionBtn.addClass("nothover_btn");
 					decisionBtn.attr("id","nothover_btn");
@@ -107,9 +108,43 @@ $(function() {
 		}
 	});//=확정하기 버튼 클릭 시 체크박스 유효성검사
 
-	//-채팅하기 버튼 클릭시 채팅띄우기(MPickCDetail)
-	$(".chat_btn").on("click",function(){
-		window.open("http://localhost:3000/chat?roomCode=1&id=1", 'chatting', 'width=500px, height=800px');
+	//-채팅하기 버튼 클릭시 방만들고 채팅띄우기(MPickCDetail)
+	$(".chat_btn").on("click",function(e){
+		//기본 이벤트 비활성화
+		e.preventDefault();
+		if($(".warning_check").is(":checked") == true){
+    	console.log('체크된 상태');
+    	//ajax로 db저장 후 불러오기 
+    	$.ajax({
+				type:'get',
+				url:'/estimation/saveChatRoom',
+				data:{id:$('.mid').val(),cid:$('.cid').val(),nickname:$('.cname').val()},
+				contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8',
+				success:function(result){
+					console.log('성공');
+					console.log(result);
+					console.log(result.room_id);
+					console.log(result.company.id);
+					console.log(result.company.name);
+					const roomCode=result.room_id;
+					const id = result.company.id;
+					const nickname = result.company.name;
+					window.open("http://localhost:3000/chat?room="+roomCode+"&id="+id+"&nickname="+nickname, 'chatting', 'width=500px, height=800px');
+					
+				},
+				error : function(err) {
+					//실패했을 때
+	    			alert('실패:');
+	    			console.log(err);
+	    		}
+			})//ajax
+    	
+    	}
+    	else{alert("필수 사항을 체크해주세요");
+    	console.log('체크되지않은 상태');
+    	}
+    	
+		//window.open("http://localhost:3000/chat?roomCode=1&id=1", 'chatting', 'width=500px, height=800px');
 	});//=채팅하기 버튼 클릭시 채팅띄우기(MPickCDetail)
 
 //===<ChosenDetail(구  MPickCDetail)>	

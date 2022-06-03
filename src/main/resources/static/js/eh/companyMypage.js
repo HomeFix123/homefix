@@ -90,7 +90,7 @@ $(function() {
 		var memberNickname = $.trim($("#nicname").val());
 		var memberPassword = $.trim($("#password").val());
 		var passwordCheck = $.trim($("#two_password").val());
-		
+
 		var memberTel = $.trim($("#first-name1").val());
 		var memberEmail = $.trim($("#bs_memberEmail").val());
 		var zip = $.trim($("#sample6_postcode").val());
@@ -161,20 +161,20 @@ $(function() {
 
 
 		/* 이름 */
-	/*	if (memberName == '') {
-			$('label[for="memberName"] .error_box').html(blank);
-			$('#name').focus();
-			return false;
-		} else {
-			$('label[for="memberName"] .error_box').html("");
-		}
-		if (!RegexName.test(memberName)) {
-
-			$('label[for="name"] .error_box').html("이름 형식이 올바르지 않습니다.");
-			return false;
-		} else {
-			$('label[for="name"] .error_box').html("");
-		}*/
+		/*	if (memberName == '') {
+				$('label[for="memberName"] .error_box').html(blank);
+				$('#name').focus();
+				return false;
+			} else {
+				$('label[for="memberName"] .error_box').html("");
+			}
+			if (!RegexName.test(memberName)) {
+	
+				$('label[for="name"] .error_box').html("이름 형식이 올바르지 않습니다.");
+				return false;
+			} else {
+				$('label[for="name"] .error_box').html("");
+			}*/
 
 
 		if (memberEmail == '') {
@@ -225,7 +225,7 @@ $(function() {
 			$('label[for="first-name1"] .error_box').html("");
 		}
 
-		
+
 		alert("회원 정보 수정이 완료되었습니다.");
 	}) //end of #btnMemberUpdate
 
@@ -237,7 +237,24 @@ $(function() {
 	$('#Withdrawal').click(function() {
 		var result = confirm("정말 탈퇴하시겠습니까?");
 		if (result) {
-			document.memberDelete.submit();
+			var id = $('#companyId').text();
+			var pass = $('#password').val();
+			$.ajax({
+				url: "/sign/Withdrawal",
+				data: { id: id, pass: pass },
+				contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+				method: post,
+				success: function(result) {
+					console.log(result);
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});
+
+
+
+
 		}
 
 	})
