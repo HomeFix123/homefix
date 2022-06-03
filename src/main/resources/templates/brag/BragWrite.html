@@ -438,8 +438,7 @@
 										<label class="input-group-text" for="cid">업체명</label>
 										<select class="form-select" id="cid" name="cid" >
 											<option disabled selected>계약 업체목록</option>
-											<option th:each="conlist : ${contract}" th:value="${conlist.company.id}" th:text="${conlist.company.name}" >한샘리하우스디자인디원</option>
-											
+											<option th:each="conlist : ${contract}" th:value="${conlist.id}" th:text="${conlist.name}" >한샘리하우스디자인디원</option>											
 										</select>
 									</div>
 
