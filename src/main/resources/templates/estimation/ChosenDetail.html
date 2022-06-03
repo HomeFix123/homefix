@@ -232,6 +232,7 @@
 								<div class="course-info" th:each="detail:${Detail}">
                                     <h2 class="title" id="estimate_title">희망 견적서 상세보기</h2>
                                     <input type="hidden" name="eid" class="eid" th:value="${detail.eid}">
+                                    <input type="hidden" name="mid" class="mid" th:value="${detail.member.id}">
                                     <input type="hidden" name="cid" class="cid" th:value="${detail.company.id}">
                                     <input type="hidden" name="cname" class="cname" th:value="${detail.company.name}">
                                     <p><span class="bold">공간 유형  :</span> <span th:text="${detail.space}"></span></p>
