@@ -2,12 +2,15 @@ package com.homefix.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Brag;
+import com.homefix.domain.Company;
 import com.homefix.domain.Contract;
 import com.homefix.domain.Estimation;
 import com.homefix.domain.Member;
@@ -75,8 +78,7 @@ public class BragServiceImpl implements BragService {
 		} else {
 			result.setPreferck(false);
 		}
-		
-		System.out.println("좋아요 체크 "+result.getPreferck());
+
 		return result;
 		
 	}
@@ -131,13 +133,15 @@ public class BragServiceImpl implements BragService {
 	
 	
 	@Override
-	public List<Contract> getContractList(String id) {
+	public Set<Company> getContractList(String id) { 
 		Member mem = memberRepo.findById(id).get();
 		List<Estimation> result = estRepo.findByMember(mem);
-		List<Contract> con = new ArrayList<>();
+		Set<Company> con = new HashSet<>();
 		for(int i=0; i < result.size(); i++) {
-			con.add(contractRepo.findByEstimation(result.get(i)));
-			
+			Contract temp = contractRepo.findByEstimation(result.get(i));
+			if(temp != null) {
+			con.add(temp.getCompany());
+			}
 		}
 		
 		System.out.println("con"+con);

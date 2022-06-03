@@ -1,8 +1,10 @@
 package com.homefix.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.homefix.domain.Brag;
+import com.homefix.domain.Company;
 import com.homefix.domain.Contract;
 import com.homefix.domain.Member;
 
@@ -30,7 +32,7 @@ public interface BragService {
 	public String saveReport(Member id, String reporter, String reason);
 	
 	// 계약완료 업체리스트
-	List<Contract> getContractList(String id);
+	Set<Company> getContractList(String id);
 	
 	
 	

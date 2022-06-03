@@ -43,4 +43,11 @@ margin-top: 50px;
 #bs_btn_emailCheak{
 	padding:10px 25px;
 }
+#pridiv{
+	text-align: center;
+}
 
+#tableHeadText{
+	font-size: 15px;
+	font-weight: bold;
+}

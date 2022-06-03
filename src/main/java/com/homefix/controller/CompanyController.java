@@ -72,7 +72,7 @@ public class CompanyController {
 		} else {
 			model.addAttribute("message", "N");
 			System.out.println("*******로그인 실패*********");
-			return "/sign/sign-in";
+			return "sign/sign-in";
 		}
 	}
 
@@ -81,10 +81,10 @@ public class CompanyController {
 
 		if (session.getAttribute("userId") != null) {
 
-			return "/company/companyprofile";
+			return "redirect:/company/profile";
 
 		} else {
-			return "/sign/sign-in";
+			return "sign/sign-in";
 
 		}
 
@@ -107,16 +107,25 @@ public class CompanyController {
 	public String companyUpdate(Company com) {
 
 		companyService.companyUpdate(com);
-		return "/company/companyprofile";
+		return "company/companyprofile";
 	}
 
 	// 사업자 회원 탈퇴
-
 	@DeleteMapping("/Withdrawal")
-	public String companyDelete(Company com) {
-		companyService.companyDelete(com);
+	@ResponseBody
+	public String companyDelete(String pass, HttpSession session) {
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!" + session.getAttribute("userId"));
+		Company com = new Company();
+		com.setPass(pass);
+		com.setId((String) session.getAttribute("userId"));
+		String passCheck = companyService.companyDelete(com);
+		if (passCheck == "Y") {
+			session.invalidate();
+			return passCheck;
+		} else {
+			return passCheck;
+		}
 
-		return "redirect:";
 	}
 
 	// 사업자 로그아웃
