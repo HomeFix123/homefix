@@ -28,6 +28,7 @@ public class TipServiceImpl implements TipService{
 		int showCntPerPage = 5;
 		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("tid").descending());
 		return tipRepo.findAll(pageable);
+		
 	}
 	
 	// 팁 전체 개수 (페이징 용)
