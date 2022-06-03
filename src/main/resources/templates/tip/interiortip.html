@@ -101,7 +101,9 @@
 	                                   	<!-- 댓글목록 -->
 	                                    <div class="comment-section">
 	                                        <ul class="comments">
-	                                           <div class="comment-like"></div>
+	                                           <div class="comment-like">
+	                                           <p><span class="memberId">아이디 :</span><span class="contecnt"> 안녕하세요</span></p>
+	                                           </div>
 	                                        </ul>
 	                                     <div class="time-log">
 	                                        <span th:text="${tip.tdate}"></span>
@@ -111,10 +113,14 @@
 	                                </div>
 	                                <!-- 댓글입력 -->
 	                                <div class="comment">
-	                                    <input id="input-comment" name="content" class="input-comment" type="text" placeholder="댓글을 입력해주세요.">
-	                                    <button type="submit" class="submit-comment" disabled>게시</button>
+	                                	<input type="hidden" th:value="${tip.tid}" class="tipId">
+	                            		<input type="hidden" th:value="${tip.member.id}" class="commetWriter">
+	                                	<input id="input-comment" name="content" class="input-comment" type="text" placeholder="댓글을 입력해주세요.">
+	                                    <button type="button" class="submit-comment">게시</button>
 	                                </div>
+	                                
 	                            </article>
+	                                    
 	                            <!-- /게시물 끝-->
 	                            </form>
 	                            
@@ -163,8 +169,8 @@
 	    <script th:src="@{/js/main.js}"></script>
 	    <!-- 인테리어팁용 js 파일 -->
 	    <script th:src="@{/js/tip_main.js}"></script>
-		
-		<!-- 개인(페이징 용) js 스크립트 -->
+	    
+	    <!-- 개인(페이징 용) js 스크립트 -->
 	    <script th:src="@{/js/jy/tipPage.js}"></script>
 	    
 	    <!-- 페이징 용 -->
