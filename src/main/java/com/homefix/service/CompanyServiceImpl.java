@@ -52,8 +52,8 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	// 사업자 회원 탈퇴
-	public void companyDelete(String id) {
-		companyRepo.deleteById(id);
+	public void companyDelete(Company com) {
+		//companyRepo.deleteById(); 
 	}
 
 	// 사업자 정보 불러오기

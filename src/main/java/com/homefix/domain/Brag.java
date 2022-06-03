@@ -48,10 +48,10 @@ public class Brag {
 	private Date  bdate;
 	
 	@JoinColumn(name = "id")
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	private Member member;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	@JoinColumn(name = "cid")
 	private Company company;
 	
@@ -59,5 +59,7 @@ public class Brag {
 	private long prefer;
 	@Transient
 	private Boolean preferck;
+	@Transient
+	private Boolean reportck;
 	
 }

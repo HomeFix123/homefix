@@ -80,6 +80,7 @@
 	                            </div>
 	                        </div>
 	                        <div class="feeds">
+	                        	<form th:action='@{/tip/save}' method='post'>
 	                            <!-- article -->
 	                            <!-- 게시물 시작 -->
 	                            <article id="post_atl" th:each="tip : ${tipList}">
@@ -110,11 +111,12 @@
 	                                </div>
 	                                <!-- 댓글입력 -->
 	                                <div class="comment">
-	                                    <input id="input-comment" class="input-comment" type="text" placeholder="댓글을 입력해주세요.">
+	                                    <input id="input-comment" name="content" class="input-comment" type="text" placeholder="댓글을 입력해주세요.">
 	                                    <button type="submit" class="submit-comment" disabled>게시</button>
 	                                </div>
 	                            </article>
 	                            <!-- /게시물 끝-->
+	                            </form>
 	                            
 	                            <!-- 페이지 버튼 -->
 							    <div class="sg-pagination text-center">
