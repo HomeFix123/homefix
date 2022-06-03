@@ -88,10 +88,23 @@
                                                 <p class="progress_addr" th:text="|주소 : ${list.estimation.eaddr}|"></p>
                                             </div><!-- /.product -->                                                  
                                         </th>
-                                        <td><h6 class="progress_contents_td" th:text="${list.estimation.member.id}">kosmo</h6></td>
+                                        <td>
+                                        	<h6 class="progress_contents_td" th:text="${list.estimation.member.id}">kosmo</h6>
+                                        </td>
                                         <td class="progress_td">
-                                            <span class="price bold" th:text="${list.ing}"></span>
-                                            <p><button class="ing_btn btn btn-primary">시공완료</button></p>                                    
+                                        	<!-- 진행중일 경우 -->
+                                        	<span th:if="${list.ing == '진행중'}" th:text="${list.ing}" class="price bold" ></span>
+                                            <!-- <span class="price bold" th:text="${list.ing}"></span> -->
+                                            <p>
+                                            	<a th:if="${list.ing == '진행중'}" class="ing_btn btn btn-primary" th:text="시공완료"></a>
+                                            </p>
+                                            <!-- 시공완료일 경우 -->
+                                            <span th:unless="${list.ing == '진행중'}" th:text="${list.ing}" class="complete_txt price bold" ></span>
+                                            <!-- <span class="price bold" th:text="${list.ing}"></span> -->
+                                            <p>
+                                            	<a th:unless="${list.ing == '진행중'}" class="ing_btn nothover_btn btn btn-primary" id="nothover_btn" th:text="시공완료"></a>
+                                            </p>
+                                                                                
                                         </td>
                                     </tr>
                                     <tr>

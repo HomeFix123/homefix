@@ -24,4 +24,6 @@ public interface EstService {
 	//업체가 진행중인 견적 리스트 보기
 	public List<Contract> getCIngList(String eid);
 
+	//진행중 -> 시공완료
+	public void saveIng(Integer id);
 }
