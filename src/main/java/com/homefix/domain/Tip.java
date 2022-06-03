@@ -1,6 +1,7 @@
 package com.homefix.domain;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -34,5 +36,10 @@ public class Tip {
 	@JoinColumn(name="id")
 	@ManyToOne
 	private Member member;	// 이용자 아이디(멤버테이블)
+	
+	// 댓글 연관 관계
+	@OneToMany
+	private List<Comment> CommentList = new ArrayList<>();
+	
 	
 }

@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
@@ -34,5 +37,6 @@ public class MemberReport {
 	@JoinColumn(name = "reporter")
 	private Member reporter;
 	
-	private Date rday;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date rday = new Date();
 }

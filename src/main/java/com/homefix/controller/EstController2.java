@@ -40,7 +40,7 @@ public class EstController2 {
 		String id = "test"; // 나중에는 세션에서 ID 값을 가져옴, 현재 테스트로 ID 직접 넣어줌
 		estService2.saveEst(est, id);
 		logger.info("입력성공");
-		return "redirect:estimation/write"; //redirect는 요청 url 주소를 써줌
+		return "redirect:write"; //redirect는 요청 url 주소를 써줌
 	}
 	
 	/* Q&A 페이지 */

@@ -31,7 +31,7 @@ public class Contract {
 	
 	@JoinColumn(name="cid")
 	@ManyToOne
-	private Company compay;	// 업체 아이디(업체테이블) 
+	private Company company;	// 업체 아이디(업체테이블) 
 	
 
 }
