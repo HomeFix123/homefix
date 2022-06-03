@@ -1,12 +1,11 @@
 package com.homefix.domain;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.Data;
 
@@ -19,7 +18,8 @@ public class Comment {
 	@Id
 	private Integer cmid;   // 댓글 아이디
 	private String content; // 댓글 내용
-	private Date cdate; 	// 댓글 날짜
+	@Transient
+	private String cdate; 	// 댓글 날짜
 	
 	@JoinColumn(name="tid")
 	@ManyToOne

@@ -10,7 +10,7 @@
         <meta name="author" content="">
         <meta name="description" content="">
 
-        <title>estimation.html</title>
+        <title>견적 상담 신청</title>
         
         <!-- CSS -->
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -53,10 +53,12 @@
             <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
+        <!-- 헤더 -->
         <div th:replace="/sections/header :: header"></div>
+        <!-- 헤더 끝 -->
                 
-        <section class="breadcrumb-section">
-            <div class="container">
+        <section class="breadcrumb-section" >
+            <div class="container" style="padding-top:30px; padding-bottom:30px;">
                 <h1>견적 상담 신청</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -240,112 +242,12 @@
                     </div>
                 </div><!-- /.container -->
       	</form>
+      	</dvgiv>
       	
-      	
-
-      	
-      	
-      </dvgiv>
-        <div class="footer">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="footer-content">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <div class="footer-logo">
-                                        <a href="#"><img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid"></a>
-                                    </div>
-                                    <p>Holisticly aggregate compelling ROI before out-of-the-box benefits. Efficiently create cross functional paradigms without an expanded array of testing procedures.</p>
-                                    <div class="footer-social">
-                                        <ul class="global-list">
-                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        </ul>
-                                    </div>                           
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget px-md-4">
-                                    <h3>Quik Links</h3>
-                                    <ul class="global-list">
-                                        <li><a href="#">All Courses</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Our Blogs</a></li>
-                                        <li><a href="#">Teacher</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                        <li><a href="#">Terms</a></li>
-                                        <li><a href="#">Carrer</a></li>
-                                    </ul>                            
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <h3>Popular Courses</h3>
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img th:src="@{/images/blog/4.jpg}" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a href="blog-details.html">Sed ut perspiciatis unde iste</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post --> 
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img th:src="@{/images/blog/5.jpg}" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a href="blog-details.html">Essential Training Training Examples</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post --> 
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img th:src="@{/images/blog/2.jpg}" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a href="blog-details.html">Python Programming Essential Training</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post -->                            
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <h3>Subscribe</h3>
-                                    <form action="#" class="sa-form">
-                                        <input type="email" class="form-control" placeholder="Email address" required="">
-                                        <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                                    </form> 
-                                    <div class="payment-gateway">
-                                        <h4>Payment Gateway</h4> 
-                                        <ul class="global-list d-flex">
-                                            <li><img th:src="@{/images/others/payment1.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment2.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment3.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment4.png}" alt="Image" class="img-fluid"></li>
-                                        </ul>
-                                    </div>                      
-                                </div>
-                            </div>
-                        </div><!-- /.row -->
-                    </div>
-                </div><!-- /.container -->
-            </div>
-            <div class="footer-bottom">
-                <div class="container text-center">
-                    <span>Copyright &copy; 2021 ChtStudio - All Rights Reserved.</span>
-                </div><!-- /.container -->
-            </div>
-        </div><!-- /.footer -->
-
+      	<!-- 푸터 -->
+        <div th:replace="/sections/footer :: footer"></div>
+		<!-- 푸터 끝 -->
+		
         <!-- JS -->
         <script th:src="@{/js/jquery.min.js}"></script>
         <script th:src="@{/js/popper.min.js}"></script>

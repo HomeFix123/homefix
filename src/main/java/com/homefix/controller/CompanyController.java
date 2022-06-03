@@ -1,22 +1,21 @@
 package com.homefix.controller;
 
-import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.homefix.domain.Company;
-import com.homefix.domain.CompanyDto;
 import com.homefix.service.CompanyService;
 
 /**
@@ -43,13 +42,14 @@ public class CompanyController {
 	// 사업자 이메일 중복 조회
 	@GetMapping("/company/emailCheck")
 	@ResponseBody
-	public String emailCheck(String email,String email2 ) {
-		
-		if(email.equals(email2)) {
+	public String emailCheck(String email, String email2) {
+
+		if (email.equals(email2)) {
 			return "S";
-		}else {
-		
-		return companyService.emailCheck(email);}
+		} else {
+
+			return companyService.emailCheck(email);
+		}
 	}
 
 	// 사업자번호 중복 조회
@@ -102,26 +102,22 @@ public class CompanyController {
 
 	}
 
-	
-	
-	
-	
-	
 	// 사업자 정보수정
 	@PutMapping("/company/companyUpdate")
 	public String companyUpdate(Company com) {
-		
-	System.out.println(	"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+com.getId());
+
 		companyService.companyUpdate(com);
 		return "/company/companyprofile";
 	}
 
-	/*
-	 * // 사업자 회원 탈퇴
-	 * 
-	 * @DeleteMapping public String companyDelete(String id) {
-	 * companyService.companyDelete(id); return ""; }
-	 */
+	// 사업자 회원 탈퇴
+
+	@DeleteMapping("/Withdrawal")
+	public String companyDelete(Company com) {
+		companyService.companyDelete(com);
+
+		return "redirect:";
+	}
 
 	// 사업자 로그아웃
 	@GetMapping("/company/logOut")
@@ -141,15 +137,5 @@ public class CompanyController {
 		companyService.companyInsert(com);
 		return "redirect:/index";
 	}
-
-	/* 비밀번호 찾기 */
-	/*
-	 * @RequestMapping(value = "findIdPw", method = RequestMethod.GET) public void
-	 * findIdPwGET() throws Exception{ }
-	 * 
-	 * @RequestMapping(value = "findIdPw", method = RequestMethod.POST) public void
-	 * findIdPwPOST(Company com, HttpServletResponse response) throws Exception{
-	 * companyService.findIdPwPOST(response, com); }
-	 */
 
 }

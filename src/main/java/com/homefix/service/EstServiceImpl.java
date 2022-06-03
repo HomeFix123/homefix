@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.homefix.domain.Chatting;
 import com.homefix.domain.Company;
 import com.homefix.domain.Contract;
 import com.homefix.domain.Esti_request;
 import com.homefix.domain.Estimation;
 import com.homefix.domain.Member;
+import com.homefix.persistence.ChattingRepository;
 import com.homefix.persistence.CompanyRepository;
 import com.homefix.persistence.ContractRepository;
 import com.homefix.persistence.EstRepository;
@@ -69,7 +71,7 @@ public class EstServiceImpl implements EstService {
 	@Override 
 	public List<Contract> getCIngList(String cid) {
 		Company company  = companyRepo.findById(cid).get();
-		return contractRepo.findByCompay(company);
+		return contractRepo.findByCompany(company);
 	}
 
 	@Override
@@ -79,6 +81,49 @@ public class EstServiceImpl implements EstService {
 		contract.setIng("시공완료"); 
 		contractRepo.save(contract);
 	}
+
+	//업체에게 온 견적 상세보기에서 확정하기 클릭 시  esti_request테이블에 값 저장
+	@Override
+	public void saveEstReq(Integer eid, String cid) {
+		Estimation estimation = estRepo.findById(eid).get();
+		Company company  = companyRepo.findById(cid).get();
+		Esti_request estReq = new Esti_request();
+		estReq.setEstimation(estimation);
+		estReq.setCompany(company);
+		esti_reqRepo.save(estReq);
+	}
+
+	@Autowired
+	ChattingRepository chatRepo;
+	
+	//업체에게 온 견적 상세보기에서 채팅하기 클릭 시 chat테이블에 값 저장
+	@Override
+	public Chatting saveChatRoom(String id, String cid, String nickname) {
+		
+		Member member = memberRepo.findById(id).get();
+		Company company  = companyRepo.findById(cid).get();
+		Chatting chat = chatRepo.findByMemberAndCompany(member, company);
+		
+		//DB에 방이 있을 경우
+		if(chat != null) {
+			System.out.println("값이 존재합니다.");
+			return chat; 
+		}
+		//DB에 방이 없을 경우 입력 후 검색 
+		System.out.println("값이 null입니다");
+		Chatting chatting = new Chatting();
+		chatting.setMember(member);
+		chatting.setCompany(company);
+		chatting.setNickname(nickname);
+		chatRepo.save(chatting);
+		System.out.println("값을 입력했습니다.");
+		Chatting newChat = chatRepo.findByMemberAndCompany(member, company);
+		System.out.println("입력한 값을 찾아왔습니다.");
+		return newChat;
+		
+	}
+	
+	
 
 	
 }

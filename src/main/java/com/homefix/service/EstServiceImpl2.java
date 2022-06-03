@@ -36,7 +36,7 @@ public class EstServiceImpl2 implements EstService2 {
 	@Override
 	public List<Estimation> getEstList(Estimation est, int page) {
 		//return (List<Estimation>)estRepo.findAll();
-		int showCntPerPage = 5;
+		int showCntPerPage = 10;
 		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
 		return estRepo.findAll(pageable);
 	}
@@ -44,7 +44,7 @@ public class EstServiceImpl2 implements EstService2 {
 	// 전체견적 개수 (페이징 용)
 	@Override
 	public long countEstList() {
-		int showCntPerPage = 5;
+		int showCntPerPage = 10;
 		return (long)(estRepo.count()+1)/showCntPerPage + 1;
 	}
 	
