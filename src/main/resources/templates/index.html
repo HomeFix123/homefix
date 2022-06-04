@@ -37,7 +37,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <!-- Template Developed By ChtStudio -->
-        
+        <link rel="stylesheet" th:href="@{/css/nav.css}">
         <link rel="stylesheet" th:href="@{/css/main_page.css}">
         
     </head>
@@ -136,7 +136,7 @@
                             </div>
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a th:href="@{/brag/colist}">
+                                    <a th:href="@{/expert}">
                                         <span class="icon">
                                             <i class="fas fa-hard-hat"></i>
                                         </span>
@@ -146,7 +146,13 @@
                             </div>
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a th:href="@{/sign/member/profile}">
+                                    <a th:if="${session.userId == null}" th:href="@{/sign/member/profile}">
+                                        <span class="icon">
+                                            <i class="fas fa-user-alt"></i>
+                                        </span>
+                                        <span>마이페이지</span>
+                                    </a>
+                                    <a th:if="${session.userId != null}" th:href="@{/company/profile}">
                                         <span class="icon">
                                             <i class="fas fa-user-alt"></i>
                                         </span>
@@ -211,7 +217,7 @@
 	                                <div class="course-info ">
 	                                    <div class="info">
 	                                        <h2 class="title"><a href="course-details.html" th:text="${b.btitle}"></a></h2>
-	                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg"><span th:text="${b.member.nickname}"></span></p>
+	                                        <p class=""><img class='user-img-sm' th:src="|http://140.238.11.118:5000/upload/${b.member.profilimg}|"><span th:text="${b.member.nickname}"></span></p>
 	                                    </div>
 	                                </div><!-- /.course-info -->
 	                            </div><!-- /.sa-post -->                            
@@ -258,6 +264,21 @@
                 </div><!-- /.container -->
             </div><!-- /.section-content -->
         </div><!-- /.sa-section -->     
+		
+		<div id="nav-items" class="text-center">
+			<ul class="list-group">
+				<li class="list-group-item list-group-item-action list-group-horizontal">
+					<a id="toTop" class="btn" href="#">TOP</a>
+				</li>
+				<li class="list-group-item list-group-item-action">
+					<a class="btn" href="#">챗봇</a>
+				</li>
+				<li class="list-group-item list-group-item-action">
+					<a class="btn" href="#">채팅</a>
+				</li>
+			</ul>
+		</div>
+		
 		
         <div th:replace="/sections/footer :: footer"></div>  
 
