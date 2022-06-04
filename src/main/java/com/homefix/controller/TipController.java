@@ -29,11 +29,12 @@ public class TipController {
 	
 	/* 팁 전체 목록 페이지 */
 	@GetMapping("/list")
-	public String tipList(Model m) {
-		
+	public String tipList(Model m, Integer page) {
+		if(page == null) page = 1;
 		Tip tip = new Tip();
-		List<Tip> list = tipService.tipList(tip);
-		m.addAttribute("tipList", list);
+		//List<Tip> list = tipService.getTipList(tip);
+		m.addAttribute("tipList", tipService.getTipList(tip, page)); 
+		m.addAttribute("cntTip", tipService.countEstList());
 		return "tip/interiortip";
 	}
 	
@@ -48,7 +49,7 @@ public class TipController {
 		String id = "test"; // 나중에는 세션에서 ID 값을 가져옴, 현재 테스트로 ID 직접 넣어줌
 		tipService.saveTip(tip, id);
 		logger.info("입력성공");
-		return "tip/list"; //redirect는 요청 url 주소를 써줌
+		return "redirect:/tip/list";
 	}
 	
 	

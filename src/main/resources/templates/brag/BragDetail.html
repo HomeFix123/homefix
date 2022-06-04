@@ -1,437 +1,622 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="">
-        <meta name="description" content="">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="">
+<meta name="description" content="">
 
-        <title>Educam | Education & Courses HTML Template.</title>
+<title>Educam | Education & Courses HTML Template.</title>
 
-        <!-- CSS -->
-        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-        <link rel="stylesheet" th:href="@{/css/all.min.css}">
-        <link rel="stylesheet" th:href="@{/css/animate.min.css}">
-        <link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
-        <link rel="stylesheet" th:href="@{/css/slick.css}">
-        <link rel="stylesheet" th:href="@{/css/structure.css}">
-        <link rel="stylesheet" th:href="@{/css/main.css}"> 
-        <link rel="stylesheet" th:href="@{/css/responsive.css}">
-        
-        <!-- font -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
+<!-- CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/all.min.css}">
+<link rel="stylesheet" th:href="@{/css/animate.min.css}">
+<link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+<link rel="stylesheet" th:href="@{/css/slick.css}">
+<link rel="stylesheet" th:href="@{/css/structure.css}">
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="stylesheet" th:href="@{/css/responsive.css}">
 
-        <!-- icons -->
-        <link rel="icon" th:href="@{/images/ico/favicon.ico}"> 
-        <link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
-        <link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
-        <link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
-        <link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">   
-        <!-- icons -->
+<!-- font -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+<!-- icons -->
+<link rel="icon" th:href="@{/images/ico/favicon.ico}">
+<link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+<link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+<link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+<link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
+<!-- icons -->
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <!-- Template Developed By ChtStudio -->
-        <style type="text/css">
-			.breadcrumb-section {
-				padding: 0;
-			}
-			
-			.thumnail {
-				width: 100vw;
-	    		height:500px;
-	    		
-				background-repeat: no-repeat;
-	    		background-position: center center;
-	    		backgorund-size: 50% 50%;
-	    		top: 0;
-	    		left: 0;
-	    	}
-	    	
-	    	.course-info{
-	    		margin-bottom: 60px;
-	    	}
-			
-			.reviewBar{
-				list-style: none;
-				
-			}
-			.reviewBar li{
-				float: left;
-				font-size: 30px;
-				padding-right: 20px;
-			}
-			
-			.reBar{
-				padding-top: 15px;
-				
-			}
-			
-			#love{
-				color: red;
-				padding-right: 10px;
-				font-size: 30px;
-			}
-			
-			.review_detail li{
-				width:400px;
-				list-style: none;
-				
-			}
-			
-			.reviewer{
-				width: 100px;
-				height: 100px;
-				
-				display: inline-block;
-			}
-			
-			.reviewer img{
-				width: 100%;
-				height: 100%;
-				border-radius: 50%;
-				vertical-align: middle;
-				display: block;
-			}
-			
-			.reviewer_name{
-				
-			
-			}
+<!-- Template Developed By ChtStudio -->
+<style type="text/css">
+.breadcrumb-section {
+	padding: 0;
+}
 
-			.details{
-				float: left;
-				margin-top: 10px;
-			}
-			.details strong{
-				font-size: 20px;
-			}
-			.detail{
-				float: left;
-				text-align: center;
-				padding-top: 10px;
-				padding-left: 20px;
-			}
-			
-			.fa-home:before{
-				font-size: 30px;
-			}
-			.fa-ruler:before{
-				font-size: 30px;
-			}
-			.fa-tools:before{
-				font-size: 30px;
-			}
-			.fa-users:before{
-				font-size: 30px;
-			}
-			
-			
-			
-			
-        </style>
-        
-    </head>
-    <body> 
-        <div id="preloader">
-            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
-        </div><!-- preloader -->
-        
-        <header class="sa-header">
-            <div class="sa-topbar">
-                <div class="container">
-                    <div class="topbar-content">
-                        <div class="left-content">
-                            <ul class="global-list">
-                                <li><a href="#"><i class="far fa-envelope"></i>info@gmail.com</a></li>
-                                <li><a href="#"><i class="fas fa-phone-volume"></i>0123456789</a></li>
-                            </ul>
-                        </div>
-                        <div class="right-content">
-                            <ul class="global-list social">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                            </ul>
-                            <ul class="global-list">
-                                <li><a href="#" class="btn btn-primary">Register <i class="fas fa-sign-in-alt"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- /.container -->
-            </div><!-- /.top-bar -->
+.thumnail {
+	width: 100vw;
+	height: 500px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	backgorund-size: 50% 50%;
+	top: 0;
+	left: 0;
+}
 
-            <div class="sa-menu">
-                <nav class="navbar navbar-expand-lg">
-                    <div class="container">
-                        <a class="navbar-brand" href="index.html">
-                            <img src="images/logo.png" alt="Logo" class="img-fluid">
-                        </a>
+.course-info {
+	margin-bottom: 60px;
+}
 
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-                        </button> 
-                        
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item sa-dropdown">
-                                    <a href="#">Home</a>
-                                    <ul class="sa-dropdown-menu">
-                                        <li><a href="index.html">Home V-1</a></li>
-                                        <li><a href="index1.html">Home V-2</a></li>
-                                        <li><a href="index2.html">Home V-3</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about.html">About</a></li>
-                                <li class="sa-dropdown">
-                                    <a href="#">Courses</a>
-                                    <ul class="sa-dropdown-menu">
-                                        <li><a href="course-grid.html">Course Grid View</a></li>
-                                        <li><a href="course-list.html">Course List View</a></li>
-                                        <li><a href="course-details.html">Course Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="tutor.html">Teacher</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li class="sa-dropdown active">
-                                    <a href="index.html">Page</a>
-                                    <ul class="sa-dropdown-menu">
-                                        <li><a href="catagory.html">Catagory</a></li>
-                                        <li><a href="profile.html">User Profile</a></li>
-                                        <li class="active"><a href="blog-details.html">Blog Details</a></li>
-                                        <li><a href="tutor-details.html">Tutor Details</a></li>
-                                        <li><a href="my-course.html">My Course<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a href="course-video.html">Course Video<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a href="cart.html">Shopping Cart<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a href="payment.html">Payment<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a href="congrats.html">Congrats<span class="badge rounded-pill bg-dark">New</span></a></li> 
-                                        <li><a href="sign-in.html">Sign In</a></li>
-                                        <li><a href="sign-up.html">Sign Up</a></li>
-                                    </ul>
-                                </li>
-                            </ul>       
-                        </div> 
+.reviewBar {
+	list-style: none;
+}
 
-                        <div class="right-content">
-                            <div class="user-option">
-                                <ul class="global-list">
-                                    <li class="sa-dropdown">
-                                        <span class="cart-number">5</span>
-                                        <i class="fas fa-cart-plus"></i>
-                                        <div class="sa-dropdown-menu">
-                                            <ul class="global-list">
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-thumb">
-                                                            <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                                        </div><!-- /.course-thumb -->
+.reviewBar li {
+	float: left;
+	font-size: 30px;
+	padding-right: 20px;
+}
 
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a href="course-details.html" >Visual Basic Web Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-thumb">
-                                                            <img src="images/course/2.jpg" alt="Image" class="img-fluid">
-                                                        </div><!-- /.course-thumb -->
+.reBar {
+	padding-top: 15px;
+}
 
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a href="course-details.html">Computer Technologies Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-thumb">
-                                                            <img src="images/course/3.jpg" alt="Image" class="img-fluid">
-                                                        </div><!-- /.course-thumb -->
+#love {
+	color: red;
+	font-size: 30px;
+}
 
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a href="course-details.html" >Visual Basic Web Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                            </ul> 
-                                            <div class="total-price">
-                                                <span><strong>Total Price: </strong>$598:00</span>
-                                            </div> 
-                                            <div class="buttons">
-                                                <a class="btn btn-primary cart-button" href="#">View Cart</a>
-                                                <a class="btn btn-primary" href="#">Checkout</a>
-                                            </div>                                              
-                                        </div>
-                                    </li>
-                                    <li><i class="far fa-bell"></i></li>
-                                    <li>
-                                        <div class="sa-search-form">
-                                            <div class="search-icon">
-                                                <i class="fas fa-search"></i>
-                                            </div>
-                                            <div class="search-form text-center open-search">
-                                                <div class="close-search">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                </div>
-                                                <form action="#" id="search" method="get">
-                                                    <input name="search" type="text" placeholder="Enter keyword...">
-                                                    <button type="submit"><i class="fas fa-search"></i></button>
-                                                </form><!-- /form -->
-                                            </div><!-- /search-form -->                    
-                                        </div>                        
-                                    </li>
-                                </ul>
-                            </div>                          
-                        </div>
-                    </div><!-- /.container -->
-                </nav><!-- /.navbar -->                                
-            </div><!-- /.sa-menu -->
-        </header><!-- /.sa-header -->  
+.review_detail li {
+	width: 400px;
+	list-style: none;
+}
+
+.reviewer {
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+}
+
+.reviewer img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	vertical-align: middle;
+	display: block;
+}
+
+.reviewer_name {
+	
+}
+
+.details {
+	float: left;
+	margin-top: 10px;
+}
+
+.details strong {
+	font-size: 20px;
+}
+
+.detail {
+	float: left;
+	text-align: center;
+	padding-top: 10px;
+	padding-left: 20px;
+}
+
+.fa-home:before {
+	font-size: 30px;
+}
+
+.fa-ruler:before {
+	font-size: 30px;
+}
+
+.fa-tools:before {
+	font-size: 30px;
+}
+
+.fa-users:before {
+	font-size: 30px;
+}
+
+#detailVal {
+	padding-left: 15%;
+}
+
+.preferSave {
+	border: none;
+}
+
+.preferDelete {
+	border: none;
+}
+
+.deletebtn {
+	border: none;
+}
+
+.reportbtn {
+	border: none;
+}
+</style>
+
+</head>
+<body>
+	<div id="preloader">
+		<img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+	</div>
+	<!-- preloader -->
+
+	<header class="sa-header">
+		<div class="sa-topbar">
+			<div class="container">
+				<div class="topbar-content">
+					<div class="left-content">
+						<ul class="global-list">
+							<li><a href="#"><i class="far fa-envelope"></i>info@gmail.com</a></li>
+							<li><a href="#"><i class="fas fa-phone-volume"></i>0123456789</a></li>
+						</ul>
+					</div>
+					<div class="right-content">
+						<ul class="global-list social">
+							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+							<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+							<li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+						</ul>
+						<ul class="global-list">
+							<li><a href="#" class="btn btn-primary">Register <i class="fas fa-sign-in-alt"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- /.container -->
+		</div>
+		<!-- /.top-bar -->
+
+		<div class="sa-menu">
+			<nav class="navbar navbar-expand-lg">
+				<div class="container">
+					<a class="navbar-brand" href="index.html"> <img src="images/logo.png" alt="Logo" class="img-fluid">
+					</a>
+
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+					</button>
+
+					<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+						<ul class="navbar-nav">
+							<li class="nav-item sa-dropdown"><a href="#">Home</a>
+								<ul class="sa-dropdown-menu">
+									<li><a href="index.html">Home V-1</a></li>
+									<li><a href="index1.html">Home V-2</a></li>
+									<li><a href="index2.html">Home V-3</a></li>
+								</ul></li>
+							<li><a href="about.html">About</a></li>
+							<li class="sa-dropdown"><a href="#">Courses</a>
+								<ul class="sa-dropdown-menu">
+									<li><a href="course-grid.html">Course Grid View</a></li>
+									<li><a href="course-list.html">Course List View</a></li>
+									<li><a href="course-details.html">Course Details</a></li>
+								</ul></li>
+							<li><a href="tutor.html">Teacher</a></li>
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="contact.html">Contact</a></li>
+							<li class="sa-dropdown active"><a href="index.html">Page</a>
+								<ul class="sa-dropdown-menu">
+									<li><a href="catagory.html">Catagory</a></li>
+									<li><a href="profile.html">User Profile</a></li>
+									<li class="active"><a href="blog-details.html">Blog Details</a></li>
+									<li><a href="tutor-details.html">Tutor Details</a></li>
+									<li><a href="my-course.html">My Course<span class="badge rounded-pill bg-dark">New</span></a></li>
+									<li><a href="course-video.html">Course Video<span class="badge rounded-pill bg-dark">New</span></a></li>
+									<li><a href="cart.html">Shopping Cart<span class="badge rounded-pill bg-dark">New</span></a></li>
+									<li><a href="payment.html">Payment<span class="badge rounded-pill bg-dark">New</span></a></li>
+									<li><a href="congrats.html">Congrats<span class="badge rounded-pill bg-dark">New</span></a></li>
+									<li><a href="sign-in.html">Sign In</a></li>
+									<li><a href="sign-up.html">Sign Up</a></li>
+								</ul></li>
+						</ul>
+					</div>
+
+					<div class="right-content">
+						<div class="user-option">
+							<ul class="global-list">
+								<li class="sa-dropdown"><span class="cart-number">5</span> <i class="fas fa-cart-plus"></i>
+									<div class="sa-dropdown-menu">
+										<ul class="global-list">
+											<li class="remove-item"><span class="remove-icon"><i class="fas fa-times"></i></span>
+												<div class="sa-course">
+													<div class="course-thumb">
+														<img src="images/course/1.jpg" alt="Image" class="img-fluid">
+													</div>
+													<!-- /.course-thumb -->
+
+													<div class="course-info">
+														<div class="info">
+															<h2 class="title">
+																<a href="course-details.html">Visual Basic Web Course With Live Project</a>
+															</h2>
+														</div>
+													</div>
+													<!-- /.course-info -->
+												</div> <!-- /.sa-course --></li>
+											<li class="remove-item"><span class="remove-icon"><i class="fas fa-times"></i></span>
+												<div class="sa-course">
+													<div class="course-thumb">
+														<img src="images/course/2.jpg" alt="Image" class="img-fluid">
+													</div>
+													<!-- /.course-thumb -->
+
+													<div class="course-info">
+														<div class="info">
+															<h2 class="title">
+																<a href="course-details.html">Computer Technologies Course With Live Project</a>
+															</h2>
+														</div>
+													</div>
+													<!-- /.course-info -->
+												</div> <!-- /.sa-course --></li>
+											<li class="remove-item"><span class="remove-icon"><i class="fas fa-times"></i></span>
+												<div class="sa-course">
+													<div class="course-thumb">
+														<img src="images/course/3.jpg" alt="Image" class="img-fluid">
+													</div>
+													<!-- /.course-thumb -->
+
+													<div class="course-info">
+														<div class="info">
+															<h2 class="title">
+																<a href="course-details.html">Visual Basic Web Course With Live Project</a>
+															</h2>
+														</div>
+													</div>
+													<!-- /.course-info -->
+												</div> <!-- /.sa-course --></li>
+										</ul>
+										<div class="total-price">
+											<span><strong>Total Price: </strong>$598:00</span>
+										</div>
+										<div class="buttons">
+											<a class="btn btn-primary cart-button" href="#">View Cart</a> <a class="btn btn-primary" href="#">Checkout</a>
+										</div>
+									</div></li>
+								<li><i class="far fa-bell"></i></li>
+								<li>
+									<div class="sa-search-form">
+										<div class="search-icon">
+											<i class="fas fa-search"></i>
+										</div>
+										<div class="search-form text-center open-search">
+											<div class="close-search">
+												<span class="remove-icon"><i class="fas fa-times"></i></span>
+											</div>
+											<form action="#" id="search" method="get">
+												<input name="search" type="text" placeholder="Enter keyword...">
+												<button type="submit">
+													<i class="fas fa-search"></i>
+												</button>
+											</form>
+											<!-- /form -->
+										</div>
+										<!-- /search-form -->
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /.container -->
+			</nav>
+			<!-- /.navbar -->
+		</div>
+		<!-- /.sa-menu -->
+	</header>
+	<!-- /.sa-header -->
 
 
 
-		<!-- 섬네일 -->
-        <section class="breadcrumb-section bg-white">
-            <div class="thumnail" th:style="'background-image: url('+@{/images/course/cute.jpg}+');'">
-            </div>
-        </section><!-- /.breadcrumb-section -->
+	<!-- 섬네일 -->
+	<section class="breadcrumb-section bg-white">
+		<div class="thumnail" th:style="'background-image: url('+|http://140.238.11.118:5000/upload/${brag.bimgadr}|+');'"></div>
+	</section>
+	<!-- /.breadcrumb-section -->
 
-        <section class="detail_section bg-white section-padding">
-        		<div class="container">
-                	<div class="review_detail">
-        				<div class="row justify-content-md-center">
-        					<div class="col-lg-8" style="text-align: center;">
-	        					<div class="reviewer">
-	        						<a href="#"><img class="img-fluid" th:src="@{/images/tutor/2.jpg}" alt="Image"></a>
-	        					</div>
-	        					<div ><h5  class="reviewer_name">사용자명</h5></div>
-        					</div>
-        					<div class="details col-lg-8">
-        						<div class="detail col-lg-3" name="주거형태"><a><i class="fas fa-home"></i> 원룸&오피스텔</a></div>
-        						<div class="detail col-lg-3" name="평수"><a><i class="fas fa-ruler"></i> 10평</a></div>
-        						<div class="detail col-lg-3" name="작업분야"><a><i class="fas fa-tools"></i> 홈스타일링</a></div>
-        						<div class="detail col-lg-3" name="가족형태"><a><i class="fas fa-users"></i> 신혼부부</a></div>
-        					</div>
-        					
-        					<div class="details col-lg-8">
-        						<div class="detail col-lg-3" name="작업자"><strong>작업</strong> 원룸&오피스텔</div>
-        						<div class="detail col-lg-3" name="예산"><strong>예산</strong> 100마넌</div>
-        						<div class="detail col-lg-3" name="지역"><strong>지역</strong> 서울시 어딘가</div>
-        						
-        					</div>
-        					<div class="details col-lg-8">
-        						<div class="detail col-lg-3" name="세부정보"><strong>세부정보</strong> 기타등등</div>
-        					</div>        					
-        				</div>
-        			</div>
-        		</div>	
-        </section><!-- /.breadcrumb-section -->        
-       
-		
-		<!-- 본문 -->
-        <div class="sg-section">
-            <div class="section-content course-details bg-white ">
-                <div class="container">
+	<section class="detail_section bg-white section-padding">
+		<div class="container">
+			<div class="review_detail">
+				<div class="row justify-content-md-center">
+					<div class="col-lg-8" style="text-align: center;">
+						<div class="reviewer">
+							<a href="#"><img class="img-fluid" th:src="|http://140.238.11.118:5000/upload/${brag.member.profilimg}|" alt="Image"></a>
+						</div>
+						<div>
+							<h5 class="reviewer_name" th:text="${brag.member.nickname}">사용자명</h5>
+						</div>
+					</div>
+					<div class="details col-8">
+						<div class="detail col-lg-3 col-md-6 col-sm-6" name="주거형태">
+							<i class="fas fa-home"></i><a id="detailVal" th:text="${brag.hometype}"></a>
+						</div>
+						<div class="detail col-lg-3 col-md-6 col-sm-6" name="평수">
+							<i class="fas fa-ruler"></i><a id="detailVal" th:text="|${brag.bsize} 평|"></a>
+						</div>
+						<div class="detail col-lg-3 col-md-6 col-sm-6" name="작업분야">
+							<i class="fas fa-tools"></i><a id="detailVal" th:text="${brag.job}"></a>
+						</div>
+						<div class="detail col-lg-3 col-md-6 col-sm-6" name="가족형태">
+							<i class="fas fa-users"></i><a id="detailVal" th:text="${brag.family}"></a>
+						</div>
+					</div>
 
-                    <div class="row justify-content-md-center">
-                        <div class="col-lg-8">
-                            <div class="sa-course">
-                                <div class="course-info">
-                                    <h2 class="title">Visual Basic Web Course With Live Project</h2>
-                                    <div>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	<p>Lorem ipsum dolor, sit amet</p>
-                                    	
-                                	</div>
-                                	
-                                	
-                                	
-                                </div>
-                            </div><!-- /.sa-course -->                           
-                        </div>
+					<div class="details col-lg-8">
+						<div class="detail col-lg-3" name="작업자">
+							<strong>작업</strong><a id="detailVal" th:text="${brag.worker}"></a>
+						</div>
+						<div class="detail col-lg-4" name="예산">
+							<strong>예산</strong><a id="detailVal" th:text="|${brag.bbudget} 원|"></a>
+						</div>
+						<div class="detail col-lg-5" name="지역">
+							<strong>지역</strong><a id="detailVal" th:text="${brag.loc}"></a>
+						</div>
+
+					</div>
+					<div class="details col-lg-8">
+						<div class="detail col-6" name="세부정보">
+							<strong>세부정보</strong><a id="detailVal" th:text="${brag.extrainfo}"></a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<nav class="navbar fixed-bottom bg-light">
-		  <div class="reBar container-fluid  justify-content-center">		    
-		  	<ul class="reviewBar">
-              	<li><a  href="#"><span><i id="love" class="fas fa-heart"></i></span>50</a></li>
-                <li><a href="#"><span><i class="fas fa-bars"></i></span></a></li>
-           	</ul>
-		  </div>
-		</nav>		
-		   
+	</section>
+	<!-- /.breadcrumb-section -->
 
-        <!-- JS -->
-        <script th:src="@{/js/jquery.min.js}"></script>
-        <script th:src="@{/js/popper.min.js}"></script>
-        <script th:src="@{/js/bootstrap.min.js}"></script>  
-        <script th:src="@{/js/inview.min.js}"></script> 
-        <script th:src="@{/js/slick.min.js}"></script>
-        <script th:src="@{/js/jquery-ui-min.js}"></script>  
-        <script th:src="@{/js/jarallax.min.js}"></script>  
-        <script th:src="@{/js/counterup.min.js}"></script> 
-        <script th:src="@{/js/waypoints.min.js}"></script> 
-        <script th:src="@{/js/YTPlayer.min.js}"></script> 
-        <script th:src="@{/js/jquery-ui-min.js}"></script>
-        <script th:src="@{/js/validate.js}"></script>
-        <script th:src="@{/js/main.js}"></script> 
-        
-        <script type="text/javascript">
+
+	<!-- 본문 -->
+	<div class="sg-section">
+		<div class="section-content course-details bg-white ">
+			<div class="container">
+
+				<div class="row justify-content-md-center">
+					<div class="col-lg-8">
+						<div class="sa-course">
+							<div class="course-info">
+								<h2 class="title" th:text="${brag.btitle}"></h2>
+								<p th:text="${#calendars.format(brag.bdate, 'yyyy-MM-dd')}"></p>
+								<div th:utext="${brag.bcont}"></div>
+
+
+
+							</div>
+						</div>
+						<!-- /.sa-course -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<nav class="navbar fixed-bottom bg-light">
+		<div class="reBar container-fluid  justify-content-center">
+			<ul class="reviewBar">
+				<li>
+					<button th:if="${brag.preferck == false}" class="preferSave bg-light" id="love">
+						<i id="prefer" class="far fa-heart"></i>
+					</button>
+					<button th:if="${brag.preferck == true}" class="preferDelete bg-light" id="love">
+						<i id="prefer" class="fas fa-heart"></i>
+					</button> <a class="preferCnt" th:text="${brag.prefer}"></a> <input type="hidden" name="bid" th:value="${brag.bid}"> <input type="hidden" name="preferck" th:value="${brag.preferck}">
+				</li>
+				<li>
+					<button class="deletebtn bg-light"  data-bs-toggle="modal" href="#deleteModal" >
+						<i class="fas fa-trash-alt"></i>
+					</button>
+				</li>
+				<li>
+					<button class="reportbtn bg-light" data-bs-toggle="modal" href="#reportModal">
+						<img th:src="@{/images/ico/icon-siren-36.png}">
+					</button> 
+					<input type="hidden" name="id" th:value="${brag.member.id}">
+				</li>
+				<li><a href="#"><span><i class="fas fa-bars"></i></span></a></li>
+
+			</ul>
+		</div>
+	</nav>
+
+	<!-- 게시글 신고 -->
+	<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-center" id="exampleModalLabel">신고</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">			
+					</button>
+				</div>
+
+				<div class="modal-body text-center">
+					신고 사유를 선택 하세요.
+					<div>
+						<select class="reason" name="reason">
+							<option value="스팸홍보/도배글입니다.">스팸홍보/도배글입니다.</option>
+							<option value="음란물입니다.">음란물입니다.</option>
+							<option value="불법정보를 포함하고 있습니다.">불법정보를 포함하고 있습니다.</option>
+							<option value="청소년에게 유해한 내용입니다.">청소년에게 유해한 내용입니다.</option>
+							<option value="욕설/혐오/차별적 표현입니다.">욕설/생혐오/차별적 표현입니다.</option>
+							<option value="개인정보 노출 게시물입니다.">개인정보 노출 게시물입니다.</option>
+							<option value="불쾌한 표현이 있습니다.">불쾌한 표현이 있습니다.</option>
+						</select> <!-- <input type="hidden" name="article_no" value="${bookreport.bookreport_no }" /> -->
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn" data-bs-dismiss="modal" style="color: white; background-color: gray;">취소</button>
+					<button type="button" class="btn btn-success" id="reportbtn">신고</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 게시글 삭제 확인 -->
+	<form method="post" th:action="|/brag/${brag.bid}|">
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-center" id="exampleModalLabel">인테리어 자랑 삭제 확인</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					</button>
+				</div>
+
+				<div class="modal-body text-center">정말로 삭제 하시겠습니까? <br/>복구가 불가능합니다.</div>
+				<div class="modal-footer">
+					<input type="hidden" name="_method" value="delete">
+					<button type="button" class="btn" data-bs-dismiss="modal" style="color: white; background-color: gray;">취소</button>
+					<button type="submit" class="btn btn-danger" id="deletebtn" >삭제</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+	<!-- JS -->
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/inview.min.js}"></script>
+	<script th:src="@{/js/slick.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/jarallax.min.js}"></script>
+	<script th:src="@{/js/counterup.min.js}"></script>
+	<script th:src="@{/js/waypoints.min.js}"></script>
+	<script th:src="@{/js/YTPlayer.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/validate.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+
+	<script type="text/javascript">
         $(document).ready(function(){ 
         	var currentPosition = parseInt($(".quickmenu").css("top")); 
         	
         	$(window).scroll(function() { 
         		var position = $(window).scrollTop(); 
         		$(".quickmenu").css("top",position+currentPosition+"px"); 
-        		}); 
-        	});
+        		});
+        	
+        	// 좋아요
+        	$(document).on('click', '.preferSave', function() {
+        		console.log("저장");
+        		let preferCnt = Number($('.preferCnt').text());
+        		const bid = $('input[name=bid]').val();
+        		
+        		const preferck = $('input[name=preferck]').val();
+        		console.log(preferck);
+        		if(preferck == 'false'){
+					$.ajax({
+						type:'POST',
+						url:'/brag/prefer/' + bid,
+						success: function(result) {
+							console.log(result);
+							$('#prefer').removeClass('far fa-heart');
+							$('#prefer').addClass('fas fa-heart');
+							$('#love').removeClass('preferSave bg-light');
+							$('#love').addClass('preferDelete bg-light');
+							$('.preferCnt').text(preferCnt+1);
+							console.log("좋아요 성공");
+						}
+					})
+        		}
+        		$('input[name=preferck]').val('true');
+			})
+			
+			// 좋아요 취소
+			$(document).on('click', '.preferDelete', function() {
+				console.log("삭제");
+        		let preferCnt = Number($('.preferCnt').text());
+        		const bid = $('input[name=bid]').val();
+        		const preferck = $('input[name=preferck]').val();
+        		console.log(preferck);
+        		if(preferck == 'true'){
+					$.ajax({
+						type:'DELETE',
+						url:'/brag/prefer/' + bid,
+						success: function(result) {
+							console.log(result);
+							$('#prefer').removeClass('fas fa-heart');
+							$('#prefer').addClass('far fa-heart');
+							$('#love').removeClass('preferDelete bg-light');
+							$('#love').addClass('preferSave bg-light');
+							$('.preferCnt').text(preferCnt-1);
+							console.log("좋아요 취소");
+						}
+					})
+        		}
+        		$('input[name=preferck]').val('false');
+			})
+        	
+			// 자랑 삭제하기
+			/*
+			$('#deletebtn').click(function() {
+				const bid = $('input[name=bid]').val();
+				 $.ajax({
+					type:'DELETE',
+					url:'/brag/'+bid,
+					success:function(result){
+						console.log("성공");
+						$('#deleteModal').modal('hide');
+					}, error:function(err){
+						console.log(err);
+					}
+				}) 
+				location.href='/brag/'+bid;	
+			
+			})*/
+			
+			// 신고하기
+			$(document).on('click', '#reportbtn', function() {
+
+        		const id = $('input[name=id]').val();
+        		const reason = $('.reason').val();
+        		
+        		console.log(id);
+        		console.log(reason);
+        		
+				$.ajax({
+					type:'POST',
+					url:'/brag/report/' + id,
+					data: {reason : reason},
+					success: function(result) {
+						console.log(result);
+						if(result == 'true'){
+							alert('신고완료');
+							$('#reportModal').modal('hide');
+						} else {
+							alert('이미 신고한 사람입니다.');
+							$('#reportModal').modal('hide');
+						}
+					},
+					error: function(err){
+						console.log(err);
+						
+					}
+				})
+
+		})
+        	
+        	
+     });
         
         </script>
-        
-    </body>
-</html>        
+
+</body>
+</html>

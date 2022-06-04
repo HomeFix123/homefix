@@ -28,7 +28,7 @@ public interface CompanyService {
 	public String login(Company com);
 
 	// 사업자 회원 탈퇴
-	public void companyDelete(String id);
+	public String companyDelete(Company com);
 
 	//사업자 정보 조회
 	public Company getCompanyMyInfo(String companyId);

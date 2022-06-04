@@ -1,5 +1,6 @@
 package com.homefix.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class Prefer {
 	
 	@ManyToOne
 	@JoinColumn(name = "bid")
-	private Brag Brag;
+	private Brag brag;
 	
 	@ManyToOne
 	@JoinColumn(name = "id")

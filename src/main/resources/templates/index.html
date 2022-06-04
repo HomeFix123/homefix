@@ -7,7 +7,7 @@
         <meta name="author" content="">
         <meta name="description" content="">
 
-        <title>Educam | Education & Courses HTML Template.</title>
+        <title>홈픽스 | HomeFix</title>
 
         <!-- CSS -->
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -116,7 +116,7 @@
                         <div class="row">
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a th:href="@{/brag/braglist}">
+                                    <a th:href="@{/brag}">
                                         <span class="icon">
                                             <i class="fas fa-house-user"></i>
                                         </span>
@@ -176,16 +176,7 @@
                                 </div><!-- /.sg-category -->
                             </div>
 							
-							<div class="col-6 col-sm-4 col-lg-2">
-                                <div class="sg-category style-1">
-                                    <a th:href="@{/company/companyprofile}">
-                                        <span class="icon">
-                                            <i class="fas fa-user-alt"></i>
-                                        </span>
-                                        <span>(임시) 업체마이페이지</span>
-                                    </a>
-                                </div><!-- /.sg-category -->
-                            </div>
+						
 							
                         </div><!-- /.row -->
                     </div><!-- /.sg-category-content -->
@@ -201,7 +192,7 @@
                             <h1>인테리어 자랑</h1>
                         </div>  
                         <div class="view-all align-self-center">
-                            <a th:href="@{/brag/braglist}" class="btn btn-primary">더보기</a>
+                            <a th:href="@{/brag}" class="btn btn-primary">더보기</a>
                         </div>                  
                     </div>
 
@@ -211,7 +202,7 @@
 	                            <div class="sa-post">
 	                                <div class="entry-header">
 	                                    <div class="entry-thumbnail">
-	                                        <a href="blog-details.html">
+	                                        <a th:href="'/brag/' + ${b.bid}">
 	                                        	<img th:if="${not #strings.isEmpty(b.bimgadr)}" th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|" alt="Image" class="img-fluid">
 	                                        	<img th:if="${#strings.isEmpty(b.bimgadr)}" src="images/course/1.jpg" alt="Image" class="img-fluid">
 	                                        </a>
@@ -239,124 +230,29 @@
                             <h1>후기</h1>
                         </div>
                         <div class="view-all align-self-center">
-                            <a href="course-grid.html" class="btn btn-primary">더보기</a>
+                            <a href="/review" class="btn btn-primary">더보기</a>
                         </div>                         
                     </div><!-- /.section-header -->
                     <div class="sa-course-content">
                         <div class="sa-course-slider">
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
+                        	<th:block th:each="r : ${reviewList}">
+	                            <div class="sa-course">
+	                                <div class="course-thumb">
+	                                    <img th:src="|http://140.238.11.118:5000/upload/${r.rimgadr}|" alt="Image" class="img-fluid">
+	                                </div><!-- /.course-thumb -->
+	                                <div class="course-info">
+	                                    <div class="info">
+	                                        <h2 class="title"><a th:href="'/review/'+${r.rid}" th:text="${r.rtitle}">아파트 인테리어 후기</a></h2>
+	                                        <p class='' th:text="${r.hometype} + '/' + ${r.rsize} + '평'">아파트/33평</p>
+	                                    </div>
+	                                    <div class="sa-meta">
+	                                        <ul class="global-list">
+	                                            <li><p class=''><img class='user-img-sm' th:src="|http://140.238.11.118:5000/upload/${r.company.logo}|"><span th:text="${r.company.name}">홈픽 인테리어</span></p></li>
+	                                        </ul>
+	                                    </div>
+	                                </div><!-- /.course-info -->
+	                            </div><!-- /.sg-course -->
+							</th:block>
                         </div><!-- /.sg-course-slider -->
                     </div><!-- /sg-course-content -->
                 </div><!-- /.container -->
