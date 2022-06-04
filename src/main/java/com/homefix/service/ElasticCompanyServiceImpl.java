@@ -94,7 +94,8 @@ public class ElasticCompanyServiceImpl implements ElasticCompanyService{
 			if(keyword != null && !keyword.equals("")) {
 				query = query
 							.should(QueryBuilders
-									.multiMatchQuery(keyword, new String[] {"name", "content"})); // 검색될 필드명 설정 (검색어, String 배열)
+									.multiMatchQuery(keyword, "name", "content") // 검색될 필드명 설정 (검색어, 필드명, 필드명, ...)
+									.field("name", 2)); // 특정 필드(name)에 가중치 2배
 			}
 			
 			// 지역 검색
