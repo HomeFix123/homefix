@@ -46,7 +46,7 @@ public class PaymentController {
 				}
 			}
 		}
-		return "/payment/payment";
+		return "payment/payment";
 	}
 
 	// 결제정보 DB저장
@@ -59,19 +59,10 @@ public class PaymentController {
 	// 결제완료 페이지
 	@GetMapping("/congrats")
 	public String paymentCongrats() {
-		return "/payment/congrats";
+		return "payment/congrats";
 
 	}
 
-	/*
-	 * //결제 남은 기간
-	 * 
-	 * @GetMapping("/RemainingDate") public String paymentRemainingDate(String cid)
-	 * {
-	 * 
-	 * 
-	 * 
-	 * }
-	 */
+	
 
 }

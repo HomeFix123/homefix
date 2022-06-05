@@ -24,6 +24,13 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	TipRepository tipRepo;
 	
+	// 댓글 리스트
+	public List<Comment> getCmList(Comment comment){
+		return (List<Comment>) commentRepo.findAll();
+	}
+	
+	
+	
 	// 댓글 입력
 	@Override
 	public List<Comment> saveComment(String id,String content,Integer tid) {
@@ -36,9 +43,7 @@ public class CommentServiceImpl implements CommentService {
 		comment.setContent(content);
 		commentRepo.save(comment);
 		
-		
-		System.out.println("comment serviceImple에서 저장된 tid 값 확인 : ");
-		//System.out.println("comment serviceImple 입력값 확인 : " + commentRepo.save(comment));
+		//System.out.println("comment serviceImple에서 저장된 tid 값 확인 : ");
 		Tip t = tipRepo.findById(tid).get();
 		return commentRepo.findByTip(t);
 	}	
