@@ -196,7 +196,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public CompanyInfo getCompanyDetail(String cid) {
 		Company co = companyRepo.findById(cid).get();
-		return companyDetailRepo.findByCompany(co).get(0);
+		List<CompanyInfo> result = companyDetailRepo.findByCompany(co);
+		if(result.size() > 0) {
+			return result.get(0);
+		}
+		return null;
 	}
 	
 	
