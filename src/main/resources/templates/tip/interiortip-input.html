@@ -65,9 +65,9 @@
         </section><!-- /.breadcrumb-section --> 
         
         
-		<!-- 노트 본문 -->
+		<!-- 글쓰기 본문 -->
         <div class="sg-section">
-          <form th:action='@{/tip/write}' method="post" enctype="multipart/form-data">
+          <form th:action='@{/tip/write}' method="post" enctype="multipart/form-data"><!-- enctype 파일첨부 시 써줘야 함 -->
             <div class="section-content course-details bg-white ">
                 <div class="container">
                     <div class="row justify-content-md-center">
@@ -75,6 +75,7 @@
                             <div class="sa-course">
                                 <div class="course-info">
                                     
+                                    <!-- 카테고리 -->
                                     <select class="category" name="category">
 									  <option value="아파트" selected="selected" >아파트</option>
 									  <option value="주택">주택</option>
@@ -87,14 +88,28 @@
 									  <option value="화장실">화장실</option>
 									  <option value="기타">기타</option>
 									</select>
-                                    
+                                    <!-- 제목 -->
                                     <input type="text" placeholder="제목을 입력해주세요." class="writeTitle" name="tiptitle" id="tiptitle" required="required"/>
-                                    <!--  <div id="summernote">
-                                    노트 본문 창
-                                  	</div> -->
-                                  	<textarea id="summernote" name="tcontent"></textarea>
+                                    <!-- 내용 -->
+                                  	<textarea name="tcontent" placeholder="내용을 입력해주세요." style="height:350px;"></textarea>
                                 	
                                 </div>
+                                
+                                <!-- 파일첨부 -->
+                                <div class="form-group" style="padding-left: 30px; padding-bottom: 20px;">
+								<label for="InputSubject1">파일첨부</label>
+								<input id="fileInput" filestyle="" type="file" data-class-button="btn btn-default" data-class-input="form-control" data-button-text="" data-icon-name="fa fa-upload" class="form-control" tabindex="-1" style="position: absolute; clip: rect(0px 0px 0px 0px);">
+								
+								<div class="bootstrap-filestyle input-group" >
+									<input type="text" id="userfile" class="form-control" name="tipimg" disabled="">
+									<span class="group-span-filestyle input-group-btn" tabindex="0">
+										<label for="fileInput" class="btn btn-default">
+											<span class="glyphicon fa fa-upload"></span>
+										</label>
+									</span>
+								</div>
+								</div>
+                                <!-- 게시 버튼 -->
                                 <div class="t_submitdiv" >
                                 <button class="btn btn-primary" type="submit" id="submitButton">게시하기</button>
                                 </div>
@@ -128,82 +143,34 @@
         <script th:src="@{/js/summernote/summernote-lite.js}"></script>
         <script th:src="@{/js/summernote/lang/summernote-ko-KR.js}"></script>
         
-        <!-- 노트 summernote js -->
+        <!-- 파일첨부 js -->
         <script type="text/javascript">
-        $(document).ready(function(){ 
-        	var currentPosition = parseInt($(".quickmenu").css("top")); 
-        	
-        	$(window).scroll(function() { 
-        		var position = $(window).scrollTop(); 
-        		$(".quickmenu").css("top",position+currentPosition+"px"); 
-        		});
-        	
-        	
-            $('#summernote').summernote({
-                placeholder: 'Hello Bootstrap 4',
-                tabsize: 2,
-                minHeight: 500,
-                toolbar: [
-    			    // [groupName, [list of button]]
-    			    ['fontname', ['fontname']],
-    			    ['fontsize', ['fontsize']],
-    			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],  
-    			    ['table', ['table']],
-    			    ['para', ['ul', 'ol', 'paragraph']],
-    			    ['height', ['height']],
-    			    ['insert',['picture','link','video']],
-    			    ['view', ['fullscreen', 'help']]
-    			  ],
-    			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
-    			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
-                focus: true,
-                lang: 'ko-KR',
-                placeholder:'최대 2048자까지 쓸 수 있습니다.',
-                 callbacks:{
-                    onImageUpload: function(files, editor, welEditable) {
-          			for( let i = files.length - 1; i >= 0; i--) {
-          				sendFile(files[i], this);
-          			   }
-          			}
-                 }
-              });
-            
-            
-         // uuid 생성
-			function uuid(file_nm) {
-        		function s4() {
-        		     return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
-        		   }
-        		   return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length-1).toLowerCase();
-        		}
+ 		$(document).ready(function(){
+       		$("#fileInput").on('change', function(){  // 값이 변경되면
+       			if(window.FileReader){  // modern browser
+       				var filename = $(this)[0].files[0].name;
+       			} else {  // old IE
+       	 			var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
+       			}
 
-			// summernote 이미지 저장
-			function sendFile(file, el) {
-				let formData = new FormData();
-				formData.append('file', file, uuid(file.name));
-				console.log("uuid 적용확인: ", formData.get('file').name);
-				$.ajax({
-					type: "POST",
-					url: "http://140.238.11.118:5000/upload",
-					data: formData,
-					processData: false,
-					contentType: false,
-					success: function(result) {
-						console.log("result 값 확인: ",  formData.get('file').name);
-						$(el).summernote('insertImage', 'http://140.238.11.118:5000/upload/'+result );
-						$('#imageBoard > ul').append('<img src="'+result+'" width="auto" height="auto"/>');
-						console.log("성공");
-					},
-					err: function(err) {
-						console.log("에러: ", err)
-					}
-				})
-			}
-			
-			
-			
-        	});
-        	</script>
+       	 		// 추출한 파일명 삽입
+       			$("#userfile").val(filename);
+       		});
+       		
+       		// 파일첨부 필수 
+       		$("#submitButton").on('click', function(){
+       			// $('#danger').css('display', 'none');
+       			if($('#userfile').val()==""){
+       				alert("사진 필수")
+       				return false;
+       			}
+       			
+       		});
+ 		
+ 		});
+ 		</script>
+        
+        
         
     </body>
 </html>        
