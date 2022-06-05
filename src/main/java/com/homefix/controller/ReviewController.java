@@ -56,7 +56,7 @@ public class ReviewController {
 	public String getReview(Model m, Review rev) {
 		Review result = reviewService.getReview(rev);
 		m.addAttribute("rev", result);
-		return "brag/ReviewDetail";
+		return "review/ReviewDetail";
 	}
 	
 	@DeleteMapping("/{rid}")
