@@ -129,7 +129,7 @@ $(function(){
 		const resultList = getMoreCompany(data) // ajax로 요청후 결과를 변수에 저장
 		
 		
-		if(resultList < 10){
+		if(resultList < 12){
 			// 결과가 10개 미만인 경우 더보기 버튼 삭제
 			$('#moreDiv').remove(); 
 		}

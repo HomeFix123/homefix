@@ -66,8 +66,8 @@ public class ElasticCompanyServiceImpl implements ElasticCompanyService{
 		}
 		
 		// 페이지당 보여줄 개수
-		int viewsPerPage = 10;
-		// 시작 번호 0부터 연산 (0, 10, 20, ...) 
+		int viewsPerPage = 12;
+		// 시작 번호 0부터 연산 (0, 12, 24, ...) 
 		int startNum = viewsPerPage * (page-1);
 		
 		try {
