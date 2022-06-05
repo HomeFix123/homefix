@@ -3,6 +3,8 @@ package com.homefix.controller;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +50,14 @@ public class BragController {
 	}
 	
 	@GetMapping
-	public String getBragList(Model m){
+	public String getBragList(Model m, HttpSession session, String keyword, String sort, String loc, 
+			String family, String job, String hometype){
 		
-		Brag brag = new Brag();
-		List<Brag> list = bragService.getBragList(brag);
-		m.addAttribute("bragList", list);
+		String id = (String) session.getAttribute("memberId");
+		m.addAttribute("bragList", bragService.getBragByKeyword(keyword, loc, family, job, hometype, sort, 1));
+		
+		
+		
 		return "brag/BragList";
 	}
 	

@@ -18,7 +18,8 @@
 <link rel="stylesheet" th:href="@{/css/structure.css}">
 <link rel="stylesheet" th:href="@{/css/main.css}">
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
-<link th:href="@{/css/summernote/summernote-lite.css}" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/summernote/summernote-lite.css}">
+<link rel="stylesheet" th:href="@{/css/bs/Review.css}">
 
 <!-- font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
@@ -39,182 +40,7 @@
         <![endif]-->
 <!-- Template Developed By ChtStudio -->
 <style type="text/css">
-.breadcrumb-section {
-	padding: 0;
-}
 
-.thumnail {
-	width: 100vw;
-	height: 500px;
-	background-repeat: no-repeat;
-	background-position: center center;
-	backgorund-size: 50% 50%;
-	top: 0;
-	left: 0;
-}
-
-.course-info {
-	margin-bottom: 60px;
-}
-
-.reviewBar {
-	list-style: none;
-}
-
-.reviewBar li {
-	float: left;
-	font-size: 30px;
-	padding-right: 20px;
-}
-
-.reBar {
-	padding-top: 15px;
-}
-
-#love {
-	color: red;
-	padding-right: 10px;
-	font-size: 30px;
-}
-
-.review_detail li {
-	width: 400px;
-	list-style: none;
-}
-
-.reviewer {
-	width: 100px;
-	height: 100px;
-	display: inline-block;
-}
-
-.reviewer img {
-	width: 100%;
-	height: 100%;
-	border-radius: 50%;
-	vertical-align: middle;
-	display: block;
-}
-
-.reviewer_name {
-	
-}
-
-.details {
-	float: left;
-	margin-top: 10px;
-}
-
-.details strong {
-	font-size: 20px;
-}
-
-.detail {
-	float: left;
-	text-align: center;
-	padding-top: 10px;
-	padding-left: 20px;
-}
-
-.fa-home:before {
-	font-size: 30px;
-}
-
-.fa-ruler:before {
-	font-size: 30px;
-}
-
-.fa-tools:before {
-	font-size: 30px;
-}
-
-.fa-users:before {
-	font-size: 30px;
-}
-
-.note-modal-footer .note-btn {
-	float: none;
-}
-
-.note-modal-footer {
-	height: auto;
-}
-
-.writeTitle {
-	border-style: 5px solid;
-	border-color: #1abc9c;
-	border-radius: 5px;
-	width: 100%;
-	height: 40px;
-	margin-bottom: 10px;
-}
-
-.writedetail {
-	padding: 30px;
-	text-align: center;
-}
-
-#bsize {
-	margin-bottom: 0px;
-	margin-right: 50px;
-}
-
-#bbudget {
-	margin: 0px;
-}
-
-#loc {
-	margin: 0px;
-}
-
-#extrainfo {
-	margin: 0px;
-}
-
-.input-group {
-	width: 100%;
-}
-
-.input-group-text {
-	width: 13%;
-	justify-content: center;
-	background-color: #1abc9c;
-	color: white;
-}
-
-.form-control {
-	width: 55%;
-}
-
-.writedetailbtn {
-	width: 100%;
-	height: 50px;
-	border-style: 1px solid;
-	border-color: #1abc9c;
-	background-color: white;
-}
-
-.writebtn {
-	width: 200px;
-	height: 50px;
-	margin-top: 30px;
-	background-color: #1abc9c;
-	color: white;
-	border: none;
-	border-radius: 5px;
-}
-
-.previewImagebtn {
-	border: none;
-	border-radius: 5px;
-	background-color: #1abc9c;
-	color: white;
-	width: 150px;
-	height: 25px;
-	text-align: center;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
 </style>
 
 </head>
@@ -436,7 +262,7 @@
 									<div class="input-group mb-3">
 										<label class="input-group-text" for="hometype">주거형태</label>
 										<select class="form-select" id="hometype" name="hometype">
-											<option disabled selected>골라줭</option>
+											<option disabled selected>선택해주세요</option>
 											<option value="마이룸">마이룸</option>
 											<option value="원룸">원룸</option>
 											<option value="오피스텔">오피스텔</option>
@@ -454,7 +280,7 @@
 									<div class="input-group mb-3">
 										<label class="input-group-text" for="job">작업분야</label>
 										<select class="form-select" id="job" name="job">
-											<option disabled selected>골라</option>
+											<option disabled selected>선택해주세요</option>
 											<option value="홈스타일링">홈스타일링</option>
 											<option value="리모델링">리모델링</option>
 											<option value="부분시공">부분시공</option>
@@ -463,7 +289,7 @@
 									<div class="input-group mb-3">
 										<label class="input-group-text" for="family">가족형태</label>
 										<select class="form-select" id="family" name="family">
-											<option disabled selected>Choose...</option>
+											<option disabled selected>선택해주세요</option>
 											<option value="싱글">싱글</option>
 											<option value="신혼/부부">신혼/부부</option>
 											<option value="자녀동반">자녀동반</option>
@@ -472,7 +298,7 @@
 									<div class="input-group mb-3">
 										<label class="input-group-text" for="worker">작업자</label>
 										<select class="form-select" id="worker" name="worker">
-											<option disabled selected>Choose...</option>
+											<option disabled selected>필수선택사항입니다</option>
 											<option value="셀프-DLY">셀프 - DLY</option>
 											<option value="하프셀프">하프셀프</option>
 											<option value="전문가">전문가</option>

@@ -18,6 +18,7 @@
 <link rel="stylesheet" th:href="@{/css/structure.css}">
 <link rel="stylesheet" th:href="@{/css/main.css}">
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
+<link rel="stylesheet" th:href="@{/css/bs/Review.css}">
 
 <!-- font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
@@ -39,59 +40,7 @@
 <!-- Template Developed By ChtStudio -->
 
 <style type="text/css">
-.mr-3 {
-	margin-right: 30px;
-}
 
-.entry-meta {
-	left: auto;
-	right: 1%;
-	bottom: 1%;
-	background-color: transparent;
-}
-
-.entry-meta i {
-	font-size: 25px;
-	color: red;
-}
-
-.text-right {
-	text-align: right;
-}
-
-ul {
-	padding: 0px;
-}
-
-ul li {
-	float: left;
-	list-style: none;
-	margin-right: 20px;
-	margin-left: 0px;
-	margin-bottom: 10px;
-}
-
-.course-info {
-	padding-bottom: 10px;
-}
-
-.modal {
-	position: absolute;
-	height: 50%;
-	top: 3px;
-	display: none;
-}
-
-.modal-backdrop.show {
-	opacity: 0;
-}
-
-#thumbnailImage{
-	max-width: 100%;
-	min-height:300px;
-	height: 300px;
-	object-fit: cover;
-}
 
 </style>
 </head>
@@ -311,12 +260,12 @@ ul li {
 				</div>
 
 				<div class="row">
-					<div th:each="list : ${bragList}" class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12">
+					<div th:each="list : ${reviewList}" class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12">
 						<div class="sa-post">
 							<div class="entry-header">
 								<div class="entry-thumbnail">
 									<a href="blog-details.html">
-										<img th:src="|http://140.238.11.118:5000/upload/${list.bimgadr}|" alt="Image" class="img-fluid" id="thumbnailImage">
+										<img th:src="|http://140.238.11.118:5000/upload/${list.rimgadr}|" alt="Image" class="img-fluid" id="thumbnailImage">
 									</a>
 								</div>
 								<div class="entry-meta">
@@ -329,9 +278,9 @@ ul li {
 							<div class="course-info">
 								<div class="info">
 									<h2 class="title text-center">
-										<a th:text="${list.btitle}"></a>
+										<a th:text="${list.rtitle}"></a>
 									</h2>
-									<p class="text-right" th:text="${list.member.nickname}"></p>
+									<p class="text-right" th:text="${list.company.name}"></p>
 								</div>
 								<div class="sa-meta">
 									<ul class="global-list">
@@ -339,7 +288,7 @@ ul li {
 												<span><i class="fas fa-heart"></i></span>50
 											</a></li>
 										<li><a href="#">
-												<i class="far fa-eye"></i><span th:text="${list.bcnt}"></span>
+												<i class="far fa-eye"></i><span th:text="${list.rcnt}"></span>
 											</a></li>
 									</ul>
 								</div>
