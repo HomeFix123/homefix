@@ -96,7 +96,7 @@
 	                                <div class="main-image">
 	                                	<!-- 이미지 입력시 서버 주소 꼭 써주어야 함 -->
 	                                	<div><img th:src="|http://140.238.11.118:5000/upload/${tip.tipimg}"></div>
-	                                    <div><span style="padding: 10px;" th:text="${tip.tcontent}"></span></div><!-- <img src="" alt="" class="mainPic"> --> <!-- 이미지 입력 란 -->
+	                                    <div style="padding: 10px;"><span th:text="${tip.tcontent}"></span></div><!-- <img src="" alt="" class="mainPic"> --> <!-- 이미지 입력 란 -->
 	                                </div>
 	                                
 	                                <!-- article text data -->
@@ -109,7 +109,7 @@
 		                                      <!-- 닉네임 앞에 개인 프로필 이미지 나오게 하기 -->
 		                                      <img th:if="${not #strings.isEmpty(cmList.member.profilimg)}" th:src="|http://140.238.11.118:5000/upload/${cmList.member.profilimg}|" alt="Image" class="img-fluid" width="20px">
 	                                          <img th:if="${#strings.isEmpty(cmList.member.profilimg)}" src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="Image" class="img-fluid">
-		                                      <span class="memberId" th:text="${cmList.member.nickname}"></span><span class="contecnt" th:text="${cmList.content}"></span>
+		                                      <span class="memberId" style="font-weight:bold" th:text="${cmList.member.nickname}"></span> &nbsp; <span class="contecnt" th:text="${cmList.content}"></span>
 		                                      </p>
 		                                      </div>
 		                                    </ul>
@@ -126,8 +126,8 @@
 	                                <div class="comment">
 	                                	<input type="hidden" th:value="${tip.tid}" class="tipId">
 	                            		<input type="hidden" th:value="${tip.member.id}" class="commetWriter">
-	                                	<input id="input-comment" name="content" class="input-comment" type="text" placeholder="댓글을 입력해주세요.">
-	                                    <button type="button" class="submit-comment">게시</button>
+	                                	<input id="input-comment" name="content" class="input-comment" type="text" placeholder="댓글 내용을 입력해주세요.">
+	                                    <button type="button" class="submit-comment">등록</button>
 	                                </div>
 	                                
 	                            </article>

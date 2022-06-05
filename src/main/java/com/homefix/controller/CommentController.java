@@ -42,8 +42,11 @@ public class CommentController {
 		logger.info("댓글 입력 성공");
 		commentService.saveComment(id, content, tid);
 		//return commentService.getNickname(id).getNickname(); //멤버 아이디에 따른 레코드를 검색하고 그 안에서 닉네임 뽑아오기 => 에이작스로 리턴
-		return "<img src='http://140.238.11.118:5000/upload/"+ commentService.getProfilimg(id).getProfilimg() + "' width='20px'> " + commentService.getNickname(id).getNickname();
+		//return "<img src='http://140.238.11.118:5000/upload/"+ commentService.getProfilimg(id).getProfilimg() + "' width='20px'> " + commentService.getNickname(id).getNickname() + ;
+		return "<img src='http://140.238.11.118:5000/upload/"+ commentService.getProfilimg(id).getProfilimg() + "' width='20px'> " + "<span style=" + "'font-weight:bold'" + ">" + commentService.getNickname(id).getNickname() + "</span>" + "  &nbsp;";
 	}
+		
 	
+		
 	
 }

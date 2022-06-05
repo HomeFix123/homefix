@@ -1,9 +1,10 @@
 // 댓글 달기
 $(function() { 
 
+// 댓글 입력 버튼 눌렀을 때
 $(".submit-comment").click(function(){
 	//console.log('댓글 버튼 클릭');
-	const submitComment = $(this);
+	//const submitComment = $(this);
 	const commetWriter = $(this).siblings('.commetWriter').val();  //댓글 작성자
 	console.log(commetWriter)
 	
