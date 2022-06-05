@@ -33,3 +33,8 @@
 .slick-slide .user-img-sm {
 	display: inline;
 }
+
+.thumbnailImage{
+	height: 250px;
+	object-fit: cover;
+}
