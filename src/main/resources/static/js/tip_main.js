@@ -26,12 +26,12 @@ $(".submit-comment").click(function(){
         },
         contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8', //한글처리
         success: function (result) { // 성공했을 때
-        	alert(result.content);
+        	//alert(result.content);
 			console.log(result);
-			console.log(result[0]);
-			console.log(result[0].cmid);
-			console.log(result[0].member.name);
-			$('.contecnt').text(); html(), val()
+			//console.log(result[0]);
+			//console.log(result[0].cmid);
+			//console.log(result[0].member.name);
+			//$('.contecnt').text(); html(), val()
         },
         error: function (err){    // 실패했을 때
            alert('실패')
