@@ -9,16 +9,16 @@ import com.homefix.domain.Company;
 import com.homefix.domain.Review;
 
 public interface ReviewRepository extends CrudRepository<Review, String>{
-	
+
 	public List<Review> findAll(Pageable pageable);
 
 	public Review findByRid(Integer rid);
 
 	public Review findByRidAndCompany(Integer rid, Company company);
-	
-	
 
-	
-	
-	
+		public Review findByCompany(Company com);
+
+
+
+
 }

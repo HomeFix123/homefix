@@ -3,6 +3,7 @@ package com.homefix.domain;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
@@ -16,5 +17,6 @@ public class CompanyArea {
 	@JoinColumn(name = "at_id")
 	@OneToOne
 	private Area area;
-	
+
+
 }

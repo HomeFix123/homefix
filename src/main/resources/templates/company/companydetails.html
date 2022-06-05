@@ -302,10 +302,16 @@
 										<div class="requirements">
 											<h4>기본정보</h4>
 											<ul class="global-list">
-												<li>대표자:</li>
-												<li>경력:</li>
-												<li>시공지역:</li>
-												<li>주소:</li>
+												<li th:text="'대표자: '+ ${CompanyBasic.ceo}"></li>
+												<li th:text="'경력: '+ ${CompanyInfo.career} + '년'"></li>
+
+
+												<li>시공지역: <span th:each="a : ${CompanyInfo.area} "
+													th:text="${a.area.aname} + ' '"> </span></li>
+
+
+
+												<li th:text="'주소: '+${CompanyBasic.addr}"></li>
 											</ul>
 										</div>
 										<!-- /.requirements -->
@@ -315,54 +321,47 @@
 									<div class="tab-pane fade" id="course-info" role="tabpanel"
 										aria-labelledby="course-info-tab">
 										<h4>전문가 한마디</h4>
-
+										<p th:text="${CompanyInfo.cinfo_cont}"></p>
 
 									</div>
 									<div class="tab-pane fade" id="reviews" role="tabpanel"
 										aria-labelledby="reviews-tab">
 										<h3 class="widget_title">다양한 시공사례</h3>
-										<ul>
+										<ul th:each="b:${Brag}">
 											<li class="media">
 												<div class="entry-thumbnail">
-													<a href="#"><img src="images/blog/1.png" alt="Image"
-														class="img-fluid"></a>
+													<a th:href="@{/brag/}+(${b.bid})"> <img
+														th:if="${not #strings.isEmpty(b.bimgadr)}"
+														th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|"
+														alt="Image" class="img-fluid"> <img
+														th:if="${#strings.isEmpty(b.bimgadr)}"
+														src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
+
+
 												</div>
-												<div class="media-body">
-													<span class="post-date">May 21, 2021</span> <a href="#">Visual
-														Basic Web Course With Live Project</a>
+												<div class="info">
+													<h2 class="title text-center">
+														<a th:text="${b.btitle}"></a>
+													</h2>
+													<p class="text-right" th:text="${b.member.nickname}"></p>
 												</div>
-											</li>
-											<li class="media">
-												<div class="entry-thumbnail">
-													<a href="#"><img src="images/blog/2.png" alt="Image"
-														class="img-fluid"></a>
-												</div>
-												<div class="media-body">
-													<span class="post-date">May 20, 2021</span> <a href="#">Lorem
-														ipsum dolor sit ametdo eiusmod tempor.</a>
-												</div>
-											</li>
-											<li class="media">
-												<div class="entry-thumbnail">
-													<a href="#"><img src="images/blog/3.png" alt="Image"
-														class="img-fluid"></a>
-												</div>
-												<div class="media-body">
-													<span class="post-date">May 19, 2021</span> <a href="#">Lorem
-														ipsum dolor sit ametdo eiusmod tempor.</a>
+												<div class="sa-meta">
+													<ul class="global-list">
+														<li><a href="#"> <span><i
+																	class="fas fa-heart"></i></span>50
+														</a></li>
+														<li><a href="#"> <i class="far fa-eye"></i><span
+																th:text="${b.bcnt}"></span>
+														</a></li>
+													</ul>
 												</div>
 											</li>
-											<li class="media">
-												<div class="entry-thumbnail">
-													<a href="#"><img src="images/blog/4.png" alt="Image"
-														class="img-fluid"></a>
-												</div>
-												<div class="media-body">
-													<span class="post-date">May 18, 2021</span> <a href="#">Lorem
-														ipsum dolor sit ametdo eiusmod tempor.</a>
-												</div>
-											</li>
+
+
+
 										</ul>
+
+
 									</div>
 									<div class="tab-pane fade" id="comments" role="tabpanel"
 										aria-labelledby="comments-tab">
@@ -384,6 +383,7 @@
 															<p id='r_cont'>후기 내용</p>
 														</div>
 													</div>
+												</li>
 												<li class="media">
 													<div class="commenter-avatar">
 														<a href="#"><img class="img-fluid"
@@ -418,31 +418,31 @@
 
 					<div class='col-lg-3'>
 
-						
-							<div class=companyImg>
-								
+
+						<div class=companyImg>
 
 
-								<div class='imgtutor'>
-									<img src="http://140.238.11.118:5000/upload/logo4.png" alt="Profile Picture"
-										id='companyId'>
 
-								</div>
+							<div class='imgtutor'>
+								<img src="http://140.238.11.118:5000/upload/logo4.png"
+									alt="Profile Picture" id='companyId'>
 
-								<div>
-
-									<h4 class="partner_detail__title">
-
-										우일인테리어
-										<!---->
-									</h4>
-									<ul class="global-list">
-                                    <li><i class="fas fa-check-circle"></i> 전문분야: </li>
-                                    <li><i class="fas fa-check-circle"></i> 시공횟수: </li>
-                                    <li><i class="fas fa-check-circle"></i> 후기수:&nbsp&nbsp</li>
-                                </ul>
-								</div>
 							</div>
+
+							<div>
+
+								<h4 class="partner_detail__title">
+
+									우일인테리어
+									<!---->
+								</h4>
+								<ul class="global-list">
+									<li><i class="fas fa-check-circle"></i> 전문분야:</li>
+									<li><i class="fas fa-check-circle"></i> 시공횟수:</li>
+									<li><i class="fas fa-check-circle"></i> 후기수:&nbsp&nbsp</li>
+								</ul>
+							</div>
+						</div>
 
 						</aside>
 
