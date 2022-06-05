@@ -39,30 +39,32 @@ $(function(){
 			}			
 		}).done((result) =>{
 			const coInfo = result.company;
+			if(coInfo != null){
+				
+				
+				$('.co_name').text(coInfo.name);
+				
+				const buttons = $('#modal-buttons');
+				const updateBtn = buttons.find('.company-update');
+				const blacklistBtn = buttons.find('.company-blacklist');
+				
+				updateBtn.attr('href', '/admin/company/form/' + coInfo.id);
+				blacklistBtn.val(coInfo.enabled);
+				
+				
+				
+				const default_info = $('#default-info');
+				default_info.find('.company_id').text(coInfo.id);
+				default_info.find('.co_logo').attr('src', 'http://140.238.11.118:5000/upload/'+coInfo.logo)
+				default_info.find('.co_addr').text(coInfo.addr);
+				default_info.find('.co_num').text(coInfo.num);
+				default_info.find('.co_ceo').text(coInfo.ceo);
+				default_info.find('.co_tel').text(coInfo.tel);
+				default_info.find('.co_email').text(coInfo.email);
+				default_info.find('.contract').text(coInfo.contract);
+				default_info.find('.prefer').text(coInfo.prefer);
 			
-			$('.co_name').text(coInfo.name);
-			
-			const buttons = $('#modal-buttons');
-			const updateBtn = buttons.find('.company-update');
-			const blacklistBtn = buttons.find('.company-blacklist');
-			
-			updateBtn.attr('href', '/admin/company/form/' + coInfo.id);
-			blacklistBtn.val(coInfo.enabled);
-			
-			
-			
-			const default_info = $('#default-info');
-			default_info.find('.company_id').text(coInfo.id);
-			default_info.find('.co_logo').attr('src', 'http://140.238.11.118:5000/upload/'+coInfo.logo)
-			default_info.find('.co_addr').text(coInfo.addr);
-			default_info.find('.co_num').text(coInfo.num);
-			default_info.find('.co_ceo').text(coInfo.ceo);
-			default_info.find('.co_tel').text(coInfo.tel);
-			default_info.find('.co_email').text(coInfo.email);
-			default_info.find('.contract').text(coInfo.contract);
-			default_info.find('.prefer').text(coInfo.prefer);
-			
-			
+			}
 			
 			
 			const detail = $('#detail-info')
@@ -70,24 +72,27 @@ $(function(){
 			const areTd = detail.find('.area')
 			
 			detail.find('.career').text(result.career + '년');
-			
-			let sp_cont = [];
-			for(let i = 0; i < result.specialty.length; i++){
-				sp_cont.push(result.specialty[i].sp_cont);
+			if(result.specialty != null){
+				
+				let sp_cont = [];
+				for(let i = 0; i < result.specialty.length; i++){
+					sp_cont.push(result.specialty[i].sp_cont);
+				}
+				speTd.text(sp_cont.join(", "));
 			}
-			speTd.text(sp_cont.join(", "));
 			
-			let areas = [];
-			for(let i = 0; i < result.area.length; i++){
-				if(result.area[i].area.dt_area){
-					
-					areas.push(result.area[i].area.aname + " " + result.area[i].area.dt_area);
-				} else {
-					areas.push(result.area[i].area.aname);	
-				}	
+			if(result.area != null){
+				let areas = [];
+				for(let i = 0; i < result.area.length; i++){
+					if(result.area[i].area.dt_area){
+						
+						areas.push(result.area[i].area.aname + " " + result.area[i].area.dt_area);
+					} else {
+						areas.push(result.area[i].area.aname);	
+					}	
+				}
+				areTd.text(areas.join(", "));
 			}
-			areTd.text(areas.join(", "));
-			
 			const companyImg = detail.find('.company-img')
 			companyImg.attr('src','http://140.238.11.118:5000/upload/'+result.cinfo_img);
 			
