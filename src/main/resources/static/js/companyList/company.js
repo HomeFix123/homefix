@@ -94,7 +94,6 @@ $(function(){
 	
 	const params = new URLSearchParams(location.search);
 	
-	
 	// url에서 가져온 검색 조건들을 data 객체에 추가
 	if(params.has('keyword')){
 		data.keyword = params.get("keyword");
@@ -129,7 +128,14 @@ $(function(){
 		
 		const resultList = getMoreCompany(data) // ajax로 요청후 결과를 변수에 저장
 		
+		
+		if(resultList < 12){
+			// 결과가 10개 미만인 경우 더보기 버튼 삭제
+			$('#moreDiv').remove(); 
+		}
+		
 		const imgURL = "http://140.238.11.118:5000/upload/" // 이미지 주소
+		const defaultImg = "profile_basic.png" // 기본 이미지
 		
 		// 결과 개수만큼 for문
 		for(let result of resultList){
@@ -147,8 +153,17 @@ $(function(){
 			
 			
 			// 이미지 처리
-			titleImg.attr('src', imgURL + result.img);
-			logo.attr('src', imgURL + result.logo);
+			if(result.img != null){
+				titleImg.attr('src', imgURL + result.img);
+			} else {
+				titleImg.attr('src', imgURL + defaultImg);
+			}
+			
+			if(result.logo != null){
+				logo.attr('src', imgURL + result.logo);
+			} else {
+				logo.attr('src', imgURL + defaultImg);
+			}
 			
 			// 단순한 데이터 처리 (업체명, 좋아요수, 계약건수)
 			companyName.text(result.name);
@@ -187,6 +202,7 @@ $(function(){
 	
 	// 추가 데이터 가져오는 ajax
 	function getMoreCompany(data){
+		
 		let result = null;
 		
 		$.ajax({

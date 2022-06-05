@@ -66,8 +66,8 @@ public class ElasticCompanyServiceImpl implements ElasticCompanyService{
 		}
 		
 		// 페이지당 보여줄 개수
-		int viewsPerPage = 10;
-		// 시작 번호 0부터 연산 (0, 10, 20, ...) 
+		int viewsPerPage = 12;
+		// 시작 번호 0부터 연산 (0, 12, 24, ...) 
 		int startNum = viewsPerPage * (page-1);
 		
 		try {
@@ -94,7 +94,8 @@ public class ElasticCompanyServiceImpl implements ElasticCompanyService{
 			if(keyword != null && !keyword.equals("")) {
 				query = query
 							.should(QueryBuilders
-									.multiMatchQuery(keyword, new String[] {"name", "content"})); // 검색될 필드명 설정 (검색어, String 배열)
+									.multiMatchQuery(keyword, "name", "content") // 검색될 필드명 설정 (검색어, 필드명, 필드명, ...)
+									.field("name", 2)); // 특정 필드(name)에 가중치 2배
 			}
 			
 			// 지역 검색
