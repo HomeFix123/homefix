@@ -84,11 +84,28 @@ public class EstController {
 	@RequestMapping("/sessiontest")
 	@ResponseBody
 	public String sessioncheck(String id , HttpSession session) {
-		session.setAttribute("id", id);
-		String sessionid = (String)session.getAttribute("id");
+		session.setAttribute("userId", id);
+		String sessionid = (String)session.getAttribute("userId");
 		//System.out.println(sessionid);
 		return sessionid;
 	}
+	
+	//ajax로 session에 값 저장하고 출력하는거 테스트 후에 지우기!!!!!!!!!!!!!!!!!
+	@RequestMapping("/memberSession")
+	@ResponseBody
+	public String memberSession(String id , HttpSession session) {
+		session.setAttribute("memberId", id);
+		String sessionid = (String)session.getAttribute("memberId");
+		//System.out.println(sessionid);
+		return sessionid;
+	}
+	
+	//ajax로 session에 값 삭제 테스트 후에 지우기!!!!!!!!!!!!!!!!!
+		@RequestMapping("/logout")
+		@ResponseBody
+		public void logout(HttpSession session) {
+			session.invalidate(); //세션의 모든 속성을 삭제
+		}
 	
 	@RequestMapping("/estimationDetail")
 	@ResponseBody
