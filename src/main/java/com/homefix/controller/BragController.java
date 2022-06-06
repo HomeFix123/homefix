@@ -51,10 +51,10 @@ public class BragController {
 	
 	@GetMapping
 	public String getBragList(Model m, HttpSession session, String keyword, String sort, String loc, 
-			String family, String job, String hometype){
+			String family, String hometype){
 		
 		String id = (String) session.getAttribute("memberId");
-		m.addAttribute("bragList", bragService.getBragByKeyword(keyword, loc, family, job, hometype, sort, 1));
+		m.addAttribute("bragList", bragService.getBragByKeyword(keyword, loc, family, hometype, sort, 1));
 		
 		
 		

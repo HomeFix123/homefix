@@ -56,10 +56,6 @@
 	display: block;
 }
 
-.reviewer_name {
-	
-}
-
 .details {
 	float: left;
 	margin-top: 10px;
@@ -159,9 +155,9 @@ ul li {
 	opacity: 0;
 }
 
-#thumbnailImage{
+#thumbnailImage {
 	max-width: 100%;
-	min-height:300px;
+	min-height: 300px;
 	height: 300px;
 	object-fit: cover;
 }
@@ -221,10 +217,6 @@ ul li {
 	border-radius: 50%;
 	vertical-align: middle;
 	display: block;
-}
-
-.reviewer_name {
-	
 }
 
 .details {
@@ -342,4 +334,37 @@ ul li {
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+.btn-loc {
+	border: 1px solid #1abc9c;
+	color: #1abc9c;
+}
+
+.btn-loc.btn-selected {
+	background: #1abc9c;
+	color: white;
+	border: 1px white solid;
+}
+
+.btn-hometype {
+	border: 1px solid #1abc9c;
+	color: #1abc9c;
+}
+
+.btn-hometype.btn-selected {
+	background: #1abc9c;
+	color: white;
+	border: 1px white solid;
+}
+
+.btn-family {
+	border: 1px solid #1abc9c;
+	color: #1abc9c;
+}
+
+.btn-family.btn-selected {
+	background: #1abc9c;
+	color: white;
+	border: 1px white solid;
 }

@@ -40,7 +40,6 @@
         <![endif]-->
 <!-- Template Developed By ChtStudio -->
 <style type="text/css">
-
 </style>
 
 </head>
@@ -50,42 +49,48 @@
 	</div>
 	<!-- preloader -->
 
+	<div th:replace="/sections/header :: header"></div>
+	<br />
+	<section class="breadcrumb-section bg-light">
+		<div class="container">
+			<h1>인테리어 자랑 작성</h1>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+				<li class="breadcrumb-item"><a href="brag">Brag</a></li>
+			</ol>
+		</div>
+		<!-- /.container -->
+	</section>
+	<!-- /.breadcrumb-section -->
+
 	<header class="sa-header">
 		<div class="sa-topbar">
 			<div class="container">
 				<div class="topbar-content">
 					<div class="left-content">
 						<ul class="global-list">
-							<li><a href="#">
-									<i class="far fa-envelope"></i>info@gmail.com
-								</a></li>
-							<li><a href="#">
-									<i class="fas fa-phone-volume"></i>0123456789
-								</a></li>
+							<li><a href="#"> <i class="far fa-envelope"></i>info@gmail.com
+							</a></li>
+							<li><a href="#"> <i class="fas fa-phone-volume"></i>0123456789
+							</a></li>
 						</ul>
 					</div>
 					<div class="right-content">
 						<ul class="global-list social">
-							<li><a href="#">
-									<i class="fab fa-facebook-f"></i>
-								</a></li>
-							<li><a href="#">
-									<i class="fab fa-twitter"></i>
-								</a></li>
-							<li><a href="#">
-									<i class="fab fa-google-plus-g"></i>
-								</a></li>
-							<li><a href="#">
-									<i class="fab fa-linkedin-in"></i>
-								</a></li>
-							<li><a href="#">
-									<i class="fab fa-pinterest-p"></i>
-								</a></li>
+							<li><a href="#"> <i class="fab fa-facebook-f"></i>
+							</a></li>
+							<li><a href="#"> <i class="fab fa-twitter"></i>
+							</a></li>
+							<li><a href="#"> <i class="fab fa-google-plus-g"></i>
+							</a></li>
+							<li><a href="#"> <i class="fab fa-linkedin-in"></i>
+							</a></li>
+							<li><a href="#"> <i class="fab fa-pinterest-p"></i>
+							</a></li>
 						</ul>
 						<ul class="global-list">
-							<li><a href="#" class="btn btn-primary">
-									Register <i class="fas fa-sign-in-alt"></i>
-								</a></li>
+							<li><a href="#" class="btn btn-primary"> Register <i class="fas fa-sign-in-alt"></i>
+							</a></li>
 						</ul>
 					</div>
 				</div>
@@ -97,8 +102,7 @@
 		<div class="sa-menu">
 			<nav class="navbar navbar-expand-lg">
 				<div class="container">
-					<a class="navbar-brand" href="index.html">
-						<img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
+					<a class="navbar-brand" href="index.html"> <img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
 					</a>
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,21 +133,16 @@
 									<li><a href="profile.html">User Profile</a></li>
 									<li class="active"><a href="blog-details.html">Blog Details</a></li>
 									<li><a href="tutor-details.html">Tutor Details</a></li>
-									<li><a href="my-course.html">
-											My Course<span class="badge rounded-pill bg-dark">New</span>
-										</a></li>
-									<li><a href="course-video.html">
-											Course Video<span class="badge rounded-pill bg-dark">New</span>
-										</a></li>
-									<li><a href="cart.html">
-											Shopping Cart<span class="badge rounded-pill bg-dark">New</span>
-										</a></li>
-									<li><a href="payment.html">
-											Payment<span class="badge rounded-pill bg-dark">New</span>
-										</a></li>
-									<li><a href="congrats.html">
-											Congrats<span class="badge rounded-pill bg-dark">New</span>
-										</a></li>
+									<li><a href="my-course.html"> My Course<span class="badge rounded-pill bg-dark">New</span>
+									</a></li>
+									<li><a href="course-video.html"> Course Video<span class="badge rounded-pill bg-dark">New</span>
+									</a></li>
+									<li><a href="cart.html"> Shopping Cart<span class="badge rounded-pill bg-dark">New</span>
+									</a></li>
+									<li><a href="payment.html"> Payment<span class="badge rounded-pill bg-dark">New</span>
+									</a></li>
+									<li><a href="congrats.html"> Congrats<span class="badge rounded-pill bg-dark">New</span>
+									</a></li>
 									<li><a href="sign-in.html">Sign In</a></li>
 									<li><a href="sign-up.html">Sign Up</a></li>
 								</ul></li>
@@ -171,8 +170,7 @@
 														</div>
 													</div>
 													<!-- /.course-info -->
-												</div>
-												<!-- /.sa-course --></li>
+												</div> <!-- /.sa-course --></li>
 											<li class="remove-item"><span class="remove-icon"><i class="fas fa-times"></i></span>
 												<div class="sa-course">
 													<div class="course-thumb">
@@ -188,8 +186,7 @@
 														</div>
 													</div>
 													<!-- /.course-info -->
-												</div>
-												<!-- /.sa-course --></li>
+												</div> <!-- /.sa-course --></li>
 											<li class="remove-item"><span class="remove-icon"><i class="fas fa-times"></i></span>
 												<div class="sa-course">
 													<div class="course-thumb">
@@ -205,15 +202,13 @@
 														</div>
 													</div>
 													<!-- /.course-info -->
-												</div>
-												<!-- /.sa-course --></li>
+												</div> <!-- /.sa-course --></li>
 										</ul>
 										<div class="total-price">
 											<span><strong>Total Price: </strong>$598:00</span>
 										</div>
 										<div class="buttons">
-											<a class="btn btn-primary cart-button" href="#">View Cart</a>
-											<a class="btn btn-primary" href="#">Checkout</a>
+											<a class="btn btn-primary cart-button" href="#">View Cart</a> <a class="btn btn-primary" href="#">Checkout</a>
 										</div>
 									</div></li>
 								<li><i class="far fa-bell"></i></li>
@@ -261,18 +256,16 @@
 								<div class="writedetail">
 
 									<div class="input-group mb-3">
-										<label class="input-group-text" for="cid">업체명</label>
-										<select class="form-select" id="cid" name="cid" >
+										<label class="input-group-text" for="cid">업체명</label> <select class="form-select" id="cid" name="cid">
 											<option disabled selected>계약 업체목록</option>
-											<option th:each="conlist : ${contract}" th:value="${conlist.id}" th:text="${conlist.name}" >한샘리하우스디자인디원</option>											
+											<option th:each="conlist : ${contract}" th:value="${conlist.id}" th:text="${conlist.name}">한샘리하우스디자인디원</option>
 										</select>
 									</div>
 
 
 									<div class="input-group mb-3">
-										<label class="input-group-text" for="hometype">주거형태</label>
-										<select class="form-select" id="hometype" name="hometype">
-											<option disabled selected>골라줭</option>
+										<label class="input-group-text" for="hometype">주거형태</label> <select class="form-select" id="hometype" name="hometype">
+											<option disabled selected>선택해주세요</option>
 											<option value="마이룸">마이룸</option>
 											<option value="원룸">원룸</option>
 											<option value="오피스텔">오피스텔</option>
@@ -281,34 +274,29 @@
 									</div>
 
 									<div class="input-group input-group-sm mb-3">
-										<span class="input-group-text" id="inputGroup-sizing-sm">평수</span>
-										<input type="text" id="bsize" name="bsize" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-										<span class="input-group-text" id="inputGroup-sizing-sm">예산</span>
-										<input type="text" id="bbudget" name="bbudget" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+										<span class="input-group-text" id="inputGroup-sizing-sm">평수</span> <input type="text" id="bsize" name="bsize" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"> <span class="input-group-text" id="inputGroup-sizing-sm">예산</span> <input type="text" id="bbudget" name="bbudget" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 									</div>
 
 									<div class="input-group mb-3">
-										<label class="input-group-text" for="job">작업분야</label>
-										<select class="form-select" id="job" name="job">
-											<option disabled selected>골라</option>
+										<label class="input-group-text" for="job">작업분야</label> <select class="form-select" id="job" name="job">
+											<option disabled selected>선택해주세요</option>
 											<option value="홈스타일링">홈스타일링</option>
 											<option value="리모델링">리모델링</option>
 											<option value="부분시공">부분시공</option>
 										</select>
 									</div>
 									<div class="input-group mb-3">
-										<label class="input-group-text" for="family">가족형태</label>
-										<select class="form-select" id="family" name="family">
-											<option disabled selected>Choose...</option>
+										<label class="input-group-text" for="family">가족형태</label> <select class="form-select" id="family" name="family">
+											<option disabled selected>선택해주세요</option>
 											<option value="싱글">싱글</option>
 											<option value="신혼/부부">신혼/부부</option>
 											<option value="자녀동반">자녀동반</option>
+											<option value="대가족">대가족</option>
 										</select>
 									</div>
 									<div class="input-group mb-3">
-										<label class="input-group-text" for="worker">작업자</label>
-										<select class="form-select" id="worker" name="worker">
-											<option disabled selected>Choose...</option>
+										<label class="input-group-text" for="worker">작업자</label> <select class="form-select" id="worker" name="worker">
+											<option disabled selected>선택해주세요</option>
 											<option value="셀프-DLY">셀프 - DLY</option>
 											<option value="하프셀프">하프셀프</option>
 											<option value="전문가">전문가</option>
@@ -316,19 +304,15 @@
 									</div>
 
 									<div class="input-group input-group-sm mb-3 ">
-										<span class="input-group-text" id="inputGroup-sizing-sm">지역</span>
-										<input type="text" id="loc" name="loc" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+										<span class="input-group-text" id="inputGroup-sizing-sm">지역</span> <input type="text" id="loc" name="loc" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 									</div>
 
 									<div class="input-group input-group-sm mb-3">
-										<span class="input-group-text" id="inputGroup-sizing-sm">세부정보</span>
-										<input type="text" id="extrainfo" name="extrainfo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+										<span class="input-group-text" id="inputGroup-sizing-sm">세부정보</span> <input type="text" id="extrainfo" name="extrainfo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 									</div>
 
 									<div class="previewImage">
-										<label class="previewImagebtn" for="inputImage">섬네일 미리보기</label> <img style="width: 100%;" id="previewImage" src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload">
-										<input style="display: block; visibility: hidden;" type="file" accept="image/*" id="inputImage" name="inputImage">
-										<input hidden="" id="bimgadr" name="bimgadr">
+										<label class="previewImagebtn" for="inputImage">섬네일 미리보기</label> <img style="width: 100%;" id="previewImage" src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload"> <input style="display: block; visibility: hidden;" type="file" accept="image/*" id="inputImage" name="inputImage"> <input hidden="" id="bimgadr" name="bimgadr">
 									</div>
 								</div>
 								<!-- /.writedetail -->

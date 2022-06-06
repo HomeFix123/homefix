@@ -84,7 +84,7 @@ public class BragServiceImpl implements BragService {
 
 	@Override
 	public List<ElasticBrag> getBragByKeyword(String keyword, String loc, 
-			String family, String job, String hometype, String sort, Integer page) {
+			String family, String hometype, String sort, Integer page) {
 
 
 		// 페이지당 보여줄 개수
@@ -114,23 +114,19 @@ public class BragServiceImpl implements BragService {
 
 			// 지역 검색
 			if (loc != null) {
-				query = query.must(QueryBuilders.termQuery("spaces", loc)); // 지역명으로 용어검색
+				query = query.must(QueryBuilders.matchQuery("loc", loc)); // 지역명으로 용어검색
 			}
 
 			// 가족형태 검색
 			if (family != null) {
-				query = query.must(QueryBuilders.termQuery("familys", family)); // 지역명으로 용어검색
+				query = query.must(QueryBuilders.matchQuery("family", family)); // 지역명으로 용어검색
 			}
 
 			// 주거형태 검색
 			if (hometype != null) {
-				query = query.must(QueryBuilders.termQuery("hometypes", hometype)); // 지역명으로 용어검색
+				query = query.must(QueryBuilders.matchQuery("hometype", hometype)); // 지역명으로 용어검색
 			}
 
-			// 작업분야 검색
-			if (job != null) {
-				query = query.must(QueryBuilders.termQuery("jobs", job)); // 지역명으로 용어검색
-			}
 
 			// 요청할 데이터 처리
 			ssb.query(query);
@@ -179,7 +175,9 @@ public class BragServiceImpl implements BragService {
 		} else {
 			result.setPreferck(false);
 		}
-
+		Integer cnt = result.getBcnt();
+		result.setBcnt(cnt+1);
+		bragRepo.save(result);
 		return result;
 
 	}

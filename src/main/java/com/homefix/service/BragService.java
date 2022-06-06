@@ -16,7 +16,7 @@ public interface BragService {
 	// 인테리어 자랑 리스트
 	//public List<Brag> getBragList(Brag brag);
 	public List<ElasticBrag> getBragByKeyword(String keyword, String loc, 
-			String family, String job, String hometype, String sort, Integer page);
+			String family, String hometype, String sort, Integer page);
 	
 	// 인테리어 자랑 상세
 	public Brag getBrag(Brag brag, String id);

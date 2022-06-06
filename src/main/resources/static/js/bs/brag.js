@@ -14,10 +14,15 @@ $(function(){
 	
 	
 	// 모달 관련
-	const modal = $('#exampleModal');
 	const ulBtns = $('#ulBtns');
 	const modalSubmitBtn = $('#modalSubmit');
 	const modalCancelBtn = $('#modalCancelBtn');
+	
+	const ulBtnsHometype = $('#ulBtnshometype');
+	
+	const ulBtnsFamily = $('#ulBtnsCnt');
+
+
 	
 	
 	
@@ -32,23 +37,48 @@ $(function(){
 		}
 	})
 	
+		// 지역 버튼 선택시 이펙트
+	ulBtnsHometype.find('button').click(function(){
+		if($(this).hasClass('btn-selected')){
+			$(this).removeClass('btn-selected')
+		} else {
+			ulBtnsHometype.find('button').removeClass('btn-selected')
+			$(this).addClass('btn-selected')
+		}
+	})
+	
+		// 지역 버튼 선택시 이펙트
+	ulBtnsFamily.find('button').click(function(){
+		if($(this).hasClass('btn-selected')){
+			$(this).removeClass('btn-selected')
+		} else {
+			ulBtnsFamily.find('button').removeClass('btn-selected')
+			$(this).addClass('btn-selected')
+		}
+	})
+	
 	// 취소 버튼 선택시 이펙트 삭제
 	modalCancelBtn.click(() => {
 		ulBtns.find('button').removeClass('btn-selected')
+		
 	})
 	
 	// 선택 버튼 선택시 input[hidden] 추가 
 	modalSubmitBtn.click(function(){
 		const locName = ulBtns.find('.btn-selected').attr('value')
 		
+		
+		
 		// 남아있던 지역 검색값 삭제 후 고른 걸로 추가
 		hiddenInputs.find('input[name=loc]').remove();
 		if(locName != null){
 			const input = "<input type='hidden' name='loc' value='" + locName + "'>"
 			hiddenInputs.append(input)
-		}
+		} 
 		
-		modal.modal("hide"); // 모달 닫기 (자동으로 안닫혀서 추가)
+		
+		searchForm.submit();
+		
 	});
 	
 	// 검색 폼
@@ -56,13 +86,13 @@ $(function(){
 	
 	// 정렬 버튼들 
 	const sortBtn = $('#sortBtn'); // 정확도순
-	const sortReviewBtn = $('#sortReviewBtn'); // 리뷰순
-	const sortContractBtn = $('#sortContractBtn'); // 계약순
+	const sortPreferBtn = $('#sortPreferBtn'); // 리뷰순
+	const sortCntBtn = $('#sortCntBtn'); // 계약순
 	
 	
 	sortBtn.click(() => {clickSortBtn()});
-	sortReviewBtn.click(() => {clickSortBtn('review')});
-	sortContractBtn.click(() => {clickSortBtn('contract')});
+	sortPreferBtn.click(() => {clickSortBtn('prefer')});
+	sortCntBtn.click(() => {clickSortBtn('cnt')});
 	
 	
 	function clickSortBtn(sort){
@@ -89,21 +119,24 @@ $(function(){
 $(function(){
 	let page = 1; // 초기 페이지
 	let data = {}; // 검색할 데이터 (객체)
-	const listDiv = $('#companyListDiv'); // 검색결과를 추가할 곳
-	const divSample = $('.companyDiv:first-child()').clone(); // div 형태 복사
+	const listDiv = $('#bragListDiv'); // 검색결과를 추가할 곳
+	const divSample = $('.bragDiv:first-child()').clone(); // div 형태 복사
 	
 	const params = new URLSearchParams(location.search);
 	
 	
 	// url에서 가져온 검색 조건들을 data 객체에 추가
-	if(params.has('keyword')){
-		data.keyword = params.get("keyword");
+	if(params.has('family')){
+		data.family = params.get("family");
 	}
 	if(params.has('sort')){
 		data.sort = params.get("sort");
 	}
-	if(params.has('area')){
-		data.area = params.get("area");
+	if(params.has('loc')){
+		data.loc = params.get("loc");
+	}
+	if(params.has('hometype')){
+		data.hometype = params.get("hometype");
 	}
 	/*
 		data = {
@@ -137,8 +170,8 @@ $(function(){
 			const div = divSample.clone();
 			
 			// 데이터 넣을 위치
-			const titleImg = div.find('.titleImg'); // 타이틀 이미지
-			const logo = div.find('.user-img'); // 로고 이미지
+			const mainimg = div.find('#thumbnailImage'); // 타이틀 이미지
+			//const logo = div.find('.user-img'); // 로고 이미지
 			const companyName = div.find('.companyName'); // 업체명
 			const companySpecialList = div.find('.companySpecialList'); // 전문분야 (주거공간, 상업공간)
 			const prefer = div.find('.preferCnt'); // 좋아요수
@@ -186,7 +219,7 @@ $(function(){
 	
 	
 	// 추가 데이터 가져오는 ajax
-	function getMoreCompany(data){
+	function getMoreBrag(data){
 		let result = null;
 		
 		$.ajax({
