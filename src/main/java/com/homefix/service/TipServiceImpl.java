@@ -9,7 +9,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Tip;
+import com.homefix.domain.Tip_prefer;
 import com.homefix.persistence.MemberRepository;
+import com.homefix.persistence.TipPreferRepository;
 import com.homefix.persistence.TipRepository;
 
 @Service
@@ -20,6 +22,9 @@ public class TipServiceImpl implements TipService{
 	
 	@Autowired
 	MemberRepository memberRepo;
+	
+	@Autowired
+	TipPreferRepository tipPreferRepo;
 	
 	// 팁 전체 목록
 	@Override
@@ -45,6 +50,29 @@ public class TipServiceImpl implements TipService{
 		tip.setMember(memberRepo.findById(id).get());
 		tipRepo.save(tip);
 		System.out.println("입력값 확인 " + tipRepo.save(tip));
+		
+	}
+	
+	// 좋아요 입력
+	@Override
+	public void savePrefer(Tip tip, String id) {
+		Tip_prefer result = new Tip_prefer();
+		result.setTip(tip);
+		result.setMember(memberRepo.findById(id).get());
+		tipPreferRepo.save(result);
+		System.out.println("좋아요 입력 결과는!!!!" + result);
+		
+	}
+	
+	// 좋아요 취소
+	@Override
+	public void deletePrefer(Tip tip, String id) {
+		Tip_prefer result = new Tip_prefer();
+		result.setTip(tip);
+		result.setMember(memberRepo.findById(id).get());
+		tipPreferRepo.deleteAll(tipPreferRepo.findByTipAndMember(tip, result.getMember()));
+		System.out.println("좋아요 취소 결과는" + result);
+		
 		
 	}
 	
