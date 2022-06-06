@@ -86,37 +86,51 @@
 	                            <article id="post_atl" th:each="tip : ${tipList}">
 	                            <!-- 게시물 헤더 -->    
 	                                <header id="tip_header">
+	                                    
 	                                    <div class="profile-of-article">
 	                                        <img class="img-profile pic" src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="dlwlrma님의 프로필 사진">
 	                                        <span class="userID main-id point-span" th:text="${tip.member.id}"></span>
 	                                        <span class="userID main-id point-span" th:text="${tip.tiptitle}"></span>
-	                                    </div>
+	                                        <a href="#"> <i id="heart" class="my-2 far fa-heart"></i></a>
+	                                        <!-- 꽉찬 하트  <i id="fill-heart" class="fa fa-heart" aria-hidden="true"></i>-->
+	                                    </div>    
 	                                </header>
 	                                <!-- /게시물 헤더 끝-->
 	                                <div class="main-image">
-	                                    <span th:utext="${tip.tcontent}"></span><!-- <img src="" alt="" class="mainPic"> --> <!-- 이미지 입력 란 -->
+	                                	<!-- 이미지 입력시 서버 주소 꼭 써주어야 함 -->
+	                                	<div><img th:src="|http://140.238.11.118:5000/upload/${tip.tipimg}"></div>
+	                                    <div style="padding: 10px;"><span th:text="${tip.tcontent}"></span></div><!-- <img src="" alt="" class="mainPic"> --> <!-- 이미지 입력 란 -->
 	                                </div>
+	                                
 	                                <!-- article text data -->
+	                                <!-- 댓글목록 -->
 	                                <div class="reaction" style="padding:0px">
-	                                   	<!-- 댓글목록 -->
-	                                    <div class="comment-section" th:each="cmList : ${commentList}">
-	                                        <ul class="comments">
-	                                           <div class="comment-like">
-	                                           <p><span class="memberId" th:text="${cmList.member?.id}"></span><span class="contecnt"> 안녕하세요</span></p>
-	                                           </div>
-	                                        </ul>
-	                                     <div class="time-log">
-	                                        <span th:text="${tip.tdate}"></span>
-	                                     </div>
-	                                    </div>
-	                                    <!-- 댓글목록 끝 -->
+	                                  <div class="comment-section" th:each="cmList : ${tip.CommentList}">
+		                                    <ul class="comments">
+		                                      <div class="comment-like">
+		                                      <p>
+		                                      <!-- 닉네임 앞에 개인 프로필 이미지 나오게 하기 -->
+		                                      <img th:if="${not #strings.isEmpty(cmList.member.profilimg)}" th:src="|http://140.238.11.118:5000/upload/${cmList.member.profilimg}|" alt="Image" class="img-fluid" width="20px">
+	                                          <img th:if="${#strings.isEmpty(cmList.member.profilimg)}" src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="Image" class="img-fluid">
+		                                      <span class="memberId" style="font-weight:bold" th:text="${cmList.member.nickname}"></span> &nbsp; <span class="contecnt" th:text="${cmList.content}"></span>
+		                                      </p>
+		                                      </div>
+		                                    </ul>
+		                                    <div class="time-log">
+		                                       <span class="tdate" th:text="${tip.tdate}"></span>
+		                                    </div>
+		                                    <!-- 본인의 댓글만 삭제할 수 있게 세션의 저장된 memberId와 댓글 작성자의 memberId를 비교해서 버튼 출력 -->
+		                                    <!-- <button th:if="${session.memberId == cmList.member.Id}">삭제</button> -->
+	                                	</div>
 	                                </div>
+	                                <!-- 댓글목록 끝 -->
+	                                
 	                                <!-- 댓글입력 -->
 	                                <div class="comment">
 	                                	<input type="hidden" th:value="${tip.tid}" class="tipId">
 	                            		<input type="hidden" th:value="${tip.member.id}" class="commetWriter">
-	                                	<input id="input-comment" name="content" class="input-comment" type="text" placeholder="댓글을 입력해주세요.">
-	                                    <button type="button" class="submit-comment">게시</button>
+	                                	<input id="input-comment" name="content" class="input-comment" type="text" placeholder="댓글 내용을 입력해주세요.">
+	                                    <button type="button" class="submit-comment">등록</button>
 	                                </div>
 	                                
 	                            </article>
@@ -181,3 +195,8 @@
 	    </script>
 	</body>
 </html>
+
+
+
+
+

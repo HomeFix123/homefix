@@ -25,4 +25,5 @@ public interface MemberRepository extends CrudRepository<Member, String>{
 	public Member findMemberByEmail(String email);
 
 
+
 }

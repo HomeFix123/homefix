@@ -28,9 +28,7 @@ public class CommentServiceImpl implements CommentService {
 	public List<Comment> getCmList(Comment comment){
 		return (List<Comment>) commentRepo.findAll();
 	}
-	
-	
-	
+		
 	// 댓글 입력
 	@Override
 	public List<Comment> saveComment(String id,String content,Integer tid) {
@@ -46,6 +44,18 @@ public class CommentServiceImpl implements CommentService {
 		//System.out.println("comment serviceImple에서 저장된 tid 값 확인 : ");
 		Tip t = tipRepo.findById(tid).get();
 		return commentRepo.findByTip(t);
+	}
+	
+	// 닉네임 구하기
+	@Override
+	public Member getNickname(String id) {
+		return memberRepo.findById(id).get();
+	}
+	
+	// 이미지 구하기
+	@Override
+	public Member getProfilimg(String img) {
+		return memberRepo.findById(img).get();
 	}	
 	
 
