@@ -3,11 +3,15 @@ package com.homefix.service;
 
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.homefix.domain.Company;
 import com.homefix.domain.Member;
 import com.homefix.persistence.MemberRepository;
 
@@ -69,15 +73,24 @@ public class MemberServiceImpl implements MemberService {
 	
 	//로그인
 	@Override	//String - > Member :: 시큐리티 사용시 이렇게 변경!
-	public String login(Member mem) {
+//	public String login(Member mem) {
+	public Member login(Member mem) {
 		System.out.println("멤버레포에서 넘어왔나?" + memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword()));
 		List<Member> list = memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword());
 		String message = null;
 		if (list.size() > 0) {
-			message = list.get(0).getName();
+			mem = list.get(0);
+			/* message = list.get(0).getName(); */
+//			message = list.toString();
+		} else {
+			return null;
 		}
-		return message;
-		
+		return mem;
+		/**
+		 * test1
+		 * test1
+		 * Member Optional<Member>
+		 */
 //		try {
 //			Member member = memberRepo.findMemberByEmail(mem.getEmail());
 //			System.out.println("확인용!!!!!!!!!이메일!!! :: " + mem.getEmail());
@@ -100,10 +113,20 @@ public class MemberServiceImpl implements MemberService {
 
 	//회원정보 수정
 	@Override
-	public void update(Member mem) {
-		memberRepo.save(mem);
-		
+	public void updateMember(Member mem, HttpSession session) {
+		Member member = memberRepo.findById((String) session.getAttribute(mem.getId())).get();
+		member.setId(mem.getId());
+		member.setName(mem.getName());        
+		member.setNickname(mem.getNickname());
+		member.setPassword(mem.getPassword());
+		member.setEmail(mem.getEmail());      
+		member.setZipcode(mem.getZipcode());  
+		member.setAddr(mem.getAddr());        
+		member.setAddrd(mem.getAddrd());      
+		member.setFav(mem.getFav());          
+		memberRepo.save(member);
 	}
+		
 	
 	//임시비밀번호 발급용
 	public boolean userEmailCheck(String email, String id){
@@ -117,9 +140,20 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
+	//화면에 값 출력하려고 만든건데 필요없나..?
 	@Override
 	public List<Member> myPageList(Member mem) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String memberDelete(Member mem) {
+		Member memb = memberRepo.findById(mem.getId()).get();
+		if (memb.getPassword().equals(mem.getPassword()) ) {
+			memberRepo.deleteById(mem.getId());
+			return "Y";
+		}
+		return "N";
 	}
 }

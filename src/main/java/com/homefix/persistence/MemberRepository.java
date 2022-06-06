@@ -23,6 +23,9 @@ public interface MemberRepository extends CrudRepository<Member, String>{
 	
 	//임시비밀번호 발급-------------------------	
 	public Member findMemberByEmail(String email);
+	
+	//회원정보 수정
+	public Optional<Member> findById(String id);
 
 
 }

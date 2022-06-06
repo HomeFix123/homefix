@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,14 +17,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.homefix.domain.Member;
 import com.homefix.mail.MailDto;
 import com.homefix.mail.SendEmailService;
+import com.homefix.persistence.MemberRepository;
 import com.homefix.service.MemberService;
 
 
@@ -38,6 +44,9 @@ public class MemberController {
 	
 	@Autowired
 	private SendEmailService sendEmailService;
+	
+	@Autowired
+	MemberRepository memberRepo;
 	
 	
 	
@@ -93,11 +102,31 @@ public class MemberController {
 	@PostMapping("/member/loginMem")
 	public String LoginMember(Member mem, HttpSession session, Model model) {
 		System.out.println("로그인성공했나?" + memberService.login(mem));
-		if (memberService.login(mem) != null) {
+		Member member = memberService.login(mem);
+		if (member != null) {
+//		if (memberService.login(mem) != null) {
 			System.out.println("로그인 성공함");
-			session.setAttribute("memberId", mem.getId());
-			session.setAttribute("memberName", memberService.login(mem));
+			session.setAttribute("memberId", member.getId());
+			System.out.println("아이디 넘어오는지 확인 :" + mem.getId() );
+			
+			session.setAttribute("memberNick", member.getNickname());
+			session.setAttribute("memberName", member.getName());
+			session.setAttribute("memberTel", mem.getTel());
+			System.out.println("전화번호 넘어오는지 확인 :" + mem.getName() );
+			
+			session.setAttribute("memberZip", mem.getZipcode());
+			session.setAttribute("memberAddr", mem.getAddr());
+			session.setAttribute("memberAddrd", mem.getAddrd());
+			
+			session.setAttribute("memberEmail", mem.getEmail());
+			System.out.println("이메일 넘어오는지 확인 :" + mem.getEmail() );
+			
+			session.setAttribute("memberPass", mem.getPassword());
+			
+			session.setAttribute("memLogin", member);
+			model.addAttribute("member", member);
 			model.addAttribute("message", "Y");
+			model.addAttribute("session", session);
 			return "redirect:/index";
 		} else {
 			model.addAttribute("message", "N");
@@ -125,44 +154,55 @@ public class MemberController {
 	
 	//개인 마이페이지
 	@GetMapping(path ="/member/profile")
-	public void myPage(Model m) {
-		logger.info("개인 마이페이지");	
+	public void myPage(Model m, HttpSession session) {
+		System.out.println("session L " + session.getAttribute("memberId"));
+		System.out.println("model" + m);
+		logger.info("개인 마이페이지");
 		Member mem = new Member();
+		mem.setId((String) session.getAttribute("memberId"));
+		System.out.println("model2" +m);
 		List<Member> list = memberService.myPageList(mem);
 		m.addAttribute("member",list);
-	}	
-
-	public void myPage() {
-		logger.info("개인 마이페이지");	
-
+		m.addAttribute("session", session);
+		System.out.println("session 2" + m.addAttribute("session", session));
 	}
 	
 	// 글 수정
-	@PostMapping("/member/update")
-	public String update(Member mem) {	
-		memberService.update(mem);
-		return "redirect:/member/profile";
+	@PutMapping("/member/updateMember")
+	public String updateMember(Member mem, HttpSession session) {	
+		
+		memberService.updateMember(mem, session);
+		System.out.println("update:::::::: "+mem);
+		return "member/profile";
+	}
+	
+	// 회원 탈퇴
+	@DeleteMapping("/memberSecession")
+	@ResponseBody
+	public String memberSecession(String password, HttpSession session) {
+		Member mem = new Member();
+		System.out.println("세션 아이디 확인: " + session.getAttribute("memberId"));
+		System.out.println("세션 비밀번호 확인: " + session.getAttribute(password));
+		mem.setPassword(password);
+		mem.setId((String) session.getAttribute("memberId"));
+		String passCheck = memberService.memberDelete(mem);
+		if (passCheck == "Y") {
+			session.invalidate();
+			return passCheck;
+		} else {
+			return passCheck;
+		}
+	
 	}
 
-	// 임시비밀번호 발급
-//	1. 임시 비밀번호를 발급받을 이메일을 입력 ( 입력한 화면 ) 확인을 누르면 이메일이 전송됨
-//	2. 로그인 화면으로 이동
-//	@PostMapping(value = "/member/sendEmail")
-//	public String tempPasssword(Member mem) {
-//		try {
-//			logger.info("임시 비밀번호 발급 시작 -- ");
-//			String result = memberService.sendForgotPassword(mem.getEmail());
-//			if (result.equals("ok")) {
-//				return "redirect:/sign/sign-in";
-//			} else {
-//				return "redirect:/sign/member/sign_member";
-//			}
-//		} catch (Exception e) {
-//			System.out.println("E : " + e);
-//			return "redirect:/sign/sign-in";
-//		}
-//	}
-
+	// 로그아웃
+	@GetMapping("/member/memberlogout")
+	public String memberlogout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("memberId") + "님 로그아웃");
+		session.invalidate();
+		return "redirect:/index";
+	}
 	
 	//비밀번호 임시 발급 -------------------------------------------
 	//Email과 name의 일치여부를 check하는 컨트롤러
