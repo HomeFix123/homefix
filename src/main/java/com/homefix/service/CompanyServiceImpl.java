@@ -126,8 +126,8 @@ public class CompanyServiceImpl implements CompanyService {
 	 }  
 	    
 	 //시공전문가(업체상세페이지):업체후기
-	 public Review getCompanyReview(Company com) {
+	 public List<Review> getCompanyReview(Company com) {
 		 return reviewRepo.findByCompany(com);
-	 }
+	 } 
  
 } 

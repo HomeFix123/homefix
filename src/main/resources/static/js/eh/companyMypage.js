@@ -83,6 +83,59 @@ $(function() {
 		}); //end of ajax
 	}); // end of $('#btn_emailCheak').click
 	/************************************************************************************ **/
+	//회원정보수정 --이미지 변경
+	$('#pictureAdd').click(function() {
+		attr("src", "/data/img2.png");
+	})
+
+	/**
+				 * 섬네일 이미지 미리보기
+				 */
+	function readImage(input) {
+		if (input.files && input.files[0]) {
+			const reader = new FileReader();
+
+			reader.onload = (e) => {
+				const previewImage = document.getElementById('previewImage');
+				previewImage.src = e.target.result;
+			}
+			reader.readAsDataURL(input.files[0]);
+
+
+		}
+	}
+
+	// uuid 생성
+	function uuid(file_nm) {
+		function s4() {
+			return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+		}
+		return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length - 1).toLowerCase();
+	}
+
+	const formData = new FormData();
+	formData.append("file", imageInput.files[0], uuid(imageInput.files[0].name));
+	console.log(formData.get('file'))
+	$('#bimgadr').val(formData.get('file').name);
+
+
+	$.ajax({
+		type: "POST",
+		url: "http://140.238.11.118:5000/upload",
+		processData: false,
+		contentType: false,
+		data: formData,
+		success: function(result) {
+			console.log("success")
+		},
+		err: function(err) {
+			console.log("err:", err)
+		}
+	})
+
+
+
+
 
 	$('#companyUpdate').click(function() {
 
@@ -271,20 +324,20 @@ $(function() {
 		}
 
 	})
-	
-	
-	
-	
-	
-	
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })
