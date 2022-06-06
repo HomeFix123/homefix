@@ -161,25 +161,27 @@
 			<div class="section-content course-details bg-white section-padding">
 				<div class="container">
 					<div class="row justify-content-md-center">
-						<div class="col-lg-8">
+						<div class="">
 							<div class="sa-course">
 								<div class="writedetail">
+									<input type="hidden" name="cinfo_id" th:value="${companyInfo.cinfo_id}" th:if="${companyInfo != null}">
 									<div class="previewImage">
 
 										<img style="width: 100%;" id="previewImage"
-											src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload">
+											src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload" th:if="${companyInfo == null || companyInfo.cinfo_img == null}">
+										<img style="width: 100%;" id="previewImage"
+											th:src="|http://140.238.11.118:5000/upload/${companyInfo.cinfo_img}|" th:if="${companyInfo != null && companyInfo.cinfo_img != null}">
 										<input style="display: block; visibility: hidden;" type="file"
-											accept="image/*" id="inputImage"> <input
-											type="hidden" id="cinfo_img" name="cinfo_img"> <label
-											class="btn btn-primary w-100 mb-5" for="inputImage">이미지
-											업로드</label>
+											accept="image/*" id="inputImage"> 
+										<input type="hidden" id="cinfo_img" name="cinfo_img" th:value="${companyInfo != null} ? ${companyInfo.cinfo_img} : ''"> 
+										<label class="btn btn-primary w-100 mb-5" for="inputImage">이미지 업로드</label>
 									</div>
 									<div class="container">
 										<div class="row">
 											<div class="mb-3">
 												<h6><label class="" for="career">경력</label></h6> 
 												<input id="career" class="form-control m-0" type="number"
-													th:value="0" name="career">
+													th:value="${companyInfo != null} ? ${companyInfo.career} : 0" name="career">
 											</div>
 		
 											<div class="mb-3">
@@ -203,8 +205,6 @@
 															</label>
 														</div>
 													
-													
-													
 												</div>
 											</div>
 											<div class="input-group mb-3">
@@ -220,10 +220,9 @@
 											<div class="mb-3">
 												<h6><label class="mb-2" for="cinfo_cont">소개 한마디</label></h6>
 												<textarea id="cinfo_cont" name="cinfo_cont"
-													class="form-control"></textarea>
+													class="form-control" th:text="${companyInfo != null} ? ${companyInfo.cinfo_cont} : 'zz'"></textarea>
 												
 											</div>
-											
 										</div>
 									</div>
 
@@ -294,6 +293,13 @@
 	<script th:src="@{/js/main.js}"></script>
 
 	<script th:src="@{/js/companyInfo.js}"></script>
+
+	<script th:inline="javascript">
+        	/*<![CDATA[*/
+        	const companyInfo = /*[[ ${companyInfo} ]]*/ 
+        	"";
+        	console.log(companyInfo)
+        </script>
 
 	<script type="text/javascript">
         $(document).ready(function(){ 

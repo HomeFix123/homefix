@@ -22,10 +22,17 @@ public class CompanyInfoWriteController {
 	CompanyWriteService companyWriteService;
 	
 	@GetMapping("/write")
-	public String moveCompanyInfo(Model model) {
+	public String moveCompanyInfo(Model model, HttpSession session) {
+		String companyId = (String)session.getAttribute("userId");
+		if(companyId == null) {
+			return "redirect:/index";
+		}
+		model.addAttribute("companyInfo", companyWriteService.getCompanyInfo(companyId));
 		List<String> areaNameList = companyWriteService.getAreaNameList();
 		model.addAttribute("areaNameList", areaNameList);
 		model.addAttribute("areaList", companyWriteService.getAreaList(areaNameList));
+		
+		
 		
 		return "company/write";
 	}

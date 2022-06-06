@@ -63,21 +63,28 @@ public class CompanyWriteServiceImpl implements CompanyWriteService {
 		Company company = companyRepo.findById(companyId).get();
 		
 		companyInfo.setCompany(company);
+		Integer infoId = companyInfo.getCinfo_id();
+		
+		if(infoId != null) {
+			CompanyInfo temp = companyInfoRepo.findById(infoId).get();
+			companyAreaRepo.deleteAllByCompanyInfo(temp);
+			companySpecialRepo.deleteAllByCompanyInfo(temp);
+		}
 		
 		companyInfo = companyInfoRepo.save(companyInfo);
 		
 		if(specialtyArr != null && specialtyArr.length > 0) {
 			
 			for(String special : specialtyArr) {
-				CompanySpecial companySpecial = new CompanySpecial();
-				companySpecial.setSp_cont(special);
-				companySpecial.setCompanyInfo(companyInfo);
-				companySpecialRepo.save(companySpecial);
-				
+				if(special != null && !special.equals("")) {
+					CompanySpecial companySpecial = new CompanySpecial();
+					companySpecial.setSp_cont(special);
+					companySpecial.setCompanyInfo(companyInfo);
+					companySpecialRepo.save(companySpecial);
+				}
 			}
 			
 		}
-		
 		if(spacesArr != null && spacesArr.length > 0) {
 			
 			for(String space : spacesArr) {
@@ -85,15 +92,24 @@ public class CompanyWriteServiceImpl implements CompanyWriteService {
 					CompanyArea companyArea = new CompanyArea();
 					companyArea.setArea(areaRepo.findById(space).get());
 					companyArea.setCompanyInfo(companyInfo);
-					companyAreaRepo.save(companyArea);
-					
-					
+					companyAreaRepo.save(companyArea);	
 				}
 			}
 			
 		}
 				
 		
+	}
+
+
+	@Override
+	public CompanyInfo getCompanyInfo(String companyId) {
+		Company company = companyRepo.findById(companyId).get();
+		List<CompanyInfo> list = companyInfoRepo.findByCompany(company);
+		if(list.size() > 0) {
+			return list.get(0);
+		}
+		return null;
 	}
 
 	

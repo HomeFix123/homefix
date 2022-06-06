@@ -18,15 +18,22 @@ $(function(){
 		const city = $(this).parent().attr('id');
 		const id = $(this).attr('id');
 		const name = $(this).text();
+		addAreaBtns(id, city, name);
 		
+		
+	})
+	
+	function addAreaBtns(id, city, name){
+		if(name == null){
+			name = '전체'
+		}
 		let div = "<div class='alert alert-primary alert-dismissible fade show m-2' role='alert'>"
 		div += city + ' ' + name
 		div += "<input type='hidden' name='spacesArr' value='" + id + "'>"
 		div += "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"
 		
 		spacesDiv.append(div);
-		
-	})
+	}
 	
 	const form = $('#writeinfo');
 	const img = $('#cinfo_img'); 
@@ -71,6 +78,25 @@ $(function(){
 		
 		return answer;
 	}
+	
+	const specialArr = companyInfo.specialty;
+	for(let special of specialArr){
+		if(special.sp_cont == '주거공간'){
+			$('input#homeSpecial').prop("checked", true)	
+		} else {
+			$('input#comSpecial').prop("checked", true)	
+		}
+			
+	}
+	
+	const areaArr = companyInfo.area;
+	for(let area of areaArr){
+		const id = area.area.id
+		const city = area.area.aname
+		const name = area.area.dt_area
+		addAreaBtns(id, city, name);
+	}
+	
 })
 
 
