@@ -80,6 +80,7 @@ $(function(){
 		return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length-1).toLowerCase();
 	}
 	
+	// 이미지 저장 ajax
 	function saveImage(formData){
 		let answer = false;
 		$.ajax({

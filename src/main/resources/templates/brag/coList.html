@@ -203,6 +203,7 @@
 										      			<li><button class="btn btn-area" value="경상남도">경남</button></li>
 										      			<li><button class="btn btn-area" value="경상북도">경북</button></li>
 										      			<li><button class="btn btn-area" value="전라북도">전북</button></li>
+										      			<li><button class="btn btn-area" value="전라남도">전남</button></li>
 										      			<li><button class="btn btn-area" value="충청남도">충남</button></li>
 										      			<li><button class="btn btn-area" value="충청북도">충북</button></li>
 										      			<li><button class="btn btn-area" value="세종특별자치시">세종</button></li>
@@ -253,7 +254,7 @@
 	                                <div class="entry-header">
 	                                	<!-- 썸네일 이미지 -->
 	                                    <div class="entry-thumbnail">
-	                                        <a href="blog-details.html">
+	                                        <a th:href="|/company/${c.id}|">
 	                                        	<img th:if="${c.img == null}" class="titleImg img-fluid" src="http://140.238.11.118:5000/upload/profile_basic.png" alt="Image">
 	                                        	<img th:if="${c.img != null}" class="titleImg img-fluid" th:src="|http://140.238.11.118:5000/upload/${c.img}|" alt="Image">
 	                                        </a>
@@ -268,7 +269,7 @@
 	                                        <h2 class="title text-center">
 	                                        	<img th:if="${c.logo == null}" class='user-img' src="http://140.238.11.118:5000/upload/profile_basic.png">
 	                                        	<img th:if="${c.logo != null}" class='user-img' th:src="|http://140.238.11.118:5000/upload/${c.logo}|">
-	                                        	<a href="course-details.html" class="companyName" th:text="${c.name}">업체 이름</a>
+	                                        	<a th:href="" class="companyName" th:text="${c.name}">업체 이름</a>
 	                                        </h2>
 	                                        <div class="companySpecialList">
 	                                        	<a class="companySpecial btn btn-secondary m-1" th:each="s : ${c.special}" th:text="${s}"></a>
