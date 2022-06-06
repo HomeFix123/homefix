@@ -44,6 +44,9 @@
         <!-- myccs -->
         <link rel="stylesheet" th:href="@{/css/ye/ye.css}">
         
+        <!-- header css -->
+        <link rel="stylesheet" th:href="@{/css/sections/header.css}">
+        
     </head>
     <body> 
         <div id="preloader">
@@ -58,8 +61,8 @@
                 <h1>견적 진행 사항</h1>
                 <p>현재 진행 중인 견적 사항들을 알려드려요.</p>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Cart</li>
+                    <li class="breadcrumb-item"><a th:href="@{/index}">Home</a></li>
+                    <li class="breadcrumb-item">Progress</li>
                 </ol>
             </div><!-- /.container -->
         </section><!-- /.breadcrumb-section -->
@@ -144,162 +147,14 @@
                             <div class="order-total">
                                 <p>예산 <span> 만원</span> <span class="budget">3,000</span> </p>
                             </div> 
-                            <a href="payment.html" class="btn btn-primary">go to checkout</a>
                         </div>                        
                     </div>
                 </div><!-- /.row -->                      
             </div>
         </div><!-- /.cart-section -->        
 
-        <div class="sa-section">
-            <div class="section-content download-content section-padding section-before jarallax" style="background-image: url(images/bg/bg2.jpg);">
-                <div class="container">
-                    <div class="section-header d-flex justify-content-center">
-                        <div class="title align-self-center">
-                            <h1>Download on Store</h1>
-                            <span>Download</span>
-                        </div>              
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a href="#" class="download-app">
-                                <span class="icon">
-                                    <i class="fab fa-youtube"></i>
-                                </span>
-                                <span class="text">
-                                    <span>available on</span>
-                                    <strong>youtube.com</strong>
-                                </span>
-                            </a>                            
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#" class="download-app">
-                                <span class="icon">
-                                    <i class="fab fa-vimeo-v"></i>
-                                </span>
-                                <span class="text">
-                                    <span>available on</span>
-                                    <strong>vimeo.com</strong>
-                                </span>
-                            </a>                            
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#" class="download-app">
-                                <span class="icon">
-                                    <i class="fab fa-google-drive"></i>
-                                </span>
-                                <span class="text">
-                                    <span>available on</span>
-                                    <strong>Google Drive</strong>
-                                </span>
-                            </a>                            
-                        </div>
-                    </div><!-- /.row -->
-                    
-                </div><!-- /.container -->
-            </div><!-- /.section-content -->
-        </div><!-- /.sa-section -->
-
-        <div class="footer">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="footer-content">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <div class="footer-logo">
-                                        <a href="#"><img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid"></a>
-                                    </div>
-                                    <p>Holisticly aggregate compelling ROI before out-of-the-box benefits. Efficiently create cross functional paradigms without an expanded array of testing procedures.</p>
-                                    <div class="footer-social">
-                                        <ul class="global-list">
-                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        </ul>
-                                    </div>                           
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget px-md-4">
-                                    <h3>Quik Links</h3>
-                                    <ul class="global-list">
-                                        <li><a href="#">All Courses</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Our Blogs</a></li>
-                                        <li><a href="#">Teacher</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                        <li><a href="#">Terms</a></li>
-                                        <li><a href="#">Carrer</a></li>
-                                    </ul>                            
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <h3>Popular Courses</h3>
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img th:src="@{/images/blog/4.jpg}" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a href="blog-details.html">Sed ut perspiciatis unde iste</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post --> 
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img th:src="@{/images/blog/5.jpg}" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a href="blog-details.html">Essential Training Training Examples</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post --> 
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img th:src="@{/images/blog/2.jpg}" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a href="blog-details.html">Python Programming Essential Training</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post -->                            
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <h3>Subscribe</h3>
-                                    <form action="#" class="sa-form">
-                                        <input type="email" class="form-control" placeholder="Email address" required="">
-                                        <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                                    </form> 
-                                    <div class="payment-gateway">
-                                        <h4>Payment Gateway</h4> 
-                                        <ul class="global-list d-flex">
-                                            <li><img th:src="@{/images/others/payment1.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment2.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment3.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment4.png}" alt="Image" class="img-fluid"></li>
-                                        </ul>
-                                    </div>                      
-                                </div>
-                            </div>
-                        </div><!-- /.row -->
-                    </div>
-                </div><!-- /.container -->
-            </div>
-            <div class="footer-bottom">
-                <div class="container text-center">
-                    <span>Copyright &copy; 2021 ChtStudio - All Rights Reserved.</span>
-                </div><!-- /.container -->
-            </div>
-        </div><!-- /.footer -->
+		<!-- footer -->
+        <div th:replace="/sections/footer :: footer"></div> 
 
         <!-- JS -->
         <script th:src="@{/js/jquery.min.js}"></script>
@@ -316,8 +171,11 @@
         <script th:src="@{/js/validate.js}"></script>
         <script th:src="@{/js/main.js}"></script>  
         
-        <!--my hs-->
+        <!--my js-->
         <script th:src="@{/js/ye/ye.js}"></script>  
+         
+        <!-- header js -->
+        <script th:src="@{/js/sections/header.js}"></script> 
         
         <!-- 주소창 파라미터 숨기기 -->
         <script >history.replaceState({}, null, location.pathname);</script>
