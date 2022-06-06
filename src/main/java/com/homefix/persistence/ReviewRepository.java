@@ -16,9 +16,9 @@ public interface ReviewRepository extends CrudRepository<Review, String>{
 
 	public Review findByRidAndCompany(Integer rid, Company company);
 
-		public Review findByCompany(Company com);
+		public List<Review> findByCompany(Company com);
 
 
-
+ 
 
 }

@@ -87,7 +87,7 @@ public class CompanyPageController {
 		model.addAttribute("Brag", companyService.getInteriorBrag(com));
 
 		// 4.업체후기(시공후기)//vo:Review
-		//model.addAttribute("Review", companyService.getCompanyReview(com));
+		model.addAttribute("Review", companyService.getCompanyReview(com));
 
 		return "company/companydetails";
 	}
