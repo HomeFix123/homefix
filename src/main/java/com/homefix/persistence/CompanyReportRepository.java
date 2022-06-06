@@ -1,5 +1,6 @@
 package com.homefix.persistence;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
@@ -15,4 +16,5 @@ public interface CompanyReportRepository extends CrudRepository<CompanyReport, I
 
 	public List<CompanyReport> findByCompanyAndMember(String id, Member repo);
 	
+	public long countByRdayGreaterThan(Date date);
 }

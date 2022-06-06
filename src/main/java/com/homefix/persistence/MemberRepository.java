@@ -1,8 +1,8 @@
 package com.homefix.persistence;
 
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
@@ -24,6 +24,7 @@ public interface MemberRepository extends CrudRepository<Member, String>{
 	//임시비밀번호 발급-------------------------	
 	public Member findMemberByEmail(String email);
 
-
+	// 특정일 이후 가입자수
+	public long countBySubdateGreaterThan(Date date);
 
 }
