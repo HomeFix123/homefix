@@ -37,6 +37,8 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <!-- Template Developed By ChtStudio -->
+        <link rel="stylesheet" th:href="@{/css/sections/header.css}">
+        
         <link rel="stylesheet" th:href="@{/css/nav.css}">
         <link rel="stylesheet" th:href="@{/css/main_page.css}">
         
@@ -51,11 +53,11 @@
         <div id="hero-slider" class="carousel slide hero-content" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <div class="carousel-item-content section-before"  style="background-image: url(images/bg/s1.jpg);">
+                    <div class="carousel-item-content section-before"  style="background-image: url(images/banner/48.jpg);">
                         <div class="container">
                             <div class="hero-text">
-                                <h1 data-animation="animated fadeInDown">Best online <span>course</span></h1>
-                                <p data-animation="animated fadeInDown">We provides always our best services for our clients and  always  try to achieve our client's trust and satisfaction.</p>  
+                                <h1 data-animation="animated fadeInDown"><span>Modern</span> Interior</h1>
+                                <p data-animation="animated fadeInDown">모던함을 추구하는 당신. 이런 인테리어 어떤가요 ?</p>  
                                 <div class="buttons">
                                     <a href="#" class="btn btn-primary"  data-animation="animated fadeInRight">Login</a>
                                     <a href="#" class="btn btn-white"  data-animation="animated fadeInLeft">Get a Quote</a>
@@ -65,11 +67,11 @@
                     </div><!-- /.carousel-item-content -->
                 </div>
                 <div class="carousel-item text-center">
-                    <div class="carousel-item-content section-before" style="background-image: url(images/bg/s5.jpg);">
+                    <div class="carousel-item-content section-before" style="background-image: url(images/banner/45.jpg);">
                         <div class="container">
                             <div class="hero-text">
-                                <h1 data-animation="animated pulse">Best online <span>course</span></h1>
-                                <p data-animation="animated pulse">We provides always our best services for our clients and  always  try to achieve our client's trust and satisfaction.</p>   
+                                <h1 data-animation="animated pulse">Lovely <span>interior</span></h1>
+                                <p data-animation="animated pulse">우리집도 이렇게 넓으면 좋겠어요</p>   
                                 <div class="buttons">
                                     <a href="#" class="btn btn-primary"  data-animation="animated fadeIn">Login</a>
                                     <a href="#" class="btn btn-white"  data-animation="animated fadeIn">Get a Quote</a>
@@ -79,11 +81,11 @@
                     </div>
                 </div>
                 <div class="carousel-item text-end">
-                    <div class="carousel-item-content section-before" style="background-image: url(images/bg/s3.jpg);">
+                    <div class="carousel-item-content section-before" style="background-image: url(images/banner/63.jpg);">
                         <div class="container">
                             <div class="hero-text">
-                                <h1 data-animation="animated fadeInUp">Best online <span>course</span></h1>
-                                <p data-animation="animated fadeInUp">We provides always our best services for our clients and  always  try to achieve our client's trust and satisfaction.</p>  
+                                <h1 data-animation="animated fadeInUp">vintage <span>design</span></h1>
+                                <p data-animation="animated fadeInUp">약간 빈티지한게 트렌드</p>  
                                 <div class="buttons">
                                     <a href="#" class="btn btn-primary"  data-animation="animated fadeInRight">Login</a>
                                     <a href="#" class="btn btn-white"  data-animation="animated fadeInLeft">Get a Quote</a>
@@ -136,6 +138,17 @@
                             </div>
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
+                                    <a th:href="@{/review}">
+                                        <span class="icon">
+                                            <i class="fas fa-hammer"></i>
+                                        </span>
+                                        <span>시공 후기</span>
+                                    </a>
+                                </div><!-- /.sg-category -->
+                            </div>
+                            
+                            <div class="col-6 col-sm-4 col-lg-2">
+                                <div class="sg-category style-1">
                                     <a th:href="@{/expert}">
                                         <span class="icon">
                                             <i class="fas fa-hard-hat"></i>
@@ -161,23 +174,22 @@
                                 </div><!-- /.sg-category -->
                             </div>
                             
+                            
                             <div class="col-6 col-sm-4 col-lg-2">
-                                <div class="sg-category style-1">
-                                    <a th:href="@{/estimation/qna}">
-                                        <span class="icon">
-                                            <i class="fas fa-question"></i>
-                                        </span>
-                                        <span>QnA</span>
-                                    </a>
-                                </div><!-- /.sg-category -->
-                            </div>
-                            <div class="col-6 col-sm-4 col-lg-2">
-                                <div class="sg-category style-1">
+                                <div class="sg-category style-1" th:if="${session.userId == null}">
                                     <a th:href="@{/estimation/write}">
                                         <span class="icon">
                                             <i class="fas fa-ruler"></i>
                                         </span>
                                         <span>견적 작성</span>
+                                    </a>
+                                </div><!-- /.sg-category -->
+                                <div class="sg-category style-1" th:if="${session.userId != null}">
+                                    <a th:href="@{/estimation/total}">
+                                        <span class="icon">
+                                            <i class="fas fa-clipboard-list"></i>
+                                        </span>
+                                        <span>견적 목록</span>
                                     </a>
                                 </div><!-- /.sg-category -->
                             </div>
@@ -292,6 +304,6 @@
         <script src="js/YTPlayer.min.js"></script> 
         <script src="js/validate.js"></script>
         <script src="js/main.js"></script>  
-        
+        <script th:src="@{/js/sections/header.js}"></script>
     </body>
 </html>         
