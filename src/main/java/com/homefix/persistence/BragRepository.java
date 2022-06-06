@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import com.homefix.domain.Brag;
+import com.homefix.domain.Company;
 import com.homefix.domain.Member;
 
 public interface BragRepository extends CrudRepository<Brag, String>{
@@ -14,4 +15,6 @@ public interface BragRepository extends CrudRepository<Brag, String>{
 	public Brag findByBid(Integer bid);
 
 	public Brag findByBidAndMember(Integer bid, Member member);
+	
+	public List<Brag> findByCompany(Company com);
 }

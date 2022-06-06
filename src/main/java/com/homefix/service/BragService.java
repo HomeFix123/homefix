@@ -1,9 +1,11 @@
 package com.homefix.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.homefix.domain.Brag;
-import com.homefix.domain.Contract;
+import com.homefix.domain.Company;
+import com.homefix.domain.ElasticBrag;
 import com.homefix.domain.Member;
 
 public interface BragService {
@@ -12,7 +14,9 @@ public interface BragService {
 	public void saveBrag(Brag brag, String id, String cid);
 	
 	// 인테리어 자랑 리스트
-	public List<Brag> getBragList(Brag brag);
+	//public List<Brag> getBragList(Brag brag);
+	public List<ElasticBrag> getBragByKeyword(String keyword, String loc, 
+			String family, String job, String hometype, String sort, Integer page);
 	
 	// 인테리어 자랑 상세
 	public Brag getBrag(Brag brag, String id);
@@ -30,7 +34,7 @@ public interface BragService {
 	public String saveReport(Member id, String reporter, String reason);
 	
 	// 계약완료 업체리스트
-	List<Contract> getContractList(String id);
+	Set<Company> getContractList(String id);
 	
 	
 	

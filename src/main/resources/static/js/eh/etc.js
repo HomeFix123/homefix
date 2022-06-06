@@ -53,7 +53,7 @@ $(function() {
 
 			// IMP.request_pay(param, callback) 호출
 			IMP.init('imp58368556'); //자신의가맹점_키
-			var price = 100 //$('#price').text();//결제 금액
+			var price = $('#price').text();//결제 금액
 			IMP.request_pay({//결제창 호출  // param
 				pg: 'inicis', // version 1.1.0부터 지원.  결제를 위한 PG사를 선택
 				merchant_uid: 'merchant_' + new Date().getTime(), //가맹점에서 구별할 수 있는 고유한id
@@ -94,7 +94,7 @@ $(function() {
 			})
 			
 		} else {
-			location.href = "/sign/"; //로그인 안했을 시 로그인창으로 이동
+			location.href = "/sign"; //로그인 안했을 시 로그인창으로 이동
 		}
 	});
 

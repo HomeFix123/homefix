@@ -83,6 +83,59 @@ $(function() {
 		}); //end of ajax
 	}); // end of $('#btn_emailCheak').click
 	/************************************************************************************ **/
+	//회원정보수정 --이미지 변경
+	$('#pictureAdd').click(function() {
+		attr("src", "/data/img2.png");
+	})
+
+	/**
+				 * 섬네일 이미지 미리보기
+				 */
+	function readImage(input) {
+		if (input.files && input.files[0]) {
+			const reader = new FileReader();
+
+			reader.onload = (e) => {
+				const previewImage = document.getElementById('previewImage');
+				previewImage.src = e.target.result;
+			}
+			reader.readAsDataURL(input.files[0]);
+
+
+		}
+	}
+
+	// uuid 생성
+	function uuid(file_nm) {
+		function s4() {
+			return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+		}
+		return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length - 1).toLowerCase();
+	}
+
+	const formData = new FormData();
+	formData.append("file", imageInput.files[0], uuid(imageInput.files[0].name));
+	console.log(formData.get('file'))
+	$('#bimgadr').val(formData.get('file').name);
+
+
+	$.ajax({
+		type: "POST",
+		url: "http://140.238.11.118:5000/upload",
+		processData: false,
+		contentType: false,
+		data: formData,
+		success: function(result) {
+			console.log("success")
+		},
+		err: function(err) {
+			console.log("err:", err)
+		}
+	})
+
+
+
+
 
 	$('#companyUpdate').click(function() {
 
@@ -237,25 +290,54 @@ $(function() {
 	$('#Withdrawal').click(function() {
 		var result = confirm("정말 탈퇴하시겠습니까?");
 		if (result) {
-			var id = $('#companyId').text();
-			var pass = $('#password').val();
-			$.ajax({
-				url: "/sign/Withdrawal",
-				data: { id: id, pass: pass },
-				contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-				method: post,
-				success: function(result) {
-					console.log(result);
-				},
-				error: function(err) {
-					console.log(err);
-				}
-			});
+			const id = $('#companyId').text();
+			const pass = $('#password').val();
+
+			if (pass != "") {
+
+				$.ajax({
+					url: "/sign/Withdrawal",
+					data: { pass: $('#password').val() },
+					contentType: 'application/x-www-form-urlencoded;charset=utf-8', //스트링 타입으로 보내기 포스트형식으로 보내면 안됨
+					type: 'delete',//전송 타입을 Delete로 중요!
+					success: function(result) {
+						console.log(result);
+						if (result == 'Y') {
+							console.log(result)
+							alert("탈퇴에 성공하였습니다.")
+							location.href = "/sign/sign-in";
+						} else {
+							alert("비밀번호가 틀립니다.")
+						}
+
+					},
+					error: function(err) {
+						console.log(err);
+					}
+				});
 
 
-
+			} else {
+				alert("비밀번호를 입력하세요.");
+			}
 
 		}
 
 	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })

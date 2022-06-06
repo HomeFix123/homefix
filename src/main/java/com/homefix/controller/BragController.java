@@ -1,6 +1,9 @@
 package com.homefix.controller;
 
 import java.util.List;
+import java.util.Set;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.homefix.domain.Brag;
+import com.homefix.domain.Company;
 import com.homefix.domain.Contract;
 import com.homefix.domain.Estimation;
 import com.homefix.domain.Member;
@@ -31,8 +35,7 @@ public class BragController {
 	@GetMapping("/write")
 	public String insertBrag(Model m) {
 		String id = "test";
-		List<Contract> list = bragService.getContractList(id);
-		System.out.println("넘어오냐?"+list);
+		Set<Company> list = bragService.getContractList(id);
 		m.addAttribute("contract", list);
 		return "brag/BragWrite";
 	}
@@ -47,11 +50,14 @@ public class BragController {
 	}
 	
 	@GetMapping
-	public String getBragList(Model m){
+	public String getBragList(Model m, HttpSession session, String keyword, String sort, String loc, 
+			String family, String job, String hometype){
 		
-		Brag brag = new Brag();
-		List<Brag> list = bragService.getBragList(brag);
-		m.addAttribute("bragList", list);
+		String id = (String) session.getAttribute("memberId");
+		m.addAttribute("bragList", bragService.getBragByKeyword(keyword, loc, family, job, hometype, sort, 1));
+		
+		
+		
 		return "brag/BragList";
 	}
 	
