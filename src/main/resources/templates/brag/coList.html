@@ -140,8 +140,11 @@
 			}
 			
 			.titleImg {
-				max-height: 250px;
+				height: 250px;
+				object-fit: cover;
 			}
+			
+			
         </style>
     </head>
     <body> 
@@ -149,7 +152,17 @@
             <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
-        <div th:replace="/sections/header :: header"></div>        
+        <div th:replace="/sections/header :: header"></div>      
+          
+        <section class="breadcrumb-section">
+            <div class="container">
+                <h1>시공전문가</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                    <li class="breadcrumb-item">시공전문가</li>
+                </ol>
+            </div><!-- /.container -->
+        </section><!-- /.breadcrumb-section -->  
         
       
         <div class="sa-section">
@@ -214,7 +227,7 @@
                         </div>
 
                         <div class="view-all align-self-center">
-                            <a href="blog.html" class="btn btn-primary">전체보기</a>
+                            <a th:href="@{/expert}" class="btn btn-primary">전체보기</a>
                         </div>                  
                     </div>
                     <div class="mb-5">
@@ -231,6 +244,9 @@
                         	
                     <div class="row" id="companyListDiv">
                     	<!-- 업체 정보 -->
+                    	<div th:if="${#lists.size(companyList) == 0}" class="text-center">
+                    		<h4>검색 결과가 없습니다</h4>
+                    	</div>
                     	<th:block th:each="c : ${companyList}">
 	                        <div class="companyDiv col-6 col-md-4 col-lg-4">
 	                            <div class="sa-post">
@@ -238,18 +254,20 @@
 	                                	<!-- 썸네일 이미지 -->
 	                                    <div class="entry-thumbnail">
 	                                        <a href="blog-details.html">
-	                                        	<img class="titleImg img-fluid" th:src="|http://140.238.11.118:5000/upload/${c.img}|" alt="Image">
+	                                        	<img th:if="${c.img == null}" class="titleImg img-fluid" src="http://140.238.11.118:5000/upload/profile_basic.png" alt="Image">
+	                                        	<img th:if="${c.img != null}" class="titleImg img-fluid" th:src="|http://140.238.11.118:5000/upload/${c.img}|" alt="Image">
 	                                        </a>
 	                                    </div><!-- /썸네일 이미지 -->
 	                                    <div class="entry-meta bookmarkIcon">
 	                                        <i th:if="${c.isPrefer == false}" class="far fa-bookmark"></i>
 	                                        <i th:if="${c.isPrefer == true}" class="fas fa-bookmark"></i>
 	                                    </div>
-	                                </div>                               
+	                                </div>
 	                                <div class="course-info">
 	                                    <div class="info">
 	                                        <h2 class="title text-center">
-	                                        	<img class='user-img' th:src="|http://140.238.11.118:5000/upload/${c.logo}|">
+	                                        	<img th:if="${c.logo == null}" class='user-img' src="http://140.238.11.118:5000/upload/profile_basic.png">
+	                                        	<img th:if="${c.logo != null}" class='user-img' th:src="|http://140.238.11.118:5000/upload/${c.logo}|">
 	                                        	<a href="course-details.html" class="companyName" th:text="${c.name}">업체 이름</a>
 	                                        </h2>
 	                                        <div class="companySpecialList">
@@ -271,8 +289,11 @@
                 </div><!-- /.container -->
             </div><!-- /.section-content -->
         </div><!-- /.sa-section -->
-		<button class="btn btn-primary" id="moreBtn">더보기</button>
-
+        <!-- 더보기 버튼 -->
+        <div th:if="${#lists.size(companyList) == 12}" id="moreDiv" class="text-center">
+        	<!-- 10개 모두 출력되야 보여주기 -->
+			<button class="btn btn-primary w-100" id="moreBtn">더보기</button>
+		</div>
 
    		<!-- 검색시 footer가 필요없다고 판단 -->
         

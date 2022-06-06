@@ -99,10 +99,10 @@
 	                                <!-- article text data -->
 	                                <div class="reaction" style="padding:0px">
 	                                   	<!-- 댓글목록 -->
-	                                    <div class="comment-section">
+	                                    <div class="comment-section" th:each="cmList : ${commentList}">
 	                                        <ul class="comments">
 	                                           <div class="comment-like">
-	                                           <p><span class="memberId">아이디 :</span><span class="contecnt"> 안녕하세요</span></p>
+	                                           <p><span class="memberId" th:text="${cmList.member?.id}"></span><span class="contecnt"> 안녕하세요</span></p>
 	                                           </div>
 	                                        </ul>
 	                                     <div class="time-log">
