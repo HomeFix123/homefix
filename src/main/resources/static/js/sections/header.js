@@ -3,7 +3,7 @@ $(function(){
 	$(document).mouseup(function (e){
 	  	var LayerPopup = $(".sa-dropdown");
 	  	if(LayerPopup.has(e.target).length === 0){
-	    	$(".yetest").css({"visibility":"hidden"
+	    	$(".chatList").css({"visibility":"hidden"
 							,"opacity": "0"
 							,"-webkit-transform": "rotateX(-75deg)"
 							,"-moz-transform":"rotateX(-75deg);"
@@ -46,7 +46,28 @@ $(function(){
 									+ '</div>'
 									+ '</li>';
 						console.log(tag);
-						$("#global-list").append(tag);}
+						$("#global-list").append(tag);
+						}
+					}else if(result.user == "member"){
+						console.log("고객이다");
+						for(let i=0 ; i < result.list.length ; i++){
+						console.log(i);
+						let tag = '<li class="remove-item"><span class="remove-icon">'
+									+ '<i class="bi bi-chat-square-text"></i>'
+									+ '</span>'
+									+ '<div class="sa-course">'
+									+ '<div class="course-info">'
+									+ '<div class="info">'
+									+ '<h2 class="title">'
+									+ '<a href="course-details.html">'+ result.list[i].company.name +'</a>'
+									+ '</h2>'
+									+ '</div>'
+									+ '</div>'
+									+ '</div>'
+									+ '</li>';
+						console.log(tag);
+						$("#global-list").append(tag);
+						}
 					}	
 			},
 			error : function(err) {
@@ -57,7 +78,7 @@ $(function(){
 		})//ajax
 		
 		/*css 변경*/
-		$(".yetest").css({"visibility":"visible"
+		$(".chatList").css({"visibility":"visible"
 							,"opacity": "1"
 							,"-webkit-transform": "rotateX(0deg)"
 							,"-moz-transform":"rotateX(0deg);"
