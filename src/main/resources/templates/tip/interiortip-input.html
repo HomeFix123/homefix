@@ -67,7 +67,7 @@
         
 		<!-- 글쓰기 본문 -->
         <div class="sg-section">
-          <form th:action='@{/tip/write}' method="post" enctype="multipart/form-data"><!-- enctype 파일첨부 시 써줘야 함 -->
+          <form id="writeinfo" th:action='@{/tip/write}' method="post" enctype="multipart/form-data"><!-- enctype 파일첨부 시 써줘야 함 -->
             <div class="section-content course-details bg-white ">
                 <div class="container">
                     <div class="row justify-content-md-center">
@@ -102,7 +102,8 @@
 								<input id="fileInput" filestyle="" type="file" data-class-button="btn btn-default" data-class-input="form-control" data-button-text="" data-icon-name="fa fa-upload" class="form-control" tabindex="-1" style="position: absolute; clip: rect(0px 0px 0px 0px);">
 								
 								<div class="bootstrap-filestyle input-group" >
-									<input type="text" id="userfile" class="form-control" name="tipimg" disabled="" style="margin-bottom: 10px;">
+									<input type="text" id="userfile" class="form-control" readonly "margin-bottom: 10px;">
+									<input type="hidden" id="cfile" name="tipimg">
 									<span class="group-span-filestyle input-group-btn" tabindex="0">
 										<label for="fileInput" class="btn btn-default">
 											<span class="glyphicon fa fa-upload"></span>
@@ -115,7 +116,7 @@
 								
                                 <!-- 게시 버튼 -->
                                 <div class="t_submitdiv" >
-                                <button class="btn btn-primary" type="submit" id="submitButton">등록하기</button>
+                                <button class="btn btn-primary" type="button" id="submitButton">등록하기</button>
                                 </div>
                             </div><!-- /.sa-course -->                           
                         </div>
@@ -150,20 +151,8 @@
         <!-- 팁 글쓰기 js -->
         <script type="text/javascript">
  		$(document).ready(function(){
- 			// 파일 첨부
-       		$("#fileInput").on('change', function(){  // 값이 변경되면
-       			if(window.FileReader){  // modern browser
-       				var filename = $(this)[0].files[0].name;
-       			} else {  // old IE
-       	 			var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
-       			}
-
-       	 		// 추출한 파일명 삽입
-       			$("#userfile").val(filename);
-       		});
-       		
-       		
-       		// 등록버튼 눌렀을 때 
+ 			
+ 			// 등록버튼 눌렀을 때 ========================================
        		$("#submitButton").on('click', function(){
        			// 제목 필수 안내
        			if($('.writeTitle').val()==""){
@@ -191,9 +180,70 @@
        			} else{
        				$('.fileInput_error_box').text("");
        			}
+       		});//====================================================
        			
        			
+       		// 파일 첨부버튼 눌렀을 때
+       		$("#fileInput").on('change', function(){  // 값이 변경되면
+       			if(window.FileReader){  // modern browser
+       				var filename = $(this)[0].files[0].name;
+       			} else {  // old IE
+       	 			var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
+       			}
+
+       	 		// 추출한 파일명 삽입
+       			$("#userfile").val(filename);
        		});
+       		
+       		
+       	   // 파일이미지 서버 저장=================================================
+       	   const form = $('#writeinfo');
+       	   const img = $('#cfile');
+       	   // form submit버튼 누른 후 동작
+       	   // 이미지 저장후 submit 
+       	   $('#submitButton').click(() => {
+       	      const imageInput = $('#fileInput')[0]; // input에서 이미지 가져오기
+       	      const formData = new FormData();
+       	      if(imageInput.files[0] != null){
+       	         // 이미지명 uuid로 변경
+       	         const imgName = uuid(imageInput.files[0].name);
+       	         formData.append("file", imageInput.files[0], imgName);   
+       	         
+       	         const result = saveImage(formData); //이미지 저장
+       	         if(result){
+       	            // 결과가 성공시 input hidden에 이미지명 넣기(DB에 저장할 이미지명)
+       	            img.val(imgName); 
+       	         }
+       	      }
+       	      
+       	      form.submit()
+       	   })
+       	   
+       	   // uuid 생성
+       	   function uuid(file_nm) {
+       	      const s4 = () => ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1)
+       	      
+       	      return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length-1).toLowerCase();
+       	   }
+       	   
+       	   // 이미지 저장 ajax
+       	   function saveImage(formData){
+       	      let answer = false;
+       	      $.ajax({
+       	         type: "POST",
+       	         url: "http://140.238.11.118:5000/upload",
+       	         processData: false,
+       	         contentType: false,
+       	         data: formData,
+       	         async: false
+       	      }).done(() => {
+       	         answer = true;
+       	      }).fail(() => {
+       	         
+       	      })
+       	      
+       	      return answer;
+       	   }
  		
  		});
  		</script>

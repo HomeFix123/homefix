@@ -14,6 +14,9 @@ $(".submit-comment").click(function(){
 	const tipId = $(this).siblings('.tipId').val(); // 팁 아이디(번호)  
 	console.log(tipId)
 	
+	const reaction = $(this).parents('.comment').siblings('.reaction'); //해당 댓글 찾기
+	
+	//에이작스 부분================================================================
 	$.ajax({
 		type: 'get', //get, post 중 선택
 		url: '/tip/save', //요청을 보냄, 받을때는 컨트롤러에서 받음
@@ -38,24 +41,20 @@ $(".submit-comment").click(function(){
 						+ '<span class="tdate">'
 						+ '</span>'
 						+ '</div>';
-			$('.reaction').append(tip);
+			reaction.append(tip); // 해당 댓글에 댓글 입력하기
 			
         },
         error: function (err){    // 실패했을 때
            alert('실패')
         }
-        
 		
 	});
+	//================================================================
 	
+	// 댓글등록시 댓글 입력란 비우기
+	$(this).siblings('.input-comment').val("");
 	
 });
-
-
-
-
-
-
 
 
 
