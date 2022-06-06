@@ -1,3 +1,22 @@
+$(document).ready(function(){ 
+
+	function readImage(input) {
+		if (input.files && input.files[0]) {
+			const reader = new FileReader();
+			reader.onload = (e) => {
+				const previewImage = document.getElementById('previewImage');
+				previewImage.src = e.target.result;
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	// 이벤트 리스너
+	document.getElementById('inputImage').addEventListener('change', (e) => {
+		readImage(e.target);
+	});
+
+});
+
 
 $(function(){
 	const cityDiv = $('#citiesList');
