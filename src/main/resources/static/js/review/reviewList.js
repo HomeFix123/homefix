@@ -8,21 +8,27 @@
 */
 
 $(function(){
+	// 검색 폼
+	const searchForm = $('#searchForm');
+	
+	const hometypeModal = $('#hometypeModal');
+	const jobModal = $('#jobModal')
+	const familyModal = $('#familyModal');
+	
 	// 모달에서 지역 선택시 input[hidden]으로 form 안에 데이터 추가
 	// input[hidden] 요소 담는 곳
 	const hiddenInputs = $('#hiddenInputs');
 	
 	
 	// 모달 관련
-	const modal = $('#exampleModal');
-	const ulBtns = $('#ulBtns');
-	const modalSubmitBtn = $('#modalSubmit');
-	const modalCancelBtn = $('#modalCancelBtn');
+	const ulHometypeBtns = $('#ulHometypeBtns');
+	const ulJobBtns = $('#ulJobBtns');
+	const ulFamilyBtns = $('#ulFamilyBtns');
+	
+	const ulBtns = $('.ulBtns')
 	
 	
-	
-	
-	// 지역 버튼 선택시 이펙트
+	// 버튼 선택시 이펙트
 	ulBtns.find('button').click(function(){
 		if($(this).hasClass('btn-selected')){
 			$(this).removeClass('btn-selected')
@@ -33,47 +39,40 @@ $(function(){
 	})
 	
 	// 취소 버튼 선택시 이펙트 삭제
-	modalCancelBtn.click(() => {
+	$('.modalClose').click(() => {
 		ulBtns.find('button').removeClass('btn-selected')
 	})
 	
 	// 선택 버튼 선택시 input[hidden] 추가 
-	modalSubmitBtn.click(function(){
-		const locName = ulBtns.find('.btn-selected').attr('value')
-		
-		// 남아있던 지역 검색값 삭제 후 고른 걸로 추가
-		hiddenInputs.find('input[name=loc]').remove();
-		if(locName != null){
-			const input = "<input type='hidden' name='loc' value='" + locName + "'>"
+	hometypeModal.find('.modalSubmit').click(function(){
+		const value = ulHometypeBtns.find('.btn-selected').attr('value')
+		hiddenInputs.find('input[name=hometype]').remove();
+		if(value != null){
+			const input = "<input type='hidden' name='hometype' value='" + value + "'>"
 			hiddenInputs.append(input)
 		}
 		
-		modal.modal("hide"); // 모달 닫기 (자동으로 안닫혀서 추가)
-	});
-	
-	// 검색 폼
-	const searchForm = $('#searchForm');
-	
-	// 정렬 버튼들 
-	const sortBtn = $('#sortBtn'); // 정확도순
-	const sortReviewBtn = $('#sortReviewBtn'); // 리뷰순
-	const sortContractBtn = $('#sortContractBtn'); // 계약순
-	
-	
-	sortBtn.click(() => {clickSortBtn()});
-	sortReviewBtn.click(() => {clickSortBtn('review')});
-	sortContractBtn.click(() => {clickSortBtn('contract')});
-	
-	
-	function clickSortBtn(sort){
-		// sort가 없으면 input 추가되지 않고 기본 검색(정확도순)
-		if(sort){
-			// sort가 있으면 input 추가
-			const input = "<input type='hidden' name='sort' value='" + sort + "'>"
+		searchForm.submit()
+	})
+	jobModal.find('.modalSubmit').click(function(){
+		const value = ulJobBtns.find('.btn-selected').attr('value')
+		hiddenInputs.find('input[name=job]').remove();
+		if(value != null){
+			const input = "<input type='hidden' name='job' value='" + value + "'>"
 			hiddenInputs.append(input)
 		}
-		searchForm.submit();
-	}
+		searchForm.submit()
+	})
+	familyModal.find('.modalSubmit').click(function(){
+		const value = ulFamilyBtns.find('.btn-selected').attr('value')
+		hiddenInputs.find('input[name=family]').remove();
+		if(value != null){
+			const input = "<input type='hidden' name='family' value='" + value + "'>"
+			hiddenInputs.append(input)
+		}
+		searchForm.submit()
+	})
+	
 })
 
 
@@ -94,42 +93,33 @@ $(function(){
 	
 	const params = new URLSearchParams(location.search);
 	
-	
 	// url에서 가져온 검색 조건들을 data 객체에 추가
-	if(params.has('keyword')){
-		data.keyword = params.get("keyword");
+	if(params.has('hometype')){
+		data.keyword = params.get("hometype");
 	}
-	if(params.has('sort')){
-		data.sort = params.get("sort");
+	if(params.has('job')){
+		data.sort = params.get("job");
 	}
-	if(params.has('area')){
-		data.area = params.get("area");
+	if(params.has('family')){
+		data.area = params.get("family");
 	}
-	/*
-		data = {
-			keyword: "검색어", 
-			sort: "정렬", 
-			area: "지역"
-		}
-	*/
 	
 	// 더보기 버튼 클릭
 	$('#moreBtn').click(() => {
 		page += 1; // 다음 페이지의 데이터 요청
 		
 		data.page = page // 데이터에 페이지 데이터 추가
-		/*
-			data = {
-				keyword: "검색어", 
-				sort: "정렬", 
-				area: "지역",
-				page: 2
-			}
-		*/
 		
-		const resultList = getMoreBrag(data) // ajax로 요청후 결과를 변수에 저장
+		const resultList = getMoreData(data) // ajax로 요청후 결과를 변수에 저장
+		
+		
+		if(resultList < 12){
+			// 결과가 10개 미만인 경우 더보기 버튼 삭제
+			$('#moreDiv').remove(); 
+		}
 		
 		const imgURL = "http://140.238.11.118:5000/upload/" // 이미지 주소
+		const defaultImg = "profile_basic.png" // 기본 이미지
 		
 		// 결과 개수만큼 for문
 		for(let result of resultList){
@@ -144,17 +134,26 @@ $(function(){
 			const prefer = div.find('.preferCnt'); // 좋아요수
 			const contract = div.find('.contractCnt'); // 계약건수
 			const bookmarkIcon = div.find('.bookmarkIcon'); // 북마크아이콘 처리
-			
+			const link = div.find('.colink');
 			
 			// 이미지 처리
-			titleImg.attr('src', imgURL + result.img);
-			logo.attr('src', imgURL + result.logo);
+			if(result.img != null){
+				titleImg.attr('src', imgURL + result.img);
+			} else {
+				titleImg.attr('src', imgURL + defaultImg);
+			}
+			
+			if(result.logo != null){
+				logo.attr('src', imgURL + result.logo);
+			} else {
+				logo.attr('src', imgURL + defaultImg);
+			}
 			
 			// 단순한 데이터 처리 (업체명, 좋아요수, 계약건수)
 			companyName.text(result.name);
 			prefer.text(result.prefer);
 			contract.text(result.contract);
-			
+			link.attr('href', '/company/' + result.id)
 			// 전문분야 
 			// 데이터가 0개 ~ 2개
 			companySpecialList.empty(); // sample에 있는 전문분야 비우기
@@ -186,12 +185,13 @@ $(function(){
 	
 	
 	// 추가 데이터 가져오는 ajax
-	function getMoreCompany(data){
+	function getMoreData(data){
+		
 		let result = null;
 		
 		$.ajax({
 			type: "GET",
-			url: "/expert/page",
+			url: "/review/page",
 			data: data,
 			async: false // 성공할때까지 대기 (없으면 return 값이 undefined)
 		}).done((data) => {

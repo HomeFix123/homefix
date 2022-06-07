@@ -26,7 +26,6 @@ import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
 import com.homefix.domain.Contract;
 import com.homefix.domain.ElasticBrag;
-import com.homefix.domain.ElasticCompany;
 import com.homefix.domain.Estimation;
 import com.homefix.domain.Member;
 import com.homefix.domain.MemberReport;
@@ -83,8 +82,8 @@ public class BragServiceImpl implements BragService {
 	}
 
 	@Override
-	public List<ElasticBrag> getBragByKeyword(String keyword, String loc, 
-			String family, String job, String hometype, String sort, Integer page) {
+	public List<ElasticBrag> getBragByKeyword(String id, String loc, 
+			String family, String hometype, String sort, Integer page) {
 
 
 		// 페이지당 보여줄 개수
@@ -114,23 +113,19 @@ public class BragServiceImpl implements BragService {
 
 			// 지역 검색
 			if (loc != null) {
-				query = query.must(QueryBuilders.termQuery("spaces", loc)); // 지역명으로 용어검색
+				query = query.must(QueryBuilders.matchQuery("loc", loc)); // 지역명으로 용어검색
 			}
 
 			// 가족형태 검색
 			if (family != null) {
-				query = query.must(QueryBuilders.termQuery("familys", family)); // 지역명으로 용어검색
+				query = query.must(QueryBuilders.matchQuery("family", family)); // 지역명으로 용어검색
 			}
 
 			// 주거형태 검색
 			if (hometype != null) {
-				query = query.must(QueryBuilders.termQuery("hometypes", hometype)); // 지역명으로 용어검색
+				query = query.must(QueryBuilders.matchQuery("hometype", hometype)); // 지역명으로 용어검색
 			}
 
-			// 작업분야 검색
-			if (job != null) {
-				query = query.must(QueryBuilders.termQuery("jobs", job)); // 지역명으로 용어검색
-			}
 
 			// 요청할 데이터 처리
 			ssb.query(query);
@@ -155,7 +150,17 @@ public class BragServiceImpl implements BragService {
 
 				// json 형식을 클래스로 받을 수 있게 변환
 				ElasticBrag brag = MAPPER.readValue(h.getSourceAsString(), ElasticBrag.class);
-
+				Set<String> prefer = brag.getPreferids();
+				if(prefer != null && !prefer.isEmpty()) {
+					if(prefer.contains(id)) {
+						brag.setPreferck(true);
+					} else {
+						brag.setPreferck(false);
+					}
+				} else {
+					brag.setPreferck(false);
+				}
+				
 				resultList.add(brag);
 
 			}
@@ -173,13 +178,19 @@ public class BragServiceImpl implements BragService {
 
 		Brag result = bragRepo.findByBid(brag.getBid());
 		result.setPrefer(preferRepo.countByBrag(brag));
-		List<Prefer> list = preferRepo.findByBragAndMember(brag, memberRepo.findById(id).get());
-		if (list.size() > 0) {
-			result.setPreferck(true);
+		if(id != null) {
+			List<Prefer> list = preferRepo.findByBragAndMember(brag, memberRepo.findById(id).get());
+			if (list.size() > 0) {
+				result.setPreferck(true);
+			} else {
+				result.setPreferck(false);
+			}
 		} else {
 			result.setPreferck(false);
 		}
-
+		Integer cnt = result.getBcnt();
+		result.setBcnt(cnt+1);
+		bragRepo.save(result);
 		return result;
 
 	}

@@ -39,12 +39,15 @@ $(function(){
 	let memberReportData;
 	let isBlacklist;
 	
+	const imgURL = 'http://140.238.11.118:5000/upload/'
+	const defaultImg = 'profile_basic.png'
+	
 	function showMemberModal(id){
 		memberData = searchInfo(id);
 		if(memberData.profilimg == undefined){
-			profileimg.attr('src', 'http://140.238.11.118:5000/upload/profile_basic.png');
+			profileimg.attr('src', imgURL + defaultImg);
 		} else {
-			profileimg.attr('src', memberData.profilimg);	
+			profileimg.attr('src', imgURL + memberData.profilimg);	
 		}
 		
 		

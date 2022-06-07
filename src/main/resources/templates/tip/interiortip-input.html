@@ -41,6 +41,9 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         
+        <!-- header css -->
+		<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+        
         <!-- 개인 css 설정 -->
         <link rel="stylesheet" th:href="@{/css/jy/jy.css}">
                         
@@ -65,9 +68,9 @@
         </section><!-- /.breadcrumb-section --> 
         
         
-		<!-- 노트 본문 -->
+		<!-- 글쓰기 본문 -->
         <div class="sg-section">
-          <form th:action='@{/tip/write}' method="post" enctype="multipart/form-data">
+          <form id="writeinfo" th:action='@{/tip/write}' method="post" enctype="multipart/form-data"><!-- enctype 파일첨부 시 써줘야 함 -->
             <div class="section-content course-details bg-white ">
                 <div class="container">
                     <div class="row justify-content-md-center">
@@ -75,6 +78,7 @@
                             <div class="sa-course">
                                 <div class="course-info">
                                     
+                                    <!-- 카테고리 -->
                                     <select class="category" name="category">
 									  <option value="아파트" selected="selected" >아파트</option>
 									  <option value="주택">주택</option>
@@ -87,16 +91,35 @@
 									  <option value="화장실">화장실</option>
 									  <option value="기타">기타</option>
 									</select>
-                                    
+                                    <!-- 제목 -->
                                     <input type="text" placeholder="제목을 입력해주세요." class="writeTitle" name="tiptitle" id="tiptitle" required="required"/>
-                                    <!--  <div id="summernote">
-                                    노트 본문 창
-                                  	</div> -->
-                                  	<textarea id="summernote" name="tcontent"></textarea>
-                                	
+                                    <div class="error_box" style="margin-bottom:10px"><span class="tiptitle_error_box"></span></div>
+                                    <!-- 내용 -->
+                                  	<textarea name="tcontent" placeholder="내용을 입력해주세요." class="tcontent" style="height:350px;" required="required"></textarea>
+                                	<div class="error_box" style="margin-bottom:10px"><span class="tcontent_error_box"></span></div>
                                 </div>
+                                
+                                <!-- 파일첨부 -->
+                                <div class="form-group" style="padding-left: 30px; padding-bottom: 20px;">
+								<label for="InputSubject1">파일첨부</label>
+								<input id="fileInput" filestyle="" type="file" data-class-button="btn btn-default" data-class-input="form-control" data-button-text="" data-icon-name="fa fa-upload" class="form-control" tabindex="-1" style="position: absolute; clip: rect(0px 0px 0px 0px);">
+								
+								<div class="bootstrap-filestyle input-group" >
+									<input type="text" id="userfile" class="form-control" readonly "margin-bottom: 10px;">
+									<input type="hidden" id="cfile" name="tipimg">
+									<span class="group-span-filestyle input-group-btn" tabindex="0">
+										<label for="fileInput" class="btn btn-default">
+											<span class="glyphicon fa fa-upload"></span>
+										</label>
+									</span>
+																		
+								</div>
+								<div class="error_box" style="margin-bottom:10px"><span class="fileInput_error_box"></span></div>
+								</div>
+								
+                                <!-- 게시 버튼 -->
                                 <div class="t_submitdiv" >
-                                <button class="btn btn-primary" type="submit" id="submitButton">게시하기</button>
+                                <button class="btn btn-primary" type="button" id="submitButton">등록하기</button>
                                 </div>
                             </div><!-- /.sa-course -->                           
                         </div>
@@ -128,82 +151,110 @@
         <script th:src="@{/js/summernote/summernote-lite.js}"></script>
         <script th:src="@{/js/summernote/lang/summernote-ko-KR.js}"></script>
         
-        <!-- 노트 summernote js -->
+        <!-- header js -->
+		<script th:src="@{/js/sections/header.js}"></script>
+        
+        <!-- 팁 글쓰기 js -->
         <script type="text/javascript">
-        $(document).ready(function(){ 
-        	var currentPosition = parseInt($(".quickmenu").css("top")); 
-        	
-        	$(window).scroll(function() { 
-        		var position = $(window).scrollTop(); 
-        		$(".quickmenu").css("top",position+currentPosition+"px"); 
-        		});
-        	
-        	
-            $('#summernote').summernote({
-                placeholder: 'Hello Bootstrap 4',
-                tabsize: 2,
-                minHeight: 500,
-                toolbar: [
-    			    // [groupName, [list of button]]
-    			    ['fontname', ['fontname']],
-    			    ['fontsize', ['fontsize']],
-    			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],  
-    			    ['table', ['table']],
-    			    ['para', ['ul', 'ol', 'paragraph']],
-    			    ['height', ['height']],
-    			    ['insert',['picture','link','video']],
-    			    ['view', ['fullscreen', 'help']]
-    			  ],
-    			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
-    			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
-                focus: true,
-                lang: 'ko-KR',
-                placeholder:'최대 2048자까지 쓸 수 있습니다.',
-                 callbacks:{
-                    onImageUpload: function(files, editor, welEditable) {
-          			for( let i = files.length - 1; i >= 0; i--) {
-          				sendFile(files[i], this);
-          			   }
-          			}
-                 }
-              });
-            
-            
-         // uuid 생성
-			function uuid(file_nm) {
-        		function s4() {
-        		     return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
-        		   }
-        		   return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length-1).toLowerCase();
-        		}
+ 		$(document).ready(function(){
+ 			
+ 			// 등록버튼 눌렀을 때 ========================================
+       		$("#submitButton").on('click', function(){
+       			// 제목 필수 안내
+       			if($('.writeTitle').val()==""){
+       				$('.tiptitle_error_box').text("제목을 입력해주세요.");
+       				$('#tiptitle' ).focus();
+       				return false;        
+       			} else{
+       				$('.tiptitle_error_box').text("");
+       			}
+       			
+       			// 내용 필수 안내
+       			if($('.tcontent').val()==""){
+       				$('.tcontent_error_box').text("내용을 입력해주세요.");
+       				$('.tcontent' ).focus();
+       				return false;        
+       			} else{
+       				$('.tcontent_error_box').text("");
+       			}
+       			
+       			// 파일첨부 필수 안내 
+       			if($('#userfile').val()==""){
+       				$('.fileInput_error_box').text("파일첨부는 필수 사항입니다.");
+       				$('#userfile' ).focus();
+       				return false;        
+       			} else{
+       				$('.fileInput_error_box').text("");
+       			}
+       		});//====================================================
+       			
+       			
+       		// 파일 첨부버튼 눌렀을 때
+       		$("#fileInput").on('change', function(){  // 값이 변경되면
+       			if(window.FileReader){  // modern browser
+       				var filename = $(this)[0].files[0].name;
+       			} else {  // old IE
+       	 			var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
+       			}
 
-			// summernote 이미지 저장
-			function sendFile(file, el) {
-				let formData = new FormData();
-				formData.append('file', file, uuid(file.name));
-				console.log("uuid 적용확인: ", formData.get('file').name);
-				$.ajax({
-					type: "POST",
-					url: "http://140.238.11.118:5000/upload",
-					data: formData,
-					processData: false,
-					contentType: false,
-					success: function(result) {
-						console.log("result 값 확인: ",  formData.get('file').name);
-						$(el).summernote('insertImage', 'http://140.238.11.118:5000/upload/'+result );
-						$('#imageBoard > ul').append('<img src="'+result+'" width="auto" height="auto"/>');
-						console.log("성공");
-					},
-					err: function(err) {
-						console.log("에러: ", err)
-					}
-				})
-			}
-			
-			
-			
-        	});
-        	</script>
+       	 		// 추출한 파일명 삽입
+       			$("#userfile").val(filename);
+       		});
+       		
+       		
+       	   // 파일이미지 서버 저장=================================================
+       	   const form = $('#writeinfo');
+       	   const img = $('#cfile');
+       	   // form submit버튼 누른 후 동작
+       	   // 이미지 저장후 submit 
+       	   $('#submitButton').click(() => {
+       	      const imageInput = $('#fileInput')[0]; // input에서 이미지 가져오기
+       	      const formData = new FormData();
+       	      if(imageInput.files[0] != null){
+       	         // 이미지명 uuid로 변경
+       	         const imgName = uuid(imageInput.files[0].name);
+       	         formData.append("file", imageInput.files[0], imgName);   
+       	         
+       	         const result = saveImage(formData); //이미지 저장
+       	         if(result){
+       	            // 결과가 성공시 input hidden에 이미지명 넣기(DB에 저장할 이미지명)
+       	            img.val(imgName); 
+       	         }
+       	      }
+       	      
+       	      form.submit()
+       	   })
+       	   
+       	   // uuid 생성
+       	   function uuid(file_nm) {
+       	      const s4 = () => ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1)
+       	      
+       	      return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length-1).toLowerCase();
+       	   }
+       	   
+       	   // 이미지 저장 ajax
+       	   function saveImage(formData){
+       	      let answer = false;
+       	      $.ajax({
+       	         type: "POST",
+       	         url: "http://140.238.11.118:5000/upload",
+       	         processData: false,
+       	         contentType: false,
+       	         data: formData,
+       	         async: false
+       	      }).done(() => {
+       	         answer = true;
+       	      }).fail(() => {
+       	         
+       	      })
+       	      
+       	      return answer;
+       	   }
+ 		
+ 		});
+ 		</script>
+        
+        
         
     </body>
 </html>        

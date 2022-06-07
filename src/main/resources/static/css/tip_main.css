@@ -481,5 +481,23 @@ button:hover svg {
 button:active {
  transform: scale(0.95);
 }
+
+/*빈 하트*/
+i.my-2{
+	margin-left:2%;
+	font-size: 25px;
+	color: red;
+}
+
+/*꽉찬 하트*/
+i.fa-heart{
+	margin-left:2%;
+	font-size: 25px;
+	color: red;
+}
+
+
 /*=================================글쓰기 버튼 끝*/
 /* 인테리어 팁 페이지 끝******************************************************************/
+
+

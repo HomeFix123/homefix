@@ -55,17 +55,21 @@ $(function(){
 	}
 	
 	const form = $('#writeinfo');
-	const img = $('#cinfo_img'); 
+	const img = $('#cinfo_img');
+	// form submit버튼 누른 후 동작
+	// 이미지 저장후 submit 
 	$('#submitBtn').click(() => {
-		const imageInput = $('#inputImage')[0];
+		const imageInput = $('#inputImage')[0]; // input에서 이미지 가져오기
 		const formData = new FormData();
 		if(imageInput.files[0] != null){
+			// 이미지명 uuid로 변경
 			const imgName = uuid(imageInput.files[0].name);
 			formData.append("file", imageInput.files[0], imgName);	
 			
-			const result = saveImage(formData);
+			const result = saveImage(formData); //이미지 저장
 			if(result){
-				img.val(imgName);
+				// 결과가 성공시 input hidden에 이미지명 넣기(DB에 저장할 이미지명)
+				img.val(imgName); 
 			}
 		}
       	
@@ -80,6 +84,7 @@ $(function(){
 		return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length-1).toLowerCase();
 	}
 	
+	// 이미지 저장 ajax
 	function saveImage(formData){
 		let answer = false;
 		$.ajax({

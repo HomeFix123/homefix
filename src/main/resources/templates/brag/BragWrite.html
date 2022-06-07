@@ -7,7 +7,7 @@
 <meta name="author" content="">
 <meta name="description" content="">
 
-<title>자랑글 작성</title>
+<title>Educam | Education & Courses HTML Template.</title>
 
 <!-- CSS -->
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -20,6 +20,7 @@
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
 <link rel="stylesheet" th:href="@{/css/summernote/summernote-lite.css}">
 <link rel="stylesheet" th:href="@{/css/bs/Brag.css}">
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
 
 <!-- font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
@@ -49,7 +50,21 @@
 	</div>
 	<!-- preloader -->
 
-	<div th:replace="/sections/header :: header"></div>   
+	<div th:replace="/sections/header :: header"></div>
+	<br />
+	<section class="breadcrumb-section bg-light">
+		<div class="container">
+			<h1>인테리어 자랑 작성</h1>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+				<li class="breadcrumb-item"><a href="brag">Brag</a></li>
+			</ol>
+		</div>
+		<!-- /.container -->
+	</section>
+	<!-- /.breadcrumb-section -->
+
+
 
 
 	<form id="writeinfo" enctype="multipart/form-data" method="post" action="/brag/write">
@@ -63,18 +78,16 @@
 								<div class="writedetail">
 
 									<div class="input-group mb-3">
-										<label class="input-group-text" for="cid">업체명</label>
-										<select class="form-select" id="cid" name="cid" >
-											<option disabled selected>계약한 업체목록</option>
-											<option th:each="conlist : ${contract}" th:value="${conlist.id}" th:text="${conlist.name}" >업체명</option>											
+										<label class="input-group-text" for="cid">업체명</label> <select class="form-select" id="cid" name="cid">
+											<option disabled selected>계약 업체목록</option>
+											<option th:each="conlist : ${contract}" th:value="${conlist.id}" th:text="${conlist.name}">한샘리하우스디자인디원</option>
 										</select>
 									</div>
 
 
 									<div class="input-group mb-3">
-										<label class="input-group-text" for="hometype">주거형태</label>
-										<select class="form-select" id="hometype" name="hometype">
-											<option disabled selected class="text-gray">Choose...</option>
+										<label class="input-group-text" for="hometype">주거형태</label> <select class="form-select" id="hometype" name="hometype">
+											<option disabled selected>선택해주세요</option>
 											<option value="마이룸">마이룸</option>
 											<option value="원룸">원룸</option>
 											<option value="오피스텔">오피스텔</option>
@@ -83,34 +96,29 @@
 									</div>
 
 									<div class="input-group input-group-sm mb-3">
-										<label class="input-group-text" id="inputGroup-sizing-sm" for="bsize">평수</label>
-										<input type="text" id="bsize" name="bsize" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-										<label class="input-group-text" id="inputGroup-sizing-sm" for="bbudget">예산</label>
-										<input type="text" id="bbudget" name="bbudget" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+										<span class="input-group-text" id="inputGroup-sizing-sm">평수</span> <input type="text" id="bsize" name="bsize" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"> <span class="input-group-text" id="inputGroup-sizing-sm">예산</span> <input type="text" id="bbudget" name="bbudget" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 									</div>
 
 									<div class="input-group mb-3">
-										<label class="input-group-text" for="job">작업분야</label>
-										<select class="form-select" id="job" name="job">
-											<option disabled selected>Choose...</option>
+										<label class="input-group-text" for="job">작업분야</label> <select class="form-select" id="job" name="job">
+											<option disabled selected>선택해주세요</option>
 											<option value="홈스타일링">홈스타일링</option>
 											<option value="리모델링">리모델링</option>
 											<option value="부분시공">부분시공</option>
 										</select>
 									</div>
 									<div class="input-group mb-3">
-										<label class="input-group-text" for="family">가족형태</label>
-										<select class="form-select" id="family" name="family">
-											<option disabled selected>Choose...</option>
+										<label class="input-group-text" for="family">가족형태</label> <select class="form-select" id="family" name="family">
+											<option disabled selected>선택해주세요</option>
 											<option value="싱글">싱글</option>
 											<option value="신혼/부부">신혼/부부</option>
 											<option value="자녀동반">자녀동반</option>
+											<option value="대가족">대가족</option>
 										</select>
 									</div>
 									<div class="input-group mb-3">
-										<label class="input-group-text" for="worker">작업자</label>
-										<select class="form-select" id="worker" name="worker">
-											<option disabled selected>Choose...</option>
+										<label class="input-group-text" for="worker">작업자</label> <select class="form-select" id="worker" name="worker">
+											<option disabled selected>선택해주세요</option>
 											<option value="셀프-DLY">셀프 - DLY</option>
 											<option value="하프셀프">하프셀프</option>
 											<option value="전문가">전문가</option>
@@ -118,20 +126,15 @@
 									</div>
 
 									<div class="input-group input-group-sm mb-3 ">
-										<span class="input-group-text" id="inputGroup-sizing-sm">지역</span>
-										<input type="text" id="loc" name="loc" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+										<span class="input-group-text" id="inputGroup-sizing-sm">지역</span> <input type="text" id="loc" name="loc" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 									</div>
 
 									<div class="input-group input-group-sm mb-3">
-										<span class="input-group-text" id="inputGroup-sizing-sm">세부정보</span>
-										<input type="text" id="extrainfo" name="extrainfo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+										<span class="input-group-text" id="inputGroup-sizing-sm">세부정보</span> <input type="text" id="extrainfo" name="extrainfo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 									</div>
 
 									<div class="previewImage">
-										<label class="previewImagebtn" for="inputImage">섬네일 미리보기</label> 
-										<img style="width: 100%;" id="previewImage" src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload">
-										<input style="display: block; visibility: hidden;" type="file" accept="image/*" id="inputImage" name="inputImage">
-										<input hidden="" id="bimgadr" name="bimgadr">
+										<label class="previewImagebtn" for="inputImage">섬네일 미리보기</label> <img style="width: 100%;" id="previewImage" src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload"> <input style="display: block; visibility: hidden;" type="file" accept="image/*" id="inputImage" name="inputImage"> <input hidden="" id="bimgadr" name="bimgadr">
 									</div>
 								</div>
 								<!-- /.writedetail -->
@@ -187,7 +190,7 @@
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/summernote/summernote-lite.js}"></script>
 	<script th:src="@{/js/summernote/lang/summernote-ko-KR.js}"></script>
-
+	<script th:src="@{/js/sections/header.js}"></script>
 
 
 	<script type="text/javascript">
@@ -219,7 +222,7 @@
     			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
                 
                 lang: 'ko-KR',
-                placeholder:'글 내용을 작성해주세요',
+                placeholder:'최대 2048자까지 쓸 수 있습니다.',
                  callbacks:{
                 	onImageUpload: function(files, editor, welEditable) {
 						for( let i = files.length - 1; i >= 0; i--) {
@@ -335,7 +338,7 @@
 			}
         
         	});
-        	
+        
         </script>
 
 </body>
