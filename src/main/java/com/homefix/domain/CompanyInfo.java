@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-@Entity(name = "cp_info")
+@Entity
 @Data
 @Table(name = "cp_info")
 public class CompanyInfo {
@@ -26,15 +26,13 @@ public class CompanyInfo {
 	private String cinfo_img;
 	private String career;
 	
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	@JoinColumn(name = "cinfo_id")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "companyInfo")
 	private List<CompanySpecial> specialty;
 	
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	@JoinColumn(name = "cp_arid")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "companyInfo")
 	private List<CompanyArea> area;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	@JoinColumn(name = "cid")
 	private Company company;
 	

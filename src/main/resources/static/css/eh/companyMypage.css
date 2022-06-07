@@ -51,3 +51,12 @@ margin-top: 50px;
 	font-size: 15px;
 	font-weight: bold;
 }
+
+#applyEstimation{
+	text-align: center;
+	font-size: 15px;
+	
+}
+.estNum{
+	color: #1abc9c;
+}

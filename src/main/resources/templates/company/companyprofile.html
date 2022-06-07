@@ -267,7 +267,7 @@
 									<li>
 										<div class="user-info">
 											<div class="profile-picture">
-												<img th:src="@{/images/tutor/4.jpg}" alt="Profile Picture">
+												<img th:src="|http://140.238.11.118:5000/upload/${company.logo}|" alt="Profile Picture">
 											</div>
 											<div>
 												<span class="user-name" id="companyId"
@@ -277,13 +277,13 @@
 											</div>
 									</li>
 
-									<li class="nav-item"><a class="nav-link active" id="user-one-tab"
-										data-bs-toggle="tab" data-bs-target="#user-one" role="tab"
-										aria-controls="user-one" aria-selected="true">내가 쓴 글</a></li>
+									<li class="nav-item"><a class="nav-link active"
+										id="user-one-tab" data-bs-toggle="tab"
+										data-bs-target="#user-one" role="tab" aria-controls="user-one"
+										aria-selected="true">내가 쓴 글</a></li>
 
-									<li class="nav-item"><a class="nav-link"
-										id="user-two-tab" data-bs-toggle="tab"
-										data-bs-target="#user-two" role="tab"
+									<li class="nav-item"><a class="nav-link" id="user-two-tab"
+										data-bs-toggle="tab" data-bs-target="#user-two" role="tab"
 										aria-controls="user-two" aria-selected="false">포트폴리오 수정</a></li>
 
 									<li class="nav-item"><a class="nav-link"
@@ -295,16 +295,15 @@
 										id="user-four-tab" data-bs-toggle="tab"
 										data-bs-target="#user-four" role="tab"
 										aria-controls="user-four" aria-selected="false"> 회원정보 수정 </a></li>
-									<li class="nav-item"><a class="nav-link "
+									<li class="nav-item"><a class="nav-link"
 										id="user-five-tab" data-bs-toggle="tab"
-										data-bs-target="#user-five" role="tab" aria-controls="user-five"
-										aria-selected="false">진행 중인 견적 보기</a></li>
-										
+										data-bs-target="#user-five" role="tab"
+										aria-controls="user-five" aria-selected="false">신청한 견적 보기</a></li>
+
 									<li class="nav-item"><a class="nav-link "
-										id="user-six-tab" data-bs-toggle="tab"
-										data-bs-target="#user-six" role="tab" aria-controls="user-six"
-										aria-selected="false">신청한 견적 보기</a></li>
-										
+										th:href="@{/estimation/Progress(cid=${session['userId']})}">시공
+											중인 견적 보기</a></li>
+
 
 									<div align="center" id="logOutLocation">
 										<a th:href="@{/sign/company/logOut}">로그아웃</a>
@@ -312,13 +311,15 @@
 								</ul>
 								<!---------------------------------------------------------tab시작부분-------------------------------------------------------------------------------->
 								<div class="tab-content">
-									
+
 									<!-------------------------------------tab one 내가 쓴 글  -------------------------------------->
-									<div class="tab-pane fade show active" id="user-one" role="tabpanel"
-										aria-labelledby="user-one-tab">
+									<div class="tab-pane fade show active" id="user-one"
+										role="tabpanel" aria-labelledby="user-one-tab">
 										<div class="profile-section">
 											<div class="tab-header">
-												<h2>내가 쓴 글</h2>
+												<h2>
+													<i class="fas fa-feather-alt"></i>&nbsp;&nbsp;내가 쓴 글
+												</h2>
 												<p>사업체가 직접 쓴 후기를 보여줍니다.</p>
 											</div>
 											<!-- header -->
@@ -474,6 +475,16 @@
 
 									<!------------------------------------------------- tab  two 포트폴리오 수정---------------------------------------------------- -->
 									<div class="tab-pane fade" id="user-two" role="tabpanel">
+										<div class="profile-section">
+											<div class="tab-header">
+												<h2>
+													<i class="fas fa-file-invoice"></i>&nbsp;&nbsp;포트폴리오 수정
+												</h2>
+												<p>포트폴리오를 수정합니다.</p>
+											</div>
+											<div class="tab-body" id="tbody_rv"
+												style="border-bottom: none;"></div>
+										</div>
 									</div>
 
 
@@ -482,34 +493,32 @@
 										aria-labelledby="user-three-tab">
 										<div class="profile-section">
 											<div class="tab-header">
-												<h2>구독 관리</h2>
+												<h2>
+													<i class="fas fa-comments-dollar"></i>&nbsp;&nbsp;구독 관리
+												</h2>
 												<p>구독내역 및 결제를 관리합니다.</p>
 											</div>
 											<!-- header -->
+
+											<!-- 결제 정보창 시작!-->
 											<div class="tab-body">
-												<!-- 결제 정보창 시작!-->
-
-												<div class="payment-content section-padding">
+												<!-- 견적 테이블 -->
+												<div class="shopping-cart">
 													<div class="container">
-														<h4 id='monthCash'>
-															&nbsp;&nbsp;<i class="fas fa-comments-dollar"></i>&nbsp;&nbsp;HomeFix
-															구독권 관리
-														</h4>
-														<form class="contact-form" name="contact-form"
-															method="post" action="#">
-															<div class='row'>
 
-																<div id='pridiv'>
-
-																	<table
-																		class="table table-bordered table-striped .table-responsive">
-																		<tr id='tableHeadText'>
-																			<td>결제번호</td>
-																			<td>결제방법</td>
-																			<td>결제금액</td>
-																			<td>구독권 시작일</td>
-																			<td>구독권 종료일</td>
+														<div class="row" style="border: none;">
+															<form class="woocommerce-cart-form" action="#">
+																<table class="table">
+																	<thead>
+																		<tr>
+																			<th>결제번호</th>
+																			<th>결제방법</th>
+																			<th>결제금액</th>
+																			<th>구독권 시작일</th>
+																			<th>구독권 종료일</th>
 																		</tr>
+																	</thead>
+																	<tbody>
 																		<tr th:each="paymentInfo : ${PaymentInfo}">
 																			<td th:text="${paymentInfo.pid}"></td>
 																			<td th:text="${paymentInfo.method}"></td>
@@ -519,29 +528,22 @@
 
 																		</tr>
 
+																	</tbody>
+																</table>
+															</form>
+														</div>
 
-
-																	</table>
-
-
-
-																</div>
-
-
-
-
-
-															</div>
-
-														</form>
-														<!-- contact-form -->
-
-
-
+														<!-- /.sg-pagination -->
 													</div>
 												</div>
-												<!-- 결제 정보창 끝!!!-->
+												<!-- /.cart-section -->
 											</div>
+
+
+
+
+											<!-- 결제 정보창 끝!!!-->
+
 											<!-- tab-body -->
 										</div>
 									</div>
@@ -557,7 +559,9 @@
 												th:object="${company}">
 												<input type="hidden" name="_method" value="put" />
 												<div class="tab-header">
-													<h2>회원정보 수정</h2>
+													<h2>
+														<i class="far fa-edit"></i>&nbsp;&nbsp;회원정보 수정
+													</h2>
 													<p>회원정보 수정 및 탈퇴 페이지입니다.</p>
 												</div>
 												<!-- header -->
@@ -571,7 +575,7 @@
 																Photo</span>
 														</label> <br />
 														<div class="form-group">
-															<input type="submit" class="btn btn-primary" value="사진추가">
+															<input type="submit" class="btn btn-primary" id="pictureAdd" value="사진추가">
 														</div>
 													</div>
 
@@ -676,15 +680,68 @@
 										</div>
 									</div>
 									<!-- /.row -->
-									
-									
-										<!----------------------------- tab five 견적 중인 글보기 ------------------------------------------>
-									<div class="tab-pane fade " id="user-five"
-										role="tabpanel" aria-labelledby="user-five-tab">
+
+
+									<!----------------------------- tab five 신청 중인 글보기 ------------------------------------------>
+									<div class="tab-pane fade " id="user-five" role="tabpanel"
+										aria-labelledby="user-five-tab">
 										<div class="profile-section">
 											<div class="tab-header">
-												<h2>견젹 중인 글 보기</h2>
-												<p>견적 중인 글을 보여주는 페이지입니다.</p>
+												<h2>
+													<i class="fas fa-ruler-combined"></i>&nbsp;&nbsp;신청한 견적 보기
+												</h2>
+												<p>신청번호를 누르면 상세페이지로 이동합니다.</p>
+											</div>
+											<!-- header -->
+											<div class="tab-body">
+												<!-- 견적 테이블 -->
+												<div class="shopping-cart">
+													<div class="container">
+														<div class="row" style="border: none;">
+															<form class="woocommerce-cart-form" action="#">
+																<table id="applyEstimation" class="table">
+																	<thead>
+																		<tr>
+																			<th scope="col">견적신청번호</th>
+																			<th scope="col">시공희망지역</th>
+																			<th scope="col">시작희망일</th>
+																			<th scope="col">신청ID</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr th:each="list:${RegistList}">
+																			<td><a class="estNum"
+																				th:href="@{/estimation/ChosenDetail(id=${list.eid})}"><span
+																					th:text="${list.eid}"></span></a></td>
+																			<td><span th:text="${list.eaddr}"></span></td>
+																			<td><span th:text="${list.startDay}"></span></td>
+																			<td><span th:text="${list.member.id}"></span></td>
+																		</tr>
+
+																	</tbody>
+																</table>
+															</form>
+														</div>
+
+														<!-- /.sg-pagination -->
+													</div>
+												</div>
+												<!-- /.cart-section -->
+											</div>
+											<!-- tab-footer -->
+										</div>
+									</div>
+
+
+
+
+									<!----------------------------- tab six 시공 중인 글보기 ------------------------------------------>
+									<div class="tab-pane fade" id="user-six" role="tabpanel"
+										aria-labelledby="user-six-tab">
+										<div class="profile-section">
+											<div class="tab-header">
+												<h2>시공 중인 견적 보기</h2>
+												<p>시공 중인 글을 보여주는 페이지입니다.</p>
 											</div>
 											<!-- header -->
 											<div class="tab-body">
@@ -768,106 +825,12 @@
 											<!-- tab-footer -->
 										</div>
 									</div>
-									
-									
-									
-									
-									<!----------------------------- tab six 견적 중인 글보기 ------------------------------------------>
-									<div class="tab-pane fade" id="user-six"
-										role="tabpanel" aria-labelledby="user-six-tab">
-										<div class="profile-section">
-											<div class="tab-header">
-												<h2>견젹 중인 글 보기</h2>
-												<p>견적 중인 글을 보여주는 페이지입니다.</p>
-											</div>
-											<!-- header -->
-											<div class="tab-body">
-												<!-- 견적 테이블 -->
-												<div class="shopping-cart">
-													<div class="container">
-														<div class="row" style="border: none;">
-															<form class="woocommerce-cart-form" action="#">
-																<table class="table">
-																	<thead>
-																		<tr>
-																			<th scope="col">제목</th>
 
-																			<th scope="col">시작 희망일</th>
-																			<th scope="col">종료 희망일</th>
-																		</tr>
-																	</thead>
-																	<tbody>
-																		<tr>
-																			<th>
-																				<div class="product">
-																					<a href="details.html"> <span
-																						class="product-thumb"> <img
-																							src="images/course/1.jpg" alt="Image"
-																							class="img-fluid">
-																					</span> <span>이곳에 간단제목이 들어갑니다. 옆에는 썸넬</span>
-																					</a>
-																				</div> <!-- /.product -->
-																			</th>
-																			<td><span class="price">21년00월00일</span></td>
-																			<td><span class="subtotal">21년00월00일</span></td>
-																		</tr>
-																		<tr>
-																			<th>
-																				<div class="product">
-																					<a href="details.html"> <span
-																						class="product-thumb"> <img
-																							src="images/course/2.jpg" alt="Image"
-																							class="img-fluid">
-																					</span> <span>간단제목들어감옆은썸넬</span>
-																					</a>
-																				</div> <!-- /.product -->
-																			</th>
-																			<td><span class="price">21년00월00일</span></td>
-																			<td><span class="subtotal">21년00월00일</span></td>
-																		</tr>
-																		<tr>
-																			<th>
-																				<div class="product">
-																					<a href="details.html"> <span
-																						class="product-thumb"> <img
-																							src="images/course/3.jpg" alt="Image"
-																							class="img-fluid">
-																					</span> <span>간단제목제목옆은썸넬</span>
-																					</a>
-																				</div> <!-- /.product -->
-																			</th>
-																			<td><span class="price">21년00월00일</span></td>
-																			<td><span class="subtotal">21년00월00일</span></td>
-																		</tr>
 
-																	</tbody>
-																</table>
-															</form>
-														</div>
-														<!-- /.row -->
-														<!-- 페이지버튼 -->
-														<div class="text-center">
-															<ul class="pagination justify-content-center mb-0">
-																<li><a class="page-numbers current" href="#">1</a></li>
-																<li><a class="page-numbers" href="#">2</a></li>
-																<li class="float-right"><a class="page-numbers"
-																	href="#"><i class="fas fa-chevron-right"></i></a></li>
-															</ul>
-														</div>
-														<!-- /.sg-pagination -->
-													</div>
-												</div>
-												<!-- /.cart-section -->
-											</div>
-											<!-- tab-footer -->
-										</div>
-									</div>
-									
-									
-									
-									
-									
-									
+
+
+
+
 								</div>
 								<!-- /.container -->
 							</div>

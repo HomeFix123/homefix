@@ -302,10 +302,16 @@
 										<div class="requirements">
 											<h4>기본정보</h4>
 											<ul class="global-list">
-												<li>대표자:</li>
-												<li>경력:</li>
-												<li>시공지역:</li>
-												<li>주소:</li>
+												<li th:text="'대표자: '+ ${CompanyBasic.ceo}"></li>
+												<li th:text="'경력: '+ ${CompanyInfo.career} + '년'"></li>
+
+
+												<li>시공지역: <span th:each="a : ${CompanyInfo.area} "
+													th:text="${a.area.aname} + ' '"> </span></li>
+
+
+
+												<li th:text="'주소: '+${CompanyBasic.addr}"></li>
 											</ul>
 										</div>
 										<!-- /.requirements -->
@@ -315,95 +321,86 @@
 									<div class="tab-pane fade" id="course-info" role="tabpanel"
 										aria-labelledby="course-info-tab">
 										<h4>전문가 한마디</h4>
-
+										<p th:text="${CompanyInfo.cinfo_cont}"></p>
 
 									</div>
 									<div class="tab-pane fade" id="reviews" role="tabpanel"
 										aria-labelledby="reviews-tab">
 										<h3 class="widget_title">다양한 시공사례</h3>
-										<ul>
+										<ul th:each="b:${Brag}">
 											<li class="media">
 												<div class="entry-thumbnail">
-													<a href="#"><img src="images/blog/1.png" alt="Image"
-														class="img-fluid"></a>
+													<a th:href="@{/brag/}+(${b.bid})"> <img
+														th:if="${not #strings.isEmpty(b.bimgadr)}"
+														th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|"
+														alt="Image" class="img-fluid"> <img
+														th:if="${#strings.isEmpty(b.bimgadr)}"
+														src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
+
+
 												</div>
-												<div class="media-body">
-													<span class="post-date">May 21, 2021</span> <a href="#">Visual
-														Basic Web Course With Live Project</a>
+												<div class="info">
+													<h2 class="title text-center">
+														<a th:text="${b.btitle}"></a>
+													</h2>
+													<p class="text-right" th:text="${b.member.nickname}"></p>
 												</div>
-											</li>
-											<li class="media">
-												<div class="entry-thumbnail">
-													<a href="#"><img src="images/blog/2.png" alt="Image"
-														class="img-fluid"></a>
-												</div>
-												<div class="media-body">
-													<span class="post-date">May 20, 2021</span> <a href="#">Lorem
-														ipsum dolor sit ametdo eiusmod tempor.</a>
-												</div>
-											</li>
-											<li class="media">
-												<div class="entry-thumbnail">
-													<a href="#"><img src="images/blog/3.png" alt="Image"
-														class="img-fluid"></a>
-												</div>
-												<div class="media-body">
-													<span class="post-date">May 19, 2021</span> <a href="#">Lorem
-														ipsum dolor sit ametdo eiusmod tempor.</a>
+												<div class="sa-meta">
+													<ul class="global-list">
+														<li><a href="#"> <span><i
+																	class="fas fa-heart"></i></span>
+														</a></li>
+														<li><a href="#"> <i class="far fa-eye"></i><span
+																th:text="${b.bcnt}"></span>
+														</a></li>
+													</ul>
 												</div>
 											</li>
-											<li class="media">
-												<div class="entry-thumbnail">
-													<a href="#"><img src="images/blog/4.png" alt="Image"
-														class="img-fluid"></a>
-												</div>
-												<div class="media-body">
-													<span class="post-date">May 18, 2021</span> <a href="#">Lorem
-														ipsum dolor sit ametdo eiusmod tempor.</a>
-												</div>
-											</li>
+
+
+
 										</ul>
+
+
 									</div>
 									<div class="tab-pane fade" id="comments" role="tabpanel"
 										aria-labelledby="comments-tab">
 										<h4>업체후기</h4>
 										<div class="comments-area">
-											<ul class="comment-list global-list">
-												<li class="media">
-													<div class="commenter-avatar">
-														<a href="#"><img class="img-fluid"
-															src="images/tutor/1.jpg" alt="Image"></a>
-													</div>
-													<div class="comment-box media-body">
-														<div class="comment-meta">
-															<span class="title float-left" id="rtitle"><a
-																href="#" class="author-name">후기제목</a></span> <span
-																class="float-right" id='rdate'>후기날짜 </span>
-														</div>
-														<div class="comment-content">
-															<p id='r_cont'>후기 내용</p>
-														</div>
-													</div>
-												<li class="media">
-													<div class="commenter-avatar">
-														<a href="#"><img class="img-fluid"
-															src="images/tutor/5.jpg" alt="Image"></a>
-													</div>
-													<div class="comment-box media-body">
-														<div class="comment-meta">
-															<span class="title float-left"><a href="#">Nancy
-																	Doll</a></span> <span class="float-right">2 Minutes ago | <a
-																href="#">Replay</a></span>
-														</div>
-														<div class="comment-content">
-															<p>Lorem ipsum dolor sit amet, consectetuer
-																adipiscing elit, sed diam nonummy nibh euismod tincidunt
-																ut laoreet dolore magna aliquam erat volutpat. Ut wisi
-																enim ad minim veniam, quis nostrud exerci ation
-																ullamcorper suscipit lobortis nisl ut aliquip.</p>
-														</div>
-													</div>
-												</li>
+											<ul  >
+											<li class="media" th:each="r:${Review}">
+												<div class="entry-thumbnail">
+												 <a th:href="@{/review/} + (${r.rid})">  <img
+														th:if="${not #strings.isEmpty(r.rimgadr)}"
+														th:src="|http://140.238.11.118:5000/upload/${r.rimgadr}|"
+														alt="Image" class="img-fluid"> <img
+														th:if="${#strings.isEmpty(r.rimgadr)}"
+														src="images/course/1.jpg" alt="Image" class="img-fluid"> </a> 
+
+
+												</div>
+												 <div class="info">
+												 <h2 class="title text-center">
+														<a th:text="${r.rtitle}"></a>
+													</h2>
+													<p class="text-right"  th:text="${r.company.name}"></p> 
+												</div> 
+												<div class="sa-meta">
+												<ul class="global-list">
+														<li><a href="#"> <span><i
+																	class="fas fa-heart"></i></span>
+														</a></li>
+														<li><a href="#"> <i class="far fa-eye"></i><span
+																th:text="${r.rcnt}"></span>
+														</a></li>
+													</ul> 
+												</div>
+											</li>
+
+
+
+										</ul>
+											
 											</ul>
 										</div>
 										<!-- /.comments-area -->
@@ -418,31 +415,35 @@
 
 					<div class='col-lg-3'>
 
-						
-							<div class=companyImg>
-								
+
+						<div class=companyImg>
 
 
-								<div class='imgtutor'>
-									<img src="http://140.238.11.118:5000/upload/logo4.png" alt="Profile Picture"
-										id='companyId'>
 
-								</div>
+							<div class='imgtutor' >
+								<img    th:src="|http://140.238.11.118:5000/upload/${CompanyBasic.logo}|"
+									alt="Profile Picture" id='companyId'>
+									
+									
 
-								<div>
-
-									<h4 class="partner_detail__title">
-
-										우일인테리어
-										<!---->
-									</h4>
-									<ul class="global-list">
-                                    <li><i class="fas fa-check-circle"></i> 전문분야: </li>
-                                    <li><i class="fas fa-check-circle"></i> 시공횟수: </li>
-                                    <li><i class="fas fa-check-circle"></i> 후기수:&nbsp&nbsp</li>
-                                </ul>
-								</div>
 							</div>
+
+							<div>
+
+								<h4 class="partner_detail__title" th:text="${CompanyBasic.name}">
+
+									
+									<!---->
+								</h4>
+								<ul class="global-list">
+									<li><i class="fas fa-check-circle"></i><span th:text="' 대표번호:  ' + ${CompanyBasic.tel} "></span></li>
+									<li><i class="fas fa-check-circle"></i><span th:text="' 대표메일:  '+ ${CompanyBasic.email} "></span></li>
+									<li ><i class="fas fa-check-circle"></i> <span th:text=" '시공횟수:  ' + ${CompanyBasic.cnt} + '건'"></span></li>
+									<li><i class="fas fa-check-circle"></i><span th:each="a : ${CompanyInfo.specialty} "
+													th:text="' 시공지역:  ' + ${a.sp_cont}"> </span></li>
+								</ul>
+							</div>
+						</div>
 
 						</aside>
 

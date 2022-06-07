@@ -5,15 +5,31 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
-import com.homefix.domain.Payment;
+import com.homefix.domain.CompanyInfo;
+import com.homefix.domain.Review;
+import com.homefix.persistence.BragRepository;
+import com.homefix.persistence.CompanyInfoRepository;
 import com.homefix.persistence.CompanyRepository;
+import com.homefix.persistence.ReviewRepository;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
 	@Autowired
 	CompanyRepository companyRepo;
+	
+	@Autowired
+	CompanyInfoRepository companyInfoRepo;
+	
+
+	   
+	@Autowired
+	ReviewRepository reviewRepo;
+	
+	@Autowired
+	BragRepository bragrepo;
 
 	// 사업자 아이디 중복 조회
 	public String idCheck(String id) {
@@ -84,13 +100,34 @@ public class CompanyServiceImpl implements CompanyService {
 
 	// 사업자 회원가입
 	public void companyInsert(Company com) {
-
 		companyRepo.save(com);
 	}
-
+	
+	//시공전문가(업체상세페이지):두번째 탭 업체소개
+	public CompanyInfo  getCompanyIntroduction(Company com) {
+		//CompanyInfo comi = new CompanyInfo();
+		// comi.setCinfo_id( Integer.parseInt( com.getId()));
+		return companyInfoRepo.findById(Integer.parseInt( com.getId())).get();
+	}
 	
 	
+	/* 
+	 * //시공전문가(업체상세페이지):전문분야 public CompanySpecial getCompanySpecial(Company com) {
+	 * CompanyInfo comi = new CompanyInfo(); comi.setCinfo_id(null);
+	 * comi.setCinfo_id( Integer.parseInt( ));
+	 * 
+	 * 
+	 * return companyInfoRepo.findBy(Integer.parseInt( com.getId())); }
+	 */
 	
-	
-
-}
+	//시공전문가(업체상세페이지):인테리어자랑
+	 public List<Brag> getInteriorBrag(Company com) {
+		 return bragrepo.findByCompany(com);
+	 }  
+	    
+	 //시공전문가(업체상세페이지):업체후기
+	 public List<Review> getCompanyReview(Company com) {
+		 return reviewRepo.findByCompany(com);
+	 } 
+ 
+} 
