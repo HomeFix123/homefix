@@ -8,11 +8,9 @@ import org.springframework.data.repository.CrudRepository;
 import com.homefix.domain.Company;
 import com.homefix.domain.Review;
 
-public interface ReviewRepository extends CrudRepository<Review, String>{
+public interface ReviewRepository extends CrudRepository<Review, Integer>{
 
 	public List<Review> findAll(Pageable pageable);
-
-	public Review findByRid(Integer rid);
 
 	public Review findByRidAndCompany(Integer rid, Company company);
 

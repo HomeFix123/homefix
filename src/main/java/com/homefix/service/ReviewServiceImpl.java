@@ -74,17 +74,18 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public Review getReview(Review rev ) {
 		
-		return reviewRepo.findByRid(rev.getRid());
+		return reviewRepo.findById(rev.getRid()).get();
 		
 	}
 	
 	@Override
-	public void deleteReview(Review rev, String cid) {
-		System.out.println(rev.getRid());
-		Review result = reviewRepo.findByRid(rev.getRid());
-		result.setCompany(companyRepo.findById(cid).get());
-		System.out.println(result);
-		reviewRepo.delete(reviewRepo.findByRidAndCompany(result.getRid(), result.getCompany()));
+	public void deleteReview(Integer rid, String cid) {
+		
+		Company company = companyRepo.findById(cid).get();
+		
+		Review review = reviewRepo.findByRidAndCompany(rid, company);
+		
+		reviewRepo.delete(review);
 	}
 	
 	
