@@ -112,7 +112,7 @@ public class MemberController {
 			session.setAttribute("memberNick", member.getNickname());
 			session.setAttribute("memberName", member.getName());
 			session.setAttribute("memberTel", mem.getTel());
-			System.out.println("전화번호 넘어오는지 확인 :" + mem.getName() );
+			System.out.println("전화번호 넘어오는지 확인 :" + mem.getTel() );
 			
 			session.setAttribute("memberZip", mem.getZipcode());
 			session.setAttribute("memberAddr", mem.getAddr());
@@ -168,12 +168,12 @@ public class MemberController {
 	}
 	
 	// 글 수정
-	@PutMapping("/member/updateMember")
-	public String updateMember(Member mem, HttpSession session) {	
+	@PutMapping(value="/member/updateMember")
+	public String updateMember(Member mem) {	
 		
-		memberService.updateMember(mem, session);
+		memberService.updateMember(mem);
 		System.out.println("update:::::::: "+mem);
-		return "member/profile";
+		return "redirect:/sign/member/profile";
 	}
 	
 	// 회원 탈퇴
@@ -182,10 +182,11 @@ public class MemberController {
 	public String memberSecession(String password, HttpSession session) {
 		Member mem = new Member();
 		System.out.println("세션 아이디 확인: " + session.getAttribute("memberId"));
-		System.out.println("세션 비밀번호 확인: " + session.getAttribute(password));
-		mem.setPassword(password);
+		System.out.println("세션 비밀번호 확인: " + session.getAttribute("memberPass"));
+		mem.setPassword((String) session.getAttribute("memberPass"));
 		mem.setId((String) session.getAttribute("memberId"));
 		String passCheck = memberService.memberDelete(mem);
+		System.out.println("패스워드 체크"+passCheck);
 		if (passCheck == "Y") {
 			session.invalidate();
 			return passCheck;
