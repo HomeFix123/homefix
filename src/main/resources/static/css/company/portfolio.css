@@ -1,0 +1,48 @@
+#specialBtns label {
+	font-size: 20px;
+}
+
+#specialBtns label>i {
+	font-size: 20px;
+	margin-right: 10px;
+}
+
+.btn-check:checked+.btn-outline-primary {
+	background: var(--primary-color);
+	border-color: var(--primary-color);
+}
+
+.btn-outline-primary:click {
+	background: var(--primary-color);
+	border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+	background: var(--primary-color);
+	border-color: var(--primary-color);
+}
+
+.btn-outline-primary {
+	background: white;
+	color: var(--primary-color);
+	border-color: var(--primary-color);
+}
+
+.list-group-item.active {
+	background: var(--primary-color);
+	border-color: var(--primary-color);
+}
+
+#citiesList {
+	overflow-y:scroll;
+	height: 400px;
+}
+
+.country {
+	overflow-y:scroll;
+	height: 400px;
+}
+
+#cinfo_cont {
+	min-height: 200px;
+}

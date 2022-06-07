@@ -38,8 +38,15 @@ public class Tip {
 	private Member member;	// 이용자 아이디(멤버테이블)
 	
 	// 댓글 연관 관계
+	@JoinColumn(name="tid")
 	@OneToMany
-	private List<Comment> CommentList = new ArrayList<>();
+	private List<Comment> CommentList;
+	
+	// 팁 좋아요 용
+	@Transient
+	private long prefer;
+	@Transient
+	private Boolean preferck;
 	
 	
 }

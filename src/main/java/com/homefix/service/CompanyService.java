@@ -5,7 +5,6 @@ import java.util.List;
 import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
-import com.homefix.domain.CompanySpecial;
 import com.homefix.domain.Review;
 
 public interface CompanyService {
@@ -44,7 +43,7 @@ public interface CompanyService {
 	public List<Brag> getInteriorBrag(Company com);
 	
 	//시공전문가(업체후기)
-	public Review getCompanyReview(Company com);
+	public List<Review> getCompanyReview(Company com);
 	// public Map<String, String> validateHandling(Errors errors);
-
+ 
 }

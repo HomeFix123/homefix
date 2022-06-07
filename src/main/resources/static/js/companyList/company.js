@@ -8,13 +8,20 @@
 */
 
 $(function(){
+	const myModal = new bootstrap.Modal(document.getElementById('areaModal'), {
+		keyboard: false
+	});
+	
+	$('#areaBtn').click(()=> {
+		myModal.show();
+	})
+	
 	// 모달에서 지역 선택시 input[hidden]으로 form 안에 데이터 추가
 	// input[hidden] 요소 담는 곳
 	const hiddenInputs = $('#hiddenInputs');
 	
 	
 	// 모달 관련
-	const modal = $('#exampleModal');
 	const ulBtns = $('#ulBtns');
 	const modalSubmitBtn = $('#modalSubmit');
 	const modalCancelBtn = $('#modalCancelBtn');
@@ -48,7 +55,7 @@ $(function(){
 			hiddenInputs.append(input)
 		}
 		
-		modal.modal("hide"); // 모달 닫기 (자동으로 안닫혀서 추가)
+		myModal.hide(); // 모달 닫기 (자동으로 안닫혀서 추가)
 	});
 	
 	// 검색 폼
