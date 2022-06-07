@@ -42,5 +42,11 @@ public class Tip {
 	@OneToMany
 	private List<Comment> CommentList;
 	
+	// 팁 좋아요 용
+	@Transient
+	private long prefer;
+	@Transient
+	private Boolean preferck;
+	
 	
 }

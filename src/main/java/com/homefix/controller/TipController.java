@@ -7,9 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.homefix.domain.Tip;
 import com.homefix.service.TipService;
@@ -53,6 +55,23 @@ public class TipController {
 	}
 	
 	
+	// 좋아요 입력
+	@PostMapping("/prefer/{tid}")
+	@ResponseBody
+	public void savePrefer(Tip tip) { 
+		String id = "test"; 
+		tipService.savePrefer(tip, id);
+		System.out.println("좋아요 성공 컨트롤러 옴");  
+	}
+	
+	// 좋아요 취소
+	@DeleteMapping("/prefer/{tid}")
+	@ResponseBody
+	public void deletePrefer(Tip tip) { 
+		String id = "test"; 
+		tipService.deletePrefer(tip, id); 
+		System.out.println("좋아요 취소 컨트롤러 옴");
+	}
 	
 	
 }
