@@ -73,8 +73,10 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Override
 	public Review getReview(Review rev ) {
-		
-		return reviewRepo.findById(rev.getRid()).get();
+		Review result = reviewRepo.findById(rev.getRid()).get();
+		result.setRcnt(result.getRcnt() + 1);
+		reviewRepo.save(result);
+		return result;
 		
 	}
 	
