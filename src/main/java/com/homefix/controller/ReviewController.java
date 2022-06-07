@@ -42,14 +42,21 @@ public class ReviewController {
 	}
 	
 	@GetMapping
-	public String getReviewList(Model m){
+	public String getReviewList(Model m, String hometype, String job, String family){
 		
-		Review rev = new Review();
-		List<Review> list = reviewService.getReviewList(rev);
-		m.addAttribute("reviewList", list);
+		
+		m.addAttribute("reviewList", reviewService.getReviewList(1, hometype, job, family));
 		return "review/ReviewList";
 	}
 	
+	@GetMapping("/page")
+	@ResponseBody
+	public String getReviewListPerPage(Model m, Integer page, String hometype, String job, String family){
+		
+		
+		m.addAttribute("reviewList", reviewService.getReviewList(page, hometype, job, family));
+		return "review/ReviewList";
+	}
 	
 	
 	@GetMapping("/{rid}")

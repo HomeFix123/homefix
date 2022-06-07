@@ -56,6 +56,9 @@ public interface AdminService {
 	// 업체 결제정보 불러오기
 	public List<Payment> getPaymentList(String cid);
 	
+	// 고객 오늘의 신고 개수
+	public long countTodayCompanyReport();
+	
 	// 업체 신고 목록 불러오기
 	public List<CompanyReport> getCompanyReportList();
 	
@@ -86,4 +89,13 @@ public interface AdminService {
 	
 	// 작성 견적글 불러오기
 	public List<Estimation> getEstimationList(String id);
+	
+	// 주간 신규 유저수
+	public long countNewUser();
+	
+	// 주간 계약 건수
+	public long countContract();
+	
+	// 월정액 유지수
+	public long countPayUser();
 }

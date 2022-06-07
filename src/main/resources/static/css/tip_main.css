@@ -484,15 +484,14 @@ button:active {
 
 /*빈 하트*/
 i.my-2{
-	margin-left:521px;
+	margin-left:2%;
 	font-size: 25px;
 	color: red;
 }
 
 /*꽉찬 하트*/
 i.fa-heart{
-	margin-left:521px;
-	margin-top:5px;
+	margin-left:2%;
 	font-size: 25px;
 	color: red;
 }
