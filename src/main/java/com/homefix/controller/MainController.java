@@ -1,5 +1,7 @@
 package com.homefix.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +17,10 @@ public class MainController {
 	MainService mainService;
 	
 	@GetMapping(name = "/")
-	public String mainPage(Model model) {
+	public String mainPage(HttpSession session,Model model) {
 		model.addAttribute("bragList", mainService.getBragList());
 		model.addAttribute("reviewList", mainService.getReviewList());
+		model.addAttribute("session", session);
 		return "index";
 	}
 	

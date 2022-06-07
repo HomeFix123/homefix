@@ -3,6 +3,8 @@ package com.homefix.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.homefix.domain.Member;
 
 public interface MemberService {
@@ -20,10 +22,11 @@ public interface MemberService {
 	public void memberInsert(Member mem);
 
 	//로그인
-	public String login(Member mem);
+//	public String login(Member mem);
+	public Member login(Member mem);
 
 	//회원정보 수정
-	public void update(Member mem);
+	public void updateMember(Member mem, HttpSession session);
 
 	
 	//임시 비밀번호 발급용
@@ -31,6 +34,9 @@ public interface MemberService {
 
 	//마이페이지
 	public List<Member> myPageList(Member mem);
+
+	//멤버 탈퇴
+	public String memberDelete(Member mem);
 
 
 }
