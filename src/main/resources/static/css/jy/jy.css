@@ -247,5 +247,16 @@
 
 /*팁 좋아요*/
 
+.preferSave {
+	background-color: transparent;
+}
 
+.preferDelete {
+	background-color: transparent;
+}
 
+#love {
+	color: red;
+	padding-left:8px;
+	font-size: 30px;
+}
