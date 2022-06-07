@@ -9,7 +9,13 @@
 <div>
 <label>아이디</label>
 <input id="id" placeholder="세션에 저장할 값">
-<button id="login" type="button">로그인하기</button>
+<button id="login" type="button">회사로그인하기</button>
+</div>
+<div class="sessioncheck"></div>
+
+<label>아이디</label>
+<input id="memberId" placeholder="세션에 저장할 값">
+<button id="memberLogin" type="button">고객로그인하기</button>
 </div>
 <div class="sessioncheck"></div>
 
@@ -32,6 +38,10 @@
 <input type="hidden" name="id" value="test">
 <label>(고객로그인일때)</label><button type="submit">나의 견적 보기</button>
 </form>
+</div>
+
+<div>
+<button id="logout" type="button">세션 전체 삭제</button>
 </div>
 
 
@@ -57,6 +67,38 @@
 			})
 		});
 		
+		$('#memberLogin').on("click",function(){
+			$.ajax({
+				type:'get',
+				url:'/estimation/memberSession',
+				data:{id:$('#memberId').val()},
+				contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8',
+				success:function(result){
+					$('.sessioncheck').html(result +" 님이 로그인하셨습니다.")
+				},
+				error : function(err) {
+					//실패했을 때
+	    		alert('실패:');
+	    		console.log(err);
+	    		}
+			})
+		});
+		
+		$('#logout').on("click",function(){
+			$.ajax({
+				type:'get',
+				url:'/estimation/logout',
+				contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8',
+				success:function(){
+					console.log("세션삭제");
+				},
+				error : function(err) {
+					//실패했을 때
+	    		alert('실패:');
+	    		console.log(err);
+	    		}
+			})
+		});
 		
 	});//$(function(){})
 	

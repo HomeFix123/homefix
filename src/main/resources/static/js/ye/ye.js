@@ -25,8 +25,8 @@ $(function() {
 			},
 			error : function(err) {
 				//실패했을 때
-    		alert('실패:');
-    		console.log(err);
+    			alert('실패:');
+    			console.log(err);
     		}
 		})//=====
 		
@@ -129,7 +129,7 @@ $(function() {
 					const roomCode=result.room_id;
 					const id = result.company.id;
 					const nickname = result.company.name;
-					window.open("http://localhost:3000/chat?room="+roomCode+"&id="+id+"&nickname="+nickname, 'chatting', 'width=500px, height=800px');
+					window.open("http://3.39.226.147:3000/chat?room="+roomCode+"&id="+id+"&nickname="+nickname, 'chatting', 'width=500px, height=800px');
 					
 				},
 				error : function(err) {
