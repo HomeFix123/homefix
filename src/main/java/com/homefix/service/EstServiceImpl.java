@@ -123,6 +123,35 @@ public class EstServiceImpl implements EstService {
 		return newChat;
 		
 	}
+
+	//(회사) 확정요청하기/확정요청완료/확정요청불가 유무
+	@Override
+	public String getEstiReq(Integer eid, String cid) {
+		//cid = "1";
+		//cid = "1426";
+		//cid = "905";
+		//eid=38;
+		Estimation estimation = estRepo.findById(eid).get();
+		Company company  = companyRepo.findById(cid).get();
+		Esti_request estiReq = esti_reqRepo.findByEstimationAndCompany(estimation, company);
+		List<Esti_request> estiReqEid = esti_reqRepo.findByEstimation(estimation);
+		Contract contract = contractRepo.findByEstimation(estimation);
+		//계약테이블에 견적id eid있으면 확정요청불가 버튼
+		if(contract != null) {
+			System.out.println("계약테이블에서 이미 진행중임");
+			return "확정요청불가";
+			
+		//계약테이블에 eid 없고 견적요청 테이블에 cid와 eid 둘다 있을경우 확정요청완료
+		}else if(estiReq != null) {
+			System.out.println("!!!!견적 요청 테이블에 데이터 있음");
+			return "확정요청완료";
+			
+		//계약테이블에 eid 없고 견적요청 테이블에 eid만 있을경우 등등등 확정요청하기
+		}else {
+			System.out.println("확정요청하기 가능");
+			return "확정요청하기";
+		}
+	}
 	
 	
 

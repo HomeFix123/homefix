@@ -33,4 +33,7 @@ public interface EstService {
 	
 	//(회사) 채팅하기 선택 시 chatting테이블에 값 저장
 	public Chatting saveChatRoom(String id,String cid,String nickname);
+	
+	//(회사) 확정요청하기/확정요청완료/확정요청불가 유무
+	public String getEstiReq(Integer eid,String cid);
 }
