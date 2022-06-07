@@ -15,16 +15,15 @@ $(function(){
 	
 	// 모달 관련
 	const ulBtns = $('#ulBtns');
-	const modalSubmitBtn = $('#modalSubmit');
-	const modalCancelBtn = $('#modalCancelBtn');
-	
 	const ulBtnsHometype = $('#ulBtnshometype');
-	
-	const ulBtnsFamily = $('#ulBtnsCnt');
+	const ulBtnsFamily = $('#ulBtnsfamily');
 
-
-	
-	
+	const locSubmitBtn = $('#modalSubmit');
+	const locCancelBtn = $('#modalCancelBtn');
+	const hometypeSubmitBtn = $('#hometypeSubmit');
+	const hometypeCancelBtn = $('#hometypeCancelBtn');
+	const familySubmitBtn = $('#familySubmit');
+	const familyCancelBtn = $('#familyCancelBtn');
 	
 	
 	// 지역 버튼 선택시 이펙트
@@ -37,7 +36,7 @@ $(function(){
 		}
 	})
 	
-		// 지역 버튼 선택시 이펙트
+		// 주거형태 버튼 선택시 이펙트
 	ulBtnsHometype.find('button').click(function(){
 		if($(this).hasClass('btn-selected')){
 			$(this).removeClass('btn-selected')
@@ -47,7 +46,7 @@ $(function(){
 		}
 	})
 	
-		// 지역 버튼 선택시 이펙트
+		// 가족형태 버튼 선택시 이펙트
 	ulBtnsFamily.find('button').click(function(){
 		if($(this).hasClass('btn-selected')){
 			$(this).removeClass('btn-selected')
@@ -58,28 +57,50 @@ $(function(){
 	})
 	
 	// 취소 버튼 선택시 이펙트 삭제
-	modalCancelBtn.click(() => {
+	locCancelBtn.click(() => {
 		ulBtns.find('button').removeClass('btn-selected')
 		
 	})
+	hometypeCancelBtn.click(() => {
+		ulBtnsHometype.find('button').removeClass('btn-selected')
+		
+	})
+	familyCancelBtn.click(() => {
+		ulBtnsFamily.find('button').removeClass('btn-selected')
+		
+	})
+	
+	
+	locSubmitBtn.click(() => {modalSubmitBtn()});
+	hometypeSubmitBtn.click(() => {modalSubmitBtn()});
+	familySubmitBtn.click(() => {modalSubmitBtn()});
+	
 	
 	// 선택 버튼 선택시 input[hidden] 추가 
-	modalSubmitBtn.click(function(){
+	function modalSubmitBtn(){
 		const locName = ulBtns.find('.btn-selected').attr('value')
+		const hometypeName = ulBtnsHometype.find('.btn-selected').attr('value')
+		const familyName = ulBtnsFamily.find('.btn-selected').attr('value')
 		
-		
-		
-		// 남아있던 지역 검색값 삭제 후 고른 걸로 추가
+		// 남아있던 검색값 삭제 후 고른 걸로 추가
 		hiddenInputs.find('input[name=loc]').remove();
+		hiddenInputs.find('input[name=hometype]').remove();
+		hiddenInputs.find('input[name=family]').remove();
 		if(locName != null){
 			const input = "<input type='hidden' name='loc' value='" + locName + "'>"
 			hiddenInputs.append(input)
-		} 
+		} else if(hometypeName != null){
+			const input = "<input type='hidden' name='hometype' value='" + hometypeName + "'>"
+			hiddenInputs.append(input)
+		} else if(familyName != null){
+			const input = "<input type='hidden' name='family' value='" + familyName + "'>"
+			hiddenInputs.append(input)
+		}
 		
 		
 		searchForm.submit();
 		
-	});
+	};
 	
 	// 검색 폼
 	const searchForm = $('#searchForm');
@@ -152,15 +173,20 @@ $(function(){
 		
 		data.page = page // 데이터에 페이지 데이터 추가
 		/*
-			data = {
-				keyword: "검색어", 
+			data = { 
 				sort: "정렬", 
-				area: "지역",
+				loc: "지역",
+				hometype:"주거형태",
+				family:"가족형태",
 				page: 2
 			}
 		*/
 		
 		const resultList = getMoreBrag(data) // ajax로 요청후 결과를 변수에 저장
+		
+		if(resultList < 12){
+			$('#moreDiv').remove();
+		}
 		
 		const imgURL = "http://140.238.11.118:5000/upload/" // 이미지 주소
 		
@@ -170,46 +196,38 @@ $(function(){
 			const div = divSample.clone();
 			
 			// 데이터 넣을 위치
-			const mainimg = div.find('#thumbnailImage'); // 타이틀 이미지
-			//const logo = div.find('.user-img'); // 로고 이미지
-			const companyName = div.find('.companyName'); // 업체명
-			const companySpecialList = div.find('.companySpecialList'); // 전문분야 (주거공간, 상업공간)
+			const title = div.find('.title');
+			const mainImg = div.find('#thumbnailImage'); // 대표 이미지
+			const profileimg = div.find('.user-img'); // 프로필 이미지
+			const nickname = div.find('.nickname'); // 유저닉네임
 			const prefer = div.find('.preferCnt'); // 좋아요수
-			const contract = div.find('.contractCnt'); // 계약건수
-			const bookmarkIcon = div.find('.bookmarkIcon'); // 북마크아이콘 처리
-			
+			const cnt = div.find('.cnt'); // 조회수
+			const preferIcon = div.find('#preferIcon'); // 북마크아이콘 처리
+			const linkImg = div.find('#linkImg');
+			const linkTitle = div.find('#linkTitle');
 			
 			// 이미지 처리
-			titleImg.attr('src', imgURL + result.img);
-			logo.attr('src', imgURL + result.logo);
+			mainImg.attr('src', imgURL + result.mainimg);
+			profileimg.attr('src', imgURL + result.profileimg);
 			
 			// 단순한 데이터 처리 (업체명, 좋아요수, 계약건수)
-			companyName.text(result.name);
+			title.text(result.title);
+			nickname.text(result.member.nickname);
 			prefer.text(result.prefer);
-			contract.text(result.contract);
+			cnt.text(result.cnt);
+			linkImg.attr('href', '/brag/'+ result.id);
+			linkTitle.attr('href', '/brag/'+ result.id);
 			
-			// 전문분야 
-			// 데이터가 0개 ~ 2개
-			companySpecialList.empty(); // sample에 있는 전문분야 비우기
+			// 좋아요 아이콘
+			// 좋아요 여부에 따라 다른 아이콘 추가
+			preferIcon.empty(); // 기존 아이콘 제거
 			
-			for(let spe of result.special){
-				// 데이터 수만큼 a태그 추가
-				let tag = "<a class='companySpecial btn btn-secondary m-1'>"
-				tag += spe
-				tag += "</a>"
-				companySpecialList.append(tag);	
-			}
-			
-			// 북마크 아이콘
-			// 좋아요 여부(북마크 여부)에 따라 다른 아이콘 추가
-			bookmarkIcon.empty(); // 기존 아이콘 제거
-			
-			if(result.isPrefer){ // result.isPrefer(true: 북마크 해둠 / false: 북마크 안함)
-				let iconTag = "<i class='fas fa-bookmark'></i>"
-				bookmarkIcon.append(iconTag)	
+			if(result.preferck){ // result.preferck(true: 좋아요 해둠 / false: 좋아요 안함)
+				let iconTag = "<i class='fas fa-heart'></i>"
+				preferIcon.append(iconTag)	
 			}else {
-				let iconTag = "<i class='far fa-bookmark'></i>"
-				bookmarkIcon.append(iconTag)
+				let iconTag = "<i class='far fa-heart'></i>"
+				preferIcon.append(iconTag)
 			}
 			
 			// 만들어진 div를 검색결과리스트에 추가
@@ -224,7 +242,7 @@ $(function(){
 		
 		$.ajax({
 			type: "GET",
-			url: "/expert/page",
+			url: "/brag/page",
 			data: data,
 			async: false // 성공할때까지 대기 (없으면 return 값이 undefined)
 		}).done((data) => {

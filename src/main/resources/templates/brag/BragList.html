@@ -19,6 +19,8 @@
 <link rel="stylesheet" th:href="@{/css/main.css}">
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
 <link rel="stylesheet" th:href="@{/css/bs/Brag.css}">
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+
 <!-- font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
 
@@ -87,7 +89,7 @@
 									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#locModal">지역</a>
 								</div>
 								<div class="modal fade " id="locModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
+									<div class="modal-dialog modal-dialog-centered">
 										<div class="modal-content">
 											<div class="modal-header">
 												<h5 class="modal-title" id="exampleModalLabel">지역 선택</h5>
@@ -130,7 +132,7 @@
 									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#hometypeModal">주거형태</a>
 								</div>
 								<div class="modal fade " id="hometypeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
+									<div class="modal-dialog modal-dialog-centered">
 										<div class="modal-content">
 											<div class="modal-header">
 												<h5 class="modal-title" id="exampleModalLabel">주거형태 선택</h5>
@@ -148,8 +150,8 @@
 												<div></div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalCancelBtn">취소</button>
-												<button type="button" class="btn btn-primary" id="modalSubmit">검색</button>
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="hometypeCancelBtn">취소</button>
+												<button type="button" class="btn btn-primary" id="hometypeSubmit">검색</button>
 											</div>
 										</div>
 									</div>
@@ -160,7 +162,7 @@
 									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#familyModal">가족형태</a>
 								</div>
 								<div class="modal fade " id="familyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
+									<div class="modal-dialog modal-dialog-centered">
 										<div class="modal-content">
 											<div class="modal-header">
 												<h5 class="modal-title" id="exampleModalLabel">가족형태 선택</h5>
@@ -178,8 +180,8 @@
 												<div></div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalCancelBtn">취소</button>
-												<button type="button" class="btn btn-primary" id="modalSubmit">검색</button>
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="familyCancelBtn">취소</button>
+												<button type="button" class="btn btn-primary" id="familySubmit">검색</button>
 											</div>
 										</div>
 									</div>
@@ -200,34 +202,40 @@
 				</div>
 
 				<div class="row" id="bragListDiv">
+					<div th:if="${#lists.size(bragList) == 0}" class="text-center">
+                    	<h4>검색 결과가 없습니다</h4>
+                    </div>
 					<th:block th:each="list : ${bragList}">
 						<div class="bragDiv col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12">
 							<div class="sa-post">
 								<div class="entry-header">
 									<div class="entry-thumbnail">
-										<a th:href="@{brag/{bid}(bid=${list.id})}" > 
-											<img th:if="${list.mainimg != null}" th:src="|http://140.238.11.118:5000/upload/${list.mainimg}|" alt="Image" class="img-fluid" id="thumbnailImage"> <img th:if="${list.mainimg == null}" th:src="|http://140.238.11.118:5000/upload/profile_basic.png|" alt="Image" class="img-fluid" id="thumbnailImage">
+										<a id="linkImg" th:href="@{brag/{bid}(bid=${list.id})}" > 
+											<img th:if="${list.mainimg != null}" th:src="|http://140.238.11.118:5000/upload/${list.mainimg}|" alt="Image" class="img-fluid" id="thumbnailImage"> 
+											<img th:if="${list.mainimg == null}" th:src="|http://140.238.11.118:5000/upload/profile_basic.png|" alt="Image" class="img-fluid" id="thumbnailImage">
 										</a>
 									</div>
-									<div class="entry-meta">
-										<a> <i class="my-2 far fa-heart"></i>
-										</a>
+									<div class="entry-meta" id="preferIcon">
+										<a th:if="${list.preferck == false}" ><i class="my-2 far fa-heart"></i></a>
+										<a th:if="${list.preferck == true}" ><i class="my-2 fas fa-heart"></i></a>
 									</div>
 
 								</div>
 								<div class="course-info">
 									<div class="info">
 										<h2 class="title text-center">
-											<a th:href="@{brag/{bid}(bid=${list.id})}"  th:text="${list.title}"></a>
+											<a id="linkTitle" th:href="@{brag/{bid}(bid=${list.id})}"  th:text="${list.title}"></a>
 										</h2>
-										<p class="text-right" th:text="${list.member.nickname}"></p>
+										<img class="user-img" th:if="${list.profileimg == null}" src="http://140.238.11.118:5000/upload/profile_basic.png">
+										<img class="user-img" th:if="${list.profileimg != null}" th:src="|http://140.238.11.118:5000/upload/${list.profileimg}|">
+										<p class="nickname text-right" th:text="${list.member.nickname}"></p>
 									</div>
 									<div class="sa-meta">
 										<ul class="global-list">
-											<li><a href="#"> <i class="fas fa-heart"></i><span th:text="${list.prefer}"></span>
-											</a></li>
-											<li><a href="#"> <i class="far fa-eye"></i><span th:text="${list.cnt}"></span>
-											</a></li>
+											<li> <i class="fas fa-heart"></i><span class="preferCnt" th:text="${list.prefer}"></span>
+											</li>
+											<li> <i class="far fa-eye"></i><span class="cnt" th:text="${list.cnt}"></span>
+											</li>
 										</ul>
 									</div>
 								</div>
@@ -244,7 +252,10 @@
 		<!-- /.section-content -->
 	</div>
 	<!-- /.sa-section -->
-
+	<!-- 더보기 버튼 -->
+    <div th:if="${#lists.size(bragList) == 12}" id="moreDiv" class="text-center">
+		<button class="btn btn-primary w-100" id="moreBtn">더보기</button>
+	</div>
 
 
 	<!-- JS -->
@@ -261,7 +272,8 @@
 	<script th:src="@{/js/jquery-ui-min.js}"></script>
 	<script th:src="@{/js/validate.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
-	<script th:src="@{/js/bs/brag.js}"></script>
+	<script th:src="@{/js/bs/bragList.js}"></script>
+	<script th:src="@{/js/sections/header.js}"></script>
 
 	<script type="text/javascript">
 

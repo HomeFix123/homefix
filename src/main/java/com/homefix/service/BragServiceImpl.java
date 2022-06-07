@@ -26,7 +26,6 @@ import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
 import com.homefix.domain.Contract;
 import com.homefix.domain.ElasticBrag;
-import com.homefix.domain.ElasticCompany;
 import com.homefix.domain.Estimation;
 import com.homefix.domain.Member;
 import com.homefix.domain.MemberReport;
@@ -83,7 +82,7 @@ public class BragServiceImpl implements BragService {
 	}
 
 	@Override
-	public List<ElasticBrag> getBragByKeyword(String keyword, String loc, 
+	public List<ElasticBrag> getBragByKeyword(String id, String loc, 
 			String family, String hometype, String sort, Integer page) {
 
 
@@ -151,7 +150,17 @@ public class BragServiceImpl implements BragService {
 
 				// json 형식을 클래스로 받을 수 있게 변환
 				ElasticBrag brag = MAPPER.readValue(h.getSourceAsString(), ElasticBrag.class);
-
+				Set<String> prefer = brag.getPreferids();
+				if(prefer != null && !prefer.isEmpty()) {
+					if(prefer.contains(id)) {
+						brag.setPreferck(true);
+					} else {
+						brag.setPreferck(false);
+					}
+				} else {
+					brag.setPreferck(false);
+				}
+				
 				resultList.add(brag);
 
 			}
