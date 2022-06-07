@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
-import com.homefix.domain.Contract;
-import com.homefix.domain.Estimation;
+import com.homefix.domain.ElasticBrag;
 import com.homefix.domain.Member;
 import com.homefix.service.BragService;
 
@@ -50,15 +49,21 @@ public class BragController {
 	}
 	
 	@GetMapping
-	public String getBragList(Model m, HttpSession session, String keyword, String sort, String loc, 
-			String family, String job, String hometype){
+	public String getBragList(Model m, HttpSession session, String sort, String loc, 
+			String family, String hometype){
 		
 		String id = (String) session.getAttribute("memberId");
-		m.addAttribute("bragList", bragService.getBragByKeyword(keyword, loc, family, job, hometype, sort, 1));
-		
-		
+		m.addAttribute("bragList", bragService.getBragByKeyword(id, loc, family, hometype, sort, 1));
 		
 		return "brag/BragList";
+	}
+	
+	@GetMapping("/page")
+	@ResponseBody
+	public List<ElasticBrag> getBragList(HttpSession session, String sort, String loc, 
+			String family, String hometype, Integer page){
+		String id = (String) session.getAttribute("memberId");
+		return bragService.getBragByKeyword(id, loc, family, hometype, sort, page);
 	}
 	
 	
