@@ -78,8 +78,8 @@
 												</div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary modalSubmit">Save changes</button>
+												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">취소</button>
+												<button type="button" class="btn btn-primary modalSubmit">검색</button>
 											</div>
 										</div>
 									</div>
@@ -104,8 +104,8 @@
 												</div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary modalSubmit">Save changes</button>
+												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">취소</button>
+												<button type="button" class="btn btn-primary modalSubmit">검색</button>
 											</div>
 										</div>
 									</div>
@@ -131,8 +131,8 @@
 												</div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary modalSubmit">Save changes</button>
+												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">취소</button>
+												<button type="button" class="btn btn-primary modalSubmit">검색</button>
 											</div>
 										</div>
 									</div>
@@ -140,23 +140,40 @@
 							</li>
 						</ul>
 					</div>
-					<div class="view-all align-self-center">
-						<a href="blog.html" class="btn btn-primary">자랑하기</a>
+					<div class="view-all align-self-center" th:if="${session.userId != null}">
+						<a th:href="@{/review/write}" class="btn btn-primary">후기 작성</a>
+					</div>
+					
+				</div>
+				<div>
+					<div th:if="${param.hometype != null}" class='alert alert-primary alert-dismissible fade show m-2' role='alert' >
+						<span th:text="${param.hometype}">싱글</span>
+						<button id="hometypeRemoveBtn" type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+					</div>
+					<div th:if="${param.job != null}" class='alert alert-primary alert-dismissible fade show m-2' role='alert'>
+						<span th:text="${param.job}">싱글</span>
+						<button id="jobRemoveBtn" type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+					</div>
+					<div th:if="${param.family != null}" class='alert alert-primary alert-dismissible fade show m-2' role='alert'>
+						<span th:text="${param.family}"></span>
+						<button id="familyRemoveBtn" type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
 					</div>
 				</div>
 				<div>
                     	<form action="review" id="searchForm">
                     	<div id="hiddenInputs">
-                    		<input th:if="${param.area != null}" type="hidden" name="area" th:value="${param.area}">
+                    		<input th:if="${param.hometype != null}" type="hidden" name="hometype" th:value="${param.hometype}">
+                    		<input th:if="${param.job != null}" type="hidden" name="job" th:value="${param.job}">
+                    		<input th:if="${param.family != null}" type="hidden" name="family" th:value="${param.family}">
                     	</div>
 	                	</form>
                     </div>
-				<div class="row">
+				<div class="row" id="reviewListDiv">
 					<div th:if="${#lists.size(reviewList) == 0}" class="text-center pt-3">
                     		<h4>검색 결과가 없습니다</h4>
                     	</div>
 					<th:block th:each="r : ${reviewList}">
-	                        <div class="companyDiv col-6 col-md-4 col-lg-4">
+	                        <div class="reviewDiv col-6 col-md-4 col-lg-4">
 	                            <div class="sa-post">
 	                                <div class="entry-header">
 	                                	<!-- 썸네일 이미지 -->
@@ -175,9 +192,12 @@
 	                                        	<a th:href="|/review/${r.id}|" class="relink companyName" th:text="${r.name}">업체 이름</a>
 	                                        </h2>
 	                                    </div>
+	                                    <div>
+	                                    	<span th:text="${r.hometype}">hometype</span> / <span th:text="${r.size}"></span>평
+	                                    </div>
 	                                    <div class="sa-meta">
 	                                        <ul class="global-list">
-	                                            <li><span><i class="fas fa-handshake"></i></span><span class="cnt" th:text="${r.cnt}"></span></li>
+	                                            <li><span><i class="far fa-eye"></i></span><span class="cnt" th:text="${r.cnt}"></span></li>
 	                                        </ul>
 	                                    </div>
 	                                </div><!-- /.course-info -->
