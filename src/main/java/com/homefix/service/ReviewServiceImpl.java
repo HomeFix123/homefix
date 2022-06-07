@@ -80,8 +80,10 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Override
 	public void deleteReview(Review rev, String cid) {
+		System.out.println(rev.getRid());
 		Review result = reviewRepo.findByRid(rev.getRid());
 		result.setCompany(companyRepo.findById(cid).get());
+		System.out.println(result);
 		reviewRepo.delete(reviewRepo.findByRidAndCompany(result.getRid(), result.getCompany()));
 	}
 	

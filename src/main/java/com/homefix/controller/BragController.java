@@ -32,17 +32,17 @@ public class BragController {
 	private BragService bragService;
 	
 	@GetMapping("/write")
-	public String insertBrag(Model m) {
-		String id = "test";
+	public String insertBrag(Model m, HttpSession session) {
+		String id = (String) session.getAttribute("memberId");
 		Set<Company> list = bragService.getContractList(id);
 		m.addAttribute("contract", list);
 		return "brag/BragWrite";
 	}
 	
 	@PostMapping("/write")
-	public String saveBrag(Brag brag, String cid) {
+	public String saveBrag(Brag brag, String cid, HttpSession session) {
 		System.out.println(cid);
-		String id = "test";
+		String id = (String) session.getAttribute("memberId");
 		bragService.saveBrag(brag, cid, id);
 		logger.info("입력성공");
 		return "redirect:/brag";
@@ -68,16 +68,16 @@ public class BragController {
 	
 	
 	@GetMapping("/{bid}")
-	public String getBrag(Model m, Brag brag) {
-		String id = "test";
+	public String getBrag(Model m, Brag brag, HttpSession session) {
+		String id = (String) session.getAttribute("memberId");
 		Brag result = bragService.getBrag(brag, id);
 		m.addAttribute("brag", result);
 		return "brag/BragDetail";
 	}
 	
 	@DeleteMapping("/{bid}")
-	public String deleteBrag(Brag brag) {
-		String id = "test";
+	public String deleteBrag(Brag brag, HttpSession session) {
+		String id = (String) session.getAttribute("memberId");
 		bragService.deleteBrag(brag, id);
 		return "redirect:/brag";
 	}
@@ -86,24 +86,24 @@ public class BragController {
 	
 	@PostMapping("/prefer/{bid}")
 	@ResponseBody
-	public void savePrefer(Brag brag) { 
-		String id = "test"; 
+	public void savePrefer(Brag brag, HttpSession session) { 
+		String id = (String) session.getAttribute("memberId");
 		bragService.savePrefer(brag, id);
 		  
 	}
 	  
 	@DeleteMapping("/prefer/{bid}")
 	@ResponseBody
-	public void deletePrefer(Brag brag) { 
-		String id = "test"; 
+	public void deletePrefer(Brag brag, HttpSession session) { 
+		String id = (String) session.getAttribute("memberId");
 		bragService.deletePrefer(brag, id); 
 	  
 	}
 	
 	@PostMapping("/report/{id}")
 	@ResponseBody
-	public String saveReport(Member id, String reason) {
-		String reporter = "test123";
+	public String saveReport(Member id, String reason, HttpSession session) {
+		String reporter = (String) session.getAttribute("memberId");
 		System.out.println("id: "+ id + " 사유: "+ reason);
 		return bragService.saveReport(id, reporter, reason);
 	}

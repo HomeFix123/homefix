@@ -178,9 +178,13 @@ public class BragServiceImpl implements BragService {
 
 		Brag result = bragRepo.findByBid(brag.getBid());
 		result.setPrefer(preferRepo.countByBrag(brag));
-		List<Prefer> list = preferRepo.findByBragAndMember(brag, memberRepo.findById(id).get());
-		if (list.size() > 0) {
-			result.setPreferck(true);
+		if(id != null) {
+			List<Prefer> list = preferRepo.findByBragAndMember(brag, memberRepo.findById(id).get());
+			if (list.size() > 0) {
+				result.setPreferck(true);
+			} else {
+				result.setPreferck(false);
+			}
 		} else {
 			result.setPreferck(false);
 		}
