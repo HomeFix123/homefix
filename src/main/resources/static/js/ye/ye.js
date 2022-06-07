@@ -118,7 +118,7 @@ $(function() {
     	$.ajax({
 				type:'get',
 				url:'/estimation/saveChatRoom',
-				data:{id:$('.mid').val(),cid:$('.cid').val(),nickname:$('.cname').val()},
+				data:{id:$('.mid').val(),cid:$('.cid').val(),nickname:$('.nickname').val()},
 				contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8',
 				success:function(result){
 					console.log('성공');

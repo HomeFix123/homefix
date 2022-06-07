@@ -52,6 +52,7 @@ public class EstServiceImpl implements EstService {
 	@Override
 	public List<Estimation> getMEstimation(String id) {
 		Member member = memberRepo.findById(id).get();
+		System.out.println("resultData는"+ estRepo.findByMember(member));
 		return estRepo.findByMember(member);
 	}
 
