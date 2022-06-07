@@ -26,7 +26,7 @@ public interface MemberService {
 	public Member login(Member mem);
 
 	//회원정보 수정
-	public void updateMember(Member mem, HttpSession session);
+	public void updateMember(Member mem);
 
 	
 	//임시 비밀번호 발급용

@@ -113,8 +113,8 @@ public class MemberServiceImpl implements MemberService {
 
 	//회원정보 수정
 	@Override
-	public void updateMember(Member mem, HttpSession session) {
-		Member member = memberRepo.findById((String) session.getAttribute(mem.getId())).get();
+	public void updateMember(Member mem) {
+		Member member = memberRepo.findById(mem.getId()).get();
 		member.setId(mem.getId());
 		member.setName(mem.getName());        
 		member.setNickname(mem.getNickname());
@@ -125,6 +125,7 @@ public class MemberServiceImpl implements MemberService {
 		member.setAddrd(mem.getAddrd());      
 		member.setFav(mem.getFav());          
 		memberRepo.save(member);
+		System.out.println("수정 :::::: " + mem);
 	}
 		
 	
