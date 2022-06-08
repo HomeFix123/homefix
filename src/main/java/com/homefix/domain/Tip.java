@@ -3,6 +3,7 @@ package com.homefix.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,8 +39,19 @@ public class Tip {
 	private Member member;	// 이용자 아이디(멤버테이블)
 	
 	// 댓글 연관 관계
+	@JoinColumn(name="tid")
 	@OneToMany
-	private List<Comment> CommentList = new ArrayList<>();
+	private List<Comment> CommentList;
+	
+	// 좋아요 연관 관계
+	@OneToMany(cascade = CascadeType.REMOVE,mappedBy = "tip")
+	private List<Tip_prefer> tipPreferList; //좋아요 수
+	
+	// 팁 좋아요 용
+	@Transient
+	private long prefer; 
+	@Transient
+	private Boolean preferck;
 	
 	
 }

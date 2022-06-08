@@ -133,9 +133,9 @@
                                                 <img src="images/tutor/4.jpg" alt="Profile Picture">
                                             </div>
                                             <div>
-                                            	[<span
-													class="user-name" id="memberId"
-													th:text="${session.memberId}"></span>]
+													[<span
+													class="user-name" id="memLogin"
+													th:text="${session['memLogin'].nickname}"></span>]
 											</div>
                                         </div>
                                     </li>
@@ -150,8 +150,8 @@
                                             <i class="far fa-heart"></i>
                                         </a>
                                     </li>
-                                    <div align="center"> <!--  th:style="${'position': 'relative'}" -->
-                                        <input type="submit" class="btn btn-primary" style="margin-top:50px " value="로그아웃">
+                                    <div align="center"><!-- th:style="${'position:relative; align:center'}" -->
+                                        <a th:href="@{/sign/member/memberlogout}"><input type="submit" class="btn btn-primary" style="margin-top:50px " value="로그아웃"></a>
                                     </div>
                                 </ul>
 
@@ -180,63 +180,22 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>
+                                                                        <tr th:each="list:${reviewList}">
                                                                             <th>
                                                                                 <div class="product">
                                                                                     <a href="details.html">
                                                                                         <span class="product-thumb">
                                                                                             <img src="images/course/1.jpg" alt="Image" class="img-fluid">
                                                                                         </span>
-                                                                                        <span>이곳에 간단제목이 들어갑니다. 옆에는 썸넬</span>
+                                                                                        <span th:text="${list.rtitle}"></span>
                                                                                     </a>
                                                                                 </div><!-- /.product -->
                                                                             </th>
-                                                                            <td><span class="price">답글개수</span></td>
+                                                                            <td><span th:text="${list.rtitle}"></span></td>
                                                                             <td>
-                                                                                <span class="subtotal">좋아요수</span>
-                                                                                <!--
-                                                                                    <div class="icons">
-                                                                                        <a href="#"><i class="fas fa-pen"></i></a>
-                                                                                        <a href="#"><i class="far fa-trash-alt"></i></a>
-                                                                                    </div>
--->
+                                                                                <span th:text="${list.rtitle}"></span>
                                                                             </td>
                                                                         </tr>
-                                                                        <tr>
-                                                                            <th>
-                                                                                <div class="product">
-                                                                                    <a href="details.html">
-                                                                                        <span class="product-thumb">
-                                                                                            <img src="images/course/2.jpg" alt="Image" class="img-fluid">
-                                                                                        </span>
-                                                                                        <span>간단제목들어감옆은썸넬</span>
-                                                                                    </a>
-                                                                                </div><!-- /.product -->
-                                                                            </th>
-                                                                            <td><span class="price">답글개수</span></td>
-                                                                            <td>
-                                                                                <span class="subtotal">좋아요수</span>
-
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>
-                                                                                <div class="product">
-                                                                                    <a href="details.html">
-                                                                                        <span class="product-thumb">
-                                                                                            <img src="images/course/3.jpg" alt="Image" class="img-fluid">
-                                                                                        </span>
-                                                                                        <span>간단제목제목옆은썸넬</span>
-                                                                                    </a>
-                                                                                </div><!-- /.product -->
-                                                                            </th>
-                                                                            <td><span class="price">답글개수</span></td>
-                                                                            <td>
-                                                                                <span class="subtotal">좋아요수</span>
-
-                                                                            </td>
-                                                                        </tr>
-
                                                                     </tbody>
                                                                 </table>
                                                             </form>
@@ -268,52 +227,22 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>
+                                                                        <tr th:each="list:${reviewList}">
                                                                             <th>
                                                                                 <div class="product">
                                                                                     <a href="details.html">
-                                                                                        <span>이곳에 간단제목이 들어갑니다. 옆에는 썸넬</span>
+                                                                                        <span class="product-thumb">
+                                                                                            <img src="images/course/1.jpg" alt="Image" class="img-fluid">
+                                                                                        </span>
+                                                                                        <span th:text="${list.rtitle}"></span>
                                                                                     </a>
                                                                                 </div><!-- /.product -->
                                                                             </th>
-                                                                            <td><span class="price">답글개수</span></td>
+                                                                            <td><span th:text="${list.rtitle}"></span></td>
                                                                             <td>
-                                                                                <span class="subtotal">좋아요수</span>
-                                                                                <!--
-                                                                                    <div class="icons">
-                                                                                        <a href="#"><i class="fas fa-pen"></i></a>
-                                                                                        <a href="#"><i class="far fa-trash-alt"></i></a>
-                                                                                    </div>
--->
+                                                                                <span th:text="${list.rtitle}"></span>
                                                                             </td>
                                                                         </tr>
-                                                                        <tr>
-                                                                            <th>
-                                                                                <div class="product">
-                                                                                    <a href="details.html">
-                                                                                        <span>간단제목들어감옆은썸넬</span>
-                                                                                    </a>
-                                                                                </div><!-- /.product -->
-                                                                            </th>
-                                                                            <td><span class="price">답글개수</span></td>
-                                                                            <td>
-                                                                                <span class="subtotal">좋아요수</span>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>
-                                                                                <div class="product">
-                                                                                    <a href="details.html">
-                                                                                        <span>간단제목제목옆은썸넬</span>
-                                                                                    </a>
-                                                                                </div><!-- /.product -->
-                                                                            </th>
-                                                                            <td><span class="price">답글개수</span></td>
-                                                                            <td>
-                                                                                <span class="subtotal">좋아요수</span>
-                                                                            </td>
-                                                                        </tr>
-
                                                                     </tbody>
                                                                 </table>
                                                             </form>
@@ -337,18 +266,16 @@
                                     <div class="tab-pane fade" id="user-two" role="tabpanel" aria-labelledby="user-two-tab">
                                         <div class="profile-section">
 
-                                        <form th:action="@{/member/update}"  th:each="member : ${member}">
-
-                                        <form th:action="@{/member/update}"  th:object="${member}">
-
+                                        <form method="POST" th:action="@{/sign/member/updateMember}" th:object="${member}"><!-- th:each="member: ${member}" -->
+											<input type="hidden" name="_method" value="put" />
                                             <div class="tab-header">
                                                 <h2>회원정보 수정</h2>
                                                 <p>회원정보를 수정합니다!</p>
                                             </div><!-- header -->
                                             <div class="tab-body">
                                                 <div class="add-photo">
-                                                    <input type="file" name="add-photo" id="add-photo" class="inputfile form-control inputfile-4" data-multiple-caption="{count} files selected" multiple="">
-                                                    <label for="add-photo" style="align:center">
+                                                    <input type="file" name="add-photo" id="add-photo" class="inputfile form-control inputfile-4" data-multiple-caption="{count} files selected" multiple>
+                                                    <label for="add-photo">
                                                         <span class="mdi mdi-name mdi-camera"></span>
                                                         <span>Add Photo</span></label>
                                                 </div>
@@ -356,14 +283,14 @@
                                                 <div class="form-group" align="right"><input type="submit" class="btn btn-primary" value="사진추가">
                                                 </div>
                                                 <div class="form-group">
-
-                                               		 <input type="text" class="form-control" id="idhidden" name="id" hidden placeholder="아이디" th:text="${member.id}" >
-                                                    <label for="nicname">닉네임</label>
-                                                    <input type="text" class="form-control" id="nickname" th:text="${member.nickname}">
+                                                	<label for="id">아이디 </label>
+                                                	<input type="text" class="form-control" id="id" name="id" th:value="${session['memLogin'].id}">
+                                                    <label for="nicname">닉네임 </label>
+                                                    <input type="text" class="form-control" id="nickname" name="nickname" th:value="${session['memLogin'].nickname}">
                                                 </div>
-                                                <div class="form-group">
+                                               <div class="form-group">
                                                     <label for="password">비밀번호</label>
-                                                    <input type="password" class="form-control" id="password">
+                                                    <input type="password" class="form-control" id="password" name="password" th:value="${session['memLogin'].Password}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="two_password">비밀번호 확인</label>
@@ -371,36 +298,40 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="email">이메일</label>
-                                                    <input type="email" class="form-control" id="email" th:value="${member.email}">
+                                                    <input type="text" class="form-control" id="email" name="email" th:value="${session['memLogin'].email}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="name">이름</label>
-                                                    <input type="text" class="form-control" id="name" th:value="${member.name}">
+                                                    <input type="text" class="form-control" id="name" name="name" th:value="${session['memLogin'].name}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="first-name1">전화번호</label>
-                                                    <input type="text" class="form-control" id="tel" th:value="${member.tel}">
+                                                    <input type="text" class="form-control" id="tel" name="tel" th:value="${session['memLogin'].tel}">
                                                 </div>
-                                                <!--카카오 주소 입력-->
-                                                <div class="form-group">
+                                                <!-- 카카오 주소 입력 -->
+                                               <div class="form-group">
                                                     <label for="first-name1">우편번호</label>
                                                     <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-primary" style="float: right; margin: 5px;" id="zipcode">
 
-                                                    <input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control" name="zipcode" th:value="${member.zipcode}">
-                                                    <input type="text" id="sample6_address" placeholder="주소" class="form-control" name="addr" th:value="${member.addr}">
-                                                    <input type="text" id="sample6_detailAddress" placeholder="상세주소" class="form-control" name="addrd" th:value="${member.addrd}">
-                                                    <input type="text" id="sample6_extraAddress" placeholder="참고항목" class="form-control" name="">
+                                                    <input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control" name="zipcode" th:value="${session['memLogin'].zipcode}">
+                                                    <input type="text" id="sample6_address" placeholder="주소" class="form-control" name="addr" th:value="${session['memLogin'].addr}">
+                                                    <input type="text" id="sample6_detailAddress" placeholder="상세주소" class="form-control" name="addrd" th:value="${session['memLogin'].addrd}">
+                                                    <input type="hidden" id="sample6_extraAddress" placeholder="참고항목" class="form-control" name="">
 
                                                 </div>
                                                 <!--end 카카오 주소 입력-->
                                                 <div class="form-group">
                                                     <label for="first-name1">선호:</label>
-                                                    <input type="text" class="form-control" id="first-name1">
+                                                    <input type="text" class="form-control" id="fav" name="fav" th:value="${session['memLogin'].fav}">
                                                 </div>
                                             </div><!-- tab-body -->
-                                            <div class="tab-footer">
-                                                <div class="form-group"><input type="submit" class="btn btn-primary" value="Save"></div>
-                                            </div><!-- tab-footer -->
+                                            <div class="tab-footer" align="center">
+                                                <div class="form-group">
+                                                <input type="submit" class="btn btn-primary" id="save" value="수정">
+                                                <input type="button" class="btn btn-primary" id="Withdrawal" value="회원탈퇴">
+                                                </div>
+                                            </div>
+                                            
                                             <!--좋아요 삭제된 메뉴 내용물 끝-->
                                              </form>
                                         </div>
@@ -693,6 +624,10 @@
 	<script th:src="@{/js/jquery-ui-min.js}"></script>
 	<script th:src="@{/js/validate.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
+	
+	<!-- 혜윤 JS -->
+	<script th:src="@{/js/he/memMypage.js}"></script>
+	
 </body>
 
 </html>

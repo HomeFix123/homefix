@@ -47,9 +47,10 @@ public class Review {
 	@Column(name = "r_date")
 	private Date  rdate;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	@JoinColumn(name = "cid")
 	private Company company;
+	
 	
 	
 	

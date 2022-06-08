@@ -32,6 +32,8 @@ public class ElasticBrag {
 	
 	Set<String> preferids;
 	
+	Boolean preferck;
+	
 	ElasticMember member;
 	
 	

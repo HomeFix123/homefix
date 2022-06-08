@@ -8,13 +8,20 @@
 */
 
 $(function(){
+	const myModal = new bootstrap.Modal(document.getElementById('areaModal'), {
+		keyboard: false
+	});
+	
+	$('#areaBtn').click(()=> {
+		myModal.show();
+	})
+	
 	// 모달에서 지역 선택시 input[hidden]으로 form 안에 데이터 추가
 	// input[hidden] 요소 담는 곳
 	const hiddenInputs = $('#hiddenInputs');
 	
 	
 	// 모달 관련
-	const modal = $('#exampleModal');
 	const ulBtns = $('#ulBtns');
 	const modalSubmitBtn = $('#modalSubmit');
 	const modalCancelBtn = $('#modalCancelBtn');
@@ -48,7 +55,7 @@ $(function(){
 			hiddenInputs.append(input)
 		}
 		
-		modal.modal("hide"); // 모달 닫기 (자동으로 안닫혀서 추가)
+		myModal.hide(); // 모달 닫기 (자동으로 안닫혀서 추가)
 	});
 	
 	// 검색 폼
@@ -150,7 +157,7 @@ $(function(){
 			const prefer = div.find('.preferCnt'); // 좋아요수
 			const contract = div.find('.contractCnt'); // 계약건수
 			const bookmarkIcon = div.find('.bookmarkIcon'); // 북마크아이콘 처리
-			
+			const link = div.find('.colink');
 			
 			// 이미지 처리
 			if(result.img != null){
@@ -169,7 +176,7 @@ $(function(){
 			companyName.text(result.name);
 			prefer.text(result.prefer);
 			contract.text(result.contract);
-			
+			link.attr('href', '/company/' + result.id)
 			// 전문분야 
 			// 데이터가 0개 ~ 2개
 			companySpecialList.empty(); // sample에 있는 전문분야 비우기

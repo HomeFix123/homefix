@@ -18,9 +18,10 @@ public class MainController {
 	MainService mainService;
 
 	@GetMapping(name = "/")
-	public String mainPage(Model model) {
+	public String mainPage(HttpSession session,Model model) {
 		model.addAttribute("bragList", mainService.getBragList());
 		model.addAttribute("reviewList", mainService.getReviewList());
+		model.addAttribute("session", session);
 		return "index";
 	}
 
