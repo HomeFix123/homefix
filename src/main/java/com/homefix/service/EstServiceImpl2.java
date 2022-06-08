@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.homefix.domain.Company;
 import com.homefix.domain.Estimation;
 import com.homefix.persistence.CompanyRepository;
 import com.homefix.persistence.EstRepository;
@@ -38,21 +39,22 @@ public class EstServiceImpl2 implements EstService2 {
 		//return (List<Estimation>)estRepo.findAll();
 		int showCntPerPage = 10;
 		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
-		return estRepo.findAll(pageable);
+		return estRepo.findByCompanyNull(pageable);
 	}
 	
 	// 전체견적 개수 (페이징 용)
 	@Override
 	public long countEstList() {
 		int showCntPerPage = 10;
-		return (long)(estRepo.count()+1)/showCntPerPage + 1;
+		return (long)(estRepo.count()-1)/showCntPerPage + 1;
 	}
 	
 	// 전체 견적 목록 상세보기
 	@Override
-	public Estimation getEstDetails(String id) {
-		System.out.println("서비스에서 가져온 아이디 " + estRepo.getEstDetail(id));
-		return estRepo.getEstDetail(id); //EstRepository에 있는 getEstDetail함수 리턴
+	public Estimation getEstDetails(Integer eid) {
+		System.out.println("서비스에서 가져온 아이디 " + eid);
+		return estRepo.findById(eid).get(); //EstRepository에 있는 getEstDetail함수 리턴
+		
 	}
 
 	
