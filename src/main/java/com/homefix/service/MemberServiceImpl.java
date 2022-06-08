@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Brag;
 import com.homefix.domain.Member;
+import com.homefix.domain.Prefer;
 import com.homefix.domain.Tip;
 import com.homefix.persistence.BragRepository;
 import com.homefix.persistence.MemberRepository;
+import com.homefix.persistence.PreferRepository;
 import com.homefix.persistence.TipRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -161,13 +163,15 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private BragRepository bragRepo;
 	
-	//개인이 작성한 후기 목록
+	//개인이 작성한 후기 목록 , int page
 	@Override
 	public List<Brag> getMyReviewList(String id) {
+//		int showCntPerPage = 3;	//한번에 보여줄 게시물의 수
+//		Pageable pageable = PageRequest.of(page-1, showCntPerPage,Sort.by("id").descending());
 		Member mem = memberRepo.findById(id).get();
 		System.out.println("세션 잘 넘어왔는지 "+id);
-		List<Brag> brag =  bragRepo.findByMember(mem);
-		return brag;
+	
+		return bragRepo.findByMember(mem);
 	}
 	
 	@Autowired
@@ -181,4 +185,17 @@ public class MemberServiceImpl implements MemberService {
 		List<Tip> tip =  tipRepo.findByMember(mem);
 		return tip;
 	}
+
+	@Autowired
+	private PreferRepository loveRepo;
+	
+	@Override
+	public List<Prefer> getMyLove(String id) {
+		Member mem = memberRepo.findById(id).get();
+		System.out.println("세션 잘 넘어왔는지 "+id);
+		List<Prefer> love =  loveRepo.findByMember(mem);
+		return love;
+	}
+	
+	
 }

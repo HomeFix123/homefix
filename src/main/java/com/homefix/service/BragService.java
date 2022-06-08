@@ -39,9 +39,5 @@ public interface BragService {
 	// 개인 마이페이지 후기목록 보이기용
 	public List<Brag> bMyPageList(Member mem);
 
-	
-	
-	
-	
-	
+
 }

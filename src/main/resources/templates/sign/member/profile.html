@@ -103,7 +103,7 @@
 
 <body>
     <div id="preloader">
-        <img th:src="@{images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+        <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
     </div><!-- preloader -->
 
     <div th:replace="/sections/header :: header"></div>
@@ -194,9 +194,9 @@
                                                         </div><!-- /.row -->
                                                         <!-- 페이지버튼 -->
                                                         <div class="text-center">
-                                                            <ul class="pagination justify-content-center mb-0">
-                                                                <li><a class="page-numbers current" href="#">1</a></li>
-                                                                <li><a class="page-numbers" href="#">2</a></li>
+                                                            <ul class="justify-content-center mb-0" id="pagination">
+                                                                <li><a class="page-numbers current" >1</a></li>
+                                                                <li><a class="page-numbers" >2</a></li>
                                                                 <li class="float-right"><a class="page-numbers" href="#"><i class="fas fa-chevron-right"></i></a></li>
                                                             </ul>
                                                         </div><!-- /.sg-pagination -->
@@ -343,103 +343,15 @@
                                                     <h4>후기 좋아요</h4>
                                                         <div class="row" id="fav_row">
                                                             <!--게시물 시작-->
-                                                            <div class="col-lg-4">
+                                                            <div class="col-lg-4" th:each="love : ${Love}">
                                                                 <div class="sa-post">
-                                                                    <div class="entry-header">
+                                                                    <div class="entry-header" >
                                                                         <div class="entry-thumbnail">
-                                                                            <a th:href="@{blog-details.html}"><img th:src="@{images/blog/1.jpg}" alt="Image" class="img-fluid"></a>
-                                                                        </div>
-                                                                        <div class="entry-meta">
-                                                                            <a href="#">22 <span>Jun</span></a>
+                                                                            <a th:href="@{/brag/BragDetail(id=${love.brag.bid})}"><img th:src="|http://140.238.11.118:5000/upload/${love.brag.bimgadr}|" alt="Image" class="img-fluid"></a>
                                                                         </div>
                                                                     </div>
                                                                     <div class="entry-content">
-                                                                        <h2 class="entry-title"><a th:href="@{blog-details.html}">좋아요한게시물제목</a></h2>
-                                                                    </div>
-                                                                </div><!-- /.sa-post -->
-                                                            </div>
-                                                            <!--게시물 끝-->
-                                                            <!--게시물 시작-->
-                                                            <div class="col-lg-4">
-                                                                <div class="sa-post">
-                                                                    <div class="entry-header">
-                                                                        <div class="entry-thumbnail">
-                                                                            <a th:href="@{blog-details.html}"><img th:src="@{images/blog/2.jpg}" alt="Image" class="img-fluid"></a>
-                                                                        </div>
-                                                                        <div class="entry-meta">
-                                                                            <a href="#">22 <span>Jun</span></a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="entry-content">
-                                                                        <h2 class="entry-title"><a th:href="@{blog-details.html}">좋아요한게시물제목2</a></h2>
-                                                                    </div>
-                                                                </div><!-- /.sa-post -->
-                                                            </div>
-                                                            <!--게시물 끝-->
-                                                            <!--게시물 시작-->
-                                                            <div class="col-lg-4">
-                                                                <div class="sa-post">
-                                                                    <div class="entry-header">
-                                                                        <div class="entry-thumbnail">
-                                                                            <a th:href="@{blog-details.html}"><img th:src="@{images/blog/2.jpg}" alt="Image" class="img-fluid"></a>
-                                                                        </div>
-                                                                        <div class="entry-meta">
-                                                                            <a href="#">22 <span>Jun</span></a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="entry-content">
-                                                                        <h2 class="entry-title"><a th:href="@{blog-details.html}">좋아요한게시물제목3</a></h2>
-                                                                    </div>
-                                                                </div><!-- /.sa-post -->
-                                                            </div>
-                                                            <!--게시물 끝-->
-                                                            <!--게시물 시작-->
-                                                            <div class="col-lg-4">
-                                                                <div class="sa-post">
-                                                                    <div class="entry-header">
-                                                                        <div class="entry-thumbnail">
-                                                                            <a th:href="@{blog-details.html}"><img th:src="@{images/blog/2.jpg}" alt="Image" class="img-fluid"></a>
-                                                                        </div>
-                                                                        <div class="entry-meta">
-                                                                            <a href="#">22 <span>Jun</span></a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="entry-content">
-                                                                        <h2 class="entry-title"><a th:href="@{blog-details.html}">좋아요한게시물제목3</a></h2>
-                                                                    </div>
-                                                                </div><!-- /.sa-post -->
-                                                            </div>
-                                                            <!--게시물 끝-->
-                                                            <!--게시물 시작-->
-                                                            <div class="col-lg-4">
-                                                                <div class="sa-post">
-                                                                    <div class="entry-header">
-                                                                        <div class="entry-thumbnail">
-                                                                            <a th:href="@{blog-details.html}"><img th:src="@{images/blog/2.jpg}" alt="Image" class="img-fluid"></a>
-                                                                        </div>
-                                                                        <div class="entry-meta">
-                                                                            <a href="#">22 <span>Jun</span></a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="entry-content">
-                                                                        <h2 class="entry-title"><a th:href="@{blog-details.html}">좋아요한게시물제목3</a></h2>
-                                                                    </div>
-                                                                </div><!-- /.sa-post -->
-                                                            </div>
-                                                            <!--게시물 끝-->
-                                                            <!--게시물 시작-->
-                                                            <div class="col-lg-4">
-                                                                <div class="sa-post">
-                                                                    <div class="entry-header">
-                                                                        <div class="entry-thumbnail">
-                                                                            <a th:href="@{blog-details.html}"><img th:src="@{images/blog/2.jpg}" alt="Image" class="img-fluid"></a>
-                                                                        </div>
-                                                                        <div class="entry-meta">
-                                                                            <a href="#">22 <span>Jun</span></a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="entry-content">
-                                                                        <h2 class="entry-title"><a th:href="@{blog-details.html}">좋아요한게시물제목3</a></h2>
+                                                                        <h2 class="entry-title" th:text="${love.brag.btitle}"></h2>
                                                                     </div>
                                                                 </div><!-- /.sa-post -->
                                                             </div>
@@ -610,6 +522,13 @@
 	
 	<!-- 혜윤 JS -->
 	<script th:src="@{/js/he/memMypage.js}"></script>
+	
+	<!-- 페이징 용 -->
+    <script th:inline="javascript">
+    	/*<![CDATA[*/
+    	const pageCnt = /*[[ ${cntReviews} ]]*/ +0;
+    	/*]]*/
+    </script>
 	
 </body>
 

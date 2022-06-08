@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,10 +24,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.homefix.domain.Brag;
 import com.homefix.domain.Member;
+import com.homefix.domain.Prefer;
+import com.homefix.domain.Role;
 import com.homefix.domain.Tip;
 import com.homefix.mail.MailDto;
 import com.homefix.mail.SendEmailService;
 import com.homefix.persistence.MemberRepository;
+import com.homefix.service.BragService;
 import com.homefix.service.MemberService;
 
 
@@ -47,6 +49,8 @@ public class MemberController {
 	@Autowired
 	MemberRepository memberRepo;
 	
+	@Autowired
+	private BragService bragService;
 	
 	
 	//로그인 페이지로 이동
@@ -92,6 +96,11 @@ public class MemberController {
 	// 회원 등록
 	@PostMapping(value = "/member/memSave")
 	public String memberInsert(Member mem) throws IOException {
+		mem.setEnabled(true);
+//		mem.setPassword(encoder.encode(mem.getPassword()));
+		
+		mem.setRole(Role.ROLE_USER);
+		
 		memberService.memberInsert(mem);
 		return "redirect:/sign/sign-in";
 					
@@ -153,7 +162,10 @@ public class MemberController {
 	
 	//개인 마이페이지
 	@GetMapping(path ="/member/profile")
-	public void myPage(Model m, HttpSession session) {
+	public void myPage(Model m, HttpSession session, Integer page) {
+		
+		if(page==null) page = 1;
+		Brag brag = new Brag();
 		
 			System.out.println("session L " + session.getAttribute("memberId"));
 			
@@ -175,6 +187,12 @@ public class MemberController {
 		// 개인이 쓴 팁 글 불러오기	(후기에 사용한 아이디를 끌고온다)
 		List<Tip> tipId = memberService.getMyTip(id);
 		m.addAttribute("Tips",tipId);
+		
+		// 개인이 좋아요 버튼을 누른 글 불러오기 (개인 후기)
+		List<Prefer> loveId = memberService.getMyLove(id);
+		m.addAttribute("Love",loveId);
+		
+		// 개인이 좋아요 버튼을 누른 글 불러오기 (업체 후기)
 		
 	}
 	
