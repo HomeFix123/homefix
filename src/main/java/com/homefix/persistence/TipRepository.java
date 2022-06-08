@@ -10,4 +10,6 @@ import com.homefix.domain.Tip;
 public interface TipRepository extends CrudRepository<Tip, Integer>{
 	
 	public List<Tip> findAll(Pageable pageabe);
+	
+	public Tip findByTid(Integer tid );
 }
