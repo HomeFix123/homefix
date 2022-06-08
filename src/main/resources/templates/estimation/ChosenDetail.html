@@ -42,6 +42,9 @@
         <!-- myccs -->
         <link rel="stylesheet" th:href="@{/css/ye/ye.css}">
         
+        <!-- header css -->
+        <link rel="stylesheet" th:href="@{/css/sections/header.css}">
+        
     </head>
     <body> 
         <div id="preloader">
@@ -74,7 +77,7 @@
                                     <input type="hidden" name="eid" class="eid" th:value="${detail.eid}">
                                     <input type="hidden" name="mid" class="mid" th:value="${detail.member.id}">
                                     <input type="hidden" name="cid" class="cid" th:value="${detail.company.id}">
-                                    <input type="hidden" name="cname" class="cname" th:value="${detail.company.name}">
+                                    <input type="hidden" name="cname" class="nickname" th:value="${detail.company.name}">
                                     <p><span class="bold">공간 유형  :</span> <span th:text="${detail.space}"></span></p>
                                     <p><span class="bold">건물 유형 :</span> <span th:text="${detail.building}"></span></p>
                                     <p><span class="bold">평수 :</span> <span th:text="${detail.size}"></span> 평</p>
@@ -126,5 +129,45 @@
         
         <!--my js-->
         <script th:src="@{/js/ye/ye.js}"></script>
+        
+        <!-- header js -->
+        <script th:src="@{/js/sections/header.js}"></script> 
+        
+        <script type="text/javascript">
+      	/* esti_request데이터베이스에 세션의 id와 견적 id가 존재하다면 버튼 css/확정요청완료 버튼 변경 */
+        $.ajax({
+			type:'get',
+			url:'/estimation/getEstiReq',
+			data:{eid:$('.eid').val(),cid:$('.cid').val()},
+			contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8',
+			success:function(result){
+				console.log('성공');
+				let decisionBtn=$(".decision_btn_CD");
+				//확정요청불가일때 css변경
+				if($.trim(result)=="확정요청불가"){
+					console.log(result);
+					decisionBtn.text("확정요청불가");
+					decisionBtn.addClass("nothover_btn");
+					decisionBtn.attr("id","nothover_btn");
+					
+				//확정요청완료일때 css변경
+				}else if ($.trim(result)=="확정요청완료"){
+					console.log(result);
+					decisionBtn.text("확정요청완료");
+					decisionBtn.addClass("nothover_btn");
+					decisionBtn.attr("id","nothover_btn");
+					
+				//확정요청하기일때 기본css
+				}else if ($.trim(result)=="확정요청하기"){
+					console.log(result);
+				}
+			},
+			error : function(err) {
+				//실패했을 때
+    			alert('실패:');
+    			console.log(err);
+    		}
+		})//ajax
+        </script>
     </body>
 </html>        

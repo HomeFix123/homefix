@@ -16,7 +16,7 @@ $(".submit-comment").click(function(){
 	
 	const reaction = $(this).parents('.comment').siblings('.reaction'); //해당 댓글 찾기
 	
-	//에이작스 부분================================================================
+	// 댓글 입력 에이작스================================================================
 	$.ajax({
 		type: 'get', //get, post 중 선택
 		url: '/tip/save', //요청을 보냄, 받을때는 컨트롤러에서 받음
@@ -53,9 +53,36 @@ $(".submit-comment").click(function(){
 	
 	// 댓글등록시 댓글 입력란 비우기
 	$(this).siblings('.input-comment').val("");
-	
+	window.location.reload();
 });
 
+
+// 댓글 삭제 눌렀을 때
+$(".delete-comment").click(function(){
+	const cmid = $(this).val()
+	console.log(cmid);
+	console.log('댓글삭제 버튼 클릭');
+	alert('댓글을 정말 삭제하시겠습니까?')
+	
+	// 댓글 삭제 에이작스================================================================
+	$.ajax({
+		type: 'DELETE', // delete는 삭제 요청
+		url: '/tip/delete/'+cmid, //요청을 보냄, 받을때는 컨트롤러에서 받음
+		data: { //보내는 데이터
+			cmid : cmid
+        },
+        contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8', //한글처리
+        success: function (result) { // 성공했을 때
+			//alert(result)
+			// 댓글 삭제 후 페이지 재로딩
+			window.location.reload();
+        },
+        error: function (err){    // 실패했을 때
+           alert('실패')
+        }
+		
+	});
+	//================================================================
 
 
 
@@ -81,6 +108,6 @@ $(".submit-comment").click(function(){
 		}); 
 	});
 // top 버튼 끝==============================================================
-   
 
 
+})

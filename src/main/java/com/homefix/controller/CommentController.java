@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -45,6 +46,17 @@ public class CommentController {
 		//return "<img src='http://140.238.11.118:5000/upload/"+ commentService.getProfilimg(id).getProfilimg() + "' width='20px'> " + commentService.getNickname(id).getNickname() + ;
 		return "<img src='http://140.238.11.118:5000/upload/"+ commentService.getProfilimg(id).getProfilimg() + "' width='20px'> " + "<span style=" + "'font-weight:bold'" + ">" + commentService.getNickname(id).getNickname() + "</span>" + "  &nbsp;";
 	}
+	
+	// 댓글 삭제
+	@DeleteMapping("/delete/{cmid}")
+	@ResponseBody
+	public void deleteComment(Comment comment) {
+		System.out.println("댓글아이디"+comment);
+		commentService.deleteComment(comment);
+		//return "댓글이 삭제되었습니다.";
+	}
+	
+	
 		
 	
 		

@@ -118,7 +118,7 @@ $(function() {
     	$.ajax({
 				type:'get',
 				url:'/estimation/saveChatRoom',
-				data:{id:$('.mid').val(),cid:$('.cid').val(),nickname:$('.cname').val()},
+				data:{id:$('.mid').val(),cid:$('.cid').val(),nickname:$('.nickname').val()},
 				contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8',
 				success:function(result){
 					console.log('성공');
@@ -146,7 +146,42 @@ $(function() {
     	
 		//window.open("http://localhost:3000/chat?roomCode=1&id=1", 'chatting', 'width=500px, height=800px');
 	});//=채팅하기 버튼 클릭시 채팅띄우기(MPickCDetail)
-
+	
 //===<ChosenDetail(구  MPickCDetail)>	
+
+//---<MyDetail(구 MEDetail)>
+
+	//고객 견적 상세보기에서 회사 확정하기 누르면 contract db에 저장
+	$(".go-contract").on("click",function(){
+		console.log("확정함");
+		const decisionBtn=$(this);
+		let cid = $(this).parent().siblings(".media-body").children("p").children(".company-id").val();
+		let eid = $(".eid_hidden").val();
+		console.log(cid);
+		console.log(eid);
+		//ajax로 db저장 후 불러오기 
+    	$.ajax({
+				type:'get',
+				url:'/estimation/saveContract',
+				data:{eid:eid,cid:cid},
+				contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8',
+				success:function(){
+					console.log('성공');
+					decisionBtn.text("확정완료");
+					decisionBtn.addClass("nothover_btn");
+					decisionBtn.removeClass("go-contract");
+					const noDecision=$(".go-contract");
+					noDecision.text("확정불가");
+					noDecision.addClass("nothover_btn");
+					noDecision.attr("id","nothover_btn");
+				},
+				error : function(err) {
+					//실패했을 때
+	    			alert('실패:');
+	    			console.log(err);
+	    		}
+			})//ajax
+	})
+//===<MyDetail(구 MEDetail)>
 
 });

@@ -60,7 +60,7 @@ public class Estimation {
 	@ManyToOne
 	private Company company;			// 업체 아이디
 	 
-	
-	
+	@Transient
+	private String ing;
 	
 }

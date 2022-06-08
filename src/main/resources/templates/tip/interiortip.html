@@ -90,8 +90,8 @@
 	                            <!-- 게시물 헤더 -->    
 	                                <header id="tip_header">
 	                                    <div class="profile-of-article">
-	                                        <img class="img-profile pic" src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="dlwlrma님의 프로필 사진">
-	                                        <span class="userID main-id point-span" th:text="${tip.member.id}"></span>
+	                                        <img class="img-profile pic" th:src="|http://140.238.11.118:5000/upload/${tip.member.profilimg}" alt="dlwlrma님의 프로필 사진">
+	                                        <span class="userID main-id point-span" th:text="${tip.member.nickname}"></span>
 	                                        <span class="userID main-id point-span" th:text="${tip.tiptitle}"></span>
 	                                    </div>    
 	                                </header>  
@@ -115,7 +115,7 @@
 	                                
 	                                <!-- article text data -->
 	                                <!-- 댓글목록 -->
-	                                <div class="reaction" style="padding:0px">
+	                                <div class="reaction m-2" style="padding:0px">
 	                                  <div class="comment-section" th:each="cmList : ${tip.CommentList}">
 		                                    <ul class="comments">
 		                                      <div class="comment-like">
@@ -124,14 +124,17 @@
 		                                      <img th:if="${not #strings.isEmpty(cmList.member.profilimg)}" th:src="|http://140.238.11.118:5000/upload/${cmList.member.profilimg}|" alt="Image" class="img-fluid" width="20px">
 	                                          <img th:if="${#strings.isEmpty(cmList.member.profilimg)}" src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="Image" class="img-fluid">
 		                                      <span class="memberId" style="font-weight:bold" th:text="${cmList.member.nickname}"></span> &nbsp; <span class="contecnt" th:text="${cmList.content}"></span>
+		                                      <!-- 본인의 댓글만 삭제할 수 있게 세션의 저장된 memberId와 댓글 작성자의 memberId를 비교해서 버튼 출력 -->
+		                                    	<!-- <button th:if="${session.memberId == cmList.member.Id}">삭제</button> -->
+		                                    	<button type="button" class="delete-comment" th:value="${cmList.cmid}" th:if="${session['memberId']} == ${cmList.member.Id}"><i class="fas fa-trash-alt fa-xs"></i></button>
 		                                      </p>
 		                                      </div>
 		                                    </ul>
 		                                    <div class="time-log">
 		                                       <span class="tdate" th:text="${tip.tdate}"></span>
+		                                    	
 		                                    </div>
-		                                    <!-- 본인의 댓글만 삭제할 수 있게 세션의 저장된 memberId와 댓글 작성자의 memberId를 비교해서 버튼 출력 -->
-		                                    <!-- <button th:if="${session.memberId == cmList.member.Id}">삭제</button> -->
+		                                    
 	                                	</div>
 	                                </div>
 	                                <!-- 댓글목록 끝 -->
