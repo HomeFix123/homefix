@@ -118,7 +118,7 @@ $(function() {
     	$.ajax({
 				type:'get',
 				url:'/estimation/saveChatRoom',
-				data:{id:$('.mid').val(),cid:$('.cid').val(),nickname:$('.cname').val()},
+				data:{id:$('.mid').val(),cid:$('.cid').val(),nickname:$('.nickname').val()},
 				contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8',
 				success:function(result){
 					console.log('성공');
@@ -146,7 +146,7 @@ $(function() {
     	
 		//window.open("http://localhost:3000/chat?roomCode=1&id=1", 'chatting', 'width=500px, height=800px');
 	});//=채팅하기 버튼 클릭시 채팅띄우기(MPickCDetail)
-
+	
 //===<ChosenDetail(구  MPickCDetail)>	
 
 });
