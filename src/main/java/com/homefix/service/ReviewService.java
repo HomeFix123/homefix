@@ -16,7 +16,7 @@ public interface ReviewService {
 	public Review getReview(Review rev);
 	
 	// 시공 후기 삭제
-	public void deleteReview(Integer rid, String cid);
+	public void deleteReview(Review rev, String cid);
 	
 	// 신고하기
 	public String saveCReport(Company cid, String id, String reason);
