@@ -3,6 +3,9 @@ package com.homefix.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Chatting;
@@ -49,6 +52,23 @@ public class EstServiceImpl implements EstService {
 		return estRepo.findByCompany(com);
 	}
 
+	
+	@Override
+	public List<Estimation> getCEst(String cid, Integer page) {
+		Company com = companyRepo.findById(cid).get();
+		
+		int showCntPerPage = 6; 
+		  
+		  Pageable pageable = (Pageable) PageRequest.of(page - 1, showCntPerPage,
+		  Sort.by("startDay"));
+		 
+		
+		return estRepo.findByCompany(com, pageable);
+	}
+
+	
+	
+	
 	@Override
 	public List<Estimation> getMEstimation(String id) {
 		Member member = memberRepo.findById(id).get();

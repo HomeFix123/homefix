@@ -366,62 +366,11 @@ $(function() {
 		console.log(divSample)
 	})*/
 
-	const div = $('#myReviswList')
-
-
-	$('#moreBtn').click(() => {
-		page += 1;
-
-		div.page = page
-		//const resultList = getMoreCompany(data) // ajax로 요청후 결과를 변수에 저장	
-
-		$.ajax({
-			type: "GET",
-			url: "/company/myRiew",
-			data: {
-				"page": page
-
-			}
-		}).done((result) => {
-			console.log(result);
-			//$('#myReviswList:first-child()').html()=
-			// 성공했을 때
-		}).fail((err) => {
-			// 실패했을 때
-			console.log(err);
-		});
-
-	})
-
-
-	// 추가 데이터 가져오는 ajax
-	/*	function getMoreCompany(data){
-			
-			let result = null;
-			
-			$.ajax({
-				type: "GET",
-				url: "/expert/page",
-				data: data,
-				async: false // 성공할때까지 대기 (없으면 return 값이 undefined)
-			}).done((data) => {
-				// 성공시 데이터 저장
-				result = data;
-			}).fail((err) => {
-				// 실패시 에러 출력
-				console.log(err);
-			});
-			
-			return result;
-		}*/
 
 
 
-	/*내가 쓴 글 더보기 버튼*/
+	/*내가 쓴 글 더보기 버튼-------------------------------------------------------------------------*/
 	let page = 1;
-	let totalPage={};
-
-	//const params = new URLSearchParams(location.search);
 	$('#moreBtnReview').click(function() {
 		page += 1;
 		$.ajax({
@@ -431,38 +380,59 @@ $(function() {
 			async: false,
 			contentType: 'application/x-www-form-urlencoded;charset=utf-8'
 		}).done((Result) => {
-			
-			
-			console.log(Result);
-		
-			
-			let AddContent;
-			
-			
-			$.each(Result, function(i,review){
-				AddContent += '<div class="sa-post">' + '<div class="entry-header">' + '<div class="entry-thumbnail">' + '<a th:href="@{/review}">'
+			$.each(Result, function(i, review) { //Result 리스트에 들어있는 review객체로 each문 돌림.
+				let AddContent = '<div  class="col-12 col-md-6 col-lg-4  ">' + '<div class="sa-post">' + '<div class="entry-header">' + '<div class="entry-thumbnail">' + '<a href="/review">'
 					+ '<img src="http://140.238.11.118:5000/upload/' + review.rimgadr + '"alt="Image" class="img-fluid" id="thumbnailImage">'
 					+ '</a>' + '</div>' + '</div>' + '<div class="course-info">' + '<div class="info">' + '<h2 class="title text-center">'
-					+ '<a >' +review.rtitle+ '</a>' + '</h2>' + '<p class="text-right">'+ review.company.name+ '</p>'
-					+ '</div >' + '<div class="sa-meta">' + '<ul class="global-list">' + '<li>'+'<a href="#">' + ' <span>' + '<i class="fas fa-heart">' + '</i>'
-					+ '</span>' + '</a>' + '</li>' + '<li>' + '<a href="#">' + ' <i class="far fa-eye">' + '</i>' + '<span>'+review.rcnt+ '</span>'
-					+ '</a>' + '</li>' + '</ul>' + '</div >' + '</div >' + '</div >';
+					+ '<a >' + review.rtitle + '</a>' + '</h2>' + '<p class="text-right">' + review.company.name + '</p>'
+					+ '</div >' + '<div class="sa-meta">' + '<ul class="global-list">' + '<li>' + '<a href="#">' + ' <span>' + '<i class="fas fa-heart">' + '</i>'
+					+ '</span>' + '</a>' + '</li>' + '<li>' + '<a href="#">' + ' <i class="far fa-eye">' + '</i>' + '<span>' + review.rcnt + '</span>'
+					+ '</a>' + '</li>' + '</ul>' + '</div >' + '</div >' + '</div >' + '</div >';
+				$('#myReviswList').append(AddContent);
 			})
-			$('#myReviswList').append(AddContent);
-		
-			
+
+			if (Result.length < 6) {  //리스트 길이가 6보다 작으면 버튼 삭제
+				$('#moreBtnReview').remove();
+			}
 
 		}).fail((err) => {
 			// 실패했을 때
 			console.log(err);
 		});
-
-
 	})
 
+//견적테이블 더보기 moreBtnEstimation
 
+	let pagee = 1;
+	$('#moreBtnEstimation').click(function() {
+		pagee += 1;
+		$.ajax({
+			data: { "page": page },
+			type: "GET",
+			url: "/company/myRiew",
+			async: false,
+			contentType: 'application/x-www-form-urlencoded;charset=utf-8'
+		}).done((Result) => {
+			$.each(Result, function(i, review) { //Result 리스트에 들어있는 review객체로 each문 돌림.
+				let AddContent = '<div  class="col-12 col-md-6 col-lg-4  ">' + '<div class="sa-post">' + '<div class="entry-header">' + '<div class="entry-thumbnail">' + '<a href="/review">'
+					+ '<img src="http://140.238.11.118:5000/upload/' + review.rimgadr + '"alt="Image" class="img-fluid" id="thumbnailImage">'
+					+ '</a>' + '</div>' + '</div>' + '<div class="course-info">' + '<div class="info">' + '<h2 class="title text-center">'
+					+ '<a >' + review.rtitle + '</a>' + '</h2>' + '<p class="text-right">' + review.company.name + '</p>'
+					+ '</div >' + '<div class="sa-meta">' + '<ul class="global-list">' + '<li>' + '<a href="#">' + ' <span>' + '<i class="fas fa-heart">' + '</i>'
+					+ '</span>' + '</a>' + '</li>' + '<li>' + '<a href="#">' + ' <i class="far fa-eye">' + '</i>' + '<span>' + review.rcnt + '</span>'
+					+ '</a>' + '</li>' + '</ul>' + '</div >' + '</div >' + '</div >' + '</div >';
+				$('#myReviswList').append(AddContent);
+			})
 
+			if (Result.length < 6) {  //리스트 길이가 6보다 작으면 버튼 삭제
+				$('#moreBtnEstimation').remove();
+			}
 
+		}).fail((err) => {
+			// 실패했을 때
+			console.log(err);
+		});
+	})
 
 
 })

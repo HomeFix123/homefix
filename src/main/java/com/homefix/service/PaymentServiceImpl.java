@@ -31,7 +31,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 	
 	  public List<Payment> RemainDate( Company company, Integer page) { int
-	  showCntPerPage = 6; if (page == 0) { page = 1; }
+	  showCntPerPage = 6; 
 	  
 	  Pageable pageable = (Pageable) PageRequest.of(page - 1, showCntPerPage,
 	  Sort.by("pday").descending());

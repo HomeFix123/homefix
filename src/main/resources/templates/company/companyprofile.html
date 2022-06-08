@@ -331,13 +331,14 @@
 													style="border: none;">
 													<div class="tab-pane fade show active" id="pills-home"
 														role="tabpanel" aria-labelledby="pills-home-tab">
-														<div class="row" >
-															<div th:each="list : ${Review}" id="myReviswList"
-																class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12">
+														<div class="row"  >
+														<div  class="row" id="myReviswList">
+															<div th:each="list : ${Review}" 
+																class="col-12 col-md-6 col-lg-4  ">
 																<div class="sa-post">
 																	<div class="entry-header">
 																		<div class="entry-thumbnail">
-																			<a th:href="@{/review}"> <img
+																			<a th:href="@{/review/}+(${list.rid})"> <img
 																				th:src="|http://140.238.11.118:5000/upload/${list.rimgadr}|"
 																				alt="Image" class="img-fluid" id="thumbnailImage">
 																			</a>
@@ -362,6 +363,7 @@
 																				</a></li>
 																			</ul>
 																		</div>
+																	</div>
 																	</div>
 																	<!-- /.course-info -->
 																</div>
@@ -652,7 +654,13 @@
 																		</tr>
 
 																	</tbody>
+																	
 																</table>
+																<div th:if="${#lists.size(RegistList)== 6}"
+																	 class="text-center">
+																	<!-- 10개 모두 출력되야 보여주기 -->
+																	<button class="btn btn-primary w-100" id="moreBtnEstimation">더보기</button>
+																</div>
 															</form>
 														</div>
 

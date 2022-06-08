@@ -14,6 +14,8 @@ public interface EstService {
 	
 	public List<Estimation> getCEst(String id);
 	
+	public List<Estimation> getCEst(String id,Integer page);
+	
 	public List<Estimation> getMEstimation(String id);
 	
 	//내(고객) 견적 리스트 상세보기

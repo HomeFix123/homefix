@@ -47,27 +47,20 @@ public class CompanyPageController {
 
 		//////// 시공 중인 글목록보기- vo Contract /progress
 		// model.addAttribute("IngList",estService.getCIngList((String)
-		//////// session.getAttribute("userId")));
 
-		//////// 견적 신청 중인 글목록보기- vo Estimation / chosen
-		model.addAttribute("RegistList", estService.getCEst((String) session.getAttribute("userId")));
-
-		//Integer page = 1;
-		//사업체가 직접 쓴 후기 보기
 		Company com = new Company();
 		com.setId((String) session.getAttribute("userId"));
-		if(page == null) {page=1;}
-		model.addAttribute("Review", companyService.getCompanyReview(com, page));
-		
-		 
-		///////// 구독관리(결제정보)
-		//Company com = new Company(); 
-		///com.setId((String) session.getAttribute("userId"));
-		List<Payment> list = paymentService.RemainDate(com,page);
-
-		if (list.size() > 0) {
-			model.addAttribute("PaymentInfo", list);
+		if (page == null) {
+			page = 1;
 		}
+		//////// 견적 신청 중인 글목록보기- vo Estimation / chosen
+		model.addAttribute("RegistList", estService.getCEst((String) session.getAttribute("userId"), page));
+		// 사업체가 직접 쓴 후기 보기
+		model.addAttribute("Review", companyService.getCompanyReview(com, page));
+
+		///////// 구독관리(결제정보)
+		List<Payment> list = paymentService.RemainDate(com, page);
+		model.addAttribute("PaymentInfo", list);
 
 		/////// 마이정보수정
 		if (session.getAttribute("userId") != null) {
@@ -81,20 +74,16 @@ public class CompanyPageController {
 
 	// 사업체 상세페이지 로딩
 	@GetMapping("/{id}")
-	public String companyDetailPage(@PathVariable String id, Model model, Integer page ) {
-		if(page == null) {page=1;}
-		// @@테스트 임시 셋팅@@
+	public String companyDetailPage(@PathVariable String id, Model model, Integer page) {
 		Company com = new Company();
 		com.setId(id);
-		//com.setId("905");
 
 		// 업체명 및 로고 기타//전문분야:companyspecial/시공횟수:company
 		// 1.업체정보//vo:Company
-		//model.addAttribute("Spcial", companyService.getCompanySpecial(com));
-		
+
 		Company coms = companyService.getCompanyMyInfo(com.getId());
-		if(coms.getCnt()==null) {
-			coms.setCnt(0); //시공횟수가 null값이면 0으로 지정.
+		if (coms.getCnt() == null) {
+			coms.setCnt(0); // 시공횟수가 null값이면 0으로 지정.
 		}
 		model.addAttribute("CompanyBasic", coms);
 
@@ -105,24 +94,24 @@ public class CompanyPageController {
 		model.addAttribute("Brag", companyService.getInteriorBrag(com));
 
 		// 4.업체후기(시공후기)//vo:Review
-		if(page==null)page=1;
-		model.addAttribute("Review", companyService.getCompanyReview(com, page));
-
+		if (page == null) {
+			page = 1;
+			model.addAttribute("Review", companyService.getCompanyReview(com, page));
+		} else {
+			model.addAttribute("Review", companyService.getCompanyReview(com, page));
+		}
 		return "company/companydetails";
 	}
 
-	
+	// 업체가 쓴 시공후기 더보기
 	@GetMapping("/myRiew")
 	@ResponseBody
-	public List<Review> getMyRiew(HttpSession session,   Integer page) {
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+session.getAttribute("userId"));
-		
+	public List<Review> getMyRiew(HttpSession session, Integer page) {
 		Company com = new Company();
-		com.setId((String)session.getAttribute("userId"));
-		
-		List<Review> reviewList= companyService.getCompanyReview(com, page);
+		com.setId((String) session.getAttribute("userId"));
+
+		List<Review> reviewList = companyService.getCompanyReview(com, page);
 		return reviewList;
 	}
-	
-	
+
 }

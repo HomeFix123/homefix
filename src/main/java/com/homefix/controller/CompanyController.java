@@ -37,11 +37,9 @@ public class CompanyController {
 	@Autowired
 	CompanyService companyService;
 
-	
 	@Autowired
 	private PasswordEncoder encoder;
-	
-	
+
 	// 사업자 아이디 중복 조회
 	@GetMapping("/company/idCheck")
 	@ResponseBody
@@ -72,34 +70,23 @@ public class CompanyController {
 	// 로그인하기
 	@PostMapping("/company/companyLogin")
 	public String loginCheck(Company com, HttpSession session, Model model) {
-		com.setId("95");com.setPass("aaa1");
-		System.out.println("############");
 		if (companyService.login(com) != null) {
-			System.out.println("*******로그인 성공********");
 			session.setAttribute("userId", com.getId());
 			session.setAttribute("companyName", companyService.login(com));
 			model.addAttribute("message", "Y");
 			return "redirect:/index";
 		} else {
 			model.addAttribute("message", "N");
-			System.out.println("*******로그인 실패*********");
 			return "sign/sign-in";
 		}
 	}
 
 	@GetMapping("")
 	public String signIn(HttpSession session) {
-		  if (session.getAttribute("userId") != null) {
-		  
-		  return "redirect:/company/profile";
-		 
-		  } else {
-		  
-		  
-		  }
-		 
-		  return "sign/sign-in";
-		
+		if (session.getAttribute("userId") != null) {
+			return "redirect:/company/profile";
+		}
+		return "sign/sign-in";
 
 	}
 
@@ -118,7 +105,6 @@ public class CompanyController {
 	// 사업자 정보수정
 	@PutMapping("/company/companyUpdate")
 	public String companyUpdate(Company com) {
-
 		companyService.companyUpdate(com);
 		return "company/companyprofile";
 	}
@@ -127,7 +113,6 @@ public class CompanyController {
 	@DeleteMapping("/Withdrawal")
 	@ResponseBody
 	public String companyDelete(String pass, HttpSession session) {
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!" + session.getAttribute("userId"));
 		Company com = new Company();
 		com.setPass(pass);
 		com.setId((String) session.getAttribute("userId"));
@@ -155,20 +140,18 @@ public class CompanyController {
 	public String companyInsert(Company com) {
 		com.setEnabled(true);
 		com.setPass(encoder.encode(com.getPass()));
-	
+
 		com.setRole(Role.ROLE_COMPANY);
-		
-		 
+
 		String num = com.getNum();
 		com.setNum(num.replaceAll("-", ""));
 		companyService.companyInsert(com);
 		return "redirect:/index";
 	}
-	
+
 	@GetMapping("/error")
 	public String accessDeniedPage() {
-		
-		return"/sign/accessDenied";
+		return "/sign/accessDenied";
 	}
-	
+
 }

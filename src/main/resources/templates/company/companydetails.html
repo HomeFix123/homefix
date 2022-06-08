@@ -264,7 +264,7 @@
 					<div class="col-lg-8">
 						<div class="sa-course" id="priInfo">
 							<div class="course-thumb">
-								<img src="images/course/d2.jpg" alt="Image" class="img-fluid">
+								<img th:src="|http://140.238.11.118:5000/upload/${CompanyInfo.cinfo_img}|" alt="Image" class="img-fluid">
 							</div>
 
 
@@ -366,7 +366,9 @@
 									<div class="tab-pane fade" id="comments" role="tabpanel"
 										aria-labelledby="comments-tab">
 										<h4>업체후기</h4>
-										<div class="comments-area">
+										<div class="row">
+										
+										<div class="comments-area col-12 col-md-6 col-lg-4">
 											<ul  >
 											<li class="media" th:each="r:${Review}">
 												<div class="entry-thumbnail">
@@ -400,8 +402,7 @@
 
 
 										</ul>
-											
-											</ul>
+											</div>
 										</div>
 										<!-- /.comments-area -->
 									</div>
