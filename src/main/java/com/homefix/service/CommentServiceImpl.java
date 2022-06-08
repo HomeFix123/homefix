@@ -46,6 +46,13 @@ public class CommentServiceImpl implements CommentService {
 		return commentRepo.findByTip(t);
 	}
 	
+	// 댓글 삭제하기
+	@Override
+	public void deleteComment(Comment comment) {
+	Comment	com = commentRepo.findById(comment.getCmid()).get();
+		commentRepo.delete(com);
+	}	
+	
 	// 닉네임 구하기
 	@Override
 	public Member getNickname(String id) {
@@ -56,9 +63,7 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public Member getProfilimg(String img) {
 		return memberRepo.findById(img).get();
-	}	
-	
+	}
 
-	
 	
 }

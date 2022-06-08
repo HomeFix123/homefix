@@ -258,5 +258,18 @@
 #love {
 	color: red;
 	padding-left:8px;
-	font-size: 30px;
+	font-size: 20px;
+}
+
+/*댓글 삭제*/
+.delete-comment{
+	background-color: transparent;
+	color:gray;
+	font-weight: normal;
+	font-size:15px;
+	align-items: center;
+}
+
+.delete-comment:hover{
+	background-color: white;
 }
