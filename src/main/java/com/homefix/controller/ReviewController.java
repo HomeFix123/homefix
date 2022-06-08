@@ -2,6 +2,8 @@ package com.homefix.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,14 +44,21 @@ public class ReviewController {
 	}
 	
 	@GetMapping
-	public String getReviewList(Model m){
+	public String getReviewList(Model m, String hometype, String job, String family){
 		
-		Review rev = new Review();
-		List<Review> list = reviewService.getReviewList(rev);
-		m.addAttribute("reviewList", list);
+		
+		m.addAttribute("reviewList", reviewService.getReviewList(1, hometype, job, family));
 		return "review/ReviewList";
 	}
 	
+	@GetMapping("/page")
+	@ResponseBody
+	public String getReviewListPerPage(Model m, Integer page, String hometype, String job, String family){
+		
+		
+		m.addAttribute("reviewList", reviewService.getReviewList(page, hometype, job, family));
+		return "review/ReviewList";
+	}
 	
 	
 	@GetMapping("/{rid}")
@@ -61,6 +70,7 @@ public class ReviewController {
 	
 	@DeleteMapping("/{rid}")
 	public String deleteReview(Review rev) {
+		System.out.println(rev.getRid());
 		String cid = "1004";
 		reviewService.deleteReview(rev, cid);
 		return "redirect:/review";
@@ -69,8 +79,8 @@ public class ReviewController {
 	
 	@PostMapping("/Creport/{cid}")
 	@ResponseBody
-	public String saveCReport(Company cid, String reason) {
-		String id = "test";
+	public String saveCReport(Company cid, String reason, HttpSession session) {
+		String id = (String) session.getAttribute("memberId");
 		System.out.println("cid: "+ cid + " 사유: "+ reason);
 		return reviewService.saveCReport(cid, id, reason);
 	}

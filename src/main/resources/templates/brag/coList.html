@@ -38,114 +38,9 @@
         <![endif]-->
         <!-- Template Developed By ChtStudio -->
         
-        <style type="text/css">
-        	.mr-3 {
-        		margin-right: 30px; 
-        	}
-        	
-        	.entry-meta{
-        		left:auto;
-        		right: 5%;
-        		bottom: 5%;
-        		background-color: transparent;
-        	}
-        	
-        	.entry-meta i{
-        		font-size: 25px;
-        		color: #1abc9c;
-        	}
-        	
-        	.text-right{
-        		text-align: right;
-        	}
-
-			
-			ul {
-				padding: 0px;
-			}
-			
-			ul li {
-				float:left;
-				list-style: none;
-				margin-right: 20px;
-				margin-left: 0px;
-				margin-bottom: 10px;
-			}
-			
-			.course-info{
-				padding-bottom: 10px;
-			}
-			
-			.modal{ 
-			  position:absolute; height:50%;
-			   top:3px; 
-			  display:none;
-			}
-			
-			.modal-backdrop.show{
-				opacity: 0;
-			}
-			
-			.coSearch {
-				height: 35px;
-				width : 30%;
-				resize: none;
-				border: solid 2px #1abc9c;
-				border-radius: 5px;
-				
-			}
-			
-			.coSearch_btn{
-				font-size: 14px;
-				color : white;
-				font-weight: 600;
-				border-radius: 4px;
-				position: relative;
-				z-index: 1;
-				overflow: hidden;
-				background-color: #1abc9c;
-				border: 1px solid #1abc9c;
-				padding: 9px 20px;
-				margin-left: 5px;
-				
-			}
-			
-			.section-header {
-				margin: 10px;
-			}
-			
-			.coSearch_bar{
-				text-align: center;
-			}
-		
-			.btn-area {
-				border: 1px solid gray;
-			}
-			
-			.btn-area.btn-selected {
-				background: var(--primary-color);
-				color: white;
-				border: 1px white solid;
-			}
-			.user-img {
-				border-radius: 100%;
-				height: 40px;
-				width: 40px;
-				display: inline;
-			}
-			.user-img-sm {
-				border-radius: 100%;
-				height: 20px;
-				width: 20px;
-			}
-			
-			.titleImg {
-				height: 250px;
-				object-fit: cover;
-			}
-			
-			
-        </style>
+        <link rel="stylesheet" th:href="@{/css/sections/header.css}">
+        
+        <link rel="stylesheet" th:href="@{/css/company/list.css}">
     </head>
     <body> 
         <div id="preloader">
@@ -154,15 +49,7 @@
         
         <div th:replace="/sections/header :: header"></div>      
           
-        <section class="breadcrumb-section">
-            <div class="container">
-                <h1>시공전문가</h1>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
-                    <li class="breadcrumb-item">시공전문가</li>
-                </ol>
-            </div><!-- /.container -->
-        </section><!-- /.breadcrumb-section -->  
+       
         
       
         <div class="sa-section">
@@ -180,46 +67,10 @@
 								<li>
 									<div class="view-all align-self-center"><a class="btn btn-primary" id="sortBtn" href='#'>정확도순</a></div>
 								</li>
-								<li><div class="view-all align-self-center"><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">지역</a></div>
-                            			<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-										  <div class="modal-dialog">
-										    <div class="modal-content">
-										      <div class="modal-header">
-										        <h5 class="modal-title" id="exampleModalLabel">지역 선택</h5>
-										        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-										      </div>
-										      <div class="modal-body">
-										      	<div class="container-fluid">
-										      		<ul id="ulBtns">
-										      			<li><button class="btn btn-area" value="서울특별시">서울</button></li>
-										      			<li><button class="btn btn-area" value="부산광역시">부산</button></li>
-										      			<li><button class="btn btn-area" value="대구광역시">대구</button></li>
-										      			<li><button class="btn btn-area" value="인천광역시">인천</button></li>
-										      			<li><button class="btn btn-area" value="광주광역시">광주</button></li>
-										      			<li><button class="btn btn-area" value="대전광역시">대전</button></li>
-										      			<li><button class="btn btn-area" value="울산광역시">울산</button></li>
-										      			<li><button class="btn btn-area" value="강원도">강원</button></li>
-										      			<li><button class="btn btn-area" value="경기도">경기</button></li>
-										      			<li><button class="btn btn-area" value="경상남도">경남</button></li>
-										      			<li><button class="btn btn-area" value="경상북도">경북</button></li>
-										      			<li><button class="btn btn-area" value="전라북도">전북</button></li>
-										      			<li><button class="btn btn-area" value="충청남도">충남</button></li>
-										      			<li><button class="btn btn-area" value="충청북도">충북</button></li>
-										      			<li><button class="btn btn-area" value="세종특별자치시">세종</button></li>
-										      			<li><button class="btn btn-area" value="제주특별자치도">제주</button></li>
-										      		</ul>
-										      	</div>
-										      	<div>
-										      	
-										      	</div>
-										      </div>
-										      <div class="modal-footer">
-										        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalCancelBtn">취소</button>
-										        <button type="button" class="btn btn-primary" id="modalSubmit">적용</button>
-										      </div>
-										    </div>
-										  </div>
-										</div>
+								<li>
+									<div class="view-all align-self-center">
+										<button type="button" class="btn btn-primary" id="areaBtn">지역</button>
+									</div>
 								</li>
 
 								
@@ -253,7 +104,7 @@
 	                                <div class="entry-header">
 	                                	<!-- 썸네일 이미지 -->
 	                                    <div class="entry-thumbnail">
-	                                        <a href="blog-details.html">
+	                                        <a class="colink" th:href="|/company/${c.id}|">
 	                                        	<img th:if="${c.img == null}" class="titleImg img-fluid" src="http://140.238.11.118:5000/upload/profile_basic.png" alt="Image">
 	                                        	<img th:if="${c.img != null}" class="titleImg img-fluid" th:src="|http://140.238.11.118:5000/upload/${c.img}|" alt="Image">
 	                                        </a>
@@ -268,7 +119,7 @@
 	                                        <h2 class="title text-center">
 	                                        	<img th:if="${c.logo == null}" class='user-img' src="http://140.238.11.118:5000/upload/profile_basic.png">
 	                                        	<img th:if="${c.logo != null}" class='user-img' th:src="|http://140.238.11.118:5000/upload/${c.logo}|">
-	                                        	<a href="course-details.html" class="companyName" th:text="${c.name}">업체 이름</a>
+	                                        	<a th:href="|/company/${c.id}|" class="colink companyName" th:text="${c.name}">업체 이름</a>
 	                                        </h2>
 	                                        <div class="companySpecialList">
 	                                        	<a class="companySpecial btn btn-secondary m-1" th:each="s : ${c.special}" th:text="${s}"></a>
@@ -289,12 +140,52 @@
                 </div><!-- /.container -->
             </div><!-- /.section-content -->
         </div><!-- /.sa-section -->
-        <!-- 더보기 버튼 -->
+
+	<div class="modal fade" id="areaModal" tabindex="-1" aria-labelledby="areaModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="areaModalLabel">지역 선택</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<ul id="ulBtns">
+							<li><button class="btn btn-area" value="서울특별시">서울</button></li>
+							<li><button class="btn btn-area" value="부산광역시">부산</button></li>
+							<li><button class="btn btn-area" value="대구광역시">대구</button></li>
+							<li><button class="btn btn-area" value="인천광역시">인천</button></li>
+							<li><button class="btn btn-area" value="광주광역시">광주</button></li>
+							<li><button class="btn btn-area" value="대전광역시">대전</button></li>
+							<li><button class="btn btn-area" value="울산광역시">울산</button></li>
+							<li><button class="btn btn-area" value="강원도">강원</button></li>
+							<li><button class="btn btn-area" value="경기도">경기</button></li>
+							<li><button class="btn btn-area" value="경상남도">경남</button></li>
+							<li><button class="btn btn-area" value="경상북도">경북</button></li>
+							<li><button class="btn btn-area" value="전라북도">전북</button></li>
+							<li><button class="btn btn-area" value="전라남도">전남</button></li>
+							<li><button class="btn btn-area" value="충청남도">충남</button></li>
+							<li><button class="btn btn-area" value="충청북도">충북</button></li>
+							<li><button class="btn btn-area" value="세종특별자치시">세종</button></li>
+							<li><button class="btn btn-area" value="제주특별자치도">제주</button></li>
+						</ul>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal" id="modalCancelBtn">취소</button>
+					<button type="button" class="btn btn-primary" id="modalSubmit">적용</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 더보기 버튼 -->
         <div th:if="${#lists.size(companyList) == 12}" id="moreDiv" class="text-center">
         	<!-- 10개 모두 출력되야 보여주기 -->
 			<button class="btn btn-primary w-100" id="moreBtn">더보기</button>
 		</div>
-
+ㅗ
    		<!-- 검색시 footer가 필요없다고 판단 -->
         
        
@@ -312,10 +203,9 @@
         <script th:src="@{/js/jquery-ui-min.js}"></script>
         <script th:src="@{/js/validate.js}"></script>
         <script th:src="@{/js/main.js}"></script> 
-        <script th:src="@{/js/companyList/company.js}"></script> 
-        <script type="text/javascript">
-
         
-        </script>  
+        <script th:src="@{/js/sections/header.js}"></script>
+        <script th:src="@{/js/companyList/company.js}"></script> 
+        
     </body>
 </html>         

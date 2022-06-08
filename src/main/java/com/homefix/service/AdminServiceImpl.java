@@ -235,7 +235,15 @@ public class AdminServiceImpl implements AdminService {
 		Company temp = companyRepo.findById(cid).get();
 		return paymentRepo.findByCompany(temp);
 	}
-
+	
+	@Override
+	public long countTodayCompanyReport() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DATE, -1); // 빼고 싶다면 음수 입력
+		Date date = new Date(cal.getTimeInMillis());
+		return companyReportRepo.countByRdayGreaterThan(date);
+	}
 	
 	/*
 	 * 업체 신고 내역
@@ -282,7 +290,7 @@ public class AdminServiceImpl implements AdminService {
 		// Tip Repo가 완성되면 진행
 		int showCntPerPage = 5;
 		
-		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("tdate").descending());
+		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("tid").descending());
 		
 		return tipRepo.findAll(pageable);
 	}
@@ -328,6 +336,31 @@ public class AdminServiceImpl implements AdminService {
 	public List<Estimation> getEstimationList(String id) {
 		Member mem = memberRepo.findById(id).get();
 		return estRepo.findByMember(mem);
+	}
+
+	@Override
+	public long countNewUser() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DAY_OF_WEEK, -1); // 빼고 싶다면 음수 입력
+		Date date = new Date(cal.getTimeInMillis());
+		
+		return memberRepo.countBySubdateGreaterThan(date);
+	}
+
+	@Override
+	public long countContract() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DAY_OF_WEEK, -1); // 빼고 싶다면 음수 입력
+		Date date = new Date(cal.getTimeInMillis());
+		return 0;
+	}
+	
+	@Override
+	public long countPayUser() {
+		
+		return paymentRepo.countByPlastGreaterThan(new Date());
 	}
 
 	

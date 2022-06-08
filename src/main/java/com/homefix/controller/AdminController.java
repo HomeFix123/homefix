@@ -34,6 +34,8 @@ public class AdminController {
 	@GetMapping(path = "/dashboard")
 	public String moveDashBoardPage(Model model) {
 		logger.info("관리자 대시보드");
+		model.addAttribute("newUser", adminService.countNewUser());
+		model.addAttribute("payUser", adminService.countPayUser());
 		model.addAttribute("aggNewUser", adminService.aggregateNewUser());
 		model.addAttribute("aggPayments", adminService.aggregatePayments());
 		return "admin/dashboard";
@@ -67,6 +69,7 @@ public class AdminController {
 	public String moveCompanyPage(Model model) {
 		model.addAttribute("companyList", adminService.getCompanyList());
 		model.addAttribute("reportList", adminService.getCompanyReportList());
+		model.addAttribute("todayCompanyReport", adminService.countTodayCompanyReport());
 		logger.info("관리자 업체관리");
 		return "admin/company";
 	}

@@ -1,5 +1,6 @@
 package com.homefix.persistence;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
@@ -13,4 +14,6 @@ public interface PaymentRepository extends CrudRepository<Payment, String>{
 	
 	
 	public List<Payment> findByCompanyOrderByCompanyDesc(Company company);
+	
+	public long countByPlastGreaterThan(Date date);
 }

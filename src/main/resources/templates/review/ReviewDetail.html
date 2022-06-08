@@ -312,6 +312,7 @@
 						<img th:src="@{/images/ico/icon-siren-36.png}">
 					</button> 
 					<input type="hidden" name="cid" th:value="${rev.company.id}">
+					<input type="hidden" name="rid" th:value="${rev.rid}">
 				</li>
 				<li><a href="#"><span><i class="fas fa-bars"></i></span></a></li>
 
@@ -398,7 +399,7 @@
         	
         	
 			// 자랑 삭제하기
-			/*
+			
 			$('#deletebtn').click(function() {
 				const rid = $('input[name=rid]').val();
 				 $.ajax({
@@ -411,9 +412,9 @@
 						console.log(err);
 					}
 				}) 
-				location.href='/brag/'+bid;	
+					
 			
-			})*/
+			})
 			
 			// 신고하기
 			$(document).on('click', '#reportbtn', function() {

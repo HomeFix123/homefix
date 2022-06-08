@@ -2,6 +2,9 @@ package com.homefix.domain;
 
 import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class ElasticReview {
 	String id;
 	String title;
