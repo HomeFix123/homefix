@@ -24,7 +24,7 @@ $(function() {
 	//업체명
 	var RegexCompany = /^[가-힣a-zA-Z0-9]{1,10}$/;
 	var RegexEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-	var RegexPW = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/; //8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합
+	var RegexPW = /^[a-zA-Z0-9]{4,10}$/; //8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합
 	var RegexName = /^[가-힣]+$/;
 	//전화번호
 	var RegexTel = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
@@ -84,13 +84,60 @@ $(function() {
 	}); // end of $('#btn_emailCheak').click
 	/************************************************************************************ **/
 	//회원정보수정 --이미지 변경
-	$('#pictureAdd').click(function() {
-		attr("src", "/data/img2.png");
+	const form = $('#companyModify');
+	const img = $('#cinfo_img');
+	// form submit버튼 누른 후 동작
+	// 이미지 저장후 submit 
+	$('#companyUpdate').click(() => {
+		const imageInput = $('#inputImage')[0]; // input에서 이미지 가져오기
+		const formData = new FormData();
+		if (imageInput.files[0] != null) {
+			// 이미지명 uuid로 변경
+			const imgName = uuid(imageInput.files[0].name);
+			formData.append("file", imageInput.files[0], imgName);
+
+			const result = saveImage(formData); //이미지 저장
+			if (result) {
+				// 결과가 성공시 input hidden에 이미지명 넣기(DB에 저장할 이미지명)
+				img.val(imgName);
+			}
+		}
+
+
+		form.submit()
 	})
 
+	// uuid 생성
+	function uuid(file_nm) {
+		const s4 = () => ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1)
+
+		return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length - 1).toLowerCase();
+	}
+
+	// 이미지 저장 ajax
+	function saveImage(formData) {
+		let answer = false;
+		$.ajax({
+			type: "POST",
+			url: "http://140.238.11.118:5000/upload",
+			processData: false,
+			contentType: false,
+			data: formData,
+			async: false
+		}).done(() => {
+			answer = true;
+		}).fail(() => {
+
+		})
+
+		return answer;
+	}
+
+
+
 	/**
-				 * 섬네일 이미지 미리보기
-				 */
+				* 섬네일 이미지 미리보기
+				*/
 	function readImage(input) {
 		if (input.files && input.files[0]) {
 			const reader = new FileReader();
@@ -104,36 +151,11 @@ $(function() {
 
 		}
 	}
+	// 이벤트 리스너
+	document.getElementById('inputImage').addEventListener('change', (e) => {
+		readImage(e.target);
 
-	// uuid 생성
-	function uuid(file_nm) {
-		function s4() {
-			return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
-		}
-		return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length - 1).toLowerCase();
-	}
-
-	const formData = new FormData();
-	formData.append("file", imageInput.files[0], uuid(imageInput.files[0].name));
-	console.log(formData.get('file'))
-	$('#bimgadr').val(formData.get('file').name);
-
-
-	$.ajax({
-		type: "POST",
-		url: "http://140.238.11.118:5000/upload",
-		processData: false,
-		contentType: false,
-		data: formData,
-		success: function(result) {
-			console.log("success")
-		},
-		err: function(err) {
-			console.log("err:", err)
-		}
 	})
-
-
 
 
 
@@ -327,13 +349,116 @@ $(function() {
 
 
 
+	//----------------------------------------------------------------
+	/*companyprofile*/
+
+	//let page = 1;  // 초기 페이지
+	//let data = {}; 
+	//const listDiv = $('#paymentInfo'); 
+	//const divSample = $('.paymentInfoTR')
+
+	/*더보기로 페이징 처리
+	1. 처음 페이지 접근 시 1페이지 정보를 가져온다
+	2. 버튼을 누르면 ajax 2페이지 정보를 가져온다
+	3. 2페이지 정보를 1페이지 정보 밑에 추가한다*/
+
+	/*$('#moreBtn').click(function(){
+		console.log(divSample)
+	})*/
+
+	const div = $('#myReviswList')
+
+
+	$('#moreBtn').click(() => {
+		page += 1;
+
+		div.page = page
+		//const resultList = getMoreCompany(data) // ajax로 요청후 결과를 변수에 저장	
+
+		$.ajax({
+			type: "GET",
+			url: "/company/myRiew",
+			data: {
+				"page": page
+
+			}
+		}).done((result) => {
+			console.log(result);
+			//$('#myReviswList:first-child()').html()=
+			// 성공했을 때
+		}).fail((err) => {
+			// 실패했을 때
+			console.log(err);
+		});
+
+	})
+
+
+	// 추가 데이터 가져오는 ajax
+	/*	function getMoreCompany(data){
+			
+			let result = null;
+			
+			$.ajax({
+				type: "GET",
+				url: "/expert/page",
+				data: data,
+				async: false // 성공할때까지 대기 (없으면 return 값이 undefined)
+			}).done((data) => {
+				// 성공시 데이터 저장
+				result = data;
+			}).fail((err) => {
+				// 실패시 에러 출력
+				console.log(err);
+			});
+			
+			return result;
+		}*/
 
 
 
+	/*내가 쓴 글 더보기 버튼*/
+	let page = 1;
+	let totalPage={};
+
+	//const params = new URLSearchParams(location.search);
+	$('#moreBtnReview').click(function() {
+		page += 1;
+		$.ajax({
+			data: { "page": page },
+			type: "GET",
+			url: "/company/myRiew",
+			async: false,
+			contentType: 'application/x-www-form-urlencoded;charset=utf-8'
+		}).done((Result) => {
+			
+			
+			console.log(Result);
+		
+			
+			let AddContent;
+			
+			
+			$.each(Result, function(i,review){
+				AddContent += '<div class="sa-post">' + '<div class="entry-header">' + '<div class="entry-thumbnail">' + '<a th:href="@{/review}">'
+					+ '<img src="http://140.238.11.118:5000/upload/' + review.rimgadr + '"alt="Image" class="img-fluid" id="thumbnailImage">'
+					+ '</a>' + '</div>' + '</div>' + '<div class="course-info">' + '<div class="info">' + '<h2 class="title text-center">'
+					+ '<a >' +review.rtitle+ '</a>' + '</h2>' + '<p class="text-right">'+ review.company.name+ '</p>'
+					+ '</div >' + '<div class="sa-meta">' + '<ul class="global-list">' + '<li>'+'<a href="#">' + ' <span>' + '<i class="fas fa-heart">' + '</i>'
+					+ '</span>' + '</a>' + '</li>' + '<li>' + '<a href="#">' + ' <i class="far fa-eye">' + '</i>' + '<span>'+review.rcnt+ '</span>'
+					+ '</a>' + '</li>' + '</ul>' + '</div >' + '</div >' + '</div >';
+			})
+			$('#myReviswList').append(AddContent);
+		
+			
+
+		}).fail((err) => {
+			// 실패했을 때
+			console.log(err);
+		});
 
 
-
-
+	})
 
 
 
