@@ -26,7 +26,6 @@ import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
 import com.homefix.domain.Contract;
 import com.homefix.domain.ElasticBrag;
-import com.homefix.domain.ElasticCompany;
 import com.homefix.domain.Estimation;
 import com.homefix.domain.Member;
 import com.homefix.domain.MemberReport;
@@ -245,5 +244,13 @@ public class BragServiceImpl implements BragService {
 		return con;
 
 	}
+
+	//개인 마이페이지 후기 목록 표시
+	@Override
+	public List<Brag> bMyPageList(Member mem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 }

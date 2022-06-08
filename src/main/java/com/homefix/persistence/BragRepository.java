@@ -17,4 +17,7 @@ public interface BragRepository extends CrudRepository<Brag, String>{
 	public Brag findByBidAndMember(Integer bid, Member member);
 	
 	public List<Brag> findByCompany(Company com);
+
+	//개인마이페이지 후기
+	public List<Brag> findByMember(Member member);
 }

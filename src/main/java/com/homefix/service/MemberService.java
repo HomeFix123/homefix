@@ -3,9 +3,9 @@ package com.homefix.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
+import com.homefix.domain.Brag;
 import com.homefix.domain.Member;
+import com.homefix.domain.Tip;
 
 public interface MemberService {
 
@@ -37,6 +37,11 @@ public interface MemberService {
 
 	//멤버 탈퇴
 	public String memberDelete(Member mem);
-
+	
+	//고객 본인이 쓴 글 불러오기
+	public List<Brag> getMyReviewList(String id);
+	
+	//고객이 쓴 팁 글 불러오기
+	public List<Tip> getMyTip(String id);
 
 }

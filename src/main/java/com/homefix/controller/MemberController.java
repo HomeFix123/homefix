@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,12 +20,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.homefix.domain.Brag;
 import com.homefix.domain.Member;
+import com.homefix.domain.Tip;
 import com.homefix.mail.MailDto;
 import com.homefix.mail.SendEmailService;
 import com.homefix.persistence.MemberRepository;
@@ -155,16 +154,28 @@ public class MemberController {
 	//개인 마이페이지
 	@GetMapping(path ="/member/profile")
 	public void myPage(Model m, HttpSession session) {
-		System.out.println("session L " + session.getAttribute("memberId"));
-		System.out.println("model" + m);
+		
+			System.out.println("session L " + session.getAttribute("memberId"));
+			
 		logger.info("개인 마이페이지");
 		Member mem = new Member();
 		mem.setId((String) session.getAttribute("memberId"));
-		System.out.println("model2" +m);
 		List<Member> list = memberService.myPageList(mem);
 		m.addAttribute("member",list);
 		m.addAttribute("session", session);
-		System.out.println("session 2" + m.addAttribute("session", session));
+		
+			System.out.println("session 2" + m.addAttribute("session", session));
+			System.out.println("세션 확인함 " + session.getAttribute("memberId"));
+		
+		// 개인이 쓴 후기 불러오기
+		String id = (String) session.getAttribute("memberId");
+		List<Brag> bragId = memberService.getMyReviewList(id);
+		m.addAttribute("Reviews",bragId);
+		
+		// 개인이 쓴 팁 글 불러오기	(후기에 사용한 아이디를 끌고온다)
+		List<Tip> tipId = memberService.getMyTip(id);
+		m.addAttribute("Tips",tipId);
+		
 	}
 	
 	// 글 수정
@@ -227,7 +238,5 @@ public class MemberController {
 	
 	}
 	
-
-		
 	
 }

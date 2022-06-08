@@ -3,17 +3,17 @@ package com.homefix.service;
 
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.homefix.domain.Company;
+import com.homefix.domain.Brag;
 import com.homefix.domain.Member;
+import com.homefix.domain.Tip;
+import com.homefix.persistence.BragRepository;
 import com.homefix.persistence.MemberRepository;
+import com.homefix.persistence.TipRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -156,5 +156,29 @@ public class MemberServiceImpl implements MemberService {
 			return "Y";
 		}
 		return "N";
+	}
+
+	@Autowired
+	private BragRepository bragRepo;
+	
+	//개인이 작성한 후기 목록
+	@Override
+	public List<Brag> getMyReviewList(String id) {
+		Member mem = memberRepo.findById(id).get();
+		System.out.println("세션 잘 넘어왔는지 "+id);
+		List<Brag> brag =  bragRepo.findByMember(mem);
+		return brag;
+	}
+	
+	@Autowired
+	private TipRepository tipRepo;
+
+	//개인이 작성한 팁 목록
+	@Override
+	public List<Tip> getMyTip(String id) {
+		Member mem = memberRepo.findById(id).get();
+		System.out.println("세션 잘 넘어왔는지 "+id);
+		List<Tip> tip =  tipRepo.findByMember(mem);
+		return tip;
 	}
 }
