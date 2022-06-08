@@ -194,7 +194,7 @@ $(function(){
 		for(let result of resultList){
 			// divSample(검색결과를 담을 모양)을 다시 복사
 			const div = divSample.clone();
-			
+			console.log(result)
 			// 데이터 넣을 위치
 			const title = div.find('.title');
 			const mainImg = div.find('#thumbnailImage'); // 대표 이미지

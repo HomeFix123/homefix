@@ -31,23 +31,27 @@ public class BragController {
 	@Autowired
 	private BragService bragService;
 	
+	// 인테리어 자랑 작성 페이지
 	@GetMapping("/write")
 	public String insertBrag(Model m, HttpSession session) {
 		String id = (String) session.getAttribute("memberId");
+		
+		// 계약완료 업체리스트
 		Set<Company> list = bragService.getContractList(id);
 		m.addAttribute("contract", list);
 		return "brag/BragWrite";
 	}
 	
+	// 인테리어 자랑 작성
 	@PostMapping("/write")
 	public String saveBrag(Brag brag, String cid, HttpSession session) {
-		System.out.println(cid);
 		String id = (String) session.getAttribute("memberId");
 		bragService.saveBrag(brag, cid, id);
 		logger.info("입력성공");
 		return "redirect:/brag";
 	}
 	
+	// 인테리어 자랑 리스트 
 	@GetMapping
 	public String getBragList(Model m, HttpSession session, String sort, String loc, 
 			String family, String hometype){
