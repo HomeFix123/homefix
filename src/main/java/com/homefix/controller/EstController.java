@@ -1,10 +1,5 @@
 package com.homefix.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -18,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.homefix.domain.Chatting;
+import com.homefix.domain.Contract;
 import com.homefix.domain.Estimation;
-import com.homefix.persistence.EstRepository;
-import com.homefix.persistence.Esti_requestRepository;
 import com.homefix.service.EstService;
 
 @Controller
@@ -39,8 +33,11 @@ public class EstController {
 	
 	//고객이 직접 회사 골라서 신청한 회사별 견정신청서 리스트 불러오기
 	@GetMapping("/Chosen")
-	public String queryAnno(Model m,String cid) {
-		m.addAttribute("Lists",estService.getCEst(cid));
+	public String queryAnno(Model m,Integer page,HttpSession session) {
+		String cid = (String)session.getAttribute("userId");
+		if(page==null) page=1;
+		m.addAttribute("Lists",estService.getCEst(cid , page));
+		m.addAttribute("cntCEst",estService.countCEst(cid));
 		return "estimation/Chosen";
 	}
 	
@@ -54,9 +51,15 @@ public class EstController {
 	
 	//고객 본인이 보낸 견적리스트
 	@GetMapping("/MyEstimate")
-	public String mEstimation(String id,Model m) {
+	public String mEstimation(Model m,Integer page,HttpSession session) {
+		String id = (String)session.getAttribute("memberId");
+		System.out.println(page);
 		System.out.println("넘어온 아이디는"+id);
-		m.addAttribute("Lists",estService.getMEstimation(id));
+		if(page==null) page=1;
+		System.out.println(estService.countMEList(id));
+		
+		m.addAttribute("Lists",estService.getMEstimation(id,page));
+		m.addAttribute("cntMELst",estService.countMEList(id));
 		return "estimation/MyEstimate";
 	}
 	
@@ -80,6 +83,7 @@ public class EstController {
 	@GetMapping("/estimationtest")
 	public void estimationtest() {}
 	
+	//---------------------------------<ajax>--------------------------------------
 	//ajax로 session에 값 저장하고 출력하는거 테스트 후에 지우기!!!!!!!!!!!!!!!!!
 	@RequestMapping("/sessiontest")
 	@ResponseBody
@@ -147,4 +151,23 @@ public class EstController {
 		
 		return estService.getEstiReq(eid, cid);
 	}
+	
+	//고객 견적 상세보기에서 회사 확정하기 누르면 contract db에 저장
+	@RequestMapping("/saveContract")
+	@ResponseBody
+	public void saveContract(Integer eid,String cid) {
+		//System.out.println(eid + "와" + cid);
+		estService.saveContract(eid, cid);
+	}
+	
+	/* contract db에 견적 id가 존재하다면 버튼 변경 */
+	@RequestMapping("/checkContract")
+	@ResponseBody
+	public Contract checkContract(Integer eid) {
+		System.out.println("checkContract 실행"+eid);
+		Contract contract = estService.checkContract(eid);
+		//System.out.println(contract);
+		return contract;
+	}
+	
 }

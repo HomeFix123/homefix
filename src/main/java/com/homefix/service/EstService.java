@@ -12,9 +12,16 @@ public interface EstService {
 	//견적 상세목록 불러오기
 	public Estimation getEstDetail(String id);
 	
-	public List<Estimation> getCEst(String id);
+	public List<Estimation> getCEst(String id,Integer page);
 	
-	public List<Estimation> getMEstimation(String id);
+	//페이징
+	public long countCEst(String id);
+	
+	
+	public List<Estimation> getMEstimation(String id,Integer page);
+	
+	//페이징
+	public long countMEList(String id);
 	
 	//내(고객) 견적 리스트 상세보기
 	public Estimation getMEDetail(Integer id);
@@ -36,4 +43,10 @@ public interface EstService {
 	
 	//(회사) 확정요청하기/확정요청완료/확정요청불가 유무
 	public String getEstiReq(Integer eid,String cid);
+	
+	//(고객) 내 견적 상세보기에서 확정버튼 클릭하면 contract db에 값 저장
+	public void saveContract(Integer eid,String cid);
+
+	public Contract checkContract(Integer eid);
+	
 }
