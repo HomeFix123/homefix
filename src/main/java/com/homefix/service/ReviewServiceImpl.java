@@ -81,11 +81,11 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public void deleteReview(Integer rid, String cid) {
+	public void deleteReview(Review rev, String cid) {
 		
 		Company company = companyRepo.findById(cid).get();
 		
-		Review review = reviewRepo.findByRidAndCompany(rid, company);
+		Review review = reviewRepo.findByRidAndCompany(rev.getRid(), company);
 		
 		reviewRepo.delete(review);
 	}

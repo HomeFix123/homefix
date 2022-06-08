@@ -10,7 +10,7 @@ import com.homefix.domain.Member;
 
 public interface BragService {
 	
-	// 인테리어 자랑(후기) 작성하기
+	// 인테리어 자랑 작성하기
 	public void saveBrag(Brag brag, String id, String cid);
 	
 	// 인테리어 자랑 리스트

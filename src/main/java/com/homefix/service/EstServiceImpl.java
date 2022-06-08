@@ -47,10 +47,23 @@ public class EstServiceImpl implements EstService {
 	}
 
 	@Override
-	public List<Estimation> getCEst(String cid) {
+	public List<Estimation> getCEst(String cid, Integer page) {
+		int showCntPerPage = 10;
+		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
+		
 		Company com = companyRepo.findById(cid).get();
-		return estRepo.findByCompany(com);
+		return estRepo.findByCompany(com,pageable);
 	}
+	
+	//페이징 
+	@Override
+	public long countCEst(String cid) {
+		Company company = companyRepo.findById(cid).get();
+		int showCntPerPage = 10;
+		return (long)(estRepo.countByCompany(company)-1)/showCntPerPage + 1;
+	}
+	
+	
 
 	
 	@Override
@@ -70,9 +83,28 @@ public class EstServiceImpl implements EstService {
 	
 	
 	@Override
-	public List<Estimation> getMEstimation(String id) {
+	public List<Estimation> getMEstimation(String id,Integer page) {
+		int showCntPerPage = 10;
+		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
+		
 		Member member = memberRepo.findById(id).get();
-		return estRepo.findByMember(member);
+		System.out.println("resultData는"+ estRepo.findByMember(member));
+		List<Estimation> resultList = estRepo.findByMember(member,pageable);
+		for(Estimation result: resultList) {
+			Contract contract =contractRepo.findByEstimation(result);
+			if(contract != null) {
+				result.setIng(contract.getIng());
+			}
+		}
+		return resultList;
+	}
+	
+	//페이징
+	@Override
+	public long countMEList(String id) {
+		Member member = memberRepo.findById(id).get();
+		int showCntPerPage = 10;
+		return (long)(estRepo.countByMember(member)-1)/showCntPerPage + 1;
 	}
 
 	//내(고객) 견적 리스트 상세보기
@@ -142,8 +174,51 @@ public class EstServiceImpl implements EstService {
 		return newChat;
 		
 	}
-	
-	
 
-	
+	//(회사) 확정요청하기/확정요청완료/확정요청불가 유무
+	@Override
+	public String getEstiReq(Integer eid, String cid) {
+		//cid = "1";
+		//cid = "1426";
+		//cid = "905";
+		//eid=38;
+		Estimation estimation = estRepo.findById(eid).get();
+		Company company  = companyRepo.findById(cid).get();
+		Esti_request estiReq = esti_reqRepo.findByEstimationAndCompany(estimation, company);
+		List<Esti_request> estiReqEid = esti_reqRepo.findByEstimation(estimation);
+		Contract contract = contractRepo.findByEstimation(estimation);
+		//계약테이블에 견적id eid있으면 확정요청불가 버튼
+		if(contract != null) {
+			System.out.println("계약테이블에서 이미 진행중임");
+			return "확정요청불가";
+			
+		//계약테이블에 eid 없고 견적요청 테이블에 cid와 eid 둘다 있을경우 확정요청완료
+		}else if(estiReq != null) {
+			System.out.println("!!!!견적 요청 테이블에 데이터 있음");
+			return "확정요청완료";
+			
+		//계약테이블에 eid 없고 견적요청 테이블에 eid만 있을경우 등등등 확정요청하기
+		}else {
+			System.out.println("확정요청하기 가능");
+			return "확정요청하기";
+		}
+	}
+
+	//(고객) 내 견적 상세보기에서 확정버튼 클릭하면 contract db에 값 저장
+	@Override
+	public void saveContract(Integer eid, String cid) {
+		Estimation esti = estRepo.findById(eid).get();
+		Company company = companyRepo.findById(cid).get();
+		Contract contract = new Contract();
+		contract.setEstimation(esti);
+		contract.setCompany(company);
+		contractRepo.save(contract);
+	}
+
+	@Override
+	public Contract checkContract(Integer eid) {
+		Estimation esti = estRepo.findById(eid).get();
+		return contractRepo.findByEstimation(esti);
+	}
+
 }

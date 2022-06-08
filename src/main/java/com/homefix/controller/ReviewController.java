@@ -70,10 +70,9 @@ public class ReviewController {
 	}
 	
 	@DeleteMapping("/{rid}")
-	public String deleteReview(@PathVariable Integer rid, HttpSession session) {
-		
-		String cid = (String) session.getAttribute("userId");
-		reviewService.deleteReview(rid, cid);
+	public String deleteReview(Review rev) {
+		String cid = "1004";
+		reviewService.deleteReview(rev, cid);
 		return "redirect:/review";
 	}
 	

@@ -48,6 +48,7 @@ public class CompanyPageController {
 		//////// 시공 중인 글목록보기- vo Contract /progress
 		// model.addAttribute("IngList",estService.getCIngList((String)
 
+
 		Company com = new Company();
 		com.setId((String) session.getAttribute("userId"));
 		if (page == null) {

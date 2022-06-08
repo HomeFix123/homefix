@@ -2,6 +2,8 @@ package com.homefix.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,10 +64,12 @@ public class EstController2 {
 	
 	/* 견적희망서(상세) 페이지 */
 	@GetMapping("/details")
-	public String estDetails(String id, Model m) {
+	public String estDetails(Integer id, Model m,HttpSession session) {
 		m.addAttribute("Details", estService2.getEstDetails(id));
 		return "estimation2/estimation-details";
 	}
+	
+	// 전체견적 상세보기에서 확정하기 클릭 시 esti_request 테이블에 값 저장해야 함
 	
 	
 	
