@@ -56,8 +56,8 @@
                     <div class="carousel-item-content section-before"  style="background-image: url(images/banner/48.jpg);">
                         <div class="container">
                             <div class="hero-text">
-                                <h1 data-animation="animated fadeInDown"><span>Modern</span> Interior</h1>
-                                <p data-animation="animated fadeInDown">모던함을 추구하는 당신. 이런 인테리어 어떤가요 ?</p>               
+                                <h1 data-animation="animated fadeInDown"><span>Natural</span> Interior</h1>
+                                <p data-animation="animated fadeInDown">자연을 추구하는 당신. 이런 인테리어 어떤가요 ?</p>               
                             </div><!-- /.hero-text -->
                         </div><!-- /.container -->                        
                     </div><!-- /.carousel-item-content -->
@@ -147,7 +147,13 @@
                             </div>
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a th:if="${session.userId == null}" th:href="@{/sign/member/profile}">
+                                	<a th:if="${session.memberId == null && session.userId == null}" th:href="@{/sign}">
+                                        <span class="icon">
+                                            <i class="fas fa-user-alt"></i>
+                                        </span>
+                                        <span>마이페이지</span>
+                                    </a>
+                                    <a th:if="${session.memberId != null}" th:href="@{/sign/member/profile}">
                                         <span class="icon">
                                             <i class="fas fa-user-alt"></i>
                                         </span>
