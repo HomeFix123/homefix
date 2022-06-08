@@ -74,9 +74,13 @@ public class BragServiceImpl implements BragService {
 		brag.setBcnt(0);
 		brag.setMember(memberRepo.findById(id).get());
 		brag.setCompany(companyRepo.findById(cid).get());
+		if(brag.getExtrainfo() == null && brag.getExtrainfo() == "") {
+			brag.setExtrainfo("추가사항 없음");
+		}
+		
 		brag.setBdate(new Date());
 
-		System.out.println(brag);
+
 		bragRepo.save(brag);
 
 	}
@@ -172,7 +176,8 @@ public class BragServiceImpl implements BragService {
 			return null;
 		}
 	}
-
+	
+	// 인테리어 자랑 상
 	@Override
 	public Brag getBrag(Brag brag, String id) {
 
@@ -195,13 +200,15 @@ public class BragServiceImpl implements BragService {
 
 	}
 
+	// 인테리어 자랑 삭제
 	@Override
 	public void deleteBrag(Brag brag, String id) {
 		Brag result = bragRepo.findByBid(brag.getBid());
 		result.setMember(memberRepo.findById(id).get());
-		bragRepo.delete(bragRepo.findByBidAndMember(result.getBid(), result.getMember()));
+		bragRepo.delete(result);
 	}
-
+	
+	// 좋아요 입력
 	@Override
 	public void savePrefer(Brag brag, String id) {
 
@@ -212,7 +219,8 @@ public class BragServiceImpl implements BragService {
 		preferRepo.save(result);
 
 	}
-
+	
+	// 좋아요 취소
 	@Override
 	public void deletePrefer(Brag brag, String id) {
 		Prefer result = new Prefer();
@@ -220,7 +228,8 @@ public class BragServiceImpl implements BragService {
 		result.setMember(memberRepo.findById(id).get());
 		preferRepo.deleteAll(preferRepo.findByBragAndMember(brag, result.getMember()));
 	}
-
+	
+	// 신고하기
 	@Override
 	public String saveReport(Member id, String reporter, String reason) {
 		Member repo = memberRepo.findById(reporter).get();
@@ -239,7 +248,8 @@ public class BragServiceImpl implements BragService {
 
 		}
 	}
-
+	
+	// 계약완료 업체 리스트
 	@Override
 	public Set<Company> getContractList(String id) {
 		Member mem = memberRepo.findById(id).get();

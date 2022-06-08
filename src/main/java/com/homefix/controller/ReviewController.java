@@ -70,7 +70,6 @@ public class ReviewController {
 	
 	@DeleteMapping("/{rid}")
 	public String deleteReview(Review rev) {
-		System.out.println(rev.getRid());
 		String cid = "1004";
 		reviewService.deleteReview(rev, cid);
 		return "redirect:/review";

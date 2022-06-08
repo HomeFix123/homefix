@@ -56,7 +56,7 @@
 			<h1>인테리어 자랑</h1>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-				<li class="breadcrumb-item"><a href="brag">Brag</a></li>
+				<li class="breadcrumb-item"><a href="/brag">Brag</a></li>
 			</ol>
 		</div>
 		<!-- /.container -->
@@ -190,7 +190,8 @@
 						</ul>
 					</div>
 					<div class="view-all align-self-center">
-						<a th:href="@{brag/write}" class="btn btn-primary">자랑하기</a>
+						<a th:if="${session.memberId != null}" th:href="@{brag/write}" class="btn btn-primary">자랑하기</a>
+						<a th:if="${session.memberId == null}" th:href="@{/sign}" class="btn btn-primary">자랑하기</a>
 					</div>
 				</div>
 				<div class="mb-5">
@@ -226,9 +227,11 @@
 										<h2 class="title text-center">
 											<a id="linkTitle" th:href="@{brag/{bid}(bid=${list.id})}"  th:text="${list.title}"></a>
 										</h2>
+										<p class="text-right">
 										<img class="user-img" th:if="${list.profileimg == null}" src="http://140.238.11.118:5000/upload/profile_basic.png">
 										<img class="user-img" th:if="${list.profileimg != null}" th:src="|http://140.238.11.118:5000/upload/${list.profileimg}|">
-										<p class="nickname text-right" th:text="${list.member.nickname}"></p>
+										<a class="nickname" th:text="${list.member.nickname}"></a>
+										</p>
 									</div>
 									<div class="sa-meta">
 										<ul class="global-list">
