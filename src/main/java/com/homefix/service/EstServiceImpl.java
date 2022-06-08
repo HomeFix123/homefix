@@ -47,9 +47,9 @@ public class EstServiceImpl implements EstService {
 	}
 
 	@Override
-	public List<Estimation> getCEst(String cid, Integer page) {
+	public List<Estimation> getCEsts(String cid, Integer page) {
 		int showCntPerPage = 10;
-		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
+	 	Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
 		
 		Company com = companyRepo.findById(cid).get();
 		return estRepo.findByCompany(com,pageable);

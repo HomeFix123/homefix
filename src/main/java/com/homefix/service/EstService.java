@@ -13,6 +13,7 @@ public interface EstService {
 	public Estimation getEstDetail(String id);
 
 	public List<Estimation> getCEst(String id,Integer page);
+	public List<Estimation> getCEsts(String id,Integer page);
 
 	//페이징
 	public long countCEst(String id);

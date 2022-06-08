@@ -55,7 +55,7 @@ public class CompanyPageController {
 			page = 1;
 		}
 		//////// 견적 신청 중인 글목록보기- vo Estimation / chosen
-		model.addAttribute("RegistList", estService.getCEst((String) session.getAttribute("userId"), page));
+		model.addAttribute("RegistList", estService.getCEsts((String) session.getAttribute("userId"), page));
 		// 사업체가 직접 쓴 후기 보기
 		model.addAttribute("Review", companyService.getCompanyReview(com, page));
 

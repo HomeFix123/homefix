@@ -18,7 +18,6 @@ CRUD 기능을 처리하는 인터페이스로 기존의 DAO 역할로 DB 처리
 public interface EstRepository extends CrudRepository<Estimation, Integer>{
 	
 	public List<Estimation> findByCompany(Company company);
-	public List<Estimation> findByCompany(Company company, Pageable pageable);
 	
 	//페이징 오버로딩
 	public List<Estimation> findByCompany(Company company,Pageable pageable);
