@@ -17,6 +17,8 @@ public interface TipPreferRepository extends CrudRepository<Tip_prefer, Integer>
 	List<Tip_prefer> findByTipAndMember(Tip tip, Member member); //좋아요 한것을 가져옴
 
 	void deleteByTipAndMember(Tip tip, Member member);
+
+	
 	
 	
 
