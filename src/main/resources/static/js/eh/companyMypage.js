@@ -1,5 +1,4 @@
-/*companyprofile*/
-
+//companyprofile 회원정보수정-----------------------------------------
 $(function() {
 	$('#postBtn').click(function() {
 		$('#sample6_postcode').val('')
@@ -31,8 +30,6 @@ $(function() {
 	var RegexCompanyNum = /^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})$/;
 
 	//이메일 중복 버튼 클릭 이벤트
-
-
 	var emailCheak = false;
 	$('#bs_btn_emailCheak').click(function() {
 		// 이메일 중복검사 확인 여부
@@ -82,8 +79,9 @@ $(function() {
 			}
 		}); //end of ajax
 	}); // end of $('#btn_emailCheak').click
-	/************************************************************************************ **/
-	//회원정보수정 --이미지 변경
+
+
+	//이미지 변경
 	const form = $('#companyModify');
 	const img = $('#cinfo_img');
 	// form submit버튼 누른 후 동작
@@ -102,15 +100,12 @@ $(function() {
 				img.val(imgName);
 			}
 		}
-
-
 		form.submit()
 	})
 
 	// uuid 생성
 	function uuid(file_nm) {
 		const s4 = () => ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1)
-
 		return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length - 1).toLowerCase();
 	}
 
@@ -127,34 +122,27 @@ $(function() {
 		}).done(() => {
 			answer = true;
 		}).fail(() => {
-
 		})
-
 		return answer;
 	}
 
 
 
-	/**
-				* 섬네일 이미지 미리보기
-				*/
+	//섬네일 이미지 미리보기
 	function readImage(input) {
 		if (input.files && input.files[0]) {
 			const reader = new FileReader();
-
 			reader.onload = (e) => {
 				const previewImage = document.getElementById('previewImage');
 				previewImage.src = e.target.result;
 			}
 			reader.readAsDataURL(input.files[0]);
-
-
 		}
 	}
+
 	// 이벤트 리스너
 	document.getElementById('inputImage').addEventListener('change', (e) => {
 		readImage(e.target);
-
 	})
 
 
@@ -165,7 +153,6 @@ $(function() {
 		var memberNickname = $.trim($("#nicname").val());
 		var memberPassword = $.trim($("#password").val());
 		var passwordCheck = $.trim($("#two_password").val());
-
 		var memberTel = $.trim($("#first-name1").val());
 		var memberEmail = $.trim($("#bs_memberEmail").val());
 		var zip = $.trim($("#sample6_postcode").val());
@@ -183,7 +170,6 @@ $(function() {
 		}
 
 		if (!RegexCompany.test(memberNickname)) {
-
 			$('label[for="nicname"] .error_box').html("닉네임 형식이 올바르지 않습니다.");
 			return false;
 		} else {
@@ -202,7 +188,6 @@ $(function() {
 		}
 
 		if (!RegexPW.test(memberPassword)) {
-
 			$('label[for="password"] .error_box').html("8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합하여 만들어 주십시오.");
 			$('label[for="password"] .error_box').css('color', '#dc3545');
 			return false;
@@ -227,13 +212,6 @@ $(function() {
 			$('#two_password').focus();
 			return false;
 		}
-
-
-
-		// end of if(비밀번호 입력 여부)
-
-
-
 
 		/* 이름 */
 		/*	if (memberName == '') {
@@ -269,19 +247,12 @@ $(function() {
 		} else {
 			$('label[for="bs_memberEmail"] .error_box').html("");
 		}
-
-
 		if (emailCheak == false) {
 			$('label[for="bs_memberEmail"] .error_box').html("이메일 중복검사를 하지 않았습니다.");
 			$('label[for="bs_memberEmail"] .error_box').css('color', '#dc3545');
 
 			return false
 		};
-
-
-
-
-
 
 		/* 전화번호 */
 		if (memberTel == '') {
@@ -291,7 +262,6 @@ $(function() {
 		} else {
 			$('label[for="first-name1"] .error_box').html("");
 		}
-
 		if (!RegexTel.test(memberTel)) {
 
 			$('label[for="first-name1"] .error_box').html("전화번호 형식이 올바르지 않습니다. ex)010-000~0-000~0");
@@ -299,24 +269,19 @@ $(function() {
 		} else {
 			$('label[for="first-name1"] .error_box').html("");
 		}
-
-
 		alert("회원 정보 수정이 완료되었습니다.");
 	}) //end of #btnMemberUpdate
 
 
 
-	/*************************************회원탈퇴***************************************/
-
+	//회원탈퇴------------------------------------------------------------------------
 
 	$('#Withdrawal').click(function() {
 		var result = confirm("정말 탈퇴하시겠습니까?");
 		if (result) {
 			const id = $('#companyId').text();
 			const pass = $('#password').val();
-
 			if (pass != "") {
-
 				$.ajax({
 					url: "/sign/Withdrawal",
 					data: { pass: $('#password').val() },
@@ -331,50 +296,61 @@ $(function() {
 						} else {
 							alert("비밀번호가 틀립니다.")
 						}
-
 					},
 					error: function(err) {
 						console.log(err);
 					}
 				});
-
-
 			} else {
 				alert("비밀번호를 입력하세요.");
 			}
-
 		}
-
 	})
 
 
 
-	//----------------------------------------------------------------
-	/*companyprofile*/
-
-	//let page = 1;  // 초기 페이지
-	//let data = {}; 
-	//const listDiv = $('#paymentInfo'); 
-	//const divSample = $('.paymentInfoTR')
-
+	//결제내역 더보기----------------------------------------------------------------
 	/*더보기로 페이징 처리
 	1. 처음 페이지 접근 시 1페이지 정보를 가져온다
 	2. 버튼을 누르면 ajax 2페이지 정보를 가져온다
 	3. 2페이지 정보를 1페이지 정보 밑에 추가한다*/
 
-	/*$('#moreBtn').click(function(){
-		console.log(divSample)
-	})*/
-
-
-
-
-	/*내가 쓴 글 더보기 버튼-------------------------------------------------------------------------*/
-	let page = 1;
-	$('#moreBtnReview').click(function() {
-		page += 1;
+	var pageA = 1;  // 초기 페이지
+	$('#moreBtn').click(function(){
+		pageA += 1;
 		$.ajax({
-			data: { "page": page },
+			data: { "page": pageA },
+			type: "GET",
+			url: "/company/myPaymentInfo",
+			async: false,
+			contentType: 'application/x-www-form-urlencoded;charset=utf-8'
+		}).done((Result) => {
+			$.each(Result, function(i, payment) { //Result 리스트에 들어있는 payment객체로 each문 돌림.
+				let AddContent = '<tr><td>'+payment.pid+'</td><td>'+payment.method+'</td><td >'+payment.amount+'</td><td>'+payment.pday
+				+'</td><td >'+payment.plast+'</td></tr >';
+				$('#paymentInfoAdd').append(AddContent);
+			})
+
+			if (Result.length < 6) {  //리스트 길이가 6보다 작으면 버튼 삭제
+				$('#moreBtn').remove();
+			}
+
+		}).fail((err) => {
+			// 실패했을 때
+			console.log(err);
+		});
+		
+	})
+
+
+
+
+	//내가가 쓴 글(업체후기) 더보기 -------------------------------------------------------------------------*/
+	var pageB = 1;
+	$('#moreBtnReview').click(function() {
+		pageB += 1;
+		$.ajax({
+			data: { "page": pageB },
 			type: "GET",
 			url: "/company/myRiew",
 			async: false,
@@ -401,27 +377,23 @@ $(function() {
 		});
 	})
 
-//견적테이블 더보기 moreBtnEstimation
-
-	let pagee = 1;
+	//신청한견적 더보기------------------------------------------------------------------- 
+	var pageC = 1;
 	$('#moreBtnEstimation').click(function() {
-		pagee += 1;
+		pageC += 1;
 		$.ajax({
-			data: { "page": page },
+			data: { "page": pageC },
 			type: "GET",
-			url: "/company/myRiew",
+			url: "/company/registEst",
 			async: false,
 			contentType: 'application/x-www-form-urlencoded;charset=utf-8'
 		}).done((Result) => {
-			$.each(Result, function(i, review) { //Result 리스트에 들어있는 review객체로 each문 돌림.
-				let AddContent = '<div  class="col-12 col-md-6 col-lg-4  ">' + '<div class="sa-post">' + '<div class="entry-header">' + '<div class="entry-thumbnail">' + '<a href="/review">'
-					+ '<img src="http://140.238.11.118:5000/upload/' + review.rimgadr + '"alt="Image" class="img-fluid" id="thumbnailImage">'
-					+ '</a>' + '</div>' + '</div>' + '<div class="course-info">' + '<div class="info">' + '<h2 class="title text-center">'
-					+ '<a >' + review.rtitle + '</a>' + '</h2>' + '<p class="text-right">' + review.company.name + '</p>'
-					+ '</div >' + '<div class="sa-meta">' + '<ul class="global-list">' + '<li>' + '<a href="#">' + ' <span>' + '<i class="fas fa-heart">' + '</i>'
-					+ '</span>' + '</a>' + '</li>' + '<li>' + '<a href="#">' + ' <i class="far fa-eye">' + '</i>' + '<span>' + review.rcnt + '</span>'
-					+ '</a>' + '</li>' + '</ul>' + '</div >' + '</div >' + '</div >' + '</div >';
-				$('#myReviswList').append(AddContent);
+			$.each(Result, function(i, estimation) { //Result 리스트에 들어있는 estimation객체로 each문 돌림.
+				let AddContent = '<tr > <td> <a class="estNum" href="/estimation/ChosenDetail(id='+estimation.eid+'"> <span>'+estimation.eid+
+				'</span> </a> </td> <td> <span>'+estimation.eaddr +'</span> </td> <td> <span>'+estimation.startDay+
+				'</span> </td> <td> <span>'+estimation.member.id+'</span></td></tr>';
+				
+				$('#registEstTbody').append(AddContent);
 			})
 
 			if (Result.length < 6) {  //리스트 길이가 6보다 작으면 버튼 삭제

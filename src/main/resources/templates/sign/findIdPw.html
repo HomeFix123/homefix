@@ -8,7 +8,7 @@
 <meta name="author" content="">
 <meta name="description" content="">
 
-<title>Educam | Education & Courses HTML Template.</title>
+<title>비밀번호 찾기</title>
 
 <!-- CSS -->
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -77,10 +77,11 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 <!-- Template Developed By ChtStudio -->
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
 </head>
 <body>
 	<div id="preloader">
-		<img src="images/preloader.gif" alt="Image"
+		<img th:src="@{/images/preloader.gif}" alt="Image"
 			class="tr-preloader img-fluid">
 	</div>
 	
@@ -148,7 +149,7 @@
 												</div>
 												<button class="btn btn-primary" type="button" id="findpw" >비밀번호 찾기</button>
 												<div class="middle-content">
-													<a class='btn btn-primary' th:href='@{/sign/sign-agree-b}'>회원가입</a>
+													<a class='btn btn-primary' th:href='@{/sign/member/sign_member}'>회원가입</a>
 												</div>
 											</form>
 											<!-- /.contact-form -->

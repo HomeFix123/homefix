@@ -8,7 +8,7 @@
 <meta name="author" content="">
 <meta name="description" content="">
 
-<title>Educam | Education & Courses HTML Template.</title>
+<title>로그인</title>
 
 <!-- CSS -->
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -46,10 +46,13 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 <!-- Template Developed By ChtStudio -->
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+<link rel="stylesheet" th:href="@{/css/nav.css}">
+
 </head>
 <body>
 	<div id="preloader">
-		<img src="images/preloader.gif" alt="Image"
+		<img th:src="@{/images/preloader.gif}" alt="Image"
 			class="tr-preloader img-fluid">
 	</div>
 	
@@ -99,10 +102,10 @@
 												<button class="btn btn-primary" type="submit" id="memberLogin">로그인</button>
 												<div class="middle-content">
 													<a class='btn btn-primary' th:href='@{/sign/member/sign_member}'>회원가입</a>
-													<a id="id_find" href="#">아이디/비밀번호 찾기</a>
+													<a id="id_find" href="/sign/findIdPw">아이디/비밀번호 찾기</a>
 												</div>
 												<div class="buttons">
-													<a class="facebook" href="https://kauth.kakao.com/oauth/authorize?client_id=128117ab9eeaf50369ebf4054753d09e&redirect_uri=http://localhost:8000/kakao/kakao&response_type=code"><span> <i
+													<a class="facebook" href="https://kauth.kakao.com/oauth/authorize?client_id=b9782ddba62ada3a2b9e27f1892618a6&redirect_uri=http://localhost:8080/kakao/kakao&response_type=code"><span> <i
 															class="fa-solid fa-comment"></i></span>카카오로 로그인 하기</a>
 
 												</div>
@@ -120,7 +123,7 @@
 													<label>Password</label> <input type="password"
 														class="form-control" name="pass"
 														placeholder="비밀번호">
-														<input type="checkbox">아이디 저장하기</input>
+														<input type="checkbox">아이디 저장하기
 												</div>
 												
 												
@@ -156,7 +159,9 @@
 			<!-- /.section-content -->
 		</div>
 		<!-- /.sg-section -->
+		</div>
 
+		<div th:replace="/sections/nav :: div"></div>
 		<div th:replace="/sections/footer :: footer"></div>
 
 	<!-- JS -->
@@ -175,6 +180,12 @@
 	<script th:src="@{/js/jquery-ui-min.js}"></script>
 	<script th:src="@{/js/validate.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
+	
+	<script th:src="@{/js/sections/header.js}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    	<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+	
 	<!--font asome js-->
 	<script src="https://kit.fontawesome.com/2173f645ed.js"></script>
 	<!-- eunhye js -->

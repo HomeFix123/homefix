@@ -140,7 +140,9 @@
         <script th:src="@{/js/ye/ye.js}"></script>
         
         <script type="text/javascript">
-      	
+
+      	//기본 이벤트 비활성화
+		//e.preventDefault();
       	/* esti_request데이터베이스에 세션의 id와 견적 id가 존재하다면 버튼 css/확정요청완료 버튼 변경 */
         $.ajax({
 			type:'get',
