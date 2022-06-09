@@ -47,12 +47,26 @@ public class EstServiceImpl implements EstService {
 	}
 
 	@Override
-	public List<Estimation> getCEst(String cid, Integer page) {
+	public List<Estimation> getCEsts(String cid, Integer page) {
 		int showCntPerPage = 10;
-		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
+	 	Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
 		
 		Company com = companyRepo.findById(cid).get();
-		return estRepo.findByCompany(com,pageable);
+		List<Estimation> resultList = estRepo.findByCompany(com,pageable);
+		for(Estimation result : resultList) {
+			Contract contract =contractRepo.findByEstimation(result);
+			if(contract != null) {
+				result.setIng(contract.getIng());
+				continue;
+			}
+			
+			Esti_request estReq = esti_reqRepo.findByEstimationAndCompany(result, com);
+			if(estReq != null) {
+				result.setIng("요청중");
+			}
+			
+		}
+		return resultList;
 	}
 	
 	//페이징 
@@ -65,6 +79,23 @@ public class EstServiceImpl implements EstService {
 	
 	
 
+	
+	@Override
+	public List<Estimation> getCEst(String cid, Integer page) {
+		Company com = companyRepo.findById(cid).get();
+		
+		int showCntPerPage = 6; 
+		  
+		  Pageable pageable = (Pageable) PageRequest.of(page - 1, showCntPerPage,
+		  Sort.by("startDay"));
+		 
+		
+		return estRepo.findByCompany(com, pageable);
+	}
+
+	
+	
+	
 	@Override
 	public List<Estimation> getMEstimation(String id,Integer page) {
 		int showCntPerPage = 10;

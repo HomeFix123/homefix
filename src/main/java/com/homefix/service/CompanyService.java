@@ -43,7 +43,7 @@ public interface CompanyService {
 	public List<Brag> getInteriorBrag(Company com);
 	
 	//시공전문가(업체후기)
-	public List<Review> getCompanyReview(Company com);
+	public List<Review> getCompanyReview(Company com, int page);
 	// public Map<String, String> validateHandling(Errors errors);
  
 }
