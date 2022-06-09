@@ -14,4 +14,6 @@ public interface ContractRepository extends CrudRepository<Contract, Integer>{
 		List<Contract> findByCompany(Company company);
 		
 		Contract findByEstimation(Estimation estimation);
+		
+		Contract findByCompanyAndEstimation(Company company,Estimation estimation);
 }
