@@ -91,6 +91,9 @@
 				contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8',
 				success:function(){
 					console.log("세션삭제");
+					$('#memberId').val('');
+					$('#id').val('');
+					$('.sessioncheck').empty();
 				},
 				error : function(err) {
 					//실패했을 때

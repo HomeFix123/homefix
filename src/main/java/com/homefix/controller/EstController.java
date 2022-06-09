@@ -139,4 +139,12 @@ public class EstController {
 		System.out.println("넘어온 nickname 값은 "+nickname);
 		return estService.saveChatRoom(id, cid, nickname);
 	}
+	
+	//업체에게 온 견적 상세보기에서 esti_request db 값 확인 후 버튼 변경
+	@GetMapping("/getEstiReq")
+	@ResponseBody
+	public String getEstiReq(Integer eid,String cid) {
+		
+		return estService.getEstiReq(eid, cid);
+	}
 }

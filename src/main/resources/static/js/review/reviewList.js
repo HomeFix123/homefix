@@ -27,6 +27,11 @@ $(function(){
 	
 	const ulBtns = $('.ulBtns')
 	
+	// 검색 필터 제거 버튼
+	const hometypeRemoveBtn = $('#hometypeRemoveBtn')
+	const jobRemoveBtn = $('#jobRemoveBtn')
+	const familyRemoveBtn = $('#familyRemoveBtn')
+	
 	
 	// 버튼 선택시 이펙트
 	ulBtns.find('button').click(function(){
@@ -73,6 +78,18 @@ $(function(){
 		searchForm.submit()
 	})
 	
+	hometypeRemoveBtn.click(function(){
+		hiddenInputs.find('input[name=hometype]').remove();
+		searchForm.submit()
+	})
+	jobRemoveBtn.click(function(){
+		hiddenInputs.find('input[name=job]').remove();
+		searchForm.submit()
+	})
+	familyRemoveBtn.click(function(){
+		hiddenInputs.find('input[name=family]').remove();
+		searchForm.submit()
+	})
 })
 
 
@@ -88,8 +105,8 @@ $(function(){
 $(function(){
 	let page = 1; // 초기 페이지
 	let data = {}; // 검색할 데이터 (객체)
-	const listDiv = $('#companyListDiv'); // 검색결과를 추가할 곳
-	const divSample = $('.companyDiv:first-child()').clone(); // div 형태 복사
+	const listDiv = $('#reviewListDiv'); // 검색결과를 추가할 곳
+	const divSample = $('.reviewDiv:first-child()').clone(); // div 형태 복사
 	
 	const params = new URLSearchParams(location.search);
 	
@@ -130,11 +147,12 @@ $(function(){
 			const titleImg = div.find('.titleImg'); // 타이틀 이미지
 			const logo = div.find('.user-img'); // 로고 이미지
 			const companyName = div.find('.companyName'); // 업체명
-			const companySpecialList = div.find('.companySpecialList'); // 전문분야 (주거공간, 상업공간)
-			const prefer = div.find('.preferCnt'); // 좋아요수
-			const contract = div.find('.contractCnt'); // 계약건수
-			const bookmarkIcon = div.find('.bookmarkIcon'); // 북마크아이콘 처리
-			const link = div.find('.colink');
+			
+			const cnt = div.find('.cnt'); // 조회수
+			const link = div.find('.relink');
+			
+			const hometypeSpan = div.find('.htspan');
+			const sizeSpan = div.find('.sizespan');
 			
 			// 이미지 처리
 			if(result.img != null){
@@ -151,32 +169,12 @@ $(function(){
 			
 			// 단순한 데이터 처리 (업체명, 좋아요수, 계약건수)
 			companyName.text(result.name);
-			prefer.text(result.prefer);
+			cnt.text(result.cnt);
 			contract.text(result.contract);
-			link.attr('href', '/company/' + result.id)
+			link.attr('href', '/review/' + result.id)
 			// 전문분야 
-			// 데이터가 0개 ~ 2개
-			companySpecialList.empty(); // sample에 있는 전문분야 비우기
-			
-			for(let spe of result.special){
-				// 데이터 수만큼 a태그 추가
-				let tag = "<a class='companySpecial btn btn-secondary m-1'>"
-				tag += spe
-				tag += "</a>"
-				companySpecialList.append(tag);	
-			}
-			
-			// 북마크 아이콘
-			// 좋아요 여부(북마크 여부)에 따라 다른 아이콘 추가
-			bookmarkIcon.empty(); // 기존 아이콘 제거
-			
-			if(result.isPrefer){ // result.isPrefer(true: 북마크 해둠 / false: 북마크 안함)
-				let iconTag = "<i class='fas fa-bookmark'></i>"
-				bookmarkIcon.append(iconTag)	
-			}else {
-				let iconTag = "<i class='far fa-bookmark'></i>"
-				bookmarkIcon.append(iconTag)
-			}
+			hometypeSpan.text(result.hometype)
+			sizeSpan.text(result.size)
 			
 			// 만들어진 div를 검색결과리스트에 추가
 			listDiv.append(div)

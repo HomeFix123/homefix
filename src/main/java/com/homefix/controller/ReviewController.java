@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,9 +36,11 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/write")
-	public String saveReview(Review rev) {
-		
-		String cid = "1004";
+	public String saveReview(HttpSession session,Review rev) {
+		String cid = (String)session.getAttribute("userId");
+		if(cid == null) {
+			return "redirect:/index";
+		}
 		reviewService.saveReview(rev, cid);
 		logger.info("입력성공");
 		return "redirect:/review/write";
@@ -46,7 +49,6 @@ public class ReviewController {
 	@GetMapping
 	public String getReviewList(Model m, String hometype, String job, String family){
 		
-		
 		m.addAttribute("reviewList", reviewService.getReviewList(1, hometype, job, family));
 		return "review/ReviewList";
 	}
@@ -54,7 +56,6 @@ public class ReviewController {
 	@GetMapping("/page")
 	@ResponseBody
 	public String getReviewListPerPage(Model m, Integer page, String hometype, String job, String family){
-		
 		
 		m.addAttribute("reviewList", reviewService.getReviewList(page, hometype, job, family));
 		return "review/ReviewList";
@@ -69,10 +70,10 @@ public class ReviewController {
 	}
 	
 	@DeleteMapping("/{rid}")
-	public String deleteReview(Review rev) {
-		System.out.println(rev.getRid());
-		String cid = "1004";
-		reviewService.deleteReview(rev, cid);
+	public String deleteReview(@PathVariable Integer rid, HttpSession session) {
+		
+		String cid = (String) session.getAttribute("userId");
+		reviewService.deleteReview(rid, cid);
 		return "redirect:/review";
 	}
 	
