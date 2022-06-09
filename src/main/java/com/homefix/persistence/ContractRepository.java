@@ -19,5 +19,8 @@ public interface ContractRepository extends CrudRepository<Contract, Integer>{
 		
 		Contract findByEstimation(Estimation estimation);
 		
+		Contract findByCompanyAndEstimation(Company company,Estimation estimation);
+
 		Page<Contract> findByCompanyAndIng(Company company, String ing, Pageable pageable);
+
 }

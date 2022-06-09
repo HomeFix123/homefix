@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +33,10 @@ import com.homefix.mail.MailDto;
 import com.homefix.mail.SendEmailService;
 import com.homefix.persistence.MemberRepository;
 import com.homefix.service.BragService;
+import com.homefix.service.CompanyPreferService;
 import com.homefix.service.MemberService;
+import com.homefix.service.PreferService;
+import com.homefix.service.TipService;
 
 
 @Controller
@@ -52,6 +56,15 @@ public class MemberController {
 	
 	@Autowired
 	private BragService bragService;
+	
+	@Autowired
+	private TipService tipService;
+	
+	@Autowired
+	private PreferService loveServise;
+	
+	@Autowired
+	private CompanyPreferService comLoveService;
 	
 	
 	//로그인 페이지로 이동
@@ -167,7 +180,7 @@ public class MemberController {
 	@GetMapping(path ="/member/profile")
 	public void myPage(Model m, HttpSession session, Integer page) {
 		
-		if(page==null) page = 1;
+		if(page==null) page = 0;
 		Brag brag = new Brag();
 		
 			System.out.println("session L " + session.getAttribute("memberId"));
@@ -178,6 +191,8 @@ public class MemberController {
 		List<Member> list = memberService.myPageList(mem);
 		m.addAttribute("member",list);
 		m.addAttribute("session", session);
+		
+		
 		
 			System.out.println("session 2" + m.addAttribute("session", session));
 			System.out.println("세션 확인함 " + session.getAttribute("memberId"));
@@ -199,7 +214,72 @@ public class MemberController {
 		List<CompanyPrefer> loveCom = memberService.getMyLoveCompany(id);
 		m.addAttribute("loveCom", loveCom);
 		
+		
+		//페이징(Brag)
+		for(Brag b : bragService.getBragList(id,page).getContent()) {
+			System.out.println(b.getBtitle()+"후기의 제목");
+		}
+		
+		m.addAttribute("getBragList",bragService.getBragList(id,page).getContent());
+		m.addAttribute("cntBrag",bragService.countBragList(id));
+		
+		//페이징(Member Tip)
+		for(Tip t : tipService.getTipList(id,page).getContent()) {
+			System.out.println(t.getTiptitle()+"  팁 글 제목");
+		}
+		m.addAttribute("getTipList",tipService.getTipList(id,page).getContent());
+		m.addAttribute("cntTip",tipService.countTipList(id));
+		
+		//페이징(Member Prefer)
+		for(Prefer p : loveServise.getLoveList(id,page).getContent()) {
+			System.out.println(p.getBrag().getBtitle()+"  좋아요찍은 글 제목");
+		}
+		m.addAttribute("getLoveList",loveServise.getLoveList(id,page).getContent());
+		m.addAttribute("cntLove",loveServise.countLoveList(id));
+		
+		//페이징(Member LoveCompany)
+		for(CompanyPrefer c : comLoveService.getLoveComList(id,page).getContent()) {
+			System.out.println(c.getCompany().getName()+"  좋아요찍은 글 제목");
+		}
+		m.addAttribute("getLoveComList",comLoveService.getLoveComList(id,page).getContent());
+		m.addAttribute("cntLoveCom",comLoveService.countLoveComList(id));
+		
 	}
+	
+	//페이징 Brag
+	@GetMapping(path ="/member/myPageing")
+	@ResponseBody
+	public Page<Brag> myPageing(HttpSession session, Integer page) {
+		String id = (String)session.getAttribute("memberId");
+		return bragService.getBragList(id,page);
+		//return null;
+	}
+	
+	//페이징 Tip
+	@GetMapping(path ="/member/myTipPageing")
+	@ResponseBody
+	public Page<Tip> myTipPageing(HttpSession session, Integer page) {
+		String id = (String)session.getAttribute("memberId");
+		return tipService.getTipList(id,page);
+	}
+	
+	//페이징 Prefer
+	@GetMapping(path ="/member/myLovePageing")
+	@ResponseBody
+	public Page<Prefer> myLovePageing(HttpSession session, Integer page) {
+		String id = (String)session.getAttribute("memberId");
+		return loveServise.getLoveList(id,page);
+	}
+	
+	//페이징 CompanyPrefer
+	@GetMapping(path ="/member/myLoveComPageing")
+	@ResponseBody
+	public Page<CompanyPrefer> myLoveComPageing(HttpSession session, Integer page) {
+		String id = (String)session.getAttribute("memberId");
+		return comLoveService.getLoveComList(id,page);
+	}
+	
+	
 	
 	// 글 수정
 	@PutMapping(value="/member/updateMember")

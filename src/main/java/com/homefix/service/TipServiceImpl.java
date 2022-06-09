@@ -3,11 +3,14 @@ package com.homefix.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.homefix.domain.Brag;
+import com.homefix.domain.Member;
 import com.homefix.domain.Tip;
 import com.homefix.domain.Tip_prefer;
 import com.homefix.persistence.MemberRepository;
@@ -85,6 +88,24 @@ public class TipServiceImpl implements TipService {
 		tipPreferRepo.deleteAll(tipPreferRepo.findByTipAndMember(tip, result.getMember()));
 		System.out.println("좋아요 취소 결과는" + result);
 
+	}
+	
+	//개인 마이페이지 ----------------------------------------------------------------------------
+	//고객이 쓴 팁 글 페이징
+	@Override
+	public Page<Tip> getTipList(String id,Integer page) {
+		int showCntPerPage = 3;	//한번에 보여줄 게시물의 수
+		Member mem = memberRepo.findById(id).get();
+		Pageable pageable = PageRequest.of(page, showCntPerPage,Sort.by("tid").descending());
+		return tipRepo.findByMember(mem,pageable);
+	}
+	
+	//개인 마이페이지 후기목록 페이징 (2)
+	@Override
+	public long countTipList(String id) {
+		int showCntPerPage = 10;
+		Member member = memberRepo.findById(id).get();
+		return (long)(tipRepo.countByMember(member)-1)/showCntPerPage + 1;
 	}
 
 }

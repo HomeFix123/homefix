@@ -2,6 +2,7 @@ package com.homefix.persistence;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
@@ -18,5 +19,12 @@ public interface TipRepository extends CrudRepository<Tip, Integer>{
 
 	
 	public Tip findByTid(Integer tid);
+
+	//이하 개인 마이페이지 팁 글 페이징 -------------------------------
+	public Page<Tip> findByMember(Member mem, Pageable pageable);
+
+
+	public int countByMember(Member member);
+	
 
 }

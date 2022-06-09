@@ -168,8 +168,7 @@ public class MemberServiceImpl implements MemberService {
 	//개인이 작성한 후기 목록 , int page
 	@Override
 	public List<Brag> getMyReviewList(String id) {
-//		int showCntPerPage = 3;	//한번에 보여줄 게시물의 수
-//		Pageable pageable = PageRequest.of(page-1, showCntPerPage,Sort.by("id").descending());
+		
 		Member mem = memberRepo.findById(id).get();
 		System.out.println("세션 잘 넘어왔는지 "+id);
 	
