@@ -471,11 +471,13 @@
 										th:each="a : ${CompanyInfo.specialty} "
 										th:text="' 시공지역:  ' + ${a.sp_cont}"> </span></li>
 								</ul>
+													
 							</div>
 						</div>
 
 						</aside>
 
+								<a th:href="@{/estimation/write/}+(${CompanyBasic.id})" id="estRegist" class="btn btn-primary">견적 신청하기</a>
 					</div>
 
 
