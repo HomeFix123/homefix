@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -39,8 +41,8 @@ public class Tip {
 	private Member member;	// 이용자 아이디(멤버테이블)
 	
 	// 댓글 연관 관계
-	@JoinColumn(name="tid")
-	@OneToMany
+	@OneToMany(mappedBy = "tip")
+	@JsonIgnore
 	private List<Comment> CommentList;
 	
 	// 좋아요 연관 관계

@@ -31,7 +31,7 @@ public class CommentServiceImpl implements CommentService {
 		
 	// 댓글 입력
 	@Override
-	public List<Comment> saveComment(String id,String content,Integer tid) {
+	public Comment saveComment(String id,String content,Integer tid) {
 		System.out.println("id!!!!!!!!!" + id);
 		Tip tip = tipRepo.findById(tid).get();
 		Member mem = memberRepo.findById(id).get();
@@ -39,11 +39,10 @@ public class CommentServiceImpl implements CommentService {
 		comment.setTip(tip);
 		comment.setMember(mem);
 		comment.setContent(content);
-		commentRepo.save(comment);
+		Comment result = commentRepo.save(comment);
 		
-		//System.out.println("comment serviceImple에서 저장된 tid 값 확인 : ");
-		Tip t = tipRepo.findById(tid).get();
-		return commentRepo.findByTip(t);
+		
+		return result; 
 	}
 	
 	// 댓글 삭제하기
@@ -59,7 +58,7 @@ public class CommentServiceImpl implements CommentService {
 		return memberRepo.findById(id).get();
 	}
 	
-	// 이미지 구하기
+	// 
 	@Override
 	public Member getProfilimg(String img) {
 		return memberRepo.findById(img).get();

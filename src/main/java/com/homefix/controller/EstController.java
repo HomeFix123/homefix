@@ -147,8 +147,8 @@ public class EstController {
 	//업체에게 온 견적 상세보기에서 esti_request db 값 확인 후 버튼 변경
 	@GetMapping("/getEstiReq")
 	@ResponseBody
-	public String getEstiReq(Integer eid,String cid) {
-		
+	public String getEstiReq(Integer eid, String cid, HttpSession session) {
+		cid =(String) session.getAttribute("userId");
 		return estService.getEstiReq(eid, cid);
 	}
 	
