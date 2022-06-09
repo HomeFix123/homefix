@@ -52,6 +52,7 @@ public class KakaoController {
         }
         
         session.setAttribute("memberId", member.getId());
+        session.setAttribute("memLogin", member);
         
         
         return "redirect:/index";

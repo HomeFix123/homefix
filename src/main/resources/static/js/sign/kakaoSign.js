@@ -17,7 +17,7 @@ $(function() {
 				console.log(data);
 				document.getElementById("mem_firstAddress").value = data.address; // 주소 넣기
 				document.getElementById("postNum").value = data.zonecode; // 주소 넣기
-				document.querySelector("input[name=addr_d").focus(); //상세입력 포커싱
+				document.querySelector("input[name=addrd]").focus(); //상세입력 포커싱
 			}
 		}).open();
 	})

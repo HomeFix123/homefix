@@ -74,8 +74,8 @@
 								<div class="account-content">
 									<h1>개인 회원가입</h1>
 									<form class="ragister-form" name="ragister-form" method="post" th:action="@{/sign/member/memSave}" > <!-- th:action="/member/memsign" -->
-										<input  th:value="|kakao${kakao}|" name="id">
-										<input  th:value="${kakao}" name="kakao">
+										<input type="hidden" th:value="|kakao${kakao}|" name="id">
+										<input type="hidden" th:value="${kakao}" name="kakao">
 										<div class="form-group text-left mb-0">
 											<label th:for='memberName'>이름<span class="error_box_name"></span></label>
 											<input type="text" class="form-control" id='memName'
@@ -201,7 +201,7 @@
 	<script th:src="@{/js/sections/header.js}"></script>
 
 	<!--haeyun jquery  -->
-	<script th:src="@{/js/he/signMem.js}"></script>
+	<script th:src="@{/js/sign/kakaoSign.js}"></script>
 	<script th:inline="javascript">
 	/*<![CDATA[*/
 	$('#telInput').keyup(function (event) {
