@@ -443,6 +443,7 @@ z-index: 9999; /* 포지션을 먼저 지정후 z-좌표(레이어) : 9999입니
  color:white;
  width:98px;
  height:40px;
+ background: #1565c0;
  
 }
 /* top버튼 끝 */
@@ -457,7 +458,7 @@ button {
  transition: all .2s;
  padding-left: 0px;
  border-radius: 100px;
- background: #1abc9c;
+ background: #1565c0;
  border: 1px solid transparent;
  align-items: center;
  font-size: 15px;
@@ -465,7 +466,8 @@ button {
 }
 
 button:hover {
- background: #1abc9c;
+ background: #1565c0;
+ font-color: white;
 }
 
 button > svg {

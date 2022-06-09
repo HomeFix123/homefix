@@ -103,7 +103,7 @@
                             </div>
                             
                             <div class="btn_div">
-                                <button class="btn btn-primary decision_btn_CD">확정하기</button>
+                                <button class="btn btn-primary decision_btn_CD">요청하기</button>
                                 <button class="btn btn-primary chat_btn">채팅하기</button>
                             </div>
                         
@@ -140,8 +140,7 @@
         <script th:src="@{/js/ye/ye.js}"></script>
         
         <script type="text/javascript">
-      	//기본 이벤트 비활성화
-		//e.preventDefault();
+      	
       	/* esti_request데이터베이스에 세션의 id와 견적 id가 존재하다면 버튼 css/확정요청완료 버튼 변경 */
         $.ajax({
 			type:'get',
@@ -172,7 +171,7 @@
 			},
 			error : function(err) {
 				//실패했을 때
-    			alert('실패:');
+    			alert('실패 : 현재 고객아이디 로그인 중, 업체 아이디로 로그인 필요');
     			console.log(err);
     		}
 		})//ajax
