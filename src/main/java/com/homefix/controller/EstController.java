@@ -37,16 +37,17 @@ public class EstController {
 	public String queryAnno(Model m,Integer page,HttpSession session) {
 		String cid = (String)session.getAttribute("userId");
 		if(page==null) page=1;
-		m.addAttribute("Lists",estService.getCEst(cid , page));
+		m.addAttribute("Lists",estService.getCEsts(cid , page));
 		m.addAttribute("cntCEst",estService.countCEst(cid));
 		return "estimation/Chosen";
 	}
 	
 	//고객이 직접 회사 고른거 리스트 상세보기
 	@GetMapping("/ChosenDetail")
-	public String estDetail(String id,Model m) {
-		System.out.println("넘어온 아이디는"+id);
-		m.addAttribute("Detail",estService.getEstDetail(id));
+	public String estDetail(Integer eid,Model m,HttpSession session) {
+		System.out.println("넘어온 아이디는"+eid);
+		String cid = (String)session.getAttribute("userId");
+		m.addAttribute("Detail",estService.getEstDetail(eid,cid));
 		return "estimation/ChosenDetail";
 	}
 	
@@ -162,8 +163,12 @@ public class EstController {
 	@ResponseBody
 	public String getEstiReq(Integer eid, String cid, HttpSession session) {
 		cid =(String) session.getAttribute("userId");
+
+		System.out.println(eid);
+		System.out.println(cid);
+
 		return estService.getEstiReq(eid, cid);
-	}
+	} 
 	
 	//고객 견적 상세보기에서 회사 확정하기 누르면 contract db에 저장
 	@RequestMapping("/saveContract")

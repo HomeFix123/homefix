@@ -1,7 +1,7 @@
 $(function(){
 		$("#memberLogin").click(function(){
 			$.ajax({
-				url : "/sign//member/loginMem",
+				url : "/sign/member/loginMem",
 				type : "POST",
 				data : {
 					id : $("#id").val(),
