@@ -19,7 +19,7 @@
 <link rel="stylesheet" th:href="@{/css/main.css}">
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
 <!-- eunhye css -->
-<link rel="stylesheet" href="@{/css/eh/course-details.css}">
+<link rel="stylesheet" th:href="@{/css/eh/course-details.css}">
 
 <!-- font -->
 <link
@@ -261,10 +261,12 @@
 		<div class="section-content course-details bg-white section-padding">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-8">
+					<div class="col-lg-9">
 						<div class="sa-course" id="priInfo">
 							<div class="course-thumb">
-								<img th:src="|http://140.238.11.118:5000/upload/${CompanyInfo.cinfo_img}|" alt="Image" class="img-fluid">
+								<img
+									th:src="|http://140.238.11.118:5000/upload/${CompanyInfo.cinfo_img}|"
+									alt="Image" class="img-fluid">
 							</div>
 
 
@@ -303,6 +305,8 @@
 											<h4>기본정보</h4>
 											<ul class="global-list">
 												<li th:text="'대표자: '+ ${CompanyBasic.ceo}"></li>
+												<input type="hidden" th:value="${CompanyBasic.id}"
+													id="companyCid">
 												<li th:text="'경력: '+ ${CompanyInfo.career} + '년'"></li>
 
 
@@ -324,85 +328,103 @@
 										<p th:text="${CompanyInfo.cinfo_cont}"></p>
 
 									</div>
-									<div class="tab-pane fade" id="reviews" role="tabpanel"
+									<div class="tab-pane fade sa-post" id="reviews" role="tabpanel"
 										aria-labelledby="reviews-tab">
 										<h3 class="widget_title">다양한 시공사례</h3>
-										<ul th:each="b:${Brag}">
-											<li class="media">
-												<div class="entry-thumbnail">
-													<a th:href="@{/brag/}+(${b.bid})"> <img
-														th:if="${not #strings.isEmpty(b.bimgadr)}"
-														th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|"
-														alt="Image" class="img-fluid"> <img
-														th:if="${#strings.isEmpty(b.bimgadr)}"
-														src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
+										<div id="companyBragBoard">
+											<ul th:each="b:${Brag}" class="ulBrag">
+												<li class="media">
+													<div class="entry-thumbnail entry-header">
+														<a th:href="@{/brag/}+(${b.bid})"> <img
+															th:if="${not #strings.isEmpty(b.bimgadr)}"
+															th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|"
+															alt="Image" class="img-fluid"> <img
+															th:if="${#strings.isEmpty(b.bimgadr)}"
+															src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
 
 
-												</div>
-												<div class="info">
-													<h2 class="title text-center">
-														<a th:text="${b.btitle}"></a>
-													</h2>
-													<p class="text-right" th:text="${b.member.nickname}"></p>
-												</div>
-												<div class="sa-meta">
-													<ul class="global-list">
-														<li><a href="#"> <span><i
-																	class="fas fa-heart"></i></span>
-														</a></li>
-														<li><a href="#"> <i class="far fa-eye"></i><span
-																th:text="${b.bcnt}"></span>
-														</a></li>
-													</ul>
-												</div>
-											</li>
+													</div>
+													<div class="info">
+														<h2 class="title text-center">
+															<a th:text="${b.btitle}"></a>
+														</h2>
+														<p class="text-right" th:text="${b.member.nickname}"></p>
+													</div>
+													<div class="sa-meta">
+														<ul class="global-list">
+															<li><a href="#"> <span><i
+																		class="fas fa-heart"></i></span>
+															</a></li>
+															<li><a href="#"> <i class="far fa-eye"></i><span
+																	th:text="${b.bcnt}"></span>
+															</a></li>
+														</ul>
+													</div>
+													<hr>
+												</li>
 
 
+											</ul>
 
-										</ul>
-
+											
+										</div>
+<div th:if="${#lists.size(Brag)== 3}" class="text-center">
+												<!-- 10개 모두 출력되야 보여주기 -->
+												<button class="btn btn-primary w-100" id="moreBtnBrag">더보기</button>
+											</div>
 
 									</div>
 									<div class="tab-pane fade" id="comments" role="tabpanel"
 										aria-labelledby="comments-tab">
 										<h4>업체후기</h4>
 										<div class="row">
-										
-										<div class="comments-area col-12 col-md-6 col-lg-4">
-											<ul  >
-											<li class="media" th:each="r:${Review}">
-												<div class="entry-thumbnail">
-												 <a th:href="@{/review/} + (${r.rid})">  <img
-														th:if="${not #strings.isEmpty(r.rimgadr)}"
-														th:src="|http://140.238.11.118:5000/upload/${r.rimgadr}|"
-														alt="Image" class="img-fluid"> <img
-														th:if="${#strings.isEmpty(r.rimgadr)}"
-														src="images/course/1.jpg" alt="Image" class="img-fluid"> </a> 
+											<div class="row" id="myReviswList">
+												<div th:each="list : ${Review}"
+													class="col-12 col-md-6 col-lg-4  ">
+													<div class="sa-post">
+														<div class="entry-header">
+															<div class="entry-thumbnail">
+																<a th:href="@{/review/}+(${list.rid})"> <img
+																	th:src="|http://140.238.11.118:5000/upload/${list.rimgadr}|"
+																	alt="Image" class="img-fluid" id="thumbnailImage">
+																</a>
+															</div>
 
 
+														</div>
+														<div class="course-info">
+															<div class="info">
+																<h2 class="title text-center">
+																	<a th:text="${list.rtitle}"></a>
+																</h2>
+																<p class="text-right" th:text="${list.company.name}"></p>
+															</div>
+															<div class="sa-meta">
+																<ul class="global-list">
+																	<li><a href="#"> <span><i
+																				class="fas fa-heart"></i></span>
+																	</a></li>
+																	<li><a href="#"> <i class="far fa-eye"></i><span
+																			th:text="${list.rcnt}"></span>
+																	</a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+													<!-- /.course-info -->
 												</div>
-												 <div class="info">
-												 <h2 class="title text-center">
-														<a th:text="${r.rtitle}"></a>
-													</h2>
-													<p class="text-right"  th:text="${r.company.name}"></p> 
-												</div> 
-												<div class="sa-meta">
-												<ul class="global-list">
-														<li><a href="#"> <span><i
-																	class="fas fa-heart"></i></span>
-														</a></li>
-														<li><a href="#"> <i class="far fa-eye"></i><span
-																th:text="${r.rcnt}"></span>
-														</a></li>
-													</ul> 
-												</div>
-											</li>
+												<!-- /.sa-post -->
 
 
 
-										</ul>
+
 											</div>
+
+											<div th:if="${#lists.size(Review)== 6}" class="text-center">
+												<!-- 10개 모두 출력되야 보여주기 -->
+												<button class="btn btn-primary w-100" id="moreBtnReview">더보기</button>
+											</div>
+
 										</div>
 										<!-- /.comments-area -->
 									</div>
@@ -421,11 +443,12 @@
 
 
 
-							<div class='imgtutor' >
-								<img    th:src="|http://140.238.11.118:5000/upload/${CompanyBasic.logo}|"
+							<div class='imgtutor'>
+								<img
+									th:src="|http://140.238.11.118:5000/upload/${CompanyBasic.logo}|"
 									alt="Profile Picture" id='companyId'>
-									
-									
+
+
 
 							</div>
 
@@ -433,15 +456,20 @@
 
 								<h4 class="partner_detail__title" th:text="${CompanyBasic.name}">
 
-									
+
 									<!---->
 								</h4>
 								<ul class="global-list">
-									<li><i class="fas fa-check-circle"></i><span th:text="' 대표번호:  ' + ${CompanyBasic.tel} "></span></li>
-									<li><i class="fas fa-check-circle"></i><span th:text="' 대표메일:  '+ ${CompanyBasic.email} "></span></li>
-									<li ><i class="fas fa-check-circle"></i> <span id="constructNum"  th:text=" '시공횟수:  ' + ${CompanyBasic.cnt} + '건'"></span></li>
-									<li><i class="fas fa-check-circle"></i><span th:each="a : ${CompanyInfo.specialty} "
-													th:text="' 시공지역:  ' + ${a.sp_cont}"> </span></li>
+									<li><i class="fas fa-check-circle"></i><span
+										th:text="' 대표번호:  ' + ${CompanyBasic.tel} "></span></li>
+									<li><i class="fas fa-check-circle"></i><span
+										th:text="' 대표메일:  '+ ${CompanyBasic.email} "></span></li>
+									<li><i class="fas fa-check-circle"></i> <span
+										id="constructNum"
+										th:text=" '시공횟수:  ' + ${CompanyBasic.cnt} + '건'"></span></li>
+									<li><i class="fas fa-check-circle"></i><span
+										th:each="a : ${CompanyInfo.specialty} "
+										th:text="' 시공지역:  ' + ${a.sp_cont}"> </span></li>
 								</ul>
 							</div>
 						</div>
@@ -612,9 +640,9 @@
 	<!--font asome js-->
 	<script src="https://kit.fontawesome.com/2173f645ed.js"
 		crossorigin="anonymous"></script>
-		<!--eunhye js  -->
+	<!--eunhye js  -->
 	<script th:src="@{/js/eh/etc.js}"></script>
-		
-		
+
+
 </body>
 </html>
