@@ -7,7 +7,7 @@ $(function() {
 	//업체명
 	var RegexCompany = /^[가-힣a-zA-Z0-9]{1,10}$/;
 	var RegexEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-	var RegexPW = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/; //8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합
+	var RegexPW = /^(?=.*[a-zA-z])(?=.*[0-9]).{4,10}$/; //4 ~ 10자 영문, 숫자 최소 한가지씩 조합
 	var RegexName = /^[가-힣]+$/;
 	//전화번호
 	var RegexTel = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
@@ -308,7 +308,7 @@ $(function() {
 
 		if (!RegexPW.test(memberPassword)) {
 
-			$('label[for="bs_memberPassword"] .error_box').html("8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합하여 만들어 주십시오.");
+			$('label[for="bs_memberPassword"] .error_box').html("4 ~ 10자 영문, 숫자를 최소 한가지씩 조합하여 만들어 주십시오.");
 			$('label[for="bs_memberPassword"] .error_box').css('color', '#dc3545');
 			$('#bs_memberPassword').focus();
 			return false;
