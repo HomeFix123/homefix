@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -48,7 +50,10 @@ public class Company {
 	@Column(name="co_cnt")
 	private Integer cnt;
 	
+	@Enumerated(EnumType.STRING)
+	private Role role;
 	private Boolean enabled;
+	
 	
 	@Column(columnDefinition = "Datetime")
 	private String deadday;

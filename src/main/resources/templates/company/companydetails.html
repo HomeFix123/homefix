@@ -264,7 +264,7 @@
 					<div class="col-lg-8">
 						<div class="sa-course" id="priInfo">
 							<div class="course-thumb">
-								<img src="images/course/d2.jpg" alt="Image" class="img-fluid">
+								<img th:src="|http://140.238.11.118:5000/upload/${CompanyInfo.cinfo_img}|" alt="Image" class="img-fluid">
 							</div>
 
 
@@ -366,7 +366,9 @@
 									<div class="tab-pane fade" id="comments" role="tabpanel"
 										aria-labelledby="comments-tab">
 										<h4>업체후기</h4>
-										<div class="comments-area">
+										<div class="row">
+										
+										<div class="comments-area col-12 col-md-6 col-lg-4">
 											<ul  >
 											<li class="media" th:each="r:${Review}">
 												<div class="entry-thumbnail">
@@ -400,8 +402,7 @@
 
 
 										</ul>
-											
-											</ul>
+											</div>
 										</div>
 										<!-- /.comments-area -->
 									</div>
@@ -438,7 +439,7 @@
 								<ul class="global-list">
 									<li><i class="fas fa-check-circle"></i><span th:text="' 대표번호:  ' + ${CompanyBasic.tel} "></span></li>
 									<li><i class="fas fa-check-circle"></i><span th:text="' 대표메일:  '+ ${CompanyBasic.email} "></span></li>
-									<li ><i class="fas fa-check-circle"></i> <span th:text=" '시공횟수:  ' + ${CompanyBasic.cnt} + '건'"></span></li>
+									<li ><i class="fas fa-check-circle"></i> <span id="constructNum"  th:text=" '시공횟수:  ' + ${CompanyBasic.cnt} + '건'"></span></li>
 									<li><i class="fas fa-check-circle"></i><span th:each="a : ${CompanyInfo.specialty} "
 													th:text="' 시공지역:  ' + ${a.sp_cont}"> </span></li>
 								</ul>
@@ -611,5 +612,9 @@
 	<!--font asome js-->
 	<script src="https://kit.fontawesome.com/2173f645ed.js"
 		crossorigin="anonymous"></script>
+		<!--eunhye js  -->
+	<script th:src="@{/js/eh/etc.js}"></script>
+		
+		
 </body>
 </html>

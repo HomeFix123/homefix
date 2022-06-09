@@ -267,7 +267,9 @@
 									<li>
 										<div class="user-info">
 											<div class="profile-picture">
-												<img th:src="|http://140.238.11.118:5000/upload/${company.logo}|" alt="Profile Picture">
+												<img
+													th:src="|http://140.238.11.118:5000/upload/${company.logo}|"
+													alt="Profile Picture">
 											</div>
 											<div>
 												<span class="user-name" id="companyId"
@@ -282,9 +284,8 @@
 										data-bs-target="#user-one" role="tab" aria-controls="user-one"
 										aria-selected="true">내가 쓴 글</a></li>
 
-									<li class="nav-item"><a class="nav-link" id="user-two-tab"
-										data-bs-toggle="tab" data-bs-target="#user-two" role="tab"
-										aria-controls="user-two" aria-selected="false">포트폴리오 수정</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/company/write}">포트폴리오 수정</a></li>
 
 									<li class="nav-item"><a class="nav-link"
 										id="user-three-tab" data-bs-toggle="tab"
@@ -306,7 +307,7 @@
 
 
 									<div align="center" id="logOutLocation">
-										<a th:href="@{/sign/company/logOut}">로그아웃</a>
+										<a th:href="@{/logout}">로그아웃</a>
 									</div>
 								</ul>
 								<!---------------------------------------------------------tab시작부분-------------------------------------------------------------------------------->
@@ -330,142 +331,61 @@
 													style="border: none;">
 													<div class="tab-pane fade show active" id="pills-home"
 														role="tabpanel" aria-labelledby="pills-home-tab">
-														<div class="row" id="fav_row">
-															<!--게시물 시작-->
-															<div class="col-lg-4">
+														<div class="row"  >
+														<div  class="row" id="myReviswList">
+															<div th:each="list : ${Review}" 
+																class="col-12 col-md-6 col-lg-4  ">
 																<div class="sa-post">
 																	<div class="entry-header">
 																		<div class="entry-thumbnail">
-																			<a href="blog-details.html"><img
-																				src="images/blog/1.jpg" alt="Image"
-																				class="img-fluid"></a>
+																			<a th:href="@{/review/}+(${list.rid})"> <img
+																				th:src="|http://140.238.11.118:5000/upload/${list.rimgadr}|"
+																				alt="Image" class="img-fluid" id="thumbnailImage">
+																			</a>
 																		</div>
-																		<div class="entry-meta"></div>
+
+
 																	</div>
-																	<div class="entry-content">
-																		<h2 class="entry-title">
-																			<a href="blog-details.html">업체 후기</a>
-																		</h2>
+																	<div class="course-info">
+																		<div class="info">
+																			<h2 class="title text-center">
+																				<a th:text="${list.rtitle}"></a>
+																			</h2>
+																			<p class="text-right" th:text="${list.company.name}"></p>
+																		</div>
+																		<div class="sa-meta">
+																			<ul class="global-list">
+																				<li><a href="#"> <span><i
+																							class="fas fa-heart"></i></span>
+																				</a></li>
+																				<li><a href="#"> <i class="far fa-eye"></i><span
+																						th:text="${list.rcnt}"></span>
+																				</a></li>
+																			</ul>
+																		</div>
 																	</div>
+																	</div>
+																	<!-- /.course-info -->
 																</div>
 																<!-- /.sa-post -->
+																
+																
+																
+																
 															</div>
-															<!--게시물 끝-->
-															<!--게시물 시작-->
-															<div class="col-lg-4">
-																<div class="sa-post">
-																	<div class="entry-header">
-																		<div class="entry-thumbnail">
-																			<a href="blog-details.html"><img
-																				src="images/blog/2.jpg" alt="Image"
-																				class="img-fluid"></a>
-																		</div>
-																		<div class="entry-meta"></div>
-																	</div>
-																	<div class="entry-content">
-																		<h2 class="entry-title">
-																			<a href="blog-details.html">업체 후기</a>
-																		</h2>
-																	</div>
+															
+															<div th:if="${#lists.size(Review)== 6}"
+																	class="text-center">
+																	<!-- 10개 모두 출력되야 보여주기 -->
+																	<button class="btn btn-primary w-100" id="moreBtnReview">더보기</button>
 																</div>
-																<!-- /.sa-post -->
-															</div>
-															<!--게시물 끝-->
-															<!--게시물 시작-->
-															<div class="col-lg-4">
-																<div class="sa-post">
-																	<div class="entry-header">
-																		<div class="entry-thumbnail">
-																			<a href="blog-details.html"><img
-																				src="images/blog/2.jpg" alt="Image"
-																				class="img-fluid"></a>
-																		</div>
-																		<div class="entry-meta"></div>
-																	</div>
-																	<div class="entry-content">
-																		<h2 class="entry-title">
-																			<a href="blog-details.html">업체 후기</a>
-																		</h2>
-																	</div>
-																</div>
-																<!-- /.sa-post -->
-															</div>
-															<!--게시물 끝-->
-															<!--게시물 시작-->
-															<div class="col-lg-4">
-																<div class="sa-post">
-																	<div class="entry-header">
-																		<div class="entry-thumbnail">
-																			<a href="blog-details.html"><img
-																				src="images/blog/2.jpg" alt="Image"
-																				class="img-fluid"></a>
-																		</div>
-																		<div class="entry-meta"></div>
-																	</div>
-																	<div class="entry-content">
-																		<h2 class="entry-title">
-																			<a href="blog-details.html">업체 후기</a>
-																		</h2>
-																	</div>
-																</div>
-																<!-- /.sa-post -->
-															</div>
-															<!--게시물 끝-->
-															<!--게시물 시작-->
-															<div class="col-lg-4">
-																<div class="sa-post">
-																	<div class="entry-header">
-																		<div class="entry-thumbnail">
-																			<a href="blog-details.html"><img
-																				src="images/blog/2.jpg" alt="Image"
-																				class="img-fluid"></a>
-																		</div>
-																		<div class="entry-meta"></div>
-																	</div>
-																	<div class="entry-content">
-																		<h2 class="entry-title">
-																			<a href="blog-details.html">업체 후기</a>
-																		</h2>
-																	</div>
-																</div>
-																<!-- /.sa-post -->
-															</div>
-															<!--게시물 끝-->
-															<!--게시물 시작-->
-															<div class="col-lg-4">
-																<div class="sa-post">
-																	<div class="entry-header">
-																		<div class="entry-thumbnail">
-																			<a href="blog-details.html"><img
-																				src="images/blog/2.jpg" alt="Image"
-																				class="img-fluid"></a>
-																		</div>
-																		<div class="entry-meta"></div>
-																	</div>
-																	<div class="entry-content">
-																		<h2 class="entry-title">
-																			<a href="blog-details.html">업체 후기</a>
-																		</h2>
-																	</div>
-																</div>
-																<!-- /.sa-post -->
-															</div>
-															<!--게시물 끝-->
+
 														</div>
 														<!--/.row-->
 
 													</div>
 
-													<!--****************************************************************************** 페이징 버튼 ******************************************************************************-->
-													<div class="text-center" style="margin-bottom: 50px;">
-														<ul class="pagination justify-content-center mb-0">
-															<li><a class="page-numbers current" href="#">1</a></li>
-															<li><a class="page-numbers" href="#">2</a></li>
-															<li class="float-right"><a class="page-numbers"
-																href="#"><i class="fas fa-chevron-right"></i></a></li>
-														</ul>
-													</div>
-													<!--****************************************************************************** /페이징 버튼 끝 ******************************************************************************-->
+
 													<!-- /.sg-pagination -->
 												</div>
 											</div>
@@ -507,8 +427,8 @@
 													<div class="container">
 
 														<div class="row" style="border: none;">
-															<form class="woocommerce-cart-form" action="#">
-																<table class="table">
+															<form class="woocommerce-cart-form" >
+																<table class="table" id="paymentInfo">
 																	<thead>
 																		<tr>
 																			<th>결제번호</th>
@@ -518,19 +438,29 @@
 																			<th>구독권 종료일</th>
 																		</tr>
 																	</thead>
-																	<tbody>
-																		<tr th:each="paymentInfo : ${PaymentInfo}">
+																	<tbody class="paymentInfoTR" >
+																		<tr  th:each="paymentInfo : ${PaymentInfo}" >
+																		
 																			<td th:text="${paymentInfo.pid}"></td>
 																			<td th:text="${paymentInfo.method}"></td>
 																			<td th:text="${paymentInfo.amount}"></td>
 																			<td th:text="${paymentInfo.pday}"></td>
 																			<td th:text="${paymentInfo.plast}"></td>
 
-																		</tr>
+																		</tr >
 
 																	</tbody>
+
 																</table>
+																<div th:if="${#lists.size(PaymentInfo)== 6}"
+																	class="text-center">
+																	<!-- 10개 모두 출력되야 보여주기 -->
+																	<button class="btn btn-primary w-100" id="moreBtn">더보기</button>
+																</div>
+
+
 															</form>
+
 														</div>
 
 														<!-- /.sg-pagination -->
@@ -538,6 +468,7 @@
 												</div>
 												<!-- /.cart-section -->
 											</div>
+											<!-- 더보기 버튼 -->
 
 
 
@@ -554,7 +485,7 @@
 									<div class="tab-pane fade" id="user-four" role="tabpanel"
 										aria-labelledby="user-four-tab">
 										<div class="profile-section">
-											<form method="post"
+											<form method="post" id="companyModify"
 												th:action="@{/sign/company/companyUpdate}"
 												th:object="${company}">
 												<input type="hidden" name="_method" value="put" />
@@ -567,16 +498,20 @@
 												<!-- header -->
 												<div class="tab-body">
 													<div id="photoFile">
-														<input type="file" name="add-photo" id="add-photo"
-															class="inputfile form-control inputfile-4"
-															data-multiple-caption="{count} files selected" disabled>
-														<label for="add-photo"> <span
-															class="mdi mdi-name mdi-camera"></span> <span>Add
-																Photo</span>
-														</label> <br />
-														<div class="form-group">
-															<input type="submit" class="btn btn-primary" id="pictureAdd" value="사진추가">
-														</div>
+
+														<img style="width: 100%;" id="previewImage"
+															src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload"
+															th:if="*{logo == null}"> <img style="width: 100%;"
+															id="previewImage"
+															th:src="|http://140.238.11.118:5000/upload/*{logo}|"
+															th:if="*{logo != null}"> <input
+															style="display: block; visibility: hidden;" type="file"
+															accept="image/*" id="inputImage"> <input
+															type="hidden" id="cinfo_img" name="logo"
+															th:value="*{logo}"> <label
+															class="btn btn-primary w-100 mb-5" for="inputImage">사진추가</label>
+
+
 													</div>
 
 
@@ -670,7 +605,7 @@
 															class="btn btn-primary" value="탈퇴"></span>
 													</div>
 													<div class="form-group-btn">
-														<input type="submit" class="btn btn-primary"
+														<input type="button" class="btn btn-primary"
 															id="companyUpdate" value="수정">
 													</div>
 
@@ -719,7 +654,13 @@
 																		</tr>
 
 																	</tbody>
+																	
 																</table>
+																<div th:if="${#lists.size(RegistList)== 6}"
+																	 class="text-center">
+																	<!-- 10개 모두 출력되야 보여주기 -->
+																	<button class="btn btn-primary w-100" id="moreBtnEstimation">더보기</button>
+																</div>
 															</form>
 														</div>
 
