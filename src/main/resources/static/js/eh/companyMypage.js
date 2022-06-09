@@ -22,7 +22,7 @@ $(function() {
 	var RegexId = /^[a-zA-z0-9]{4,12}$/; //아이디는 영문 대소문자와 숫자 4~12자리
 	//업체명
 	var RegexCompany = /^[가-힣a-zA-Z0-9]{1,10}$/;
-	var RegexEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+	var RegexEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 	var RegexPW = /^[a-zA-Z0-9]{4,10}$/; //8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합
 	var RegexName = /^[가-힣]+$/;
 	//전화번호
@@ -213,21 +213,7 @@ $(function() {
 			return false;
 		}
 
-		/* 이름 */
-		/*	if (memberName == '') {
-				$('label[for="memberName"] .error_box').html(blank);
-				$('#name').focus();
-				return false;
-			} else {
-				$('label[for="memberName"] .error_box').html("");
-			}
-			if (!RegexName.test(memberName)) {
 	
-				$('label[for="name"] .error_box').html("이름 형식이 올바르지 않습니다.");
-				return false;
-			} else {
-				$('label[for="name"] .error_box').html("");
-			}*/
 
 
 		if (memberEmail == '') {
