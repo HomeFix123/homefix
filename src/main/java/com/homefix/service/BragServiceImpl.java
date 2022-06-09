@@ -267,4 +267,13 @@ public class BragServiceImpl implements BragService {
 
 	}
 
+	//개인 마이페이지 후기 목록 표시
+	@Override
+	public List<Brag> bMyPageList(Member mem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
 }
