@@ -2,6 +2,9 @@ package com.homefix.controller;
 
 import java.util.List;
 
+import javax.mail.Session;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +33,14 @@ public class TipController {
 	private TipService tipService;
 	
 	/* 팁 전체 목록 페이지 */
-	@GetMapping("/list")
+	@GetMapping("/list") 
 	public String tipList(Model m, Integer page) {
 		if(page == null) page = 1;
+		String id = "test";
 		Tip tip = new Tip();
 		//List<Tip> list = tipService.getTipList(tip);
-		m.addAttribute("tipList", tipService.getTipList(tip, page)); 
-		m.addAttribute("cntTip", tipService.countEstList());
+		m.addAttribute("cntTip", tipService.countEstList()); //페이징
+		m.addAttribute("tipList", tipService.getTipList(tip, page, id));
 		return "tip/interiortip";
 	}
 	

@@ -7,7 +7,7 @@ import com.homefix.domain.Tip;
 public interface TipService {
 	
 	// 팁 목록 보기, 페이징 처리
-	List<Tip> getTipList(Tip tip, int page);
+	List<Tip> getTipList(Tip tip, int page, String id);
 	
 	// 팁 게시글 개수 불러오기
 	public long countEstList(); //페이징 처리
@@ -20,9 +20,5 @@ public interface TipService {
 		
 	// 좋아요 취소
 	public void deletePrefer(Tip tip, String id);
-		
 	
-	
-	
-
 }

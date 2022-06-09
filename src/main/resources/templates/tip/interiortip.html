@@ -83,15 +83,15 @@
 	                            </div>
 	                        </div>
 	                        <div class="feeds">
-	                        	<form th:action='@{/tip/save}' method='post'>
+	                        	<form action="">
 	                            <!-- article -->
 	                            <!-- 게시물 시작 -->
 	                            <article id="post_atl" th:each="tip : ${tipList}">
 	                            <!-- 게시물 헤더 -->    
 	                                <header id="tip_header">
 	                                    <div class="profile-of-article">
-	                                        <img class="img-profile pic" src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="dlwlrma님의 프로필 사진">
-	                                        <span class="userID main-id point-span" th:text="${tip.member.id}"></span>
+	                                        <img class="img-profile pic" th:src="|http://140.238.11.118:5000/upload/${tip.member.profilimg}" alt="dlwlrma님의 프로필 사진">
+	                                        <span class="userID main-id point-span" th:text="${tip.member.nickname}"></span>
 	                                        <span class="userID main-id point-span" th:text="${tip.tiptitle}"></span>
 	                                    </div>    
 	                                </header>  
@@ -104,19 +104,18 @@
 										<!-- 좋아요 -->
 										<!-- <a href="#"> <i id="heart" class="my-2 far fa-heart"></i></a>-->
 	                                    <!-- 꽉찬하트 <a href="#"> <i id="fill-heart" class="fa fa-heart"></i>-->
-										
-										<button th:if="${tip.preferck == false}" class="preferSave bg-light" id="love">
+				
+										<button th:if="${tip.preferck == false}" th:value="${tip.tid}" class="preferSave bg-light" id="love">
 											<i id="prefer" class="far fa-heart"></i>
 										</button>
-										<button th:if="${tip.preferck == true}" class="preferDelete bg-light" id="love">
+										<button th:if="${tip.preferck == true}" th:value="${tip.tid}" class="preferSave bg-light" id="love">
 											<i id="prefer" class="fas fa-heart"></i>
-										</button> <a class="preferCnt" th:text="${tip.prefer}"></a> <input type="hidden" name="tid" th:value="${tip.tid}"> <input type="hidden" name="preferck" th:value="${tip.preferck}"> 
-																						
-	                                </div>
+										</button> <a class="preferCnt"   th:text="${#lists.size(tip.tipPreferList)}"></a> <input type="hidden" name="tid" th:value="${tip.tid}"> <input type="hidden" name="preferck" th:value="${tip.preferck}"> 
+									</div>
 	                                
 	                                <!-- article text data -->
 	                                <!-- 댓글목록 -->
-	                                <div class="reaction" style="padding:0px">
+	                                <div class="reaction m-2" style="padding:0px">
 	                                  <div class="comment-section" th:each="cmList : ${tip.CommentList}">
 		                                    <ul class="comments">
 		                                      <div class="comment-like">
@@ -125,14 +124,17 @@
 		                                      <img th:if="${not #strings.isEmpty(cmList.member.profilimg)}" th:src="|http://140.238.11.118:5000/upload/${cmList.member.profilimg}|" alt="Image" class="img-fluid" width="20px">
 	                                          <img th:if="${#strings.isEmpty(cmList.member.profilimg)}" src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="Image" class="img-fluid">
 		                                      <span class="memberId" style="font-weight:bold" th:text="${cmList.member.nickname}"></span> &nbsp; <span class="contecnt" th:text="${cmList.content}"></span>
+		                                      <!-- 본인의 댓글만 삭제할 수 있게 세션의 저장된 memberId와 댓글 작성자의 memberId를 비교해서 버튼 출력 -->
+		                                    	<!-- <button th:if="${session.memberId == cmList.member.Id}">삭제</button> -->
+		                                    	<button type="button" class="delete-comment" th:value="${cmList.cmid}" th:if="${session['memberId']} == ${cmList.member.Id}"><i class="fas fa-trash-alt fa-xs"></i></button>
 		                                      </p>
 		                                      </div>
 		                                    </ul>
 		                                    <div class="time-log">
 		                                       <span class="tdate" th:text="${tip.tdate}"></span>
+		                                    	
 		                                    </div>
-		                                    <!-- 본인의 댓글만 삭제할 수 있게 세션의 저장된 memberId와 댓글 작성자의 memberId를 비교해서 버튼 출력 -->
-		                                    <!-- <button th:if="${session.memberId == cmList.member.Id}">삭제</button> -->
+		                                    
 	                                	</div>
 	                                </div>
 	                                <!-- 댓글목록 끝 -->
@@ -149,7 +151,6 @@
 	                                    
 	                            <!-- /게시물 끝-->
 	                            </form>
-	                            
 	                            <!-- 페이지 버튼 -->
 							    <div class="sg-pagination text-center">
 							     <ul class="pagination justify-content-center mb-0 " style="margin-top: 20px;" id="pagination">
@@ -213,61 +214,46 @@
 	    <script type="text/javascript">
 	    $(document).ready(function(){
 	    	// 좋아요
-        	$(document).on('click', '.preferSave', function() {
+        	$(document).on('click', '.preferSave', function(e) {
+        		e.preventDefault();
+        		const btn = $(this);
         		console.log("좋아요 입력 누름");
-        		let preferCnt = Number($('.preferCnt').text());
-        		const tid = $('input[name=tid]').val();
-        		
-        		const preferck = $('input[name=preferck]').val();
+        		let preferCnt = Number(btn.siblings('.preferCnt').text());
+        		const tid = $(this).attr("value"); 
+        		console.log(tid);
+        		const preferck = $(this).find("i").hasClass('fas') // 좋아요 체크 'fas'클래스 있는지 없는지
         		console.log(preferck);
-        		if(preferck == 'false'){
+        		
+        		if(preferck == false){
 					$.ajax({
 						type:'POST',
 						url:'/tip/prefer/' + tid,
 						success: function(result) {
-							console.log(result);
-							$('#prefer').removeClass('far fa-heart');
-							$('#prefer').addClass('fas fa-heart');
-							$('#love').removeClass('preferSave bg-light');
-							$('#love').addClass('preferDelete bg-light');
-							$('.preferCnt').text(preferCnt+1);
+							console.log(btn)
+							console.log(btn.find("i"));
+							btn.find("i").removeClass('far');
+							btn.find("i").addClass('fas');
+							btn.siblings('.preferCnt').text(preferCnt+1);
 							console.log("좋아요 성공");
 						}
 					})
-        		}
-        		$('input[name=preferck]').val('true');
-			})
-			
-			// 좋아요 취소
-			$(document).on('click', '.preferDelete', function() {
-				console.log("좋아요 취소");
-        		let preferCnt = Number($('.preferCnt').text());
-        		const tid = $('input[name=tid]').val();
-        		const preferck = $('input[name=preferck]').val();
-        		console.log(preferck);
-        		if(preferck == 'true'){
-					$.ajax({
+        		} else {
+        			$.ajax({
 						type:'DELETE',
 						url:'/tip/prefer/' + tid,
 						success: function(result) {
 							console.log(result);
-							$('#prefer').removeClass('fas fa-heart');
-							$('#prefer').addClass('far fa-heart');
-							$('#love').removeClass('preferDelete bg-light');
-							$('#love').addClass('preferSave bg-light');
-							$('.preferCnt').text(preferCnt-1);
+							btn.find("i").removeClass('fas');
+							btn.find("i").addClass('far');
+							btn.siblings('.preferCnt').text(preferCnt-1);
 							console.log("좋아요 취소");
-						}
+						}, 
+						error:function(err){console.log(err)}
 					})
+        			
         		}
-        		$('input[name=preferck]').val('false');
 			})
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
+			
 	    	
 	    })
 	    </script>

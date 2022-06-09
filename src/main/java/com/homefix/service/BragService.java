@@ -10,13 +10,13 @@ import com.homefix.domain.Member;
 
 public interface BragService {
 	
-	// 인테리어 자랑(후기) 작성하기
+	// 인테리어 자랑 작성하기
 	public void saveBrag(Brag brag, String id, String cid);
 	
 	// 인테리어 자랑 리스트
 	//public List<Brag> getBragList(Brag brag);
-	public List<ElasticBrag> getBragByKeyword(String keyword, String loc, 
-			String family, String job, String hometype, String sort, Integer page);
+	public List<ElasticBrag> getBragByKeyword(String id, String loc, 
+			String family, String hometype, String sort, Integer page);
 	
 	// 인테리어 자랑 상세
 	public Brag getBrag(Brag brag, String id);

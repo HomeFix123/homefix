@@ -7,7 +7,7 @@
 <meta name="author" content="">
 <meta name="description" content="">
 
-<title>리뷰리스트</title>
+<title>시공 후기 목록</title>
 
 <!-- CSS -->
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -18,7 +18,6 @@
 <link rel="stylesheet" th:href="@{/css/structure.css}">
 <link rel="stylesheet" th:href="@{/css/main.css}">
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
-<link rel="stylesheet" th:href="@{/css/bs/Review.css}">
 
 <!-- font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
@@ -39,10 +38,9 @@
         <![endif]-->
 <!-- Template Developed By ChtStudio -->
 
-<style type="text/css">
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+<link rel="stylesheet" th:href="@{/css/review/reviewList.css}">
 
-
-</style>
 </head>
 <body>
 	<div id="preloader">
@@ -50,72 +48,7 @@
 	</div>
 	<!-- preloader -->
 
-	<header class="sa-header">
-		<div class="sa-menu">
-			<nav class="navbar navbar-expand-lg">
-				<div class="container">
-					<a class="navbar-brand" href="index.html">
-						<img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
-					</a>
-
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-					</button>
-
-					<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-						<ul class="navbar-nav">
-							<li><a href="#">카테고리1</a></li>
-							<li><a href="about.html">카테고리2</a></li>
-							<li><a href="about.html">카테고리2</a></li>
-
-							<li class="sa-dropdown"><a href="#">카테고리3</a>
-								<ul class="sa-dropdown-menu">
-									<li><a href="course-grid.html">Course Grid View</a></li>
-									<li><a href="course-list.html">Course List View</a></li>
-									<li><a href="course-details.html">Course Details</a></li>
-								</ul></li>
-							<li><a href="tutor.html">카테고리4</a></li>
-							<li><a href="#">견적 상담 신청</a></li>
-						</ul>
-					</div>
-					<div class="right-content">
-						<div class="user-option">
-
-							<ul class="global-list">
-								<li><i class="far fa-user"></i></li>
-								<li><i class="far fa-question-circle"></i></li>
-								<li><i class="far fa-bell"></i></li>
-								<li>
-									<div class="sa-search-form">
-										<div class="search-icon">
-											<i class="fas fa-search"></i>
-										</div>
-										<div class="search-form text-center open-search">
-											<div class="close-search">
-												<span class="remove-icon"><i class="fas fa-times"></i></span>
-											</div>
-											<form action="#" id="search" method="get">
-												<input name="search" type="text" placeholder="Enter keyword...">
-												<button type="submit">
-													<i class="fas fa-search"></i>
-												</button>
-											</form>
-											<!-- /form -->
-										</div>
-										<!-- /search-form -->
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- /.container -->
-			</nav>
-			<!-- /.navbar -->
-		</div>
-		<!-- /.sa-menu -->
-	</header>
-	<!-- /.sa-header -->
+	<div th:replace="/sections/header :: header"></div> 
 
 
 	<div class="sa-section">
@@ -125,178 +58,152 @@
 					<div class="search_bar align-self-center">
 						<ul>
 							<li><div class="view-all align-self-center">
-									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">예산</a>
+									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#hometypeModal">주거형태</a>
 								</div>
-								<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal fade modal-query" id="hometypeModal" tabindex="-1" aria-labelledby="hometypeModalLabel" aria-hidden="true">
 									<div class="modal-dialog ">
 										<div class="modal-content">
 											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+												<h5 class="modal-title" id="hometypeModalLabel">주거형태 선택</h5>
 												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 											</div>
-											<div class="modal-body">...</div>
+											<div class="modal-body">
+												<div class="container-fluid">
+													<ul id="ulHometypeBtns" class="ulBtns">
+														<li><button class="btn btn-query" value="마이룸">마이룸</button></li>
+														<li><button class="btn btn-query" value="원룸">원룸</button></li>
+														<li><button class="btn btn-query" value="오피스텔">오피스텔</button></li>
+														<li><button class="btn btn-query" value="주택">주택</button></li>
+													</ul>
+												</div>
+											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary">Save changes</button>
+												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">취소</button>
+												<button type="button" class="btn btn-primary modalSubmit">검색</button>
 											</div>
 										</div>
 									</div>
 								</div></li>
 							<li><div class="view-all align-self-center">
-									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">예산</a>
+									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#jobModal">작업분야</a>
 								</div>
-								<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog ">
+								<div class="modal fade modal-query" id="jobModal" tabindex="-1" aria-labelledby="jobModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+												<h5 class="modal-title" id="job	ModalLabel">작업분야 선택</h5>
 												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 											</div>
-											<div class="modal-body">...</div>
+											<div class="modal-body">
+												<div class="container-fluid">
+													<ul id="ulJobBtns" class="ulBtns">
+														<li><button class="btn btn-query" value="홈스타일링">홈스타일링</button></li>
+														<li><button class="btn btn-query" value="리모델링">리모델링</button></li>
+														<li><button class="btn btn-query" value="부분시공">부분시공</button></li>
+													</ul>
+												</div>
+											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary">Save changes</button>
+												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">취소</button>
+												<button type="button" class="btn btn-primary modalSubmit">검색</button>
 											</div>
 										</div>
 									</div>
-								</div></li>
+								</div>
+							</li>
 							<li><div class="view-all align-self-center">
-									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">예산</a>
+									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#familyModal">가족형태</a>
 								</div>
-								<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal fade modal-query" id="familyModal" tabindex="-1" aria-labelledby="familyModalLabel" aria-hidden="true">
 									<div class="modal-dialog ">
 										<div class="modal-content">
 											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+												<h5 class="modal-title" id="familyModalLabel">가족형태 선택</h5>
 												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 											</div>
-											<div class="modal-body">...</div>
+											<div class="modal-body">
+												<div class="container-fluid">
+													<ul id="ulFamilyBtns" class="ulBtns">
+														<li><button class="btn btn-query" value="싱글">싱글</button></li>
+														<li><button class="btn btn-query" value="신혼/부부">신혼/부부</button></li>
+														<li><button class="btn btn-query" value="자녀동반">자녀동반</button></li>
+													</ul>
+												</div>
+											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary">Save changes</button>
+												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">취소</button>
+												<button type="button" class="btn btn-primary modalSubmit">검색</button>
 											</div>
 										</div>
 									</div>
-								</div></li>
-							<li><div class="view-all align-self-center">
-									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">예산</a>
 								</div>
-								<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog ">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-											</div>
-											<div class="modal-body">...</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary">Save changes</button>
-											</div>
-										</div>
-									</div>
-								</div></li>
-							<li><div class="view-all align-self-center">
-									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">예산</a>
-								</div>
-								<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog ">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-											</div>
-											<div class="modal-body">...</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary">Save changes</button>
-											</div>
-										</div>
-									</div>
-								</div></li>
-							<li><div class="view-all align-self-center">
-									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">예산</a>
-								</div>
-								<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog ">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-											</div>
-											<div class="modal-body">...</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary">Save changes</button>
-											</div>
-										</div>
-									</div>
-								</div></li>
-							<li><div class="view-all align-self-center">
-									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">예산</a>
-								</div>
-								<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog ">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-											</div>
-											<div class="modal-body">...</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary">Save changes</button>
-											</div>
-										</div>
-									</div>
-								</div></li>
-
-
+							</li>
 						</ul>
 					</div>
-					<div class="view-all align-self-center">
-						<a href="blog.html" class="btn btn-primary">자랑하기</a>
+					<div class="view-all align-self-center" th:if="${session.userId != null}">
+						<a th:href="@{/review/write}" class="btn btn-primary">후기 작성</a>
+					</div>
+					
+				</div>
+				<div>
+					<div th:if="${param.hometype != null}" class='alert alert-primary alert-dismissible fade show m-2' role='alert' >
+						<span th:text="${param.hometype}">싱글</span>
+						<button id="hometypeRemoveBtn" type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+					</div>
+					<div th:if="${param.job != null}" class='alert alert-primary alert-dismissible fade show m-2' role='alert'>
+						<span th:text="${param.job}">싱글</span>
+						<button id="jobRemoveBtn" type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+					</div>
+					<div th:if="${param.family != null}" class='alert alert-primary alert-dismissible fade show m-2' role='alert'>
+						<span th:text="${param.family}"></span>
+						<button id="familyRemoveBtn" type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
 					</div>
 				</div>
-
-				<div class="row">
-					<div th:each="list : ${reviewList}" class="col-12 col-md-6 col-lg-4 col-sm-12 col-xs-12">
-						<div class="sa-post">
-							<div class="entry-header">
-								<div class="entry-thumbnail">
-									<a href="blog-details.html">
-										<img th:src="|http://140.238.11.118:5000/upload/${list.rimgadr}|" alt="Image" class="img-fluid" id="thumbnailImage">
-									</a>
-								</div>
-								<div class="entry-meta">
-									<a href="#">
-										<i class="my-2 far fa-heart"></i>
-									</a>
-								</div>
-
-							</div>
-							<div class="course-info">
-								<div class="info">
-									<h2 class="title text-center">
-										<a th:text="${list.rtitle}"></a>
-									</h2>
-									<p class="text-right" th:text="${list.company.name}"></p>
-								</div>
-								<div class="sa-meta">
-									<ul class="global-list">
-										<li><a href="#">
-												<span><i class="fas fa-heart"></i></span>50
-											</a></li>
-										<li><a href="#">
-												<i class="far fa-eye"></i><span th:text="${list.rcnt}"></span>
-											</a></li>
-									</ul>
-								</div>
-							</div>
-							<!-- /.course-info -->
-						</div>
-						<!-- /.sa-post -->
-					</div>
+				<div>
+                    	<form action="review" id="searchForm">
+                    	<div id="hiddenInputs">
+                    		<input th:if="${param.hometype != null}" type="hidden" name="hometype" th:value="${param.hometype}">
+                    		<input th:if="${param.job != null}" type="hidden" name="job" th:value="${param.job}">
+                    		<input th:if="${param.family != null}" type="hidden" name="family" th:value="${param.family}">
+                    	</div>
+	                	</form>
+                    </div>
+				<div class="row" id="reviewListDiv">
+					<div th:if="${#lists.size(reviewList) == 0}" class="text-center pt-3">
+                    		<h4>검색 결과가 없습니다</h4>
+                    	</div>
+					<th:block th:each="r : ${reviewList}">
+	                        <div class="reviewDiv col-6 col-md-4 col-lg-4">
+	                            <div class="sa-post">
+	                                <div class="entry-header">
+	                                	<!-- 썸네일 이미지 -->
+	                                    <div class="entry-thumbnail">
+	                                        <a class="relink" th:href="|/review/${r.id}|">
+	                                        	<img th:if="${r.image == null}" class="titleImg img-fluid" src="http://140.238.11.118:5000/upload/profile_basic.png" alt="Image">
+	                                        	<img th:if="${r.image != null}" class="titleImg img-fluid" th:src="|http://140.238.11.118:5000/upload/${r.image}|" alt="Image">
+	                                        </a>
+	                                    </div><!-- /썸네일 이미지 -->
+	                                </div>
+	                                <div class="course-info">
+	                                    <div class="info">
+	                                        <h2 class="title text-center">
+	                                        	<img th:if="${r.logo == null}" class='user-img' src="http://140.238.11.118:5000/upload/profile_basic.png">
+	                                        	<img th:if="${r.logo != null}" class='user-img' th:src="|http://140.238.11.118:5000/upload/${r.logo}|">
+	                                        	<a th:href="|/review/${r.id}|" class="relink companyName" th:text="${r.name}">업체 이름</a>
+	                                        </h2>
+	                                    </div>
+	                                    <div id="">
+	                                    	<span class="htspan" th:text="${r.hometype}">hometype</span> / <span class="sizespan" th:text="${r.size}"></span>평
+	                                    </div>
+	                                    <div class="sa-meta">
+	                                        <ul class="global-list">
+	                                            <li><span><i class="far fa-eye"></i></span><span class="cnt" th:text="${r.cnt}"></span></li>
+	                                        </ul>
+	                                    </div>
+	                                </div><!-- /.course-info -->
+	                            </div><!-- /.sa-post -->                            
+	                        </div>
+                        </th:block>     
 										
 				</div>
 				<!-- /.row -->
@@ -308,138 +215,10 @@
 	<!-- /.sa-section -->
 
 
-	<div class="footer">
-		<div class="footer-top">
-			<div class="container">
-				<div class="footer-content">
-					<div class="row">
-						<div class="col-md-6 col-lg-3">
-							<div class="footer-widget">
-								<div class="footer-logo">
-									<a href="#">
-										<img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
-									</a>
-								</div>
-								<p>Holisticly aggregate compelling ROI before out-of-the-box benefits. Efficiently create cross functional paradigms without an expanded array of testing procedures.</p>
-								<div class="footer-social">
-									<ul class="global-list">
-										<li><a href="#">
-												<i class="fab fa-facebook-f"></i>
-											</a></li>
-										<li><a href="#">
-												<i class="fab fa-twitter"></i>
-											</a></li>
-										<li><a href="#">
-												<i class="fab fa-google-plus-g"></i>
-											</a></li>
-										<li><a href="#">
-												<i class="fab fa-linkedin-in"></i>
-											</a></li>
-										<li><a href="#">
-												<i class="fab fa-instagram"></i>
-											</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3">
-							<div class="footer-widget px-md-4">
-								<h3>Quik Links</h3>
-								<ul class="global-list">
-									<li><a href="#">All Courses</a></li>
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Our Blogs</a></li>
-									<li><a href="#">Teacher</a></li>
-									<li><a href="#">Contact</a></li>
-									<li><a href="#">Terms</a></li>
-									<li><a href="#">Carrer</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3">
-							<div class="footer-widget">
-								<h3>Popular Courses</h3>
-								<div class="sa-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="blog-details.html">
-												<img th:src="@{/images/blog/4.jpg}" alt="Image" class="img-fluid">
-											</a>
-										</div>
-									</div>
-									<div class="entry-content">
-										<h2 class="entry-title">
-											<a href="blog-details.html">Sed ut perspiciatis unde iste</a>
-										</h2>
-									</div>
-								</div>
-								<!-- /.sa-post -->
-								<div class="sa-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="blog-details.html">
-												<img th:src="@{/images/blog/5.jpg}" alt="Image" class="img-fluid">
-											</a>
-										</div>
-									</div>
-									<div class="entry-content">
-										<h2 class="entry-title">
-											<a href="blog-details.html">Essential Training Training Examples</a>
-										</h2>
-									</div>
-								</div>
-								<!-- /.sa-post -->
-								<div class="sa-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="blog-details.html">
-												<img th:src="@{/images/blog/2.jpg}" alt="Image" class="img-fluid">
-											</a>
-										</div>
-									</div>
-									<div class="entry-content">
-										<h2 class="entry-title">
-											<a href="blog-details.html">Python Programming Essential Training</a>
-										</h2>
-									</div>
-								</div>
-								<!-- /.sa-post -->
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3">
-							<div class="footer-widget">
-								<h3>Subscribe</h3>
-								<form action="#" class="sa-form">
-									<input type="email" class="form-control" placeholder="Email address" required="">
-									<button type="submit">
-										<i class="fa fa-paper-plane" aria-hidden="true"></i>
-									</button>
-								</form>
-								<div class="payment-gateway">
-									<h4>Payment Gateway</h4>
-									<ul class="global-list d-flex">
-										<li><img th:src="@{/images/others/payment1.png}" alt="Image" class="img-fluid"></li>
-										<li><img th:src="@{/images/others/payment2.png}" alt="Image" class="img-fluid"></li>
-										<li><img th:src="@{/images/others/payment3.png}" alt="Image" class="img-fluid"></li>
-										<li><img th:src="@{/images/others/payment4.png}" alt="Image" class="img-fluid"></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /.row -->
-				</div>
-			</div>
-			<!-- /.container -->
+	<div th:if="${#lists.size(reviewList) == 12}" id="moreDiv" class="text-center">
+        	<!-- 10개 모두 출력되야 보여주기 -->
+			<button class="btn btn-primary w-100" id="moreBtn">더보기</button>
 		</div>
-		<div class="footer-bottom">
-			<div class="container text-center">
-				<span>Copyright &copy; 2021 ChtStudio - All Rights Reserved.</span>
-			</div>
-			<!-- /.container -->
-		</div>
-	</div>
-	<!-- /.footer -->
 
 	<!-- JS -->
 	<script th:src="@{/js/jquery.min.js}"></script>
@@ -455,10 +234,8 @@
 	<script th:src="@{/js/jquery-ui-min.js}"></script>
 	<script th:src="@{/js/validate.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
-
-	<script type="text/javascript">
-
-        
-        </script>
+	<script th:src="@{/js/sections/header.js}"></script>
+	<script th:src="@{/js/review/reviewList.js}"></script>
+	
 </body>
 </html>

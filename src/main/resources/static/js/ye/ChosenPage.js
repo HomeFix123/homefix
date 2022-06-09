@@ -29,7 +29,7 @@ $(function() {
 	// 1~5 페이지에 있다면 이전 버튼을 출력하지않음
 	if(classify > 0){
 		let li = "<li class='float-left mb-0'>"
-		li += "<a class='page-numbers' href='total?page="+ ((classify-1)*5+1) +"'>"
+		li += "<a class='page-numbers' href='Chosen?page="+ ((classify-1)*5+1) +"'>"
 		li += "<i class='fas fa-chevron-left'></i>"
 		li += "</a>"
 		li += "</li>"
@@ -47,7 +47,7 @@ $(function() {
 			li += "<a class='page-numbers current'>"
 		} else {
 			// 현재 페이지가 아닌 경우
-			li += "<a class='page-numbers' href='total?page="+ (classify*5+i) +"'>"
+			li += "<a class='page-numbers' href='Chosen?page="+ (classify*5+i) +"'>"
 		}
 		li += classify*5+i
 		li += "</a>"
@@ -59,7 +59,7 @@ $(function() {
 	// 다음 버튼
 	if(classify < parseInt((page-1)/5)){
 		let li = "<li class='float-right mb-0'>"
-		li += "<a class='page-numbers' href='total?page="+ (classify*5+6) +"'>"
+		li += "<a class='page-numbers' href='Chosen?page="+ (classify*5+6) +"'>"
 		li += "<i class='fas fa-chevron-right'></i>"
 		li += "</a>"
 		li += "</li>"

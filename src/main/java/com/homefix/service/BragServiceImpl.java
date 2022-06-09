@@ -74,16 +74,20 @@ public class BragServiceImpl implements BragService {
 		brag.setBcnt(0);
 		brag.setMember(memberRepo.findById(id).get());
 		brag.setCompany(companyRepo.findById(cid).get());
+		if(brag.getExtrainfo() == null && brag.getExtrainfo() == "") {
+			brag.setExtrainfo("추가사항 없음");
+		}
+		
 		brag.setBdate(new Date());
 
-		System.out.println(brag);
+
 		bragRepo.save(brag);
 
 	}
 
 	@Override
-	public List<ElasticBrag> getBragByKeyword(String keyword, String loc, 
-			String family, String job, String hometype, String sort, Integer page) {
+	public List<ElasticBrag> getBragByKeyword(String id, String loc, 
+			String family, String hometype, String sort, Integer page) {
 
 
 		// 페이지당 보여줄 개수
@@ -113,23 +117,19 @@ public class BragServiceImpl implements BragService {
 
 			// 지역 검색
 			if (loc != null) {
-				query = query.must(QueryBuilders.termQuery("spaces", loc)); // 지역명으로 용어검색
+				query = query.must(QueryBuilders.matchQuery("loc", loc)); // 지역명으로 용어검색
 			}
 
 			// 가족형태 검색
 			if (family != null) {
-				query = query.must(QueryBuilders.termQuery("familys", family)); // 지역명으로 용어검색
+				query = query.must(QueryBuilders.matchQuery("family", family)); // 지역명으로 용어검색
 			}
 
 			// 주거형태 검색
 			if (hometype != null) {
-				query = query.must(QueryBuilders.termQuery("hometypes", hometype)); // 지역명으로 용어검색
+				query = query.must(QueryBuilders.matchQuery("hometype", hometype)); // 지역명으로 용어검색
 			}
 
-			// 작업분야 검색
-			if (job != null) {
-				query = query.must(QueryBuilders.termQuery("jobs", job)); // 지역명으로 용어검색
-			}
 
 			// 요청할 데이터 처리
 			ssb.query(query);
@@ -154,7 +154,17 @@ public class BragServiceImpl implements BragService {
 
 				// json 형식을 클래스로 받을 수 있게 변환
 				ElasticBrag brag = MAPPER.readValue(h.getSourceAsString(), ElasticBrag.class);
-
+				Set<String> prefer = brag.getPreferids();
+				if(prefer != null && !prefer.isEmpty()) {
+					if(prefer.contains(id)) {
+						brag.setPreferck(true);
+					} else {
+						brag.setPreferck(false);
+					}
+				} else {
+					brag.setPreferck(false);
+				}
+				
 				resultList.add(brag);
 
 			}
@@ -166,30 +176,39 @@ public class BragServiceImpl implements BragService {
 			return null;
 		}
 	}
-
+	
+	// 인테리어 자랑 상
 	@Override
 	public Brag getBrag(Brag brag, String id) {
 
 		Brag result = bragRepo.findByBid(brag.getBid());
 		result.setPrefer(preferRepo.countByBrag(brag));
-		List<Prefer> list = preferRepo.findByBragAndMember(brag, memberRepo.findById(id).get());
-		if (list.size() > 0) {
-			result.setPreferck(true);
+		if(id != null) {
+			List<Prefer> list = preferRepo.findByBragAndMember(brag, memberRepo.findById(id).get());
+			if (list.size() > 0) {
+				result.setPreferck(true);
+			} else {
+				result.setPreferck(false);
+			}
 		} else {
 			result.setPreferck(false);
 		}
-
+		Integer cnt = result.getBcnt();
+		result.setBcnt(cnt+1);
+		bragRepo.save(result);
 		return result;
 
 	}
 
+	// 인테리어 자랑 삭제
 	@Override
 	public void deleteBrag(Brag brag, String id) {
 		Brag result = bragRepo.findByBid(brag.getBid());
 		result.setMember(memberRepo.findById(id).get());
-		bragRepo.delete(bragRepo.findByBidAndMember(result.getBid(), result.getMember()));
+		bragRepo.delete(result);
 	}
-
+	
+	// 좋아요 입력
 	@Override
 	public void savePrefer(Brag brag, String id) {
 
@@ -200,7 +219,8 @@ public class BragServiceImpl implements BragService {
 		preferRepo.save(result);
 
 	}
-
+	
+	// 좋아요 취소
 	@Override
 	public void deletePrefer(Brag brag, String id) {
 		Prefer result = new Prefer();
@@ -208,7 +228,8 @@ public class BragServiceImpl implements BragService {
 		result.setMember(memberRepo.findById(id).get());
 		preferRepo.deleteAll(preferRepo.findByBragAndMember(brag, result.getMember()));
 	}
-
+	
+	// 신고하기
 	@Override
 	public String saveReport(Member id, String reporter, String reason) {
 		Member repo = memberRepo.findById(reporter).get();
@@ -227,7 +248,8 @@ public class BragServiceImpl implements BragService {
 
 		}
 	}
-
+	
+	// 계약완료 업체 리스트
 	@Override
 	public Set<Company> getContractList(String id) {
 		Member mem = memberRepo.findById(id).get();

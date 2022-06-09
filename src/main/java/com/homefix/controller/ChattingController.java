@@ -27,11 +27,6 @@ public class ChattingController {
 	@GetMapping("/getChatList")
 	@ResponseBody
 	public Map<String,Object> getChatList(HttpSession session , Model m) {
-//		String sessionid = (String)session.getAttribute("id");
-//		System.out.println("세션에 저장되어있는 아이디 : "+ sessionid);
-//		m.addAttribute("chatRoom",chatService.getChatList(sessionid));
-//		return chatService.getChatList(sessionid);
-		
 		String userId = (String)session.getAttribute("userId");
 		String memberId = (String)session.getAttribute("memberId");
 		System.out.println(userId);

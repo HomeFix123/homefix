@@ -104,7 +104,7 @@
 	                                <div class="entry-header">
 	                                	<!-- 썸네일 이미지 -->
 	                                    <div class="entry-thumbnail">
-	                                        <a th:href="|/company/${c.id}|">
+	                                        <a class="colink" th:href="|/company/${c.id}|">
 	                                        	<img th:if="${c.img == null}" class="titleImg img-fluid" src="http://140.238.11.118:5000/upload/profile_basic.png" alt="Image">
 	                                        	<img th:if="${c.img != null}" class="titleImg img-fluid" th:src="|http://140.238.11.118:5000/upload/${c.img}|" alt="Image">
 	                                        </a>
@@ -119,7 +119,7 @@
 	                                        <h2 class="title text-center">
 	                                        	<img th:if="${c.logo == null}" class='user-img' src="http://140.238.11.118:5000/upload/profile_basic.png">
 	                                        	<img th:if="${c.logo != null}" class='user-img' th:src="|http://140.238.11.118:5000/upload/${c.logo}|">
-	                                        	<a th:href="|/company/${c.id}|" class="companyName" th:text="${c.name}">업체 이름</a>
+	                                        	<a th:href="|/company/${c.id}|" class="colink companyName" th:text="${c.name}">업체 이름</a>
 	                                        </h2>
 	                                        <div class="companySpecialList">
 	                                        	<a class="companySpecial btn btn-secondary m-1" th:each="s : ${c.special}" th:text="${s}"></a>
@@ -180,30 +180,12 @@
 		</div>
 	</div>
 
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 	<!-- 더보기 버튼 -->
         <div th:if="${#lists.size(companyList) == 12}" id="moreDiv" class="text-center">
         	<!-- 10개 모두 출력되야 보여주기 -->
 			<button class="btn btn-primary w-100" id="moreBtn">더보기</button>
 		</div>
-
+ㅗ
    		<!-- 검색시 footer가 필요없다고 판단 -->
         
        

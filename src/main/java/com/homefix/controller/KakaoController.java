@@ -1,13 +1,11 @@
 package com.homefix.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.homefix.service.KakaoServiceImpl;
+import com.homefix.service.KakaoService;
 
 import lombok.AllArgsConstructor;
 
@@ -17,7 +15,8 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/kakao")
 public class KakaoController {
 	
-	private KakaoServiceImpl kakao;
+	@Autowired
+	private KakaoService kakao;
 
     /**
      * 카카오 callback

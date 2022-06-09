@@ -53,3 +53,6 @@
     min-width: 280px;
     z-index: 9999;
 }
+.navbar-brand {
+	max-width: none;
+}
