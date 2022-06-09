@@ -12,7 +12,7 @@ import com.homefix.domain.Estimation;
 public interface EstService {
 
 	//견적 상세목록 불러오기
-	public Estimation getEstDetail(String id);
+	public Estimation getEstDetail(Integer eid,String cid);
 
 	public List<Estimation> getCEst(String id,Integer page);
 	public List<Estimation> getCEsts(String id,Integer page);

@@ -41,8 +41,16 @@ public class EstServiceImpl implements EstService {
 	Esti_requestRepository esti_reqRepo; 
 
 	@Override
-	public Estimation getEstDetail(String id) {
-		Estimation resultData = estRepo.getEstDetail(id);
+	public Estimation getEstDetail(Integer eid,String cid) {
+		Estimation resultData = estRepo.findById(eid).get();
+		Company company = companyRepo.findById(cid).get();
+		Contract contract = contractRepo.findByCompanyAndEstimation(company,resultData);
+		Esti_request estReq = esti_reqRepo.findByEstimationAndCompany(resultData, company);
+		if(contract != null) {
+			resultData.setIng(contract.getIng());
+		}else if(estReq != null) {
+			resultData.setIng("요청완료");
+		}
 		System.out.println("resultData는"+resultData);
 		return resultData;
 	}
