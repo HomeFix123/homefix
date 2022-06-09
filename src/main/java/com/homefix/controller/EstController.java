@@ -163,6 +163,10 @@ public class EstController {
 	@ResponseBody
 	public String getEstiReq(Integer eid, String cid, HttpSession session) {
 		cid =(String) session.getAttribute("userId");
+
+		System.out.println(eid);
+		System.out.println(cid);
+
 		return estService.getEstiReq(eid, cid);
 	} 
 	
