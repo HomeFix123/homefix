@@ -6,6 +6,10 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.homefix.domain.Company;
+import com.homefix.domain.Role;
 import com.homefix.service.CompanyService;
 
 /**
@@ -31,6 +36,9 @@ public class CompanyController {
 
 	@Autowired
 	CompanyService companyService;
+
+	@Autowired
+	private PasswordEncoder encoder;
 
 	// 사업자 아이디 중복 조회
 	@GetMapping("/company/idCheck")
@@ -62,31 +70,23 @@ public class CompanyController {
 	// 로그인하기
 	@PostMapping("/company/companyLogin")
 	public String loginCheck(Company com, HttpSession session, Model model) {
-
 		if (companyService.login(com) != null) {
-			System.out.println("*******로그인 성공********");
 			session.setAttribute("userId", com.getId());
 			session.setAttribute("companyName", companyService.login(com));
 			model.addAttribute("message", "Y");
 			return "redirect:/index";
 		} else {
 			model.addAttribute("message", "N");
-			System.out.println("*******로그인 실패*********");
 			return "sign/sign-in";
 		}
 	}
 
 	@GetMapping("")
 	public String signIn(HttpSession session) {
-
 		if (session.getAttribute("userId") != null) {
-
 			return "redirect:/company/profile";
-
-		} else {
-			return "sign/sign-in";
-
 		}
+		return "sign/sign-in";
 
 	}
 
@@ -105,7 +105,6 @@ public class CompanyController {
 	// 사업자 정보수정
 	@PutMapping("/company/companyUpdate")
 	public String companyUpdate(Company com) {
-
 		companyService.companyUpdate(com);
 		return "company/companyprofile";
 	}
@@ -114,7 +113,6 @@ public class CompanyController {
 	@DeleteMapping("/Withdrawal")
 	@ResponseBody
 	public String companyDelete(String pass, HttpSession session) {
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!" + session.getAttribute("userId"));
 		Company com = new Company();
 		com.setPass(pass);
 		com.setId((String) session.getAttribute("userId"));
@@ -129,7 +127,7 @@ public class CompanyController {
 	}
 
 	// 사업자 로그아웃
-	@GetMapping("/company/logOut")
+	@GetMapping("/logOut")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		System.out.println(session.getAttribute("userId") + "님 로그아웃");
@@ -141,10 +139,19 @@ public class CompanyController {
 	@PostMapping("/company/signUpB")
 	public String companyInsert(Company com) {
 		com.setEnabled(true);
+		com.setPass(encoder.encode(com.getPass()));
+
+		com.setRole(Role.ROLE_COMPANY);
+
 		String num = com.getNum();
 		com.setNum(num.replaceAll("-", ""));
 		companyService.companyInsert(com);
 		return "redirect:/index";
+	}
+
+	@GetMapping("/error")
+	public String accessDeniedPage() {
+		return "/sign/accessDenied";
 	}
 
 }

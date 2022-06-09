@@ -1,10 +1,12 @@
 package com.homefix.service;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Sort;
 import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
@@ -89,6 +91,9 @@ public class CompanyServiceImpl implements CompanyService {
 	public void companyUpdate(Company com) {
 		Company company = companyRepo.findById(com.getId()).get();
 		company.setAddr(com.getAddr());
+		
+		System.out.println(com.getLogo());
+		company.setLogo(com.getLogo());
 		company.setAddrd(com.getAddrd());
 		company.setEmail(com.getEmail());
 		company.setName(com.getName());
@@ -126,8 +131,15 @@ public class CompanyServiceImpl implements CompanyService {
 	 }  
 	    
 	 //시공전문가(업체상세페이지):업체후기
-	 public List<Review> getCompanyReview(Company com) {
-		 return reviewRepo.findByCompany(com);
+	 public List<Review> getCompanyReview(Company com, int page) {
+		int showCntPerPage = 6; 
+		
+		  
+		  Pageable pageable = (Pageable) PageRequest.of(page - 1, showCntPerPage,
+		  Sort.by("rdate").descending()); 
+		  
+		 
+		 return reviewRepo.findByCompany(com, pageable);
 	 } 
  
 } 
