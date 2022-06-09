@@ -3,6 +3,9 @@ package com.homefix.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Chatting;
@@ -44,16 +47,47 @@ public class EstServiceImpl implements EstService {
 	}
 
 	@Override
-	public List<Estimation> getCEst(String cid) {
+	public List<Estimation> getCEst(String cid, Integer page) {
+		int showCntPerPage = 10;
+		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
+		
 		Company com = companyRepo.findById(cid).get();
-		return estRepo.findByCompany(com);
+		return estRepo.findByCompany(com,pageable);
 	}
+	
+	//페이징 
+	@Override
+	public long countCEst(String cid) {
+		Company company = companyRepo.findById(cid).get();
+		int showCntPerPage = 10;
+		return (long)(estRepo.countByCompany(company)-1)/showCntPerPage + 1;
+	}
+	
+	
 
 	@Override
-	public List<Estimation> getMEstimation(String id) {
+	public List<Estimation> getMEstimation(String id,Integer page) {
+		int showCntPerPage = 10;
+		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
+		
 		Member member = memberRepo.findById(id).get();
 		System.out.println("resultData는"+ estRepo.findByMember(member));
-		return estRepo.findByMember(member);
+		List<Estimation> resultList = estRepo.findByMember(member,pageable);
+		for(Estimation result: resultList) {
+			Contract contract =contractRepo.findByEstimation(result);
+			if(contract != null) {
+				result.setIng(contract.getIng());
+			}
+		}
+		return resultList;
+	}
+	
+	//페이징
+	@Override
+	public long countMEList(String id) {
+		Member member = memberRepo.findById(id).get();
+		int showCntPerPage = 10;
+		return (long)(estRepo.countByMember(member)-1)/showCntPerPage + 1;
 	}
 
 	//내(고객) 견적 리스트 상세보기
@@ -152,8 +186,22 @@ public class EstServiceImpl implements EstService {
 			return "확정요청하기";
 		}
 	}
-	
-	
 
-	
+	//(고객) 내 견적 상세보기에서 확정버튼 클릭하면 contract db에 값 저장
+	@Override
+	public void saveContract(Integer eid, String cid) {
+		Estimation esti = estRepo.findById(eid).get();
+		Company company = companyRepo.findById(cid).get();
+		Contract contract = new Contract();
+		contract.setEstimation(esti);
+		contract.setCompany(company);
+		contractRepo.save(contract);
+	}
+
+	@Override
+	public Contract checkContract(Integer eid) {
+		Estimation esti = estRepo.findById(eid).get();
+		return contractRepo.findByEstimation(esti);
+	}
+
 }

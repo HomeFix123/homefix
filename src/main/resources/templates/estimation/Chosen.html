@@ -90,8 +90,9 @@
                         </div><!-- /.row -->
                     </div><!-- /.sg-course-content -->
 
+					<!-- 페이지버튼 -->
                     <div class="sg-pagination text-center">
-                        <ul class="pagination justify-content-center mb-0">
+                        <ul class="pagination justify-content-center mb-0" id="pagination">
                             <li><a class="page-numbers current" href="#">1</a></li>
                             <li><a class="page-numbers" href="#">2</a></li>
                             <li class="float-right"><a class="page-numbers" href="#"><i class="fas fa-chevron-right"></i></a></li>
@@ -122,10 +123,15 @@
 	<!-- header js -->
     <script th:src="@{/js/sections/header.js}"></script> 
 	
-	<script type="text/javascript">
- 	// url 파라미터 지우는 코드
-  	history.replaceState({}, null, location.pathname);
-	</script>
+	<!--my page js-->
+    <script th:src="@{/js/ye/ChosenPage.js}"></script>
+	
+	<!-- 페이징 용 -->
+    <script th:inline="javascript">
+        	/*<![CDATA[*/
+        	const pageCnt = /*[[ ${cntCEst} ]]*/ +0;
+        	/*]]*/
+    </script>
 </body>
 
 </html>

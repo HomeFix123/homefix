@@ -48,7 +48,7 @@ public class CompanyPageController {
 		//////// session.getAttribute("userId")));
 
 		//////// 견적 신청 중인 글목록보기- vo Estimation / chosen
-		model.addAttribute("RegistList", estService.getCEst((String) session.getAttribute("userId")));
+		model.addAttribute("RegistList", estService.getCEst((String) session.getAttribute("userId"),1));
 
 		///////// 구독관리(결제정보)
 		Company com = new Company();
