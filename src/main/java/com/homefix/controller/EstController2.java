@@ -1,7 +1,5 @@
 package com.homefix.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -10,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -31,8 +30,9 @@ public class EstController2 {
 //	}
 	
 	/* 견적상담 신청 페이지 */
-	@GetMapping("/write") //RESTful 방식 : /estimation/write
-	public String insertEst() {
+	@GetMapping("/write/{id}") //RESTful 방식 : /estimation/write
+	public String insertEst(@PathVariable String id) {
+		//업체 상세페이지에서 업체 아이디 넘어가는 것 확인 완료//System.out.println(id);
 		return "estimation2/estimation"; // RESTful은 리턴값을 반드시 써주어야 함(리턴은 뷰페이지 경로 적기)
 	}
 		
