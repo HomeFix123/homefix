@@ -53,7 +53,7 @@ public class TipServiceImpl implements TipService {
 	@Override
 	public long countEstList() {
 		int showCntPerPage = 5;
-		return (long) (tipRepo.count() + 1) / showCntPerPage + 1;
+		return (long) (tipRepo.count()-1) / showCntPerPage + 1;
 	}
 
 	// 팁 작성글 입력

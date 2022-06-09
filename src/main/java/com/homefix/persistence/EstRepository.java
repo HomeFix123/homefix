@@ -32,6 +32,10 @@ public interface EstRepository extends CrudRepository<Estimation, Integer>{
 	
 	@Query(value="SELECT * FROM estimation WHERE eid = ?1" , nativeQuery = true)
 	Estimation getEstDetail(String word);
+		
+	//전체 견적에서 cid 지정 안된 견적리스트 가져오기
+	@Query(value="SELECT * FROM estimation WHERE cid IS NULL" , nativeQuery = true)
+	List<Estimation> findByCompanyNull(Pageable pageable);
 	
 	// 전체 견적 페이징 처리
 	public List<Estimation> findAll(Pageable pageable);

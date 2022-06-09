@@ -47,6 +47,8 @@
         <!-- 개인 css 파일 링크 -->
         <link rel="stylesheet" th:href="@{/css/jy/jy.css}">
         
+        
+        
     </head>
     <body> 
         <div id="preloader">
@@ -76,6 +78,10 @@
 								<form action="">
                                 <div class="course-info" th:each="details:${Details}">
                                     <h2 class="title" id="estimate_title">희망 견적서 상세보기</h2>
+                                    <input type="hidden" name="eid" class="eid" th:value="${details.eid}">
+                                    <input type="hidden" name="mid" class="mid" th:value="${details.member.id}">
+                                    <input type="hidden" name="cid" class="cid" th:value="${session.userId}">
+                                    <input type="hidden" name="cname" class="cname" th:value="${session.companyName}">
                                     <p><span class="bold">공간 유형  :</span> <span th:text="${details.space}"></span></p>
                                     <p><span class="bold">건물 유형 :</span> <span th:text="${details.building}"></span></p>
                                     <p><span class="bold">평수 :</span> <span th:text="${details.size}"></span>평</p>
@@ -93,11 +99,11 @@
                             </div><!-- /.sa-course -->  
                             
                             <div class="warning_div">
-                                <input type="checkbox"> <strong class="warning_cb">해당 고객의 정보를 오용할 경우 법적 제제를 받을 수 있습니다.</strong>
+                                <input class="warning_check" type="checkbox"> <strong class="warning">해당 고객의 정보를 오용할 경우 법적 제제를 받을 수 있습니다.(필수)</strong>
                             </div>
                             
                             <div class="btn_div">
-                                <button class="btn btn-primary decision_btn">확정하기</button>
+                                <button class="btn btn-primary decision_btn_CD">확정하기</button>
                                 <button class="btn btn-primary chat_btn">채팅하기</button>
                             </div>
                         
@@ -128,6 +134,10 @@
         
         <!-- header js -->
 		<script th:src="@{/js/sections/header.js}"></script>
+        
+        <!-- 개인 js 스크립트 -->
+        <script th:src="@{/js/jy/estDetails.js}"></script>
+        <script th:src="@{/js/ye/ye.js}"></script>
             
     </body>
 </html>        

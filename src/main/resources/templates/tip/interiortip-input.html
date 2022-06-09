@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+   
 <!-- 인테리어 팁 => 입력 페이지 -->
 <!-- 타임리프 설정 -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
@@ -164,28 +164,47 @@
        			if($('.writeTitle').val()==""){
        				$('.tiptitle_error_box').text("제목을 입력해주세요.");
        				$('#tiptitle' ).focus();
-       				return false;        
-       			} else{
+       				return false;  
+       				
+       			// 내용 필수 안내      
+       			} else if($('.tcontent').val()==""){
        				$('.tiptitle_error_box').text("");
-       			}
-       			
-       			// 내용 필수 안내
-       			if($('.tcontent').val()==""){
        				$('.tcontent_error_box').text("내용을 입력해주세요.");
        				$('.tcontent' ).focus();
-       				return false;        
-       			} else{
+       				return false;
+
+       			// 파일첨부 필수 안내 	       
+       			}else if($('#userfile').val()==""){
        				$('.tcontent_error_box').text("");
-       			}
-       			
-       			// 파일첨부 필수 안내 
-       			if($('#userfile').val()==""){
        				$('.fileInput_error_box').text("파일첨부는 필수 사항입니다.");
        				$('#userfile' ).focus();
-       				return false;        
-       			} else{
+       				return false;
+       				
+       			}else{
+       				$('.tiptitle_error_box').text("");
        				$('.fileInput_error_box').text("");
+       				$('.tcontent_error_box').text("");
+       				
+       				// 이미지 저장
+       				const imageInput = $('#fileInput')[0]; // input에서 이미지 가져오기
+             	      const formData = new FormData();
+             	      if(imageInput.files[0] != null){
+             	         // 이미지명 uuid로 변경
+             	         const imgName = uuid(imageInput.files[0].name);
+             	         formData.append("file", imageInput.files[0], imgName);   
+             	         
+             	         const result = saveImage(formData); //이미지 저장
+             	         if(result){
+             	            // 결과가 성공시 input hidden에 이미지명 넣기(DB에 저장할 이미지명)
+             	            img.val(imgName); 
+             	         }
+             	      }
+             	      
+             	      form.submit()
+       				
        			}
+       			
+       			
        		});//====================================================
        			
        			
@@ -207,23 +226,6 @@
        	   const img = $('#cfile');
        	   // form submit버튼 누른 후 동작
        	   // 이미지 저장후 submit 
-       	   $('#submitButton').click(() => {
-       	      const imageInput = $('#fileInput')[0]; // input에서 이미지 가져오기
-       	      const formData = new FormData();
-       	      if(imageInput.files[0] != null){
-       	         // 이미지명 uuid로 변경
-       	         const imgName = uuid(imageInput.files[0].name);
-       	         formData.append("file", imageInput.files[0], imgName);   
-       	         
-       	         const result = saveImage(formData); //이미지 저장
-       	         if(result){
-       	            // 결과가 성공시 input hidden에 이미지명 넣기(DB에 저장할 이미지명)
-       	            img.val(imgName); 
-       	         }
-       	      }
-       	      
-       	      form.submit()
-       	   })
        	   
        	   // uuid 생성
        	   function uuid(file_nm) {

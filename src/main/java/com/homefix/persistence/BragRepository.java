@@ -10,6 +10,7 @@ import com.homefix.domain.Company;
 import com.homefix.domain.Member;
 
 public interface BragRepository extends CrudRepository<Brag, String>{
+	//개인마이페이지 후기 페이징
 	public List<Brag> findAll(Pageable pageable);
 	
 	public Brag findByBid(Integer bid);
@@ -17,4 +18,10 @@ public interface BragRepository extends CrudRepository<Brag, String>{
 	public Brag findByBidAndMember(Integer bid, Member member);
 	
 	public List<Brag> findByCompany(Company com);
+
+	//개인마이페이지 후기
+	public List<Brag> findByMember(Member member);
+	
+	
+	
 }
