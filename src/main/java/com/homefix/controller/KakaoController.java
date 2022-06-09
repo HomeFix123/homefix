@@ -62,6 +62,6 @@ public class KakaoController {
     public String signKakao() {
     	
     	
-    	return "/sign/member/sign_kakao";
+    	return "sign/member/sign_kakao";
     }
 }
