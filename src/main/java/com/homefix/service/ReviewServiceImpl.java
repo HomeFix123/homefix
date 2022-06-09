@@ -14,6 +14,7 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.SortOrder;
+import org.hibernate.internal.build.AllowSysOut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,21 +57,19 @@ public class ReviewServiceImpl implements ReviewService {
 	private RestHighLevelClient client;
 	
 	
-	
+	// 시공후기 작성하기
 	@Override
 	public void saveReview(Review rev, String cid) {
 		
 		rev.setRcnt(0);
 		rev.setCompany(companyRepo.findById(cid).get());
 		rev.setRdate(new Date());
-		
-		System.out.println(rev);
 		reviewRepo.save(rev);
 		
 	}
 	
 	
-	
+	// 시공후기 상세보기
 	@Override
 	public Review getReview(Review rev ) {
 		Review result = reviewRepo.findById(rev.getRid()).get();
@@ -80,6 +79,7 @@ public class ReviewServiceImpl implements ReviewService {
 		
 	}
 	
+	// 시공후기 삭제하기
 	@Override
 	public void deleteReview(Review rev, String cid) {
 		
@@ -90,16 +90,17 @@ public class ReviewServiceImpl implements ReviewService {
 		reviewRepo.delete(review);
 	}
 	
-	
+	// 시공후기 신고하기
 	@Override
 	public String saveCReport(Company cid, String id, String reason) {
 		Member repo = memberRepo.findById(id).get();
-		List<CompanyReport> list = companyRRepo.findByCompanyAndMember(id, repo);
+		List<CompanyReport> list = companyRRepo.findByCompanyAndMember(cid, repo);
 		if(list.isEmpty()) {
 			CompanyReport result = new CompanyReport();
 			result.setCompany(cid);
 			result.setMember(repo);
 			result.setReason(reason);
+			result.setRday(new Date());
 			companyRRepo.save(result);
 			return "true";
 			
@@ -110,7 +111,7 @@ public class ReviewServiceImpl implements ReviewService {
 		}
 	}
 	
-	
+	// 시공후기 목록
 	@Override
 	public List<ElasticReview> getReviewList(Integer page, String hometype, String job, String family) {
 
@@ -121,7 +122,7 @@ public class ReviewServiceImpl implements ReviewService {
 		int startNum = viewsPerPage * (page-1);
 
 		try {
-			SearchRequest request = new SearchRequest("review"); // company 인덱스에 요청
+			SearchRequest request = new SearchRequest("review"); // review 인덱스에 요청
 			SearchSourceBuilder ssb = new SearchSourceBuilder(); // Elasticsearch 기준에서 요청할 json 생성
 
 			ssb.from(startNum); // 초기 순서
@@ -136,26 +137,28 @@ public class ReviewServiceImpl implements ReviewService {
 
 			// 필터링을 위해 bool 형식으로 설정
 			// 검색어 => should
-			// 지역 => must
+			// 키워드 => must
 			BoolQueryBuilder query = QueryBuilders.boolQuery(); 
 
 
 
-			// 지역 검색
+			// 주거형태 검색
 			if(hometype != null) {
 				query = query
 						.must(QueryBuilders
 								.matchQuery("hometype", hometype)); // 지역명으로 용어검색
 			}
+			// 작업분야
 			if(job != null) {
 				query = query
 						.must(QueryBuilders
-								.matchQuery("job", job)); // 지역명으로 용어검색
+								.matchQuery("job", job)); 
 			}
+			// 가족형태
 			if(family != null) {
 				query = query
 						.must(QueryBuilders
-								.matchQuery("family", family)); // 지역명으로 용어검색
+								.matchQuery("family", family)); 
 			}
 
 			// 요청할 데이터 처리

@@ -180,8 +180,9 @@ public class BragServiceImpl implements BragService {
 	// 인테리어 자랑 상
 	@Override
 	public Brag getBrag(Brag brag, String id) {
-
+		
 		Brag result = bragRepo.findByBid(brag.getBid());
+		
 		result.setPrefer(preferRepo.countByBrag(brag));
 		if(id != null) {
 			List<Prefer> list = preferRepo.findByBragAndMember(brag, memberRepo.findById(id).get());
