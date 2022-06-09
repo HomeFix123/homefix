@@ -438,7 +438,7 @@
 																			<th>구독권 종료일</th>
 																		</tr>
 																	</thead>
-																	<tbody class="paymentInfoTR" >
+																	<tbody class="paymentInfoTR"  id="paymentInfoAdd">
 																		<tr  th:each="paymentInfo : ${PaymentInfo}" >
 																		
 																			<td th:text="${paymentInfo.pid}"></td>
@@ -643,7 +643,7 @@
 																			<th scope="col">신청ID</th>
 																		</tr>
 																	</thead>
-																	<tbody>
+																	<tbody id="registEstTbody">
 																		<tr th:each="list:${RegistList}">
 																			<td><a class="estNum"
 																				th:href="@{/estimation/ChosenDetail(id=${list.eid})}"><span
@@ -658,7 +658,6 @@
 																</table>
 																<div th:if="${#lists.size(RegistList)== 6}"
 																	 class="text-center">
-																	<!-- 10개 모두 출력되야 보여주기 -->
 																	<button class="btn btn-primary w-100" id="moreBtnEstimation">더보기</button>
 																</div>
 															</form>

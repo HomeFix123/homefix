@@ -4,3 +4,8 @@
 	right: 30px;
 	z-index: 9999; /* 포지션을 먼저 지정후 z-좌표(레이어) : 9999입니다. */ 
 }
+
+#nav-items .list-group {
+	width: 100px;
+	float: right;
+}

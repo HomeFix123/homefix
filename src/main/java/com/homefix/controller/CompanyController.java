@@ -51,11 +51,9 @@ public class CompanyController {
 	@GetMapping("/company/emailCheck")
 	@ResponseBody
 	public String emailCheck(String email, String email2) {
-
 		if (email.equals(email2)) {
 			return "S";
 		} else {
-
 			return companyService.emailCheck(email);
 		}
 	}
@@ -87,19 +85,16 @@ public class CompanyController {
 			return "redirect:/company/profile";
 		}
 		return "sign/sign-in";
-
 	}
 
 	// 회원가입 동의 페이지 이동
 	@GetMapping("/company/sign-agree-b")
 	public void signAgree() {
-
 	}
 
 	// 사업자 회원가입 페이지 이동
 	@GetMapping("/company/sign-up-b")
 	public void signUpBusniss() {
-
 	}
 
 	// 사업자 정보수정
@@ -140,9 +135,7 @@ public class CompanyController {
 	public String companyInsert(Company com) {
 		com.setEnabled(true);
 		com.setPass(encoder.encode(com.getPass()));
-
 		com.setRole(Role.ROLE_COMPANY);
-
 		String num = com.getNum();
 		com.setNum(num.replaceAll("-", ""));
 		companyService.companyInsert(com);
