@@ -65,7 +65,8 @@ public class EstController {
 	
 	//업체의 현재 진행중인 견적 리스트 
 	@GetMapping("/Progress")
-	public String getCIngList(String cid,Model m) {
+	public String getCIngList(String cid,Model m,HttpSession session) {
+		cid = (String)session.getAttribute("userId");
 		System.out.println("넘어온 cid값은 "+cid);
 		m.addAttribute("Lists",estService.getCIngList(cid));
 		return "estimation/Progress";
@@ -73,7 +74,8 @@ public class EstController {
 	
 	//내(고객) 견적 리스트 상세보기
 	@GetMapping("/MyDetail")
-	public String getMEDetail(Integer id, Model m) {
+	public String getMEDetail(Integer id, Model m,HttpSession session) {
+		id = (Integer)session.getAttribute("memberId");
 		System.out.println("integer 잘 넘어왔니 " + id);
 		m.addAttribute("Detail",estService.getMEDetail(id));
 		m.addAttribute("CLists",estService.getMEDetailC(id));
