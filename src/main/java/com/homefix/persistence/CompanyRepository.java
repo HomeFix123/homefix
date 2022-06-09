@@ -40,4 +40,9 @@ public interface CompanyRepository extends CrudRepository<Company, String>{
 					+ "	ON co.cid = re.cid", nativeQuery = true)
 	public List<Map<String, Object>> findAllForAdmin();
 	
+	//임시 비밀번호 발급
+	public Company findCompanyByEmail(String email);
+	
+	public Company findByCeoAndTel(String ceo, String tel);
+	
 }

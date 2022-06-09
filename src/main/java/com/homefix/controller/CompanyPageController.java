@@ -68,7 +68,7 @@ public class CompanyPageController {
 		if (session.getAttribute("userId") != null) {
 			String id = session.getAttribute("userId").toString();
 			model.addAttribute("company", companyService.getCompanyMyInfo(id));
-			return "/company/companyprofile";
+			return "company/companyprofile";
 		} else {
 			return "redirect:/sign";
 		}
