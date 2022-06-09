@@ -31,7 +31,7 @@
 
 						<ul class="global-list">
 							<li th:if="${session.memberId == null && session.userId == null}"><a th:href="@{/sign}">Login</a></li>
-							<li th:if="${session.memberId != null || session.userId != null}"><a th:href="@{/sign/member/memberlogout}">Logout</a></li>
+							<li th:if="${session.memberId != null || session.userId != null}"><a th:href="@{/logout}">Logout</a></li>
 							<li th:if="${session.memberId != null}"><a th:href="@{/sign/member/profile}"><i class="far fa-user"></i></a></li>
 							<li th:if="${session.userId != null}"><a th:href="@{/company/profile}"><i class="far fa-user"></i></a></li>
 							<li class="sa-dropdown">
