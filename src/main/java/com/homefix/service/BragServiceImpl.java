@@ -19,6 +19,10 @@ import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -267,11 +271,29 @@ public class BragServiceImpl implements BragService {
 
 	}
 
+	//개인 마이페이지 =====================================================
 	//개인 마이페이지 후기 목록 표시
 	@Override
 	public List<Brag> bMyPageList(Member mem) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	//개인 마이페이지 후기목록 페이징 (1)
+	@Override
+	public Page<Brag> getBragList(String id,Integer page) {
+		int showCntPerPage = 3;	//한번에 보여줄 게시물의 수
+		Member mem = memberRepo.findById(id).get();
+		Pageable pageable = PageRequest.of(page, showCntPerPage,Sort.by("bid").descending());
+		return bragRepo.findByMember(mem,pageable);
+	}
+
+	//개인 마이페이지 후기목록 페이징 (2)
+	@Override
+	public long countBragList(String id) {
+		int showCntPerPage = 10;
+		Member member = memberRepo.findById(id).get();
+		return (long)(bragRepo.countByMember(member)-1)/showCntPerPage + 1;
 	}
 
 	

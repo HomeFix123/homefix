@@ -1,6 +1,9 @@
 package com.homefix.service;
 
 import java.util.List;
+
+import org.springframework.data.domain.Page;
+
 import com.homefix.domain.Tip;
 
 
@@ -20,5 +23,11 @@ public interface TipService {
 		
 	// 좋아요 취소
 	public void deletePrefer(Tip tip, String id);
+
+	//개인 마이페이지 팁 목록 페이징
+	public Page<Tip> getTipList(String id, Integer page);
+	
+	//개인 마이페이지 팁 목록 페이징 2
+	public long countTipList(String id);
 	
 }
