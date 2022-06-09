@@ -21,15 +21,13 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Autowired
 	CompanyRepository companyRepo;
-	
+
 	@Autowired
 	CompanyInfoRepository companyInfoRepo;
-	
 
-	   
 	@Autowired
 	ReviewRepository reviewRepo;
-	
+
 	@Autowired
 	BragRepository bragrepo;
 
@@ -73,14 +71,12 @@ public class CompanyServiceImpl implements CompanyService {
 	// 사업자 회원 탈퇴
 	public String companyDelete(Company com) {
 		Company compo = companyRepo.findById(com.getId()).get();
-		if (compo.getPass().equals(com.getPass()) ) {
+		if (compo.getPass().equals(com.getPass())) {
 			companyRepo.deleteById(com.getId());
 			return "Y";
 		}
 		return "N";
 	}
-	
-	
 
 	// 사업자 정보 불러오기
 	public Company getCompanyMyInfo(String companyId) {
@@ -91,8 +87,6 @@ public class CompanyServiceImpl implements CompanyService {
 	public void companyUpdate(Company com) {
 		Company company = companyRepo.findById(com.getId()).get();
 		company.setAddr(com.getAddr());
-		
-		System.out.println(com.getLogo());
 		company.setLogo(com.getLogo());
 		company.setAddrd(com.getAddrd());
 		company.setEmail(com.getEmail());
@@ -107,16 +101,15 @@ public class CompanyServiceImpl implements CompanyService {
 	public void companyInsert(Company com) {
 		companyRepo.save(com);
 	}
-	
-	//시공전문가(업체상세페이지):두번째 탭 업체소개
-	public CompanyInfo  getCompanyIntroduction(Company com) {
-		//CompanyInfo comi = new CompanyInfo();
-		// comi.setCinfo_id( Integer.parseInt( com.getId()));
-		return companyInfoRepo.findById(Integer.parseInt( com.getId())).get();
+
+	// 시공전문가(업체상세페이지):두번째 탭 업체소개
+	public CompanyInfo getCompanyIntroduction(Company com) {
+		return companyInfoRepo.findById(Integer.parseInt(com.getId())).get();
 	}
+
 	
 	
-	/* 
+	/*
 	 * //시공전문가(업체상세페이지):전문분야 public CompanySpecial getCompanySpecial(Company com) {
 	 * CompanyInfo comi = new CompanyInfo(); comi.setCinfo_id(null);
 	 * comi.setCinfo_id( Integer.parseInt( ));
@@ -124,22 +117,25 @@ public class CompanyServiceImpl implements CompanyService {
 	 * 
 	 * return companyInfoRepo.findBy(Integer.parseInt( com.getId())); }
 	 */
+
 	
-	//시공전문가(업체상세페이지):인테리어자랑
-	 public List<Brag> getInteriorBrag(Company com) {
-		 return bragrepo.findByCompany(com);
-	 }  
-	    
-	 //시공전문가(업체상세페이지):업체후기
-	 public List<Review> getCompanyReview(Company com, int page) {
-		int showCntPerPage = 6; 
-		
-		  
-		  Pageable pageable = (Pageable) PageRequest.of(page - 1, showCntPerPage,
-		  Sort.by("rdate").descending()); 
-		  
-		 
-		 return reviewRepo.findByCompany(com, pageable);
-	 } 
- 
-} 
+	
+	// 시공전문가(업체상세페이지):인테리어자랑
+	public List<Brag> getInteriorBrag(Company com,Integer page) {
+		int showCntPerPage = 3;
+		Pageable pageable = (Pageable) PageRequest.of(page - 1, showCntPerPage, Sort.by("bdate").descending());
+		return bragrepo.findByCompany(com, pageable);
+	}
+
+	   
+	
+	// 시공전문가(업체상세페이지):업체후기
+	public List<Review> getCompanyReview(Company com, Integer page) {
+		int showCntPerPage = 6;
+		Pageable pageable = (Pageable) PageRequest.of(page - 1, showCntPerPage, Sort.by("rdate").descending());
+		return reviewRepo.findByCompany(com, pageable);
+	}
+
+
+
+}

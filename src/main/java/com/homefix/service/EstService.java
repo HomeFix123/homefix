@@ -2,6 +2,8 @@ package com.homefix.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.homefix.domain.Chatting;
 import com.homefix.domain.Contract;
 import com.homefix.domain.Esti_request;
@@ -31,7 +33,7 @@ public interface EstService {
 	public List<Esti_request> getMEDetailC(Integer id);
 
 	//업체가 진행중인 견적 리스트 보기
-	public List<Contract> getCIngList(String eid);
+	public Page<Contract> getCIngList(String eid, String situation, Integer page);
 
 	//진행중 -> 시공완료
 	public void saveIng(Integer id);

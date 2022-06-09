@@ -3,6 +3,7 @@ package com.homefix.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -143,9 +144,25 @@ public class EstServiceImpl implements EstService {
 
 	//업체가 진행중인 견적 리스트 보기
 	@Override 
-	public List<Contract> getCIngList(String cid) {
+	public Page<Contract> getCIngList(String cid, String situation, Integer page) {
 		Company company  = companyRepo.findById(cid).get();
-		return contractRepo.findByCompany(company);
+		int showCntPerPage = 5;
+		Pageable pageable = PageRequest.of(page -1, showCntPerPage, Sort.by("ctid").descending());
+		if(situation == null || situation.equals("")) {
+			
+			return contractRepo.findByCompany(company, pageable);
+		}
+		
+		if(situation.equals("doing")) {
+			
+			return contractRepo.findByCompanyAndIng(company, "진행중", pageable);
+		}
+		
+		if(situation.equals("done")) {
+			
+			return contractRepo.findByCompanyAndIng(company, "시공완료", pageable);
+		}
+		return contractRepo.findByCompany(company, pageable);
 	}
 
 	@Override

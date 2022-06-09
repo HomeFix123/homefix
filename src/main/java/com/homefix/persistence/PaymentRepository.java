@@ -18,5 +18,6 @@ public interface PaymentRepository extends CrudRepository<Payment, String>{
 	public List<Payment> findByCompanyOrderByCompanyDesc(Company company);
 
 	public long countByPlastGreaterThan(Date date);
-		public List<Payment> findByCompanyOrderByPdayDesc(Company company,Pageable pageable);
+	
+	public List<Payment> findByCompanyOrderByPday(Company company);
 }

@@ -1,4 +1,4 @@
-/**************** course-details***********************/
+/**************** companydetails***********************/
 #priInfo{
 	padding: 30px;
 }
@@ -42,8 +42,15 @@
 }
 
 .entry-thumbnail img{
-	width: 50%;
+	width: 600px;
+	height: 400px;
 	
+	
+}
+
+.ulBrag{
+	list-style: none;
+	text-align: center;
 }
 /*******payment*****************************************************/
 
