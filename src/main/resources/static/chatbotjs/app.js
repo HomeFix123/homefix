@@ -1,19 +1,27 @@
+
 var stompClient = null;
+
 
 //텍스트창에 글을 쓰면 커넥트 버튼이 눌림
 /*function handleInputOnkeyup()  {
   document.getElementById('connect').click();
 }*/
-
+$('#chatbot').hide()
 //창이 열릴때 connect 버튼 눌림 처리
-window.onload = function() {
-  document.getElementById('connect').click();
-};
-
-//창이 꺼질때 disconnect 처리
-window.onbeforeunload = function() {
-    document.getElementById('disconnect').click();
-
+let chatbotLoad = false;
+const chatbotCallBtn = document.getElementById('chatbotCallBtn');
+chatbotCallBtn.onclick = function(event) {
+	event.preventDefault();
+	if(!chatbotLoad){
+		document.getElementById('connect').click();	
+		$('#chatbot').show()
+		chatbotLoad = true;
+	} else {
+		document.getElementById('disconnect').click();
+		$('#chatbot').hide()
+		chatbotLoad = false;	
+	}
+  
 }
 
 function setConnected(connected) {
@@ -37,6 +45,7 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/public', function (message) {
             showBotMessage(message.body); //서버에 메시지 전달 후 리턴받는 메시지
+            $('#communicate').scrollTop($('#communicate')[0].scrollHeight);
         });
     });
 }
@@ -62,14 +71,15 @@ function showMessage(message) {
 
 //리턴하는 AI의 답변!	//위와 말풍선을 나누기위해 따로 작성했다! 제목으로 구분됨!
 function showBotMessage(message) {
-    $("#communicate").append("<div class='direct-chat-msg'>" +"<span class='name ml-3 mt-2'><h5>Home-Fix</h5></span>" +"<div class='direct-chat-text mr-0' id='botText'>" + message + "</div>"+ "</div>");
+    $("#communicate").append("<div class='direct-chat-msg'>" +"<span class='name ml-3 mt-2'><h5>Home-Fix</h5></span>" +"<div class='direct-chat-text mr-0 mb-2' id='botText'>" + message + "</div>"+ "</div>");
 }
 
-$(function () {
-    $("form").on('submit', function (e) {
+window.onload = function(){
+    $("#chatbot form").on('submit', function (e) {
         e.preventDefault();
+        $('#msg').val("") 
     });
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendMessage(); });
-});
+};
