@@ -168,12 +168,3 @@ $(function(){
 	
 	
 })//=$(function(){})
-
-// 마우스 오버시 로고 변경
-$(function(){
-	$('#headerLogo').hover(function(){
-		$(this).attr('src', '/images/homefix_hover.png')
-	}, function(){
-		$(this).attr('src', '/images/homefix.png')
-	})
-})
