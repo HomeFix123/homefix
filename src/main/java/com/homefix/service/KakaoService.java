@@ -1,6 +1,6 @@
 package com.homefix.service;
 
-import java.util.HashMap;
+import com.homefix.domain.Member;
 
 
 
@@ -8,6 +8,7 @@ public interface KakaoService {
 	
 	String getKakaoAccessToken(String code);
 
-	HashMap<String, Object> getUserInfo(String access_Token);
+	String getUserKakaoId(String access_Token);
 	
+	public Member loginKakao(String kakaoId);
 }
