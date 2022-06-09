@@ -17,4 +17,5 @@ public interface BragRepository extends CrudRepository<Brag, String>{
 	public Brag findByBidAndMember(Integer bid, Member member);
 	
 	public List<Brag> findByCompany(Company com);
+	public List<Brag> findByCompany(Company com,Pageable pageable);
 }
