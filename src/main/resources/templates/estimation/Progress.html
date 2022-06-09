@@ -73,13 +73,13 @@
                     <div class="col-lg-8">
                     	<ul class="nav nav-tabs nav-fill">
 						  <li class="nav-item">
-						    <a class="nav-link active" aria-current="page" href="Progress">전체</a>
+						    <a class="nav-link" aria-current="page" href="Progress" th:classappend="${!(#strings.equals(param.sit, 'doing') || #strings.equals(param.sit, 'done')) ? 'active' : ''}">전체</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" href="Progress?sit=doing">진행중</a>
+						    <a class="nav-link" href="Progress?sit=doing" th:classappend="${#strings.equals(param.sit, 'doing') ? 'active' : ''}">진행중</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" href="Progress?sit=done">진행완료</a>
+						    <a class="nav-link" href="Progress?sit=done" th:classappend="${#strings.equals(param.sit, 'done') ? 'active' : ''}">진행완료</a>
 						  </li>
 						</ul>
                         <form class="woocommerce-cart-form" action="#">
@@ -123,8 +123,16 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </form>                         
-                    </div>
+                        </form>
+					<div class="text-center">
+						<ul class="pagination justify-content-center mb-0" id="pagination">
+							<li><a class="page-numbers current" href="#">1</a></li>
+							<li><a class="page-numbers" href="#">2</a></li>
+							<li class="float-right"><a class="page-numbers" href="#"><i
+									class="fas fa-chevron-right"></i></a></li>
+						</ul>
+					</div>
+				</div>
                     <div class="col-lg-4">
                         <div class="order-summary progress_detail" id="progress_detail">
                             <h2>견적 상세보기</h2>
@@ -174,8 +182,15 @@
         <!-- header js -->
         <script th:src="@{/js/sections/header.js}"></script> 
         
-        <!-- 주소창 파라미터 숨기기 -->
-        <script >history.replaceState({}, null, location.pathname);</script>
+        <script th:inline="javascript">
+        	/*<![CDATA[*/
+        	const pageCnt = /*[[ ${pageCnt} ]]*/ +0;
+        	/*]]*/
+        </script>
+        
+        <script th:src="@{/js/estimation/progress.js}"></script>
+        
+        
         
     </body>
 </html>         

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,14 +66,21 @@ public class EstController {
 	
 	//업체의 현재 진행중인 견적 리스트 
 	@GetMapping("/Progress")
-	public String getCIngList(HttpSession session,Model m, String sit) {
+	public String getCIngList(HttpSession session,Model m, String sit, Integer page) {
 		String cid = (String)session.getAttribute("userId");
 		System.out.println("출력" + cid);
 		if(cid == null) {
 			return "redirect:/index";
 		}
 		
-		m.addAttribute("Lists",estService.getCIngList(cid));
+		if(page == null) {
+			page=1;
+		}
+		
+		System.out.println("상황" + sit);
+		Page<Contract> result = estService.getCIngList(cid, sit, page); 
+		m.addAttribute("Lists", result.getContent());
+		m.addAttribute("pageCnt", result.getTotalPages());
 		return "estimation/Progress";
 	}
 	
