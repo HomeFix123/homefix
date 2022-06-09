@@ -34,9 +34,9 @@ public class TipController {
 	
 	/* 팁 전체 목록 페이지 */
 	@GetMapping("/list") 
-	public String tipList(Model m, Integer page) {
+	public String tipList(Model m, Integer page, HttpSession session) {
 		if(page == null) page = 1;
-		String id = "test";
+		String id = (String)session.getAttribute("memberId");
 		Tip tip = new Tip();
 		//List<Tip> list = tipService.getTipList(tip);
 		m.addAttribute("cntTip", tipService.countEstList()); //페이징
@@ -51,8 +51,8 @@ public class TipController {
 	}
 	
 	@PostMapping("/write")
-	public String saveTip(Tip tip) {
-		String id = "test"; // 나중에는 세션에서 ID 값을 가져옴, 현재 테스트로 ID 직접 넣어줌
+	public String saveTip(Tip tip, HttpSession session) {
+		String id = (String)session.getAttribute("memberId"); // 나중에는 세션에서 ID 값을 가져옴, 현재 테스트로 ID 직접 넣어줌
 		tipService.saveTip(tip, id);
 		logger.info("입력성공");
 		return "redirect:/tip/list";
@@ -62,8 +62,8 @@ public class TipController {
 	// 좋아요 입력
 	@PostMapping("/prefer/{tid}")
 	@ResponseBody
-	public void savePrefer(Tip tip) { 
-		String id = "test"; 
+	public void savePrefer(Tip tip, HttpSession session) { 
+		String id = (String)session.getAttribute("memberId");
 		tipService.savePrefer(tip, id);
 		System.out.println("좋아요 성공 컨트롤러 옴");  
 	}
@@ -71,8 +71,8 @@ public class TipController {
 	// 좋아요 취소
 	@DeleteMapping("/prefer/{tid}")
 	@ResponseBody
-	public void deletePrefer(Tip tip) { 
-		String id = "test"; 
+	public void deletePrefer(Tip tip, HttpSession session) { 
+		String id = (String)session.getAttribute("memberId");
 		tipService.deletePrefer(tip, id); 
 		System.out.println("좋아요 취소 컨트롤러 옴");
 	}

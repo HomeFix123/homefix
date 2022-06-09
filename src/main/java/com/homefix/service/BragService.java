@@ -35,8 +35,9 @@ public interface BragService {
 	
 	// 계약완료 업체리스트
 	Set<Company> getContractList(String id);
-	
-	
-	
-	
+
+	// 개인 마이페이지 후기목록 보이기용
+	public List<Brag> bMyPageList(Member mem);
+
+
 }

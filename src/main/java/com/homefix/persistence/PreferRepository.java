@@ -16,6 +16,8 @@ public interface PreferRepository extends CrudRepository<Prefer, Integer> {
 
 	void deleteByBragAndMember(Brag brag, Member member);
 
+	// 개인 마이페이지에 하트찍은 글 가져오기
+	List<Prefer> findByMember(Member mem);
 	
 
 }

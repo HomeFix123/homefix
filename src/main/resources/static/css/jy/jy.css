@@ -286,3 +286,10 @@
 	background-color: gray;
 	border: 1px solid grey;
 }
+
+
+/*댓글 프로필 이미지 사진 둥글게*/
+.img-fluid {
+	border-radius: 70%;
+	
+}

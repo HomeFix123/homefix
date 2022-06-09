@@ -30,5 +30,8 @@ public interface MemberRepository extends CrudRepository<Member, String>{
 
 	// 특정일 이후 가입자수
 	public long countBySubdateGreaterThan(Date date);
+	
+	// 카카오로 로그인
+	public Member findByKakao(String kakaoId);
 
 }

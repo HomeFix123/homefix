@@ -52,7 +52,21 @@ public class EstServiceImpl implements EstService {
 	 	Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
 		
 		Company com = companyRepo.findById(cid).get();
-		return estRepo.findByCompany(com,pageable);
+		List<Estimation> resultList = estRepo.findByCompany(com,pageable);
+		for(Estimation result : resultList) {
+			Contract contract =contractRepo.findByEstimation(result);
+			if(contract != null) {
+				result.setIng(contract.getIng());
+				continue;
+			}
+			
+			Esti_request estReq = esti_reqRepo.findByEstimationAndCompany(result, com);
+			if(estReq != null) {
+				result.setIng("요청중");
+			}
+			
+		}
+		return resultList;
 	}
 	
 	//페이징 

@@ -65,8 +65,13 @@ public class EstController {
 	
 	//업체의 현재 진행중인 견적 리스트 
 	@GetMapping("/Progress")
-	public String getCIngList(String cid,Model m) {
-		System.out.println("넘어온 cid값은 "+cid);
+	public String getCIngList(HttpSession session,Model m, String sit) {
+		String cid = (String)session.getAttribute("userId");
+		System.out.println("출력" + cid);
+		if(cid == null) {
+			return "redirect:/index";
+		}
+		
 		m.addAttribute("Lists",estService.getCIngList(cid));
 		return "estimation/Progress";
 	}
@@ -147,8 +152,8 @@ public class EstController {
 	//업체에게 온 견적 상세보기에서 esti_request db 값 확인 후 버튼 변경
 	@GetMapping("/getEstiReq")
 	@ResponseBody
-	public String getEstiReq(Integer eid,String cid) {
-		
+	public String getEstiReq(Integer eid, String cid, HttpSession session) {
+		cid =(String) session.getAttribute("userId");
 		return estService.getEstiReq(eid, cid);
 	}
 	
