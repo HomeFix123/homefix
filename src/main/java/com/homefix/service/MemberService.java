@@ -4,6 +4,7 @@ package com.homefix.service;
 import java.util.List;
 
 import com.homefix.domain.Brag;
+import com.homefix.domain.CompanyPrefer;
 import com.homefix.domain.Member;
 import com.homefix.domain.Prefer;
 import com.homefix.domain.Tip;
@@ -47,6 +48,9 @@ public interface MemberService {
 	
 	//고객이 좋아요 찍은 글 불러오기
 	public List<Prefer> getMyLove(String id);
+	
+	//고객이 좋아요 찍은 업체 목록 불러오기
+	public List<CompanyPrefer> getMyLoveCompany(String id);
 
 
 }

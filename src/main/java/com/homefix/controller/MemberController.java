@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.homefix.domain.Brag;
+import com.homefix.domain.CompanyPrefer;
 import com.homefix.domain.Member;
 import com.homefix.domain.Prefer;
 import com.homefix.domain.Role;
@@ -97,6 +98,8 @@ public class MemberController {
 	@PostMapping(value = "/member/memSave")
 	public String memberInsert(Member mem) throws IOException {
 		mem.setEnabled(true);
+		
+		//스프링 시큐리티 적용시 주석 해제
 //		mem.setPassword(encoder.encode(mem.getPassword()));
 		
 		mem.setRole(Role.ROLE_USER);
@@ -192,7 +195,9 @@ public class MemberController {
 		List<Prefer> loveId = memberService.getMyLove(id);
 		m.addAttribute("Love",loveId);
 		
-		// 개인이 좋아요 버튼을 누른 글 불러오기 (업체 후기)
+		// 개인이 좋아요 버튼을 업체목록 불러오기
+		List<CompanyPrefer> loveCom = memberService.getMyLoveCompany(id);
+		m.addAttribute("loveCom", loveCom);
 		
 	}
 	

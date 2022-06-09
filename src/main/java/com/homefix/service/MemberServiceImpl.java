@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Brag;
+import com.homefix.domain.CompanyPrefer;
 import com.homefix.domain.Member;
 import com.homefix.domain.Prefer;
 import com.homefix.domain.Tip;
 import com.homefix.persistence.BragRepository;
+import com.homefix.persistence.CompanyPreferRepository;
 import com.homefix.persistence.MemberRepository;
 import com.homefix.persistence.PreferRepository;
 import com.homefix.persistence.TipRepository;
@@ -189,12 +191,24 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private PreferRepository loveRepo;
 	
+	//좋아요 찍은 후기 글 불러오기
 	@Override
 	public List<Prefer> getMyLove(String id) {
 		Member mem = memberRepo.findById(id).get();
 		System.out.println("세션 잘 넘어왔는지 "+id);
 		List<Prefer> love =  loveRepo.findByMember(mem);
 		return love;
+	}
+	
+	//좋아요 찍은 업체 목록 불러오기
+	@Autowired
+	private CompanyPreferRepository loveComRepo;
+	@Override
+	public List<CompanyPrefer> getMyLoveCompany(String id) {
+		Member member = memberRepo.findById(id).get();
+		System.out.println("세션 잘 넘어왔는지 좋아요찍은 업체::  "+id);
+		List<CompanyPrefer> loveCom =  loveComRepo.findByMember(member);
+		return loveCom;
 	}
 	
 	

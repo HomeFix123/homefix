@@ -17,5 +17,6 @@ public interface TipRepository extends CrudRepository<Tip, Integer>{
 	public List<Tip> findByMember(Member mem);
 
 	
-	public Tip findByTid(Integer tid );
+	public Tip findByTid(Integer tid);
 
+}
