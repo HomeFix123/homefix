@@ -8,7 +8,7 @@ import com.homefix.domain.Member;
 public interface CommentService {
 	
 	// 댓글 입력하기
-	public List<Comment> saveComment(String member,String content,Integer tid);
+	public Comment saveComment(String member,String content,Integer tid);
 	
 	public void deleteComment(Comment comment);
 	

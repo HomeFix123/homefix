@@ -37,9 +37,8 @@ public class EstController2 {
 	}
 		
 	@PostMapping("/write")
-	public String saveEst(Estimation est) {
-		
-		String id = "test"; // 나중에는 세션에서 ID 값을 가져옴, 현재 테스트로 ID 직접 넣어줌
+	public String saveEst(Estimation est, HttpSession session) {
+		String id = (String) session.getAttribute("memberId"); // 나중에는 세션에서 ID 값을 가져옴, 현재 테스트로 ID 직접 넣어줌
 		estService2.saveEst(est, id);
 		logger.info("입력성공");
 		return "redirect:write"; //redirect는 요청 url 주소를 써줌
@@ -68,11 +67,5 @@ public class EstController2 {
 		m.addAttribute("Details", estService2.getEstDetails(id));
 		return "estimation2/estimation-details";
 	}
-	
-	// 전체견적 상세보기에서 확정하기 클릭 시 esti_request 테이블에 값 저장해야 함
-	
-	
-	
-	
-	
+		
 }
