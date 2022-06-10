@@ -104,7 +104,11 @@
                                    				<span class="price" style="color:black;" th:text="${est.eaddr}"></span> 
                                         	</a></td>
 										<td class="table-id"><span class="price" style="color:black;" th:text="${est.member?.id}">아이디</span></td>
-                                        <td class="table-ing"><span class="price" >대기중</span></td>
+                                        <td class="table-ing">
+                                        <span th:if="${est.ing == null}" class="price">대기중</span>
+	                                    <span th:if="${est.ing =='시공완료'} or ${est.ing == '진행 중'}" th:text="${est.ing}" class="price"></span>
+	                                    <span th:if="${est.ing == '요청중'}" th:text="${est.ing}" class="price"></span>
+                                        </td>
                                         
                                     </tr>
                                    
