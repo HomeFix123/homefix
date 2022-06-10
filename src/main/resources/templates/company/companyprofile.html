@@ -243,7 +243,7 @@
 														<div class="row" style="border: none;">
 															<form class="woocommerce-cart-form">
 																<table class="table" id="paymentInfo">
-																	<thead>
+																	<thead th:if="${ #lists.size(PaymentInfo)>0}">
 																		<tr>
 																			<th>결제번호</th>
 																			<th>결제방법</th>
@@ -318,18 +318,16 @@
 												<div class="tab-body">
 													<div id="photoFile">
 
-														<img style="width: 100%;" id="previewImage"
-															src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload"
-															th:if="*{logo == null}"> <img style="width: 100%;"
+														 <img 
 															id="previewImage"
 															th:src="|http://140.238.11.118:5000/upload/*{logo}|"
-															th:if="*{logo != null}"> <input
+															th:if="*{logo != null}" > <input
 															style="display: block; visibility: hidden;" type="file"
 															accept="image/*" id="inputImage"> <input
 															type="hidden" id="cinfo_img" name="logo"
-															th:value="*{logo}"> <label
-															class="btn btn-primary w-100 mb-5" for="inputImage">사진추가</label>
-
+															th:value="*{logo}"> <span class="col-sm-1"><label
+															class="btn btn-primary  mb-5" for="inputImage" id="pictureAddBtn">사진추가</label>
+</span>
 
 													</div>
 
@@ -372,7 +370,7 @@
 														<label for="bs_memberEmail">이메일<span
 															class="error_box"></span></label>
 														<div class="row">
-															<div class=" col-md-10">
+															<div class=" col-md-9">
 																<input type="email" class="form-control"
 																	id="bs_memberEmail" name="email" th:value="*{email}">
 
@@ -380,7 +378,7 @@
 																	id="bs_memberEmailHidden" name="email2"
 																	th:value="*{email}">
 															</div>
-															<div class=' col-md-2'>
+															<div class=' col-md-3'>
 																<button type="button" id="bs_btn_emailCheak"
 																	class="btn btn-primary">중복확인</button>
 															</div>
