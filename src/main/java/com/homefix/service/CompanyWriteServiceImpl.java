@@ -58,7 +58,7 @@ public class CompanyWriteServiceImpl implements CompanyWriteService {
 
 
 	@Override
-	public void insertCompanyInfo(String companyId, CompanyInfo companyInfo, String[] specialtyArr,
+	public CompanyInfo insertCompanyInfo(String companyId, CompanyInfo companyInfo, String[] specialtyArr,
 			String[] spacesArr) {
 		Company company = companyRepo.findById(companyId).get();
 		
@@ -98,7 +98,7 @@ public class CompanyWriteServiceImpl implements CompanyWriteService {
 			
 		}
 				
-		
+		return companyInfo;
 	}
 
 

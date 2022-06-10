@@ -12,7 +12,7 @@ public interface CompanyWriteService {
 	
 	HashMap<String, List<Area>> getAreaList(List<String> areaNameList);
 	
-	void insertCompanyInfo(String companyId, CompanyInfo companyInfo, String[] specialtyArr, String[] spacesArr);
+	CompanyInfo insertCompanyInfo(String companyId, CompanyInfo companyInfo, String[] specialtyArr, String[] spacesArr);
 	
 	CompanyInfo getCompanyInfo(String companyId);
 }
