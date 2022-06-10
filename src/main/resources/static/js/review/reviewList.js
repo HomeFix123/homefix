@@ -2,8 +2,8 @@
 /*
 	요약: 검색창과 버튼을 form 태그로 감싸고 데이터를 보냄
 	
-	1. 지역 모달에서 선택시 input[hidden]으로 form 안에 지역 데이터 추가
-	2. 리뷰순, 계약순, 정확도순 클릭시 input[hidden]으로 form 안에 sort 추가 후 form => submit 
+	1. 주거형태, 전문분야, 가족형태 모달에서 선택시 input[hidden]으로 form 안에 데이터 추가
+	2. 정확도 클릭시 input[hidden]으로 form 안에 sort 추가 후 form => submit 
 	
 */
 
@@ -167,11 +167,11 @@ $(function(){
 				logo.attr('src', imgURL + defaultImg);
 			}
 			
-			// 단순한 데이터 처리 (업체명, 좋아요수, 계약건수)
+			// 단순한 데이터 처리 (업체명, 조회수, 상세링크)
 			companyName.text(result.name);
 			cnt.text(result.cnt);
 			link.attr('href', '/review/' + result.id)
-			// 전문분야 
+			// 주거형태
 			hometypeSpan.text(result.hometype)
 			sizeSpan.text(result.size)
 			
