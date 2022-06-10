@@ -145,6 +145,7 @@ $(function() {
 		/* 업체명 */
 		if (memberNickname == '') {
 			$('label[for="nicname"] .error_box').html(blank);
+			$('label[for="nicname"] .error_box').css('color', '#dc3545');
 			$('#nicname').focus();
 			return false;
 		} else {
@@ -153,6 +154,8 @@ $(function() {
 
 		if (!RegexCompany.test(memberNickname)) {
 			$('label[for="nicname"] .error_box').html("닉네임 형식이 올바르지 않습니다.");
+			$('label[for="nicname"] .error_box').css('color', '#dc3545');
+			$('#nicname').focus();
 			return false;
 		} else {
 			$('label[for="nicname"] .error_box').html("");
@@ -172,6 +175,7 @@ $(function() {
 		if (!RegexPW.test(memberPassword)) {
 			$('label[for="password"] .error_box').html("4 ~ 10자 영문, 숫자를 최소 한가지씩 조합하여 만들어 주십시오.");
 			$('label[for="password"] .error_box').css('color', '#dc3545');
+			$('#password').focus();
 			return false;
 		} else {
 			$('label[for="password"] .error_box').html("");

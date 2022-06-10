@@ -110,8 +110,6 @@ public class CompanyServiceImpl implements CompanyService {
 	 * //시공전문가(업체상세페이지):전문분야 public CompanySpecial getCompanySpecial(Company com) {
 	 * CompanyInfo comi = new CompanyInfo(); comi.setCinfo_id(null);
 	 * comi.setCinfo_id( Integer.parseInt( ));
-	 * 
-	 * 
 	 * return companyInfoRepo.findBy(Integer.parseInt( com.getId())); }
 	 */
 

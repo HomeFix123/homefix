@@ -120,8 +120,9 @@ var pageA = 1;
 				+'" alt="Image" class="img-fluid"> </a></div>'
 				+'<div class="info"><h2 class="title text-center"><a>'+brag.btitle+'</a></h2>'
 				+'<p class="text-right">'+brag.member.nickname+'</p></div><div class="sa-meta">'
-				+'<ul class="global-list"><li><a href="#"> <span><i class="fas fa-heart"></i></span> </a></li>'
-				+' <li><a href="#"> <i class="far fa-eye"></i><span>'+brag.bcnt+'</span>'
+				+'<ul class="global-list"><li> <i class="fas fa-heart"></i><span>'+brag.prefer
+				+'</span></li>&nbsp;&nbsp;'
+				+' <li><i class="far fa-eye"></i><span>'+brag.bcnt+'</span>'
 				+'</a></li></ul></div><hr></li></ul>';
 				
 				$('#companyBragBoard').append(AddContent);
@@ -155,8 +156,7 @@ var pageA = 1;
 					+ '<img src="http://140.238.11.118:5000/upload/' + review.rimgadr + '"alt="Image" class="img-fluid" id="thumbnailImage">'
 					+ '</a>' + '</div>' + '</div>' + '<div class="course-info">' + '<div class="info">' + '<h2 class="title text-center">'
 					+ '<a >' + review.rtitle + '</a>' + '</h2>' + '<p class="text-right">' + review.company.name + '</p>'
-					+ '</div >' + '<div class="sa-meta">' + '<ul class="global-list">' + '<li>' + '<a href="#">' + ' <span>' + '<i class="fas fa-heart">' + '</i>'
-					+ '</span>' + '</a>' + '</li>' + '<li>' + '<a href="#">' + ' <i class="far fa-eye">' + '</i>' + '<span>' + review.rcnt + '</span>'
+					+ '</div >' + '<div class="sa-meta">' + '<ul class="global-list">'  + '<li>' + '<a href="#">' + ' <i class="far fa-eye">' + '</i>' + '<span>' + review.rcnt + '</span>'
 					+ '</a>' + '</li>' + '</ul>' + '</div >' + '</div >' + '</div >' + '</div >';
 				$('#myReviswList').append(AddContent);
 			})
