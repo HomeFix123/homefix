@@ -19,7 +19,7 @@ $(function() {
 					$.each(getBragList.content, (i, review) => {
 						let row = ' <tr>'
 							+ ' <td>'
-							+ ' <a href="/brag/BragDetail(id=${'+review.bid+'})" >'+review.btitle+'</a>'
+							+ ' <a href="/brag/'+review.bid+'" >'+review.btitle+'</a>'
 							+ ' </td>'
 							+' <td>'+review.bcnt
 							+' </td>'
@@ -84,7 +84,6 @@ $(function() {
 	let totalLovePages;
 	// 버튼 클리이벤트
 	$("#myLove").click(function(){
-		alert("확인")
 		lovepage = lovepage+1;
 			$.ajax({
 				url : "/sign/member/myLovePageing",
@@ -95,13 +94,12 @@ $(function() {
 				success : function(getLoveList) {
 					// for문 시작
 					totalLovePages = getLoveList.totalPages
-					alert(totalLovePages)
 					$.each(getLoveList.content, (i, love) => {
 						let rowLove = ' <div class="col-lg-4">'
 							+ ' <div class="sa-post">'
 							+ ' <div class="entry-header" >'
 							+ ' <div class="entry-thumbnail">'
-							+ ' <a href="/brag/('+love.brag.bid+')" >'
+							+ ' <a href="/brag/'+love.brag.bid+'" >'
 							+ ' <img src="http://140.238.11.118:5000/upload/'+love.brag.bimgadr+'">'
 							+ ' </a>'
 							+ ' </div>'
@@ -113,7 +111,6 @@ $(function() {
 							+ ' </div>'
 							+ ' </div>'
 						$('#fav_row').append(rowLove);
-						alert("OK");
 						// for문 끝
 					})// end of for
 					if(lovepage == (totalLovePages-1)){
@@ -132,7 +129,6 @@ $(function() {
 	let totalLoveComPages;
 	// 버튼 클리이벤트
 	$("#myCompany").click(function(){
-		alert("확인")
 		LoveCompage = LoveCompage+1;
 			$.ajax({
 				url : "/sign/member/myTipPageing",
@@ -143,13 +139,12 @@ $(function() {
 				success : function(getLoveComList) {
 					// for문 시작
 					totalLoveComPages = getLoveComList.totalPages
-					alert(totalLoveComPages)
 					$.each(getLoveComList.content, (i, loveCom) => {
 						let rowLoveCom = ' <div class="col-lg-4">'
 							+ ' <div class="sa-post">'
 							+ ' <div class="entry-header" >'
 							+ ' <div class="entry-thumbnail">'
-							+ ' <a href="/brag/(${'+loveCom.company.id+'})" >'
+							+ ' <a href="/brag/'+loveCom.company.id+'" >'
 							+ ' <img src="|http://140.238.11.118:5000/upload/${'+loveCom.company.logo+'}|">'
 							+ ' </a>'
 							+ ' </div>'
