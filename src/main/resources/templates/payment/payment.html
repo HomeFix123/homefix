@@ -50,10 +50,9 @@
 </head>
 <body>
 	<div id="preloader">
-		<img src="images/preloader.gif" alt="Image"
-			class="tr-preloader img-fluid">
-	</div>
-	<!-- preloader -->
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+    </div><!-- preloader -->
+    
 	<div th:replace="sections/header :: header"></div>
 
 	<!-- /.sa-header -->

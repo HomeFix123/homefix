@@ -129,7 +129,15 @@ ul {
 	padding: 0px;
 }
 
-ul li {
+div.container-fluid ul li {
+	float: left;
+	list-style: none;
+	margin-right: 20px;
+	margin-left: 0px;
+	margin-bottom: 10px;
+}
+
+div.search_bar ul li {
 	float: left;
 	list-style: none;
 	margin-right: 20px;
@@ -385,3 +393,7 @@ ul li {
 	padding-top: 50px;
 }
 
+#moreBtn{
+	padding: 20px 0px;
+	font-size: 20px;
+}

@@ -19,6 +19,9 @@
 <link rel="stylesheet" th:href="@{/css/main.css}">
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
 
+<!-- 퀵메뉴바 css -->
+<link rel="stylesheet" th:href="@{/css/nav.css}">
+
 <!-- font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900"
@@ -49,12 +52,11 @@
 </head>
 <body>
 	<div id="preloader">
-		<img th:src="@{/images/preloader.gif}" alt="Image"
-			class="tr-preloader img-fluid">
-	</div>
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+        </div><!-- preloader -->
 	<!-- preloader -->
 
-	<div th:replace="/sections/header :: header"></div>
+	<div th:replace="sections/header :: header"></div>
 	
 	<section class="breadcrumb-section">
             <div class="container">

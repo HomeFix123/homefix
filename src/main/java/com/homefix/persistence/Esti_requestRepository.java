@@ -14,5 +14,5 @@ public interface Esti_requestRepository extends CrudRepository<Esti_request, Int
 	public List<Esti_request> findByEstimation(Estimation estimation);
 	
 	public Esti_request findByEstimationAndCompany(Estimation estimation,Company company);
-
+	
 }

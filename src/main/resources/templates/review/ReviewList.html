@@ -18,6 +18,10 @@
 <link rel="stylesheet" th:href="@{/css/structure.css}">
 <link rel="stylesheet" th:href="@{/css/main.css}">
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+<link rel="stylesheet" th:href="@{/css/review/reviewList.css}">
+<!-- 퀵메뉴바 css -->
+<link rel="stylesheet" th:href="@{/css/nav.css}">
 
 <!-- font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
@@ -31,8 +35,7 @@
 <!-- icons -->
 
 
-<link rel="stylesheet" th:href="@{/css/sections/header.css}">
-<link rel="stylesheet" th:href="@{/css/review/reviewList.css}">
+
 
 </head>
 <body>
@@ -42,7 +45,9 @@
 	<!-- preloader -->
 	
 	<!-- header -->
-	<div th:replace="sections/header :: header"></div> 
+	<div th:replace="sections/header :: header"></div>
+	<!-- 퀵메뉴바 -->
+	<div th:replace="sections/nav :: div"></div>
 	
 	<section class="breadcrumb-section bg-light" id="reviewListHeaderImg" >
 		<div class="container" id="reviewListHeaderTitle">
@@ -67,7 +72,7 @@
 									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#hometypeModal">주거형태</a>
 								</div>
 								<div class="modal fade modal-query" id="hometypeModal" tabindex="-1" aria-labelledby="hometypeModalLabel" aria-hidden="true">
-									<div class="modal-dialog ">
+									<div class="modal-dialog  modal-dialog-centered">
 										<div class="modal-content">
 											<div class="modal-header">
 												<h5 class="modal-title" id="hometypeModalLabel">주거형태 선택</h5>
@@ -85,7 +90,7 @@
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">취소</button>
-												<button type="button" class="btn btn-primary modalSubmit">검색</button>
+												<button type="button" class="btn btn-primary modalSubmit" id="modalSubmit">검색</button>
 											</div>
 										</div>
 									</div>
@@ -96,7 +101,7 @@
 									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#jobModal">작업분야</a>
 								</div>
 								<div class="modal fade modal-query" id="jobModal" tabindex="-1" aria-labelledby="jobModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
+									<div class="modal-dialog modal-dialog-centered">
 										<div class="modal-content">
 											<div class="modal-header">
 												<h5 class="modal-title" id="job	ModalLabel">작업분야 선택</h5>
@@ -113,7 +118,7 @@
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">취소</button>
-												<button type="button" class="btn btn-primary modalSubmit">검색</button>
+												<button type="button" class="btn btn-primary modalSubmit" id="modalSubmit">검색</button>
 											</div>
 										</div>
 									</div>
@@ -124,7 +129,7 @@
 									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#familyModal">가족형태</a>
 								</div>
 								<div class="modal fade modal-query" id="familyModal" tabindex="-1" aria-labelledby="familyModalLabel" aria-hidden="true">
-									<div class="modal-dialog ">
+									<div class="modal-dialog  modal-dialog-centered">
 										<div class="modal-content">
 											<div class="modal-header">
 												<h5 class="modal-title" id="familyModalLabel">가족형태 선택</h5>
@@ -141,7 +146,7 @@
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">취소</button>
-												<button type="button" class="btn btn-primary modalSubmit">검색</button>
+												<button type="button" class="btn btn-primary modalSubmit" id="modalSubmit">검색</button>
 											</div>
 										</div>
 									</div>
@@ -247,6 +252,10 @@
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/sections/header.js}"></script>
 	<script th:src="@{/js/review/reviewList.js}"></script>
+	<!-- 퀵메뉴 js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
 	
 </body>
 </html>
