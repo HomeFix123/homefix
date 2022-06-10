@@ -184,7 +184,7 @@ $(function(){
 		
 		const resultList = getMoreBrag(data) // ajax로 요청후 결과를 변수에 저장
 		
-		if(resultList < 12){
+		if(resultList.length < 12){
 			$('#moreDiv').remove();
 		}
 		

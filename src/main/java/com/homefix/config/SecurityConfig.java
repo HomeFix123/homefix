@@ -20,8 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		security.authorizeRequests().antMatchers("/member/**").authenticated(); // 인증된 사용자만
 		security.authorizeRequests().antMatchers("/company/profile").hasRole("COMPANY");// manager만
 		security.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");// admin만
-		//security.formLogin().loginPage("/sign"); // 사용자 로그인 화면
-		//security.formLogin().loginPage("/sign");//.defaultSuccessUrl("/sign/company/companyLogin", true); // 사용자 로그인 화면
+		security.formLogin().loginPage("/sign"); // 사용자 로그인 화면
+		//security.formLogin().loginPage("/sign").defaultSuccessUrl("/sign/company/companyLogin", true); // 사용자 로그인 화면
 		security.exceptionHandling().accessDeniedPage("/sign/error");// 권한 없을 떄 보여주는 오류 페이지 지정하기
 		security.logout().invalidateHttpSession(true).logoutSuccessUrl("/sign");// 로그아웃->연관된 세션 강제종료->로그아웃후 리다이렉트
 		security.userDetailsService(companyUserDetailsService);

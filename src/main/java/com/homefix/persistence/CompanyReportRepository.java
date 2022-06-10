@@ -14,7 +14,7 @@ public interface CompanyReportRepository extends CrudRepository<CompanyReport, I
 	
 	public List<CompanyReport> findByCompany(Company company);
 
-	public List<CompanyReport> findByCompanyAndMember(String id, Member repo);
+	public List<CompanyReport> findByCompanyAndMember(Company cid, Member repo);
 	
 	public long countByRdayGreaterThan(Date date);
 }

@@ -130,7 +130,7 @@ $(function(){
 		const resultList = getMoreData(data) // ajax로 요청후 결과를 변수에 저장
 		
 		
-		if(resultList < 12){
+		if(resultList.length < 12){
 			// 결과가 10개 미만인 경우 더보기 버튼 삭제
 			$('#moreDiv').remove(); 
 		}
@@ -155,8 +155,8 @@ $(function(){
 			const sizeSpan = div.find('.sizespan');
 			
 			// 이미지 처리
-			if(result.img != null){
-				titleImg.attr('src', imgURL + result.img);
+			if(result.image != null){
+				titleImg.attr('src', imgURL + result.image);
 			} else {
 				titleImg.attr('src', imgURL + defaultImg);
 			}
@@ -170,7 +170,6 @@ $(function(){
 			// 단순한 데이터 처리 (업체명, 좋아요수, 계약건수)
 			companyName.text(result.name);
 			cnt.text(result.cnt);
-			contract.text(result.contract);
 			link.attr('href', '/review/' + result.id)
 			// 전문분야 
 			hometypeSpan.text(result.hometype)
@@ -195,6 +194,7 @@ $(function(){
 		}).done((data) => {
 			// 성공시 데이터 저장
 			result = data;
+			
 		}).fail((err) => {
 			// 실패시 에러 출력
 			console.log(err);
