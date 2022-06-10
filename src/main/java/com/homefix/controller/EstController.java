@@ -73,12 +73,11 @@ public class EstController {
 		if(cid == null) {
 			return "redirect:/index";
 		}
-		
 		if(page == null) {
 			page=1;
 		}
 		
-		System.out.println("상황" + sit);
+		
 		Page<Contract> result = estService.getCIngList(cid, sit, page); 
 		m.addAttribute("Lists", result.getContent());
 		m.addAttribute("pageCnt", result.getTotalPages());

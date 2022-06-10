@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 												 "/company/{id}",
 												 "/sign/member/sign_kakao",
 												 "/sign/member/sign_member"
-												 ,"/brag/**","/review/**","/expert"
+												 ,"/brag/**","/review/**","/expert","/estimation/**"
 												 ).permitAll(); // index화면에 모두 접근가능.
 		
 		security.authorizeRequests().antMatchers("-").authenticated(); // 인증된 사용자만
