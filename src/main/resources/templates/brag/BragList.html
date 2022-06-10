@@ -197,13 +197,16 @@
 					<!-- 인테리어 자랑 작성하기 -->
 					<div class="view-all align-self-center">
 						<a th:if="${session.memberId != null}" th:href="@{brag/write}" class="btn btn-primary">자랑하기</a>
-						<a th:if="${session.memberId == null}" th:href="@{/sign}" class="btn btn-primary">자랑하기</a>
+						<a th:if="${session.memberId == null && session.userId == null}" th:href="@{/sign}" class="btn btn-primary">자랑하기</a>
 					</div>
 				</div>
 				<div class="mb-5">
 					<form action="brag" id="searchForm">
 						<div id="hiddenInputs">
-							<input th:if="${param.loc != null}" type="hidden" name="loc" th:value="${param.loc}"> <input th:if="${param.hometype != null}" type="hidden" name="hometype" th:value="${param.hometype}"> <input th:if="${param.family != null}" type="hidden" name="family" th:value="${param.family}"> <input th:if="${param.job != null}" type="hidden" name="job" th:value="${param.job}">
+							<input th:if="${param.loc != null}" type="hidden" name="loc" th:value="${param.loc}"> 
+							<input th:if="${param.hometype != null}" type="hidden" name="hometype" th:value="${param.hometype}"> 
+							<input th:if="${param.family != null}" type="hidden" name="family" th:value="${param.family}"> 
+							<input th:if="${param.job != null}" type="hidden" name="job" th:value="${param.job}">
 						</div>
 					</form>
 				</div>
