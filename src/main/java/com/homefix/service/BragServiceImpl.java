@@ -71,7 +71,8 @@ public class BragServiceImpl implements BragService {
 
 	@Autowired
 	ContractRepository contractRepo;
-
+	
+	// 인테리어 자랑 작성
 	@Override
 	public void saveBrag(Brag brag, String cid, String id) {
 
@@ -89,6 +90,7 @@ public class BragServiceImpl implements BragService {
 
 	}
 
+	// 인테리어 자랑 목록, 엘라스틱 검색 기능 추가
 	@Override
 	public List<ElasticBrag> getBragByKeyword(String id, String loc, 
 			String family, String hometype, String sort, Integer page) {
@@ -126,12 +128,12 @@ public class BragServiceImpl implements BragService {
 
 			// 가족형태 검색
 			if (family != null) {
-				query = query.must(QueryBuilders.matchQuery("family", family)); // 지역명으로 용어검색
+				query = query.must(QueryBuilders.matchQuery("family", family)); 
 			}
 
 			// 주거형태 검색
 			if (hometype != null) {
-				query = query.must(QueryBuilders.matchQuery("hometype", hometype)); // 지역명으로 용어검색
+				query = query.must(QueryBuilders.matchQuery("hometype", hometype)); 
 			}
 
 
@@ -181,13 +183,14 @@ public class BragServiceImpl implements BragService {
 		}
 	}
 	
-	// 인테리어 자랑 상
+	// 인테리어 자랑 상세
 	@Override
 	public Brag getBrag(Brag brag, String id) {
 		
 		Brag result = bragRepo.findByBid(brag.getBid());
 		
 		result.setPrefer(preferRepo.countByBrag(brag));
+		// 좋아요 여부 체크
 		if(id != null) {
 			List<Prefer> list = preferRepo.findByBragAndMember(brag, memberRepo.findById(id).get());
 			if (list.size() > 0) {
@@ -198,6 +201,7 @@ public class BragServiceImpl implements BragService {
 		} else {
 			result.setPreferck(false);
 		}
+		// 조회수 증가
 		Integer cnt = result.getBcnt();
 		result.setBcnt(cnt+1);
 		bragRepo.save(result);
