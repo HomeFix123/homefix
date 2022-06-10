@@ -66,13 +66,8 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	// 사업자 회원 탈퇴
-	public String companyDelete(Company com) {
-		Company compo = companyRepo.findById(com.getId()).get();
-		if (compo.getPass().equals(com.getPass())) {
+	public void companyDelete(Company com) {
 			companyRepo.deleteById(com.getId());
-			return "Y";
-		}
-		return "N";
 	}
 
 	// 사업자 정보 불러오기

@@ -60,3 +60,13 @@ margin-top: 50px;
 .estNum{
 	color: #1abc9c;
 }
+#previewImage{
+
+    width: 160px;
+    height: 160px;
+    display: block;
+    border-radius: 100%;
+    overflow: hidden;
+    margin: 20px auto;}
+    
+   
