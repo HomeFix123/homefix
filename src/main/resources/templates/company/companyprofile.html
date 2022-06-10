@@ -52,7 +52,7 @@
 			class="tr-preloader img-fluid">
 	</div>
 	<!-- preloader -->
-	<div th:replace="/sections/header :: header"></div>
+	<div th:replace="sections/header :: header"></div>
 <hr>
 	<!-- /.sa-header -->
 
@@ -109,13 +109,11 @@
 										id="user-four-tab" data-bs-toggle="tab"
 										data-bs-target="#user-four" role="tab"
 										aria-controls="user-four" aria-selected="false"> 회원정보 수정 </a></li>
-									<li class="nav-item"><a class="nav-link"
-										id="user-five-tab" data-bs-toggle="tab"
-										data-bs-target="#user-five" role="tab"
-										aria-controls="user-five" aria-selected="false">신청한 견적 보기</a></li>
+									<li class="nav-item"><a class="nav-link" th:href="@{/estimation/Chosen}"
+										>신청한 견적 보기</a></li>
 
 									<li class="nav-item"><a class="nav-link "
-										th:href="@{/estimation/Progress(cid=${session['userId']})}">시공
+										th:href="@{/estimation/Progress}">시공
 											중인 견적 보기</a></li>
 
 
@@ -598,9 +596,9 @@
 	<!-- /.container -->
 	</div>
 	<!-- /.section-content -->
-	<div th:replace="/sections/nav :: div"></div>
+	<div th:replace="sections/nav :: div"></div>
 
-	<div th:replace="/sections/footer :: footer"></div>
+	<div th:replace="sections/footer :: footer"></div>
 
 
 	<!-- /.footer -->
