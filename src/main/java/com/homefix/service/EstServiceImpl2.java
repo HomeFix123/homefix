@@ -9,9 +9,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Company;
+import com.homefix.domain.Contract;
+import com.homefix.domain.Esti_request;
 import com.homefix.domain.Estimation;
 import com.homefix.persistence.CompanyRepository;
+import com.homefix.persistence.ContractRepository;
 import com.homefix.persistence.EstRepository;
+import com.homefix.persistence.Esti_requestRepository;
 import com.homefix.persistence.MemberRepository;
 
 @Service
@@ -25,6 +29,9 @@ public class EstServiceImpl2 implements EstService2 {
 	
 	@Autowired
 	CompanyRepository companyRepo;
+	
+	@Autowired
+	Esti_requestRepository esti_reqRepo;
 
 	@Override
 	public void saveEst(Estimation est, String id) {
@@ -33,13 +40,36 @@ public class EstServiceImpl2 implements EstService2 {
 		System.out.println("입력값 확인 " + estRepo.save(est));
 	}
 
+	@Autowired
+	ContractRepository contractRepo;
+	
 	// 전체견적 리스트
 	@Override
-	public List<Estimation> getEstList(Estimation est, int page) {
-		//return (List<Estimation>)estRepo.findAll();
+	public List<Estimation> getEstList(Estimation est, String cid,int page) {
 		int showCntPerPage = 10;
 		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
-		return estRepo.findByCompanyNull(pageable);
+		
+		/*
+		 * Estimation resultData = estRepo.findById(eid).get(); Esti_request estReq =
+		 * esti_reqRepo.findByEstimationAndCompany(estmation, company); if(estReq ==
+		 * null) { resultData.setIng("대기중"); }else { resultData.setIng("요청완료"); }
+		 */
+		
+		List<Estimation> resultList = estRepo.findByCompanyNull(pageable);
+		for(Estimation result : resultList) {
+			Company company = companyRepo.findById(cid).get();
+			Contract contract =contractRepo.findByCompanyAndEstimation(company,result);
+			if(contract != null) {
+				result.setIng(contract.getIng());
+				continue;
+			}
+			
+			Esti_request estReq = esti_reqRepo.findByEstimationAndCompany(result, company);
+			if(estReq != null) {
+				result.setIng("요청중");
+			}
+		}
+		return resultList;
 	}
 	
 	// 전체견적 개수 (페이징 용)

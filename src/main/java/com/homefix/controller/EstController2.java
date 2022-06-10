@@ -37,7 +37,6 @@ public class EstController2 {
 		if ( session.getAttribute("memberId")== null) {
 			return "redirect:/sign";
 		} 
-		
 		//업체 상세페이지에서 업체 아이디 넘어가는 것 확인 완료//System.out.println(id);
 		return "estimation2/estimation"; // RESTful은 리턴값을 반드시 써주어야 함(리턴은 뷰페이지 경로 적기)
 	}
@@ -58,11 +57,12 @@ public class EstController2 {
 	
 	/* 전체견적 목록 페이지 */
 	@GetMapping("/total")
-	public String getEstList(Model m, Integer page) {
+	public String getEstList(Model m, Integer page,HttpSession session) {
 		if(page == null) page = 1;
 		Estimation est = new Estimation(); 
 		/*List<Estimation> list = estService2.getEstList(est, page);*/ 
-		m.addAttribute("estList", estService2.getEstList(est, page)); 
+		String cid = (String)session.getAttribute("userId");
+		m.addAttribute("estList", estService2.getEstList(est,cid, page)); 
 		m.addAttribute("cntEst", estService2.countEstList());
 		return "estimation2/est-total-list";
 	}
