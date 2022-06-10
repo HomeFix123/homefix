@@ -60,13 +60,9 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	// 로그인 성공
-	public String login(Company com) {
-		List<Company> list = companyRepo.findByIdAndPass(com.getId(), com.getPass());
-		String message = null;
-		if (list.size() > 0) {
-			message = list.get(0).getName();
-		}
-		return message;
+	public Company login(Company com) {
+		Company comm = companyRepo.findById(com.getId()).get();
+		  return comm;
 	}
 
 	// 사업자 회원 탈퇴

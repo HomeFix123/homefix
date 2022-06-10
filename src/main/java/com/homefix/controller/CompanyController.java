@@ -73,15 +73,35 @@ public class CompanyController {
 	// 로그인하기
 	@PostMapping("/company/companyLogin")
 	public String loginCheck(Company com, HttpSession session, Model model) {
-		if (companyService.login(com) != null) {
-			session.setAttribute("userId", com.getId());
-			session.setAttribute("companyName", companyService.login(com));
+
+//		Company coms = companyService.login(com);
+//		System.out.println(encoder.matches(coms.getPass(), com.getPass()));
+//		System.out.println("로그인 아이디:" + coms.getId());
+//		System.out.println("로그인 아이디:" + coms.getPass());
+//		System.out.println("로그인 아이디:" + com.getPass());
+
+		/*
+		 * if (encoder.matches( com.getPass(), "{"+coms.getId()+"}"+coms.getPass())) {
+		 * session.setAttribute("userId", coms.getId());
+		 * session.setAttribute("companyName",coms.getName());
+		 * model.addAttribute("message", "Y"); return "redirect:/index"; }else {
+		 * model.addAttribute("message", "N"); return "sign/sign-in"; }
+		 */
+
+		Company coms = companyService.login(com);
+		System.out.println("로그인 아이디:" + coms.getId());
+		System.out.println("로그인 아이디:" + coms.getPass());
+		System.out.println("로그인 아이디:" + com.getPass());
+		if (coms.getPass().equals(coms.getPass())) {
+			session.setAttribute("userId", coms.getId());
+			session.setAttribute("companyName", coms.getName());
 			model.addAttribute("message", "Y");
 			return "redirect:/index";
 		} else {
 			model.addAttribute("message", "N");
 			return "sign/sign-in";
 		}
+
 	}
 
 	@GetMapping("")
@@ -139,7 +159,7 @@ public class CompanyController {
 	@PostMapping("/company/signUpB")
 	public String companyInsert(Company com) {
 		com.setEnabled(true);
-		com.setPass(encoder.encode(com.getPass()));
+		//com.setPass(encoder.encode(com.getPass()));
 		com.setRole(Role.ROLE_COMPANY);
 		String num = com.getNum();
 		com.setNum(num.replaceAll("-", ""));

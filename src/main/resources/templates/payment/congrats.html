@@ -36,7 +36,7 @@
 	th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
 
 <!-- 퀵메뉴바 css -->
-<link rel="stylesheet" th:href="@{/css/nav.css}"> 
+<link rel="stylesheet" th:href="@{/css/nav.css}">
 </head>
 <body>
 	<div id="preloader">
@@ -45,9 +45,9 @@
 	</div>
 	<!-- preloader -->
 
-	
-<div th:replace="/sections/header :: header"></div>      
-	
+
+	<div th:replace="sections/header :: header"></div>
+
 	<!-- /.sa-header -->
 
 	<section class="breadcrumb-section">
@@ -77,14 +77,14 @@
 	</div>
 	<!-- /.congrats-section -->
 
-	
+
 	<!-- /.sa-section -->
 
-	<div th:replace="/sections/nav :: div"></div>
-		
-<div th:replace="/sections/footer :: footer"></div>  
+	<div th:replace="sections/nav :: div"></div>
 
-	
+	<div th:replace="sections/footer :: footer"></div>
+
+
 	<!-- /.footer -->
 
 	<!-- JS -->
@@ -101,12 +101,14 @@
 	<script th:src="@{/js/jquery-ui-min.js}"></script>
 	<script th:src="@{/js/validate.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
-	
-	
 
-<!-- 퀵메뉴 js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+
+
+	<!-- 퀵메뉴 js -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
 </body>
 </html>

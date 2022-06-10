@@ -37,6 +37,9 @@ public class TipController {
 	public String tipList(Model m, Integer page, HttpSession session) {
 		if(page == null) page = 1;
 		String id = (String)session.getAttribute("memberId");
+		if ( id== null) {
+			return "redirect:/sign";
+		}
 		Tip tip = new Tip();
 		//List<Tip> list = tipService.getTipList(tip);
 		m.addAttribute("cntTip", tipService.countEstList()); //페이징
