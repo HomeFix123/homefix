@@ -16,7 +16,8 @@ $(document).ready(function() {
 			url: '/review/' + rid,
 			success: function(result) {
 				console.log("성공");
-				$('#deleteModal').modal('hide');
+				//$('#deleteModal').modal('hide');
+				location.href = "/review";
 			}, error: function(err) {
 				console.log(err);
 			}

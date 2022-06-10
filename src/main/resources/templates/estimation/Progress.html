@@ -96,6 +96,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    	<tr th:if="${Lists == null || #lists.size(List) == 0}">
+                                    	</tr>
                                      <tr th:each="list:${Lists}">
                                         <th>
                                             <div class="product">

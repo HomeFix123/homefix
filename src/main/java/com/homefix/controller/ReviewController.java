@@ -74,10 +74,11 @@ public class ReviewController {
 	
 	// 시공후기 삭제하기
 	@DeleteMapping("/{rid}")
+	@ResponseBody
 	public String deleteReview(Review rev, HttpSession session) {
 		String cid = (String) session.getAttribute("userId");
 		reviewService.deleteReview(rev, cid);
-		return "redirect:/review";
+		return "Y";
 	}
 	
 	// 시공후기 업체 신고 하기
