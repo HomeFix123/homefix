@@ -25,6 +25,13 @@ div.container-fluid ul li {
 	margin-left: 0px;
 	margin-bottom: 10px;
 }
+div.search_bar ul li {
+	float: left;
+	list-style: none;
+	margin-right: 20px;
+	margin-left: 0px;
+	margin-bottom: 10px;
+}
 
 .course-info {
 	padding-bottom: 10px;
