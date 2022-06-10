@@ -22,6 +22,9 @@
 <!--eunhye css  -->
 <link rel="stylesheet" th:href="@{/css/eh/sign-eh.css}">
 
+<!-- header css -->
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+
 <!-- font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900"
@@ -44,13 +47,11 @@
 </head>
 <body>
 	<div id="preloader">
-		<img src="images/preloader.gif" alt="Image"
-			class="tr-preloader img-fluid">
-	</div>
-	<!-- preloader -->
+    	<img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+    </div><!-- preloader -->
 
 	
-<div th:replace="/sections/header :: header"></div>      
+<div th:replace="sections/header :: header"></div>      
  <hr>
 	<!-- /.sa-header -->
 
@@ -192,9 +193,9 @@
 	</div>
 	<!-- /.sg-page-content -->
 
-<div th:replace="/sections/nav :: div"></div>
+<div th:replace="sections/nav :: div"></div>
 		
-<div th:replace="/sections/footer :: footer"></div>  
+<div th:replace="sections/footer :: footer"></div>  
 
 
 	
@@ -221,7 +222,8 @@
 	<!--eunhye jquery  -->
 	<script th:src="@{/js/eh/sign-up-b.js}"></script>
 	
-	
+<!-- header js -->
+<script th:src="@{/js/sections/header.js}"></script>	
 
 <!-- 퀵메뉴 js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>

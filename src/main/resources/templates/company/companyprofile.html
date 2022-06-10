@@ -8,7 +8,7 @@
 <meta name="author" content="">
 <meta name="description" content="">
 
-<title>Educam | Education & Courses HTML Template.</title>
+<title>HomeFix</title>
 <script>
 	
 </script>
@@ -44,23 +44,26 @@
 	th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
 <link rel="apple-touch-icon" sizes="57x57"
 	th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
+	
+<!-- header css -->
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+
 </head>
 
 <body>
 	<div id="preloader">
-		<img src="images/preloader.gif" alt="Image"
-			class="tr-preloader img-fluid">
+		<img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
 	</div>
 	<!-- preloader -->
-	<div th:replace="/sections/header :: header"></div>
-<hr>
+	<div th:replace="sections/header :: header"></div>
+	<hr>
 	<!-- /.sa-header -->
 
 	<section class="breadcrumb-section">
 		<div class="container">
 			<h1>사업자 마이페이지</h1>
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+				<li class="breadcrumb-item"><a href="/index">Home</a></li>
 				<li class="breadcrumb-item">Profile</li>
 			</ol>
 		</div>
@@ -89,7 +92,7 @@
 													class="user-name" id="companyName"
 													th:text="${session['companyName']}"></span>]
 											</div>
-											</div>
+										</div>
 									</li>
 
 									<li class="nav-item"><a class="nav-link active"
@@ -110,16 +113,13 @@
 										data-bs-target="#user-four" role="tab"
 										aria-controls="user-four" aria-selected="false"> 회원정보 수정 </a></li>
 									<li class="nav-item"><a class="nav-link"
-										id="user-five-tab" data-bs-toggle="tab"
-										data-bs-target="#user-five" role="tab"
-										aria-controls="user-five" aria-selected="false">신청한 견적 보기</a></li>
+										th:href="@{/estimation/Chosen}">신청한 견적 보기</a></li>
 
 									<li class="nav-item"><a class="nav-link "
-										th:href="@{/estimation/Progress(cid=${session['userId']})}">시공
-											중인 견적 보기</a></li>
+										th:href="@{/estimation/Progress}">시공 중인 견적 보기</a></li>
 
 
-									
+
 								</ul>
 								<!---------------------------------------------------------tab시작부분-------------------------------------------------------------------------------->
 								<div class="tab-content">
@@ -144,6 +144,9 @@
 														role="tabpanel" aria-labelledby="pills-home-tab">
 														<div class="row">
 															<div class="row" id="myReviswList">
+																<div th:if="${ #lists.size(Review)<=0}">
+																	<h1>작성한 글이 없습니다.</h1>
+																</div>
 																<div th:each="list : ${Review}"
 																	class="col-12 col-md-6 col-lg-4  ">
 																	<div class="sa-post">
@@ -249,7 +252,12 @@
 																			<th>구독권 종료일</th>
 																		</tr>
 																	</thead>
+																	<div th:if="${ #lists.size(PaymentInfo)<=0}">
+																			<h1>작성된 글이 없습니다.</h1>
+
+																		</div>
 																	<tbody class="paymentInfoTR" id="paymentInfoAdd">
+																		
 																		<tr th:each="paymentInfo : ${PaymentInfo}">
 
 																			<td th:text="${paymentInfo.pid}"></td>
@@ -352,8 +360,8 @@
 													</div>
 													<div class="form-group">
 														<label for="password">비밀번호<span class="error_box"></span></label><input
-															type="password" class="form-control" id="password" placeholder="영문자 및 숫자 조합 4~10글자"
-															name="pass">
+															type="password" class="form-control" id="password"
+															placeholder="영문자 및 숫자 조합 4~10글자" name="pass">
 													</div>
 													<div class="form-group">
 														<label for="two_password">비밀번호 확인<span
@@ -598,9 +606,9 @@
 	<!-- /.container -->
 	</div>
 	<!-- /.section-content -->
-	<div th:replace="/sections/nav :: div"></div>
+	<div th:replace="sections/nav :: div"></div>
 
-	<div th:replace="/sections/footer :: footer"></div>
+	<div th:replace="sections/footer :: footer"></div>
 
 
 	<!-- /.footer -->
@@ -625,7 +633,8 @@
 	<!--eunhye js  -->
 	<script th:src="@{/js/eh/companyMypage.js}"></script>
 
-
+	<!-- header js -->
+	<script th:src="@{/js/sections/header.js}"></script>
 
 	<!-- 퀵메뉴 js -->
 	<script

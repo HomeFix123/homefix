@@ -39,6 +39,17 @@ public class EstServiceImpl2 implements EstService2 {
 		estRepo.save(est);
 		System.out.println("입력값 확인 " + estRepo.save(est));
 	}
+	
+	/**
+	 *@author 영은
+	 */
+	@Override
+	public void saveEst(Estimation est, String id,String cid) {
+		est.setMember(memberRepo.findById(id).get());
+		est.setCompany(companyRepo.findById(cid).get());
+		estRepo.save(est);
+		System.out.println("입력값 확인 " + estRepo.save(est));
+	}
 
 	@Autowired
 	ContractRepository contractRepo;

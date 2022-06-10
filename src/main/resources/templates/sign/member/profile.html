@@ -76,6 +76,9 @@
 	<link rel="stylesheet" th:href="@{/css/structure.css}">
 	<link rel="stylesheet" th:href="@{/css/main.css}">
 	<link rel="stylesheet" th:href="@{/css/responsive.css}">
+	
+	<!-- header css -->
+	<link rel="stylesheet" th:href="@{/css/sections/header.css}">
 
     <!-- font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
@@ -101,7 +104,7 @@
     <!-- Template Developed By ChtStudio -->
     
     <!-- 퀵메뉴바 css -->
-	<!-- <link rel="stylesheet" th:href="@{/css/nav.css}"> -->
+	<link rel="stylesheet" th:href="@{/css/nav.css}">
     
 </head>
 
@@ -110,9 +113,9 @@
         <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
     </div><!-- preloader -->
 
-    <div th:replace="/sections/header :: header"></div>
+    <div th:replace="sections/header :: header"></div>
     <!-- 퀵메뉴바 -->
-	<!-- <div th:replace="/sections/nav :: div"></div> -->
+	<div th:replace="/sections/nav :: div"></div> 
 
     <section class="breadcrumb-section">
         <div class="container">
@@ -221,7 +224,6 @@
                                                                     <thead>
                                                                         <tr>
                                                                             <th>제목</th>
-                                                                            <th>작성날짜</th>
                                                                             <th>작성자</th>
                                                                         </tr>
                                                                     </thead>
@@ -230,7 +232,6 @@
                                                                             <td>
                                                                            		<a th:href="@{/tip/list(id=${tips.tid})}" th:text="${tips.tiptitle}"></a>
                                                                            	</td>
-																			<td th:text="${tips.tdate}"></td>
 																			<td th:text="${tips.member.id}"></td>
 																		</tr>
                                                                     </tbody>
@@ -416,7 +417,7 @@
     </div><!-- /.section-content -->
 
 
-    <div th:replace="/sections/footer :: footer"></div>
+    <div th:replace="sections/footer :: footer"></div>
 
     <!-- JS -->
     <script th:src="@{/js/jquery.min.js}"></script>
@@ -433,15 +434,18 @@
 	<script th:src="@{/js/validate.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 	
+	<!-- header js -->
+	<script th:src="@{/js/sections/header.js}"></script>
+	
 	<!-- 혜윤 JS -->
 	<script th:src="@{/js/he/memMypage.js}"></script>
 	<script th:src="@{/js/he/Mypageing.js}"></script>
 	
 	<!-- 퀵메뉴 js -->
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
-	 -->
+	
 	
 </body>
 

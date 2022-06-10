@@ -23,6 +23,9 @@
 <!-- 퀵메뉴바 css -->
 <link rel="stylesheet" th:href="@{/css/nav.css}">
 
+<!-- header css -->
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+
 <!-- font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900"
@@ -42,13 +45,12 @@
 </head>
 <body>
 	<div id="preloader">
-		<img src="images/preloader.gif" alt="Image"
-			class="tr-preloader img-fluid">
-	</div>
-	<!-- preloader -->
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+        </div><!-- preloader -->>
 
-	 <div th:replace="/sections/header :: header"></div> 
-	      <hr>
+
+	<div th:replace="sections/header :: header"></div>
+	<hr>
 	<!-- /.sa-header -->
 
 	<section class="breadcrumb-section">
@@ -110,8 +112,10 @@
 										<div class="requirements">
 											<h4>기본정보</h4>
 											<ul class="global-list">
+										
 												<li th:text="'대표자: '+ ${CompanyBasic.ceo}"></li>
-												<li><input type="hidden" th:value="${CompanyBasic.id}" id="companyCid"></li>
+												<li><input type="hidden" th:value="${CompanyBasic.id}"
+													id="companyCid"></li>
 												<li th:text="'경력: '+ ${CompanyInfo.career} + '년'"></li>
 
 
@@ -130,13 +134,18 @@
 									<div class="tab-pane fade" id="course-info" role="tabpanel"
 										aria-labelledby="course-info-tab">
 										<h4>전문가 한마디</h4>
-										<p th:text="${CompanyInfo.cinfo_cont}"></p>
-
+										
+										<p class="lineChange" th:text="${CompanyInfo.cinfo_cont}"></p>
+											
 									</div>
 									<div class="tab-pane fade sa-post" id="reviews" role="tabpanel"
 										aria-labelledby="reviews-tab">
 										<h3 class="widget_title">다양한 시공사례</h3>
 										<div id="companyBragBoard">
+										<div th:if="${ #lists.size(Brag)<=0}" >
+												<h1>작성된 글이 없습니다.</h1>
+											
+											</div>
 											<ul th:each="b:${Brag}" class="ulBrag">
 												<li class="media">
 													<div class="entry-thumbnail entry-header">
@@ -157,12 +166,11 @@
 													</div>
 													<div class="sa-meta">
 														<ul class="global-list">
-															<li><a href="#"> <span><i
-																		class="fas fa-heart"></i></span>
-															</a></li>
-															<li><a href="#"> <i class="far fa-eye"></i><span
+															<li> <i class="fas fa-heart"></i><span th:text="${b.prefer}"></span>
+															
+															</li>&nbsp;&nbsp;<li> <i class="far fa-eye"></i><span
 																	th:text="${b.bcnt}"></span>
-															</a></li>
+															</li>
 														</ul>
 													</div>
 													<hr>
@@ -171,12 +179,12 @@
 
 											</ul>
 
-											
+
 										</div>
-<div th:if="${#lists.size(Brag)== 3}" class="text-center">
-												<!-- 10개 모두 출력되야 보여주기 -->
-												<button class="btn btn-primary w-100" id="moreBtnBrag">더보기</button>
-											</div>
+										<div th:if="${#lists.size(Brag)== 3}" class="text-center">
+											<!-- 10개 모두 출력되야 보여주기 -->
+											<button class="btn btn-primary w-100" id="moreBtnBrag">더보기</button>
+										</div>
 
 									</div>
 									<div class="tab-pane fade" id="comments" role="tabpanel"
@@ -184,8 +192,13 @@
 										<h4>업체후기</h4>
 										<div class="row">
 											<div class="row" id="myReviswList">
-												<div th:each="list : ${Review}"
+											<div th:if="${ #lists.size(Review)<=0}" >
+												<h1>작성된 글이 없습니다.</h1>
+											
+											</div>
+												<div th:each="list : ${Review}" 
 													class="col-12 col-md-6 col-lg-4  ">
+													
 													<div class="sa-post">
 														<div class="entry-header">
 															<div class="entry-thumbnail">
@@ -206,9 +219,7 @@
 															</div>
 															<div class="sa-meta">
 																<ul class="global-list">
-																	<li><a href="#"> <span><i
-																				class="fas fa-heart"></i></span>
-																	</a></li>
+																	
 																	<li><a href="#"> <i class="far fa-eye"></i><span
 																			th:text="${list.rcnt}"></span>
 																	</a></li>
@@ -276,13 +287,14 @@
 										th:each="a : ${CompanyInfo.specialty} "
 										th:text="' 시공지역:  ' + ${a.sp_cont}"> </span></li>
 								</ul>
-													
+
 							</div>
 						</div>
 
 						</aside>
 
-								<a th:href="@{/estimation/write/}+(${CompanyBasic.id})" id="estRegist" class="btn btn-primary">견적 신청하기</a>
+						<a th:href="@{/estimation/write?cid=}+(${CompanyBasic.id})"
+							id="estRegist" class="btn btn-primary">견적 신청하기</a>
 					</div>
 
 
@@ -300,11 +312,11 @@
 
 	<!-- /.sg-section -->
 
-<div th:replace="/sections/nav :: div"></div>
-		
-        <div th:replace="/sections/footer :: footer"></div>  
+	<div th:replace="sections/nav :: div"></div>
 
-	
+	<div th:replace="sections/footer :: footer"></div>
+
+
 	<!-- /.footer -->
 
 	<!-- JS -->
@@ -326,10 +338,14 @@
 		crossorigin="anonymous"></script>
 	<!--eunhye js  -->
 	<script th:src="@{/js/eh/etc.js}"></script>
+	<!-- header js -->
+    <script th:src="@{/js/sections/header.js}"></script>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
 </body>
 </html>

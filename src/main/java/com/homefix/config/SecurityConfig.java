@@ -2,6 +2,7 @@ package com.homefix.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -16,8 +17,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override // ***오타나면 페이지 안뜨므로 조심!
 	protected void configure(HttpSecurity security) throws Exception {
-		security.authorizeRequests().antMatchers("/index" , "/sign/**","/company/{id}").permitAll(); // index화면에 모두 접근가능.
-		security.authorizeRequests().antMatchers("/member/**").authenticated(); // 인증된 사용자만
+		security.authorizeRequests().antMatchers("/index" ,
+												 "/sign/**",
+												 "/company/{id}",
+												 "/sign/member/sign_kakao",
+												 "/sign/member/sign_member"
+												 ).permitAll(); // index화면에 모두 접근가능.
+		
+		security.authorizeRequests().antMatchers("-").authenticated(); // 인증된 사용자만
+		security.authorizeRequests().antMatchers("/member/profile").hasRole("USER");
 		security.authorizeRequests().antMatchers("/company/profile").hasRole("COMPANY");// manager만
 		security.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");// admin만
 		security.formLogin().loginPage("/sign"); // 사용자 로그인 화면
@@ -27,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		security.userDetailsService(companyUserDetailsService);
 		security.csrf().disable();// Restfull 사용자는 csrf는 disable로 설정한다.
 	}
-
+	
 	// 비밀번호 인코더
 	@Bean
 	public PasswordEncoder passwordEncoder() {

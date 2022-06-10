@@ -23,7 +23,9 @@ public class CompanyUserDetailsService implements UserDetailsService {
 		// UserDetails 타입의 객체로 리턴한다.
 		// SecurityUser 객체는 userdetails.User을상속했고 User은 UserDetails를 구현한 클래스로
 		// loadUserByUsername()메소드의 리턴타입으로 사용가능
+		
 		Optional<Company> optional = companyRepo.findById(id);
+		
 		if (!optional.isPresent()) {
 			throw new UsernameNotFoundException(id + "사용자 없음");
 		} else {
