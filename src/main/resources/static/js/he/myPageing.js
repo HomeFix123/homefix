@@ -4,7 +4,7 @@ $(function() {
 	let totalPages;
 	// 버튼 클리이벤트
 	$("#myBrag").click(function(){
-		alert("확인")
+		//alert("확인")
 		page = page+1;
 			$.ajax({
 				url : "/sign/member/myPageing",
@@ -15,7 +15,7 @@ $(function() {
 				success : function(getBragList) {
 					// for문 시작
 					totalPages = getBragList.totalPages
-					alert(totalPages)
+					//alert(totalPages)
 					$.each(getBragList.content, (i, review) => {
 						let row = ' <tr>'
 							+ ' <td>'
@@ -45,7 +45,7 @@ $(function() {
 	let totalTipPages;
 	// 버튼 클리이벤트
 	$("#myTip").click(function(){
-		alert("확인")
+		//alert("확인")
 		tippage = tippage+1;
 			$.ajax({
 				url : "/sign/member/myTipPageing",
@@ -56,17 +56,15 @@ $(function() {
 				success : function(getTipList) {
 					// for문 시작
 					totalTipPages = getTipList.totalPages
-					alert(totalTipPages)
+					//alert(totalTipPages)
 					$.each(getTipList.content, (i, tips) => {
 						let rowTip = ' <tr>'
 							+ ' <td>'
 							+ ' <a href="/tip/list(id=${'+tips.tid+'})" >'+tips.tiptitle+'</a>'
 							+ ' </td>'
-							+' <td>'+tips.tdate
-							+' </td>'
-							+' <td>'+tips.member.id
-							+' </td>'
-							+' </tr>'
+							+ ' <td>'+tips.member.id
+							+ ' </td>'
+							+ ' </tr>'
 						$('#tipBd').append(rowTip);
 						// for문 끝
 					})// end of for

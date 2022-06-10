@@ -221,7 +221,6 @@
                                                                     <thead>
                                                                         <tr>
                                                                             <th>제목</th>
-                                                                            <th>작성날짜</th>
                                                                             <th>작성자</th>
                                                                         </tr>
                                                                     </thead>
@@ -230,7 +229,6 @@
                                                                             <td>
                                                                            		<a th:href="@{/tip/list(id=${tips.tid})}" th:text="${tips.tiptitle}"></a>
                                                                            	</td>
-																			<td th:text="${tips.tdate}"></td>
 																			<td th:text="${tips.member.id}"></td>
 																		</tr>
                                                                     </tbody>

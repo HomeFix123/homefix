@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Brag;
+import com.homefix.domain.Company;
 import com.homefix.domain.CompanyPrefer;
 import com.homefix.domain.Member;
 import com.homefix.domain.Prefer;
@@ -79,40 +81,18 @@ public class MemberServiceImpl implements MemberService {
 	@Override	//String - > Member :: 시큐리티 사용시 이렇게 변경!
 //	public String login(Member mem) {
 	public Member login(Member mem) {
-		System.out.println("멤버레포에서 넘어왔나?" + memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword()));
-		List<Member> list = memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword());
-		String message = null;
-		if (list.size() > 0) {
-			mem = list.get(0);
-			/* message = list.get(0).getName(); */
-//			message = list.toString();
-		} else {
-			return null;
-		}
-		return mem;
-		/**
-		 * test1
-		 * test1
-		 * Member Optional<Member>
-		 */
-//		try {
-//			Member member = memberRepo.findMemberByEmail(mem.getEmail());
-//			System.out.println("확인용!!!!!!!!!이메일!!! :: " + mem.getEmail());
-//			if(member !=null) {
-//				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//				if(encoder.matches(mem.getPassword(),member.getPassword())) {
-//					mem.setId(member.getId());
-//					mem.setEmail(member.getEmail());
-//					mem.setName(member.getName());
-//					return mem;
-//				}else {
-//					throw new RuntimeException("passwordError");
-//				}
-//			}
-//			throw new RuntimeException("notExist");
-//		}catch(Exception e) {
-//			throw new RuntimeException("fail" + e);
+//		System.out.println("멤버레포에서 넘어왔나?" + memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword()));
+//		List<Member> list = memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword());
+//		String message = null;
+//		if (list.size() > 0) {
+//			
+//		} else {
+//			return null;
 //		}
+//		return mem;
+		System.out.println("멤버레포에서 넘어왔나?" + memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword()));
+		Member memb = memberRepo.findById(mem.getId()).get();
+		  return memb;
 	}
 
 	//회원정보 수정

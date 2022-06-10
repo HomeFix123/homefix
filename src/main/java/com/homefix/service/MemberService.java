@@ -3,6 +3,10 @@ package com.homefix.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.ui.Model;
+
 import com.homefix.domain.Brag;
 import com.homefix.domain.CompanyPrefer;
 import com.homefix.domain.Member;
@@ -24,7 +28,6 @@ public interface MemberService {
 	public void memberInsert(Member mem);
 
 	//로그인
-//	public String login(Member mem);
 	public Member login(Member mem);
 
 	//회원정보 수정
