@@ -7,7 +7,7 @@
 
 .entry-meta i {
 	font-size: 25px;
-	color: var(- -primary-color);
+	color: var(--primary-color);
 }
 
 .text-right {
@@ -34,7 +34,7 @@ ul li {
 	height: 35px;
 	width: 30%;
 	resize: none;
-	border: solid 2px var(- -primary-color);
+	border: solid 2px var(--primary-color);
 	border-radius: 5px;
 }
 
@@ -46,8 +46,8 @@ ul li {
 	position: relative;
 	z-index: 1;
 	overflow: hidden;
-	background-color: var(- -primary-color);
-	border: 1px solid var(- -primary-color);
+	background-color: var(--primary-color);
+	border: 1px solid var(--primary-color);
 	padding: 9px 20px;
 	margin-left: 5px;
 }
@@ -65,7 +65,7 @@ ul li {
 }
 
 .btn-area.btn-selected {
-	background: var(- -primary-color);
+	background: var(--primary-color);
 	color: white;
 	border: 1px white solid;
 }
@@ -89,7 +89,7 @@ ul li {
 }
 
 #expertListHeaderImg {
-	background-image: url(/images/sample/126.jpg);
+	background-image: url(/images/sample/273.jpg);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -98,4 +98,8 @@ ul li {
 
 #expertListHeaderTitle {
 	padding-top: 50px;
+}
+
+#modalSubmit{
+	padding: 7px 20px;
 }

@@ -22,7 +22,7 @@ public interface EstService2 {
 	
 	// 전체 견적 목록
 	// List<Estimation> estList(Estimation est);
-	List<Estimation> getEstList(Estimation est, int page); //페이징 처리
+	List<Estimation> getEstList(Estimation est, String cid, int page); //페이징 처리
 	
 	// 견적 게시글 개수 불러오기
 	public long countEstList(); //페이징 처리

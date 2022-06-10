@@ -7,7 +7,7 @@
 
 .entry-meta i {
 	font-size: 25px;
-	color: var(- -primary-color);
+	color: var(--primary-color);
 }
 
 .text-right {
@@ -18,7 +18,15 @@ ul {
 	padding: 0px;
 }
 
-ul li {
+div.container-fluid ul li {
+	float: left;
+	list-style: none;
+	margin-right: 20px;
+	margin-left: 0px;
+	margin-bottom: 10px;
+}
+
+div.search_bar ul li {
 	float: left;
 	list-style: none;
 	margin-right: 20px;
@@ -34,7 +42,7 @@ ul li {
 	height: 35px;
 	width: 30%;
 	resize: none;
-	border: solid 2px var(- -primary-color);
+	border: solid 2px var(--primary-color);
 	border-radius: 5px;
 }
 
@@ -46,8 +54,8 @@ ul li {
 	position: relative;
 	z-index: 1;
 	overflow: hidden;
-	background-color: var(- -primary-color);
-	border: 1px solid var(- -primary-color);
+	background-color: var(--primary-color);
+	border: 1px solid var(--primary-color);
 	padding: 9px 20px;
 	margin-left: 5px;
 }
@@ -65,7 +73,7 @@ ul li {
 }
 
 .btn-query.btn-selected {
-	background: var(- -primary-color);
+	background: var(--primary-color);
 	color: white;
 	border: 1px white solid;
 }
@@ -103,4 +111,13 @@ ul li {
 
 #reviewListHeaderTitle {
 	padding-top: 50px;
+}
+
+#modalSubmit{
+	padding: 7px 20px;
+}
+
+#moreBtn{
+	padding: 20px 0px;
+	font-size: 20px;
 }
