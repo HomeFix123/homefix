@@ -7,7 +7,7 @@
 <meta name="author" content="">
 <meta name="description" content="">
 
-<title>Educam | Education & Courses HTML Template.</title>
+<title>HomeFix</title>
 
 <!-- CSS -->
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -31,13 +31,6 @@
 <link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
 <!-- icons -->
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-<!-- Template Developed By ChtStudio -->
 
 <link rel="stylesheet" th:href="@{/css/sections/header.css}">
 </head>
@@ -47,7 +40,7 @@
 	</div>
 	<!-- preloader -->
 
-	<div th:replace="/sections/header :: header"></div> 
+	<div th:replace="sections/header :: header"></div> 
 
 
 
@@ -63,10 +56,12 @@
 				<div class="row justify-content-md-center">
 					<div class="col-lg-8" style="text-align: center;">
 						<div class="reviewer">
-							<a ><img class="img-fluid" th:src="|http://140.238.11.118:5000/upload/${rev.company.logo}|" alt="Image"></a>
+							<a >
+								<img class="img-fluid" th:src="|http://140.238.11.118:5000/upload/${rev.company.logo}|" alt="Image">
+							</a>
 						</div>
 						<div>
-							<h5 class="reviewer_name" th:text="${rev.company.name}">업체명</h5>
+							<h5 class="reviewer_name" th:text="${rev.company.name}"><a >업체명</a>></h5>
 						</div>
 					</div>
 					<div class="details col-8">
@@ -85,13 +80,13 @@
 					</div>
 
 					<div class="details col-lg-8">
-						<div class="detail col-lg-3" name="작업자">
+						<div class="detail col-3" name="작업자">
 							<strong>작업</strong><a id="detailVal" th:text="${rev.worker}"></a>
 						</div>
-						<div class="detail col-lg-4" name="예산">
+						<div class="detail col-4" name="예산">
 							<strong>예산</strong><a id="detailVal" th:text="|${rev.rbudget} 원|"></a>
 						</div>
-						<div class="detail col-lg-5" name="지역">
+						<div class="detail col-5" name="지역">
 							<strong>지역</strong><a id="detailVal" th:text="${rev.loc}"></a>
 						</div>
 
@@ -170,7 +165,7 @@
 							<option value="음란물입니다.">음란물입니다.</option>
 							<option value="불법정보를 포함하고 있습니다.">불법정보를 포함하고 있습니다.</option>
 							<option value="청소년에게 유해한 내용입니다.">청소년에게 유해한 내용입니다.</option>
-							<option value="욕설/혐오/차별적 표현입니다.">욕설/생혐오/차별적 표현입니다.</option>
+							<option value="욕설/혐오/차별적 표현입니다.">욕설/혐오/차별적 표현입니다.</option>
 							<option value="개인정보 노출 게시물입니다.">개인정보 노출 게시물입니다.</option>
 							<option value="불쾌한 표현이 있습니다.">불쾌한 표현이 있습니다.</option>
 						</select> <!-- <input type="hidden" name="article_no" value="${bookreport.bookreport_no }" /> -->
@@ -220,69 +215,7 @@
 	<script th:src="@{/js/validate.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/sections/header.js}"></script>
-	<script type="text/javascript">
-        $(document).ready(function(){ 
-        	var currentPosition = parseInt($(".quickmenu").css("top")); 
-        	
-        	$(window).scroll(function() { 
-        		var position = $(window).scrollTop(); 
-        		$(".quickmenu").css("top",position+currentPosition+"px"); 
-        		});
-        	
-        	
-			// 자랑 삭제하기
-			
-			$('#deletebtn').click(function() {
-				const rid = $('input[name=rid]').val();
-				 $.ajax({
-					type:'DELETE',
-					url:'/review/'+rid,
-					success:function(result){
-						console.log("성공");
-						$('#deleteModal').modal('hide');
-					}, error:function(err){
-						console.log(err);
-					}
-				}) 
-					
-			
-			})
-			
-			// 신고하기
-			$(document).on('click', '#reportbtn', function() {
-
-        		const cid = $('input[name=cid]').val();
-        		const reason = $('.reason').val();
-        		
-        		console.log(cid);
-        		console.log(reason);
-        		
-				$.ajax({
-					type:'POST',
-					url:'/review/Creport/' + cid,
-					data: {reason : reason},
-					success: function(result) {
-						console.log(result);
-						if(result == 'true'){
-							alert('신고완료');
-							$('#reportModal').modal('hide');
-						} else {
-							alert('이미 신고한 사람입니다.');
-							$('#reportModal').modal('hide');
-						}
-					},
-					error: function(err){
-						console.log(err);
-						
-					}
-				})
-
-		})
-        	
-        	
-     });
-        
-        </script>
+	<script th:src="@{/js/bs/reviewDetail.js}" ></script>
 
 </body>
 </html>
