@@ -110,9 +110,11 @@
 						
 						<div class="detail col-6 offset-3">
 							<strong id="companyinfo" >시공업체</strong>
+							<a th:href="|/company/${brag.company.id}|">
 							<img class="user-img" th:if="${brag.company.logo == null}" src="http://140.238.11.118:5000/upload/profile_basic.png">
 							<img class="user-img" th:if="${brag.company.logo != null}" th:src="|http://140.238.11.118:5000/upload/${brag.company.logo}|">
-							<a th:text="${brag.company.name}"></a>
+							</a>
+							<a th:href="|/company/${brag.company.id}|" th:text="${brag.company.name}"></a>
 						</div>
 					</div>
 					<div class="details col-lg-8  offset-3">

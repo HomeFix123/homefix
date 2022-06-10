@@ -76,7 +76,60 @@ $(document).ready(function() {
 			alert("제목을 입력해주세요.");
 			return;
 		}
-
+		
+		if ($('#hometype').val()==null){
+			alert("주거형태를 선택해주세요.");
+			$('#hometype').focus();
+			return;
+		}
+		
+		if ($('#rsize').val()==null || $('#rsize').val()==""){
+			alert("평수를 입력해주세요.");
+			$('#rsize').focus();
+			return;
+		} else if($('#rsize').val().search(/[0-9]/g)){
+			alert("숫자만 입력해주세요.");
+			$('#rsize').focus();
+			return;
+		}
+		
+		if ($('#rbudget').val()==null || $('#rbudget').val()==""){
+			alert("예산을 입력해주세요.");
+			$('#rbudget').focus();
+			return;
+		} else if($('#rbudget').val().search(/[0-9]/g)){
+			alert("숫자만 입력해주세요.");
+			$('#rbudget').focus();
+			return;
+		}
+		
+		if ($('#job').val()==null){
+			alert("작업분야를 선택해주세요.");
+			$('#job').focus();
+			return;
+		}
+		
+		if ($('#family').val()==null){
+			alert("가족형태를 선택해주세요.");
+			$('#family').focus();
+			return;
+		}
+		
+		if ($('#worker').val()==null){
+			alert("작업자를 선택해주세요.");
+			$('#worker').focus();
+			return;
+		}
+		if ($('#loc').val()== null || $('#loc').val()==""){
+			alert("지역을 작성해주세요.");
+			$('#loc').focus();
+			return;
+		} else if(/[a-zA-Z가-힣0-9]{2, }/.test($('#loc').val())){
+			alert("지역을 2글자 이상 제대로 작성해주세요.");
+			$('#loc').focus();
+			return;
+		}
+		
 		if (imageInput.files.length === 0) {
 			alert("대표사진을 넣어주세요.");
 			return;
