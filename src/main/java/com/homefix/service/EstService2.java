@@ -10,6 +10,16 @@ public interface EstService2 {
 	// 견적상담 신청서 입력하기
 	public void saveEst(Estimation est, String id);
 	
+	
+	/**
+	 * @author 영은
+	 * @param est
+	 * @param id
+	 * @param cid
+	 */
+	// 견적상담 신청서 입력하기 회사선택했을 경우 (Overloading)
+	public void saveEst(Estimation est, String id, String cid);
+	
 	// 전체 견적 목록
 	// List<Estimation> estList(Estimation est);
 	List<Estimation> getEstList(Estimation est, int page); //페이징 처리
