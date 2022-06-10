@@ -1,10 +1,5 @@
 $(document).ready(function() {
-	var currentPosition = parseInt($(".quickmenu").css("top"));
-
-	$(window).scroll(function() {
-		var position = $(window).scrollTop();
-		$(".quickmenu").css("top", position + currentPosition + "px");
-	});
+	
 
 	// 좋아요
 	$(document).on('click', '.preferSave', function() {
@@ -13,13 +8,13 @@ $(document).ready(function() {
 		const bid = $('input[name=bid]').val();
 
 		const preferck = $('input[name=preferck]').val();
-		console.log(preferck);
+		
 		if (preferck == 'false') {
 			$.ajax({
 				type: 'POST',
 				url: '/brag/prefer/' + bid,
 				success: function(result) {
-					console.log(result);
+					
 					$('#prefer').removeClass('far fa-heart');
 					$('#prefer').addClass('fas fa-heart');
 					$('#love').removeClass('preferSave bg-light');
@@ -58,7 +53,6 @@ $(document).ready(function() {
 	})
 
 	// 자랑 삭제하기
-
 	$('#deletebtn').click(function() {
 		const bid = $('input[name=bid]').val();
 		$.ajax({
@@ -77,13 +71,12 @@ $(document).ready(function() {
 
 	// 신고하기
 	$(document).on('click', '#reportbtn', function() {
-
+		
+		// 글쓴이와 사유 저장
 		const id = $('input[name=id]').val();
 		const reason = $('.reason').val();
 
-		console.log(id);
-		console.log(reason);
-
+		
 		$.ajax({
 			type: 'POST',
 			url: '/brag/report/' + id,
@@ -91,7 +84,7 @@ $(document).ready(function() {
 				reason: reason
 			},
 			success: function(result) {
-				console.log(result);
+				//신고 여부 반환
 				if (result == 'true') {
 					alert('신고완료');
 					$('#reportModal').modal('hide');

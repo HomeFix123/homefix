@@ -1,11 +1,5 @@
 $(document).ready(function() {
-	var currentPosition = parseInt($(".quickmenu").css("top"));
-
-	$(window).scroll(function() {
-		var position = $(window).scrollTop();
-		$(".quickmenu").css("top", position + currentPosition + "px");
-	});
-
+	
 
 	// 시공후기 삭제하기
 
@@ -16,7 +10,6 @@ $(document).ready(function() {
 			url: '/review/' + rid,
 			success: function(result) {
 				console.log("성공");
-				//$('#deleteModal').modal('hide');
 				location.href = "/review";
 			}, error: function(err) {
 				console.log(err);
