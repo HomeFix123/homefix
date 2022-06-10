@@ -110,7 +110,7 @@
         <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
     </div><!-- preloader -->
 
-    <div th:replace="/sections/header :: header"></div>
+    <div th:replace="sections/header :: header"></div>
     <!-- 퀵메뉴바 -->
 	<!-- <div th:replace="/sections/nav :: div"></div> -->
 
@@ -416,7 +416,7 @@
     </div><!-- /.section-content -->
 
 
-    <div th:replace="/sections/footer :: footer"></div>
+    <div th:replace="sections/footer :: footer"></div>
 
     <!-- JS -->
     <script th:src="@{/js/jquery.min.js}"></script>

@@ -45,10 +45,10 @@
     </head>
     <body> 
         <div id="preloader">
-            <img src="images/preloader.gif" alt="Image" class="tr-preloader img-fluid">
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
-        <div th:replace="/sections/header :: header"></div>      
+        <div th:replace="sections/header :: header"></div>      
                                         
         <div id="hero-slider" class="carousel slide hero-content" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -273,9 +273,9 @@
 		
 		
 		
-		<div th:replace="/sections/nav :: div"></div>
+		<div th:replace="sections/nav :: div"></div>
 		
-        <div th:replace="/sections/footer :: footer"></div>  
+        <div th:replace="sections/footer :: footer"></div>  
 
         <!-- JS -->
         <script src="js/jquery.min.js"></script>

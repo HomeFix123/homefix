@@ -49,12 +49,11 @@
 </head>
 <body>
 	<div id="preloader">
-		<img th:src="@{/images/preloader.gif}" alt="Image"
-			class="tr-preloader img-fluid">
-	</div>
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+        </div><!-- preloader -->
 	<!-- preloader -->
 
-	<div th:replace="/sections/header :: header"></div>
+	<div th:replace="sections/header :: header"></div>
 	
 	<section class="breadcrumb-section">
             <div class="container">
