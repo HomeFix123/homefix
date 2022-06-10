@@ -96,13 +96,13 @@ $(function() {
 					// for문 시작
 					totalLovePages = getLoveList.totalPages
 					alert(totalLovePages)
-					$.each(totalLovePages.content, (i, love) => {
+					$.each(getLoveList.content, (i, love) => {
 						let rowLove = ' <div class="col-lg-4">'
 							+ ' <div class="sa-post">'
 							+ ' <div class="entry-header" >'
 							+ ' <div class="entry-thumbnail">'
-							+ ' <a href="/brag/(${'+love.brag.bid+'})" >'
-							+ ' <img src="|http://140.238.11.118:5000/upload/${'+love.brag.bimgadr+'}|">'
+							+ ' <a href="/brag/('+love.brag.bid+')" >'
+							+ ' <img src="http://140.238.11.118:5000/upload/'+love.brag.bimgadr+'">'
 							+ ' </a>'
 							+ ' </div>'
 							+ ' <div class="entry-content">'
@@ -111,7 +111,9 @@ $(function() {
 							+ ' </div>'
 							+ ' </div>'
 							+ ' </div>'
+							+ ' </div>'
 						$('#fav_row').append(rowLove);
+						alert("OK");
 						// for문 끝
 					})// end of for
 					if(lovepage == (totalLovePages-1)){

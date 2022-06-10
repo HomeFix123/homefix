@@ -120,19 +120,19 @@
 											role="tabpanel" aria-labelledby="profile-tab">
 											<form class="ragister-form" name="ragister-form"
 												method="post" action="#">
-												<!-- 아이디 찾기_이름 -->
+												<!-- 아이디 찾기_이메일 -->
 												<div class="form-group text-left mb-0">
-													<label>Name</label>
-													<input type="text" class="form-control" name="name" placeholder="이름">
+													<label>Email</label>
+													<input type="text" class="form-control" name="email" id="email" placeholder="이메일">
 												</div>
 												<!-- 아이디 찾기_전화번호 -->
 												<div class="form-group text-left mb-0">
 													<label>Tel</label>
-													<input type="tel" name="tel" class="form-control" placeholder="전화번호">
+													<input type="tel" name="tel" id="tel" class="form-control" placeholder="전화번호">
 												</div>
 												<button class="btn btn-primary" type="button" id="findid" >아이디 찾기</button>
 												<div class="middle-content">
-													<a class='btn btn-primary' th:href='@{/sign/sign-agree-m}'>회원가입</a>
+													<a class='btn btn-primary' th:href='@{/sign/member/sign_member}'>회원가입</a>
 												</div>
 											</form>
 										</div>

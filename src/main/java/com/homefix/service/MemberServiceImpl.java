@@ -124,7 +124,13 @@ public class MemberServiceImpl implements MemberService {
             return false;
         }
     }
-
+	
+	//개인 아이디 찾기
+	public Member memberEmailTelCheck(String email,String tel){
+		return memberRepo.findByEmailAndTel(email, tel);
+		  
+	}
+	
 	//화면에 값 출력하려고 만든건데 필요없나..?
 	@Override
 	public List<Member> myPageList(Member mem) {
