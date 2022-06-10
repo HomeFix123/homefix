@@ -57,7 +57,7 @@
             <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
-        <div th:replace="/sections/header :: header"></div>         
+        <div th:replace="sections/header :: header"></div>         
 
         <section class="breadcrumb-section">
             <div class="container">
@@ -162,10 +162,10 @@
         </div><!-- /.cart-section -->  
         
         <!-- 퀵메뉴바 -->
-		<div th:replace="/sections/nav :: div"></div>      
+		<div th:replace="sections/nav :: div"></div>      
 
 		<!-- footer -->
-        <div th:replace="/sections/footer :: footer"></div> 
+        <div th:replace="sections/footer :: footer"></div> 
 
         <!-- JS -->
         <script th:src="@{/js/jquery.min.js}"></script>
