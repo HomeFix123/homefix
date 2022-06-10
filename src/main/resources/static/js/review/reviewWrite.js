@@ -32,7 +32,8 @@ $(document).ready(function() {
 		}
 
 	});
-
+	
+	// 시공후기 세부사항 펼치기	
 	$(".writedetailbtn").on("click", function() {
 		$(".writedetail").slideToggle();
 	})
@@ -59,7 +60,7 @@ $(document).ready(function() {
 	})
 
 
-
+	//작성하기
 	$('.writebtn').click(function() {
 		const imageInput = $('#inputImage')[0];
 		const title = document.querySelector('.writeTitle');
