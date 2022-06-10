@@ -11,10 +11,14 @@ import org.springframework.stereotype.Service;
 import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
+import com.homefix.domain.CompanyPrefer;
+import com.homefix.domain.Member;
 import com.homefix.domain.Review;
 import com.homefix.persistence.BragRepository;
 import com.homefix.persistence.CompanyInfoRepository;
+import com.homefix.persistence.CompanyPreferRepository;
 import com.homefix.persistence.CompanyRepository;
+import com.homefix.persistence.MemberRepository;
 import com.homefix.persistence.ReviewRepository;
 
 @Service
@@ -144,6 +148,31 @@ public class CompanyServiceImpl implements CompanyService {
       
 	}
 
-
+	
+	@Autowired
+	MemberRepository memberRepo;
+	
+	@Autowired
+	CompanyPreferRepository companyPreferRepo;
+	
+	// 업체 북마크
+	public void modifyBookMark(String memberId, String cid, boolean bookMark) {
+		Member mem = memberRepo.findById(memberId).get();
+		Company co = companyRepo.findById(cid).get();
+		
+		if(bookMark) {
+			// true(있으면) 삭제
+			CompanyPrefer prefer = companyPreferRepo.findByMemberAndCompany(mem, co);
+			companyPreferRepo.delete(prefer);
+			
+		} else {
+			// false(없으면) 생성
+			CompanyPrefer prefer = new CompanyPrefer();
+			prefer.setCompany(co);
+			prefer.setMember(mem);
+			companyPreferRepo.save(prefer);
+			
+		}
+	}
 
 }
