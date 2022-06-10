@@ -52,6 +52,10 @@
 	list-style: none;
 	text-align: center;
 }
+
+.lineChange {
+    white-space: break-spaces;
+}
 /*******payment*****************************************************/
 
 .justify-content-end{
