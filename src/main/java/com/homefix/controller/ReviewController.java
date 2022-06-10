@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
+import com.homefix.domain.ElasticReview;
 import com.homefix.domain.Review;
 import com.homefix.service.ReviewService;
 
@@ -30,11 +30,13 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 	
+	// 시공후기 작성 페이지
 	@GetMapping("/write")
 	public String insertReview() {		
 		return "review/ReviewWrite";
 	}
 	
+	// 시공후기 작성
 	@PostMapping("/write")
 	public String saveReview(HttpSession session,Review rev) {
 		String cid = (String)session.getAttribute("userId");
@@ -46,6 +48,7 @@ public class ReviewController {
 		return "redirect:/review/write";
 	}
 	
+	// 시공후기 목록
 	@GetMapping
 	public String getReviewList(Model m, String hometype, String job, String family){
 		
@@ -53,15 +56,15 @@ public class ReviewController {
 		return "review/ReviewList";
 	}
 	
+	// 시공후기 엘라스틱 페이징
 	@GetMapping("/page")
 	@ResponseBody
-	public String getReviewListPerPage(Model m, Integer page, String hometype, String job, String family){
-		
-		m.addAttribute("reviewList", reviewService.getReviewList(page, hometype, job, family));
-		return "review/ReviewList";
+	public List<ElasticReview> getReviewListPerPage(Model m, Integer page, String hometype, String job, String family){
+
+		return reviewService.getReviewList(page, hometype, job, family);
 	}
 	
-	
+	// 시공후기 상세
 	@GetMapping("/{rid}")
 	public String getReview(Model m, Review rev) {
 		Review result = reviewService.getReview(rev);
@@ -69,19 +72,25 @@ public class ReviewController {
 		return "review/ReviewDetail";
 	}
 	
+	// 시공후기 삭제하기
 	@DeleteMapping("/{rid}")
-	public String deleteReview(Review rev) {
-		String cid = "1004";
+	public String deleteReview(Review rev, HttpSession session) {
+		String cid = (String) session.getAttribute("userId");
 		reviewService.deleteReview(rev, cid);
 		return "redirect:/review";
 	}
 	
-	
-	@PostMapping("/Creport/{cid}")
+	// 시공후기 업체 신고 하기
+	@PostMapping("/report/{cid}")
 	@ResponseBody
-	public String saveCReport(Company cid, String reason, HttpSession session) {
+	public String saveCReport(@PathVariable(name = "cid") Company cid, String reason, HttpSession session) {
 		String id = (String) session.getAttribute("memberId");
-		System.out.println("cid: "+ cid + " 사유: "+ reason);
+		
+		// 로그인 여부 확인
+		if(id == null) {
+			return "notLogin";
+		}
+		
 		return reviewService.saveCReport(cid, id, reason);
 	}
 	
