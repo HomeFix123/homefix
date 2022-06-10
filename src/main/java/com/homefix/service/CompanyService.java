@@ -19,7 +19,7 @@ public interface CompanyService {
 	public String companyNumberCheck(String num);
 
 	// 로그인 성공
-	public String login(Company com);
+	public Company login(Company com);
 
 	// 사업자 회원 탈퇴
 	public String companyDelete(Company com);

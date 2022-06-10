@@ -57,7 +57,7 @@
 	</div>
 	
 	<!-- header -->
-	<div th:replace="/sections/header :: header"></div>
+	<div th:replace="sections/header :: header"></div>
 
 	<div class="sg-page-content">
 		<div class="sg-section">
@@ -161,8 +161,8 @@
 		<!-- /.sg-section -->
 		</div>
 
-		<div th:replace="/sections/nav :: div"></div>
-		<div th:replace="/sections/footer :: footer"></div>
+		<div th:replace="sections/nav :: div"></div>
+		<div th:replace="sections/footer :: footer"></div>
 
 	<!-- JS -->
 		<script th:src="@{/js/jquery.min.js}"></script>
