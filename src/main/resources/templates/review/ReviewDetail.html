@@ -61,12 +61,12 @@
 				<div class="row justify-content-md-center">
 					<div class="col-lg-8" style="text-align: center;">
 						<div class="reviewer">
-							<a >
+							<a th:href="|/company/${rev.company.id}|">
 								<img class="img-fluid" th:src="|http://140.238.11.118:5000/upload/${rev.company.logo}|" alt="Image">
 							</a>
 						</div>
 						<div>
-							<h5 class="reviewer_name" th:text="${rev.company.name}"><a >업체명</a>></h5>
+							<h5 class="reviewer_name" th:text="${rev.company.name}"><a th:href="|/company/${rev.company.id}|">업체명</a></h5>
 						</div>
 					</div>
 					<div class="details col-8">

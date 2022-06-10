@@ -73,6 +73,7 @@
 										<label class="input-group-text" for="cid">업체명</label> 
 										<select class="form-select" id="cid" name="cid">
 											<option disabled selected>계약 업체목록</option>
+											<option value="self-DLY">self-DLY</option>
 											<option th:each="conlist : ${contract}" th:value="${conlist.id}" th:text="${conlist.name}">한샘리하우스디자인디원</option>
 										</select>
 									</div>
@@ -118,6 +119,7 @@
 										<label class="input-group-text" for="worker">작업자</label> 
 										<select class="form-select" id="worker" name="worker">
 											<option disabled selected>선택해주세요</option>
+											<option value="Self-DLY">Self-DLY</option>
 											<option value="하프셀프">하프셀프</option>
 											<option value="전문가">전문가</option>
 										</select>
