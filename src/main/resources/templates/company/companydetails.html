@@ -23,6 +23,9 @@
 <!-- 퀵메뉴바 css -->
 <link rel="stylesheet" th:href="@{/css/nav.css}">
 
+<!-- header css -->
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+
 <!-- font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900"
@@ -42,10 +45,9 @@
 </head>
 <body>
 	<div id="preloader">
-		<img src="/images/preloader.gif" alt="Image"
-			class="tr-preloader img-fluid">
-	</div>
-	<!-- preloader -->
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+        </div><!-- preloader -->>
+
 
 	<div th:replace="sections/header :: header"></div>
 	<hr>
@@ -336,6 +338,8 @@
 		crossorigin="anonymous"></script>
 	<!--eunhye js  -->
 	<script th:src="@{/js/eh/etc.js}"></script>
+	<!-- header js -->
+    <script th:src="@{/js/sections/header.js}"></script>
 
 
 	<script

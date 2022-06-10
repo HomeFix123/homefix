@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,6 +46,10 @@ import com.homefix.service.TipService;
 public class MemberController {
 	
 	private Logger logger = LoggerFactory.getLogger(MemberController.class);
+	
+	//시큐리티용
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@Autowired
 	private MemberService memberService;
@@ -113,11 +119,11 @@ public class MemberController {
 		mem.setEnabled(true);
 		
 		//스프링 시큐리티 적용시 주석 해제
-//		mem.setPassword(encoder.encode(mem.getPassword()));
-		
+		mem.setPassword(encoder.encode(mem.getPassword()));
 		mem.setRole(Role.ROLE_USER);
 		
 		memberService.memberInsert(mem);
+		System.out.println("등록요청");
 		return "redirect:/sign/sign-in";
 					
 	}
@@ -125,40 +131,61 @@ public class MemberController {
 	// 로그인하기
 	@PostMapping("/member/loginMem")
 	public String LoginMember(Member mem, HttpSession session, Model model) {
-		System.out.println("로그인성공했나?" + memberService.login(mem));
-		Member member = memberService.login(mem);
-		if (member != null) {
-//		if (memberService.login(mem) != null) {
-			System.out.println("로그인 성공함");
-			session.setAttribute("memberId", member.getId());
-			System.out.println("아이디 넘어오는지 확인 :" + mem.getId() );
-			
-			session.setAttribute("memberNick", member.getNickname());
-			session.setAttribute("memberName", member.getName());
-			session.setAttribute("memberTel", mem.getTel());
-			System.out.println("전화번호 넘어오는지 확인 :" + mem.getTel() );
-			
-			session.setAttribute("memberZip", mem.getZipcode());
-			session.setAttribute("memberAddr", mem.getAddr());
-			session.setAttribute("memberAddrd", mem.getAddrd());
-			
-			session.setAttribute("memberEmail", mem.getEmail());
-			System.out.println("이메일 넘어오는지 확인 :" + mem.getEmail() );
-			
-			session.setAttribute("memberPass", mem.getPassword());
-			
-			session.setAttribute("memLogin", member);
-			model.addAttribute("member", member);
-			model.addAttribute("message", "Y");
-			model.addAttribute("session", session);
-			return "redirect:/index";
-		} else {
-			model.addAttribute("message", "N");
-			System.out.println("로그인 실패했음");
-			System.out.println(mem.getPassword());
-			System.out.println(mem.getId());
-			return "sign/sign-in";
+		Member mems = memberService.login(mem);
+
+		if (mems != null) {
+
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+			if (encoder.matches(mem.getPassword(), mems.getPassword())) {
+
+				session.setAttribute("memberId", mems.getId());
+				session.setAttribute("memberName", mems.getName());
+				session.setAttribute("memLogin", mems);
+				model.addAttribute("session", session);
+				model.addAttribute("message", "Y");
+				System.out.printf("로그인시 아이디 체크 : " + mem.getPassword(), mems.getPassword());
+				return "redirect:/index";
+			} else {
+				model.addAttribute("message", "N");
+				System.out.println("로그인 실패했음 아이디: " + mem.getId() + " /  비밀번호 :  " + mem.getPassword() + "/ 매치비번 "
+						+ mems.getPassword());
+				return "sign/sign-in";
+			}
 		}
+		return null;
+		
+//		if (mems != null) {
+//			System.out.println("로그인 성공함");
+//			session.setAttribute("memberId", mems.getId());
+//			System.out.println("아이디 넘어오는지 확인 :" + mem.getId() );
+//			
+//			session.setAttribute("memberNick", mems.getNickname());
+//			session.setAttribute("memberName", mems.getName());
+//			session.setAttribute("memberTel", mem.getTel());
+//			System.out.println("전화번호 넘어오는지 확인 :" + mem.getTel() );
+//			
+//			session.setAttribute("memberZip", mem.getZipcode());
+//			session.setAttribute("memberAddr", mem.getAddr());
+//			session.setAttribute("memberAddrd", mem.getAddrd());
+//			
+//			session.setAttribute("memberEmail", mem.getEmail());
+//			System.out.println("이메일 넘어오는지 확인 :" + mem.getEmail() );
+//			
+//			session.setAttribute("memberPass", mem.getPassword());
+//			
+//			session.setAttribute("memLogin", mems);
+//			model.addAttribute("member", mems);
+//			model.addAttribute("message", "Y");
+//			model.addAttribute("session", session);
+//			return "redirect:/index";
+//		} else {
+//			model.addAttribute("message", "N");
+//			System.out.println("로그인 실패했음");
+//			System.out.println(mem.getPassword());
+//			System.out.println(mem.getId());
+//			return "sign/sign-in";
+//		}
 	}
 	
 	
@@ -191,7 +218,6 @@ public class MemberController {
 		List<Member> list = memberService.myPageList(mem);
 		m.addAttribute("member",list);
 		m.addAttribute("session", session);
-		
 		
 		
 			System.out.println("session 2" + m.addAttribute("session", session));

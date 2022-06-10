@@ -19,6 +19,9 @@
 <link rel="stylesheet" th:href="@{/css/main.css}">
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
 
+<!-- header css -->
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+
 <!-- font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900"
@@ -40,10 +43,8 @@
 </head>
 <body>
 	<div id="preloader">
-		<img src="/images/preloader.gif" alt="Image"
-			class="tr-preloader img-fluid">
-	</div>
-	<!-- preloader -->
+    	<img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+    </div><!-- preloader -->
 
 
 	<div th:replace="sections/header :: header"></div>
@@ -102,7 +103,8 @@
 	<script th:src="@{/js/validate.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 
-
+	<!-- header js -->
+	<script th:src="@{/js/sections/header.js}"></script>
 
 	<!-- 퀵메뉴 js -->
 	<script

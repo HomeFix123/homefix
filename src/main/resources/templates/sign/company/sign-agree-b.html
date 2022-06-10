@@ -18,6 +18,10 @@
 <link rel="stylesheet" th:href="@{/css/structure.css}">
 <link rel="stylesheet" th:href="@{/css/main.css}">
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
+
+<!-- header css -->
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+
 <!--eunhye css  -->
 <link rel="stylesheet" th:href="@{/css/eh/sign-eh.css}">
 
@@ -41,10 +45,8 @@
 </head>
 <body>
 	<div id="preloader">
-		<img src="/images/preloader.gif" alt="Image"
-			class="tr-preloader img-fluid">
-	</div>
-	<!-- preloader -->
+    	<img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+    </div><!-- preloader -->
 
 
 	<div th:replace="sections/header :: header"></div>
@@ -289,6 +291,9 @@
 	<script th:src="@{/js/main.js}"></script>
 	<!--eunhye jquery add  -->
 	<script th:src="@{/js/eh/sign-up-b.js}"></script>
+	
+	<!-- header js -->
+	<script th:src="@{/js/sections/header.js}"></script>
 
 	<!-- 퀵메뉴 js -->
 	<script

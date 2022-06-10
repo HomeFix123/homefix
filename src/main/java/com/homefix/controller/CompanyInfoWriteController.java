@@ -39,9 +39,9 @@ public class CompanyInfoWriteController {
 	@PostMapping("/write")
 	public String writeCompanyInfo(HttpSession session, String[] specialtyArr, String[] spacesArr, CompanyInfo companyInfo) {
 		String companyId = (String)session.getAttribute("userId");
-		companyWriteService.insertCompanyInfo(companyId, companyInfo, specialtyArr, spacesArr);
+		CompanyInfo info = companyWriteService.insertCompanyInfo(companyId, companyInfo, specialtyArr, spacesArr);
 		
 		
-		return "redirect:/company/write";
+		return "redirect:/company/" + info.getCinfo_id();
 	}
 }

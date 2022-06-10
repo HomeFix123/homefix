@@ -56,3 +56,10 @@
 .navbar-brand {
 	max-width: none;
 }
+
+#headerLogo {
+	filter: brightness(0);
+}
+#headerLogo:hover {
+	filter: brightness(1);
+}
