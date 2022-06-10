@@ -96,7 +96,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    	<tr th:if="${Lists == null || #lists.size(List) == 0}">
+                                    	<tr th:if="${Lists == null || #lists.size(Lists) == 0}">
+                                    		<td colspan="3"><h2>견적이 없습니다</h2></td>
                                     	</tr>
                                      <tr th:each="list:${Lists}">
                                         <th>
