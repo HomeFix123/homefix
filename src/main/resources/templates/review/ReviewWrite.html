@@ -20,6 +20,7 @@
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
 <link rel="stylesheet" th:href="@{/css/summernote/summernote-lite.css}">
 <link rel="stylesheet" th:href="@{/css/bs/Review.css}">
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
 
 <!-- font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
@@ -43,7 +44,8 @@
 		<img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
 	</div>
 	<!-- preloader -->
-
+	<!-- header -->
+	<div th:replace="sections/header :: header"></div>
 	
 
 
@@ -172,6 +174,7 @@
 	<script th:src="@{/js/summernote/summernote-lite.js}"></script>
 	<script th:src="@{/js/summernote/lang/summernote-ko-KR.js}"></script>
 	<script th:src="@{/js/review/reviewWrite.js}"></script>
+	<script th:src="@{/js/sections/header.js}"></script>
 
 
 	
