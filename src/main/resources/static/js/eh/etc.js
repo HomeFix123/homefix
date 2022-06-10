@@ -99,6 +99,77 @@ $(function() {
 	});
 
 
+//--------------------------------------------------------------
+//시공사례더보기
+var pageA = 1;
+	var companyCid = $('#companyCid').val();
+	$('#moreBtnBrag').click(function() {
+		
+	
+		pageA += 1;
+		$.ajax({
+			data: { "page": pageA , "id":companyCid },
+			type: "GET",
+			url: "/company/companyBrag",
+			async: false,
+			contentType: 'application/x-www-form-urlencoded;charset=utf-8'
+		}).done((Result) => {
+			$.each(Result, function(i, brag) { //Result 리스트에 들어있는 brag객체로 each문 돌림.
+				let AddContent = '<ul class="ulBrag"><li class="media"><div class="entry-thumbnail entry-header"><a href="/brag/'
+				+brag.bid+'"> <img src="http://140.238.11.118:5000/upload/'+brag.bimgadr
+				+'" alt="Image" class="img-fluid"> </a></div>'
+				+'<div class="info"><h2 class="title text-center"><a>'+brag.btitle+'</a></h2>'
+				+'<p class="text-right">'+brag.member.nickname+'</p></div><div class="sa-meta">'
+				+'<ul class="global-list"><li><a href="#"> <span><i class="fas fa-heart"></i></span> </a></li>'
+				+' <li><a href="#"> <i class="far fa-eye"></i><span>'+brag.bcnt+'</span>'
+				+'</a></li></ul></div><hr></li></ul>';
+				
+				$('#companyBragBoard').append(AddContent);
+			})
+
+			if (Result.length < 3) {  //리스트 길이가 6보다 작으면 버튼 삭제
+				$('#moreBtnBrag').remove();
+			}
+
+		}).fail((err) => {
+			// 실패했을 때
+			console.log(err);
+		});
+	})
+//업체후기 더보기 -------------------------------------------------------------------------*/
+	var pageB = 1;
+	var companyCid = $('#companyCid').val();
+	$('#moreBtnReview').click(function() {
+		
+	
+		pageB += 1;
+		$.ajax({
+			data: { "page": pageB , "id":companyCid },
+			type: "GET",
+			url: "/company/companyRiew",
+			async: false,
+			contentType: 'application/x-www-form-urlencoded;charset=utf-8'
+		}).done((Result) => {
+			$.each(Result, function(i, review) { //Result 리스트에 들어있는 review객체로 each문 돌림.
+				let AddContent = '<div  class="col-12 col-md-6 col-lg-4  ">' + '<div class="sa-post">' + '<div class="entry-header">' + '<div class="entry-thumbnail">' + '<a href="/review">'
+					+ '<img src="http://140.238.11.118:5000/upload/' + review.rimgadr + '"alt="Image" class="img-fluid" id="thumbnailImage">'
+					+ '</a>' + '</div>' + '</div>' + '<div class="course-info">' + '<div class="info">' + '<h2 class="title text-center">'
+					+ '<a >' + review.rtitle + '</a>' + '</h2>' + '<p class="text-right">' + review.company.name + '</p>'
+					+ '</div >' + '<div class="sa-meta">' + '<ul class="global-list">' + '<li>' + '<a href="#">' + ' <span>' + '<i class="fas fa-heart">' + '</i>'
+					+ '</span>' + '</a>' + '</li>' + '<li>' + '<a href="#">' + ' <i class="far fa-eye">' + '</i>' + '<span>' + review.rcnt + '</span>'
+					+ '</a>' + '</li>' + '</ul>' + '</div >' + '</div >' + '</div >' + '</div >';
+				$('#myReviswList').append(AddContent);
+			})
+
+			if (Result.length < 6) {  //리스트 길이가 6보다 작으면 버튼 삭제
+				$('#moreBtnReview').remove();
+			}
+
+		}).fail((err) => {
+			// 실패했을 때
+			console.log(err);
+		});
+	})
 
 
 

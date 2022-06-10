@@ -13,7 +13,7 @@ $("#findpw").click(function() {
 			"id": id
 		},
 		success: function(res) {
-			alert(res);
+			//alert(res);
 			console.log(res);
 			if (res['check']) {
 
@@ -27,8 +27,8 @@ $("#findpw").click(function() {
 							"id": id
 						}
 					})//ajax
-					alert(email);
-					alert(id);
+					//alert(email);
+					//alert(id);
 					window.location = "/sign/sign-in";
 					}//if
 					

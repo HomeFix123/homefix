@@ -40,10 +40,14 @@ public interface CompanyService {
 	//public CompanySpecial getCompanySpecial(Company com);
 
 	//시공전문가(인테리어자랑) 
-	public List<Brag> getInteriorBrag(Company com);
+	public List<Brag> getInteriorBrag(Company com, Integer page);
 	
 	//시공전문가(업체후기)
-	public List<Review> getCompanyReview(Company com);
-	// public Map<String, String> validateHandling(Errors errors);
+	public List<Review> getCompanyReview(Company com, Integer page);
+	
+	//비밀번호 임시발급용
+	public boolean companyEmailCheck(String email, String id);
  
+	//아이디찾기
+	public Company companyNameTelCheck(String ceo,String tel);
 }

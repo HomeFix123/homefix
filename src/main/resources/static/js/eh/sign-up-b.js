@@ -394,105 +394,6 @@ $(function() {
 
 
 
-
-
-
-
-
-	/*********************************************************************
-		[ 비밀번호 재설정 페이지(1) ]
-		비밀번호 찾기 버튼 클릭
-	*/
-	let ramdom;
-	$('#btn_emailSend').click(function() {
-
-
-
-		// 인증번호 전송
-		$.ajax({
-			type: 'post',
-			url: 'emailSend.do',
-			data: {
-				memberEmail: $('#memberEmail').val(),
-			},
-			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-			success: function(result) {
-				ramdom = result;
-			},
-			error: function(err) {
-
-				alert('실패');
-				console.log(err);
-			}
-		}); //end of ajax
-
-	})
-
-
-	$('#btnPwSearch').click(function() {
-
-		// input에 입력된 값을 공백제거하고 변수에 담기
-		var authenticationNumber = $.trim($("#authenticationNumber").val());
-
-		// 인증번호와 입력한 문자열이 같을 때 폼 전송
-		if (ramdom === authenticationNumber) {
-			document.pwSearchForm.submit();
-		} else {
-			$('.error_box.pwSearch').html("인증번호가 일치하지 않습니다.");
-		}
-
-	}) // end of #btnPwSearch
-
-
-
-	// [ 비밀번호 재설정 페이지(2) ]
-	$('#btnPwChange').click(function() {
-		var memberPassword = $.trim($("#memberPassword").val());
-		var passwordCheck = $.trim($("#passwordCheck").val());
-
-		/* 비밀번호 */
-		if (memberPassword == '') {
-			$('label[for="memberPassword"] .error_box').html(blank);
-			$('#memberPassword').focus();
-			return;
-		} else {
-			$('label[for="memberPassword"] .error_box').html("");
-		}
-
-		if (!RegexPW.test(memberPassword)) {
-
-			$('label[for="memberPassword"] .error_box').html("비밀번호는 영문자와 숫자를 사용하여 6~15자로 작성해 주십시오.");
-			return;
-		} else {
-			$('label[for="memberPassword"] .error_box').html("");
-		}
-
-		/* 비밀번호 재확인 */
-		if (passwordCheck == '') {
-			$('label[for="passwordCheck"] .error_box').html("필수 입력 사항입니다.");
-			$('#passwordCheck').focus();
-			return;
-		} else {
-			$('label[for="passwordCheck"] .error_box').html("");
-		}
-
-
-		/* 비밀번호 일치 여부 확인 */
-		if (memberPassword != passwordCheck) {
-			$('label[for="passwordCheck"] .error_box').html("비밀번호가 일치하지 않습니다.");
-			$('#passwordCheck').focus();
-			return;
-		}
-		document.pwChangeForm.submit();
-		alert("비밀번호가 변경되었습니다.");
-
-	}); // end of #btnPwChange
-
-
-
-
-
-
 	/************필수 동의 사항******************************************** */
 
 	$('#btnAgree').click(function() {
@@ -560,45 +461,65 @@ $(function() {
 
 
 
-	/*$('#btn_termCheck').click(function() {
-		//이용약관에 체크 했는지 확인
-		if (!$("#btnAgree").is(':checked')) {
-			// 체크 X
-			$('.check_error_box').html("<h6>필수 이용 약관에 동의해주세요.</h6>");
-			$('.check_error_box').css('color', '#dc3545');
-			return;
-		} else {
-			// 체크 O
-			$('.check_error_box').html("");
-			$.ajax({
-				type: 'post',
-				url: 'emailCheck.do',
-				data: { memberEmail: $('#memberEmail').val() },
-				contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-				success: function(result) {
-					// 중복 검사 후 나오는 결과 에러박스에 출력
-					if (result == 'Y') {
-						$('label[for="memberEmail"] .error_box').html("");
-						document.member_frm.submit();
-						alert("회원가입이 되었습니다.");
-					} else {
-						$('label[for="memberEmail"] .error_box').css('color', '#ED7A64');
-						$('label[for="memberEmail"] .error_box').html("이메일 중복 여부를 확인해주세요.");
-						emailCheak = false;
-						return;
-					}
-				},
-				error: function(err) {
-					alert('실패');
-					console.log(err);
-				}
-			}); //end of ajax			
-		}
-	})*/
+//비밀번호 찾기
+
+$("#cfindpw").click(function() {
+	let email = $("#email").val();
+	let id = $("#id").val();
+	$.ajax({
+		type: "get",
+		url: "/sign/checkFindPw",
+		data: {
+			"email": email,
+			"id": id
+		},
+		success: function(res) {
+			//alert(res);
+			//console.log(res);
+			if (res['check']) {
+
+				swal({title:"발송 완료!",text: "입력하신 이메일로 임시비밀번호가 발송되었습니다.",icon: "success"},function(OK){
+					if(OK){
+					$.ajax({
+						type: "POST",
+						url: "/sign/checkSendEmail",
+						data: {
+							"email": email,
+							"id": id
+						}
+					})//ajax
+				//	alert(email);
+				//	alert(id);
+					window.location = "/sign/sign-in";
+					}//if
+					
+                })//swal
+                }// if
+            }
+        })// ajaz
+    })//click
 
 
+//아이디 찾기
 
-
+$("#cfindid").click(function() {
+	let ceo = $("#ceoName").val();
+	let tel = $("#ceoTel").val();
+	console.log(name+"/"+tel)
+	$.ajax({
+		type: "get",
+		url: "/sign/checkFindId",
+		data: {
+			"ceo": ceo,
+			"tel": tel
+		},
+		success: function(res) {
+			alert("아이디는 "+res+"입니다.");
+			console.log(res);
+			
+            }
+        })// ajaz
+    })//click
 
 
 

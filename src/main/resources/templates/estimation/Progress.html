@@ -66,11 +66,22 @@
                 </ol>
             </div><!-- /.container -->
         </section><!-- /.breadcrumb-section -->
-
+		
         <div class="shopping-cart section-padding">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
+                    	<ul class="nav nav-tabs nav-fill">
+						  <li class="nav-item">
+						    <a class="nav-link" aria-current="page" href="Progress" th:classappend="${!(#strings.equals(param.sit, 'doing') || #strings.equals(param.sit, 'done')) ? 'active' : ''}">전체</a>
+						  </li>
+						  <li class="nav-item">
+						    <a class="nav-link" href="Progress?sit=doing" th:classappend="${#strings.equals(param.sit, 'doing') ? 'active' : ''}">진행중</a>
+						  </li>
+						  <li class="nav-item">
+						    <a class="nav-link" href="Progress?sit=done" th:classappend="${#strings.equals(param.sit, 'done') ? 'active' : ''}">진행완료</a>
+						  </li>
+						</ul>
                         <form class="woocommerce-cart-form" action="#">
                             <table class="table">
                                 <thead>
@@ -110,42 +121,36 @@
                                                                                 
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th>
-                                            <div class="product">
-                                                <h4 class="progress_space cursor_pointer">아파트/38평</h4>
-                                                <p class="progress_tel">핸드폰 번호 : 010-1234-5678</p>
-                                                <p class="progress_addr">주소 : 서울 특별시 가산동 ㅇㅇ아파트 ㅇㅇ동 ㅇㅇ호</p>
-                                            </div><!-- /.product -->                                                 
-                                        </th>
-                                        <td><h6 class="progress_contents_td">kosmo</h6></td>
-                                        <td class="progress_td">
-                                            <span class="complete_txt price bold">시공완료</span>
-                                            <p><button class="btn nothover_btn btn-primary" id="nothover_btn">시공완료</button></p>                                    
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
-                        </form>                         
-                    </div>
+                        </form>
+					<div class="text-center">
+						<ul class="pagination justify-content-center mb-0" id="pagination">
+							<li><a class="page-numbers current" href="#">1</a></li>
+							<li><a class="page-numbers" href="#">2</a></li>
+							<li class="float-right"><a class="page-numbers" href="#"><i
+									class="fas fa-chevron-right"></i></a></li>
+						</ul>
+					</div>
+				</div>
                     <div class="col-lg-4">
                         <div class="order-summary progress_detail" id="progress_detail">
                             <h2>견적 상세보기</h2>
                             <ul class="global-list">
-                                <li>상담인 <span class="ename">코스모</span></li>
-                                <li>번호 <span class="etel">010.1234.5678</span></li>
-                                <li>공간유형 <span class="space">주거</span></li>
-                                <li>건물유형 <span class="building">아파트</span></li>
-                                <li>평수 <span class="size">38평</span></li>
+                                <li>상담인 <span class="ename"></span></li>
+                                <li>번호 <span class="etel"></span></li>
+                                <li>공간유형 <span class="space"></span></li>
+                                <li>건물유형 <span class="building"></span></li>
+                                <li>평수 <span class="size"></span></li>
                                 <li>희망시공일정</li>
-                                <li><span class="start_d">2022/05/16</span>~<span class="end_d">2022/06</span></li>
+                                <li><span class="start_d"></span>~<span class="end_d"></span></li>
                                 <li>주소</li>
-                                <li><span class="eaddr">서울 특별시 가산동 00아파트 00동 00호</span></li>
+                                <li><span class="eaddr"></span></li>
                                 <li>원하는 스타일</li>
-                                <li><span class="estyle">엘레강스 하면서 모던하며 고급스럽고 무난하면서 색은 다양하지만 화려하지않고 질리지않는 스타일 부탁드려요^^</span></li>
+                                <li><span class="estyle"></span></li>
                             </ul>
                             <div class="order-total">
-                                <p>예산 <span> 만원</span> <span class="budget">3,000</span> </p>
+                                <p>예산 <span> 만원</span> <span class="budget"></span> </p>
                             </div> 
                         </div>                        
                     </div>
@@ -177,8 +182,15 @@
         <!-- header js -->
         <script th:src="@{/js/sections/header.js}"></script> 
         
-        <!-- 주소창 파라미터 숨기기 -->
-        <script >history.replaceState({}, null, location.pathname);</script>
+        <script th:inline="javascript">
+        	/*<![CDATA[*/
+        	const pageCnt = /*[[ ${pageCnt} ]]*/ +0;
+        	/*]]*/
+        </script>
+        
+        <script th:src="@{/js/estimation/progress.js}"></script>
+        
+        
         
     </body>
 </html>         

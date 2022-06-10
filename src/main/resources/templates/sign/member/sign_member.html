@@ -8,7 +8,7 @@
 <meta name="author" content="">
 <meta name="description" content="">
 
-<title>Educam | Education & Courses HTML Template.</title>
+<title>회원가입</title>
 
 <!-- CSS -->
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -49,10 +49,14 @@
         <![endif]-->
 <!-- Template Developed By ChtStudio -->
 <!-- <link rel="shortcut icon" href="#"> -->
+
+
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+
 </head>
 <body>
 	<div id="preloader">
-		<img src="images/preloader.gif" alt="Image"
+		<img th:src="@{/images/preloader.gif}" alt="Image"
 			class="tr-preloader img-fluid">
 	</div>
 	<!-- preloader -->
@@ -236,6 +240,8 @@
 	<!--kakao address api  -->
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+	<script th:src="@{/js/sections/header.js}"></script>
 
 	<!--haeyun jquery  -->
 	<script th:src="@{/js/he/signMem.js}"></script>

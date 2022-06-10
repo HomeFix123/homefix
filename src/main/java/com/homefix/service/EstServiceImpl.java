@@ -3,6 +3,7 @@ package com.homefix.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -40,19 +41,41 @@ public class EstServiceImpl implements EstService {
 	Esti_requestRepository esti_reqRepo; 
 
 	@Override
-	public Estimation getEstDetail(String id) {
-		Estimation resultData = estRepo.getEstDetail(id);
+	public Estimation getEstDetail(Integer eid,String cid) {
+		Estimation resultData = estRepo.findById(eid).get();
+		Company company = companyRepo.findById(cid).get();
+		Contract contract = contractRepo.findByCompanyAndEstimation(company,resultData);
+		Esti_request estReq = esti_reqRepo.findByEstimationAndCompany(resultData, company);
+		if(contract != null) {
+			resultData.setIng(contract.getIng());
+		}else if(estReq != null) {
+			resultData.setIng("요청완료");
+		}
 		System.out.println("resultData는"+resultData);
 		return resultData;
 	}
 
 	@Override
-	public List<Estimation> getCEst(String cid, Integer page) {
+	public List<Estimation> getCEsts(String cid, Integer page) {
 		int showCntPerPage = 10;
-		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
+	 	Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("eid").descending());
 		
 		Company com = companyRepo.findById(cid).get();
-		return estRepo.findByCompany(com,pageable);
+		List<Estimation> resultList = estRepo.findByCompany(com,pageable);
+		for(Estimation result : resultList) {
+			Contract contract =contractRepo.findByEstimation(result);
+			if(contract != null) {
+				result.setIng(contract.getIng());
+				continue;
+			}
+			
+			Esti_request estReq = esti_reqRepo.findByEstimationAndCompany(result, com);
+			if(estReq != null) {
+				result.setIng("요청중");
+			}
+			
+		}
+		return resultList;
 	}
 	
 	//페이징 
@@ -65,6 +88,23 @@ public class EstServiceImpl implements EstService {
 	
 	
 
+	
+	@Override
+	public List<Estimation> getCEst(String cid, Integer page) {
+		Company com = companyRepo.findById(cid).get();
+		
+		int showCntPerPage = 6; 
+		  
+		  Pageable pageable = (Pageable) PageRequest.of(page - 1, showCntPerPage,
+		  Sort.by("startDay"));
+		 
+		
+		return estRepo.findByCompany(com, pageable);
+	}
+
+	
+	
+	
 	@Override
 	public List<Estimation> getMEstimation(String id,Integer page) {
 		int showCntPerPage = 10;
@@ -104,9 +144,25 @@ public class EstServiceImpl implements EstService {
 
 	//업체가 진행중인 견적 리스트 보기
 	@Override 
-	public List<Contract> getCIngList(String cid) {
+	public Page<Contract> getCIngList(String cid, String situation, Integer page) {
 		Company company  = companyRepo.findById(cid).get();
-		return contractRepo.findByCompany(company);
+		int showCntPerPage = 5;
+		Pageable pageable = PageRequest.of(page -1, showCntPerPage, Sort.by("ctid").descending());
+		if(situation == null || situation.equals("")) {
+			
+			return contractRepo.findByCompany(company, pageable);
+		}
+		
+		if(situation.equals("doing")) {
+			
+			return contractRepo.findByCompanyAndIng(company, "진행중", pageable);
+		}
+		
+		if(situation.equals("done")) {
+			
+			return contractRepo.findByCompanyAndIng(company, "시공완료", pageable);
+		}
+		return contractRepo.findByCompany(company, pageable);
 	}
 
 	@Override

@@ -29,19 +29,46 @@ $(".submit-comment").click(function(){
         success: function (result) { // 성공했을 때
         	//alert(result.content);
 			console.log(result);
-			
-			let tip = '<div class="comment-section">'
+			if(result.member.profilimg == null){
+				let tip = '<div class="comment-section">'
 						+ '<ul class="comments">' 
 						+ '<div class="comment-like">'
-						+ '<p><span class="memberId">' + result +'</span>'
-						+ '<span class="contecnt">'+ inputComment +'</span></p>'
+						+ '<p>'
+						+ '<img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="Image" class="img-fluid" width="20px"/>'
+						+ '<span class="memberId" style="font-weight:bold">' + result.member.nickname +'</span> &nbsp;'
+						+ '<span class="contecnt">'+ inputComment +'</span> &nbsp;'
+						+ '<button type="button" class="delete-comment" value='+ result.cmid  +'><i class="fas fa-trash-alt fa-xs"></i></button>'
+						+ '</p>'
 						+ '</div>'
 						+ '</ul>'
 						+ '<div class="time-log">'
 						+ '<span class="tdate">'
 						+ '</span>'
 						+ '</div>';
+						
 			reaction.append(tip); // 해당 댓글에 댓글 입력하기
+			}else {
+				let tip = '<div class="comment-section">'
+						+ '<ul class="comments">' 
+						+ '<div class="comment-like">'
+						+ '<p>'
+						+ '<img src="http://140.238.11.118:5000/upload/'+result.member.profilimg + '" alt="Image" class="img-fluid" width="20px">'
+						+ '<span class="memberId" style="font-weight:bold">' + result.member.nickname +'</span> &nbsp;'
+						+ '<span class="contecnt">'+ inputComment +'</span> &nbsp;'
+						+ '<button type="button" class="delete-comment" value='+ result.cmid  +'><i class="fas fa-trash-alt fa-xs"></i></button>'
+						+ '</p>'
+						+ '</div>'
+						+ '</ul>'
+						+ '<div class="time-log">'
+						+ '<span class="tdate">'
+						+ '</span>'
+						+ '</div>';
+						
+			reaction.append(tip); // 해당 댓글에 댓글 입력하기
+			}
+			
+			
+			//window.location.reload();
 			
         },
         error: function (err){    // 실패했을 때
@@ -53,12 +80,12 @@ $(".submit-comment").click(function(){
 	
 	// 댓글등록시 댓글 입력란 비우기
 	$(this).siblings('.input-comment').val("");
-	window.location.reload();
+	
 });
 
 
 // 댓글 삭제 눌렀을 때
-$(".delete-comment").click(function(){
+$(document).on("click", ".delete-comment", function(){
 	const cmid = $(this).val()
 	console.log(cmid);
 	console.log('댓글삭제 버튼 클릭');

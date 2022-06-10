@@ -3,6 +3,8 @@ package com.homefix.service;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.data.domain.Page;
+
 import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
 import com.homefix.domain.ElasticBrag;
@@ -35,8 +37,15 @@ public interface BragService {
 	
 	// 계약완료 업체리스트
 	Set<Company> getContractList(String id);
+
+	// 개인 마이페이지 후기목록 보이기용
+	public List<Brag> bMyPageList(Member mem);
 	
-	
-	
-	
+	//개인 마이페이지 후기목록 페이징
+	public Page<Brag> getBragList(String id,Integer page);
+
+	//개인 마이페이지 후기목록 페이징 2
+	public long countBragList(String id);
+
+
 }

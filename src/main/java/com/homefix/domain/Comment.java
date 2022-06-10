@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -23,7 +25,7 @@ public class Comment {
 	private String content; // 댓글 내용
 	@Transient
 	private String cdate; 	// 댓글 날짜
-	
+		
 	@JoinColumn(name="tid")
 	@ManyToOne
 	private Tip tip;		// 팁 아이디(팁 테이블)

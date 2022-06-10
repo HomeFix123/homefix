@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,16 +37,17 @@ public class EstController {
 	public String queryAnno(Model m,Integer page,HttpSession session) {
 		String cid = (String)session.getAttribute("userId");
 		if(page==null) page=1;
-		m.addAttribute("Lists",estService.getCEst(cid , page));
+		m.addAttribute("Lists",estService.getCEsts(cid , page));
 		m.addAttribute("cntCEst",estService.countCEst(cid));
 		return "estimation/Chosen";
 	}
 	
 	//고객이 직접 회사 고른거 리스트 상세보기
 	@GetMapping("/ChosenDetail")
-	public String estDetail(String id,Model m) {
-		System.out.println("넘어온 아이디는"+id);
-		m.addAttribute("Detail",estService.getEstDetail(id));
+	public String estDetail(Integer eid,Model m,HttpSession session) {
+		System.out.println("넘어온 아이디는"+eid);
+		String cid = (String)session.getAttribute("userId");
+		m.addAttribute("Detail",estService.getEstDetail(eid,cid));
 		return "estimation/ChosenDetail";
 	}
 	
@@ -65,9 +67,21 @@ public class EstController {
 	
 	//업체의 현재 진행중인 견적 리스트 
 	@GetMapping("/Progress")
-	public String getCIngList(String cid,Model m) {
-		System.out.println("넘어온 cid값은 "+cid);
-		m.addAttribute("Lists",estService.getCIngList(cid));
+	public String getCIngList(HttpSession session,Model m, String sit, Integer page) {
+		String cid = (String)session.getAttribute("userId");
+		System.out.println("출력" + cid);
+		if(cid == null) {
+			return "redirect:/index";
+		}
+		
+		if(page == null) {
+			page=1;
+		}
+		
+		System.out.println("상황" + sit);
+		Page<Contract> result = estService.getCIngList(cid, sit, page); 
+		m.addAttribute("Lists", result.getContent());
+		m.addAttribute("pageCnt", result.getTotalPages());
 		return "estimation/Progress";
 	}
 	
@@ -147,10 +161,14 @@ public class EstController {
 	//업체에게 온 견적 상세보기에서 esti_request db 값 확인 후 버튼 변경
 	@GetMapping("/getEstiReq")
 	@ResponseBody
-	public String getEstiReq(Integer eid,String cid) {
-		
+	public String getEstiReq(Integer eid, String cid, HttpSession session) {
+		cid =(String) session.getAttribute("userId");
+
+		System.out.println(eid);
+		System.out.println(cid);
+
 		return estService.getEstiReq(eid, cid);
-	}
+	} 
 	
 	//고객 견적 상세보기에서 회사 확정하기 누르면 contract db에 저장
 	@RequestMapping("/saveContract")

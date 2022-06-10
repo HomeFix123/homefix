@@ -28,7 +28,8 @@
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
 <!--eunhye css  -->
 <link rel="stylesheet" th:href="@{/css/eh/companyMypage.css}">
-
+<!-- 퀵메뉴바 css -->
+<link rel="stylesheet" th:href="@{/css/nav.css}">
 <!-- font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900"
@@ -51,197 +52,8 @@
 			class="tr-preloader img-fluid">
 	</div>
 	<!-- preloader -->
-
-	<header class="sa-header">
-		<div class="sa-topbar">
-			<div class="container">
-				<div class="topbar-content">
-					<div class="left-content">
-						<ul class="global-list">
-							<li><a href="#"><i class="far fa-envelope"></i>info@gmail.com</a></li>
-							<li><a href="#"><i class="fas fa-phone-volume"></i>0123456789</a></li>
-						</ul>
-					</div>
-					<div class="right-content">
-						<ul class="global-list social">
-							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-							<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-							<li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-						</ul>
-						<ul class="global-list">
-							<li><a href="#" class="btn btn-primary">Register <i
-									class="fas fa-sign-in-alt"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- /.container -->
-		</div>
-		<!-- /.top-bar -->
-
-		<div class="sa-menu">
-			<nav class="navbar navbar-expand-lg">
-				<div class="container">
-					<a class="navbar-brand" href="index.html"> <img
-						src="images/logo.png" alt="Logo" class="img-fluid">
-					</a>
-
-					<button class="navbar-toggler" type="button"
-						data-bs-toggle="collapse" data-bs-target="#navbarNav"
-						aria-controls="navbarNav" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-
-					</button>
-
-					<div class="collapse navbar-collapse justify-content-end"
-						id="navbarNav">
-						<ul class="navbar-nav">
-							<li class="nav-item sa-dropdown"><a href="#">Home</a>
-								<ul class="sa-dropdown-menu">
-									<li><a href="index.html">Home V-1</a></li>
-									<li><a href="index1.html">Home V-2</a></li>
-									<li><a href="index2.html">Home V-3</a></li>
-								</ul></li>
-							<li><a href="about.html">About</a></li>
-							<li class="sa-dropdown"><a href="#">Courses</a>
-								<ul class="sa-dropdown-menu">
-									<li><a href="course-grid.html">Course Grid View</a></li>
-									<li><a href="course-list.html">Course List View</a></li>
-									<li><a href="course-details.html">Course Details</a></li>
-								</ul></li>
-							<li><a href="tutor.html">Teacher</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="contact.html">Contact</a></li>
-							<li class="sa-dropdown active"><a href="index.html">Page</a>
-								<ul class="sa-dropdown-menu">
-									<li><a href="catagory.html">Catagory</a></li>
-									<li class="active"><a href="profile.html">User Profile</a></li>
-									<li><a href="my-course.html">My Course<span
-											class="badge rounded-pill bg-dark">New</span></a></li>
-									<li><a href="course-video.html">Course Video<span
-											class="badge rounded-pill bg-dark">New</span></a></li>
-									<li><a href="cart.html">Shopping Cart<span
-											class="badge rounded-pill bg-dark">New</span></a></li>
-									<li><a href="payment.html">Payment<span
-											class="badge rounded-pill bg-dark">New</span></a></li>
-									<li><a href="congrats.html">Congrats<span
-											class="badge rounded-pill bg-dark">New</span></a></li>
-									<li><a href="blog-details.html">Blog Details</a></li>
-									<li><a href="tutor-details.html">Tutor Details</a></li>
-									<li><a href="sign-in.html">Sign In</a></li>
-									<li><a href="sign-up.html">Sign Up</a></li>
-								</ul></li>
-						</ul>
-					</div>
-
-					<div class="right-content">
-						<div class="user-option">
-							<ul class="global-list">
-								<li class="sa-dropdown"><span class="cart-number">5</span>
-									<i class="fas fa-cart-plus"></i>
-									<div class="sa-dropdown-menu">
-										<ul class="global-list">
-											<li class="remove-item"><span class="remove-icon"><i
-													class="fas fa-times"></i></span>
-												<div class="sa-course">
-													<div class="course-thumb">
-														<img src="images/course/1.jpg" alt="Image"
-															class="img-fluid">
-													</div>
-													<!-- /.course-thumb -->
-
-													<div class="course-info">
-														<div class="info">
-															<h2 class="title">
-																<a href="course-details.html">Visual Basic Web
-																	Course With Live Project</a>
-															</h2>
-														</div>
-													</div>
-													<!-- /.course-info -->
-												</div> <!-- /.sa-course --></li>
-											<li class="remove-item"><span class="remove-icon"><i
-													class="fas fa-times"></i></span>
-												<div class="sa-course">
-													<div class="course-thumb">
-														<img src="images/course/2.jpg" alt="Image"
-															class="img-fluid">
-													</div>
-													<!-- /.course-thumb -->
-
-													<div class="course-info">
-														<div class="info">
-															<h2 class="title">
-																<a href="course-details.html">Computer Technologies
-																	Course With Live Project</a>
-															</h2>
-														</div>
-													</div>
-													<!-- /.course-info -->
-												</div> <!-- /.sa-course --></li>
-											<li class="remove-item"><span class="remove-icon"><i
-													class="fas fa-times"></i></span>
-												<div class="sa-course">
-													<div class="course-thumb">
-														<img src="images/course/3.jpg" alt="Image"
-															class="img-fluid">
-													</div>
-													<!-- /.course-thumb -->
-
-													<div class="course-info">
-														<div class="info">
-															<h2 class="title">
-																<a href="course-details.html">Visual Basic Web
-																	Course With Live Project</a>
-															</h2>
-														</div>
-													</div>
-													<!-- /.course-info -->
-												</div> <!-- /.sa-course --></li>
-										</ul>
-										<div class="total-price">
-											<span><strong>Total Price: </strong>$598:00</span>
-										</div>
-										<div class="buttons">
-											<a class="btn btn-primary cart-button" href="#">View Cart</a>
-											<a class="btn btn-primary" href="#">Checkout</a>
-										</div>
-									</div></li>
-								<li><i class="far fa-bell"></i></li>
-								<li>
-									<div class="sa-search-form">
-										<div class="search-icon">
-											<i class="fas fa-search"></i>
-										</div>
-										<div class="search-form text-center open-search">
-											<div class="close-search">
-												<span class="remove-icon"><i class="fas fa-times"></i></span>
-											</div>
-											<form action="#" id="search" method="get">
-												<input name="search" type="text"
-													placeholder="Enter keyword...">
-												<button type="submit">
-													<i class="fas fa-search"></i>
-												</button>
-											</form>
-											<!-- /form -->
-										</div>
-										<!-- /search-form -->
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- /.container -->
-			</nav>
-			<!-- /.navbar -->
-		</div>
-		<!-- /.sa-menu -->
-	</header>
+	<div th:replace="/sections/header :: header"></div>
+<hr>
 	<!-- /.sa-header -->
 
 	<section class="breadcrumb-section">
@@ -267,7 +79,9 @@
 									<li>
 										<div class="user-info">
 											<div class="profile-picture">
-												<img th:src="|http://140.238.11.118:5000/upload/${company.logo}|" alt="Profile Picture">
+												<img
+													th:src="|http://140.238.11.118:5000/upload/${company.logo}|"
+													alt="Profile Picture">
 											</div>
 											<div>
 												<span class="user-name" id="companyId"
@@ -282,9 +96,8 @@
 										data-bs-target="#user-one" role="tab" aria-controls="user-one"
 										aria-selected="true">내가 쓴 글</a></li>
 
-									<li class="nav-item"><a class="nav-link" id="user-two-tab"
-										data-bs-toggle="tab" data-bs-target="#user-two" role="tab"
-										aria-controls="user-two" aria-selected="false">포트폴리오 수정</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/company/write}">포트폴리오 수정</a></li>
 
 									<li class="nav-item"><a class="nav-link"
 										id="user-three-tab" data-bs-toggle="tab"
@@ -306,7 +119,7 @@
 
 
 									<div align="center" id="logOutLocation">
-										<a th:href="@{/sign/company/logOut}">로그아웃</a>
+										<a th:href="@{/logout}">로그아웃</a>
 									</div>
 								</ul>
 								<!---------------------------------------------------------tab시작부분-------------------------------------------------------------------------------->
@@ -330,142 +143,61 @@
 													style="border: none;">
 													<div class="tab-pane fade show active" id="pills-home"
 														role="tabpanel" aria-labelledby="pills-home-tab">
-														<div class="row" id="fav_row">
-															<!--게시물 시작-->
-															<div class="col-lg-4">
-																<div class="sa-post">
-																	<div class="entry-header">
-																		<div class="entry-thumbnail">
-																			<a href="blog-details.html"><img
-																				src="images/blog/1.jpg" alt="Image"
-																				class="img-fluid"></a>
+														<div class="row">
+															<div class="row" id="myReviswList">
+																<div th:each="list : ${Review}"
+																	class="col-12 col-md-6 col-lg-4  ">
+																	<div class="sa-post">
+																		<div class="entry-header">
+																			<div class="entry-thumbnail">
+																				<a th:href="@{/review/}+(${list.rid})"> <img
+																					th:src="|http://140.238.11.118:5000/upload/${list.rimgadr}|"
+																					alt="Image" class="img-fluid" id="thumbnailImage">
+																				</a>
+																			</div>
+
+
 																		</div>
-																		<div class="entry-meta"></div>
+																		<div class="course-info">
+																			<div class="info">
+																				<h2 class="title text-center">
+																					<a th:text="${list.rtitle}"></a>
+																				</h2>
+																				<p class="text-right" th:text="${list.company.name}"></p>
+																			</div>
+																			<div class="sa-meta">
+																				<ul class="global-list">
+																					<li><a href="#"> <span><i
+																								class="fas fa-heart"></i></span>
+																					</a></li>
+																					<li><a href="#"> <i class="far fa-eye"></i><span
+																							th:text="${list.rcnt}"></span>
+																					</a></li>
+																				</ul>
+																			</div>
+																		</div>
 																	</div>
-																	<div class="entry-content">
-																		<h2 class="entry-title">
-																			<a href="blog-details.html">업체 후기</a>
-																		</h2>
-																	</div>
+																	<!-- /.course-info -->
 																</div>
 																<!-- /.sa-post -->
+
+
+
+
 															</div>
-															<!--게시물 끝-->
-															<!--게시물 시작-->
-															<div class="col-lg-4">
-																<div class="sa-post">
-																	<div class="entry-header">
-																		<div class="entry-thumbnail">
-																			<a href="blog-details.html"><img
-																				src="images/blog/2.jpg" alt="Image"
-																				class="img-fluid"></a>
-																		</div>
-																		<div class="entry-meta"></div>
-																	</div>
-																	<div class="entry-content">
-																		<h2 class="entry-title">
-																			<a href="blog-details.html">업체 후기</a>
-																		</h2>
-																	</div>
-																</div>
-																<!-- /.sa-post -->
+
+															<div th:if="${#lists.size(Review)== 6}"
+																class="text-center">
+																<!-- 10개 모두 출력되야 보여주기 -->
+																<button class="btn btn-primary w-100" id="moreBtnReview">더보기</button>
 															</div>
-															<!--게시물 끝-->
-															<!--게시물 시작-->
-															<div class="col-lg-4">
-																<div class="sa-post">
-																	<div class="entry-header">
-																		<div class="entry-thumbnail">
-																			<a href="blog-details.html"><img
-																				src="images/blog/2.jpg" alt="Image"
-																				class="img-fluid"></a>
-																		</div>
-																		<div class="entry-meta"></div>
-																	</div>
-																	<div class="entry-content">
-																		<h2 class="entry-title">
-																			<a href="blog-details.html">업체 후기</a>
-																		</h2>
-																	</div>
-																</div>
-																<!-- /.sa-post -->
-															</div>
-															<!--게시물 끝-->
-															<!--게시물 시작-->
-															<div class="col-lg-4">
-																<div class="sa-post">
-																	<div class="entry-header">
-																		<div class="entry-thumbnail">
-																			<a href="blog-details.html"><img
-																				src="images/blog/2.jpg" alt="Image"
-																				class="img-fluid"></a>
-																		</div>
-																		<div class="entry-meta"></div>
-																	</div>
-																	<div class="entry-content">
-																		<h2 class="entry-title">
-																			<a href="blog-details.html">업체 후기</a>
-																		</h2>
-																	</div>
-																</div>
-																<!-- /.sa-post -->
-															</div>
-															<!--게시물 끝-->
-															<!--게시물 시작-->
-															<div class="col-lg-4">
-																<div class="sa-post">
-																	<div class="entry-header">
-																		<div class="entry-thumbnail">
-																			<a href="blog-details.html"><img
-																				src="images/blog/2.jpg" alt="Image"
-																				class="img-fluid"></a>
-																		</div>
-																		<div class="entry-meta"></div>
-																	</div>
-																	<div class="entry-content">
-																		<h2 class="entry-title">
-																			<a href="blog-details.html">업체 후기</a>
-																		</h2>
-																	</div>
-																</div>
-																<!-- /.sa-post -->
-															</div>
-															<!--게시물 끝-->
-															<!--게시물 시작-->
-															<div class="col-lg-4">
-																<div class="sa-post">
-																	<div class="entry-header">
-																		<div class="entry-thumbnail">
-																			<a href="blog-details.html"><img
-																				src="images/blog/2.jpg" alt="Image"
-																				class="img-fluid"></a>
-																		</div>
-																		<div class="entry-meta"></div>
-																	</div>
-																	<div class="entry-content">
-																		<h2 class="entry-title">
-																			<a href="blog-details.html">업체 후기</a>
-																		</h2>
-																	</div>
-																</div>
-																<!-- /.sa-post -->
-															</div>
-															<!--게시물 끝-->
+
 														</div>
 														<!--/.row-->
 
 													</div>
 
-													<!--****************************************************************************** 페이징 버튼 ******************************************************************************-->
-													<div class="text-center" style="margin-bottom: 50px;">
-														<ul class="pagination justify-content-center mb-0">
-															<li><a class="page-numbers current" href="#">1</a></li>
-															<li><a class="page-numbers" href="#">2</a></li>
-															<li class="float-right"><a class="page-numbers"
-																href="#"><i class="fas fa-chevron-right"></i></a></li>
-														</ul>
-													</div>
-													<!--****************************************************************************** /페이징 버튼 끝 ******************************************************************************-->
+
 													<!-- /.sg-pagination -->
 												</div>
 											</div>
@@ -507,8 +239,8 @@
 													<div class="container">
 
 														<div class="row" style="border: none;">
-															<form class="woocommerce-cart-form" action="#">
-																<table class="table">
+															<form class="woocommerce-cart-form">
+																<table class="table" id="paymentInfo">
 																	<thead>
 																		<tr>
 																			<th>결제번호</th>
@@ -518,8 +250,9 @@
 																			<th>구독권 종료일</th>
 																		</tr>
 																	</thead>
-																	<tbody>
+																	<tbody class="paymentInfoTR" id="paymentInfoAdd">
 																		<tr th:each="paymentInfo : ${PaymentInfo}">
+
 																			<td th:text="${paymentInfo.pid}"></td>
 																			<td th:text="${paymentInfo.method}"></td>
 																			<td th:text="${paymentInfo.amount}"></td>
@@ -529,8 +262,17 @@
 																		</tr>
 
 																	</tbody>
+
 																</table>
+																<div th:if="${#lists.size(PaymentInfo)== 6}"
+																	class="text-center">
+																	<!-- 10개 모두 출력되야 보여주기 -->
+																	<button class="btn btn-primary w-100" id="moreBtn">더보기</button>
+																</div>
+
+
 															</form>
+
 														</div>
 
 														<!-- /.sg-pagination -->
@@ -538,6 +280,7 @@
 												</div>
 												<!-- /.cart-section -->
 											</div>
+											<!-- 더보기 버튼 -->
 
 
 
@@ -554,7 +297,7 @@
 									<div class="tab-pane fade" id="user-four" role="tabpanel"
 										aria-labelledby="user-four-tab">
 										<div class="profile-section">
-											<form method="post"
+											<form method="post" id="companyModify"
 												th:action="@{/sign/company/companyUpdate}"
 												th:object="${company}">
 												<input type="hidden" name="_method" value="put" />
@@ -567,16 +310,20 @@
 												<!-- header -->
 												<div class="tab-body">
 													<div id="photoFile">
-														<input type="file" name="add-photo" id="add-photo"
-															class="inputfile form-control inputfile-4"
-															data-multiple-caption="{count} files selected" disabled>
-														<label for="add-photo"> <span
-															class="mdi mdi-name mdi-camera"></span> <span>Add
-																Photo</span>
-														</label> <br />
-														<div class="form-group">
-															<input type="submit" class="btn btn-primary" id="pictureAdd" value="사진추가">
-														</div>
+
+														<img style="width: 100%;" id="previewImage"
+															src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload"
+															th:if="*{logo == null}"> <img style="width: 100%;"
+															id="previewImage"
+															th:src="|http://140.238.11.118:5000/upload/*{logo}|"
+															th:if="*{logo != null}"> <input
+															style="display: block; visibility: hidden;" type="file"
+															accept="image/*" id="inputImage"> <input
+															type="hidden" id="cinfo_img" name="logo"
+															th:value="*{logo}"> <label
+															class="btn btn-primary w-100 mb-5" for="inputImage">사진추가</label>
+
+
 													</div>
 
 
@@ -670,7 +417,7 @@
 															class="btn btn-primary" value="탈퇴"></span>
 													</div>
 													<div class="form-group-btn">
-														<input type="submit" class="btn btn-primary"
+														<input type="button" class="btn btn-primary"
 															id="companyUpdate" value="수정">
 													</div>
 
@@ -708,7 +455,7 @@
 																			<th scope="col">신청ID</th>
 																		</tr>
 																	</thead>
-																	<tbody>
+																	<tbody id="registEstTbody">
 																		<tr th:each="list:${RegistList}">
 																			<td><a class="estNum"
 																				th:href="@{/estimation/ChosenDetail(id=${list.eid})}"><span
@@ -719,7 +466,13 @@
 																		</tr>
 
 																	</tbody>
+
 																</table>
+																<div th:if="${#lists.size(RegistList)== 6}"
+																	class="text-center">
+																	<button class="btn btn-primary w-100"
+																		id="moreBtnEstimation">더보기</button>
+																</div>
 															</form>
 														</div>
 
@@ -846,134 +599,11 @@
 	<!-- /.container -->
 	</div>
 	<!-- /.section-content -->
+	<div th:replace="/sections/nav :: div"></div>
+
+	<div th:replace="/sections/footer :: footer"></div>
 
 
-	<div class="footer">
-		<div class="footer-top">
-			<div class="container">
-				<div class="footer-content">
-					<div class="row">
-						<div class="col-md-6 col-lg-3">
-							<div class="footer-widget">
-								<div class="footer-logo">
-									<a href="#"><img src="images/logo.png" alt="Logo"
-										class="img-fluid"></a>
-								</div>
-								<p>Holisticly aggregate compelling ROI before out-of-the-box
-									benefits. Efficiently create cross functional paradigms without
-									an expanded array of testing procedures.</p>
-								<div class="footer-social">
-									<ul class="global-list">
-										<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-										<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-										<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-										<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-										<li><a href="#"><i class="fab fa-instagram"></i></a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3">
-							<div class="footer-widget px-md-4">
-								<h3>Quik Links</h3>
-								<ul class="global-list">
-									<li><a href="#">All Courses</a></li>
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Our Blogs</a></li>
-									<li><a href="#">Teacher</a></li>
-									<li><a href="#">Contact</a></li>
-									<li><a href="#">Terms</a></li>
-									<li><a href="#">Carrer</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3">
-							<div class="footer-widget">
-								<h3>Popular Courses</h3>
-								<div class="sa-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="blog-details.html"><img src="images/blog/4.jpg"
-												alt="Image" class="img-fluid"></a>
-										</div>
-									</div>
-									<div class="entry-content">
-										<h2 class="entry-title">
-											<a href="blog-details.html">Sed ut perspiciatis unde iste</a>
-										</h2>
-									</div>
-								</div>
-								<!-- /.sa-post -->
-								<div class="sa-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="blog-details.html"><img src="images/blog/5.jpg"
-												alt="Image" class="img-fluid"></a>
-										</div>
-									</div>
-									<div class="entry-content">
-										<h2 class="entry-title">
-											<a href="blog-details.html">Essential Training Training
-												Examples</a>
-										</h2>
-									</div>
-								</div>
-								<!-- /.sa-post -->
-								<div class="sa-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="blog-details.html"><img src="images/blog/2.jpg"
-												alt="Image" class="img-fluid"></a>
-										</div>
-									</div>
-									<div class="entry-content">
-										<h2 class="entry-title">
-											<a href="blog-details.html">Python Programming Essential
-												Training</a>
-										</h2>
-									</div>
-								</div>
-								<!-- /.sa-post -->
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3">
-							<div class="footer-widget">
-								<h3>Subscribe</h3>
-								<form action="#" class="sa-form">
-									<input type="email" class="form-control"
-										placeholder="Email address" required="">
-									<button type="submit">
-										<i class="fa fa-paper-plane" aria-hidden="true"></i>
-									</button>
-								</form>
-								<div class="payment-gateway">
-									<h4>Payment Gateway</h4>
-									<ul class="global-list d-flex">
-										<li><img src="images/others/payment1.png" alt="Image"
-											class="img-fluid"></li>
-										<li><img src="images/others/payment2.png" alt="Image"
-											class="img-fluid"></li>
-										<li><img src="images/others/payment3.png" alt="Image"
-											class="img-fluid"></li>
-										<li><img src="images/others/payment4.png" alt="Image"
-											class="img-fluid"></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /.row -->
-				</div>
-			</div>
-			<!-- /.container -->
-		</div>
-		<div class="footer-bottom">
-			<div class="container text-center">
-				<span>Copyright &copy; 2021 ChtStudio - All Rights Reserved.</span>
-			</div>
-			<!-- /.container -->
-		</div>
-	</div>
 	<!-- /.footer -->
 
 	<!-- JS -->
@@ -997,6 +627,13 @@
 	<script th:src="@{/js/eh/companyMypage.js}"></script>
 
 
+
+	<!-- 퀵메뉴 js -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
 </body>
 
 </html>

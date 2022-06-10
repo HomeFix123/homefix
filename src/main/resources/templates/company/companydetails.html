@@ -19,7 +19,9 @@
 <link rel="stylesheet" th:href="@{/css/main.css}">
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
 <!-- eunhye css -->
-<link rel="stylesheet" href="@{/css/eh/course-details.css}">
+<link rel="stylesheet" th:href="@{/css/eh/course-details.css}">
+<!-- 퀵메뉴바 css -->
+<link rel="stylesheet" th:href="@{/css/nav.css}">
 
 <!-- font -->
 <link
@@ -36,15 +38,7 @@
 	href="../images/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon" sizes="57x57"
 	href="../images/ico/apple-touch-icon-57-precomposed.png">
-<!-- icons -->
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-<!-- Template Developed By ChtStudio -->
 </head>
 <body>
 	<div id="preloader">
@@ -53,196 +47,7 @@
 	</div>
 	<!-- preloader -->
 
-	<header class="sa-header">
-		<div class="sa-topbar">
-			<div class="container">
-				<div class="topbar-content">
-					<div class="left-content">
-						<ul class="global-list">
-							<li><a href="#"><i class="far fa-envelope"></i>info@gmail.com</a></li>
-							<li><a href="#"><i class="fas fa-phone-volume"></i>0123456789</a></li>
-						</ul>
-					</div>
-					<div class="right-content">
-						<ul class="global-list social">
-							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-							<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-							<li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-						</ul>
-						<ul class="global-list">
-							<li><a href="#" class="btn btn-primary">Register <i
-									class="fas fa-sign-in-alt"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- /.container -->
-		</div>
-		<!-- /.top-bar -->
-
-		<div class="sa-menu">
-			<nav class="navbar navbar-expand-lg">
-				<div class="container">
-					<a class="navbar-brand" href="index.html"> <img
-						src="images/logo.png" alt="Logo" class="img-fluid">
-					</a>
-
-					<button class="navbar-toggler" type="button"
-						data-bs-toggle="collapse" data-bs-target="#navbarNav"
-						aria-controls="navbarNav" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-					</button>
-
-					<div class="collapse navbar-collapse justify-content-center"
-						id="navbarNav">
-						<ul class="navbar-nav">
-							<li class="nav-item sa-dropdown"><a href="#">Home</a>
-								<ul class="sa-dropdown-menu">
-									<li><a href="index.html">Home V-1</a></li>
-									<li><a href="index1.html">Home V-2</a></li>
-									<li><a href="index2.html">Home V-3</a></li>
-								</ul></li>
-							<li><a href="about.html">About</a></li>
-							<li class="sa-dropdown active"><a href="#">Courses</a>
-								<ul class="sa-dropdown-menu">
-									<li><a href="course-grid.html">Course Grid View</a></li>
-									<li><a href="course-list.html">Course List View</a></li>
-									<li class="active"><a href="course-details.html">Course
-											Details</a></li>
-								</ul></li>
-							<li><a href="tutor.html">Teacher</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="contact.html">Contact</a></li>
-							<li class="sa-dropdown"><a href="index.html">Page</a>
-								<ul class="sa-dropdown-menu">
-									<li><a href="catagory.html">Catagory</a></li>
-									<li><a href="profile.html">User Profile</a></li>
-									<li><a href="blog-details.html">Blog Details</a></li>
-									<li><a href="tutor-details.html">Tutor Details</a></li>
-									<li><a href="my-course.html">My Course<span
-											class="badge rounded-pill bg-dark">New</span></a></li>
-									<li><a href="course-video.html">Course Video<span
-											class="badge rounded-pill bg-dark">New</span></a></li>
-									<li><a href="cart.html">Shopping Cart<span
-											class="badge rounded-pill bg-dark">New</span></a></li>
-									<li><a href="payment.html">Payment<span
-											class="badge rounded-pill bg-dark">New</span></a></li>
-									<li><a href="congrats.html">Congrats<span
-											class="badge rounded-pill bg-dark">New</span></a></li>
-									<li><a href="sign-in.html">Sign In</a></li>
-									<li><a href="sign-up.html">Sign Up</a></li>
-								</ul></li>
-						</ul>
-					</div>
-
-					<div class="right-content">
-						<div class="user-option">
-							<ul class="global-list">
-								<li class="sa-dropdown"><span class="cart-number">5</span>
-									<i class="fas fa-cart-plus"></i>
-									<div class="sa-dropdown-menu">
-										<ul class="global-list">
-											<li class="remove-item"><span class="remove-icon"><i
-													class="fas fa-times"></i></span>
-												<div class="sa-course">
-													<div class="course-thumb">
-														<img src="images/course/1.jpg" alt="Image"
-															class="img-fluid">
-													</div>
-													<!-- /.course-thumb -->
-
-													<div class="course-info">
-														<div class="info">
-															<h2 class="title">
-																<a href="course-details.html">Visual Basic Web
-																	Course With Live Project</a>
-															</h2>
-														</div>
-													</div>
-													<!-- /.course-info -->
-												</div> <!-- /.sa-course --></li>
-											<li class="remove-item"><span class="remove-icon"><i
-													class="fas fa-times"></i></span>
-												<div class="sa-course">
-													<div class="course-thumb">
-														<img src="images/course/2.jpg" alt="Image"
-															class="img-fluid">
-													</div>
-													<!-- /.course-thumb -->
-
-													<div class="course-info">
-														<div class="info">
-															<h2 class="title">
-																<a href="course-details.html">Computer Technologies
-																	Course With Live Project</a>
-															</h2>
-														</div>
-													</div>
-													<!-- /.course-info -->
-												</div> <!-- /.sa-course --></li>
-											<li class="remove-item"><span class="remove-icon"><i
-													class="fas fa-times"></i></span>
-												<div class="sa-course">
-													<div class="course-thumb">
-														<img src="images/course/3.jpg" alt="Image"
-															class="img-fluid">
-													</div>
-													<!-- /.course-thumb -->
-
-													<div class="course-info">
-														<div class="info">
-															<h2 class="title">
-																<a href="course-details.html">Visual Basic Web
-																	Course With Live Project</a>
-															</h2>
-														</div>
-													</div>
-													<!-- /.course-info -->
-												</div> <!-- /.sa-course --></li>
-										</ul>
-										<div class="total-price">
-											<span><strong>Total Price: </strong>$598:00</span>
-										</div>
-										<div class="buttons">
-											<a class="btn btn-primary cart-button" href="#">View Cart</a>
-											<a class="btn btn-primary" href="#">Checkout</a>
-										</div>
-									</div></li>
-								<li><i class="far fa-bell"></i></li>
-								<li>
-									<div class="sa-search-form">
-										<div class="search-icon">
-											<i class="fas fa-search"></i>
-										</div>
-										<div class="search-form text-center open-search">
-											<div class="close-search">
-												<span class="remove-icon"><i class="fas fa-times"></i></span>
-											</div>
-											<form action="#" id="search" method="get">
-												<input name="search" type="text"
-													placeholder="Enter keyword...">
-												<button type="submit">
-													<i class="fas fa-search"></i>
-												</button>
-											</form>
-											<!-- /form -->
-										</div>
-										<!-- /search-form -->
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- /.container -->
-			</nav>
-			<!-- /.navbar -->
-		</div>
-		<!-- /.sa-menu -->
-	</header>
+	 <div th:replace="/sections/header :: header"></div>      
 	<!-- /.sa-header -->
 
 	<section class="breadcrumb-section">
@@ -261,10 +66,12 @@
 		<div class="section-content course-details bg-white section-padding">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-8">
+					<div class="col-lg-9">
 						<div class="sa-course" id="priInfo">
 							<div class="course-thumb">
-								<img src="images/course/d2.jpg" alt="Image" class="img-fluid">
+								<img
+									th:src="|http://140.238.11.118:5000/upload/${CompanyInfo.cinfo_img}|"
+									alt="Image" class="img-fluid">
 							</div>
 
 
@@ -303,6 +110,7 @@
 											<h4>기본정보</h4>
 											<ul class="global-list">
 												<li th:text="'대표자: '+ ${CompanyBasic.ceo}"></li>
+												<li><input type="hidden" th:value="${CompanyBasic.id}" id="companyCid"></li>
 												<li th:text="'경력: '+ ${CompanyInfo.career} + '년'"></li>
 
 
@@ -324,84 +132,103 @@
 										<p th:text="${CompanyInfo.cinfo_cont}"></p>
 
 									</div>
-									<div class="tab-pane fade" id="reviews" role="tabpanel"
+									<div class="tab-pane fade sa-post" id="reviews" role="tabpanel"
 										aria-labelledby="reviews-tab">
 										<h3 class="widget_title">다양한 시공사례</h3>
-										<ul th:each="b:${Brag}">
-											<li class="media">
-												<div class="entry-thumbnail">
-													<a th:href="@{/brag/}+(${b.bid})"> <img
-														th:if="${not #strings.isEmpty(b.bimgadr)}"
-														th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|"
-														alt="Image" class="img-fluid"> <img
-														th:if="${#strings.isEmpty(b.bimgadr)}"
-														src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
+										<div id="companyBragBoard">
+											<ul th:each="b:${Brag}" class="ulBrag">
+												<li class="media">
+													<div class="entry-thumbnail entry-header">
+														<a th:href="@{/brag/}+(${b.bid})"> <img
+															th:if="${not #strings.isEmpty(b.bimgadr)}"
+															th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|"
+															alt="Image" class="img-fluid"> <img
+															th:if="${#strings.isEmpty(b.bimgadr)}"
+															src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
 
 
-												</div>
-												<div class="info">
-													<h2 class="title text-center">
-														<a th:text="${b.btitle}"></a>
-													</h2>
-													<p class="text-right" th:text="${b.member.nickname}"></p>
-												</div>
-												<div class="sa-meta">
-													<ul class="global-list">
-														<li><a href="#"> <span><i
-																	class="fas fa-heart"></i></span>
-														</a></li>
-														<li><a href="#"> <i class="far fa-eye"></i><span
-																th:text="${b.bcnt}"></span>
-														</a></li>
-													</ul>
-												</div>
-											</li>
+													</div>
+													<div class="info">
+														<h2 class="title text-center">
+															<a th:text="${b.btitle}"></a>
+														</h2>
+														<p class="text-right" th:text="${b.member.nickname}"></p>
+													</div>
+													<div class="sa-meta">
+														<ul class="global-list">
+															<li><a href="#"> <span><i
+																		class="fas fa-heart"></i></span>
+															</a></li>
+															<li><a href="#"> <i class="far fa-eye"></i><span
+																	th:text="${b.bcnt}"></span>
+															</a></li>
+														</ul>
+													</div>
+													<hr>
+												</li>
 
 
+											</ul>
 
-										</ul>
-
+											
+										</div>
+<div th:if="${#lists.size(Brag)== 3}" class="text-center">
+												<!-- 10개 모두 출력되야 보여주기 -->
+												<button class="btn btn-primary w-100" id="moreBtnBrag">더보기</button>
+											</div>
 
 									</div>
 									<div class="tab-pane fade" id="comments" role="tabpanel"
 										aria-labelledby="comments-tab">
 										<h4>업체후기</h4>
-										<div class="comments-area">
-											<ul  >
-											<li class="media" th:each="r:${Review}">
-												<div class="entry-thumbnail">
-												 <a th:href="@{/review/} + (${r.rid})">  <img
-														th:if="${not #strings.isEmpty(r.rimgadr)}"
-														th:src="|http://140.238.11.118:5000/upload/${r.rimgadr}|"
-														alt="Image" class="img-fluid"> <img
-														th:if="${#strings.isEmpty(r.rimgadr)}"
-														src="images/course/1.jpg" alt="Image" class="img-fluid"> </a> 
+										<div class="row">
+											<div class="row" id="myReviswList">
+												<div th:each="list : ${Review}"
+													class="col-12 col-md-6 col-lg-4  ">
+													<div class="sa-post">
+														<div class="entry-header">
+															<div class="entry-thumbnail">
+																<a th:href="@{/review/}+(${list.rid})"> <img
+																	th:src="|http://140.238.11.118:5000/upload/${list.rimgadr}|"
+																	alt="Image" class="img-fluid" id="thumbnailImage">
+																</a>
+															</div>
 
 
+														</div>
+														<div class="course-info">
+															<div class="info">
+																<h2 class="title text-center">
+																	<a th:text="${list.rtitle}"></a>
+																</h2>
+																<p class="text-right" th:text="${list.company.name}"></p>
+															</div>
+															<div class="sa-meta">
+																<ul class="global-list">
+																	<li><a href="#"> <span><i
+																				class="fas fa-heart"></i></span>
+																	</a></li>
+																	<li><a href="#"> <i class="far fa-eye"></i><span
+																			th:text="${list.rcnt}"></span>
+																	</a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+													<!-- /.course-info -->
 												</div>
-												 <div class="info">
-												 <h2 class="title text-center">
-														<a th:text="${r.rtitle}"></a>
-													</h2>
-													<p class="text-right"  th:text="${r.company.name}"></p> 
-												</div> 
-												<div class="sa-meta">
-												<ul class="global-list">
-														<li><a href="#"> <span><i
-																	class="fas fa-heart"></i></span>
-														</a></li>
-														<li><a href="#"> <i class="far fa-eye"></i><span
-																th:text="${r.rcnt}"></span>
-														</a></li>
-													</ul> 
-												</div>
-											</li>
+												<!-- /.sa-post -->
 
 
 
-										</ul>
-											
-											</ul>
+
+											</div>
+
+											<div th:if="${#lists.size(Review)== 6}" class="text-center">
+												<!-- 10개 모두 출력되야 보여주기 -->
+												<button class="btn btn-primary w-100" id="moreBtnReview">더보기</button>
+											</div>
+
 										</div>
 										<!-- /.comments-area -->
 									</div>
@@ -420,11 +247,12 @@
 
 
 
-							<div class='imgtutor' >
-								<img    th:src="|http://140.238.11.118:5000/upload/${CompanyBasic.logo}|"
+							<div class='imgtutor'>
+								<img
+									th:src="|http://140.238.11.118:5000/upload/${CompanyBasic.logo}|"
 									alt="Profile Picture" id='companyId'>
-									
-									
+
+
 
 							</div>
 
@@ -432,21 +260,28 @@
 
 								<h4 class="partner_detail__title" th:text="${CompanyBasic.name}">
 
-									
+
 									<!---->
 								</h4>
 								<ul class="global-list">
-									<li><i class="fas fa-check-circle"></i><span th:text="' 대표번호:  ' + ${CompanyBasic.tel} "></span></li>
-									<li><i class="fas fa-check-circle"></i><span th:text="' 대표메일:  '+ ${CompanyBasic.email} "></span></li>
-									<li ><i class="fas fa-check-circle"></i> <span th:text=" '시공횟수:  ' + ${CompanyBasic.cnt} + '건'"></span></li>
-									<li><i class="fas fa-check-circle"></i><span th:each="a : ${CompanyInfo.specialty} "
-													th:text="' 시공지역:  ' + ${a.sp_cont}"> </span></li>
+									<li><i class="fas fa-check-circle"></i><span
+										th:text="' 대표번호:  ' + ${CompanyBasic.tel} "></span></li>
+									<li><i class="fas fa-check-circle"></i><span
+										th:text="' 대표메일:  '+ ${CompanyBasic.email} "></span></li>
+									<li><i class="fas fa-check-circle"></i> <span
+										id="constructNum"
+										th:text=" '시공횟수:  ' + ${CompanyBasic.cnt} + '건'"></span></li>
+									<li><i class="fas fa-check-circle"></i><span
+										th:each="a : ${CompanyInfo.specialty} "
+										th:text="' 시공지역:  ' + ${a.sp_cont}"> </span></li>
 								</ul>
+													
 							</div>
 						</div>
 
 						</aside>
 
+								<a th:href="@{/estimation/write/}+(${CompanyBasic.id})" id="estRegist" class="btn btn-primary">견적 신청하기</a>
 					</div>
 
 
@@ -464,134 +299,11 @@
 
 	<!-- /.sg-section -->
 
+<div th:replace="/sections/nav :: div"></div>
+		
+        <div th:replace="/sections/footer :: footer"></div>  
 
-
-	<div class="footer">
-		<div class="footer-top">
-			<div class="container">
-				<div class="footer-content">
-					<div class="row">
-						<div class="col-md-6 col-lg-3">
-							<div class="footer-widget">
-								<div class="footer-logo">
-									<a href="#"><img src="images/logo.png" alt="Logo"
-										class="img-fluid"></a>
-								</div>
-								<p>Holisticly aggregate compelling ROI before out-of-the-box
-									benefits. Efficiently create cross functional paradigms without
-									an expanded array of testing procedures.</p>
-								<div class="footer-social">
-									<ul class="global-list">
-										<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-										<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-										<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-										<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-										<li><a href="#"><i class="fab fa-instagram"></i></a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3">
-							<div class="footer-widget px-md-4">
-								<h3>Quik Links</h3>
-								<ul class="global-list">
-									<li><a href="#">All Courses</a></li>
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Our Blogs</a></li>
-									<li><a href="#">Teacher</a></li>
-									<li><a href="#">Contact</a></li>
-									<li><a href="#">Terms</a></li>
-									<li><a href="#">Carrer</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3">
-							<div class="footer-widget">
-								<h3>Popular Courses</h3>
-								<div class="sa-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="blog-details.html"><img src="images/blog/4.jpg"
-												alt="Image" class="img-fluid"></a>
-										</div>
-									</div>
-									<div class="entry-content">
-										<h2 class="entry-title">
-											<a href="blog-details.html">Sed ut perspiciatis unde iste</a>
-										</h2>
-									</div>
-								</div>
-								<!-- /.sa-post -->
-								<div class="sa-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="blog-details.html"><img src="images/blog/5.jpg"
-												alt="Image" class="img-fluid"></a>
-										</div>
-									</div>
-									<div class="entry-content">
-										<h2 class="entry-title">
-											<a href="blog-details.html">Essential Training Training
-												Examples</a>
-										</h2>
-									</div>
-								</div>
-								<!-- /.sa-post -->
-								<div class="sa-post">
-									<div class="entry-header">
-										<div class="entry-thumbnail">
-											<a href="blog-details.html"><img src="images/blog/2.jpg"
-												alt="Image" class="img-fluid"></a>
-										</div>
-									</div>
-									<div class="entry-content">
-										<h2 class="entry-title">
-											<a href="blog-details.html">Python Programming Essential
-												Training</a>
-										</h2>
-									</div>
-								</div>
-								<!-- /.sa-post -->
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-3">
-							<div class="footer-widget">
-								<h3>Subscribe</h3>
-								<form action="#" class="sa-form">
-									<input type="email" class="form-control"
-										placeholder="Email address" required="">
-									<button type="submit">
-										<i class="fa fa-paper-plane" aria-hidden="true"></i>
-									</button>
-								</form>
-								<div class="payment-gateway">
-									<h4>Payment Gateway</h4>
-									<ul class="global-list d-flex">
-										<li><img src="images/others/payment1.png" alt="Image"
-											class="img-fluid"></li>
-										<li><img src="images/others/payment2.png" alt="Image"
-											class="img-fluid"></li>
-										<li><img src="images/others/payment3.png" alt="Image"
-											class="img-fluid"></li>
-										<li><img src="images/others/payment4.png" alt="Image"
-											class="img-fluid"></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /.row -->
-				</div>
-			</div>
-			<!-- /.container -->
-		</div>
-		<div class="footer-bottom">
-			<div class="container text-center">
-				<span>Copyright &copy; 2021 ChtStudio - All Rights Reserved.</span>
-			</div>
-			<!-- /.container -->
-		</div>
-	</div>
+	
 	<!-- /.footer -->
 
 	<!-- JS -->
@@ -611,5 +323,12 @@
 	<!--font asome js-->
 	<script src="https://kit.fontawesome.com/2173f645ed.js"
 		crossorigin="anonymous"></script>
+	<!--eunhye js  -->
+	<script th:src="@{/js/eh/etc.js}"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
 </body>
 </html>

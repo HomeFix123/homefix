@@ -32,7 +32,7 @@ public class PaymentController {
 	@Autowired
 	PaymentService paymentService;
 
-	// 결제 페이지
+	// 결제 페이지에서 마지막 구독일 조회
 	@GetMapping("")
 	public String paymentPage(HttpSession session, Model model) {
 		Company company = new Company();
@@ -49,6 +49,8 @@ public class PaymentController {
 		return "payment/payment";
 	}
 
+	
+	
 	// 결제정보 DB저장
 	@PostMapping("/paymentInfoInsert")
 	@ResponseBody
@@ -56,13 +58,15 @@ public class PaymentController {
 		paymentService.paymentInfoInsert(vo);
 	}
 
+	
+	
 	// 결제완료 페이지
 	@GetMapping("/congrats")
 	public String paymentCongrats() {
 		return "payment/congrats";
-
 	}
 
+	
 	
 
 }

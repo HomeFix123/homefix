@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,23 +13,30 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.homefix.domain.Brag;
+import com.homefix.domain.CompanyPrefer;
 import com.homefix.domain.Member;
+import com.homefix.domain.Prefer;
+import com.homefix.domain.Role;
+import com.homefix.domain.Tip;
 import com.homefix.mail.MailDto;
 import com.homefix.mail.SendEmailService;
 import com.homefix.persistence.MemberRepository;
+import com.homefix.service.BragService;
+import com.homefix.service.CompanyPreferService;
 import com.homefix.service.MemberService;
+import com.homefix.service.PreferService;
+import com.homefix.service.TipService;
 
 
 @Controller
@@ -48,6 +54,17 @@ public class MemberController {
 	@Autowired
 	MemberRepository memberRepo;
 	
+	@Autowired
+	private BragService bragService;
+	
+	@Autowired
+	private TipService tipService;
+	
+	@Autowired
+	private PreferService loveServise;
+	
+	@Autowired
+	private CompanyPreferService comLoveService;
 	
 	
 	//로그인 페이지로 이동
@@ -93,6 +110,13 @@ public class MemberController {
 	// 회원 등록
 	@PostMapping(value = "/member/memSave")
 	public String memberInsert(Member mem) throws IOException {
+		mem.setEnabled(true);
+		
+		//스프링 시큐리티 적용시 주석 해제
+//		mem.setPassword(encoder.encode(mem.getPassword()));
+		
+		mem.setRole(Role.ROLE_USER);
+		
 		memberService.memberInsert(mem);
 		return "redirect:/sign/sign-in";
 					
@@ -154,18 +178,108 @@ public class MemberController {
 	
 	//개인 마이페이지
 	@GetMapping(path ="/member/profile")
-	public void myPage(Model m, HttpSession session) {
-		System.out.println("session L " + session.getAttribute("memberId"));
-		System.out.println("model" + m);
+	public void myPage(Model m, HttpSession session, Integer page) {
+		
+		if(page==null) page = 0;
+		Brag brag = new Brag();
+		
+			System.out.println("session L " + session.getAttribute("memberId"));
+			
 		logger.info("개인 마이페이지");
 		Member mem = new Member();
 		mem.setId((String) session.getAttribute("memberId"));
-		System.out.println("model2" +m);
 		List<Member> list = memberService.myPageList(mem);
 		m.addAttribute("member",list);
 		m.addAttribute("session", session);
-		System.out.println("session 2" + m.addAttribute("session", session));
+		
+		
+		
+			System.out.println("session 2" + m.addAttribute("session", session));
+			System.out.println("세션 확인함 " + session.getAttribute("memberId"));
+		
+		// 개인이 쓴 후기 불러오기
+		String id = (String) session.getAttribute("memberId");
+		List<Brag> bragId = memberService.getMyReviewList(id);
+		m.addAttribute("Reviews",bragId);
+		
+		// 개인이 쓴 팁 글 불러오기	(후기에 사용한 아이디를 끌고온다)
+		List<Tip> tipId = memberService.getMyTip(id);
+		m.addAttribute("Tips",tipId);
+		
+		// 개인이 좋아요 버튼을 누른 글 불러오기 (개인 후기)
+		List<Prefer> loveId = memberService.getMyLove(id);
+		m.addAttribute("Love",loveId);
+		
+		// 개인이 좋아요 버튼을 업체목록 불러오기
+		List<CompanyPrefer> loveCom = memberService.getMyLoveCompany(id);
+		m.addAttribute("loveCom", loveCom);
+		
+		
+		//페이징(Brag)
+		for(Brag b : bragService.getBragList(id,page).getContent()) {
+			System.out.println(b.getBtitle()+"후기의 제목");
+		}
+		
+		m.addAttribute("getBragList",bragService.getBragList(id,page).getContent());
+		m.addAttribute("cntBrag",bragService.countBragList(id));
+		
+		//페이징(Member Tip)
+		for(Tip t : tipService.getTipList(id,page).getContent()) {
+			System.out.println(t.getTiptitle()+"  팁 글 제목");
+		}
+		m.addAttribute("getTipList",tipService.getTipList(id,page).getContent());
+		m.addAttribute("cntTip",tipService.countTipList(id));
+		
+		//페이징(Member Prefer)
+		for(Prefer p : loveServise.getLoveList(id,page).getContent()) {
+			System.out.println(p.getBrag().getBtitle()+"  좋아요찍은 글 제목");
+		}
+		m.addAttribute("getLoveList",loveServise.getLoveList(id,page).getContent());
+		m.addAttribute("cntLove",loveServise.countLoveList(id));
+		
+		//페이징(Member LoveCompany)
+		for(CompanyPrefer c : comLoveService.getLoveComList(id,page).getContent()) {
+			System.out.println(c.getCompany().getName()+"  좋아요찍은 글 제목");
+		}
+		m.addAttribute("getLoveComList",comLoveService.getLoveComList(id,page).getContent());
+		m.addAttribute("cntLoveCom",comLoveService.countLoveComList(id));
+		
 	}
+	
+	//페이징 Brag
+	@GetMapping(path ="/member/myPageing")
+	@ResponseBody
+	public Page<Brag> myPageing(HttpSession session, Integer page) {
+		String id = (String)session.getAttribute("memberId");
+		return bragService.getBragList(id,page);
+		//return null;
+	}
+	
+	//페이징 Tip
+	@GetMapping(path ="/member/myTipPageing")
+	@ResponseBody
+	public Page<Tip> myTipPageing(HttpSession session, Integer page) {
+		String id = (String)session.getAttribute("memberId");
+		return tipService.getTipList(id,page);
+	}
+	
+	//페이징 Prefer
+	@GetMapping(path ="/member/myLovePageing")
+	@ResponseBody
+	public Page<Prefer> myLovePageing(HttpSession session, Integer page) {
+		String id = (String)session.getAttribute("memberId");
+		return loveServise.getLoveList(id,page);
+	}
+	
+	//페이징 CompanyPrefer
+	@GetMapping(path ="/member/myLoveComPageing")
+	@ResponseBody
+	public Page<CompanyPrefer> myLoveComPageing(HttpSession session, Integer page) {
+		String id = (String)session.getAttribute("memberId");
+		return comLoveService.getLoveComList(id,page);
+	}
+	
+	
 	
 	// 글 수정
 	@PutMapping(value="/member/updateMember")
@@ -227,7 +341,5 @@ public class MemberController {
 	
 	}
 	
-
-		
 	
 }
