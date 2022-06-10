@@ -20,6 +20,9 @@
 	<link rel="stylesheet" th:href="@{/css/structure.css}">
 	<link rel="stylesheet" th:href="@{/css/main.css}">
 	<link rel="stylesheet" th:href="@{/css/responsive.css}">
+	
+	<!-- 퀵메뉴바 css -->
+	<link rel="stylesheet" th:href="@{/css/nav.css}">
 
 	<!-- font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
@@ -110,10 +113,13 @@
                 </div><!-- /.container -->
             </div><!-- /.section-content -->
         </div><!-- /.sg-section -->
+        
+    <!-- 퀵메뉴바 -->
+	<div th:replace="/sections/nav :: div"></div>
 
     <!-- footer -->
     <div th:replace="/sections/footer :: footer"></div>
-
+    
     <!-- JS -->
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/popper.min.js}"></script>
@@ -141,6 +147,12 @@
         	const pageCnt = /*[[ ${cntCEst} ]]*/ +0;
         	/*]]*/
     </script>
+    
+    <!-- 퀵메뉴 js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+	
 </body>
 
 </html>
