@@ -48,7 +48,10 @@
 	    
 	    <!-- header css -->
         <link rel="stylesheet" th:href="@{/css/sections/header.css}">
-	    
+        
+        <!-- 퀵메뉴바 css -->
+		<link rel="stylesheet" th:href="@{/css/nav.css}">
+        
 	    <!-- 개인 css 설정 -->
 	    <link rel="stylesheet" th:href="@{/css/jy/jy.css}">
 	    
@@ -60,7 +63,7 @@
 	    </div><!-- preloader -->
 	
 	    <!-- 헤더 -->
-        <div th:replace="/sections/header :: header"></div>
+        <div th:replace="sections/header :: header"></div>
         <!-- 헤더 끝 -->
 	
 	    <section class="breadcrumb-section ">
@@ -178,9 +181,12 @@
 		<!-- 버튼 끝 -->
 		
 		<!-- 푸터 -->
-        <div th:replace="/sections/footer :: footer"></div>
+        <div th:replace="sections/footer :: footer"></div>
 		<!-- 푸터 끝 -->
-	
+		
+		<!-- 퀵메뉴바 -->
+		<div th:replace="sections/nav :: div"></div>
+		
 	    <!-- JS -->
 	    <script th:src="@{/js/jquery.min.js}"></script>
 	    <script th:src="@{/js/popper.min.js}"></script>
@@ -197,6 +203,11 @@
 	    
 	    <!-- header js -->
         <script th:src="@{/js/sections/header.js}"></script>
+        
+        <!-- 퀵메뉴 js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+		<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
         
 	    <!-- 인테리어팁용 js 파일 -->
 	    <script th:src="@{/js/tip_main.js}"></script>
