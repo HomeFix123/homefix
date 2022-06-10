@@ -47,6 +47,8 @@
 	<!-- preloader -->
 
 	<div th:replace="sections/header :: header"></div>
+	<!-- 퀵메뉴바 -->
+	<div th:replace="sections/nav :: div"></div>
 	
 	<section class="breadcrumb-section" id="bragListHeaderImg" >
 		<div class="container" id="bragListHeaderTitle">
@@ -275,9 +277,10 @@
 	<script th:src="@{/js/bs/bragList.js}"></script>
 	<script th:src="@{/js/sections/header.js}"></script>
 
-	<script type="text/javascript">
-
-        
-    </script>
+	<!-- 퀵메뉴 js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+	
 </body>
 </html>

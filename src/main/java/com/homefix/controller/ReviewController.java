@@ -45,7 +45,7 @@ public class ReviewController {
 		}
 		reviewService.saveReview(rev, cid);
 		logger.info("입력성공");
-		return "redirect:/review/write";
+		return "redirect:/review";
 	}
 	
 	// 시공후기 목록
