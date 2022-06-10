@@ -73,34 +73,22 @@ public class CompanyController {
 	// 로그인하기
 	@PostMapping("/company/companyLogin")
 	public String loginCheck(Company com, HttpSession session, Model model) {
-
+		  Company coms = companyService.login(com);
+			  if (encoder.matches(com.getPass(), coms.getPass())) {
+			  session.setAttribute("userId", coms.getId());
+			  session.setAttribute("companyName",coms.getName());
+			  model.addAttribute("message", "Y"); return "redirect:/index"; }else {
+			 model.addAttribute("message", "N"); return "sign/sign-in"; }
 //		Company coms = companyService.login(com);
-//		System.out.println(encoder.matches(coms.getPass(), com.getPass()));
-//		System.out.println("로그인 아이디:" + coms.getId());
-//		System.out.println("로그인 아이디:" + coms.getPass());
-//		System.out.println("로그인 아이디:" + com.getPass());
-
-		/*
-		 * if (encoder.matches( com.getPass(), "{"+coms.getId()+"}"+coms.getPass())) {
-		 * session.setAttribute("userId", coms.getId());
-		 * session.setAttribute("companyName",coms.getName());
-		 * model.addAttribute("message", "Y"); return "redirect:/index"; }else {
-		 * model.addAttribute("message", "N"); return "sign/sign-in"; }
-		 */
-
-		Company coms = companyService.login(com);
-		System.out.println("로그인 아이디:" + coms.getId());
-		System.out.println("로그인 아이디:" + coms.getPass());
-		System.out.println("로그인 아이디:" + com.getPass());
-		if (coms.getPass().equals(coms.getPass())) {
-			session.setAttribute("userId", coms.getId());
-			session.setAttribute("companyName", coms.getName());
-			model.addAttribute("message", "Y");
-			return "redirect:/index";
-		} else {
-			model.addAttribute("message", "N");
-			return "sign/sign-in";
-		}
+//		if (coms.getPass().equals(coms.getPass())) {
+//			session.setAttribute("userId", coms.getId());
+//			session.setAttribute("companyName", coms.getName());
+//			model.addAttribute("message", "Y");
+//			return "redirect:/index";
+//		} else {
+//			model.addAttribute("message", "N");
+//			return "sign/sign-in";
+//		}
 
 	}
 
@@ -125,7 +113,7 @@ public class CompanyController {
 	// 사업자 정보수정
 	@PutMapping("/company/companyUpdate")
 	public String companyUpdate(Company com) {
-		com.setPass(encoder.encode(com.getPass()));
+		com.setPass(encoder.encode(com.getPass()));// 비밀번호 인코딩
 		companyService.companyUpdate(com);
 		return "redirect:/company/profile";
 	}
@@ -159,7 +147,7 @@ public class CompanyController {
 	@PostMapping("/company/signUpB")
 	public String companyInsert(Company com) {
 		com.setEnabled(true);
-		//com.setPass(encoder.encode(com.getPass()));
+		com.setPass(encoder.encode(com.getPass()));
 		com.setRole(Role.ROLE_COMPANY);
 		String num = com.getNum();
 		com.setNum(num.replaceAll("-", ""));
@@ -181,7 +169,6 @@ public class CompanyController {
 	// 비밀번호 임시 발급
 	// Email과 name의 일치여부를 check하는 컨트롤러
 	@GetMapping("/checkFindPw")
-
 	public @ResponseBody Map<String, Boolean> pw_find(String email, String id) {
 		Map<String, Boolean> json = new HashMap<>();
 		System.out.println("제이슨 :: " + json);

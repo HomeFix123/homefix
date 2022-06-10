@@ -48,12 +48,12 @@
 
 <body>
 	<div id="preloader">
-		<img src="images/preloader.gif" alt="Image"
+		<img src="/images/preloader.gif" alt="Image"
 			class="tr-preloader img-fluid">
 	</div>
 	<!-- preloader -->
 	<div th:replace="sections/header :: header"></div>
-<hr>
+	<hr>
 	<!-- /.sa-header -->
 
 	<section class="breadcrumb-section">
@@ -89,7 +89,7 @@
 													class="user-name" id="companyName"
 													th:text="${session['companyName']}"></span>]
 											</div>
-											</div>
+										</div>
 									</li>
 
 									<li class="nav-item"><a class="nav-link active"
@@ -109,15 +109,14 @@
 										id="user-four-tab" data-bs-toggle="tab"
 										data-bs-target="#user-four" role="tab"
 										aria-controls="user-four" aria-selected="false"> 회원정보 수정 </a></li>
-									<li class="nav-item"><a class="nav-link" th:href="@{/estimation/Chosen}"
-										>신청한 견적 보기</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/estimation/Chosen}">신청한 견적 보기</a></li>
 
 									<li class="nav-item"><a class="nav-link "
-										th:href="@{/estimation/Progress}">시공
-											중인 견적 보기</a></li>
+										th:href="@{/estimation/Progress}">시공 중인 견적 보기</a></li>
 
 
-									
+
 								</ul>
 								<!---------------------------------------------------------tab시작부분-------------------------------------------------------------------------------->
 								<div class="tab-content">
@@ -142,6 +141,13 @@
 														role="tabpanel" aria-labelledby="pills-home-tab">
 														<div class="row">
 															<div class="row" id="myReviswList">
+																<div th:if="${ #lists.size(Review)<=0}">
+																	<h1>작성한 글이 없습니다.</h1>
+
+																</div>
+
+
+
 																<div th:each="list : ${Review}"
 																	class="col-12 col-md-6 col-lg-4  ">
 																	<div class="sa-post">
@@ -247,7 +253,12 @@
 																			<th>구독권 종료일</th>
 																		</tr>
 																	</thead>
+																	<div th:if="${ #lists.size(PaymentInfo)<=0}">
+																			<h1>작성된 글이 없습니다.</h1>
+
+																		</div>
 																	<tbody class="paymentInfoTR" id="paymentInfoAdd">
+																		
 																		<tr th:each="paymentInfo : ${PaymentInfo}">
 
 																			<td th:text="${paymentInfo.pid}"></td>
@@ -350,8 +361,8 @@
 													</div>
 													<div class="form-group">
 														<label for="password">비밀번호<span class="error_box"></span></label><input
-															type="password" class="form-control" id="password" placeholder="영문자 및 숫자 조합 4~10글자"
-															name="pass">
+															type="password" class="form-control" id="password"
+															placeholder="영문자 및 숫자 조합 4~10글자" name="pass">
 													</div>
 													<div class="form-group">
 														<label for="two_password">비밀번호 확인<span

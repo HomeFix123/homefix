@@ -2,6 +2,7 @@ package com.homefix.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -27,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		security.userDetailsService(companyUserDetailsService);
 		security.csrf().disable();// Restfull 사용자는 csrf는 disable로 설정한다.
 	}
-
+	
 	// 비밀번호 인코더
 	@Bean
 	public PasswordEncoder passwordEncoder() {

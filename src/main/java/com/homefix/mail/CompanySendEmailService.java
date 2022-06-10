@@ -20,7 +20,7 @@ public class CompanySendEmailService{
     @Autowired
     private JavaMailSender mailSender;
     
-    private static final String FROM_ADDRESS = "wpaa91@gmail.com";
+    private static final String FROM_ADDRESS = "ducksoo93@gmail.com";
 
  
 
