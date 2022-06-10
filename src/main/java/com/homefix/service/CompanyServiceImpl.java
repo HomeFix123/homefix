@@ -1,12 +1,13 @@
 package com.homefix.service;
 
-import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
 import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
@@ -134,6 +135,24 @@ public class CompanyServiceImpl implements CompanyService {
 		int showCntPerPage = 6;
 		Pageable pageable = (Pageable) PageRequest.of(page - 1, showCntPerPage, Sort.by("rdate").descending());
 		return reviewRepo.findByCompany(com, pageable);
+	}
+	
+	
+	//사업자 임시 비밀번호 발급
+	public boolean companyEmailCheck(String email, String id) {
+       Company com = companyRepo.findById(id).get();
+        if(com!=null && com.getEmail().equals(email)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+	}
+	
+	//사업자 아이디 찾기
+	public Company companyNameTelCheck(String ceo,String tel){
+		return companyRepo.findByCeoAndTel(ceo, tel);
+      
 	}
 
 
