@@ -1,4 +1,7 @@
 /* header */
+*{
+	font-family: 'Noto Sans KR', sans-serif;
+}
 .chatList {
     position: absolute;
     top: 100%;  
