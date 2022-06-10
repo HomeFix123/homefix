@@ -49,10 +49,9 @@
 	    <!-- header css -->
         <link rel="stylesheet" th:href="@{/css/sections/header.css}">
         
-        <!-- 퀵메뉴바 css -->
-		<link rel="stylesheet" th:href="@{/css/nav.css}">
+        <!-- 인테리어 팁 페이지는 퀵 메뉴 없애기로 함 -->
         
-	    <!-- 개인 css 설정 -->
+        <!-- 개인 css 설정 -->
 	    <link rel="stylesheet" th:href="@{/css/jy/jy.css}">
 	    
 		</head>
@@ -105,13 +104,10 @@
 	                                    <div style="padding: 10px;"><span th:text="${tip.tcontent}"></span></div><!-- <img src="" alt="" class="mainPic"> --> <!-- 이미지 입력 란 -->
 										
 										<!-- 좋아요 -->
-										<!-- <a href="#"> <i id="heart" class="my-2 far fa-heart"></i></a>-->
-	                                    <!-- 꽉찬하트 <a href="#"> <i id="fill-heart" class="fa fa-heart"></i>-->
-				
-										<button th:if="${tip.preferck == false}" th:value="${tip.tid}" class="preferSave bg-light" id="love">
+										<button th:if="${tip.preferck == false || tip.preferck == null}" th:value="${tip.tid}" class="preferSave" id="love">
 											<i id="prefer" class="far fa-heart"></i>
 										</button>
-										<button th:if="${tip.preferck == true}" th:value="${tip.tid}" class="preferSave bg-light" id="love">
+										<button th:if="${tip.preferck == true}" th:value="${tip.tid}" class="preferSave" id="love">
 											<i id="prefer" class="fas fa-heart"></i>
 										</button> <a class="preferCnt"   th:text="${#lists.size(tip.tipPreferList)}"></a> <input type="hidden" name="tid" th:value="${tip.tid}"> <input type="hidden" name="preferck" th:value="${tip.preferck}"> 
 									</div>
@@ -169,23 +165,17 @@
 	    </div><!-- /.sa-section -->
 	    </div>
 	    </div>
-	    
 	    <!-- /인테리어팁 내용물들 끝-->
-		<!-- top 이동 버튼 -->
-		<a id="toTop" href="#">
-			<h6>TOP</h6>
-		</a>
-		<!-- /top 이동 버튼 끝 -->
-		<!-- 버튼 -->
-		<a th:href="@{/tip/write}"><button id="insertTip"> +글쓰기 </button></a>
-		<!-- 버튼 끝 -->
+		
+		<!-- 퀵버튼 -->
+		<div class = "tip-quick">
+			<a th:href="@{/tip/write}"><button id="insertTip-write"> +글쓰기 </button></a>
+			<a href="#"><button id="insertTip-top">TOP</button></a>
+		</div>
 		
 		<!-- 푸터 -->
         <div th:replace="sections/footer :: footer"></div>
 		<!-- 푸터 끝 -->
-		
-		<!-- 퀵메뉴바 -->
-		<div th:replace="sections/nav :: div"></div>
 		
 	    <!-- JS -->
 	    <script th:src="@{/js/jquery.min.js}"></script>
@@ -203,11 +193,6 @@
 	    
 	    <!-- header js -->
         <script th:src="@{/js/sections/header.js}"></script>
-        
-        <!-- 퀵메뉴 js -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-		<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
         
 	    <!-- 인테리어팁용 js 파일 -->
 	    <script th:src="@{/js/tip_main.js}"></script>

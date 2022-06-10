@@ -38,16 +38,20 @@ public class TipServiceImpl implements TipService {
 
 		//리스트 팁으로 받음
 		List<Tip> result = tipRepo.findAll(pageable);
-		for(Tip temp : result) {
-			List<Tip_prefer> list = tipPreferRepo.findByTipAndMember(temp, memberRepo.findById(id).get());
+		
+		if(id != null) {
+			for(Tip temp : result) {
+				List<Tip_prefer> list = tipPreferRepo.findByTipAndMember(temp, memberRepo.findById(id).get());
 			
-			if (list.size() > 0) {
-				temp.setPreferck(true);
-			} else {
-				temp.setPreferck(false);
+				if (list.size() > 0) {
+					temp.setPreferck(true);
+				} else {
+					temp.setPreferck(false);
+				}
+				System.out.println(temp.getPreferck());
 			}
-			System.out.println(temp.getPreferck());
 		}
+		
 		
 		return result;
 	}

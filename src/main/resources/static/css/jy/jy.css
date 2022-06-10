@@ -245,6 +245,9 @@
 .preferSave {
 	background-color: transparent;
 }
+.preferSave:hover {
+	background-color: transparent;
+}
 
 .preferDelete {
 	background-color: transparent;
@@ -254,6 +257,30 @@
 	color: red;
 	padding-left:8px;
 	font-size: 20px;
+}
+
+/*댓글 테두리*/
+.input-comment{
+	outline: 1px solid #D5D5D5;
+	padding: 7px;
+	padding-top: 19px;
+	padding-bottom: 19px;
+	border-radius: 0px;
+}
+
+.input-comment:focus {
+	border: 1px solid #D5D5D5;
+}
+
+/* 댓글 등록 버튼 */
+.submit-comment{
+	background-color: transparent;
+	padding-top:0px;
+}
+
+.submit-comment:hover{
+	background-color: transparent;
+	
 }
 
 /*댓글 삭제*/
