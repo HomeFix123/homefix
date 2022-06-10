@@ -50,4 +50,7 @@ public interface CompanyService {
  
 	//아이디찾기
 	public Company companyNameTelCheck(String ceo,String tel);
+	
+	// 업체 북마크
+	public void modifyBookMark(String memberId, String cid, boolean bookMark);
 }
