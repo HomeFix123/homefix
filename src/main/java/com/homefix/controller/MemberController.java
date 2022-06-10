@@ -117,8 +117,6 @@ public class MemberController {
 	@PostMapping(value = "/member/memSave")
 	public String memberInsert(Member mem) throws IOException {
 		mem.setEnabled(true);
-		
-		//스프링 시큐리티 적용시 주석 해제
 		mem.setPassword(encoder.encode(mem.getPassword()));
 		mem.setRole(Role.ROLE_USER);
 		
@@ -133,10 +131,6 @@ public class MemberController {
 	public String LoginMember(Member mem, HttpSession session, Model model) {
 		Member mems = memberService.login(mem);
 
-		if (mems != null) {
-
-			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
 			if (encoder.matches(mem.getPassword(), mems.getPassword())) {
 
 				session.setAttribute("memberId", mems.getId());
@@ -144,7 +138,7 @@ public class MemberController {
 				session.setAttribute("memLogin", mems);
 				model.addAttribute("session", session);
 				model.addAttribute("message", "Y");
-				System.out.printf("로그인시 아이디 체크 : " + mem.getPassword(), mems.getPassword());
+				System.out.printf("로그인시 패스워드 체크 : " + mem.getPassword(), mems.getPassword());
 				return "redirect:/index";
 			} else {
 				model.addAttribute("message", "N");
@@ -152,8 +146,6 @@ public class MemberController {
 						+ mems.getPassword());
 				return "sign/sign-in";
 			}
-		}
-		return null;
 		
 //		if (mems != null) {
 //			System.out.println("로그인 성공함");
@@ -306,7 +298,6 @@ public class MemberController {
 	}
 	
 	
-	
 	// 글 수정
 	@PutMapping(value="/member/updateMember")
 	public String updateMember(Member mem) {	
@@ -321,10 +312,10 @@ public class MemberController {
 	@ResponseBody
 	public String memberSecession(String password, HttpSession session) {
 		Member mem = new Member();
-		System.out.println("세션 아이디 확인: " + session.getAttribute("memberId"));
-		System.out.println("세션 비밀번호 확인: " + session.getAttribute("memberPass"));
-		mem.setPassword((String) session.getAttribute("memberPass"));
+		
 		mem.setId((String) session.getAttribute("memberId"));
+		
+		mem.setPassword((String) session.getAttribute("memberPass"));
 		String passCheck = memberService.memberDelete(mem);
 		System.out.println("패스워드 체크"+passCheck);
 		if (passCheck == "Y") {
@@ -364,6 +355,14 @@ public class MemberController {
 	public @ResponseBody void sendEmail(String email, String id){
 	    MailDto dto = sendEmailService.createMailAndChangePassword(email, id);
 	    sendEmailService.mailSend(dto);
+	
+	}
+	
+	// 아이디찾기
+	@GetMapping("/check/FindId")
+	@ResponseBody
+	public String findMemberId(String email, String tel) {
+		return memberService.memberEmailTelCheck(email, tel).getId();
 	
 	}
 	

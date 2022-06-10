@@ -36,6 +36,9 @@ public interface MemberService {
 	
 	//임시 비밀번호 발급용
 	public boolean userEmailCheck(String email, String id);
+	
+	//개인 아이디 찾기
+	public Member memberEmailTelCheck(String email, String tel);
 
 	//마이페이지
 	public List<Member> myPageList(Member mem);
