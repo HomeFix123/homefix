@@ -28,6 +28,8 @@
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
 <!--eunhye css  -->
 <link rel="stylesheet" th:href="@{/css/eh/companyMypage.css}">
+<!-- header css -->
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
 <!-- 퀵메뉴바 css -->
 <link rel="stylesheet" th:href="@{/css/nav.css}">
 <!-- font -->
@@ -239,8 +241,10 @@
 												<!-- 견적 테이블 -->
 												<div class="shopping-cart">
 													<div class="container">
-
-														<div class="row" style="border: none;">
+														<div  th:if="${#lists.size(PaymentInfo)== 0}" class="text-center pt-3">
+															<h4>검색 결과가 없습니다.</h4>
+														</div>
+														<div th:if="${#lists.size(PaymentInfo)!= 0}" class="row" style="border: none;">
 															<form class="woocommerce-cart-form">
 																<table class="table" id="paymentInfo">
 																	<thead th:if="${ #lists.size(PaymentInfo)>0}">
@@ -625,6 +629,8 @@
 	<script th:src="@{/js/jquery-ui-min.js}"></script>
 	<script th:src="@{/js/validate.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
+	<!-- header js -->
+	<script th:src="@{/js/sections/header.js}"></script>
 	<!--카카오 주소입력 스크립트-->
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

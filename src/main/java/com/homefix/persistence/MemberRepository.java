@@ -25,6 +25,9 @@ public interface MemberRepository extends CrudRepository<Member, String>{
 	//임시비밀번호 발급-------------------------	
 	public Member findMemberByEmail(String email);
 	
+	//아이디 찾기 ----------------------------
+	public Member findByEmailAndTel(String email, String tel);
+	
 	//회원정보 수정
 	public Optional<Member> findById(String id);
 
@@ -33,5 +36,6 @@ public interface MemberRepository extends CrudRepository<Member, String>{
 	
 	// 카카오로 로그인
 	public Member findByKakao(String kakaoId);
+	
 
 }

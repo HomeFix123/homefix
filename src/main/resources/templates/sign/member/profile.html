@@ -139,7 +139,8 @@
                                     <li>
                                         <div class="user-info">
                                             <div class="profile-picture">
-                                                <img th:src="|http://140.238.11.118:5000/upload/${session['memLogin'].profilimg}|" alt="Profile Picture">
+                                                <img th:if="${session['memLogin'].profilimg == null }"  th:src="|http://140.238.11.118:5000/upload/profile_basic.png|" alt="Profile Picture">
+                                                <img th:if="${session['memLogin'].profilimg != null }" th:src="|http://140.238.11.118:5000/upload/${session['memLogin'].profilimg}|" alt="Profile Picture">
                                             </div>
                                             <div>
 													[<span

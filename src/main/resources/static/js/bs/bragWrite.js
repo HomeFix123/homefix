@@ -1,14 +1,7 @@
 $(document).ready(function() {
-	var currentPosition = parseInt($(".quickmenu").css("top"));
-
-
-	$(window).scroll(function() {
-		var position = $(window).scrollTop();
-		$(".quickmenu").css("top", position + currentPosition + "px");
-	});
-
+	
+	// 웹 에디터 Summernote
 	$('#summernote').summernote({
-		placeholder: 'Hello Bootstrap 4',
 		tabsize: 2,
 		minHeight: 500,
 		toolbar: [
@@ -27,8 +20,10 @@ $(document).ready(function() {
 
 		lang: 'ko-KR',
 		placeholder: '최대 2048자까지 쓸 수 있습니다.',
+		// 이미지 저장을 위한 콜백 기능		
 		callbacks: {
 			onImageUpload: function(files, editor, welEditable) {
+				// 다중 이미지 처리를 위한 for문
 				for (let i = files.length - 1; i >= 0; i--) {
 					sendFile(files[i], this);
 				}
@@ -36,14 +31,13 @@ $(document).ready(function() {
 		}
 
 	});
-
+	
+	// 인테리어 자랑 세부사항 펼치기
 	$(".writedetailbtn").on("click", function() {
 		$(".writedetail").slideToggle();
 	})
 
-	/**
-	 * 섬네일 이미지 미리보기
-	 */
+	 //섬네일 이미지 미리보기
 	function readImage(input) {
 		if (input.files && input.files[0]) {
 			const reader = new FileReader();
@@ -66,7 +60,7 @@ $(document).ready(function() {
 	})
 
 
-
+	// 작성하기
 	$('.writebtn').click(function() {
 		const imageInput = $('#inputImage')[0];
 		const title = document.querySelector('.writeTitle');
@@ -74,6 +68,8 @@ $(document).ready(function() {
 
 		// 파일을 여러개 선택할 수 있으므로 files 라는 객체에 담긴다.
 		console.log("imageInput: ", imageInput.files)
+		
+		//유효성 검사
 		if (title.value.trim() < 1) {
 			title.focus();
 			alert("제목을 입력해주세요.");
@@ -137,8 +133,6 @@ $(document).ready(function() {
 			return;
 		}
 
-		
-
 		if (imageInput.files.length === 0) {
 			alert("대표사진을 넣어주세요.");
 			return;
@@ -146,14 +140,16 @@ $(document).ready(function() {
 
 
 		const formData = new FormData();
+		// 이미지 파일명 uuid 적용
 		formData.append("file", imageInput.files[0], uuid(imageInput.files[0].name));
-		console.log(formData.get('file'))
+		// 이미지 파일명 저장
 		$('#bimgadr').val(formData.get('file').name);
 
-
+		// 이미지 파일 이미지 웹서버로 전송
 		$.ajax({
 			type: "POST",
 			url: "http://140.238.11.118:5000/upload",
+			// processData, contentType 없으면 에러
 			processData: false,
 			contentType: false,
 			data: formData,
@@ -180,7 +176,7 @@ $(document).ready(function() {
 		return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4() + file_nm.substr(file_nm.indexOf("."), file_nm.length - 1).toLowerCase();
 	}
 
-	// summernote 이미지 저장
+	// summernote 다중 이미지 저장
 	function sendFile(file, el) {
 		let formData = new FormData();
 		formData.append('file', file, uuid(file.name));

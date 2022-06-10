@@ -80,7 +80,6 @@ $(".submit-comment").click(function(){
 	
 	// 댓글등록시 댓글 입력란 비우기
 	$(this).siblings('.input-comment').val("");
-	
 });
 
 

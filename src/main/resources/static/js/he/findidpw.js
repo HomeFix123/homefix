@@ -37,5 +37,26 @@ $("#findpw").click(function() {
             }
         })// ajaz
     })//click
+    
+/*아이디 찾기 - 이메일/전화번호 매치*/
+//아이디 찾기
 
+$("#findid").click(function() {
+	let email = $("#email").val();
+	let tel = $("#tel").val();
+	console.log(email+"/"+tel)
+	$.ajax({
+		type: "get",
+		url: "/sign/check/FindId",
+		data: {
+			"email": email,
+			"tel": tel
+		},
+		success: function(res) {
+			alert("아이디는 "+res+"입니다.");
+			console.log(res);
+			
+            }
+        })// ajaz
+    })//click
 
