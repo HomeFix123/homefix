@@ -73,6 +73,8 @@ public class CompanyController {
 	// 로그인하기
 	@PostMapping("/company/companyLogin")
 	public String loginCheck(Company com, HttpSession session, Model model) {
+		//com.setPass(encoder.encode(com.getPass()));
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		if (companyService.login(com) != null) {
 			session.setAttribute("userId", com.getId());
 			session.setAttribute("companyName", companyService.login(com));
@@ -105,7 +107,7 @@ public class CompanyController {
 	// 사업자 정보수정
 	@PutMapping("/company/companyUpdate")
 	public String companyUpdate(Company com) {
-		com.setPass(encoder.encode(com.getPass()));
+		//com.setPass(encoder.encode(com.getPass()));
 		companyService.companyUpdate(com);
 		return "redirect:/company/profile";
 	}

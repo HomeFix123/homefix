@@ -22,8 +22,8 @@ $(function() {
 	var RegexId = /^[a-zA-z0-9]{4,12}$/; //아이디는 영문 대소문자와 숫자 4~12자리
 	//업체명
 	var RegexCompany = /^[가-힣a-zA-Z0-9]{1,10}$/;
-	var RegexEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-	var RegexPW = /^[a-zA-Z0-9]{4,10}$/; //8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합
+	var RegexEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+	var RegexPW = /^(?=.*[a-zA-z])(?=.*[0-9]).{4,10}$/; //4 ~ 10자 영문, 숫자 최소 한가지씩 조합
 	var RegexName = /^[가-힣]+$/;
 	//전화번호
 	var RegexTel = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
@@ -84,24 +84,6 @@ $(function() {
 	//이미지 변경
 	const form = $('#companyModify');
 	const img = $('#cinfo_img');
-	// form submit버튼 누른 후 동작
-	// 이미지 저장후 submit 
-	$('#companyUpdate').click(() => {
-		const imageInput = $('#inputImage')[0]; // input에서 이미지 가져오기
-		const formData = new FormData();
-		if (imageInput.files[0] != null) {
-			// 이미지명 uuid로 변경
-			const imgName = uuid(imageInput.files[0].name);
-			formData.append("file", imageInput.files[0], imgName);
-
-			const result = saveImage(formData); //이미지 저장
-			if (result) {
-				// 결과가 성공시 input hidden에 이미지명 넣기(DB에 저장할 이미지명)
-				img.val(imgName);
-			}
-		}
-		form.submit()
-	})
 
 	// uuid 생성
 	function uuid(file_nm) {
@@ -188,7 +170,7 @@ $(function() {
 		}
 
 		if (!RegexPW.test(memberPassword)) {
-			$('label[for="password"] .error_box').html("8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합하여 만들어 주십시오.");
+			$('label[for="password"] .error_box').html("4 ~ 10자 영문, 숫자를 최소 한가지씩 조합하여 만들어 주십시오.");
 			$('label[for="password"] .error_box').css('color', '#dc3545');
 			return false;
 		} else {
@@ -213,7 +195,7 @@ $(function() {
 			return false;
 		}
 
-	
+
 
 
 		if (memberEmail == '') {
@@ -255,6 +237,24 @@ $(function() {
 		} else {
 			$('label[for="first-name1"] .error_box').html("");
 		}
+
+
+		// form submit버튼 누른 후 동작
+		// 이미지 저장후 submit 
+		const imageInput = $('#inputImage')[0]; // input에서 이미지 가져오기
+		const formData = new FormData();
+		if (imageInput.files[0] != null) {
+			// 이미지명 uuid로 변경
+			const imgName = uuid(imageInput.files[0].name);
+			formData.append("file", imageInput.files[0], imgName);
+
+			const result = saveImage(formData); //이미지 저장
+			if (result) {
+				// 결과가 성공시 input hidden에 이미지명 넣기(DB에 저장할 이미지명)
+				img.val(imgName);
+			}
+		}
+		form.submit()
 		alert("회원 정보 수정이 완료되었습니다.");
 	}) //end of #btnMemberUpdate
 
@@ -302,7 +302,7 @@ $(function() {
 	3. 2페이지 정보를 1페이지 정보 밑에 추가한다*/
 
 	var pageA = 1;  // 초기 페이지
-	$('#moreBtn').click(function(){
+	$('#moreBtn').click(function() {
 		pageA += 1;
 		$.ajax({
 			data: { "page": pageA },
@@ -312,8 +312,8 @@ $(function() {
 			contentType: 'application/x-www-form-urlencoded;charset=utf-8'
 		}).done((Result) => {
 			$.each(Result, function(i, payment) { //Result 리스트에 들어있는 payment객체로 each문 돌림.
-				let AddContent = '<tr><td>'+payment.pid+'</td><td>'+payment.method+'</td><td >'+payment.amount+'</td><td>'+payment.pday
-				+'</td><td >'+payment.plast+'</td></tr >';
+				let AddContent = '<tr><td>' + payment.pid + '</td><td>' + payment.method + '</td><td >' + payment.amount + '</td><td>' + payment.pday
+					+ '</td><td >' + payment.plast + '</td></tr >';
 				$('#paymentInfoAdd').append(AddContent);
 			})
 
@@ -325,7 +325,7 @@ $(function() {
 			// 실패했을 때
 			console.log(err);
 		});
-		
+
 	})
 
 
@@ -375,10 +375,10 @@ $(function() {
 			contentType: 'application/x-www-form-urlencoded;charset=utf-8'
 		}).done((Result) => {
 			$.each(Result, function(i, estimation) { //Result 리스트에 들어있는 estimation객체로 each문 돌림.
-				let AddContent = '<tr > <td> <a class="estNum" href="/estimation/ChosenDetail(id='+estimation.eid+'"> <span>'+estimation.eid+
-				'</span> </a> </td> <td> <span>'+estimation.eaddr +'</span> </td> <td> <span>'+estimation.startDay+
-				'</span> </td> <td> <span>'+estimation.member.id+'</span></td></tr>';
-				
+				let AddContent = '<tr > <td> <a class="estNum" href="/estimation/ChosenDetail(id=' + estimation.eid + '"> <span>' + estimation.eid +
+					'</span> </a> </td> <td> <span>' + estimation.eaddr + '</span> </td> <td> <span>' + estimation.startDay +
+					'</span> </td> <td> <span>' + estimation.member.id + '</span></td></tr>';
+
 				$('#registEstTbody').append(AddContent);
 			})
 
