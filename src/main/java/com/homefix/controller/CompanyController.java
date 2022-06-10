@@ -122,16 +122,16 @@ public class CompanyController {
 	@DeleteMapping("/Withdrawal")
 	@ResponseBody
 	public String companyDelete(String pass, HttpSession session) {
+		String passCheck ="N";
 		Company com = new Company();
-		com.setPass(pass);
 		com.setId((String) session.getAttribute("userId"));
-		String passCheck = companyService.companyDelete(com);
-		if (passCheck == "Y") {
-			session.invalidate();
-			return passCheck;
-		} else {
-			return passCheck;
-		}
+		 Company coms = companyService.login(com);
+		  if (encoder.matches(pass, coms.getPass())) {
+			  passCheck="Y";
+			  companyService.companyDelete(com);
+			  session.invalidate();
+		  }
+		  return passCheck;
 
 	}
 
@@ -151,6 +151,9 @@ public class CompanyController {
 		com.setRole(Role.ROLE_COMPANY);
 		String num = com.getNum();
 		com.setNum(num.replaceAll("-", ""));
+		if(com.getLogo()==null) {
+			com.setLogo("profile_basic.png");
+		}
 		companyService.companyInsert(com);
 		return "redirect:/index";
 	}
@@ -191,6 +194,5 @@ public class CompanyController {
 	@ResponseBody
 	public String findCompanyId(String ceo, String tel) {
 		return companyService.companyNameTelCheck(ceo, tel).getId();
-
 	}
 }

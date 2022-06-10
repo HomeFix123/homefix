@@ -75,3 +75,18 @@ select,option{
 #pridiv{
 		margin: 50px;
 }
+
+.companyInfoList{
+	text-align: left;
+}
+.companyInfoList > li {
+	margin: 10px;
+}
+
+#companyBookMark {
+	text-align: right;
+}
+#companyBookMark > a {
+	margin-right: 20px;
+	font-size: 30px;
+}

@@ -22,7 +22,7 @@ public interface CompanyService {
 	public Company login(Company com);
 
 	// 사업자 회원 탈퇴
-	public String companyDelete(Company com);
+	public void companyDelete(Company com);
 
 	// 사업자 정보 조회
 	public Company getCompanyMyInfo(String companyId);
@@ -50,4 +50,7 @@ public interface CompanyService {
  
 	//아이디찾기
 	public Company companyNameTelCheck(String ceo,String tel);
+	
+	// 업체 북마크
+	public void modifyBookMark(String memberId, String cid, boolean bookMark);
 }

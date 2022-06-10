@@ -37,9 +37,10 @@ public class TipController {
 	public String tipList(Model m, Integer page, HttpSession session) {
 		if(page == null) page = 1;
 		String id = (String)session.getAttribute("memberId");
-		if ( id== null) {
-			return "redirect:/sign";
-		}
+		String cid = (String)session.getAttribute("userId");
+		if ( id== null && cid == null) {
+			return "redirect:/sign"; // 멤버 아이디가 없으면 로그인 페이지로 이동
+		} 
 		Tip tip = new Tip();
 		//List<Tip> list = tipService.getTipList(tip);
 		m.addAttribute("cntTip", tipService.countEstList()); //페이징
