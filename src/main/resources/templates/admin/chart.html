@@ -23,7 +23,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
 
         <!-- icons -->
-        <link rel="icon" href="images/ico/favicon.ico"> 
+        <link rel="icon" href="/images/ico/favicon.ico"> 
         <link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
         <link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
         <link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
@@ -94,8 +94,7 @@
 			                    </div><!-- /.section-header -->
 			                    <div class="address-content" id="admin-info">
 			                        <div class="row">
-			                            <iframe id="kibana" src="http://52.78.18.47:5601/goto/0524d443c1529626d31a78a36146517f"></iframe>
-				            
+				            			<iframe id="kibana" src="http://52.78.18.47:5601/goto/b65e15e637fc5cbb3bee0bdf42eed620"></iframe>
 			                        </div><!-- /.row -->
 			                    </div><!-- /.sg-category-content -->
 			                </div><!-- /.container -->
@@ -129,79 +128,7 @@
         
         <!-- 관리자 스크립트 -->
         <script th:src="@{/js/admin_script.js}"></script> 
-        <script th:inline="javascript">
-        	/*<![CDATA[*/
-        	const aggNewUser = /*[[ ${aggNewUser} ]]*/ 
-        	"";
-        	const aggPayment = /*[[ ${aggPayments} ]]*/ 
-        	/*]]*/
-        </script>
-        <script>
-        aggUserLabels = [];
-        aggUserCnt = [];
-        for(let item of aggNewUser){
-        	aggUserLabels.push(item[0]);
-        	aggUserCnt.push(item[1]);
-        }
-        const ctx = document.getElementById('newUserPerMonth').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: aggUserLabels,
-                datasets: [{
-                    label: '가입자 수',
-                    data: aggUserCnt,
-                    backgroundColor: [
-                    	'rgba(54, 162, 235, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(54, 162, 235, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        
-        
-        aggPaymentLabels = [];
-        aggPaymentCnt = [];
-        for(let item of aggPayment){
-        	aggPaymentLabels.push(item[0]);
-        	aggPaymentCnt.push(item[1]);
-        }
-        const ctx2 = document.getElementById('paymentPerMonth').getContext('2d');
-        const myChart2 = new Chart(ctx2, {
-            type: 'line',
-            data: {
-                labels: aggPaymentLabels,
-                datasets: [{
-                    label: '매출액(원)',
-                    data: aggPaymentCnt,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        </script>
+      
         
     </body>
 </html>         

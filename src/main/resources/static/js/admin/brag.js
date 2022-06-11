@@ -6,11 +6,8 @@ $(function(){
 	// 현재 페이지
 	// url 주소에서 page 파라미터 값 불러옴
 	const params = new URLSearchParams(location.search);
-	console.log(page)
-	let currentPage;
-	if(!params.has('page')){
-		currentPage = 1;
-	} else {
+	let currentPage = 1;
+	if(params.has('page')){
 		currentPage = parseInt(params.get("page"));
 	}
 	
