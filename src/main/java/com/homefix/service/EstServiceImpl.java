@@ -86,9 +86,6 @@ public class EstServiceImpl implements EstService {
 		return (long)(estRepo.countByCompany(company)-1)/showCntPerPage + 1;
 	}
 	
-	
-
-	
 	@Override
 	public List<Estimation> getCEst(String cid, Integer page) {
 		Company com = companyRepo.findById(cid).get();
@@ -102,9 +99,6 @@ public class EstServiceImpl implements EstService {
 		return estRepo.findByCompany(com, pageable);
 	}
 
-	
-	
-	
 	@Override
 	public List<Estimation> getMEstimation(String id,Integer page) {
 		int showCntPerPage = 10;
@@ -155,7 +149,7 @@ public class EstServiceImpl implements EstService {
 		
 		if(situation.equals("doing")) {
 			
-			return contractRepo.findByCompanyAndIng(company, "진행중", pageable);
+			return contractRepo.findByCompanyAndIng(company, "진행 중", pageable);
 		}
 		
 		if(situation.equals("done")) {
@@ -217,14 +211,9 @@ public class EstServiceImpl implements EstService {
 	//(회사) 확정요청하기/확정요청완료/확정요청불가 유무
 	@Override
 	public String getEstiReq(Integer eid, String cid) {
-		//cid = "1";
-		//cid = "1426";
-		//cid = "905";
-		//eid=38;
 		Estimation estimation = estRepo.findById(eid).get();
 		Company company  = companyRepo.findById(cid).get();
 		Esti_request estiReq = esti_reqRepo.findByEstimationAndCompany(estimation, company);
-		List<Esti_request> estiReqEid = esti_reqRepo.findByEstimation(estimation);
 		Contract contract = contractRepo.findByEstimation(estimation);
 		//계약테이블에 견적id eid있으면 확정요청불가 버튼
 		if(contract != null) {

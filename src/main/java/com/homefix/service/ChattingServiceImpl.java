@@ -37,19 +37,4 @@ public class ChattingServiceImpl implements ChattingService {
 		return chatRepo.findByMember(member);
 	}
 
-//	@Override
-//	public List<Chatting> getUserChatList(String loginId) {
-//		
-//		if( memberRepo.findById(loginId).isEmpty()) {
-//			System.out.println("회사 아이디임");
-//			Company company = companyRepo.findById(loginId).get();
-//			return chatRepo.findByCompany(company);
-//			
-//		}else {
-//			System.out.println("멤버 아이디임");
-//			Member member = memberRepo.findById(loginId).get();
-//			return chatRepo.findByMember(member);
-//		}
-//	}
-	
 }

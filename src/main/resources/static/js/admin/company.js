@@ -106,6 +106,16 @@ $(function(){
 			
 			
 			let total = 0;
+			if(payList == null || payList.length == 0){
+				let tr = "<tr class='text-center'>"
+				tr += "<td colspan='4'>"
+				tr += "결제 기록이 없습니다."
+				tr += "</td>"
+				tr += "</tr>"
+				paymentTbody.append(tr);
+			}
+			
+			
 			for(let payLog of payList){
 				let tr = "<tr>";
 				tr += "<td>" + new Date(payLog.pday).toLocaleDateString() + "</td>";
@@ -126,7 +136,14 @@ $(function(){
 			reportTbody.children().remove();
 			
 			const reportList = searchReportList(id);
-			
+			if(reportList == null || reportList.length == 0){
+				let tr = "<tr class='text-center'>"
+				tr += "<td colspan='2'>"
+				tr += "신고 기록이 없습니다."
+				tr += "</td>"
+				tr += "</tr>"
+				reportTbody.append(tr);
+			}
 			for(let report of reportList){
 				let tr = "<tr>";
 				tr += "<td>" + new Date(report.rday).toLocaleDateString() + "</td>";

@@ -41,7 +41,7 @@ public interface MemberService {
 	public Member memberEmailTelCheck(String email, String tel);
 
 	//마이페이지
-	public List<Member> myPageList(Member mem);
+	public Member myPageList(Member mem);
 
 	//멤버 탈퇴
 	public String memberDelete(Member mem);
@@ -57,6 +57,8 @@ public interface MemberService {
 	
 	//고객이 좋아요 찍은 업체 목록 불러오기
 	public List<CompanyPrefer> getMyLoveCompany(String id);
+
+	
 
 
 }
