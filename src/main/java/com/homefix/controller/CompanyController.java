@@ -67,7 +67,8 @@ public class CompanyController {
 	@GetMapping("/company/companyNumberCheck")
 	@ResponseBody
 	public String companyNumberCheck(String num) {
-		return companyService.companyNumberCheck(num);
+		String numr=num.replaceAll("-", "");
+		return companyService.companyNumberCheck(numr);
 	}
 
 	// 로그인하기
