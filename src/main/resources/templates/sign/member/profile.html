@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<!-- 타임리프설정 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="">
+<meta name="description" content="">
+
+    <title>Educam | Education & Courses HTML Template.</title>
+    <!-- 폰트어썸 -->
+    
+    <!--카카오 주소입력 스크립트-->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script  th:inline="javascript">
+        function sample6_execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var addr = ''; // 주소 변수
+                    var extraAddr = ''; // 참고항목 변수
+
+                    //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                        addr = data.roadAddress;
+                    } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                        addr = data.jibunAddress;
+                    }
+
+                    // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                    if (data.userSelectedType === 'R') {
+                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                        if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                            extraAddr += data.bname;
+                        }
+                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                        if (data.buildingName !== '' && data.apartment === 'Y') {
+                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                        if (extraAddr !== '') {
+                            extraAddr = ' (' + extraAddr + ')';
+                        }
+                        // 조합된 참고항목을 해당 필드에 넣는다.
+                        document.getElementById("sample6_extraAddress").value = extraAddr;
+
+                    } else {
+                        document.getElementById("sample6_extraAddress").value = '';
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('sample6_postcode').value = data.zonecode;
+                    document.getElementById("sample6_address").value = addr;
+                    // 커서를 상세주소 필드로 이동한다.
+                    document.getElementById("sample6_detailAddress").focus();
+                }
+            }).open();
+        }
+    </script>
+    <!--end 카카오 주소입력 스크립트-->
+    <!--개인 스타일-->
+    <!--haeyun css  -->
+	<link rel="stylesheet" th:href="@{/css/he/memprofile.css}">
+    <!--개인 스타일끝-->
+    <!-- CSS -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/all.min.css}">
+	<link rel="stylesheet" th:href="@{/css/animate.min.css}">
+	<link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+	<link rel="stylesheet" th:href="@{/css/slick.css}">
+	<link rel="stylesheet" th:href="@{/css/structure.css}">
+	<link rel="stylesheet" th:href="@{/css/main.css}">
+	<link rel="stylesheet" th:href="@{/css/responsive.css}">
+	
+	<!-- header css -->
+	<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <!-- icons -->
+	<link rel="icon" th:href="@{/images/ico/favicon.ico}">
+	<link rel="apple-touch-icon" sizes="144x144"
+		th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+	<link rel="apple-touch-icon" sizes="114x114"
+		th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+	<link rel="apple-touch-icon" sizes="72x72"
+		th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+	<link rel="apple-touch-icon" sizes="57x57"
+		th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
+	<!-- icons -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    <!-- Template Developed By ChtStudio -->
+    
+    <!-- 퀵메뉴바 css -->
+	<link rel="stylesheet" th:href="@{/css/nav.css}">
+    
+</head>
+
+<body>
+    <div id="preloader">
+        <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+    </div><!-- preloader -->
+
+    <div th:replace="sections/header :: header"></div>
+    <!-- 퀵메뉴바 -->
+	<div th:replace="/sections/nav :: div"></div> 
+
+    <section class="breadcrumb-section">
+        <div class="container">
+            <h1>User Profile</h1>
+            <p>Personal information & history</p>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Profile</li>
+            </ol>
+        </div><!-- /.container -->
+    </section><!-- /.breadcrumb-section -->
+
+    <div class="sg-page-content">
+        <div class="sg-section">
+            <div class="section-content profile-content section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            <div class="profile-tabs">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li>
+                                        <div class="user-info">
+                                            <div class="profile-picture">
+                                                <img th:if="${session['memLogin'].profilimg == null }"  th:src="|http://140.238.11.118:5000/upload/profile_basic.png|" alt="Profile Picture">
+                                                <img th:if="${session['memLogin'].profilimg != null }" th:src="|http://140.238.11.118:5000/upload/${session['memLogin'].profilimg}|" alt="Profile Picture">
+                                            </div>
+                                            <div>
+													[<span
+													class="user-name" id="memLogin"
+													th:text="${session['memLogin'].nickname}"></span>]
+											</div>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="user-one-tab" data-bs-toggle="tab" data-bs-target="#user-one" role="tab" aria-controls="user-one" aria-selected="true">내가 쓴 글</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a th:href="@{/estimation/MyEstimate(id=${session['memLogin'].id})}" class="nav-link" id="estList" aria-selected="false">작성한 견적</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="user-two-tab" data-bs-toggle="tab" data-bs-target="#user-two" role="tab" aria-controls="user-two" aria-selected="false">회원정보 수정</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="user-three-tab" data-bs-toggle="tab" data-bs-target="#user-three" role="tab" aria-controls="user-three" aria-selected="false">
+                                            <i class="far fa-heart"></i>
+                                        </a>
+                                    </li>
+                                    <div align="center"><!-- th:style="${'position:relative; align:center'}" -->
+                                        <a th:href="@{/sign/member/memberlogout}"><input type="submit" class="btn btn-primary" style="margin-top:50px " value="로그아웃"></a>
+                                    </div>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <!-- *********************************************************************************************************  /내가 쓴글 리스트 끝 ****************************************************************************** -->
+                                    <div class="tab-pane fade show active" id="user-one" role="tabpanel" aria-labelledby="user-one-tab">
+                                        <div class="profile-section">
+                                            <div class="tab-header">
+                                                <h2>내가 쓴 글</h2>
+                                                <p>내가 쓴 글 목록을 보여줍니다.</p>
+                                            </div>
+                                            <!-- header -->
+                                            <!-- 후기 테이블 -->
+                                            <div class="tab-body">
+                                                <div class="shopping-cart">
+                                                    <div class="container">
+                                                        <h4>나의 후기</h4>
+                                                        <div class="row">
+                                                            <form class="woocommerce-cart-form" action="#">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">제목</th>
+                                                                            <th scope="col">조회수</th>
+                                                                            <th scope="col">작성날짜</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="bragRe">
+                                                                      <tr th:each="review : ${getBragList}">
+                                                                        
+                                                                           	<td>
+                                                                           		<a th:href="@{/brag/BragDetail(id=${review.bid})}" th:text="${review.btitle}"></a>
+                                                                           	</td>
+																			<td th:text="${review.bcnt}"></td>
+																			<td th:text="${review.bdate}"></td>
+																		</tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </form>
+                                                        </div><!-- /.row -->
+                                                       <!-- 페이지 더보기 버튼 -->
+							                            <div align="center"><!-- th:style="${'position:relative; align:center'}" -->
+					                                        <input type="button" class="btn btn-primary" id="myBrag" style="margin-bottom: 20px" value="더보기"/>
+					                                    </div>
+					                                    <!-- /페이지 더보기 버튼 끝 -->
+					                                    <!-- /.sg-pagination -->  
+                                                    </div>
+                                                </div><!-- /.cart-section -->
+                                                <!-- End 후기 테이블 -->
+
+                                                <!-- 후기 테이블 -->
+                                                <div class="shopping-cart">
+                                                    <div class="container">
+                                                        <h4>나의 인테리어 Tip</h4>
+                                                        <div class="row">
+                                                            <form class="woocommerce-cart-form" action="#">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>제목</th>
+                                                                            <th>작성자</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tipBd">
+                                                                        <tr th:each="tips : ${getTipList}">
+                                                                            <td>
+                                                                           		<a th:href="@{/tip/list(id=${tips.tid})}" th:text="${tips.tiptitle}"></a>
+                                                                           	</td>
+																			<td th:text="${tips.member.id}"></td>
+																		</tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </form>
+                                                        </div><!-- /.row -->
+                                                        <!-- 페이지 더보기 버튼 -->
+							                            <div align="center"><!-- th:style="${'position:relative; align:center'}" -->
+					                                        <input type="button" class="btn btn-primary" id="myTip" style="margin-bottom: 20px" value="더보기"/>
+					                                    </div>
+					                                    <!-- /페이지 더보기 버튼 끝 -->
+                                                    </div>
+                                                </div><!-- /.cart-section -->
+                                                <!-- End 후기 테이블 -->
+                                            </div>
+                                            <!-- tab-footer -->
+                                        </div>
+                                    </div>
+                                    <!-- *********************************************************************************************************  /내가 쓴글 리스트 끝 ****************************************************************************** -->
+                                    <!-- *********************************************************************************************************  회원정보 수정 ****************************************************************************** -->
+                                    <div class="tab-pane fade" id="user-two" role="tabpanel" aria-labelledby="user-two-tab">
+                                        <div class="profile-section">
+
+                                        <form method="POST" th:action="@{/sign/member/updateMember}" th:object="${member}"><!-- th:each="member: ${member}" -->
+											<input type="hidden" name="_method" value="put" />
+                                            <div class="tab-header">
+                                                <h2>회원정보 수정</h2>
+                                                <p>회원정보를 수정합니다!</p>
+                                            </div><!-- header -->
+                                            <div class="tab-body">
+                                                <div class="add-photo">
+                                                    <input type="file" name="add-photo" id="add-photo" class="inputfile form-control inputfile-4" data-multiple-caption="{count} files selected" multiple>
+                                                    <label for="add-photo">
+                                                        <span class="mdi mdi-name mdi-camera"></span>
+                                                        <span>Add Photo</span></label>
+                                                </div>
+                                                <br />
+                                                <div class="form-group" align="right"><input type="submit" class="btn btn-primary" value="사진추가">
+                                                </div>
+                                                <div class="form-group">
+                                                	<label for="id">아이디 </label>
+                                                	<input type="text" class="form-control" id="id" name="id" th:value="${session['memLogin'].id}">
+                                                    <label for="nicname">닉네임 </label>
+                                                    <input type="text" class="form-control" id="nickname" name="nickname" th:value="${session['memLogin'].nickname}">
+                                                </div>
+                                               <div class="form-group">
+                                                    <label for="password">비밀번호</label>
+                                                    <input type="password" class="form-control" id="password" name="password" th:value="${session['memLogin'].Password}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="two_password">비밀번호 확인</label>
+                                                    <input type="password" class="form-control" id="two_password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">이메일</label>
+                                                    <input type="text" class="form-control" id="email" name="email" th:value="${session['memLogin'].email}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="name">이름</label>
+                                                    <input type="text" class="form-control" id="name" name="name" th:value="${session['memLogin'].name}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="first-name1">전화번호</label>
+                                                    <input type="text" class="form-control" id="tel" name="tel" th:value="${session['memLogin'].tel}">
+                                                </div>
+                                                <!-- 카카오 주소 입력 -->
+                                               <div class="form-group">
+                                                    <label for="first-name1">우편번호</label>
+                                                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-primary" style="float: right; margin: 5px;" id="zipcode">
+
+                                                    <input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control" name="zipcode" th:value="${session['memLogin'].zipcode}">
+                                                    <input type="text" id="sample6_address" placeholder="주소" class="form-control" name="addr" th:value="${session['memLogin'].addr}">
+                                                    <input type="text" id="sample6_detailAddress" placeholder="상세주소" class="form-control" name="addrd" th:value="${session['memLogin'].addrd}">
+                                                    <input type="hidden" id="sample6_extraAddress" placeholder="참고항목" class="form-control" name="">
+
+                                                </div>
+                                                <!--end 카카오 주소 입력-->
+                                                <div class="form-group">
+                                                    <label for="first-name1">선호:</label>
+                                                    <input type="text" class="form-control" id="fav" name="fav" th:value="${session['memLogin'].fav}">
+                                                </div>
+                                            </div><!-- tab-body -->
+                                            <div class="tab-footer" align="center">
+                                                <div class="form-group">
+                                                <input type="submit" class="btn btn-primary" id="save" value="수정">
+                                                <input type="button" class="btn btn-primary" id="Withdrawal" value="회원탈퇴">
+                                                </div>
+                                            </div>
+                                            
+                                            <!--좋아요 삭제된 메뉴 내용물 끝-->
+                                             </form>
+                                        </div>
+                                    </div>
+<!-- *********************************************************************************************************  /회원정보 수정끝 ****************************************************************************** -->
+<!-- *********************************************************************************************************  좋아요 리스트 ****************************************************************************** -->
+                                    <div class="tab-pane fade" id="user-three" role="tabpanel" aria-labelledby="user-three-tab">
+                                        <div class="profile-section">
+                                            <div class="tab-header">
+                                                <i class="far fa-heart"></i>
+                                                <br />
+                                                <p>좋아요버튼을 누른 게시글들을 보여줍니다</p>
+                                            </div><!-- header -->
+                                            <div class="tab-body" id="tbody_rv" style="border-bottom:none;">
+                                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link active " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">후기</button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">업체후기</button>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content" id="pills-tabContent" style="border: none;">
+<!--******************************************************************************후기 내용물******************************************************************************-->
+                                                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                                    <h4>후기 좋아요</h4>
+                                                        <div class="row" id="fav_row">
+                                                            <!--게시물 시작-->
+                                                            <div class="col-lg-4" th:each="love : ${getLoveList}">
+                                                                <div class="sa-post">
+                                                                    <div class="entry-header" >
+                                                                        <div class="entry-thumbnail">
+                                                                            <a th:href="@{/brag/(${love.brag.bid})}"><img th:src="|http://140.238.11.118:5000/upload/${love.brag.bimgadr}|" alt="Image" class="img-fluid"></a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="entry-content">
+                                                                        <h2 class="entry-title" th:text="${love.brag.btitle}"></h2>
+                                                                    </div>
+                                                                </div><!-- /.sa-post -->
+                                                            </div>
+                                                            <!--게시물 끝-->
+                                                        </div><!--/.row-->
+<!--****************************************************************************** 페이징 버튼 ******************************************************************************-->
+                                                        <!-- 페이지 더보기 버튼 -->
+							                            <div align="center"><!-- th:style="${'position:relative; align:center'}" -->
+					                                        <input type="button" class="btn btn-primary" id="myLove" style="margin-bottom: 20px" value="더보기"/>
+					                                    </div>
+					                                    <!-- /페이지 더보기 버튼 끝 -->
+                                                    </div>
+<!--******************************************************/후기 내용물 끝******************************************************-->
+<!--******************************************************업체후기 내용물******************************************************-->
+                                                    <div class="tab-pane fade mr-0" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                                        <h4>업체 북마크</h4>
+                                                        <div class="row mr" id="fav_row com">
+                                                            <!--게시물 시작-->
+                                                            <div class="col-lg-4" th:each="loveCom : ${getLoveComList}">
+                                                                <div class="sa-post">
+                                                                    <div class="entry-header">
+                                                                        <div class="entry-thumbnail">
+                                                                            <a th:href="@{/expert(id=${loveCom.company.id})}"><img th:src="|http://140.238.11.118:5000/upload/${loveCom.company.logo}|" alt="Image" class="img-fluid"></a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="entry-content">
+                                                                        <h2 class="entry-title" th:text="${loveCom.company.name}"><a th:href="@{/expert(id=${loveCom.company.id})}"></a></h2>
+                                                                    </div>
+                                                                </div><!-- /.sa-post -->
+                                                            </div>
+                                                            <!--게시물 끝-->
+                                                        </div><!-- /.row -->
+<!--****************************************************************************** 페이징 버튼 ******************************************************************************-->
+                                                         <!-- 페이지 더보기 버튼 -->
+							                            <div align="center"><!-- th:style="${'position:relative; align:center'}" -->
+					                                        <input type="button" class="btn btn-primary" id="myCompany" style="margin-bottom: 20px" value="더보기"/>
+					                                    </div>
+					                                    <!-- /페이지 더보기 버튼 끝 -->
+<!--****************************************************************************** /페이징 버튼 끝 ******************************************************************************-->
+                                                        <!-- /.sg-pagination -->
+                                                    </div>
+<!--******************************************************************************/업체후기 내용물 끝 ******************************************************************************-->
+                                                </div>
+                                            </div>
+                                            <!--/.tab-body-->
+                                        </div><!-- /.row -->
+                                    </div><!-- /.container -->
+<!-- *********************************************************************************************************  /좋아요 리스트 끝 ****************************************************************************** -->
+                                    <!-- End 썸넬형식 -->
+                                </div>
+                            </div>
+                        </div><!-- /.tab-content -->
+                    </div><!-- /.profile-tabs  -->
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.section-content -->
+
+
+    <div th:replace="sections/footer :: footer"></div>
+
+    <!-- JS -->
+    <script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/inview.min.js}"></script>
+	<script th:src="@{/js/slick.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/jarallax.min.js}"></script>
+	<script th:src="@{/js/counterup.min.js}"></script>
+	<script th:src="@{/js/waypoints.min.js}"></script>
+	<script th:src="@{/js/YTPlayer.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/validate.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	
+	<!-- header js -->
+	<script th:src="@{/js/sections/header.js}"></script>
+	
+	<!-- 혜윤 JS -->
+	<script th:src="@{/js/he/memMypage.js}"></script>
+	<script th:src="@{/js/he/Mypageing.js}"></script>
+	
+	<!-- 퀵메뉴 js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+	
+	
+</body>
+
+</html>

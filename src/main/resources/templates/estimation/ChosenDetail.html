@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="">
+        <meta name="description" content="">
+        
+        <!-- 희망 견적서 상세보기 -->
+        <title>희망 견적서 상세보기</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/css/all.min.css}">
+        <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+        <link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+        <link rel="stylesheet" th:href="@{/css/slick.css}">
+        <link rel="stylesheet" th:href="@{/css/structure.css}">
+        <link rel="stylesheet" th:href="@{/css/main.css}"> 
+        <link rel="stylesheet" th:href="@{/css/responsive.css}">
+        
+        <!-- 퀵메뉴바 css -->
+		<link rel="stylesheet" th:href="@{/css/nav.css}">
+        
+        <!-- font -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
+
+        <!-- icons -->
+        <link rel="icon" th:href="@{/images/ico/favicon.ico}"> 
+        <link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}"> 
+        <!-- icons -->
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <!-- Template Developed By ChtStudio -->
+        
+        <!-- myccs -->
+        <link rel="stylesheet" th:href="@{/css/ye/ye.css}">
+        
+        <!-- header css -->
+        <link rel="stylesheet" th:href="@{/css/sections/header.css}">
+        
+    </head>
+    <body> 
+        <div id="preloader">
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+        </div><!-- preloader -->
+        
+        <!-- header include -->
+    	<div th:replace="sections/header :: header"></div>  
+
+        <section class="breadcrumb-section">
+            <div class="container">
+                <h1>희망 견적서 상세보기</h1>
+                <p>고객이 해당 업체를 직접 선택하여 견적서를 보내왔어요.</p>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/index}">Home</a></li>
+                    <li class="breadcrumb-item">Detail</li>
+                </ol>
+            </div><!-- /.container -->
+        </section><!-- /.breadcrumb-section -->  
+
+  
+            <div class="section-content course-details bg-white section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8" style="float: none; margin:0 auto;"> <!--가운데 정렬-->
+                            <div class="sa-course">
+								<form action="">
+								<div class="course-info" th:each="detail:${Detail}">
+                                    <h2 class="title" id="estimate_title">희망 견적서 상세보기</h2>
+                                    <input type="hidden" name="eid" class="eid" th:value="${detail.eid}">
+                                    <input type="hidden" name="mid" class="mid" th:value="${detail.member.id}">
+                                    <input type="hidden" name="cid" class="cid" th:value="${detail.company.id}">
+                                    <input type="hidden" name="cname" class="nickname" th:value="${detail.company.name}">
+                                    <p><span class="bold">공간 유형  :</span> <span th:text="${detail.space}"></span></p>
+                                    <p><span class="bold">건물 유형 :</span> <span th:text="${detail.building}"></span></p>
+                                    <p><span class="bold">평수 :</span> <span th:text="${detail.size}"></span> 평</p>
+                                    <p><span class="bold">예산 :</span> <span class="budget" th:text="${detail.budget}"></span> 만원</p>
+                                    <p><span class="bold">희망시공일정 :</span> <span th:text="${#dates.format(detail.startDay,'yyyy-MM-dd')}"></span> ~ <span th:text="${detail.endDay}"></span></p>
+                                    <p><span class="bold">주소 :</span> <span th:text="${detail.eaddr}"></span></p>
+                                    <p><span class="bold">상담인 :</span> <span th:text="${detail.ename}"></span></p>
+                                    <p><span class="bold">핸드폰 번호 :</span> <span th:text="${detail.etel}"></span></p>
+                                    <p><span class="bold">원하는 스타일 :</span></p>
+                                    <p><span th:text="${detail.estyle}"></span></p>
+                                    <p><span th:text="${detail.edate}"></span></p>
+                                </div>
+								</form>
+                                
+                            </div><!-- /.sa-course -->  
+                            
+                            <div class="warning_div">
+                                <input class="warning_check" type="checkbox"> <strong class="warning_cb">해당 고객의 정보를 오용할 경우 법적 제제를 받을 수 있습니다.(필수)</strong>
+                            </div>
+                            
+                            <div class="btn_div" th:each="detail:${Detail}">
+                                <button th:if="${detail.ing == null}" class="btn btn-primary decision_btn_CD" >요청하기</button>
+                                <button th:if="${detail.ing == '요청완료'}" class="nothover_btn btn btn-primary decision_btn_CD" id="nothover_btn" th:text="${detail.ing}"></button>
+                                <button th:if="${detail.ing =='시공완료'} or ${detail.ing == '진행 중'}" class="nothover_btn btn btn-primary decision_btn_CD" id="nothover_btn" th:text="${detail.ing}" ></button>
+                                <button class="btn btn-primary chat_btn">채팅하기</button>
+                            </div>
+                        
+                        </div>
+    
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </div><!-- /.section-content -->
+            
+        <!-- 퀵메뉴바 -->
+		<div th:replace="sections/nav :: div"></div>
+                   
+       	<!-- footer -->
+        <div th:replace="sections/footer :: footer"></div>
+
+        <!-- JS -->
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>  
+        <script th:src="@{/js/inview.min.js}"></script> 
+        <script th:src="@{/js/slick.min.js}"></script>
+        <script th:src="@{/js/jquery-ui-min.js}"></script>  
+        <script th:src="@{/js/jarallax.min.js}"></script>  
+        <script th:src="@{/js/counterup.min.js}"></script> 
+        <script th:src="@{/js/waypoints.min.js}"></script> 
+        <script th:src="@{/js/YTPlayer.min.js}"></script> 
+        <script th:src="@{/js/jquery-ui-min.js}"></script>
+        <script th:src="@{/js/validate.js}"></script>
+        <script th:src="@{/js/main.js}"></script>   
+        
+        <!--my js-->
+        <script th:src="@{/js/ye/ye.js}"></script>
+        
+        <!-- header js -->
+        <script th:src="@{/js/sections/header.js}"></script> 
+        
+        <!-- 퀵메뉴 js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+		<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+        
+    </body>
+</html>        

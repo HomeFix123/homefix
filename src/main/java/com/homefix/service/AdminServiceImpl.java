@@ -1,8 +1,10 @@
 package com.homefix.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +16,7 @@ import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
 import com.homefix.domain.CompanyReport;
+import com.homefix.domain.Estimation;
 import com.homefix.domain.Member;
 import com.homefix.domain.MemberReport;
 import com.homefix.domain.Payment;
@@ -22,9 +25,12 @@ import com.homefix.persistence.BragRepository;
 import com.homefix.persistence.CompanyInfoRepository;
 import com.homefix.persistence.CompanyReportRepository;
 import com.homefix.persistence.CompanyRepository;
+import com.homefix.persistence.DashboardRepository;
+import com.homefix.persistence.EstRepository;
 import com.homefix.persistence.MemberReportRepository;
 import com.homefix.persistence.MemberRepository;
 import com.homefix.persistence.PaymentRepository;
+import com.homefix.persistence.TipRepository;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -128,8 +134,22 @@ public class AdminServiceImpl implements AdminService {
 	 */
 	@Override
 	public List<Company> getCompanyList() {
-		
-		return (List<Company>) companyRepo.findAll();
+		List<Map<String, Object>> lst = companyRepo.findAllForAdmin();
+		List<Company> resultList = new ArrayList<>();
+		for(Map<String, Object> temp : lst) {
+			Company result = new Company();
+			result.setId((String)temp.get("id")); 
+			result.setName((String)temp.get("name"));
+			result.setChatting(Integer.parseInt(String.valueOf(temp.get("chatting"))));
+			result.setContract(Integer.parseInt(String.valueOf(temp.get("contract"))));
+			result.setReport(Integer.parseInt(String.valueOf(temp.get("report"))));
+			if(temp.get("pm_day") != null) {
+				result.setPm_day(Integer.parseInt(String.valueOf(temp.get("pm_day"))));
+			}
+			
+			resultList.add(result);
+		}
+		return resultList;
 	}
 	
 	/*
@@ -176,7 +196,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public CompanyInfo getCompanyDetail(String cid) {
 		Company co = companyRepo.findById(cid).get();
-		return companyDetailRepo.findByCompany(co).get(0);
+		List<CompanyInfo> result = companyDetailRepo.findByCompany(co);
+		if(result.size() > 0) {
+			return result.get(0);
+		}
+		return null;
 	}
 	
 	
@@ -211,7 +235,15 @@ public class AdminServiceImpl implements AdminService {
 		Company temp = companyRepo.findById(cid).get();
 		return paymentRepo.findByCompany(temp);
 	}
-
+	
+	@Override
+	public long countTodayCompanyReport() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DATE, -1); // 빼고 싶다면 음수 입력
+		Date date = new Date(cal.getTimeInMillis());
+		return companyReportRepo.countByRdayGreaterThan(date);
+	}
 	
 	/*
 	 * 업체 신고 내역
@@ -246,6 +278,10 @@ public class AdminServiceImpl implements AdminService {
 		return (long)(bragRepo.count()+1)/showCntPerPage + 1;
 	}
 	
+	
+	@Autowired
+	TipRepository tipRepo;
+	
 	/*
 	 * 팁 게시글 목록
 	 */
@@ -254,9 +290,9 @@ public class AdminServiceImpl implements AdminService {
 		// Tip Repo가 완성되면 진행
 		int showCntPerPage = 5;
 		
-		Pageable pageable = PageRequest.of(page-1, showCntPerPage);
+		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("tid").descending());
 		
-		return null;
+		return tipRepo.findAll(pageable);
 	}
 
 	/*
@@ -265,11 +301,67 @@ public class AdminServiceImpl implements AdminService {
 	 */
 	@Override
 	public long countTipList() {
+		int showCntPerPage = 5;
+		return (tipRepo.count()+1)/showCntPerPage + 1;
+	}
+	
+	
+	@Autowired
+	DashboardRepository dashRepo;
+
+	/*
+	 * 회원가입수 집계
+	 */
+	@Override
+	public List<Object[]> aggregateNewUser(){
 		
-		return 0;
+		return dashRepo.searchAggNewUser();
+	}
+	/*
+	 * 결제 집계
+	 */
+	@Override
+	public List<Object[]> aggregatePayments(){
+		
+		return dashRepo.searchAggPayments();
 	}
 
+	@Autowired
+	EstRepository estRepo;
 	
+	/*
+	 * 고객이 작성한 견적 목록
+	 */
+	@Override
+	public List<Estimation> getEstimationList(String id) {
+		Member mem = memberRepo.findById(id).get();
+		return estRepo.findByMember(mem);
+	}
+
+	@Override
+	public long countNewUser() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DAY_OF_WEEK, -1); // 빼고 싶다면 음수 입력
+		Date date = new Date(cal.getTimeInMillis());
+		
+		return memberRepo.countBySubdateGreaterThan(date);
+	}
+
+	@Override
+	public long countContract() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DAY_OF_WEEK, -1); // 빼고 싶다면 음수 입력
+		Date date = new Date(cal.getTimeInMillis());
+		return 0;
+	}
+	
+	@Override
+	public long countPayUser() {
+		
+		return paymentRepo.countByPlastGreaterThan(new Date());
+	}
 
 	
 	

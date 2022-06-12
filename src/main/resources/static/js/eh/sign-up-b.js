@@ -7,31 +7,12 @@ $(function() {
 	//업체명
 	var RegexCompany = /^[가-힣a-zA-Z0-9]{1,10}$/;
 	var RegexEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-	var RegexPW = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/; //8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합
+	var RegexPW = /^(?=.*[a-zA-z])(?=.*[0-9]).{4,10}$/; //4 ~ 10자 영문, 숫자 최소 한가지씩 조합
 	var RegexName = /^[가-힣]+$/;
 	//전화번호
 	var RegexTel = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
-	var RegexCompanyNum = /^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})$/;
-
 	//사업자번호
-/*	function checkCorporateRegistrationNumber(value) {
-		var valueMap = value.replace(/-/gi, '').split('').map(function(item) {
-			return parseInt(item, 10);
-		});
-
-		if (valueMap.length === 10) {
-			var multiply = new Array(1, 3, 7, 1, 3, 7, 1, 3, 5);
-			var checkSum = 0;
-			for (var i = 0; i < multiply.length; ++i) {
-				checkSum += multiply[i] * valueMap[i];
-			}
-			checkSum += parseInt((multiply[8] * valueMap[8]) / 10, 10);
-			return Math.floor(valueMap[9]) === (10 - (checkSum % 10));
-		}
-		return false;
-	}*/
-
-
+	var RegexCompanyNum = /^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})$/;
 
 	// 에러박스 문구
 	var blank = "  필수 입력 사항입니다.";
@@ -55,10 +36,9 @@ $(function() {
 	var idCheak = false;
 
 	$('#bs_btn_idCheak').click(function() {
-
 		// 아이디 중복검사 확인 여부
 		$('label[for="bs_memberId"] .error_box').html("");
-		var memberId = $.trim($("#bs_memberId").val());
+		var memberId = $("#bs_memberId").val();
 
 		// 입력값이 없을 때 에러박스
 		if (memberId == '') {
@@ -106,11 +86,9 @@ $(function() {
 	var bsNumCheak = false;
 
 	$('#bs_btn_businessNum').click(function() {
-
 		// 사업자번호 중복검사 확인 여부
 		$('label[for="bs_businessNum"] .error_box').html("");
-		var bs_businessNum = $.trim($("#bs_businessNum").val());
-
+		var bs_businessNum = $("#bs_businessNum").val();
 		// 입력값이 없을 때 에러박스
 		if (bs_businessNum == '') {
 			$('label[for="bs_businessNum"] .error_box').html(blank);
@@ -161,8 +139,7 @@ $(function() {
 	$('#bs_btn_emailCheak').click(function() {
 		// 이메일 중복검사 확인 여부
 		$('label[for="bs_memberEmail"] .error_box').html("");
-		var memberEmail = $.trim($("#bs_memberEmail").val());
-
+		var memberEmail = $("#bs_memberEmail").val();
 		// 입력값이 없을 때 에러박스
 		if (memberEmail == '') {
 			$('label[for="bs_memberEmail"] .error_box').html(blank);
@@ -210,18 +187,16 @@ $(function() {
 	$('#bs_btn_signUp').click(function() {
 
 		// input에 입력된 값을 공백제거하고 변수에 담기
-		var memberEmail = $.trim($("#bs_memberEmail").val());
-		var memberPassword = $.trim($("#bs_memberPassword").val());
-		var passwordCheck = $.trim($("#bs_passwordCheck").val());
-		var memberName = $.trim($("#bs_memberName").val());
-		var bsName = $.trim($("#bs_Name").val());
-		var memberTel = $.trim($("#bs_memberTel").val());
-		var postNum = $.trim($("#bs_postNum").val());
-		var bsBusinessNum = $.trim($("#bs_businessNum").val());
-		var memberId = $.trim($("#bs_memberId").val());
-		var secondAddress = $.trim($("#bs_secondAddress").val());
-
-
+		var memberEmail = $("#bs_memberEmail").val();
+		var memberPassword = $("#bs_memberPassword").val();
+		var passwordCheck = $("#bs_passwordCheck").val();
+		var memberName = $("#bs_memberName").val();
+		var bsName = $("#bs_Name").val();
+		var memberTel = $("#bs_memberTel").val();
+		var postNum = $("#bs_postNum").val();
+		var bsBusinessNum = $("#bs_businessNum").val();
+		var memberId = $("#bs_memberId").val();
+		var secondAddress = $("#bs_secondAddress").val();
 
 
 		/*아이디*/
@@ -242,12 +217,12 @@ $(function() {
 		} else {
 			$('label[for="bs_memberId"] .error_box').html("");
 		}
-		/*if(idCheak == false){
+		if(idCheak == false){
 			$('label[for="bs_memberId"] .error_box').html("아이디 중복검사를 하지 않았습니다.");
 			$('label[for="bs_memberId"] .error_box').css('color', '#dc3545');
 			
 			return false ;
-		}*/
+		}
 
 		/*업체명*/
 
@@ -333,7 +308,7 @@ $(function() {
 
 		if (!RegexPW.test(memberPassword)) {
 
-			$('label[for="bs_memberPassword"] .error_box').html("8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합하여 만들어 주십시오.");
+			$('label[for="bs_memberPassword"] .error_box').html("4 ~ 10자 영문, 숫자를 최소 한가지씩 조합하여 만들어 주십시오.");
 			$('label[for="bs_memberPassword"] .error_box').css('color', '#dc3545');
 			$('#bs_memberPassword').focus();
 			return false;
@@ -395,12 +370,6 @@ $(function() {
 			return false
 		};
 
-
-
-
-
-
-
 		/* 전화번호 */
 		if (memberTel == '') {
 			$('label[for="bs_memberTel"] .error_box').html(blank);
@@ -425,105 +394,6 @@ $(function() {
 
 
 
-
-
-
-
-
-	/*********************************************************************
-		[ 비밀번호 재설정 페이지(1) ]
-		비밀번호 찾기 버튼 클릭
-	*/
-	let ramdom;
-	$('#btn_emailSend').click(function() {
-
-
-
-		// 인증번호 전송
-		$.ajax({
-			type: 'post',
-			url: 'emailSend.do',
-			data: {
-				memberEmail: $('#memberEmail').val(),
-			},
-			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-			success: function(result) {
-				ramdom = result;
-			},
-			error: function(err) {
-
-				alert('실패');
-				console.log(err);
-			}
-		}); //end of ajax
-
-	})
-
-
-	$('#btnPwSearch').click(function() {
-
-		// input에 입력된 값을 공백제거하고 변수에 담기
-		var authenticationNumber = $.trim($("#authenticationNumber").val());
-
-		// 인증번호와 입력한 문자열이 같을 때 폼 전송
-		if (ramdom === authenticationNumber) {
-			document.pwSearchForm.submit();
-		} else {
-			$('.error_box.pwSearch').html("인증번호가 일치하지 않습니다.");
-		}
-
-	}) // end of #btnPwSearch
-
-
-
-	// [ 비밀번호 재설정 페이지(2) ]
-	$('#btnPwChange').click(function() {
-		var memberPassword = $.trim($("#memberPassword").val());
-		var passwordCheck = $.trim($("#passwordCheck").val());
-
-		/* 비밀번호 */
-		if (memberPassword == '') {
-			$('label[for="memberPassword"] .error_box').html(blank);
-			$('#memberPassword').focus();
-			return;
-		} else {
-			$('label[for="memberPassword"] .error_box').html("");
-		}
-
-		if (!RegexPW.test(memberPassword)) {
-
-			$('label[for="memberPassword"] .error_box').html("비밀번호는 영문자와 숫자를 사용하여 6~15자로 작성해 주십시오.");
-			return;
-		} else {
-			$('label[for="memberPassword"] .error_box').html("");
-		}
-
-		/* 비밀번호 재확인 */
-		if (passwordCheck == '') {
-			$('label[for="passwordCheck"] .error_box').html("필수 입력 사항입니다.");
-			$('#passwordCheck').focus();
-			return;
-		} else {
-			$('label[for="passwordCheck"] .error_box').html("");
-		}
-
-
-		/* 비밀번호 일치 여부 확인 */
-		if (memberPassword != passwordCheck) {
-			$('label[for="passwordCheck"] .error_box').html("비밀번호가 일치하지 않습니다.");
-			$('#passwordCheck').focus();
-			return;
-		}
-		document.pwChangeForm.submit();
-		alert("비밀번호가 변경되었습니다.");
-
-	}); // end of #btnPwChange
-
-
-
-
-
-
 	/************필수 동의 사항******************************************** */
 
 	$('#btnAgree').click(function() {
@@ -533,9 +403,6 @@ $(function() {
 	$('#btnChoiceAgree').click(function() {
 		$('#agreeChoiceForm').toggle();
 	});
-
-
-
 
 	$("#allCheck").click(function() {
 		if ($("input:checkbox[id='allCheck']").is(":checked") == true) {
@@ -594,45 +461,65 @@ $(function() {
 
 
 
-	/*$('#btn_termCheck').click(function() {
-		//이용약관에 체크 했는지 확인
-		if (!$("#btnAgree").is(':checked')) {
-			// 체크 X
-			$('.check_error_box').html("<h6>필수 이용 약관에 동의해주세요.</h6>");
-			$('.check_error_box').css('color', '#dc3545');
-			return;
-		} else {
-			// 체크 O
-			$('.check_error_box').html("");
-			$.ajax({
-				type: 'post',
-				url: 'emailCheck.do',
-				data: { memberEmail: $('#memberEmail').val() },
-				contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-				success: function(result) {
-					// 중복 검사 후 나오는 결과 에러박스에 출력
-					if (result == 'Y') {
-						$('label[for="memberEmail"] .error_box').html("");
-						document.member_frm.submit();
-						alert("회원가입이 되었습니다.");
-					} else {
-						$('label[for="memberEmail"] .error_box').css('color', '#ED7A64');
-						$('label[for="memberEmail"] .error_box').html("이메일 중복 여부를 확인해주세요.");
-						emailCheak = false;
-						return;
-					}
-				},
-				error: function(err) {
-					alert('실패');
-					console.log(err);
-				}
-			}); //end of ajax			
-		}
-	})*/
+//비밀번호 찾기
+
+$("#cfindpw").click(function() {
+	let email = $("#email").val();
+	let id = $("#id").val();
+	$.ajax({
+		type: "get",
+		url: "/sign/checkFindPw",
+		data: {
+			"email": email,
+			"id": id
+		},
+		success: function(res) {
+			//alert(res);
+			//console.log(res);
+			if (res['check']) {
+
+				swal({title:"발송 완료!",text: "입력하신 이메일로 임시비밀번호가 발송되었습니다.",icon: "success"},function(OK){
+					if(OK){
+					$.ajax({
+						type: "POST",
+						url: "/sign/checkSendEmail",
+						data: {
+							"email": email,
+							"id": id
+						}
+					})//ajax
+				//	alert(email);
+				//	alert(id);
+					window.location = "/sign/sign-in";
+					}//if
+					
+                })//swal
+                }// if
+            }
+        })// ajaz
+    })//click
 
 
-	
+//아이디 찾기
 
+$("#cfindid").click(function() {
+	let ceo = $("#ceoName").val();
+	let tel = $("#ceoTel").val();
+	console.log(name+"/"+tel)
+	$.ajax({
+		type: "get",
+		url: "/sign/checkFindId",
+		data: {
+			"ceo": ceo,
+			"tel": tel
+		},
+		success: function(res) {
+			alert("아이디는 "+res+"입니다.");
+			console.log(res);
+			
+            }
+        })// ajaz
+    })//click
 
 
 

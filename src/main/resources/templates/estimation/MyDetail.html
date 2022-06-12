@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="">
+        <meta name="description" content="">
+        
+        <!-- 내 견적 상세보기 -->
+        <title>내 견적 상세보기</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/css/all.min.css}">
+        <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+        <link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+        <link rel="stylesheet" th:href="@{/css/slick.css}">
+        <link rel="stylesheet" th:href="@{/css/structure.css}">
+        <link rel="stylesheet" th:href="@{/css/main.css}"> 
+        <link rel="stylesheet" th:href="@{/css/responsive.css}">
+        
+        <!-- 퀵메뉴바 css -->
+		<link rel="stylesheet" th:href="@{/css/nav.css}">
+        
+        <!-- font -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
+
+        <!-- icons -->
+        <link rel="icon" th:href="@{/images/ico/favicon.ico}"> 
+        <link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}"> 
+        <!-- icons -->
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <!-- Template Developed By ChtStudio -->
+        
+        <!-- myccs -->
+        <link rel="stylesheet" th:href="@{/css/ye/ye.css}">
+        
+        <!-- header css -->
+        <link rel="stylesheet" th:href="@{/css/sections/header.css}">
+        
+    </head>
+    <body> 
+        <div id="preloader">
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+        </div><!-- preloader -->
+        
+        <!-- header include -->
+    	<div th:replace="sections/header :: header"></div> 
+
+        <section class="breadcrumb-section">
+            <div class="container">
+                <h1>내 견적 상세보기</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Details</li>
+                </ol>
+            </div><!-- /.container -->
+        </section><!-- /.breadcrumb-section -->  
+
+  
+            <div class="section-content course-details bg-white section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8" style="float: none; margin:0 auto;"> <!--가운데 정렬-->
+                            <div class="sa-course">
+
+                                <div class="course-info" >
+                                <div th:each="detail:${Detail}">
+                                    <h2 class="title" id="estimate_title">내 견적 상세보기</h2>
+                                    <input type="hidden" class="eid_hidden" th:value="${detail.eid}">
+                                    <p><span class="bold">공간 유형  :</span> <span th:text="${detail.space}"></span></p>
+                                    <p><span class="bold">건물 유형 :</span> <span th:text="${detail.building}"></span></p>
+                                    <p><span class="bold">평수 :</span> <span th:text="${detail.size}"></span> 평</p>
+                                    <p><span class="bold">예산 :</span> <span class="budget" th:text="${detail.budget}"></span> 만원</p>
+                                    <p><span class="bold">희망시공일정 :</span> <span th:text="${#dates.format(detail.startDay,'yyyy-MM-dd')}"></span> ~ <span th:text="${detail.endDay}"></span></p>
+                                    <p><span class="bold">주소 :</span> <span th:text="${detail.eaddr}"></span></p>
+                                    <p><span class="bold">상담인 :</span> <span th:text="${detail.ename}"></span></p>
+                                    <p><span class="bold">핸드폰 번호 :</span> <span th:text="${detail.etel}"></span></p>
+                                    <p><span class="bold">원하는 스타일 :</span></p>
+                                    <p><span th:text="${detail.estyle}"></span></p>
+                                 </div>  
+                                  
+                                 <div class="widget widget_recent_entries">
+                                            <h3 class="widget_title m-0" >Popular Courses</h3>
+                                            <ul>
+                                                <li class="media" th:each="cList:${CLists}" >
+                                                   <div>
+                                                        <button class="go-contract btn btn-primary">확정하기</button>
+                                                   </div>
+                                                   <div class="media-body" style="margin-left: 15px">
+                                                       <a>
+                                                        <span class="post-date" th:text="${cList.erdate}"> </span>
+                                                       </a>
+                                                       <p>
+                                                        <span class="bold" th:text="|<${cList.company.name}> 업체가 시공을 원합니다.|"></span>
+                                                        <input class="company-id" type="hidden" th:value="${cList.company.id}" /> 
+                                                       </p>
+                                                   </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                </div>
+                            </div><!-- /.sa-course -->                           
+                        </div>
+    
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </div><!-- /.section-content -->
+           
+        <!-- 퀵메뉴바 -->
+		<div th:replace="sections/nav :: div"></div>
+       
+        <!-- footer -->
+        <div th:replace="sections/footer :: footer"></div>
+
+        <!-- JS -->
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>  
+        <script th:src="@{/js/inview.min.js}"></script> 
+        <script th:src="@{/js/slick.min.js}"></script>
+        <script th:src="@{/js/jquery-ui-min.js}"></script>  
+        <script th:src="@{/js/jarallax.min.js}"></script>  
+        <script th:src="@{/js/counterup.min.js}"></script> 
+        <script th:src="@{/js/waypoints.min.js}"></script> 
+        <script th:src="@{/js/YTPlayer.min.js}"></script> 
+        <script th:src="@{/js/jquery-ui-min.js}"></script>
+        <script th:src="@{/js/validate.js}"></script>
+        <script th:src="@{/js/main.js}"></script>     
+        
+        <!--my js-->
+        <script th:src="@{/js/ye/ye.js}"></script>
+        
+        <!-- header js -->
+        <script th:src="@{/js/sections/header.js}"></script> 
+        
+        <!-- 퀵메뉴 js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+		<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+        
+        <script type="text/javascript">
+      	/* contract 견적 id가 존재하다면 해당 cid 버튼 css/확정요청완료 버튼 변경 */
+        $.ajax({
+			type:'get',
+			url:'/estimation/checkContract',
+			data:{eid:$('.eid_hidden').val()},
+			contentType : 'applicaton/x-www-form-urlencoded;charset=utf-8',
+			success:function(result){
+				console.log(result)
+				console.log(result.company.id)
+				console.log('성공');
+				$(".company-id").each(function(){
+					console.log($(this).val());
+					if($(this).val()==result.company.id){
+						console.log("가져온 값과 같음 해당 값은" +$(this).val() + "가져온 값은" + result.company.id);
+						let decisionBtn = $(this).parent().parent().siblings('div').children('.go-contract');
+						console.log(decisionBtn);
+						decisionBtn.text("확정완료");
+						decisionBtn.addClass("nothover_btn");
+						decisionBtn.removeClass("go-contract")
+					}
+					console.log("확정 불가");
+					let noDecision = $(this).parent().parent().siblings('div').children('.go-contract');
+					noDecision.text("확정불가");
+					noDecision.addClass("nothover_btn");
+					noDecision.attr("id","nothover_btn");
+				})
+			},
+			error : function(err) {
+				//실패했을 때
+    			alert('실패:');
+    			console.log(err);
+    		}
+		})//ajax
+        </script>
+    </body>
+</html>        

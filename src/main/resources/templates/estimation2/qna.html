@@ -9,7 +9,7 @@
         <meta name="author" content="">
         <meta name="description" content="">
 
-        <title>Educam | Education & Courses HTML Template.</title>
+        <title> 자주 묻는 질문 </title>
 
         <!-- CSS -->
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -40,6 +40,12 @@
         <![endif]-->
         <!-- Template Developed By ChtStudio -->
         
+        <!-- header css -->
+		<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+		
+		<!-- 퀵메뉴바 css -->
+		<link rel="stylesheet" th:href="@{/css/nav.css}">
+		
         <!-- 개인 css 설정 -->
         <link rel="stylesheet" th:href="@{/css/jy/jy.css}">
         
@@ -49,171 +55,12 @@
             <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
-        <header class="sa-header">
-            <div class="sa-topbar">
-                <div class="container">
-                    <div class="topbar-content">
-                        <div class="left-content">
-                            <ul class="global-list">
-                                <li><a href="#"><i class="far fa-envelope"></i>info@gmail.com</a></li>
-                                <li><a href="#"><i class="fas fa-phone-volume"></i>0123456789</a></li>
-                            </ul>
-                        </div>
-                        <div class="right-content">
-                            <ul class="global-list social">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                            </ul>
-                            <ul class="global-list">
-                                <li><a href="#" class="btn btn-primary">Register <i class="fas fa-sign-in-alt"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- /.container -->
-            </div><!-- /.top-bar -->
-
-            <div class="sa-menu">
-                <nav class="navbar navbar-expand-lg">
-                    <div class="container">
-                        <a class="navbar-brand" th:href="@{/index.html}">
-                            <img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
-                        </a>
-
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-                        </button> 
-                        
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item sa-dropdown">
-                                    <a href="#">Home</a>
-                                    <ul class="sa-dropdown-menu">
-                                        <li><a th:href="@{/index.html}">Home V-1</a></li>
-                                        <li><a th:href="@{/index1.html}">Home V-2</a></li>
-                                        <li><a th:href="@{/index2.html}">Home V-3</a></li>
-                                    </ul>
-                                </li>
-                                <li><a th:href="@{/about.html}">About</a></li>
-                                <li class="sa-dropdown">
-                                    <a href="#">Courses</a>
-                                    <ul class="sa-dropdown-menu">
-                                        <li><a th:href="@{/course-grid.html}">Course Grid View</a></li>
-                                        <li><a th:href="@{/course-list.html}">Course List View</a></li>
-                                        <li><a th:href="@{/course-details.html}">Course Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a th:href="@{/tutor.html}">Teacher</a></li>
-                                <li><a th:href="@{/blog.html}">Blog</a></li>
-                                <li class="active"><a th:href="@{/contact.html}">Contact</a></li>
-                                <li class="sa-dropdown">
-                                    <a th:href="@{/index.html}">Page</a>
-                                    <ul class="sa-dropdown-menu">
-                                        <li><a th:href="@{/catagory.html}">Catagory</a></li>
-                                        <li><a th:href="@{/profile.html}">User Profile</a></li>
-                                        <li><a th:href="@{/blog-details.html}">Blog Details</a></li>
-                                        <li><a th:href="@{/tutor-details.html}">Tutor Details</a></li>
-                                        <li><a th:href="@{/my-course.html}">My Course<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a th:href="@{/course-video.html}">Course Video<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a th:href="@{/cart.html}">Shopping Cart<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a th:href="@{/payment.html}">Payment<span class="badge rounded-pill bg-dark">New</span></a></li>
-                                        <li><a th:href="@{/congrats.html}">Congrats<span class="badge rounded-pill bg-dark">New</span></a></li> 
-                                        <li><a th:href="@{/sign-in.html}">Sign In</a></li>
-                                        <li><a th:href="@{/sign-up.html}">Sign Up</a></li>
-                                    </ul>
-                                </li>
-                            </ul>       
-                        </div> 
-
-                        <div class="right-content">
-                            <div class="user-option">
-                                <ul class="global-list">
-                                    <li class="sa-dropdown">
-                                        <span class="cart-number">5</span>
-                                        <i class="fas fa-cart-plus"></i>
-                                        <div class="sa-dropdown-menu">
-                                            <ul class="global-list">
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-thumb">
-                                                            <img th:src="@{/images/course/1.jpg}" alt="Image" class="img-fluid">
-                                                        </div><!-- /.course-thumb -->
-
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a th:href="@{/course-details.html}" >Visual Basic Web Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-thumb">
-                                                            <img th:src="@{/images/course/2.jpg}" alt="Image" class="img-fluid">
-                                                        </div><!-- /.course-thumb -->
-
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a th:href="@{/course-details.html}">Computer Technologies Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                                <li class="remove-item">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                    <div class="sa-course">
-                                                        <div class="course-thumb">
-                                                            <img th:src="@{/images/course/3.jpg}" alt="Image" class="img-fluid">
-                                                        </div><!-- /.course-thumb -->
-
-                                                        <div class="course-info">
-                                                            <div class="info">
-                                                                <h2 class="title"><a th:href="@{/course-details.html}" >Visual Basic Web Course With Live Project</a></h2>
-                                                            </div>
-                                                        </div><!-- /.course-info -->
-                                                    </div><!-- /.sa-course -->                                                
-                                                </li>
-                                            </ul> 
-                                            <div class="total-price">
-                                                <span><strong>Total Price: </strong>$598:00</span>
-                                            </div> 
-                                            <div class="buttons">
-                                                <a class="btn btn-primary cart-button" href="#">View Cart</a>
-                                                <a class="btn btn-primary" href="#">Checkout</a>
-                                            </div>                                              
-                                        </div>
-                                    </li>
-                                    <li><i class="far fa-bell"></i></li>
-                                    <li>
-                                        <div class="sa-search-form">
-                                            <div class="search-icon">
-                                                <i class="fas fa-search"></i>
-                                            </div>
-                                            <div class="search-form text-center open-search">
-                                                <div class="close-search">
-                                                    <span class="remove-icon"><i class="fas fa-times"></i></span>
-                                                </div>
-                                                <form action="#" id="search" method="get">
-                                                    <input name="search" type="text" placeholder="Enter keyword...">
-                                                    <button type="submit"><i class="fas fa-search"></i></button>
-                                                </form><!-- /form -->
-                                            </div><!-- /search-form -->                    
-                                        </div>                        
-                                    </li>
-                                </ul>
-                            </div>                          
-                        </div>
-                    </div><!-- /.container -->
-                </nav><!-- /.navbar -->                                
-            </div><!-- /.sa-menu -->
-        </header><!-- /.sa-header -->        
+        <!-- 헤더 -->
+        <div th:replace="sections/header :: header"></div>
+        <!-- 헤더 끝 -->       
 
         <section class="breadcrumb-section">
-            <div class="container">
+            <div class="container" style="padding-top:30px; padding-bottom:30px;" >
                 <h1>자주묻는 질문</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a th:href="@{/index.html}">Home</a></li>
@@ -243,7 +90,7 @@
                       </button>
                     </h2>
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">홈픽에서는 사용자와 인테리어 전문가님을 중개하는 서비스로, 홈픽이 직접 상담과 시공을 진행하지 않습니다. </div>
+                      <div class="accordion-body">홈픽스에서는 사용자와 인테리어 전문가님을 중개하는 서비스로, 홈픽스가 직접 상담과 시공을 진행하지 않습니다. </div>
                       </div>
                     </div>
                     
@@ -251,11 +98,11 @@
                     <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingTwo">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                        인테리어 상담과 시공을 직접 해주시나요?
+                        회원정보를 수정하고 싶은데 어떻게 해야하나요?
                       </button>
                     </h2>
                     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      <div class="accordion-body">우측 상단 프로필 사진을 클릭 후 [마이페이지-회원정보수정] 페이지에서 회원 정보 수정이 가능합니다.</div>
                     </div>
                   </div>
                   
@@ -263,11 +110,11 @@
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingThree">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                        인테리어 상담과 시공을 직접 해주시나요?
+                        회원탈퇴는 어떻게 하나요?
                       </button>
                     </h2>
                     <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                      <div class="accordion-body">우측 상단 프로필 사진 클릭 후 [마이페이지 > 설정 > 회원정보수정] 상단의 탈퇴하기 버튼을 클릭해주세요.</div>
                     </div>
                   </div>
                   
@@ -275,11 +122,11 @@
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingFour">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                        인테리어 상담과 시공을 직접 해주시나요?
+                        "좋아요"를 누른 글(자랑/인테리어 팁 등)은 어디서 볼 수 있나요?
                       </button>
                     </h2>
                     <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      <div class="accordion-body">우측 상단 프로필 사진을 클릭 후 [마이페이지 > "좋아요" 목록] 페이지에서 확인 가능합니다.</div>
                     </div>
                   </div>
                   
@@ -287,11 +134,11 @@
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingFive">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-                        인테리어 상담과 시공을 직접 해주시나요?
+                        좋지 않은 글을 발견했습니다. 어떻게 해야하나요?
                       </button>
                     </h2>
                     <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      <div class="accordion-body">글 하단 신고 버튼을 눌러 글 신고가 가능합니다.</div>
                     </div>
                   </div>
                 </div>
@@ -301,156 +148,13 @@
             </div>
         </div><!-- /.contact-section -->        
 
-        <div class="sa-section">
-            <div class="section-content download-content section-padding section-before jarallax" style="background-image: url(images/bg/bg2.jpg);">
-                <div class="container">
-                    <div class="section-header d-flex justify-content-center">
-                        <div class="title align-self-center">
-                            <h1>Download on Store</h1>
-                            <span>Download</span>
-                        </div>              
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a href="#" class="download-app">
-                                <span class="icon">
-                                    <i class="fab fa-youtube"></i>
-                                </span>
-                                <span class="text">
-                                    <span>available on</span>
-                                    <strong>youtube.com</strong>
-                                </span>
-                            </a>                            
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#" class="download-app">
-                                <span class="icon">
-                                    <i class="fab fa-vimeo-v"></i>
-                                </span>
-                                <span class="text">
-                                    <span>available on</span>
-                                    <strong>vimeo.com</strong>
-                                </span>
-                            </a>                            
-                        </div>
-                        <div class="col-md-4">
-                            <a href="#" class="download-app">
-                                <span class="icon">
-                                    <i class="fab fa-google-drive"></i>
-                                </span>
-                                <span class="text">
-                                    <span>available on</span>
-                                    <strong>Google Drive</strong>
-                                </span>
-                            </a>                            
-                        </div>
-                    </div><!-- /.row -->
-                    
-                </div><!-- /.container -->
-            </div><!-- /.section-content -->
-        </div><!-- /.sa-section -->
-
-        <div class="footer">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="footer-content">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <div class="footer-logo">
-                                        <a href="#"><img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid"></a>
-                                    </div>
-                                    <p>Holisticly aggregate compelling ROI before out-of-the-box benefits. Efficiently create cross functional paradigms without an expanded array of testing procedures.</p>
-                                    <div class="footer-social">
-                                        <ul class="global-list">
-                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        </ul>
-                                    </div>                           
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget px-md-4">
-                                    <h3>Quik Links</h3>
-                                    <ul class="global-list">
-                                        <li><a href="#">All Courses</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Our Blogs</a></li>
-                                        <li><a href="#">Teacher</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                        <li><a href="#">Terms</a></li>
-                                        <li><a href="#">Carrer</a></li>
-                                    </ul>                            
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <h3>Popular Courses</h3>
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a th:href="@{/blog-details.html}"><img th:src="@{/images/blog/4.jpg}" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a th:href="@{/blog-details.html}">Sed ut perspiciatis unde iste</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post --> 
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a th:href="@{/blog-details.html}"><img th:src="@{/images/blog/5.jpg}" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a th:href="@{/blog-details.html}">Essential Training Training Examples</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post --> 
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a th:href="@{/blog-details.html}"><img th:src="@{/images/blog/2.jpg}" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a th:href="@{/blog-details.html}">Python Programming Essential Training</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post -->                            
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <h3>Subscribe</h3>
-                                    <form action="#" class="sa-form">
-                                        <input type="email" class="form-control" placeholder="Email address" required="">
-                                        <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                                    </form> 
-                                    <div class="payment-gateway">
-                                        <h4>Payment Gateway</h4> 
-                                        <ul class="global-list d-flex">
-                                            <li><img th:src="@{/images/others/payment1.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment2.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment3.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment4.png}" alt="Image" class="img-fluid"></li>
-                                        </ul>
-                                    </div>                      
-                                </div>
-                            </div>
-                        </div><!-- /.row -->
-                    </div>
-                </div><!-- /.container -->
-            </div>
-            <div class="footer-bottom">
-                <div class="container text-center">
-                    <span>Copyright &copy; 2021 ChtStudio - All Rights Reserved.</span>
-                </div><!-- /.container -->
-            </div>
-        </div><!-- /.footer -->
-
+        <!-- 푸터 -->
+        <div th:replace="sections/footer :: footer"></div>
+		<!-- 푸터 끝 -->
+		
+		<!-- 퀵메뉴바 -->
+		<div th:replace="sections/nav :: div"></div>
+		
         <!-- JS -->
         <script th:src="@{/js/jquery.min.js}"></script>
         <script th:src="@{/js/popper.min.js}"></script>
@@ -465,6 +169,15 @@
         <script th:src="@{/js/jquery-ui-min.js}"></script>
         <script th:src="@{/js/validate.js}"></script>
         <script th:src="@{/js/main.js}"></script>
+        
+        <!-- header js -->
+		<script th:src="@{/js/sections/header.js}"></script>
+		
+		<!-- 퀵메뉴 js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+		<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+				
         <!-- fontawesome js 아이콘 설정 -->
 		<script src="https://kit.fontawesome.com/2173f645ed.js"></script>
     </body>

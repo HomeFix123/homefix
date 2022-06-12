@@ -3,6 +3,7 @@ package com.homefix.domain;
 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,10 +13,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.AssertFalse;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -47,13 +49,22 @@ public class Brag {
 	private Date  bdate;
 	
 	@JoinColumn(name = "id")
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	private Member member;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	@JoinColumn(name = "cid")
 	private Company company;
 	
+	@OneToMany(mappedBy = "brag", cascade = CascadeType.REMOVE)
+	@JsonIgnore
+	private List<Prefer> preferList;
 	
+	@Transient
+	private long prefer;
+	@Transient
+	private Boolean preferck;
+	@Transient
+	private Boolean reportck;
 	
 }

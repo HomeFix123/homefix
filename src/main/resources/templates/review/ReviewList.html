@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="">
+<meta name="description" content="">
+
+<title>HomeFix</title>
+
+<!-- CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/all.min.css}">
+<link rel="stylesheet" th:href="@{/css/animate.min.css}">
+<link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+<link rel="stylesheet" th:href="@{/css/slick.css}">
+<link rel="stylesheet" th:href="@{/css/structure.css}">
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="stylesheet" th:href="@{/css/responsive.css}">
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+<link rel="stylesheet" th:href="@{/css/review/reviewList.css}">
+<!-- 퀵메뉴바 css -->
+<link rel="stylesheet" th:href="@{/css/nav.css}">
+
+<!-- font -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
+
+<!-- icons -->
+<link rel="icon" th:href="@{/images/ico/favicon.ico}">
+<link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+<link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+<link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+<link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
+<!-- icons -->
+
+
+
+
+</head>
+<body>
+	<div id="preloader">
+		<img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+	</div>
+	<!-- preloader -->
+	
+	<!-- header -->
+	<div th:replace="sections/header :: header"></div>
+	<!-- 퀵메뉴바 -->
+	<div th:replace="sections/nav :: div"></div>
+	
+	<section class="breadcrumb-section bg-light" id="reviewListHeaderImg" >
+		<div class="container" id="reviewListHeaderTitle">
+			<h1 style="color: #1565c0;">시공 후기</h1>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/index">Home</a></li>
+				<li class="breadcrumb-item"><a href="/review">Review</a></li>
+			</ol>
+		</div>
+		<!-- /.container -->
+	</section>
+	<!-- /.breadcrumb-section -->
+
+	<div class="sa-section">
+		<div class="section-content section-padding">
+			<div class="container">
+				<div class="section-header d-flex justify-content-between">
+					<div class="search_bar align-self-center">
+						<ul>
+							<li>
+								<div class="view-all align-self-center">
+									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#hometypeModal">주거형태</a>
+								</div>
+								<div class="modal fade modal-query" id="hometypeModal" tabindex="-1" aria-labelledby="hometypeModalLabel" aria-hidden="true">
+									<div class="modal-dialog  modal-dialog-centered">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="hometypeModalLabel">주거형태 선택</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												<div class="container-fluid">
+													<ul id="ulHometypeBtns" class="ulBtns">
+														<li><button class="btn btn-query" value="마이룸">마이룸</button></li>
+														<li><button class="btn btn-query" value="원룸">원룸</button></li>
+														<li><button class="btn btn-query" value="오피스텔">오피스텔</button></li>
+														<li><button class="btn btn-query" value="주택">주택</button></li>
+													</ul>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">취소</button>
+												<button type="button" class="btn btn-primary modalSubmit" id="modalSubmit">검색</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="view-all align-self-center">
+									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#jobModal">작업분야</a>
+								</div>
+								<div class="modal fade modal-query" id="jobModal" tabindex="-1" aria-labelledby="jobModalLabel" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="job	ModalLabel">작업분야 선택</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												<div class="container-fluid">
+													<ul id="ulJobBtns" class="ulBtns">
+														<li><button class="btn btn-query" value="홈스타일링">홈스타일링</button></li>
+														<li><button class="btn btn-query" value="리모델링">리모델링</button></li>
+														<li><button class="btn btn-query" value="부분시공">부분시공</button></li>
+													</ul>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">취소</button>
+												<button type="button" class="btn btn-primary modalSubmit" id="modalSubmit">검색</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="view-all align-self-center">
+									<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#familyModal">가족형태</a>
+								</div>
+								<div class="modal fade modal-query" id="familyModal" tabindex="-1" aria-labelledby="familyModalLabel" aria-hidden="true">
+									<div class="modal-dialog  modal-dialog-centered">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="familyModalLabel">가족형태 선택</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												<div class="container-fluid">
+													<ul id="ulFamilyBtns" class="ulBtns">
+														<li><button class="btn btn-query" value="싱글">싱글</button></li>
+														<li><button class="btn btn-query" value="신혼/부부">신혼/부부</button></li>
+														<li><button class="btn btn-query" value="자녀동반">자녀동반</button></li>
+													</ul>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary modalClose" data-bs-dismiss="modal">취소</button>
+												<button type="button" class="btn btn-primary modalSubmit" id="modalSubmit">검색</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="view-all align-self-center" th:if="${session.userId != null}">
+						<a th:href="@{/review/write}" class="btn btn-primary">후기 작성</a>
+					</div>
+					<div class="view-all align-self-center" th:if="${session.userId == null}">
+						<a th:href="@{/sign}" class="btn btn-primary">후기 작성</a>
+					</div>
+				</div>
+				<div>
+					<div th:if="${param.hometype != null}" class='alert alert-primary alert-dismissible fade show m-2' role='alert' >
+						<span th:text="${param.hometype}">싱글</span>
+						<button id="hometypeRemoveBtn" type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+					</div>
+					<div th:if="${param.job != null}" class='alert alert-primary alert-dismissible fade show m-2' role='alert'>
+						<span th:text="${param.job}">싱글</span>
+						<button id="jobRemoveBtn" type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+					</div>
+					<div th:if="${param.family != null}" class='alert alert-primary alert-dismissible fade show m-2' role='alert'>
+						<span th:text="${param.family}"></span>
+						<button id="familyRemoveBtn" type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+					</div>
+				</div>
+				<div>
+                    	<form action="review" id="searchForm">
+                    	<div id="hiddenInputs">
+                    		<input th:if="${param.hometype != null}" type="hidden" name="hometype" th:value="${param.hometype}">
+                    		<input th:if="${param.job != null}" type="hidden" name="job" th:value="${param.job}">
+                    		<input th:if="${param.family != null}" type="hidden" name="family" th:value="${param.family}">
+                    	</div>
+	                	</form>
+                    </div>
+				<div class="row" id="reviewListDiv">
+					<div th:if="${#lists.size(reviewList) == 0}" class="text-center pt-3">
+                    		<h4>검색 결과가 없습니다</h4>
+                    	</div>
+					<th:block th:each="r : ${reviewList}">
+	                        <div class="reviewDiv col-6 col-md-4 col-lg-4">
+	                            <div class="sa-post">
+	                                <div class="entry-header">
+	                                	<!-- 썸네일 이미지 -->
+	                                    <div class="entry-thumbnail">
+	                                        <a class="relink" th:href="|/review/${r.id}|">
+	                                        	<img th:if="${r.image == null}" class="titleImg img-fluid" src="http://140.238.11.118:5000/upload/profile_basic.png" alt="Image">
+	                                        	<img th:if="${r.image != null}" class="titleImg img-fluid" th:src="|http://140.238.11.118:5000/upload/${r.image}|" alt="Image">
+	                                        </a>
+	                                    </div><!-- /썸네일 이미지 -->
+	                                </div>
+	                                <div class="course-info">
+	                                    <div class="info">
+	                                        <h2 class="title text-center">
+	                                        	<img th:if="${r.logo == null}" class='user-img' src="http://140.238.11.118:5000/upload/profile_basic.png">
+	                                        	<img th:if="${r.logo != null}" class='user-img' th:src="|http://140.238.11.118:5000/upload/${r.logo}|">
+	                                        	<a th:href="|/review/${r.id}|" class="relink companyName" th:text="${r.name}">업체 이름</a>
+	                                        </h2>
+	                                    </div>
+	                                    <div id="">
+	                                    	<span class="htspan" th:text="${r.hometype}">hometype</span> / <span class="sizespan" th:text="${r.size}"></span>평
+	                                    </div>
+	                                    <div class="sa-meta">
+	                                        <ul class="global-list">
+	                                            <li><span><i class="far fa-eye"></i></span><span class="cnt" th:text="${r.cnt}"></span></li>
+	                                        </ul>
+	                                    </div>
+	                                </div><!-- /.course-info -->
+	                            </div><!-- /.sa-post -->                            
+	                        </div>
+                        </th:block>     
+										
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</div>
+		<!-- /.section-content -->
+	</div>
+	<!-- /.sa-section -->
+
+
+	<div th:if="${#lists.size(reviewList) == 12}" id="moreDiv" class="text-center">
+        	<!-- 10개 모두 출력되야 보여주기 -->
+			<button class="btn btn-primary w-100" id="moreBtn">더보기</button>
+		</div>
+
+	<!-- JS -->
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/inview.min.js}"></script>
+	<script th:src="@{/js/slick.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/jarallax.min.js}"></script>
+	<script th:src="@{/js/counterup.min.js}"></script>
+	<script th:src="@{/js/waypoints.min.js}"></script>
+	<script th:src="@{/js/YTPlayer.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/validate.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/sections/header.js}"></script>
+	<script th:src="@{/js/review/reviewList.js}"></script>
+	<!-- 퀵메뉴 js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+	
+</body>
+</html>

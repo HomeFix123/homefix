@@ -12,4 +12,6 @@ public interface MemberReportRepository extends CrudRepository<MemberReport, Int
 	public long countByRdayGreaterThan(Date rday);
 	
 	public List<MemberReport> findByMember(Member member);
+
+	public List<MemberReport> findByMemberAndReporter(Member member, Member repo);
 }

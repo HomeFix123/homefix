@@ -7,7 +7,7 @@
 <meta name="author" content="">
 <meta name="description" content="">
 
-<title>Educam | Education & Courses HTML Template.</title>
+<title>관리자 정보 수정</title>
 
 <!-- CSS -->
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -60,7 +60,7 @@
 	</div>
 	<!-- preloader -->
 
-	<div th:replace="/admin/sections/header :: header"></div>
+	<div th:replace="admin/sections/header :: header"></div>
 
 	<div class="container">
 		<div class="row">
@@ -116,7 +116,7 @@
 												<input type="hidden" name="_method" value="put">
 												<div class="row form-group justify-content-center pt-3">
 													<label>로고 이미지</label>
-													<input type="hidden" class="logo_image" name="profiling" th:value="${member.profilimg}">
+													<input type="hidden" class="logo_image" name="profilimg" th:value="${member.profilimg}">
 													<div class="col-md-6">
 														<img th:src="@{http://140.238.11.118:5000/upload/{img}(img=${member.profilimg})}" alt="Image"
 															class="img-fluid" id="logo_image">

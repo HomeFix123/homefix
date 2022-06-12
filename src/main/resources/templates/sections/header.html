@@ -2,10 +2,12 @@
 	<div class="sa-menu">
 		<nav class="navbar navbar-expand-lg">
 			<div class="container">
+				
 				<a class="navbar-brand" th:href="@{/index}"> <img
-					th:src="@{/images/logo.png}" alt="Logo" class="img-fluid">
+					th:src="@{/images/homefix_hover.png}" id='headerLogo' alt="Logo" class="img-fluid m-0" style="height: 68px;">
+					<span class="h2 align-middle">HomeFix</span>
 				</a>
-
+				
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarNav"
 					aria-controls="navbarNav" aria-expanded="false"
@@ -16,87 +18,42 @@
 				<div class="collapse navbar-collapse justify-content-end"
 					id="navbarNav">
 					<ul class="navbar-nav">
-						<li><a href="#">내방어때</a></li>
-						<li><a href="about.html">꾸미기팁</a></li>
-						<li><a href="about.html">시공업체</a></li>
-						<li><a href="#">견적 신청</a></li>
+						<li><a th:href="@{/brag}">내방어때</a></li>
+						<li><a th:href="@{/tip/list}">꾸미기팁</a></li>
+						<li><a th:href="@{/review}">시공후기</a></li>
+						<li><a th:href="@{/expert}">시공업체</a></li>
+						<li><a th:if="${session.userId != null}" th:href="@{/estimation/total}">견적 목록</a></li>
+						<li><a th:if="${session.userId == null}" th:href="@{/estimation/write}">견적 신청</a></li>
 					</ul>
 				</div>
 				<div class="right-content">
 					<div class="user-option">
 
 						<ul class="global-list">
-							<li><i class="far fa-user"></i></li>
-							<li><i class="far fa-question-circle"></i></li>
-							<li class="sa-dropdown"><span class="cart-number">3</span> <i
-								class="far fa-bell"></i>
-								<div class="sa-dropdown-menu">
-									<ul class="global-list">
+							<li th:if="${session.memberId == null && session.userId == null}"><a th:href="@{/sign}">Login</a></li>
+							<li th:if="${session.memberId != null || session.userId != null}"><a th:href="@{/logout}">Logout</a></li>
+							<li th:if="${session.memberId != null}"><a th:href="@{/sign/member/profile}"><i class="far fa-user"></i></a></li>
+							<li th:if="${session.userId != null}"><a th:href="@{/company/profile}"><i class="far fa-user"></i></a></li>
+							<li class="sa-dropdown">
+								<i class="fas fa-comments"></i>
+								<div class="chatList">
+									<ul class="global-list" id="global-list">
 										<li class="remove-item"><span class="remove-icon"><i
 												class="fas fa-times"></i></span>
 											<div class="sa-course">
 												<div class="course-info">
 													<div class="info">
 														<h2 class="title">
-															<a href="course-details.html">Visual Basic Web
-																Course With Live Project</a>
+															<a href="#">채팅방 목록</a>
 														</h2>
 													</div>
 												</div>
-												<!-- /.course-info -->
 											</div>
-											<!-- /.sa-course --></li>
-										<li class="remove-item"><span class="remove-icon"><i
-												class="fas fa-times"></i></span>
-											<div class="sa-course">
-												<div class="course-info">
-													<div class="info">
-														<h2 class="title">
-															<a href="course-details.html">Computer Technologies
-																Course With Live Project</a>
-														</h2>
-													</div>
-												</div>
-												<!-- /.course-info -->
-											</div>
-											<!-- /.sa-course --></li>
-										<li class="remove-item"><span class="remove-icon"><i
-												class="fas fa-times"></i></span>
-											<div class="sa-course">
-												<div class="course-info">
-													<div class="info">
-														<h2 class="title">
-															<a href="course-details.html">Visual Basic Web
-																Course With Live Project</a>
-														</h2>
-													</div>
-												</div>
-												<!-- /.course-info -->
-											</div>
-											<!-- /.sa-course --></li>
+										</li>
 									</ul>
-								</div></li>
-							<li>
-								<div class="sa-search-form">
-									<div class="search-icon">
-										<i class="fas fa-search"></i>
-									</div>
-									<div class="search-form text-center open-search">
-										<div class="close-search">
-											<span class="remove-icon"><i class="fas fa-times"></i></span>
-										</div>
-										<form action="#" id="search" method="get">
-											<input name="search" type="text"
-												placeholder="Enter keyword...">
-											<button type="submit">
-												<i class="fas fa-search"></i>
-											</button>
-										</form>
-										<!-- /form -->
-									</div>
-									<!-- /search-form -->
 								</div>
 							</li>
+							<li><a th:href="@{/estimation/qna}"><i class="far fa-question-circle"></i></a></li>
 						</ul>
 					</div>
 				</div>

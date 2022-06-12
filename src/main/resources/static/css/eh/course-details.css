@@ -1,4 +1,4 @@
-/**************** course-details***********************/
+/**************** companydetails***********************/
 #priInfo{
 	padding: 30px;
 }
@@ -42,8 +42,19 @@
 }
 
 .entry-thumbnail img{
-	width: 50%;
+	width: 600px;
+	height: 400px;
 	
+	
+}
+
+.ulBrag{
+	list-style: none;
+	text-align: center;
+}
+
+.lineChange {
+    white-space: break-spaces;
 }
 /*******payment*****************************************************/
 
@@ -63,4 +74,19 @@ select,option{
 }
 #pridiv{
 		margin: 50px;
+}
+
+.companyInfoList{
+	text-align: left;
+}
+.companyInfoList > li {
+	margin: 10px;
+}
+
+#companyBookMark {
+	text-align: right;
+}
+#companyBookMark > a {
+	margin-right: 20px;
+	font-size: 30px;
 }

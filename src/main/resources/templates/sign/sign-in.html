@@ -8,7 +8,7 @@
 <meta name="author" content="">
 <meta name="description" content="">
 
-<title>Educam | Education & Courses HTML Template.</title>
+<title>로그인</title>
 
 <!-- CSS -->
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -38,23 +38,20 @@
 <link rel="apple-touch-icon" sizes="57x57"
 	th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
 <!-- icons -->
-
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+ 
 <!-- Template Developed By ChtStudio -->
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+<link rel="stylesheet" th:href="@{/css/nav.css}">
+
 </head>
 <body>
 	<div id="preloader">
-		<img src="images/preloader.gif" alt="Image"
+		<img th:src="@{/images/preloader.gif}" alt="Image"
 			class="tr-preloader img-fluid">
 	</div>
 	
 	<!-- header -->
-	<div th:replace="/sections/header :: header"></div>
+	<div th:replace="sections/header :: header"></div>
 
 	<div class="sg-page-content">
 		<div class="sg-section">
@@ -83,26 +80,26 @@
 										<div class="tab-pane fade show active" id="profile"
 											role="tabpanel" aria-labelledby="profile-tab">
 											<form class="ragister-form" name="ragister-form"
-												method="post" action="#">
+												method="post" th:action="@{/sign/member/loginMem}">
 
 												<div class="form-group text-left mb-0">
 													<label>Id</label> <input type="text" class="form-control" name="id"
 														 placeholder="아이디">
 												</div>
 												<div class="form-group text-left mb-0">
-													<label>Password</label> <input type="password" name="pass"
+													<label>Password</label> <input type="password" name="password"
 														class="form-control" 
 														placeholder="비밀번호">
-														<input type="checkbox">아이디 저장하기</input>
+														<input type="checkbox">아이디 저장하기
 												</div>
 												
-												<button class="btn btn-primary" type="submit">로그인</button>
+												<button class="btn btn-primary" type="submit" id="memberLogin">로그인</button>
 												<div class="middle-content">
-													<a class='btn btn-primary' th:href='@{/sign/sign-agree-m}'>회원가입</a>
-													<a id="id_find" href="#">아이디/비밀번호 찾기</a>
+													<a class='btn btn-primary' th:href='@{/sign/member/sign_member}'>회원가입</a>
+													<a id="id_find" href="/sign/findIdPw">아이디/비밀번호 찾기</a>
 												</div>
 												<div class="buttons">
-													<a class="facebook" href="#"><span> <i
+													<a class="facebook" href="https://kauth.kakao.com/oauth/authorize?client_id=b9782ddba62ada3a2b9e27f1892618a6&redirect_uri=http://localhost:8080/kakao/kakao&response_type=code"><span> <i
 															class="fa-solid fa-comment"></i></span>카카오로 로그인 하기</a>
 
 												</div>
@@ -120,7 +117,7 @@
 													<label>Password</label> <input type="password"
 														class="form-control" name="pass"
 														placeholder="비밀번호">
-														<input type="checkbox">아이디 저장하기</input>
+														<input type="checkbox">아이디 저장하기
 												</div>
 												
 												
@@ -136,7 +133,7 @@
 													<a class='btn btn-primary' th:href='@{/sign/company/sign-agree-b}'>회원가입</a>
 												
 												
-													<a id="id_find" href="#">아이디/비밀번호 찾기</a>
+													<a id="id_find" th:href='@{/sign/companyfindIdPw}'>아이디/비밀번호 찾기</a>
 												</div>
 												
 											</form>
@@ -156,8 +153,10 @@
 			<!-- /.section-content -->
 		</div>
 		<!-- /.sg-section -->
+		</div>
 
-		<div th:replace="/sections/footer :: footer"></div>
+		<div th:replace="sections/nav :: div"></div>
+		<div th:replace="sections/footer :: footer"></div>
 
 	<!-- JS -->
 		<script th:src="@{/js/jquery.min.js}"></script>
@@ -175,10 +174,19 @@
 	<script th:src="@{/js/jquery-ui-min.js}"></script>
 	<script th:src="@{/js/validate.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
+	
+	<script th:src="@{/js/sections/header.js}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    	<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+	
 	<!--font asome js-->
 	<script src="https://kit.fontawesome.com/2173f645ed.js"></script>
 	<!-- eunhye js -->
 	<script th:src="@{/js/eh/sign-up-b.js}"></script>
+	
+	<!-- heayun js -->
+<!-- 	<script th:src="@{/js/he/memberLogin.js}"></script> -->
 	
 </body>
 </html>

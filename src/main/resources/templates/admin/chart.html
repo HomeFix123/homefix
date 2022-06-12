@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="">
+        <meta name="description" content="">
+
+        <title>관리자 차트</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/css/all.min.css}">
+        <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+        <link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+        <link rel="stylesheet" th:href="@{/css/slick.css}">
+        <link rel="stylesheet" th:href="@{/css/structure.css}">
+        <link rel="stylesheet" th:href="@{/css/main.css}"> 
+        <link rel="stylesheet" th:href="@{/css/responsive.css}">
+        
+        <!-- font -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
+
+        <!-- icons -->
+        <link rel="icon" href="images/ico/favicon.ico"> 
+        <link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+        <link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">  
+        <!-- icons -->
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <!-- Template Developed By ChtStudio -->
+        
+        <style type="text/css">
+        	@media (max-width: 575px){
+				.sa-topbar {
+				    display: block;
+				}
+			}
+			#kibana {
+				height: 100vw;
+			}
+        </style>
+    </head>
+    <body> 
+        <div id="preloader">
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+        </div><!-- preloader -->
+        
+        <div th:replace="admin/sections/header :: header"></div> 
+        
+        <div class="container">
+	        <div class="row">
+		        <div class="col-lg-2">
+		            <div class="sa-menu">
+		                <nav class="navbar navbar-expand p-0 m-0">	
+		                    <div class="container m-0 p-0 b-shadow">
+		                    
+		                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		                            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+		                        </button> 
+		                        
+		                        <div class="collapse navbar-collapse" id="navbarNav">
+		                        	
+		                            <ul class="navbar-nav flex-column w-100 m-0" id="admin-nav">
+		                                <li><a class="w-100" th:href="@{/admin/dashboard}"><i class="fas fa-chart-line"></i> <span>대시보드</span></a></li>
+		                                <li><a class="w-100" th:href="@{/admin/member}"><i class="fas fa-user"></i> <span>회원관리</span></a></li>
+		                                <li><a class="w-100" th:href="@{/admin/company}"><i class="fas fa-building"></i> <span>업체관리</span></a></li>
+		                                <li><a class="w-100" th:href="@{/admin/board}"><i class="fas fa-book"></i> <span>게시글</span></a></li>
+		                                <li class="active"><a class="w-100" th:href="@{/admin/chart}"><i class="fas fa-chart-line"></i> <span>차트</span></a></li>
+		                            </ul>       
+		                        </div> 
+		
+		                        
+		                    </div><!-- /.container -->
+		                </nav><!-- /.navbar -->                                
+		            </div><!-- /.sa-menu -->       
+				</div>
+				<div class="col-lg-9">
+					<div class="sa-section">
+			            <div class="section-content section-padding pt-3 pb-0">
+			                <div class="container">
+				                <div class="section-header justify-content-between">
+			                        <div class="title">
+			                        	<h1>Chart</h1>
+			                        </div>                        
+			                    </div><!-- /.section-header -->
+			                    <div class="address-content" id="admin-info">
+			                        <div class="row">
+			                            <iframe id="kibana" src="http://13.125.243.244:5601/app/dashboards#/view/c7f89c60-e005-11ec-b047-57b9d7414ff8?embed=true&_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-1y,to:now))&_a=(description:'',filters:!(),fullScreenMode:!f,options:(hidePanelTitles:!f,useMargins:!t),query:(language:kuery,query:''),timeRestore:!f,title:myDashboard,viewMode:view)&hide-filter-bar=true"></iframe>
+				                        
+			                        </div><!-- /.row -->
+			                    </div><!-- /.sg-category-content -->
+			                </div><!-- /.container -->
+			            </div><!-- /.section-content -->
+			        </div><!-- /.sa-section -->
+				</div>
+			</div>
+        </div>
+
+     
+
+        
+
+
+
+        <!-- JS -->
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>  
+        <script th:src="@{/js/inview.min.js}"></script> 
+        <script th:src="@{/js/slick.min.js}"></script>
+        <script th:src="@{/js/jquery-ui-min.js}"></script>  
+        <script th:src="@{/js/jarallax.min.js}"></script>  
+        <script th:src="@{/js/counterup.min.js}"></script> 
+        <script th:src="@{/js/waypoints.min.js}"></script> 
+        <script th:src="@{/js/YTPlayer.min.js}"></script> 
+        <script th:src="@{/js/jquery-ui-min.js}"></script>
+        <script th:src="@{/js/validate.js}"></script>
+        <script th:src="@{/js/main.js}"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+        
+        <!-- 관리자 스크립트 -->
+        <script th:src="@{/js/admin_script.js}"></script> 
+        <script th:inline="javascript">
+        	/*<![CDATA[*/
+        	const aggNewUser = /*[[ ${aggNewUser} ]]*/ 
+        	"";
+        	const aggPayment = /*[[ ${aggPayments} ]]*/ 
+        	/*]]*/
+        </script>
+        <script>
+        aggUserLabels = [];
+        aggUserCnt = [];
+        for(let item of aggNewUser){
+        	aggUserLabels.push(item[0]);
+        	aggUserCnt.push(item[1]);
+        }
+        const ctx = document.getElementById('newUserPerMonth').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: aggUserLabels,
+                datasets: [{
+                    label: '가입자 수',
+                    data: aggUserCnt,
+                    backgroundColor: [
+                    	'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        
+        
+        aggPaymentLabels = [];
+        aggPaymentCnt = [];
+        for(let item of aggPayment){
+        	aggPaymentLabels.push(item[0]);
+        	aggPaymentCnt.push(item[1]);
+        }
+        const ctx2 = document.getElementById('paymentPerMonth').getContext('2d');
+        const myChart2 = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: aggPaymentLabels,
+                datasets: [{
+                    label: '매출액(원)',
+                    data: aggPaymentCnt,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        </script>
+        
+    </body>
+</html>         

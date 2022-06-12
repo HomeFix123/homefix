@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="">
+<meta name="description" content="">
+
+<title>포트폴리오 작성</title>
+
+<!-- CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/all.min.css}">
+<link rel="stylesheet" th:href="@{/css/animate.min.css}">
+<link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+<link rel="stylesheet" th:href="@{/css/slick.css}">
+<link rel="stylesheet" th:href="@{/css/structure.css}">
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="stylesheet" th:href="@{/css/responsive.css}">
+
+<!-- header css -->
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+
+<!-- 퀵메뉴바 css -->
+<link rel="stylesheet" th:href="@{/css/nav.css}">
+
+<!-- font -->
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900"
+	rel="stylesheet">
+
+<!-- icons -->
+<link rel="icon" th:href="@{/images/ico/favicon.ico}">
+<link rel="apple-touch-icon" sizes="144x144"
+	th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+<link rel="apple-touch-icon" sizes="114x114"
+	th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+<link rel="apple-touch-icon" sizes="72x72"
+	th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+<link rel="apple-touch-icon" sizes="57x57"
+	th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
+<!-- icons -->
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+<!-- Template Developed By ChtStudio -->
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+
+<link rel="stylesheet" th:href="@{/css/company/portfolio.css}">
+</head>
+<body>
+	<div id="preloader">
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+        </div><!-- preloader -->
+	<!-- preloader -->
+
+	<div th:replace="sections/header :: header"></div>
+	
+	<section class="breadcrumb-section">
+            <div class="container">
+                <h1>포트폴리오 수정</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/company/profile}">profile</a></li>
+                    <li class="breadcrumb-item">Portfolio</li>
+                </ol>
+            </div><!-- /.container -->
+        </section><!-- /.breadcrumb-section -->  
+
+	<form id="writeinfo" method="post"
+		action="/company/write">
+		<div class="sg-section">
+			<div class="section-content course-details bg-white section-padding">
+				<div class="container">
+					<div class="row justify-content-md-center">
+						<div class="">
+							<div class="sa-course">
+								<div class="writedetail">
+									<input type="hidden" name="cinfo_id" th:value="${companyInfo.cinfo_id}" th:if="${companyInfo != null}">
+									<div class="previewImage">
+
+										<img style="width: 100%;" id="previewImage"
+											src="https://dummyimage.com/300x100/ffffff/000000.png&text=file upload" th:if="${companyInfo == null || companyInfo.cinfo_img == null}">
+										<img style="width: 100%;" id="previewImage"
+											th:src="|http://140.238.11.118:5000/upload/${companyInfo.cinfo_img}|" th:if="${companyInfo != null && companyInfo.cinfo_img != null}">
+										<input style="display: block; visibility: hidden;" type="file"
+											accept="image/*" id="inputImage"> 
+										<input type="hidden" id="cinfo_img" name="cinfo_img" th:value="${companyInfo != null} ? ${companyInfo.cinfo_img} : ''"> 
+										<label class="btn btn-primary w-100 mb-5" for="inputImage">이미지 업로드</label>
+									</div>
+									<div class="container">
+										<div class="row">
+											<div class="mb-3">
+												<h6><label class="" for="career">경력</label></h6> 
+												<input id="career" class="form-control m-0" type="number"
+													th:value="${companyInfo != null} ? ${companyInfo.career} : 0" name="career">
+											</div>
+		
+											<div class="mb-3">
+												<h6><label class="" for="specialty">전문분야</label></h6>
+		
+												<div class="btn-group w-100" role="group" aria-label="Basic checkbox toggle button group">
+													
+														<div class="col-6">
+															<input type="checkbox" class="btn-check" name="specialtyArr" id="homeSpecial" autocomplete="off" value="주거공간"> 
+															<label
+																class="btn btn-outline-primary col-12" for="homeSpecial">
+																<i class="fas fa-home"></i>
+																주거공간
+															</label> 
+														</div>
+														<div class="col-6">
+															<input type="checkbox" class="btn-check" id="comSpecial" name="specialtyArr" autocomplete="off" value="상업공간">
+															<label class="btn btn-outline-primary col-12" for="comSpecial">
+																<i class="fas fa-building"></i>
+																상업공간
+															</label>
+														</div>
+													
+												</div>
+											</div>
+											<div class="input-group mb-3">
+												<h6>
+												<label class=""  for="spaces" >
+													지역
+												</label>
+												</h6>
+												<a id="selectSpaceBtn" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#areaModal">지역 선택</a>
+												
+											</div>
+											<div class="input-group mb-3" id="spacesDiv"></div>
+											<div class="mb-3">
+												<h6><label class="mb-2" for="cinfo_cont">소개 한마디</label></h6>
+												<textarea id="cinfo_cont" name="cinfo_cont"
+													class="form-control" th:text="${companyInfo != null} ? ${companyInfo.cinfo_cont} : 'zz'"></textarea>
+												
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!-- /.writedetail -->
+							</div>
+							<!-- /.sa-course -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<div>
+		<button id="submitBtn" type="button" class="btn btn-primary writebtn w-100">작성</button>
+	</div>
+	<div class="modal" tabindex="-1" id="areaModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">시공 가능 지역 선택</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-6 list-group">
+								<div id="citiesList">
+									<a href="#" class="list-group-item list-group-item-action"
+										th:each="a : ${areaNameList}" th:text="${a}"> 시도 </a>
+								</div>
+							</div>
+							<div class="col-6 list-group" id="countriesList">
+								<div th:each="a : ${areaList}" th:id="${a.key}" class="country">
+									<a href="#" class="list-group-item list-group-item-action"
+										th:each="values : ${areaList.get(a.key)}"
+										th:text="${#strings.defaultString(values.dt_area, '전체')}"
+										th:id=${values.id}>
+										시군구 </a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					
+					<button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- JS -->
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/inview.min.js}"></script>
+	<script th:src="@{/js/slick.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/jarallax.min.js}"></script>
+	<script th:src="@{/js/counterup.min.js}"></script>
+	<script th:src="@{/js/waypoints.min.js}"></script>
+	<script th:src="@{/js/YTPlayer.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/validate.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	
+	<script th:src="@{/js/sections/header.js}"></script>
+	<script th:src="@{/js/companyInfo.js}"></script>
+	
+	<!-- header js -->
+	<script th:src="@{/js/sections/header.js}"></script>
+
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		const companyInfo = /*[[ ${companyInfo} ]]*/ 
+		"";
+    </script>
+
+
+
+</body>
+</html>

@@ -28,13 +28,17 @@ public class AdminController {
 	@GetMapping(path = "")
 	public String moveAdminPage() {
 		
-		return "redirect:/admin/dashboard";
+		return "redirect:admin/dashboard";
 	}
 	
 	@GetMapping(path = "/dashboard")
-	public String moveDashBoardPage() {
+	public String moveDashBoardPage(Model model) {
 		logger.info("관리자 대시보드");
-		return "/admin/dashboard";
+		model.addAttribute("newUser", adminService.countNewUser());
+		model.addAttribute("payUser", adminService.countPayUser());
+		model.addAttribute("aggNewUser", adminService.aggregateNewUser());
+		model.addAttribute("aggPayments", adminService.aggregatePayments());
+		return "admin/dashboard";
 	}
 	
 	@GetMapping(path = "/member")
@@ -43,21 +47,21 @@ public class AdminController {
 		model.addAttribute("memberList", adminService.getMemberList());
 		model.addAttribute("reportList", adminService.getMemberReportList());
 		model.addAttribute("todayMemberReport", adminService.countTodayMemberReport());
-		return "/admin/member";
+		return "admin/member";
 	}
 	
 	@GetMapping(path = "/member/form/{id}")
 	public String moveMemberUpdatePage(@PathVariable String id, Model model) {
 		logger.info("관리자 고객관리 수정");
 		model.addAttribute("member", adminService.getMember(id));
-		return "/admin/member/form";
+		return "admin/member/form";
 	}
 	
 	@PutMapping(path = "/member/form/{id}")
 	public String updatePage(Member member, Model model) {
 		logger.info("[member][" + member.getId() + "]관리자 고객관리 수정");
 		adminService.updateMember(member);
-		return "redirect:/admin/member";
+		return "redirect:admin/member";
 	}
 	
 	
@@ -65,8 +69,9 @@ public class AdminController {
 	public String moveCompanyPage(Model model) {
 		model.addAttribute("companyList", adminService.getCompanyList());
 		model.addAttribute("reportList", adminService.getCompanyReportList());
+		model.addAttribute("todayCompanyReport", adminService.countTodayCompanyReport());
 		logger.info("관리자 업체관리");
-		return "/admin/company";
+		return "admin/company";
 	}
 	
 	
@@ -74,7 +79,7 @@ public class AdminController {
 	public String moveCompanyUpdatePage(@PathVariable String cid, Model model) {
 		logger.info("[company]["+ cid + "] 업체 수정");
 		model.addAttribute("company", adminService.getCompany(cid));
-		return "/admin/company/form";
+		return "admin/company/form";
 	}
 	
 	@PutMapping(path = "/company/form/{cid}")
@@ -96,7 +101,7 @@ public class AdminController {
 		if(page == null) page = 1;
 		model.addAttribute("bragList", adminService.getBragList(page)); 
 		model.addAttribute("cntBrag", adminService.countBragList());
-		return "/admin/board/brag";
+		return "admin/board/brag";
 	}
 	
 	
@@ -104,13 +109,15 @@ public class AdminController {
 	@GetMapping(path = "/board/tip")
 	public String moveTipPage(Integer page, Model model) {
 		if(page == null) page = 1;
-		return "/admin/board/tip";
+		model.addAttribute("tipList", adminService.getTipList(page)); 
+		model.addAttribute("cntTip", adminService.countTipList());
+		return "admin/board/tip";
 	}
 	
 	
 	@GetMapping(path = "/chart")
 	public String moveChartPage() {
 		
-		return "/admin/chart";
+		return "admin/chart";
 	}
 }

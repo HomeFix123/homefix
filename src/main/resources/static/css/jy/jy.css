@@ -35,7 +35,7 @@
 	    cursor: pointer;
 	    height: 45px;
 	    width: 130px;
-	    border: 1px solid #1abc9c;
+	    border: 1px solid #1565c0;
 	    line-height: 24px;
 	    text-align: center;
 	    font-weight:bold;
@@ -45,12 +45,12 @@
         margin : 2px;
 	}
 	.radio input[type=radio]+label{
-	    background-color: #1abc9c;
+	    background-color: #1565c0;
 	    color: white;
 	}
 	.radio input[type=radio]:checked+label{
 	    background-color: white;
-	    color: #1abc9c;
+	    color: #1565c0;
 	}
 	
 	/*datepicker에서 사용한 이미지 버튼 style적용*/
@@ -61,12 +61,22 @@
     img.ui-datepicker-trigger{ 
     margin-left:2px; vertical-align:middle; cursor: Pointer;
     width:20px;}
+    
+    /*에러 박스*/
+    .error_box {
+	    color : red;
+	    font-weight: bold;
+    
+    
+    }
+    
+/*전체 견적 목록****/
+
+.table-eid {
+  text-align: center;
+}    
 
     
-	
-	
-	
-	
 	       
 	   
 /***********************************************************/
@@ -97,12 +107,14 @@
     margin-top: 20px;
     text-align: center;
 }
+
 /*end 희망 견적서 상세보기*/
 
 /***qna.html 페이지****************************************************/
 #help {
     text-align: center;
 }
+
 /********************************************************************/
 
 /*** interiortip-input.html 페이지 ************************************/
@@ -178,11 +190,6 @@
 	display: block;
 }
 
-.reviewer_name{
-	
-
-}
-
 .details{
 	float: left;
 	margin-top: 10px;
@@ -220,106 +227,90 @@
 
 .writeTitle{
 	border-style: 5px solid;
-	border-color: #1abc9c;
+	border-color: #1565c0;
 	border-radius: 5px;
 	width: 100%;
 	height: 40px;
 	margin-bottom: 10px;
 }
 
-/* 인테리어 팁 페이지 ******************************************************************/
-/* 인테리어 팁용 css */
-
-* {
-    box-sizing: border-box;
-    font-family: 'helvetica neue', 'Apple SD Gothic Neo', Roboto, Helvetica, Arial, sans-serif;
+/* 인테리어 팁 화면 작게 */
+.tipContainer {
+	max-width: 800px;
+	min-width: 300px;
 }
 
-body {
-    background-color: #fafafa;
-    padding: 0;
-    margin: 0;
+/*팁 좋아요*/
+
+.preferSave {
+	background-color: transparent;
+}
+.preferSave:hover {
+	background-color: transparent;
 }
 
-p,
-span {
-    font-size: 14px;
+.preferDelete {
+	background-color: transparent;
 }
 
-#interiortip_all {
-    display: flex;
-    justify-content: center;
+#love {
+	color: red;
+	padding-left:8px;
+	font-size: 20px;
 }
 
-#tip_header{
-    height: 50px;
-}
-header .profile-of-article{
-    margin-top: 12px;
-    margin-left: 10px;
-}
-
-#post_atl{
-    /*background-color: #F5DA81;*/
-    border-radius: 10px;
+/*댓글 테두리*/
+.input-comment{
+	outline: 1px solid #D5D5D5;
+	padding: 7px;
+	padding-top: 19px;
+	padding-bottom: 19px;
+	border-radius: 0px;
 }
 
-
-/* top 버튼 */
-#toTop { 
- position: fixed; /* 포지션 고정 */ 
-bottom: 50px; /* 밑에서 100px */ 
-left: 90%;
-/*display: none;  보여지지 없음 - 기본적으로 안보여지게 */ 
-z-index: 9999; /* 포지션을 먼저 지정후 z-좌표(레이어) : 9999입니다. */ 
-}
-#insertTip{ 
- position: fixed; /* 포지션 고정 */ 
-bottom: 100px; /* 밑에서 100px */ 
-left: 87.5%;
-/*display: none;  보여지지 없음 - 기본적으로 안보여지게 */ 
-z-index: 9999; /* 포지션을 먼저 지정후 z-좌표(레이어) : 9999입니다. */ 
- text-align: center;
- color:white;
- width:98px;
- height:40px;
- 
-}
-/* top버튼 끝 */
-
-
-/* 글쓰기 버튼----------------------------*/
-/* From uiverse.io by @alexmaracinaru */
-button {
- cursor: pointer;
- font-weight: 700;
- font-family: Helvetica,"sans-serif";
- transition: all .2s;
- padding-left: 0px;
- border-radius: 100px;
- background: #1abc9c;
- border: 1px solid transparent;
- align-items: center;
- font-size: 15px;
- text-align: center;
+.input-comment:focus {
+	border: 1px solid #D5D5D5;
 }
 
-button:hover {
- background: #1abc9c;
+/* 댓글 등록 버튼 */
+.submit-comment{
+	background-color: transparent;
+	padding-top:0px;
 }
 
-button > svg {
- width: 25px;
- margin-left: 10px;
- transition: transform .3s ease-in-out;
+.submit-comment:hover{
+	background-color: transparent;
+	
 }
 
-button:hover svg {
- transform: translateX(5px);
+/*댓글 삭제*/
+.delete-comment{
+	background-color: transparent;
+	color:gray;
+	font-weight: normal;
+	font-size:15px;
+	align-items: center;
 }
 
-button:active {
- transform: scale(0.95);
+.delete-comment:hover{
+	background-color: white;
 }
-/*=================================글쓰기 버튼 끝*/
-/* 인테리어 팁 페이지 끝******************************************************************/
+
+
+/* 확정버튼 hover 기능 끄기 */
+.nothover_btn.btn.btn-primary{
+	pointer-events: none;
+}
+
+/* 확정버튼 색상 변경 */
+#nothover_btn{
+	background-color: gray;
+	border: 1px solid grey;
+}
+
+
+/*댓글 프로필 이미지 사진 둥글게*/
+.img-fluid {
+	border-radius: 70%;
+	
+}

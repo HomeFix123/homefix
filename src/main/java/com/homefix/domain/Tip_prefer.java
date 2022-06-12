@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -22,6 +24,7 @@ public class Tip_prefer {
 	
 	@JoinColumn(name="tid")
 	@ManyToOne
+	@JsonIgnore
 	private Tip tip;		// 팁 아이디(팁 테이블)
 	
 	@JoinColumn(name="id")

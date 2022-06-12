@@ -7,7 +7,7 @@
 <meta name="author" content="">
 <meta name="description" content="">
 
-<title>Educam | Education & Courses HTML Template.</title>
+<title>관리자 정보 수정</title>
 
 <!-- CSS -->
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -60,7 +60,7 @@
 	</div>
 	<!-- preloader -->
 
-	<div th:replace="/admin/sections/header :: header"></div>
+	<div th:replace="admin/sections/header :: header"></div>
 
 	<div class="container">
 		<div class="row">
@@ -185,11 +185,11 @@
 			logo_img = $('.logo_image').val()
 			if(logo_img != default_img){
 				$(this).text('변경 취소')
-				$('.logo_image').val(default_img)
+				$('.logo_image').val(default_img);
 				$('#logo_image').attr('src', 'http://140.238.11.118:5000/upload/' + default_img);
 			} else {
 				$(this).text('기본 이미지로 변경')
-				$('.logo_image').val(company_img)
+				$('.logo_image').val(company_img);
 				$('#logo_image').attr('src', 'http://140.238.11.118:5000/upload/' + company_img);
 			}
 			

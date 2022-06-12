@@ -7,7 +7,7 @@
         <meta name="author" content="">
         <meta name="description" content="">
 
-        <title>Educam | Education & Courses HTML Template.</title>
+        <title>관리자 대시보드</title>
 
         <!-- CSS -->
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -48,32 +48,10 @@
     </head>
     <body> 
         <div id="preloader">
-            <img th:src="@{images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
-        <header class="sa-header">
-            <div class="sa-topbar">
-                <div class="container">
-                    <div class="topbar-content">
-                        <div class="left-content">
-                            <ul class="global-list">
-                                <li><a href="#"><i class="fas fa-home"></i>HOMEFIX</a></li>
-                            </ul>
-                        </div>
-                        <div class="right-content">
-                            <ul class="global-list social">
-                                <li><a href="#"><i class="fas fa-user"></i> 관리자 님</a></li>
-                            </ul>
-                            <ul class="global-list">
-                                <li><a href="#" class="btn btn-primary">로그아웃 <i class="fas fa-sign-in-alt"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- /.container -->
-            </div><!-- /.top-bar -->
-
-            
-        </header><!-- /.sa-header -->  
+        <div th:replace="admin/sections/header :: header"></div> 
         
         <div class="container">
 	        <div class="row">
@@ -119,7 +97,7 @@
 				                                    <i class="fas fa-user"></i>
 				                                </div>
 				                                <div class="text">
-				                                    <h3>256</h3>
+				                                    <h3 th:text="${newUser}"></h3>
 				                                    <p>신규유저</p>
 				                                </div>                                    
 				                            </div>
@@ -141,7 +119,7 @@
 				                                    <i class="far fa-credit-card"></i>
 				                                </div>
 				                                <div class="text">
-				                                    <h3>25</h3>
+				                                    <h3 th:text="${payUser}">25</h3>
 				                                    <p>월정액</p>
 				                                </div>                                    
 				                            </div>
@@ -154,76 +132,12 @@
 			        </div><!-- /.sa-section -->
 				
 			        <div class="sa-section">
-			            <div class="section-content feature-content section-padding">
+			            <div class="section-content feature-content section-padding pt-2">
 			                <div class="container">
 			
 			                    <div class="row">
-			                        <div class="col-md-6">
-			                            <div class="feature">
-			                                <div class="icon">
-			                                    <i class="fas fa-user-graduate"></i>
-			                                </div>
-			                                <div class="text">
-			                                    <h2>Expert teachers</h2>
-			                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo at tempora quos illum voluptatum quisquam qui, architecto repellendus, a officiis adipisci.</p>
-			                                </div>
-			                            </div>                                
-			                        </div>
-			                        <div class="col-md-6">
-			                            <div class="feature">
-			                                <div class="icon">
-			                                    <i class="fa fa-compress"></i>
-			                                </div>
-			                                <div class="text">
-			                                    <h2>Refund if not Satisfied</h2>
-			                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo at tempora quos illum voluptatum quisquam qui, architecto repellendus, a officiis adipisci.</p>
-			                                </div>
-			                            </div>                                
-			                        </div>
-			                        <div class="col-md-6">
-			                            <div class="feature">
-			                                <div class="icon">
-			                                    <i class="far fa-folder-open"></i>
-			                                </div>
-			                                <div class="text">
-			                                    <h2>Over 3000 Ebook a-vailable</h2>
-			                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo at tempora quos illum voluptatum quisquam qui, architecto repellendus, a officiis adipisci.</p>
-			                                </div>
-			                            </div>                                
-			                        </div>
-			                        <div class="col-md-6">
-			                            <div class="feature">
-			                                <div class="icon">
-			                                    <i class="fas fa-external-link-alt"></i>
-			                                </div>
-			                                <div class="text">
-			                                    <h2>Free updates & support</h2>
-			                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo at tempora quos illum voluptatum quisquam qui, architecto repellendus, a officiis adipisci.</p>
-			                                </div>
-			                            </div>                                
-			                        </div>
-			                        <div class="col-md-6">
-			                            <div class="feature">
-			                                <div class="icon">
-			                                    <i class="far fa-edit"></i>
-			                                </div>
-			                                <div class="text">
-			                                    <h2>Over 900 free tutorial</h2>
-			                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo at tempora quos illum voluptatum quisquam qui, architecto repellendus, a officiis adipisci.</p>
-			                                </div>
-			                            </div>                                
-			                        </div>
-			                        <div class="col-md-6">
-			                            <div class="feature">
-			                                <div class="icon">
-			                                    <i class="fas fa-hand-holding-usd"></i>
-			                                </div>
-			                                <div class="text">
-			                                    <h2>Flexible payment methods</h2>
-			                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo at tempora quos illum voluptatum quisquam qui, architecto repellendus, a officiis adipisci.</p>
-			                                </div>
-			                            </div>                                
-			                        </div>
+			                    	<div class="col-md-6"><label>최근 1년간 월별 가입자수</label><canvas id="newUserPerMonth"></canvas></div>
+			                        <div class="col-md-6"><label>최근 1년간 월별 매출</label><canvas id="paymentPerMonth"></canvas></div>
 			                    </div><!-- /.row -->
 			                </div><!-- /.container -->
 			            </div><!-- /.section-content -->
@@ -252,10 +166,83 @@
         <script th:src="@{/js/jquery-ui-min.js}"></script>
         <script th:src="@{/js/validate.js}"></script>
         <script th:src="@{/js/main.js}"></script> 
-        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
         
         <!-- 관리자 스크립트 -->
         <script th:src="@{/js/admin_script.js}"></script> 
+        <script th:inline="javascript">
+        	/*<![CDATA[*/
+        	const aggNewUser = /*[[ ${aggNewUser} ]]*/ 
+        	"";
+        	const aggPayment = /*[[ ${aggPayments} ]]*/ 
+        	/*]]*/
+        </script>
+        <script>
+        aggUserLabels = [];
+        aggUserCnt = [];
+        for(let item of aggNewUser){
+        	aggUserLabels.push(item[0]);
+        	aggUserCnt.push(item[1]);
+        }
+        const ctx = document.getElementById('newUserPerMonth').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: aggUserLabels,
+                datasets: [{
+                    label: '가입자 수',
+                    data: aggUserCnt,
+                    backgroundColor: [
+                    	'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        
+        
+        aggPaymentLabels = [];
+        aggPaymentCnt = [];
+        for(let item of aggPayment){
+        	aggPaymentLabels.push(item[0]);
+        	aggPaymentCnt.push(item[1]);
+        }
+        const ctx2 = document.getElementById('paymentPerMonth').getContext('2d');
+        const myChart2 = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: aggPaymentLabels,
+                datasets: [{
+                    label: '매출액(원)',
+                    data: aggPaymentCnt,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        </script>
         
     </body>
 </html>         

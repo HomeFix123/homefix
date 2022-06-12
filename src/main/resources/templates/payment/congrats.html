@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="">
+<meta name="description" content="">
+
+<title>Educam | Education & Courses HTML Template.</title>
+
+<!-- CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/all.min.css}">
+<link rel="stylesheet" th:href="@{/css/animate.min.css}">
+<link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+<link rel="stylesheet" th:href="@{/css/slick.css}">
+<link rel="stylesheet" th:href="@{/css/structure.css}">
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="stylesheet" th:href="@{/css/responsive.css}">
+
+<!-- header css -->
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+
+<!-- font -->
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900"
+	rel="stylesheet">
+
+<!-- icons -->
+<link rel="icon" th:href="@{/images/ico/favicon.ico}">
+<link rel="apple-touch-icon" sizes="144x144"
+	th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+<link rel="apple-touch-icon" sizes="114x114"
+	th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+<link rel="apple-touch-icon" sizes="72x72"
+	th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+<link rel="apple-touch-icon" sizes="57x57"
+	th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
+
+<!-- 퀵메뉴바 css -->
+<link rel="stylesheet" th:href="@{/css/nav.css}">
+</head>
+<body>
+	<div id="preloader">
+    	<img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+    </div><!-- preloader -->
+
+
+	<div th:replace="sections/header :: header"></div>
+
+	<!-- /.sa-header -->
+
+	<section class="breadcrumb-section">
+		<div class="container">
+			<h1>Shopping Cart</h1>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+				<li class="breadcrumb-item">Payment</li>
+			</ol>
+		</div>
+		<!-- /.container -->
+	</section>
+	<!-- /.breadcrumb-section -->
+
+	<div class="congrats-section section-padding">
+		<div class="container">
+			<div class="congrats-content">
+				<div class="congrats-info">
+					<div class="icon">
+						<i class="fa fa-check-circle" aria-hidden="true"></i>
+					</div>
+					<h1>축하합니다! 결제가 완료되었습니다.</h1>
+					<p>이제 부터 홈픽스만의 서비스를 제공 받아 보세요!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.congrats-section -->
+
+
+	<!-- /.sa-section -->
+
+	<div th:replace="sections/nav :: div"></div>
+
+	<div th:replace="sections/footer :: footer"></div>
+
+
+	<!-- /.footer -->
+
+	<!-- JS -->
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/inview.min.js}"></script>
+	<script th:src="@{/js/slick.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/jarallax.min.js}"></script>
+	<script th:src="@{/js/counterup.min.js}"></script>
+	<script th:src="@{/js/waypoints.min.js}"></script>
+	<script th:src="@{/js/YTPlayer.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/validate.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+
+	<!-- header js -->
+	<script th:src="@{/js/sections/header.js}"></script>
+
+	<!-- 퀵메뉴 js -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+</body>
+</html>

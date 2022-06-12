@@ -37,7 +37,6 @@
 /* 버튼 hover 기능 끄기 */
 .nothover_btn.btn.btn-primary{
 	pointer-events: none;
-	margin-top: 5px;
 }
 
 /* 버튼 색상 변경 */
@@ -64,8 +63,10 @@
 /*    display: none;*/
 }
 
-
+/* 커서(포인터) */
+.cursor_pointer{
+	cursor: pointer;
+}
 
 
 /*end [견적 진행 사항]*/
-

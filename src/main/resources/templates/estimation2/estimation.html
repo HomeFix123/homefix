@@ -10,7 +10,7 @@
         <meta name="author" content="">
         <meta name="description" content="">
 
-        <title>estimation.html</title>
+        <title>견적 상담 신청</title>
         
         <!-- CSS -->
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -42,6 +42,12 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <!-- Template Developed By ChtStudio -->
+        
+        <!-- header css -->
+		<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+    	
+    	<!-- 퀵메뉴바 css -->
+		<link rel="stylesheet" th:href="@{/css/nav.css}">
     	
     	<!-- 개인 CSS 파일 링크 -->
         <link rel="stylesheet" th:href="@{/css/jy/jy.css}"> 
@@ -53,10 +59,12 @@
             <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
-        <div th:replace="/sections/header :: header"></div>
+        <!-- 헤더 -->
+        <div th:replace="sections/header :: header"></div>
+        <!-- 헤더 끝 -->
                 
-        <section class="breadcrumb-section">
-            <div class="container">
+        <section class="breadcrumb-section" >
+            <div class="container" style="padding-top:30px; padding-bottom:30px;">
                 <h1>견적 상담 신청</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -102,10 +110,10 @@
                                     </ul>
                                     <div class="error_box" style="margin-bottom:10px"><span class="size_error_box"></span></div>
                                 <div class="area-form-text">
-		                            <input type="text" id="inSize" class="form-control" name="size" required="" placeholder="" dir="rtl" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+		                            <input type="text" id="inSize" maxlength="3"  class="form-control" name="size" required="" placeholder="" dir="rtl" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1').replace(/\B(?=(\d{3})+(?!\d))/g, ',');">
 	                                <span style="margin-top: 10px; margin-left: 10px; margin-right: 20px">평   
 	                                </span>
-	                                <input type="text" id="outSize" class="form-control" name="size2" required="" placeholder="" dir="rtl" readonly>
+	                                <input type="text" id="outSize" class="form-control" name="size2" required="" placeholder="" dir="rtl"  readonly>
 	                                <span class="size2" style="margin-top: 10px; margin-left: 10px; margin-bottom: 0px;" >㎡
 	                                </span>
                                 </div>    
@@ -141,9 +149,11 @@
                                     </div>
                                 </div>
                                 
-                                    <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
+                                    <ul class="global-list" style="margin-top: 30px; margin-bottom: 0px">
                                         <li><h5 class="m-0" > 희망 시공일정 </h5></li>
                                     </ul>
+                                    <div class="error_box" style="margin-bottom:10px"><span class="day_error_box"></span></div>
+                                    
                                     <div class="area-form-text">
                                         <div class="p-0" >
                                         <input type="text" id="startDay" name="startDay" placeholder="시작일" class="form-control" required="">
@@ -155,7 +165,7 @@
                                         <input type="text" id="endDay" name="endDay" placeholder="종료일" class="form-control" required="">
                                         </div>
                                     </div>
-                                    <ul class="global-list" style="margin-top: 40px; margin-bottom: 0px">
+                                    <ul class="global-list" style="margin-top: 50px; margin-bottom: 0px">
                                         <li><h5 class="m-0"> 주소 </h5></li>
                                     </ul>
                                     <div class="error_box" style="margin-bottom:10px"><span class="eaddr_error_box"></span></div>
@@ -231,6 +241,7 @@
                                        
                                     </div>
                                     <div style="padding: 10px"></div>
+                                    <input th:if="${param.cid!=null}" name="cid" type="hidden" th:value="${param.cid}"/>
                                     <button class="btn btn-primary" type="submit" id="subbutton"   style="margin-bottom: 150px;">신청하기</button>
                                     
                             </div>    
@@ -238,112 +249,15 @@
                     </div>
                 </div><!-- /.container -->
       	</form>
+      	</dvgiv>
       	
-      	
-
-      	
-      	
-      </dvgiv>
-        <div class="footer">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="footer-content">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <div class="footer-logo">
-                                        <a href="#"><img th:src="@{/images/logo.png}" alt="Logo" class="img-fluid"></a>
-                                    </div>
-                                    <p>Holisticly aggregate compelling ROI before out-of-the-box benefits. Efficiently create cross functional paradigms without an expanded array of testing procedures.</p>
-                                    <div class="footer-social">
-                                        <ul class="global-list">
-                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        </ul>
-                                    </div>                           
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget px-md-4">
-                                    <h3>Quik Links</h3>
-                                    <ul class="global-list">
-                                        <li><a href="#">All Courses</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Our Blogs</a></li>
-                                        <li><a href="#">Teacher</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                        <li><a href="#">Terms</a></li>
-                                        <li><a href="#">Carrer</a></li>
-                                    </ul>                            
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <h3>Popular Courses</h3>
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img th:src="@{/images/blog/4.jpg}" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a href="blog-details.html">Sed ut perspiciatis unde iste</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post --> 
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img th:src="@{/images/blog/5.jpg}" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a href="blog-details.html">Essential Training Training Examples</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post --> 
-                                    <div class="sa-post">
-                                        <div class="entry-header">
-                                            <div class="entry-thumbnail">
-                                                <a href="blog-details.html"><img th:src="@{/images/blog/2.jpg}" alt="Image" class="img-fluid"></a>
-                                            </div> 
-                                        </div>                               
-                                        <div class="entry-content">     
-                                            <h2 class="entry-title"><a href="blog-details.html">Python Programming Essential Training</a></h2>
-                                        </div>
-                                    </div><!-- /.sa-post -->                            
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="footer-widget">
-                                    <h3>Subscribe</h3>
-                                    <form action="#" class="sa-form">
-                                        <input type="email" class="form-control" placeholder="Email address" required="">
-                                        <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                                    </form> 
-                                    <div class="payment-gateway">
-                                        <h4>Payment Gateway</h4> 
-                                        <ul class="global-list d-flex">
-                                            <li><img th:src="@{/images/others/payment1.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment2.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment3.png}" alt="Image" class="img-fluid"></li>
-                                            <li><img th:src="@{/images/others/payment4.png}" alt="Image" class="img-fluid"></li>
-                                        </ul>
-                                    </div>                      
-                                </div>
-                            </div>
-                        </div><!-- /.row -->
-                    </div>
-                </div><!-- /.container -->
-            </div>
-            <div class="footer-bottom">
-                <div class="container text-center">
-                    <span>Copyright &copy; 2021 ChtStudio - All Rights Reserved.</span>
-                </div><!-- /.container -->
-            </div>
-        </div><!-- /.footer -->
-
+      	<!-- 푸터 -->
+        <div th:replace="sections/footer :: footer"></div>
+		<!-- 푸터 끝 -->
+		
+		<!-- 퀵메뉴바 -->
+		<div th:replace="sections/nav :: div"></div>
+		
         <!-- JS -->
         <script th:src="@{/js/jquery.min.js}"></script>
         <script th:src="@{/js/popper.min.js}"></script>
@@ -360,6 +274,10 @@
         <!-- 제이쿼리 설정 -->
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        
+        <!-- header js -->
+		<script th:src="@{/js/sections/header.js}"></script>
+        
         <!-- datepicker 한국어로 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
         <!-- 카카오 지도 API -->
@@ -415,7 +333,12 @@
         	}).open();
         	}
 	   	</script>
-
+	   	
+	   	<!-- 퀵메뉴 js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+		<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+	   	
 		<!-- 개인 자바스트립트 설정 파일 -->
 		<script th:src="@{/js/jy/jy.js}"></script> 
 		            

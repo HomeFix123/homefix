@@ -7,7 +7,7 @@
         <meta name="author" content="">
         <meta name="description" content="">
 
-        <title>Educam | Education & Courses HTML Template.</title>
+        <title>홈픽스 | HomeFix</title>
 
         <!-- CSS -->
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -37,56 +37,47 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <!-- Template Developed By ChtStudio -->
+        <link rel="stylesheet" th:href="@{/css/sections/header.css}">
         
+        <link rel="stylesheet" th:href="@{/css/nav.css}">
         <link rel="stylesheet" th:href="@{/css/main_page.css}">
+        
     </head>
     <body> 
         <div id="preloader">
-            <img src="images/preloader.gif" alt="Image" class="tr-preloader img-fluid">
+            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
-        <div th:replace="/sections/header :: header"></div>      
+        <div th:replace="sections/header :: header"></div>      
                                         
         <div id="hero-slider" class="carousel slide hero-content" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <div class="carousel-item-content section-before"  style="background-image: url(images/bg/s1.jpg);">
+                    <div class="carousel-item-content section-before"  style="background-image: url(images/banner/48.jpg);">
                         <div class="container">
                             <div class="hero-text">
-                                <h1 data-animation="animated fadeInDown">Best online <span>course</span></h1>
-                                <p data-animation="animated fadeInDown">We provides always our best services for our clients and  always  try to achieve our client's trust and satisfaction.</p>  
-                                <div class="buttons">
-                                    <a href="#" class="btn btn-primary"  data-animation="animated fadeInRight">Login</a>
-                                    <a href="#" class="btn btn-white"  data-animation="animated fadeInLeft">Get a Quote</a>
-                                </div>                  
+                                <h1 data-animation="animated fadeInDown"><span>Natural</span> Interior</h1>
+                                <p data-animation="animated fadeInDown">자연을 추구하는 당신. 이런 인테리어 어떤가요 ?</p>               
                             </div><!-- /.hero-text -->
                         </div><!-- /.container -->                        
                     </div><!-- /.carousel-item-content -->
                 </div>
                 <div class="carousel-item text-center">
-                    <div class="carousel-item-content section-before" style="background-image: url(images/bg/s5.jpg);">
+                    <div class="carousel-item-content section-before" style="background-image: url(images/banner/45.jpg);">
                         <div class="container">
                             <div class="hero-text">
-                                <h1 data-animation="animated pulse">Best online <span>course</span></h1>
-                                <p data-animation="animated pulse">We provides always our best services for our clients and  always  try to achieve our client's trust and satisfaction.</p>   
-                                <div class="buttons">
-                                    <a href="#" class="btn btn-primary"  data-animation="animated fadeIn">Login</a>
-                                    <a href="#" class="btn btn-white"  data-animation="animated fadeIn">Get a Quote</a>
-                                </div>                    
+                                <h1 data-animation="animated pulse">Lovely <span>interior</span></h1>
+                                <p data-animation="animated pulse">우리집도 이렇게 넓으면 좋겠어요</p>          
                             </div><!-- /.hero-text -->
                         </div><!-- /.container -->                        
                     </div>
                 </div>
                 <div class="carousel-item text-end">
-                    <div class="carousel-item-content section-before" style="background-image: url(images/bg/s3.jpg);">
+                    <div class="carousel-item-content section-before" style="background-image: url(images/banner/63.jpg);">
                         <div class="container">
                             <div class="hero-text">
-                                <h1 data-animation="animated fadeInUp">Best online <span>course</span></h1>
-                                <p data-animation="animated fadeInUp">We provides always our best services for our clients and  always  try to achieve our client's trust and satisfaction.</p>  
-                                <div class="buttons">
-                                    <a href="#" class="btn btn-primary"  data-animation="animated fadeInRight">Login</a>
-                                    <a href="#" class="btn btn-white"  data-animation="animated fadeInLeft">Get a Quote</a>
-                                </div>                     
+                                <h1 data-animation="animated fadeInUp">vintage <span>design</span></h1>
+                                <p data-animation="animated fadeInUp">약간 빈티지한게 트렌드</p>          
                             </div><!-- /.hero-text -->
                         </div><!-- /.container -->                        
                     </div>
@@ -115,7 +106,7 @@
                         <div class="row">
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a href="catagory.html">
+                                    <a th:href="@{/brag}">
                                         <span class="icon">
                                             <i class="fas fa-house-user"></i>
                                         </span>
@@ -125,7 +116,7 @@
                             </div>
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a href="catagory.html">
+                                    <a th:href="@{/tip/list}">
                                         <span class="icon">
                                             <i class="fas fa-lightbulb"></i>
                                         </span>
@@ -135,7 +126,18 @@
                             </div>
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a href="catagory.html">
+                                    <a th:href="@{/review}">
+                                        <span class="icon">
+                                            <i class="fas fa-hammer"></i>
+                                        </span>
+                                        <span>시공 후기</span>
+                                    </a>
+                                </div><!-- /.sg-category -->
+                            </div>
+                            
+                            <div class="col-6 col-sm-4 col-lg-2">
+                                <div class="sg-category style-1">
+                                    <a th:href="@{/expert}">
                                         <span class="icon">
                                             <i class="fas fa-hard-hat"></i>
                                         </span>
@@ -145,7 +147,19 @@
                             </div>
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="sg-category style-1">
-                                    <a href="catagory.html">
+                                	<a th:if="${session.memberId == null && session.userId == null}" th:href="@{/sign}">
+                                        <span class="icon">
+                                            <i class="fas fa-user-alt"></i>
+                                        </span>
+                                        <span>마이페이지</span>
+                                    </a>
+                                    <a th:if="${session.memberId != null}" th:href="@{/sign/member/profile}">
+                                        <span class="icon">
+                                            <i class="fas fa-user-alt"></i>
+                                        </span>
+                                        <span>마이페이지</span>
+                                    </a>
+                                    <a th:if="${session.userId != null}" th:href="@{/company/profile}">
                                         <span class="icon">
                                             <i class="fas fa-user-alt"></i>
                                         </span>
@@ -153,27 +167,29 @@
                                     </a>
                                 </div><!-- /.sg-category -->
                             </div>
+                            
+                            
                             <div class="col-6 col-sm-4 col-lg-2">
-                                <div class="sg-category style-1">
-                                    <a href="catagory.html">
-                                        <span class="icon">
-                                            <i class="fas fa-question"></i>
-                                        </span>
-                                        <span>QnA</span>
-                                    </a>
-                                </div><!-- /.sg-category -->
-                            </div>
-                            <div class="col-6 col-sm-4 col-lg-2">
-                                <div class="sg-category style-1">
-                                    <a href="catagory.html">
+                                <div class="sg-category style-1" th:if="${session.userId == null}">
+                                    <a th:href="@{/estimation/write}">
                                         <span class="icon">
                                             <i class="fas fa-ruler"></i>
                                         </span>
                                         <span>견적 작성</span>
                                     </a>
                                 </div><!-- /.sg-category -->
+                                <div class="sg-category style-1" th:if="${session.userId != null}">
+                                    <a th:href="@{/estimation/total}">
+                                        <span class="icon">
+                                            <i class="fas fa-clipboard-list"></i>
+                                        </span>
+                                        <span>견적 목록</span>
+                                    </a>
+                                </div><!-- /.sg-category -->
                             </div>
-
+							
+						
+							
                         </div><!-- /.row -->
                     </div><!-- /.sg-category-content -->
                 </div><!-- /.container -->
@@ -188,72 +204,31 @@
                             <h1>인테리어 자랑</h1>
                         </div>  
                         <div class="view-all align-self-center">
-                            <a href="blog.html" class="btn btn-primary">View All</a>
+                            <a th:href="@{/brag}" class="btn btn-primary">더보기</a>
                         </div>                  
                     </div>
 
                     <div class="row">
-                        <div class="col-6 col-lg-3">
-                            <div class="sa-post">
-                                <div class="entry-header">
-                                    <div class="entry-thumbnail">
-                                        <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
-                                    </div>
-                                </div>                               
-                                <div class="course-info ">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">집 한번 꾸며봤어요^^</a></h2>
-                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg">집돌이</p>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sa-post -->                            
-                        </div>
-                        
-                        <div class="col-6 col-lg-3">
-                            <div class="sa-post">
-                                <div class="entry-header">
-                                    <div class="entry-thumbnail">
-                                        <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
-                                    </div>
-                                </div>                               
-                                <div class="course-info ">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">집 한번 꾸며봤어요^^</a></h2>
-                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg">집돌이</p>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sa-post -->                            
-                        </div>
-                        <div class="col-6 col-lg-3">
-                            <div class="sa-post">
-                                <div class="entry-header">
-                                    <div class="entry-thumbnail">
-                                        <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
-                                    </div>
-                                </div>                               
-                                <div class="course-info ">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">집 한번 꾸며봤어요^^</a></h2>
-                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg">집돌이</p>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sa-post -->                            
-                        </div><div class="col-6 col-lg-3">
-                            <div class="sa-post">
-                                <div class="entry-header">
-                                    <div class="entry-thumbnail">
-                                        <a href="blog-details.html"><img src="images/course/1.jpg" alt="Image" class="img-fluid"></a>
-                                    </div>
-                                </div>                               
-                                <div class="course-info ">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">집 한번 꾸며봤어요^^</a></h2>
-                                        <p class=""><img class='user-img-sm' src="images/course/1.jpg">집돌이</p>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sa-post -->                            
-                        </div>
-                        
+	                    <th:block th:each="b : ${bragList}">
+	                        <div class="col-6 col-lg-3">
+	                            <div class="sa-post">
+	                                <div class="entry-header">
+	                                    <div class="entry-thumbnail">
+	                                        <a th:href="'/brag/' + ${b.bid}">
+	                                        	<img th:if="${not #strings.isEmpty(b.bimgadr)}" th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|" alt="Image" class="img-fluid thumbnailImage">
+	                                        	<img th:if="${#strings.isEmpty(b.bimgadr)}" src="images/course/1.jpg" alt="Image" class="img-fluid thumbnailImage">
+	                                        </a>
+	                                    </div>
+	                                </div>                               
+	                                <div class="course-info ">
+	                                    <div class="info">
+	                                        <h2 class="title"><a th:href="|/brag/${b.bid}|" th:text="${b.btitle}"></a></h2>
+	                                        <p class=""><img class='user-img-sm' th:src="|http://140.238.11.118:5000/upload/${b.member.profilimg}|"><span th:text="${b.member.nickname}"></span></p>
+	                                    </div>
+	                                </div><!-- /.course-info -->
+	                            </div><!-- /.sa-post -->                            
+	                        </div>
+	                	</th:block>
                     </div><!-- /.row -->
                 </div><!-- /.container -->
             </div><!-- /.section-content -->
@@ -267,132 +242,40 @@
                             <h1>후기</h1>
                         </div>
                         <div class="view-all align-self-center">
-                            <a href="course-grid.html" class="btn btn-primary">더보기</a>
+                            <a href="/review" class="btn btn-primary">더보기</a>
                         </div>                         
                     </div><!-- /.section-header -->
                     <div class="sa-course-content">
                         <div class="sa-course-slider">
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
-                            <div class="sa-course">
-                                <div class="course-thumb">
-                                    <img src="images/course/1.jpg" alt="Image" class="img-fluid">
-                                </div><!-- /.course-thumb -->
-                                <div class="course-info">
-                                    <div class="info">
-                                        <h2 class="title"><a href="course-details.html">아파트 인테리어 후기</a></h2>
-                                        <p class=''>아파트/33평</p>
-                                    </div>
-                                    <div class="sa-meta">
-                                        <ul class="global-list">
-                                            <li><p class=''><img class='user-img-sm' src="images/course/1.jpg">홈픽 인테리어</p></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- /.course-info -->
-                            </div><!-- /.sg-course -->
+                        	<th:block th:each="r : ${reviewList}">
+	                            <div class="sa-course">
+	                                <div class="course-thumb">
+	                                    <img th:src="|http://140.238.11.118:5000/upload/${r.rimgadr}|" alt="Image" class="img-fluid thumbnailImage">
+	                                </div><!-- /.course-thumb -->
+	                                <div class="course-info">
+	                                    <div class="info">
+	                                        <h2 class="title"><a th:href="'/review/'+${r.rid}" th:text="${r.rtitle}">아파트 인테리어 후기</a></h2>
+	                                        <p class='' th:text="${#strings.defaultString(r.hometype, '')} + ' / ' + ${#strings.defaultString(r.rsize, 0)} + '평'">아파트/33평</p>
+	                                    </div>
+	                                    <div class="sa-meta">
+	                                        <ul class="global-list">
+	                                            <li><p class=''><img class='user-img-sm' th:src="|http://140.238.11.118:5000/upload/${r.company.logo}|"><span th:text="${r.company.name}">홈픽 인테리어</span></p></li>
+	                                        </ul>
+	                                    </div>
+	                                </div><!-- /.course-info -->
+	                            </div><!-- /.sg-course -->
+							</th:block>
                         </div><!-- /.sg-course-slider -->
                     </div><!-- /sg-course-content -->
                 </div><!-- /.container -->
             </div><!-- /.section-content -->
         </div><!-- /.sa-section -->     
-
-        
-        <div th:replace="/sections/footer :: footer"></div>  
+		
+		
+		<!-- 퀵메뉴 -->
+		<div th:replace="sections/nav :: div"></div>
+		<!-- Footer -->
+        <div th:replace="sections/footer :: footer"></div>  
 
         <!-- JS -->
         <script src="js/jquery.min.js"></script>
@@ -407,5 +290,9 @@
         <script src="js/YTPlayer.min.js"></script> 
         <script src="js/validate.js"></script>
         <script src="js/main.js"></script>  
+        <script src="js/sections/header.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    	<script src="chatbotjs/app.js" charset="UTF-8"></script>
     </body>
 </html>         

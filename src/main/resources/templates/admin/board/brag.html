@@ -7,7 +7,7 @@
         <meta name="author" content="">
         <meta name="description" content="">
 
-        <title>Educam | Education & Courses HTML Template.</title>
+        <title>관리자 게시글 관리</title>
 
         <!-- CSS -->
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -51,7 +51,7 @@
             <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
-        <div th:replace="/admin/sections/header :: header"></div>
+        <div th:replace="admin/sections/header :: header"></div>
         
         <div class="container">
 	        <div class="row">
@@ -82,8 +82,13 @@
 				</div>
 				<div class="col-lg-9">
 			        <div class="sa-section">
-			            <div class="section-content feature-content section-padding pt-0">
+			            <div class="section-content feature-content section-padding pt-3">
 			                <div class="container">
+			                	<div class="section-header justify-content-between m-0">
+			                        <div class="title">
+			                        	<h1>게시글 관리</h1>
+			                        </div>                        
+			                    </div><!-- /.section-header -->
 			                    <div class="row">
 			                    	<div class="description-tab">
 									<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -107,7 +112,7 @@
 													<div class="shopping-cart">
 														<div class="container">
 															<div class="row">
-																<table class="table">
+																<table class="table ">
 																	<thead>
 																		<tr>
 																			<th scope="col">글번호</th>
@@ -122,8 +127,8 @@
 																		<tr th:each="b : ${bragList}">
 																			<td th:text="${b.bid}"></td>
 																			<td th:if="${b.bimgadr == null}">이미지 없음</td>
-																			<td><img th:if="${b.bimgadr != null}" th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|"></td>
-																			<td th:text="${b.btitle}"></td>
+																			<td th:if="${b.bimgadr != null}"><img th:src="|http://140.238.11.118:5000/upload/${b.bimgadr}|"></td>
+																			<td><a th:text="${b.btitle}" th:href="@{/brag/{id}(id = ${b.bid})}"></a></td>
 																			<td th:text="${b.member.id}"></td>
 																			<td>0</td>
 																			<td th:text="${b.bcnt}"></td>

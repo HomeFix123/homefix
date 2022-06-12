@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="">
+<meta name="description" content="">
+
+<title>HomeFix</title>
+
+<!-- CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/all.min.css}">
+<link rel="stylesheet" th:href="@{/css/animate.min.css}">
+<link rel="stylesheet" th:href="@{/css/YTPlayer.min.css}">
+<link rel="stylesheet" th:href="@{/css/slick.css}">
+<link rel="stylesheet" th:href="@{/css/structure.css}">
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="stylesheet" th:href="@{/css/responsive.css}">
+<link rel="stylesheet" th:href="@{/css/bs/Review.css}">
+<link rel="stylesheet" th:href="@{/css/sections/header.css}">
+
+<!-- 퀵메뉴바 css -->
+<link rel="stylesheet" th:href="@{/css/nav.css}">
+
+<!-- font -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900" rel="stylesheet">
+
+<!-- icons -->
+<link rel="icon" th:href="@{/images/ico/favicon.ico}">
+<link rel="apple-touch-icon" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-precomposed.png}">
+<link rel="apple-touch-icon" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+<link rel="apple-touch-icon" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+<link rel="apple-touch-icon" sizes="57x57" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
+<!-- icons -->
+
+
+
+</head>
+<body>
+	<div id="preloader">
+		<img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
+	</div>
+	<!-- preloader -->
+
+	<div th:replace="sections/header :: header"></div> 
+	<!-- 퀵메뉴바 -->
+	<div th:replace="sections/nav :: div"></div>
+
+
+	<!-- 섬네일 -->
+	<section class="breadcrumb-section bg-white">
+		<div class="thumnail" th:style="'background-image: url('+|http://140.238.11.118:5000/upload/${rev.rimgadr}|+');'"></div>
+	</section>
+	<!-- /.breadcrumb-section -->
+
+	<section class="detail_section bg-white section-padding">
+		<div class="container">
+			<div class="review_detail">
+				<div class="row justify-content-md-center">
+					<div class="col-lg-8" style="text-align: center;">
+						<div class="reviewer">
+							<a th:href="|/company/${rev.company.id}|">
+								<img class="img-fluid" th:src="|http://140.238.11.118:5000/upload/${rev.company.logo}|" alt="Image">
+							</a>
+						</div>
+						<div>
+							<h5 class="reviewer_name" th:text="${rev.company.name}"><a th:href="|/company/${rev.company.id}|">업체명</a></h5>
+						</div>
+					</div>
+					<div class="details col-8">
+						<div class="detail col-lg-3 col-md-6 col-sm-6" name="주거형태">
+							<i class="fas fa-home"></i><a id="detailVal" th:text="${rev.hometype}"></a>
+						</div>
+						<div class="detail col-lg-3 col-md-6 col-sm-6" name="평수">
+							<i class="fas fa-ruler"></i><a id="detailVal" th:text="|${rev.rsize} 평|"></a>
+						</div>
+						<div class="detail col-lg-3 col-md-6 col-sm-6" name="작업분야">
+							<i class="fas fa-tools"></i><a id="detailVal" th:text="${rev.job}"></a>
+						</div>
+						<div class="detail col-lg-3 col-md-6 col-sm-6" name="가족형태">
+							<i class="fas fa-users"></i><a id="detailVal" th:text="${rev.family}"></a>
+						</div>
+					</div>
+
+					<div class="details col-lg-8">
+						<div class="detail col-3" name="작업자">
+							<strong>작업</strong><a id="detailVal" th:text="${rev.worker}"></a>
+						</div>
+						<div class="detail col-4" name="예산">
+							<strong>예산</strong><a id="detailVal" th:text="|${rev.rbudget} 원|"></a>
+						</div>
+						<div class="detail col-5" name="지역">
+							<strong>지역</strong><a id="detailVal" th:text="${rev.loc}"></a>
+						</div>
+
+					</div>
+					<div class="details col-lg-8">
+						<div class="detail col-6" name="세부정보">
+							<strong>세부정보</strong><a id="detailVal" th:text="${rev.extrainfo}"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /.breadcrumb-section -->
+
+
+	<!-- 본문 -->
+	<div class="sg-section">
+		<div class="section-content course-details bg-white ">
+			<div class="container">
+
+				<div class="row justify-content-md-center">
+					<div class="col-lg-8">
+						<div class="sa-course">
+							<div class="course-info">
+								<h2 class="title" th:text="${rev.rtitle}"></h2>
+								<p th:text="${#calendars.format(rev.rdate, 'yyyy-MM-dd')}"></p>
+								<div th:utext="${rev.rcont}"></div>
+
+
+
+							</div>
+						</div>
+						<!-- /.sa-course -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<nav class="navbar fixed-bottom bg-light">
+		<div class="reBar container-fluid  justify-content-center">
+			<ul class="reviewBar">
+				<li>
+					<button class="deletebtn bg-light"  data-bs-toggle="modal" href="#deleteModal" >
+						<i class="fas fa-trash-alt"></i>
+					</button>
+				</li>
+				<li>
+					<button class="reportbtn bg-light" data-bs-toggle="modal" href="#reportModal">
+						<img th:src="@{/images/ico/icon-siren-36.png}">
+					</button> 
+					<input type="hidden" name="cid" th:value="${rev.company.id}">
+					<input type="hidden" name="rid" th:value="${rev.rid}">
+				</li>
+				<li><a href="/review"><span><i class="fas fa-bars"></i></span></a></li>
+
+			</ul>
+		</div>
+	</nav>
+
+	<!-- 게시글 신고 -->
+	<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-center" id="exampleModalLabel">신고</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">			
+					</button>
+				</div>
+
+				<div class="modal-body text-center">
+					신고 사유를 선택 하세요.
+					<div>
+						<select class="reason" name="reason">
+							<option value="스팸홍보/도배글입니다.">스팸홍보/도배글입니다.</option>
+							<option value="음란물입니다.">음란물입니다.</option>
+							<option value="불법정보를 포함하고 있습니다.">불법정보를 포함하고 있습니다.</option>
+							<option value="청소년에게 유해한 내용입니다.">청소년에게 유해한 내용입니다.</option>
+							<option value="욕설/혐오/차별적 표현입니다.">욕설/혐오/차별적 표현입니다.</option>
+							<option value="개인정보 노출 게시물입니다.">개인정보 노출 게시물입니다.</option>
+							<option value="불쾌한 표현이 있습니다.">불쾌한 표현이 있습니다.</option>
+						</select> <!-- <input type="hidden" name="article_no" value="${bookreport.bookreport_no }" /> -->
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn" data-bs-dismiss="modal" style="color: white; background-color: gray;">취소</button>
+					<button type="button" class="btn btn-success" id="reportbtn">신고</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 게시글 삭제 확인 -->
+	<form method="post" th:action="|/review/${rev.rid}|">
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-center" id="exampleModalLabel">삭제 확인</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					</button>
+				</div>
+
+				<div class="modal-body text-center">정말로 삭제 하시겠습니까? <br/>복구가 불가능합니다.</div>
+				<div class="modal-footer">
+					<input type="hidden" name="_method" value="delete">
+					<button type="button" class="btn" data-bs-dismiss="modal" style="color: white; background-color: gray;">취소</button>
+					<button type="submit" class="btn btn-danger" id="deletebtn" >삭제</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+	<!-- JS -->
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/inview.min.js}"></script>
+	<script th:src="@{/js/slick.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/jarallax.min.js}"></script>
+	<script th:src="@{/js/counterup.min.js}"></script>
+	<script th:src="@{/js/waypoints.min.js}"></script>
+	<script th:src="@{/js/YTPlayer.min.js}"></script>
+	<script th:src="@{/js/jquery-ui-min.js}"></script>
+	<script th:src="@{/js/validate.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/sections/header.js}"></script>
+	<script th:src="@{/js/bs/reviewDetail.js}" ></script>
+	<!-- 퀵메뉴 js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script th:src="@{/chatbotjs/app.js}" charset="UTF-8"></script>
+
+</body>
+</html>

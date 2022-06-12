@@ -1,9 +1,14 @@
 package com.homefix.service;
 
-import org.springframework.stereotype.Service;
+import com.homefix.domain.Member;
 
 
-@Service
+
 public interface KakaoService {
 	
+	String getKakaoAccessToken(String code);
+
+	String getUserKakaoId(String access_Token);
+	
+	public Member loginKakao(String kakaoId);
 }

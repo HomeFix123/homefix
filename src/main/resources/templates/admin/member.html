@@ -7,7 +7,7 @@
         <meta name="author" content="">
         <meta name="description" content="">
 
-        <title>홈픽스</title>
+        <title>관리자 고객관리</title>
 
         <!-- CSS -->
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -50,7 +50,7 @@
             <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
         </div><!-- preloader -->
         
-        <div th:replace="/admin/sections/header :: header"></div> 
+        <div th:replace="admin/sections/header :: header"></div> 
         
         <div class="container">
 	        <div class="row">
@@ -135,8 +135,6 @@
 			                        					<td th:text="${m.nickname}"></td>
 			                        					<td th:text="${m.name}"></td>
 			                        					<td th:text="${#dates.format(m.subdate, 'yy-MM-dd')}"></td>
-			                        					<td>0</td>
-			                        					<td>0</td>
 			                        				</tr>
 			                        			</table>	
 			                        		</div>
@@ -262,21 +260,24 @@
 										
 										<div class="">
 											<!-- 견적 내역 -->
-											<table class="table table-sm caption-top table-responsive">
+											<table class="table table-sm caption-top table-responsive" id="estTable">
 												<thead>
 													<tr class="text-center">
-														<td>유형/평수</td>
-														<td>작성일</td>
+														<th>견적번호</th>
+														<th>유형/평수</th>
+														<th>예산</th>
 													</tr>
 												</thead>
 												<tbody class="text-center">
 													<tr>
+														<td>0</td>
 														<td><a href="#">아파트/주거/33평</a></td>
-														<td>22/02/03</td>
+														<td>1000만원</td>
 													</tr>
 													<tr>
+														<td>0</td>
 														<td><a href="#">아파트/주거/33평</a></td>
-														<td>22/02/03</td>
+														<td>0</td>
 													</tr>
 												</tbody>
 											</table>
@@ -286,13 +287,6 @@
 									</div>
 									<div class="tab-pane fade" id="declare-info" role="tabpanel"
 										aria-labelledby="alertList-tab">
-										<div class="justify-content-center">
-											<div class="col">
-												<!--  그래프 이미지 -->
-												<img src="../images/course/1.jpg" alt="Image"
-													class="img-fluid">
-											</div>
-										</div>
 										<div class="pt-2">
 											<!-- 신고 내역 -->
 											<table class="table table-sm caption-top table-responsive" id="reportTable">

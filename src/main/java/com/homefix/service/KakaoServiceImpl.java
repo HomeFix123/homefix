@@ -8,13 +8,21 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.homefix.domain.Member;
+import com.homefix.persistence.MemberRepository;
 
 @Service
 public class KakaoServiceImpl implements KakaoService{
+	
+	@Autowired
+	MemberRepository memberRepo;
+	
+	
 	@SuppressWarnings("deprecation")
 	public String getKakaoAccessToken (String code) {
         String access_Token = "";
@@ -33,8 +41,8 @@ public class KakaoServiceImpl implements KakaoService{
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=128117ab9eeaf50369ebf4054753d09e"); // TODO REST_API_KEY 입력
-            sb.append("&redirect_uri=http://localhost:8000/kakao/kakao"); // TODO 인가코드 받은 redirect_uri 입력
+            sb.append("&client_id=b9782ddba62ada3a2b9e27f1892618a6"); // TODO REST_API_KEY 입력
+            sb.append("&redirect_uri=http://localhost:8080/kakao/kakao"); // TODO 인가코드 받은 redirect_uri 입력
             sb.append("&code=" + code);
             bw.write(sb.toString());
             bw.flush();
@@ -71,4 +79,54 @@ public class KakaoServiceImpl implements KakaoService{
 
         return access_Token;
     }
+	
+	@Override
+	public String getUserKakaoId(String access_Token) {
+
+		// 요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
+		String reqURL = "https://kapi.kakao.com/v2/user/me";
+		try {
+			URL url = new URL(reqURL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+
+			// 요청에 필요한 Header에 포함될 내용
+			conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+
+			int responseCode = conn.getResponseCode();
+			System.out.println("responseCode : " + responseCode);
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+			String line = "";
+			String result = "";
+
+			while ((line = br.readLine()) != null) {
+				result += line;
+			}
+			System.out.println("response body : " + result);
+
+			JsonParser parser = new JsonParser();
+			JsonElement element = parser.parse(result);
+			String id = element.getAsJsonObject().get("id").getAsString();
+			System.out.println(id);
+			
+			
+			return id;
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		
+	}
+
+	@Override
+	public Member loginKakao(String kakaoId) {
+		
+		
+		return memberRepo.findByKakao(kakaoId);
+	}
+	
 }

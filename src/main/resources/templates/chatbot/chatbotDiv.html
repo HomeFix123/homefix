@@ -1,0 +1,121 @@
+<div id="chatbot" >
+    <link th:href="@{/chatbotjs/main.css}" rel="stylesheet">
+
+<!-- css -->
+<style type="text/css">
+    .direct-chat-text {
+        border-radius: 0.3rem;
+        background-color: #d2d6de;
+        border: 1px solid #d2d6de;
+        color: #444;
+        margin: 5px 0 0 0;
+        padding: 5px 10px;
+        position: relative;
+        
+    }
+
+    .right>.direct-chat-text {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+    }
+	.direct-chat-msg {
+		margin: 10px;
+		display: grid;
+		justify-content: left;
+	}
+	
+	.direct-chat-msg.right {
+		
+		justify-content: right;
+	}
+    #main-content {
+        background-color:aliceblue;
+        width: 350px;
+        
+    }
+    
+   /*  #msgSend{
+    	display: none;
+    } */
+    #communicate{
+    	width: 400px;
+    }
+    
+    #chatbot{
+    	height: 650px;
+    }
+    
+    div .btn-primary{
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+    
+    #send{
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        display: flex;
+        height: 45px;
+        align-items: center;
+    }
+    
+    .talk{
+    	display: none;
+    } 
+    
+    
+</style>
+<!-- /css -->
+
+
+	<noscript>
+		<h2 style="color: #ff0000">Seems your browser doesn't support
+			Javascript! Websocket relies on Javascript being enabled. Please
+			enable Javascript and reload this page!</h2>
+	</noscript>
+	<div id="main-content" class="container-fluid p-0">
+		<div class="row">
+			<!-- 웹소켓 연결 폼 -->
+			<div class="talk">
+				<form class="form-inline">
+					<div class="form-group mt-2">
+						<label for="connect"><i class="fas fa-plug fa-2x mr-2 ml-2"></i></label>
+						<button id="connect" class="btn btn-primary" type="submit">연결</button>
+						<button id="disconnect" class="btn btn-primary" type="submit"
+							disabled="disabled">해제</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- /웹소켓 연결 폼 끝 -->
+		<!-- 대화 창 부분 -->
+		<div class="row" id="msgSend" style="height:650px;">
+			<div class="talkSend w-100" >
+				
+					<!-- 대화 말풍선이 뜨는 부분 --><!-- 아이프레임으로 띄울때 650(말 나오는창)+70(하단 말쓰는창) -->
+					<div id="communicate" class="col-12 w-100" style="overflow-y: scroll; height:580px; width:350px;">
+					</div>
+					<!-- /대화 말풍선이 뜨는 부분 끝 -->
+				
+			</div>
+			<!-- 텍스트 쓰는 부분 -->
+			<div>
+			<div class="card-footer" style="width: 350px; height:70px; position : relative; bottom:0;">
+				<form class="form-group">
+					<div class="input-group">
+						<input type="text" id="msg" class="form-control"
+							placeholder="내용을 입력하세요...."> <span
+							class="input-group-append">
+							<button id="send" class="btn btn-primary" disabled type="submit">보내기</button>
+						</span>
+					</div>
+				</form>
+			</div>
+			</div>
+			<!-- /텍스트 쓰는 부분 끝 -->
+		</div>
+		<!-- /대화 창 부분 끝 -->
+	</div>
+	
+    
+</div>

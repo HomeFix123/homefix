@@ -1,0 +1,65 @@
+/* header */
+.chatList {
+    position: absolute;
+    top: 100%;  
+    min-width: 220px;
+    left: 0;
+    border-radius: 0;
+    list-style: none;
+    opacity: 0;
+    z-index: 999;
+    padding:15px 0;
+    visibility: hidden;
+    background-color: #fff;
+    -webkit-transform: rotateX(-75deg);
+    -moz-transform: rotateX(-75deg);
+    -ms-transform: rotateX(-75deg);
+    -o-transform: rotateX(-75deg);
+    transform: rotateX(-75deg);
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    -ms-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    -o-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    -webkit-transform-origin: 0% 0%;
+    -moz-transform-origin: 0% 0%;
+    -ms-transform-origin: 0% 0%;
+    -o-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    -webkit-transition: transform 0.5s;
+    -moz-transition: transform 0.5s;
+    -ms-transition: transform 0.5s;
+    -o-transition: transform 0.5s;
+    transition: transform 0.5s;
+}
+
+.chatList li a {
+    display: block;
+    position: relative;
+    padding: 7px 20px;
+    background-color: #fff;
+}
+
+.chatList li.active> a,
+.chatList li a:hover {
+    color: #fff;
+    background-color: var(--primary-color);
+}
+
+.user-option .chatList {
+    left: initial;
+    right: 0;
+    padding: 20px;
+    min-width: 280px;
+    z-index: 9999;
+}
+.navbar-brand {
+	max-width: none;
+}
+
+#headerLogo {
+	filter: brightness(0);
+}
+#headerLogo:hover {
+	filter: brightness(1);
+}

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.homefix.domain.CompanyInfo;
+import com.homefix.domain.CompanyReport;
+import com.homefix.domain.Estimation;
 import com.homefix.domain.Member;
 import com.homefix.domain.MemberReport;
 import com.homefix.domain.Payment;
@@ -106,5 +108,26 @@ public class AdminRestController {
 		}
 		
 		return adminService.getMemberReport(id);
+	}
+	
+	/*
+	 * 업체 신고내역
+	 */
+	@GetMapping(path = "/company/report/{id}")
+	public List<CompanyReport> getCompanyReportById(@PathVariable String id) {
+		if(id == null) {
+			return null;
+		}
+		return adminService.getCompanyReport(id);
+	}
+	/*
+	 * 
+	 */
+	@GetMapping(path = "/member/est/{id}")
+	public List<Estimation> getEstimationById(@PathVariable String id){
+		if(id == null) {
+			return null;
+		}
+		return adminService.getEstimationList(id);
 	}
 }
