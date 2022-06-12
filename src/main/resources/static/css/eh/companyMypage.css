@@ -21,52 +21,66 @@
 	font-size: 14px;
 }
 
-#paymentAdventage{
-margin-top: 50px;
+#paymentAdventage {
+	margin-top: 50px;
 }
 
-.form-group-btn{
+.form-group-btn {
 	text-align: center;
 }
 
-#Withdrawal{width:80px; height:30px; font-size:12px; padding:1px; }
-#blockWithdrawal{text-align: right;}
-
-#photoFile{
-	text-align:center;
+#Withdrawal {
+	width: 80px;
+	height: 30px;
+	font-size: 12px;
+	padding: 1px;
 }
-#postBtn{
-	width:180px;
-	padding:10px 30px;
+
+#blockWithdrawal {
+	text-align: right;
+}
+
+#photoFile {
+	text-align: center;
+}
+
+#postBtn {
+	width: 180px;
+	padding: 10px 30px;
 	margin: 0px, 30px;
 }
-#bs_btn_emailCheak{
-	padding:10px 25px;
+
+#bs_btn_emailCheak {
+	padding: 10px 25px;
 }
-#pridiv{
+
+#pridiv {
 	text-align: center;
 }
 
-#tableHeadText{
+#tableHeadText {
 	font-size: 15px;
 	font-weight: bold;
 }
 
-#applyEstimation{
+#applyEstimation {
 	text-align: center;
 	font-size: 15px;
-	
 }
-.estNum{
+
+.estNum {
 	color: #1abc9c;
 }
-#previewImage{
 
-    width: 160px;
-    height: 160px;
-    display: block;
-    border-radius: 100%;
-    overflow: hidden;
-    margin: 20px auto;}
-    
-   
+#previewImage {
+	width: 160px;
+	height: 160px;
+	display: block;
+	border-radius: 100%;
+	overflow: hidden;
+	margin: 20px auto;
+}
+#cashBtn{
+	left: 80%;
+	margin-bottom: 20px;
+}

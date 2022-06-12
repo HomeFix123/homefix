@@ -38,6 +38,7 @@ public class AdminController {
 		model.addAttribute("payUser", adminService.countPayUser());
 		model.addAttribute("aggNewUser", adminService.aggregateNewUser());
 		model.addAttribute("aggPayments", adminService.aggregatePayments());
+		model.addAttribute("contract", adminService.countContractMonth());
 		return "admin/dashboard";
 	}
 	
@@ -46,6 +47,7 @@ public class AdminController {
 		logger.info("관리자 고객관리");
 		model.addAttribute("memberList", adminService.getMemberList());
 		model.addAttribute("reportList", adminService.getMemberReportList());
+		model.addAttribute("newUser", adminService.countNewUser());
 		model.addAttribute("todayMemberReport", adminService.countTodayMemberReport());
 		return "admin/member";
 	}
@@ -70,6 +72,7 @@ public class AdminController {
 		model.addAttribute("companyList", adminService.getCompanyList());
 		model.addAttribute("reportList", adminService.getCompanyReportList());
 		model.addAttribute("todayCompanyReport", adminService.countTodayCompanyReport());
+		model.addAttribute("payUser", adminService.countPayUser());
 		logger.info("관리자 업체관리");
 		return "admin/company";
 	}

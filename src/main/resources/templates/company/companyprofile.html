@@ -36,6 +36,10 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900"
 	rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
 <!-- icons -->
 <link rel="icon" th:href="@{/images/ico/favicon.ico}">
 <link rel="apple-touch-icon" sizes="144x144"
@@ -241,6 +245,7 @@
 												<!-- 견적 테이블 -->
 												<div class="shopping-cart">
 													<div class="container">
+													<a th:href="@{/payment}" class="btn btn-primary" id="cashBtn" >결제하기</a>
 														<div  th:if="${#lists.size(PaymentInfo)== 0}" class="text-center pt-3">
 															<h4>검색 결과가 없습니다.</h4>
 														</div>
@@ -454,6 +459,7 @@
 												<div class="shopping-cart">
 													<div class="container">
 														<div class="row" style="border: none;">
+														
 															<form class="woocommerce-cart-form" action="#">
 																<table id="applyEstimation" class="table">
 																	<thead>

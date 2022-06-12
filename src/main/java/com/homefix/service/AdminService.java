@@ -93,9 +93,9 @@ public interface AdminService {
 	// 주간 신규 유저수
 	public long countNewUser();
 	
-	// 주간 계약 건수
-	public long countContract();
-	
 	// 월정액 유지수
 	public long countPayUser();
+	
+	// 이번달 계약성공건수
+	public long countContractMonth();
 }

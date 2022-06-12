@@ -79,17 +79,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	//로그인
 	@Override	//String - > Member :: 시큐리티 사용시 이렇게 변경!
-//	public String login(Member mem) {
 	public Member login(Member mem) {
-//		System.out.println("멤버레포에서 넘어왔나?" + memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword()));
-//		List<Member> list = memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword());
-//		String message = null;
-//		if (list.size() > 0) {
-//			
-//		} else {
-//			return null;
-//		}
-//		return mem;
 		System.out.println("멤버레포에서 넘어왔나?" + memberRepo.findByIdAndPassword(mem.getId(), mem.getPassword()));
 		Member memb = memberRepo.findById(mem.getId()).get();
 		  return memb;
@@ -133,9 +123,10 @@ public class MemberServiceImpl implements MemberService {
 	
 	//화면에 값 출력하려고 만든건데 필요없나..?
 	@Override
-	public List<Member> myPageList(Member mem) {
-		// TODO Auto-generated method stub
-		return null;
+	public Member myPageList(Member mem) {
+
+		
+		return memberRepo.findById(mem.getId()).get();
 	}
 
 	@Override

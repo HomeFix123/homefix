@@ -27,9 +27,9 @@ public class EstController {
 	@Autowired
 	private EstService estService;
 	
+	//특정 mapping 없을 경우 url과 동일한 파일 연결
 	@GetMapping("/{step}")
 	public void viewPage(@PathVariable String step) {
-		//return "/board/" + step;
 	}
 	
 	//고객이 직접 회사 골라서 신청한 회사별 견정신청서 리스트 불러오기
@@ -55,11 +55,9 @@ public class EstController {
 	@GetMapping("/MyEstimate")
 	public String mEstimation(Model m,Integer page,HttpSession session) {
 		String id = (String)session.getAttribute("memberId");
-		System.out.println(page);
-		System.out.println("넘어온 아이디는"+id);
+		logger.info("넘어온 아이디는"+id);
 		if(page==null) page=1;
 		System.out.println(estService.countMEList(id));
-		
 		m.addAttribute("Lists",estService.getMEstimation(id,page));
 		m.addAttribute("cntMELst",estService.countMEList(id));
 		return "estimation/MyEstimate";
@@ -73,12 +71,11 @@ public class EstController {
 		if(cid == null) {
 			return "redirect:/index";
 		}
-		
 		if(page == null) {
 			page=1;
 		}
 		
-		System.out.println("상황" + sit);
+		
 		Page<Contract> result = estService.getCIngList(cid, sit, page); 
 		m.addAttribute("Lists", result.getContent());
 		m.addAttribute("pageCnt", result.getTotalPages());
@@ -96,34 +93,6 @@ public class EstController {
 	
 	@GetMapping("/estimationtest")
 	public void estimationtest() {}
-	
-	//---------------------------------<ajax>--------------------------------------
-	//ajax로 session에 값 저장하고 출력하는거 테스트 후에 지우기!!!!!!!!!!!!!!!!!
-	@RequestMapping("/sessiontest")
-	@ResponseBody
-	public String sessioncheck(String id , HttpSession session) {
-		session.setAttribute("userId", id);
-		String sessionid = (String)session.getAttribute("userId");
-		//System.out.println(sessionid);
-		return sessionid;
-	}
-	
-	//ajax로 session에 값 저장하고 출력하는거 테스트 후에 지우기!!!!!!!!!!!!!!!!!
-	@RequestMapping("/memberSession")
-	@ResponseBody
-	public String memberSession(String id , HttpSession session) {
-		session.setAttribute("memberId", id);
-		String sessionid = (String)session.getAttribute("memberId");
-		//System.out.println(sessionid);
-		return sessionid;
-	}
-	
-	//ajax로 session에 값 삭제 테스트 후에 지우기!!!!!!!!!!!!!!!!!
-		@RequestMapping("/logout")
-		@ResponseBody
-		public void logout(HttpSession session) {
-			session.invalidate(); //세션의 모든 속성을 삭제
-		}
 	
 	@RequestMapping("/estimationDetail")
 	@ResponseBody
@@ -184,7 +153,6 @@ public class EstController {
 	public Contract checkContract(Integer eid) {
 		System.out.println("checkContract 실행"+eid);
 		Contract contract = estService.checkContract(eid);
-		//System.out.println(contract);
 		return contract;
 	}
 	

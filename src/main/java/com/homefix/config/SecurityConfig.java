@@ -23,14 +23,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 												 "/company/{id}",
 												 "/sign/member/sign_kakao",
 												 "/sign/member/sign_member"
-												 ,"/brag/**","/review/**","/expert"
+												 ,"/brag/**","/review/**","/expert","/estimation/**"
 												 ).permitAll(); // index화면에 모두 접근가능.
 		
 		security.authorizeRequests().antMatchers("-").authenticated(); // 인증된 사용자만
 		security.authorizeRequests().antMatchers("/member/profile").hasRole("USER");
 		//security.authorizeRequests().antMatchers("/member/**").authenticated(); // 인증된 사용자만
 		security.authorizeRequests().antMatchers("/company/profile").hasRole("COMPANY");// manager만
-		security.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");// admin만
+		//security.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");// admin만
 		security.formLogin().loginPage("/sign"); // 사용자 로그인 화면
 		//security.formLogin().loginPage("/sign").defaultSuccessUrl("/sign/company/companyLogin", true); // 사용자 로그인 화면
 		security.exceptionHandling().accessDeniedPage("/sign/error");// 권한 없을 떄 보여주는 오류 페이지 지정하기
