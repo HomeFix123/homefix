@@ -5,14 +5,20 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.homefix.domain.Brag;
 import com.homefix.domain.Company;
 import com.homefix.domain.CompanyInfo;
 import com.homefix.domain.CompanyReport;
 import com.homefix.domain.Member;
 import com.homefix.domain.MemberReport;
 import com.homefix.domain.Payment;
+import com.homefix.domain.Tip;
+import com.homefix.persistence.BragRepository;
 import com.homefix.persistence.CompanyInfoRepository;
 import com.homefix.persistence.CompanyReportRepository;
 import com.homefix.persistence.CompanyRepository;
@@ -104,6 +110,16 @@ public class AdminServiceImpl implements AdminService {
 		return memberReportRepo.countByRdayGreaterThan(date);
 	}
 	
+	
+	@Override
+	public List<MemberReport> getMemberReport(String id) {
+		Member temp = memberRepo.findById(id).get();
+		
+		return memberReportRepo.findByMember(temp);
+	}
+	
+	
+	
 	@Autowired
 	CompanyRepository companyRepo;
 	
@@ -194,6 +210,63 @@ public class AdminServiceImpl implements AdminService {
 	public List<Payment> getPaymentList(String cid) {
 		Company temp = companyRepo.findById(cid).get();
 		return paymentRepo.findByCompany(temp);
+	}
+
+	
+	/*
+	 * 업체 신고 내역
+	 */
+	@Override
+	public List<CompanyReport> getCompanyReport(String id) {
+		Company company = companyRepo.findById(id).get();
+		return companyReportRepo.findByCompany(company);
+	}
+
+	
+	@Autowired
+	BragRepository bragRepo;
+	
+	/*
+	 * 자랑글 목록 
+	 */
+	@Override
+	public List<Brag> getBragList(int page) {
+		int showCntPerPage = 5;
+		Pageable pageable = PageRequest.of(page-1, showCntPerPage, Sort.by("bid").descending());
+		
+		return bragRepo.findAll(pageable);
+	}
+
+	/*
+	 * 자랑글 개수(페이징용)
+	 */
+	@Override
+	public long countBragList() {
+		int showCntPerPage = 5;
+		return (long)(bragRepo.count()+1)/showCntPerPage + 1;
+	}
+	
+	/*
+	 * 팁 게시글 목록
+	 */
+	@Override
+	public List<Tip> getTipList(int page) {
+		// Tip Repo가 완성되면 진행
+		int showCntPerPage = 5;
+		
+		Pageable pageable = PageRequest.of(page-1, showCntPerPage);
+		
+		return null;
+	}
+
+	/*
+	 * 팁 게시글 개수
+	 * 페이징용
+	 */
+	@Override
+	public long countTipList() {
+		
+		return 0;
 	}
 
 	
