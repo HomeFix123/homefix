@@ -7,7 +7,7 @@
 <meta name="author" content="">
 <meta name="description" content="">
 
-<title>Educam | Education & Courses HTML Template.</title>
+<title>구독 결제</title>
 
 <!-- CSS -->
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -45,17 +45,20 @@
 </head>
 <body>
 	<div id="preloader">
-            <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
-    </div><!-- preloader -->
+		<img th:src="@{/images/preloader.gif}" alt="Image"
+			class="tr-preloader img-fluid">
+	</div>
+	<!-- preloader -->
 	<div th:replace="sections/header :: header"></div>
 
 	<!-- /.sa-header -->
 
 	<section class="breadcrumb-section">
 		<div class="container">
-			<h1>Shopping Cart</h1>
+			<h1>구독비 결제페이지</h1>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+				<li class="breadcrumb-item"><a th:href="@{/company/profile}">profile</a></li>
 				<li class="breadcrumb-item">Payment</li>
 			</ol>
 		</div>
@@ -72,9 +75,8 @@
 
 
 
-			<input type="text" id="companyId" th:value="${session['userId']}"
-				hidden> <input type="hidden" id="endDay"
-				th:value="${EndDay}">
+			<input type="hidden" id="companyId" th:value="${session['userId']}">
+			<input type="hidden" id="endDay" th:value="${EndDay}">
 			<form class="contact-form" name="contact-form" method="post"
 				action="#">
 				<div class='row'>
@@ -170,7 +172,7 @@
 		src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<!--eunhye js  -->
 	<script th:src="@{/js/eh/etc.js}"></script>
-	
+
 	<!-- header js -->
 	<script th:src="@{/js/sections/header.js}"></script>
 

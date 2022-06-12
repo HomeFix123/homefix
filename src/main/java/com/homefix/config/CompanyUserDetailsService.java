@@ -32,10 +32,5 @@ public class CompanyUserDetailsService implements UserDetailsService {
 			Company company = optional.get();
 			return new SecurityUser(company);
 		}
-		
-		
-		
-		
 	}
-
 }
