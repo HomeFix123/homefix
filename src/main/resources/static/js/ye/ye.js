@@ -91,7 +91,7 @@ $(function() {
 				success:function(){
 					console.log('성공');
 					//버튼 css 변경
-					decisionBtn.text("확정요청완료");
+					decisionBtn.text("요청완료");
 					decisionBtn.addClass("nothover_btn");
 					decisionBtn.attr("id","nothover_btn");
 				},
