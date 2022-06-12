@@ -149,7 +149,7 @@ public class EstServiceImpl implements EstService {
 		
 		if(situation.equals("doing")) {
 			
-			return contractRepo.findByCompanyAndIng(company, "진행중", pageable);
+			return contractRepo.findByCompanyAndIng(company, "진행 중", pageable);
 		}
 		
 		if(situation.equals("done")) {
