@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.homefix.domain.Chatting;
 import com.homefix.service.ChattingService;
 
+/**
+ * @author 영은
+ *
+ */
 @Controller
 @RequestMapping("/chat")
 public class ChattingController {
