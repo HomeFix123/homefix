@@ -18,14 +18,15 @@ import com.homefix.domain.Company;
 import com.homefix.domain.Payment;
 import com.homefix.service.PaymentService;
 
+/**
+ * @author eunhye
+ *
+ */
 @Controller
 @RequestMapping("/payment")
 public class PaymentController {
 
-	/**
-	 * @author 이은혜
-	 *
-	 */
+	
 
 	private Logger logger = LoggerFactory.getLogger(AdminController.class);
 

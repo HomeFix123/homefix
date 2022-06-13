@@ -8,9 +8,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * @author eunhye
+ *
+ */
 @EnableWebSecurity // 시큐리티 설정파일을 의미하는 어노테이션(시큐리티 사용에 필요한 객체 생성)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	
+	
+	
 	@Autowired
 	private CompanyUserDetailsService companyUserDetailsService;
 

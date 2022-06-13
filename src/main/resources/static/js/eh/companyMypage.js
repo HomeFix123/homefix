@@ -1,4 +1,11 @@
 //companyprofile 회원정보수정-----------------------------------------
+
+
+/**
+ * @author eunhye
+ *
+ */
+
 $(function() {
 	$('#postBtn').click(function() {
 		$('#sample6_postcode').val('')

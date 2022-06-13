@@ -11,6 +11,10 @@ import com.homefix.persistence.CompanyRepository;
 
 import lombok.AllArgsConstructor;
 
+/**
+ * @author eunhye
+ *
+ */
 @Service
 @AllArgsConstructor
 public class CompanySendEmailService{
