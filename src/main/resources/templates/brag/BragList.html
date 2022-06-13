@@ -45,7 +45,8 @@
 		<img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
 	</div>
 	<!-- preloader -->
-
+	
+	<!-- header -->
 	<div th:replace="sections/header :: header"></div>
 	<!-- 퀵메뉴바 -->
 	<div th:replace="sections/nav :: div"></div>
@@ -188,6 +189,8 @@
 							</li>
 						</ul>
 					</div>
+					
+					<!-- 인테리어 자랑 작성하기 -->
 					<div class="view-all align-self-center">
 						<a th:if="${session.memberId != null}" th:href="@{brag/write}" class="btn btn-primary">자랑하기</a>
 						<a th:if="${session.memberId == null}" th:href="@{/sign}" class="btn btn-primary">자랑하기</a>
@@ -200,7 +203,8 @@
 						</div>
 					</form>
 				</div>
-
+				
+				<!-- 인테리어 자랑 목록 출력 ( 불러올 목록이 없으면 검색결과 없음 출력 ) -->
 				<div class="row" id="bragListDiv">
 					<div th:if="${#lists.size(bragList) == 0}" class="text-center">
                     	<h4>검색 결과가 없습니다</h4>
@@ -254,6 +258,7 @@
 		<!-- /.section-content -->
 	</div>
 	<!-- /.sa-section -->
+	
 	<!-- 더보기 버튼 -->
     <div th:if="${#lists.size(bragList) == 12}" id="moreDiv" class="text-center">
 		<button class="btn btn-primary w-100" id="moreBtn">더보기</button>

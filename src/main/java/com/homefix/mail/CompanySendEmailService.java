@@ -3,6 +3,7 @@ package com.homefix.mail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.homefix.domain.Company;
@@ -22,6 +23,8 @@ public class CompanySendEmailService{
     
     private static final String FROM_ADDRESS = "ducksoo93@gmail.com";
 
+    @Autowired
+	private PasswordEncoder encoder;
  
 
     public MailDto createMailAndChangePassword(String email, String name){
@@ -40,7 +43,8 @@ public class CompanySendEmailService{
     	//아래꺼 사용할경우 비밀번호 암호화되서 들어감!!
 //        String password = EncryptionUtils.encryptMD5(str);
         Company temp = companyRepo.findCompanyByEmail(email);
-        temp.setPass(password);
+        
+        temp.setPass(encoder.encode(password));
         companyRepo.save(temp);
     }
 

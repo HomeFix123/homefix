@@ -32,7 +32,7 @@
 	rel="stylesheet">
 
 <!-- icons -->
-<link rel="icon" href="images/ico/favicon.ico">
+<link rel="icon" href="/images/ico/favicon.ico">
 <link rel="apple-touch-icon" sizes="144x144"
 	href="../images/ico/apple-touch-icon-precomposed.png">
 <link rel="apple-touch-icon" sizes="114x114"
@@ -46,7 +46,7 @@
 <body>
 	<div id="preloader">
             <img th:src="@{/images/preloader.gif}" alt="Image" class="tr-preloader img-fluid">
-        </div><!-- preloader -->>
+        </div><!-- preloader -->
 
 
 	<div th:replace="sections/header :: header"></div>
@@ -167,7 +167,7 @@
 														<ul class="global-list">
 															<li> <i class="fas fa-heart"></i><span th:text="${b.prefer}"></span>
 															
-															</li>&nbsp;&nbsp;<li> <i class="far fa-eye"></i><span
+															</li><li> <i class="far fa-eye"></i><span
 																	th:text="${b.bcnt}"></span>
 															</li>
 														</ul>
@@ -252,19 +252,16 @@
 					<!-- /.sa-course -->
 
 					<div class='col-lg-3'>
+						
 
-
-						<div class=companyImg>
-
-
-
+						<div class="companyImg">
+							<div id="companyBookMark">
+								<a href="#" id="bookMarkBtn"><i class="far fa-bookmark"></i><input class="company-id" type="hidden" th:value="${CompanyBasic.id}"></a>
+							</div>
 							<div class='imgtutor'>
 								<img
 									th:src="|http://140.238.11.118:5000/upload/${CompanyBasic.logo}|"
 									alt="Profile Picture" id='companyId'>
-
-
-
 							</div>
 
 							<div>
@@ -274,7 +271,7 @@
 
 									<!---->
 								</h4>
-								<ul class="global-list">
+								<ul class="global-list companyInfoList">
 									<li><i class="fas fa-check-circle"></i><span
 										th:text="' 대표번호:  ' + ${CompanyBasic.tel} "></span></li>
 									<li><i class="fas fa-check-circle"></i><span
@@ -289,11 +286,8 @@
 
 							</div>
 						</div>
-
-						</aside>
-
 						<a th:href="@{/estimation/write?cid=}+(${CompanyBasic.id})"
-							id="estRegist" class="btn btn-primary">견적 신청하기</a>
+							id="estRegist" class="btn btn-primary w-100">견적 신청하기</a>
 					</div>
 
 
@@ -339,7 +333,7 @@
 	<script th:src="@{/js/eh/etc.js}"></script>
 	<!-- header js -->
     <script th:src="@{/js/sections/header.js}"></script>
-
+	<script th:src="@{/js/companyList/detail.js}"></script>
 
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.0/sockjs.min.js"></script>
