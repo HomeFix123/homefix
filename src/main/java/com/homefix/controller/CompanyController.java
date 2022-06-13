@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,8 +42,12 @@ public class CompanyController {
 	@Autowired
 	CompanySendEmailService sendEmailService;
 
+	//@Autowired
+	//private PasswordEncoder encoder;
+	
+	
 	@Autowired
-	private PasswordEncoder encoder;
+	private BCryptPasswordEncoder encoder;
 
 	// 사업자 아이디 중복 조회
 	@GetMapping("/company/idCheck")
@@ -67,7 +71,8 @@ public class CompanyController {
 	@GetMapping("/company/companyNumberCheck")
 	@ResponseBody
 	public String companyNumberCheck(String num) {
-		return companyService.companyNumberCheck(num);
+		String numr=num.replaceAll("-", "");
+		return companyService.companyNumberCheck(numr);
 	}
 
 	// 로그인하기

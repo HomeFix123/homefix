@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import com.homefix.domain.Company;
 import com.homefix.persistence.CompanyRepository;
 
+/**
+ * @author eunhye
+ *
+ */
 @Service
 public class CompanyUserDetailsService implements UserDetailsService {
 

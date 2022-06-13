@@ -24,11 +24,12 @@ import com.homefix.service.CompanyService;
 import com.homefix.service.EstService;
 import com.homefix.service.PaymentService;
 
+
+
 /**
- * @author 이은혜
+ * @author eunhye
  *
  */
-
 @Controller
 @RequestMapping("/company")
 public class CompanyPageController {

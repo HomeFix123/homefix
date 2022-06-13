@@ -21,6 +21,10 @@ import com.homefix.persistence.CompanyRepository;
 import com.homefix.persistence.MemberRepository;
 import com.homefix.persistence.ReviewRepository;
 
+/**
+ * @author eunhye
+ *
+ */
 @Service
 public class CompanyServiceImpl implements CompanyService {
 

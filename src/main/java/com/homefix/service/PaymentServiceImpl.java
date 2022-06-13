@@ -12,6 +12,10 @@ import com.homefix.domain.Company;
 import com.homefix.domain.Payment;
 import com.homefix.persistence.PaymentRepository;
 
+/**
+ * @author eunhye
+ *
+ */
 @Service
 public class PaymentServiceImpl implements PaymentService {
 
