@@ -349,21 +349,16 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public long countContract() {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(new Date());
-		cal.add(Calendar.DAY_OF_WEEK, -1); // 빼고 싶다면 음수 입력
-		Date date = new Date(cal.getTimeInMillis());
-		return 0;
-	}
-	
-	@Override
 	public long countPayUser() {
 		
 		return paymentRepo.countByPlastGreaterThan(new Date());
 	}
 
 	
+	@Override
+	public long countContractMonth() {
+		return dashRepo.countContractMonth();
+	}
 	
 	
 

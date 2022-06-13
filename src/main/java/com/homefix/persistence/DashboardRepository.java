@@ -17,7 +17,7 @@ public interface DashboardRepository extends CrudRepository<Member, String>{
 			+ "	\r\n"
 			+ "	SELECT DATE_ADD(d, INTERVAL 1 MONTH)  AS d\r\n"
 			+ "	FROM cte\r\n"
-			+ "	WHERE d < DATE_ADD(NOW(), INTERVAL -1 MONTH)\r\n"
+			+ "	WHERE d < NOW()\r\n"
 			+ ")\r\n"
 			+ "SELECT \r\n"
 			+ "	DATE_FORMAT(c.d, '%Y-%m') AS MONTH,\r\n"
@@ -39,7 +39,7 @@ public interface DashboardRepository extends CrudRepository<Member, String>{
 			+ "	\r\n"
 			+ "	SELECT DATE_ADD(d, INTERVAL 1 MONTH)  AS d\r\n"
 			+ "	FROM cte\r\n"
-			+ "	WHERE d < DATE_ADD(NOW(), INTERVAL -1 MONTH)\r\n"
+			+ "	WHERE d < NOW()\r\n"
 			+ ")\r\n"
 			+ "SELECT \r\n"
 			+ "	DATE_FORMAT(c.d, '%Y-%m') AS MONTH,\r\n"
@@ -52,4 +52,10 @@ public interface DashboardRepository extends CrudRepository<Member, String>{
 			+ "		) p\r\n"
 			+ "	ON date_format(c.d, '%Y-%m') = p.month", nativeQuery = true)
 	public List<Object[]> searchAggPayments();
+	
+	@Query(value = "SELECT COUNT(ctid) cnt\r\n"
+			+ " FROM contract\r\n"
+			+ " WHERE ing = '시공완료'\r\n"
+			+ " AND DATE_FORMAT(ct_d, '%Y-%m') = date_format(NOW(),'%Y-%m');\r\n", nativeQuery = true)
+	public long countContractMonth();
 }

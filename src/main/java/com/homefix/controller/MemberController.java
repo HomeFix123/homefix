@@ -147,37 +147,6 @@ public class MemberController {
 				return "sign/sign-in";
 			}
 		
-//		if (mems != null) {
-//			System.out.println("로그인 성공함");
-//			session.setAttribute("memberId", mems.getId());
-//			System.out.println("아이디 넘어오는지 확인 :" + mem.getId() );
-//			
-//			session.setAttribute("memberNick", mems.getNickname());
-//			session.setAttribute("memberName", mems.getName());
-//			session.setAttribute("memberTel", mem.getTel());
-//			System.out.println("전화번호 넘어오는지 확인 :" + mem.getTel() );
-//			
-//			session.setAttribute("memberZip", mem.getZipcode());
-//			session.setAttribute("memberAddr", mem.getAddr());
-//			session.setAttribute("memberAddrd", mem.getAddrd());
-//			
-//			session.setAttribute("memberEmail", mem.getEmail());
-//			System.out.println("이메일 넘어오는지 확인 :" + mem.getEmail() );
-//			
-//			session.setAttribute("memberPass", mem.getPassword());
-//			
-//			session.setAttribute("memLogin", mems);
-//			model.addAttribute("member", mems);
-//			model.addAttribute("message", "Y");
-//			model.addAttribute("session", session);
-//			return "redirect:/index";
-//		} else {
-//			model.addAttribute("message", "N");
-//			System.out.println("로그인 실패했음");
-//			System.out.println(mem.getPassword());
-//			System.out.println(mem.getId());
-//			return "sign/sign-in";
-//		}
 	}
 	
 	
@@ -207,8 +176,8 @@ public class MemberController {
 		logger.info("개인 마이페이지");
 		Member mem = new Member();
 		mem.setId((String) session.getAttribute("memberId"));
-		List<Member> list = memberService.myPageList(mem);
-		m.addAttribute("member",list);
+		Member result = memberService.myPageList(mem);
+		m.addAttribute("member",result);
 		m.addAttribute("session", session);
 		
 		
@@ -301,7 +270,7 @@ public class MemberController {
 	// 글 수정
 	@PutMapping(value="/member/updateMember")
 	public String updateMember(Member mem) {	
-		
+		mem.setPassword(encoder.encode(mem.getPassword()));
 		memberService.updateMember(mem);
 		System.out.println("update:::::::: "+mem);
 		return "redirect:/sign/member/profile";
@@ -312,10 +281,9 @@ public class MemberController {
 	@ResponseBody
 	public String memberSecession(String password, HttpSession session) {
 		Member mem = new Member();
-		
 		mem.setId((String) session.getAttribute("memberId"));
 		
-		mem.setPassword((String) session.getAttribute("memberPass"));
+		mem.setPassword(encoder.encode((String) session.getAttribute("memberPass")));
 		String passCheck = memberService.memberDelete(mem);
 		System.out.println("패스워드 체크"+passCheck);
 		if (passCheck == "Y") {

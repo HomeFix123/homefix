@@ -69,8 +69,17 @@ $(function(){
 		
 		// 견적 목록
 		memberEstData = searchEstById(id);
-		console.log(memberEstData);
+		
 		estTbody.empty();
+		if(memberEstData == null || memberEstData.length == 0){
+			let tr = "<tr>"
+			tr += "<td colspan='3'>"
+			tr += "견적 기록이 없습니다."
+			tr += "</td>"
+			tr += "</tr>"
+			estTbody.append(tr);
+		}
+		
 		for(let est of memberEstData){
 			let tr = "<tr>"
 			tr += "<td>"+ est.eid + "</td>"
@@ -85,6 +94,15 @@ $(function(){
 		// 신고 목록
 		memberReportData = searchReportById(id);
 		reportTbody.empty();
+		
+		if(memberReportData == null || memberReportData.length == 0){
+			let tr = "<tr class='text-center'>"
+			tr += "<td colspan='2'>"
+			tr += "신고 기록이 없습니다."
+			tr += "</td>"
+			tr += "</tr>"
+			reportTbody.append(tr);
+		}
 		
 		for(let report of memberReportData){
 			let tr = "<tr>"
