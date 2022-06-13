@@ -49,7 +49,7 @@ public class MemberController {
 	
 	//시큐리티용
 	@Autowired
-	private PasswordEncoder encoder;
+	private BCryptPasswordEncoder encoder;
 	
 	@Autowired
 	private MemberService memberService;

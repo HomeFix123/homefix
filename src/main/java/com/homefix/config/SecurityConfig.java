@@ -2,11 +2,10 @@ package com.homefix.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity // 시큐리티 설정파일을 의미하는 어노테이션(시큐리티 사용에 필요한 객체 생성)
@@ -39,9 +38,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		security.csrf().disable();// Restfull 사용자는 csrf는 disable로 설정한다.
 	}
 	
-	// 비밀번호 인코더
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-	}
+	// 비밀번호 인코더 암호의 단방향 변환을 지원
+		@Bean
+		public PasswordEncoder passwordEncoder() {
+			
+			PasswordEncoder encoder = new BCryptPasswordEncoder();
+			return encoder;
+		}	
 }
+
+
+//return PasswordEncoderFactories.createDelegatingPasswordEncoder(); 
+		//기존 인코딩 방식인 DelegatingPasswordEncoder는 스프링 시큐리티 5버전 부터 에러로
+		//bcprov-jdk15on를 의존성에 추가해주면 해결할 수 있음.
+		//{id}encodedPassword과 같은 형식으로 비번 인코딩 --> {id}는 PasswordEncoder를 찾는 식별자로 사용
+		//**https://beginner97.tistory.com/10 [참고]
+		//PasswordEncoder라는 인터페이스의 구현체로 BCryptPasswordEncoder, Argon2PasswordEncoder,
+				//Pbkdf2PasswordEncoder, SCryptPasswordEncoder 등 많은 PasswordEncoder가 있음.
