@@ -2,11 +2,8 @@ $(function() {
 
 	/*********************payment.html************************/
 
-
 	/*1.개월수 금액 변경하기*/
 	$('#moneySel').click(function() {
-
-
 		$('#price').text($(this).val() * '9900');
 	})
 
@@ -18,13 +15,13 @@ $(function() {
 		var payCheck = new Date($('#endDay').val()); //사용자 결제 기간 남았는지 체크
 		var today = new Date(); //오늘 날짜 시간
 
-		if (payCheck > today) {//마지막 사용일 결제일 비교
+		if (payCheck > today) {//마지막 사용일 결제일 비교 -남았을 시
 			today.setFullYear(payCheck.getFullYear());
 			today.setMonth(payCheck.getMonth());
 			today.setDate(payCheck.getDate() + 1);
 			var StartDay = today.toLocaleDateString(); //년.월.일 형식으로 가져오기(시간은 제외)
 			var EndDay = new Date(StartDay);
-		} else {
+		} else {               //마지막 사용일 결제일 비교 -안 남았을 시
 			var StartDay = today.toLocaleDateString(); //년.월.일 형식으로 가져오기(시간은 제외)
 			var EndDay = new Date();
 		}
@@ -32,25 +29,15 @@ $(function() {
 		var selectMonth = $('#moneySel').val(); //선택한 개월수
 		if (selectMonth == '1') {
 			EndDay.setMonth(EndDay.getMonth() + 1);
-
 		} else if (selectMonth == '2') {
 			EndDay.setMonth(EndDay.getMonth() + 2);
-
 		} else {
 			EndDay.setMonth(EndDay.getMonth() + 3);
-
 		}
 		EndDay = EndDay.toLocaleDateString();
 
 
-
-
-
-
-
-
 		if (cid != "") {
-
 			// IMP.request_pay(param, callback) 호출
 			IMP.init('imp58368556'); //자신의가맹점_키
 			var price = $('#price').text();//결제 금액
@@ -60,12 +47,9 @@ $(function() {
 				name: '주문명:HomeFix 유료회원 결제',
 				buyer_name: cid, // 구매자 이름
 				amount: price, //판매 가격
-
-
 			}, function(rsp) { // callback
 				if (rsp.success) { // 결제 성공 시 로직,
 					console.log(rsp)
-
 					const pid = rsp.imp_uid;
 					const pday = StartDay;
 					const plast = EndDay;
@@ -77,7 +61,8 @@ $(function() {
 					$.ajax({
 						type: 'post',
 						url: '/payment/paymentInfoInsert',
-						data: { pid: pid, pday: pday, plast: plast, method: method, amount: amount, company: company },
+						data: { pid: pid, pday: pday, plast: plast, method: method, 
+													amount: amount, company: company },
 						contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 						success: function(result) {
 							console.log(result);
@@ -92,23 +77,22 @@ $(function() {
 					msg += '에러내용 : ' + rsp.error_msg;
 				}
 			})
-			
 		} else {
 			location.href = "/sign"; //로그인 안했을 시 로그인창으로 이동
 		}
 	});
 
 
-//--------------------------------------------------------------
-//시공사례더보기
-var pageA = 1;
+	//--------------------------------------------------------------
+	//시공사례더보기
+	var pageA = 1;
 	var companyCid = $('#companyCid').val();
 	$('#moreBtnBrag').click(function() {
-		
-	
+
+
 		pageA += 1;
 		$.ajax({
-			data: { "page": pageA , "id":companyCid },
+			data: { "page": pageA, "id": companyCid },
 			type: "GET",
 			url: "/company/companyBrag",
 			async: false,
@@ -116,15 +100,15 @@ var pageA = 1;
 		}).done((Result) => {
 			$.each(Result, function(i, brag) { //Result 리스트에 들어있는 brag객체로 each문 돌림.
 				let AddContent = '<ul class="ulBrag"><li class="media"><div class="entry-thumbnail entry-header"><a href="/brag/'
-				+brag.bid+'"> <img src="http://140.238.11.118:5000/upload/'+brag.bimgadr
-				+'" alt="Image" class="img-fluid"> </a></div>'
-				+'<div class="info"><h2 class="title text-center"><a>'+brag.btitle+'</a></h2>'
-				+'<p class="text-right">'+brag.member.nickname+'</p></div><div class="sa-meta">'
-				+'<ul class="global-list"><li> <i class="fas fa-heart"></i><span>'+brag.prefer
-				+'</span></li>&nbsp;&nbsp;'
-				+' <li><i class="far fa-eye"></i><span>'+brag.bcnt+'</span>'
-				+'</a></li></ul></div><hr></li></ul>';
-				
+					+ brag.bid + '"> <img src="http://140.238.11.118:5000/upload/' + brag.bimgadr
+					+ '" alt="Image" class="img-fluid"> </a></div>'
+					+ '<div class="info"><h2 class="title text-center"><a>' + brag.btitle + '</a></h2>'
+					+ '<p class="text-right">' + brag.member.nickname + '</p></div><div class="sa-meta">'
+					+ '<ul class="global-list"><li> <i class="fas fa-heart"></i><span>' + brag.prefer
+					+ '</span></li>&nbsp;&nbsp;'
+					+ ' <li><i class="far fa-eye"></i><span>' + brag.bcnt + '</span>'
+					+ '</a></li></ul></div><hr></li></ul>';
+
 				$('#companyBragBoard').append(AddContent);
 			})
 
@@ -137,15 +121,15 @@ var pageA = 1;
 			console.log(err);
 		});
 	})
-//업체후기 더보기 -------------------------------------------------------------------------*/
+	//업체후기 더보기 -------------------------------------------------------------------------*/
 	var pageB = 1;
 	var companyCid = $('#companyCid').val();
 	$('#moreBtnReview').click(function() {
-		
-	
+
+
 		pageB += 1;
 		$.ajax({
-			data: { "page": pageB , "id":companyCid },
+			data: { "page": pageB, "id": companyCid },
 			type: "GET",
 			url: "/company/companyRiew",
 			async: false,
@@ -156,7 +140,7 @@ var pageA = 1;
 					+ '<img src="http://140.238.11.118:5000/upload/' + review.rimgadr + '"alt="Image" class="img-fluid" id="thumbnailImage">'
 					+ '</a>' + '</div>' + '</div>' + '<div class="course-info">' + '<div class="info">' + '<h2 class="title text-center">'
 					+ '<a >' + review.rtitle + '</a>' + '</h2>' + '<p class="text-right">' + review.company.name + '</p>'
-					+ '</div >' + '<div class="sa-meta">' + '<ul class="global-list">'  + '<li>' + '<a href="#">' + ' <i class="far fa-eye">' + '</i>' + '<span>' + review.rcnt + '</span>'
+					+ '</div >' + '<div class="sa-meta">' + '<ul class="global-list">' + '<li>' + '<a href="#">' + ' <i class="far fa-eye">' + '</i>' + '<span>' + review.rcnt + '</span>'
 					+ '</a>' + '</li>' + '</ul>' + '</div >' + '</div >' + '</div >' + '</div >';
 				$('#myReviswList').append(AddContent);
 			})
