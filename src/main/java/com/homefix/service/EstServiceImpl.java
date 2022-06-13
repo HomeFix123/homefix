@@ -22,6 +22,10 @@ import com.homefix.persistence.EstRepository;
 import com.homefix.persistence.Esti_requestRepository;
 import com.homefix.persistence.MemberRepository;
 
+/**
+ * @author 영은
+ *
+ */
 @Service
 public class EstServiceImpl implements EstService {
 	
@@ -40,6 +44,7 @@ public class EstServiceImpl implements EstService {
 	@Autowired
 	Esti_requestRepository esti_reqRepo; 
 
+	//고객이 직접 회사 고른거 리스트 상세보기 
 	@Override
 	public Estimation getEstDetail(Integer eid,String cid) {
 		Estimation resultData = estRepo.findById(eid).get();
@@ -55,6 +60,7 @@ public class EstServiceImpl implements EstService {
 		return resultData;
 	}
 
+	//고객이 직접 회사 골라서 신청한 회사별 견정신청서 리스트 불러오기
 	@Override
 	public List<Estimation> getCEsts(String cid, Integer page) {
 		int showCntPerPage = 10;
@@ -86,6 +92,7 @@ public class EstServiceImpl implements EstService {
 		return (long)(estRepo.countByCompany(company)-1)/showCntPerPage + 1;
 	}
 	
+	//페이징 
 	@Override
 	public List<Estimation> getCEst(String cid, Integer page) {
 		Company com = companyRepo.findById(cid).get();
@@ -99,6 +106,7 @@ public class EstServiceImpl implements EstService {
 		return estRepo.findByCompany(com, pageable);
 	}
 
+	//고객 본인이 보낸 견적리스트
 	@Override
 	public List<Estimation> getMEstimation(String id,Integer page) {
 		int showCntPerPage = 10;
@@ -130,6 +138,7 @@ public class EstServiceImpl implements EstService {
 		return estRepo.findById(id).get();
 	}
 
+	//내(고객)리스트 상세보기 회사리스트 보기
 	@Override
 	public List<Esti_request> getMEDetailC(Integer id) {
 		Estimation estimation = estRepo.findById(id).get();
@@ -149,7 +158,7 @@ public class EstServiceImpl implements EstService {
 		
 		if(situation.equals("doing")) {
 			
-			return contractRepo.findByCompanyAndIng(company, "진행중", pageable);
+			return contractRepo.findByCompanyAndIng(company, "진행 중", pageable);
 		}
 		
 		if(situation.equals("done")) {
@@ -159,6 +168,7 @@ public class EstServiceImpl implements EstService {
 		return contractRepo.findByCompany(company, pageable);
 	}
 
+	//시공완료 시 db변경
 	@Override
 	public void saveIng(Integer eid) {
 		Estimation estimation = estRepo.findById(eid).get();
@@ -243,6 +253,7 @@ public class EstServiceImpl implements EstService {
 		contractRepo.save(contract);
 	}
 
+	
 	@Override
 	public Contract checkContract(Integer eid) {
 		Estimation esti = estRepo.findById(eid).get();
