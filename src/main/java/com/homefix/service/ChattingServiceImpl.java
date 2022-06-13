@@ -13,6 +13,10 @@ import com.homefix.persistence.CompanyRepository;
 import com.homefix.persistence.MemberRepository;
 
 
+/**
+ * @author 영은
+ *
+ */
 @Service
 public class ChattingServiceImpl implements ChattingService {
 	
