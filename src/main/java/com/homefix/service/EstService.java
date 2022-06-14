@@ -9,6 +9,10 @@ import com.homefix.domain.Contract;
 import com.homefix.domain.Esti_request;
 import com.homefix.domain.Estimation;
 
+/**
+ * @author 영은
+ *
+ */
 public interface EstService {
 
 	//견적 상세목록 불러오기

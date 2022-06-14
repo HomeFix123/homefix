@@ -92,7 +92,7 @@
                                     <p><span class="bold">건물 유형 :</span> <span th:text="${details.building}"></span></p>
                                     <p><span class="bold">평수 :</span> <span th:text="${details.size}"></span>평</p>
                                     <p><span class="bold">예산 :</span> <span th:text="${details.budget}"></span>만원</p>
-                                    <p><span class="bold">희망시공일정 :</span> <span th:text="${#dates.format(details.startDay, 'yyyy-mm-dd')}"></span> ~ <span th:text="${details.endDay}"></span></p>
+                                    <p><span class="bold">희망시공일정 :</span> <span th:text="${details.startDay}"></span> ~ <span th:text="${details.endDay}"></span></p>
                                     <p><span class="bold">주소 :</span> <span th:text="${details.eaddr}"></span></p>
                                     <p><span class="bold">상담인 :</span> <span th:text="${details.ename}"></span></p>
                                     <p><span class="bold">핸드폰 번호 :</span> <span th:text="${details.etel}"></span></p>
